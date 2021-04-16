@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dr.common.model.vo.PageInfo;
 import com.dr.member.comm.model.service.CommService;
 
 /**
@@ -36,8 +37,8 @@ public class CommListServlet extends HttpServlet {
 		int boardLimit; 		
 
 		int maxPage; 			
-		int startPage;    		// 현재 페이지 하단에 보여질 페이징 바의 시작 수 
-		int endPage; 			// 현재 페이지 하단에 보여질 페이징 바의 마지막 수 
+		int startPage;    		
+		int endPage; 		
 		
 		listCount = new CommService().selectListCount(); 
 		System.out.println(listCount); // => SQLException error남 (ㅠㅠ) 
@@ -54,12 +55,9 @@ public class CommListServlet extends HttpServlet {
 			endPage = maxPage;
 		}
 		
-		
-		
-		
-		
-		
-		
+		// 페이징 정보들을 한 공간에 담아둘 것
+		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
+		System.out.println(pi);
 		
 	}
 

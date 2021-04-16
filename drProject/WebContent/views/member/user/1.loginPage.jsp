@@ -98,7 +98,7 @@
     </style>
 </head>
 <body>
-    <%@ include file="../common/menubar.jsp" %>
+    <%@ include file="../../common/menubar.jsp" %>
 
     <h4 align="center">로그인</h4>
     <br>

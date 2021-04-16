@@ -83,7 +83,7 @@
     </style>
 </head>
 <body>
-    <%@ include file="../common/menubar.jsp" %>
+    <%@ include file="../../common/menubar.jsp" %>
 
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
     

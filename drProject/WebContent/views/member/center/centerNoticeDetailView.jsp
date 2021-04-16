@@ -107,7 +107,7 @@
                 <br>
                 <div><a href="<%=contextPath%>/queryList.ct">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1">공지사항</a></div>
             
             </div>
         </div>

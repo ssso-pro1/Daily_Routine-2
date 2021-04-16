@@ -1,10 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.center.model.vo.CenterNotice"%>
-<% 
-
+    pageEncoding="UTF-8" %>
+<%@ page import="java.util.ArrayList, com.dr.member.center.model.vo.CenterNotice, com.dr.common.model.vo.PageInfo"%>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<CenterNotice> list =(ArrayList<CenterNotice>)request.getAttribute("list"); 
 	
-
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>    
     
 <!DOCTYPE html>
@@ -124,7 +128,7 @@
                 <br>
                 <div><a href="<%=contextPath%>/queryList.ct">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1">공지사항</a></div>
             
             </div>
         </div>
@@ -213,14 +217,26 @@
                     <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
                     <!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
                     <div align="center" class="pagingArea">
-                         <button><</button>
-                         <button>1</button>
-                         <button>2</button>
-                         <button>3</button>
-                         <button>4</button>
-                         <button>5</button>
-                         <button>></button>
-                    </div>
+
+						<% if(currentPage != 1) { %>
+			            	<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=currentPage-1%>';">이전</button>
+						<% } %>
+						
+						<% for(int p=startPage; p<=endPage; p++) { %>
+							
+							<% if(currentPage == p){ %>
+			            		<button disabled><%= p %></button>
+			            	<% }else{ %>
+			            		<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%= p %>';"><%= p %></button>
+			            	<% } %>
+			            	
+						<% } %>
+						
+						<% if(currentPage != maxPage){ %>
+			            	<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=currentPage+1%>';">다음</button>
+						<% } %>
+						
+			        </div>
              
                     <br><br>
                     <div align="center" class="searchArea">

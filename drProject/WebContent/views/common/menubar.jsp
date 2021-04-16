@@ -71,7 +71,7 @@
     <div class="navWrap" align="center">
         <div class="menu"><a href="<%=contextPath%>">메인페이지</a></div>
         <div class="menu"><a href="">HomeTraining</a></div>
-        <div class="menu"><a href="<%=contextPath%>/commMain.co">Community</a></div>
+        <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
         <div class="menu"><a href="<%=contextPath%>/intMain.in">Info&Tip</a></div>
         <div class="menu"><a href="">My D.R.</a></div>
     <hr>

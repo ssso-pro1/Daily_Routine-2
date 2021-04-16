@@ -2,9 +2,13 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<entry key="">
-		
+	<entry key="selectListCount">
+		SELECT COUNT(*) LISTCOUNT 
+		  FROM TB_COMMUNITY 
+		 WHERE CATEGORY_NAME IN ('식단공유', '나만의운동tip!')
+		   AND STATUS = 'N'
 	</entry>
+	
 	
 	
 	

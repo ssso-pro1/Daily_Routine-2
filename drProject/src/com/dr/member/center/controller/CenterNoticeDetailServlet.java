@@ -35,7 +35,7 @@ public class CenterNoticeDetailServlet extends HttpServlet {
 		
 		
 		
-		int result = new CenterService().increaseCount(noticeNo);
+		int result = new CenterService().noticeIncreaseCount(noticeNo);
 		
 		if(result > 0) { // 조회수증가 조회성공
 			

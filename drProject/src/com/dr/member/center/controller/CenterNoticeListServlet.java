@@ -45,7 +45,7 @@ public class CenterNoticeListServlet extends HttpServlet {
 		int endPage;		// 현재 페이지에 하단에 보여질 페이징 바의 끝 수 (startPage, pageLimit, maxPage를 가지고 구할꺼임)
 				
 		// * listCount : 총 게시글 갯수 조회해서 담기
-		listCount = new CenterService().selectListCount();
+		listCount = new CenterService().noticeSelectListCount();
 				
 		// * currentPage : 현재 요청한 페이지
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -77,7 +77,7 @@ public class CenterNoticeListServlet extends HttpServlet {
 				
 		
 		// 2. 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 조회해오기
-		ArrayList<CenterNotice> list = new CenterService().selectList(pi);
+		ArrayList<CenterNotice> list = new CenterService().noticeSelectList(pi);
 				
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

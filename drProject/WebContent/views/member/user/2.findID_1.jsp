@@ -1,27 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- 됐나 -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>findID_1</title>
     <style>
-        //확인용
-        //확인확인
-        
-        
-        확인
         .outer{
             width:800px;
             height:auto;
             margin:auto;
             margin-top:30px;
         }
-        .wrap{border:1px solid gray;}
+        #content_2{border:1px solid gray;}
 
         .menuWrap{
             background:lightgray;
-            color:#F5DA01;
+            color:yellow;
             width:1200px;
             height:50px;
 
@@ -41,9 +37,9 @@
             height:100%;
             margin:0px 50px;
         }
-        .menu a:hover{color:#F5DA01;}
+        .menu a:hover{color:yellow;}
 
-        .wrap>table{
+        #content_2>table{
             margin:auto; 
             margin-top:50px;
             margin-bottom:50px;
@@ -61,9 +57,7 @@
     </div>
     
     <div class="outer">
-
-
-        <div id="title">
+        <div id="content_1">
             <h3>아이디 찾기</h3>
             <hr>
             <p>아이디 찾는 방법을 선택해주세요.</p>
@@ -75,8 +69,9 @@
         <!-- 1 휴대전화로 인증/ 2. 이메일로 인증
              1 선택시 1보이고 2는 hidden -->
         
+        <div id="content_2" >
         <form action="" id="findID"></form>
-        <div class="wrap" >
+        
             <table id="findID">
                 <td colspan="3"><input type="radio">회원정보에 등록한 휴대전화로 인증 <br>
                     <small>회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야, 인증번호를 받을 수 있습니다.</small></td>
@@ -89,6 +84,7 @@
                     <th align="left">이름</th>
                     <td colspan="2"><input type="text" placeholder="이름을 입력하세요"></td>
                     
+                    
                 </tr>
 
                 <tr></tr>
@@ -100,16 +96,14 @@
 
                 <tr>
                     <td></td>
-                    <td colspan="3"><input type="text" placeholder="인증번호 6자리 숫자 입력"></td>
+                    <td colspan="2"><input type="text" placeholder="인증번호 6자리 숫자 입력"></td>
                 </tr>
 
-                <!-- 테이블 내에 (중간에) 선 넣기  -->
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
-                <tr></tr>
+                <tr>
+                    <td></td>
+                    <th></th>
+                    <th></th>
+                </tr>
 
                 <tr rowspan="2" colspan="3">
                     <td colspan="2"><input type="radio">본인확인 이메일로 인증<br>

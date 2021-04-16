@@ -197,16 +197,16 @@
                     <p>존재하는 게시글이없습니다 </p>
                     
                     <% } else { %>
-                    <% for(CenterFaq f:list){ %>	
+                    	<% for(CenterFaq f:list){ %>	
                     
-                    <div class="faqList">
-                        <label>[<%= f.getFaqCategory() %>]</label>
-                        <label id="faqTitle"><%= f.getFaqTitle() %></label>
-                    </div>
-                     <div class="faqContent">
-                        <p><%= f.getFaqContent() %></p>
-                    </div>
-    				<% } %>
+	                    <div class="faqList">
+	                        <label>[<%= f.getFaqCategory() %>]</label>
+	                        <label id="faqTitle"><%= f.getFaqTitle() %></label>
+	                    </div>
+	                     <div class="faqContent">
+	                        <p><%= f.getFaqContent() %></p>
+                    	</div>
+    					<% } %>
                     <% } %>
     
                     <!--  
@@ -248,6 +248,9 @@
                 <div id="content_2_6">    
                     <div align="center" class="pagingArea">
 
+					<%if (list.isEmpty()) { %>
+					<p></p>
+					<% } else { %>
 						<% if(currentPage != 1) { %>
 			            	<button onclick="location.href='<%=contextPath%>/faqList.ct?currentPage=<%=currentPage-1%>&ctg=<%= list.get(0).getFaqCategory() %>';">이전</button>
 						<% } %>
@@ -265,7 +268,7 @@
 						<% if(currentPage != maxPage){ %>
 			            	<button onclick="location.href='<%=contextPath%>/faqList.ct?currentPage=<%=currentPage+1%>&ctg=<%= list.get(0).getFaqCategory() %>';">다음</button>
 						<% } %>
-						
+					 <% } %>	
 			         <br><br>
                     <button><a href="<%= contextPath%>/enrollQuery.ct">찾는내용이 없다면! 1:1문의하기</a></button>
 			        </div>

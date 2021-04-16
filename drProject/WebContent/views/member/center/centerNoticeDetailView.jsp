@@ -101,7 +101,7 @@
         <div id="content_1">
             <h1><a href="<%=contextPath%>/main.ct">고객센터</a></h1>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct">FAQ 자주찾는 질문</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">FAQ 자주찾는 질문</a></div>
                 <br>
                 <div><a href="<%=contextPath%>/enrollQuery.ct">1:1 문의</a></div>
                 <br>
@@ -199,7 +199,7 @@
                     </table>
 
                     <br>
-                    <button><a href="<%= contextPath %>/notice.ct">목록으로</a></button>
+                    <button><a href="<%=contextPath%>/notice.ct?currentPage=1">목록으로</a></button>
 
 
                 </div>

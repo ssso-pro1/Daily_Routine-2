@@ -122,7 +122,7 @@
         <div id="content_1">
             <h1><a href="<%=contextPath%>/main.ct">고객센터</a></h1>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct">FAQ 자주찾는 질문</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">FAQ 자주찾는 질문</a></div>
                 <br>
                 <div><a href="<%=contextPath%>/enrollQuery.ct">1:1 문의</a></div>
                 <br>
@@ -213,7 +213,8 @@
              
                     <br><br>
              
-             		<!-- 페이징처리 10개씩 -->
+             
+                    <!-- 페이징처리 10개씩 -->
                     <div align="center" class="pagingArea">
 
 						<% if(currentPage != 1) { %>
@@ -235,6 +236,7 @@
 						<% } %>
 						
 			        </div>
+             
              
                     <br><br>
                     <div align="center" class="searchArea">

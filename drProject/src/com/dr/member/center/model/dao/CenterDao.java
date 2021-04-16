@@ -67,11 +67,11 @@ public class CenterDao {
 
 
 
-	public int increaseCount(Connection conn, int noticeNo) {
+	public int noticeIncreaseCount(Connection conn, int noticeNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		
-		String sql = prop.getProperty("increaseCount");
+		String sql = prop.getProperty("noticeIncreaseCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -169,7 +169,7 @@ public class CenterDao {
 	}
 
 	
-
+/*
 	public ArrayList<CenterFaq> faqList(Connection conn, String category) {
 		
 		ArrayList<CenterFaq> faqList = new ArrayList<>();
@@ -201,7 +201,10 @@ public class CenterDao {
 		} return faqList;
 		
 	}
-
+*/
+	
+	
+	
 	public ArrayList<CenterNotice> shortNoticeList(Connection conn) {
 		ArrayList<CenterNotice> shortNoticeList = new ArrayList<>();
 		
@@ -268,12 +271,12 @@ public class CenterDao {
 		
 	}
 
-	public int selectListCount(Connection conn) {
+	public int noticeSelectListCount(Connection conn) {
 		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectListCount");
+		String sql = prop.getProperty("noticeSelectListCount");
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -291,12 +294,12 @@ public class CenterDao {
 		} return listCount;
 	}
 
-	public ArrayList<CenterNotice> selectList(Connection conn, PageInfo pi) {
+	public ArrayList<CenterNotice> noticeSelectList(Connection conn, PageInfo pi) {
 		// select문 => ResultSet객체 (여러행)
 		ArrayList<CenterNotice> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectList");
+		String sql = prop.getProperty("noticeSelectList");
 				
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -320,6 +323,64 @@ public class CenterDao {
 			close(pstmt);
 		} return list;
 	}
+
+
+	public int faqSelectListCount(Connection conn, String category) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("faqSelectListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, category);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	}
+
+
+	public ArrayList<CenterFaq> faqselectList(Connection conn, PageInfo pi, String category) {
+		
+		ArrayList<CenterFaq> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("faqselectList");
+						
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, category);
+			pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+							
+			rset = pstmt.executeQuery();
+							
+			while(rset.next()) {
+				list.add(new CenterFaq(rset.getInt("faq_no"),
+						   rset.getString("FAQ_CATEGORY"),
+						   rset.getString("faq_title"),
+						   rset.getString("faq_content")));
+			}		
+		} catch (SQLException e) {
+					e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return list;
+	}
+
+	
 	
 
 	

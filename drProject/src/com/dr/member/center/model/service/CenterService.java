@@ -28,11 +28,11 @@ public class CenterService {
 	
 	
 
-	public int increaseCount(int noticeNo) {
+	public int noticeIncreaseCount(int noticeNo) {
 		
 		Connection conn = getConnection();
 		
-		int result = new CenterDao().increaseCount(conn, noticeNo);
+		int result = new CenterDao().noticeIncreaseCount(conn, noticeNo);
 		
 		if(result > 0) {
 			commit(conn);
@@ -77,7 +77,7 @@ public class CenterService {
 
 	
 
-	
+	/*
 	public ArrayList<CenterFaq> faqList(String category) {
 		
 		Connection conn = getConnection();
@@ -87,6 +87,7 @@ public class CenterService {
 		return faqList;
 		
 	}
+	*/
 
 	public ArrayList<CenterNotice> shortNoticeList() {
 		Connection conn = getConnection();
@@ -107,10 +108,10 @@ public class CenterService {
 		
 	}
 
-	public int selectListCount() {
+	public int noticeSelectListCount() {
 		Connection conn = getConnection();
 		
-		int listCount = new CenterDao().selectListCount(conn);
+		int listCount = new CenterDao().noticeSelectListCount(conn);
 		
 		close(conn);
 		return listCount;
@@ -119,9 +120,31 @@ public class CenterService {
 		
 	}
 
-	public ArrayList<CenterNotice> selectList(PageInfo pi) {
+	public ArrayList<CenterNotice> noticeSelectList(PageInfo pi) {
 		Connection conn = getConnection();
-		ArrayList<CenterNotice> list = new CenterDao().selectList(conn, pi);
+		ArrayList<CenterNotice> list = new CenterDao().noticeSelectList(conn, pi);
+		close(conn);
+		return list;
+	}
+
+
+
+
+	public int faqSelectListCount(String category) {
+		Connection conn = getConnection();
+		
+		int listCount = new CenterDao().faqSelectListCount(conn, category);
+		
+		close(conn);
+		return listCount;
+	}
+
+
+
+
+	public ArrayList<CenterFaq> faqselectList(PageInfo pi, String category) {
+		Connection conn = getConnection();
+		ArrayList<CenterFaq> list = new CenterDao().faqselectList(conn, pi, category);
 		close(conn);
 		return list;
 	}

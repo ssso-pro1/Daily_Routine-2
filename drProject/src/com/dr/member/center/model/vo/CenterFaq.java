@@ -31,10 +31,9 @@ public class CenterFaq {
 	
 	
 	
-	public CenterFaq(int faqNo, int userNo, String faqCategory, String faqTitle, String faqContent) {
+	public CenterFaq(int faqNo,  String faqCategory, String faqTitle, String faqContent) {
 		super();
 		this.faqNo = faqNo;
-		this.userNo = userNo;
 		this.faqCategory = faqCategory;
 		this.faqTitle = faqTitle;
 		this.faqContent = faqContent;

@@ -1,10 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.center.model.vo.CenterFaq"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList"%>
+<%@ page import="java.util.ArrayList, com.dr.member.center.model.vo.CenterFaq, com.dr.common.model.vo.PageInfo"%>
 <%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<CenterFaq> list =(ArrayList<CenterFaq>)request.getAttribute("list"); 
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+%>   
 
-	ArrayList<CenterFaq> faqList = (ArrayList<CenterFaq>)request.getAttribute("faqList");
-
-%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -117,7 +124,7 @@
         <div id="content_1">
             <h1><a href="<%=contextPath%>/main.ct">고객센터</a></h1>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct">FAQ 자주찾는 질문</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">FAQ 자주찾는 질문</a></div>
                 <br>
                 <div><a href="<%=contextPath%>/enrollQuery.ct">1:1 문의</a></div>
                 <br>
@@ -169,11 +176,11 @@
                 <table>
                     <tr>
                         <th></th>
-                        <th><a href="<%=contextPath%>/faqList.ct?ctg=top10">자주찾는 질문 TOP10 |</a></th>
-                        <th><a href="<%=contextPath%>/faqList.ct?ctg=회원정보">회원정보|</a></th>
-                        <th><a href="<%=contextPath%>/faqList.ct?ctg=게시글">게시글/댓글</a> |</th>
-                        <th><a href="<%=contextPath%>/faqList.ct?ctg=신고">신고</a> |</th>
-                        <th><a href="<%=contextPath%>/faqList.ct?ctg=기타">기타</a></th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">자주찾는 질문 TOP10 |</a></th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=회원정보">회원정보|</a></th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=게시글">게시글/댓글</a> |</th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=신고">신고</a> |</th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=기타">기타</a></th>
                     </tr>
                 </table>
                 <div class="underLine"></div>
@@ -186,11 +193,11 @@
             <div id="content_2_5">
                 <div class="faqListArea" style="width: 95%; margin: auto;">
                     
-                    <% if(faqList.isEmpty()) { %>    
+                    <% if(list.isEmpty()) { %>    
                     <p>존재하는 게시글이없습니다 </p>
                     
                     <% } else { %>
-                    <% for(CenterFaq f:faqList){ %>	
+                    <% for(CenterFaq f:list){ %>	
                     
                     <div class="faqList">
                         <label>[<%= f.getFaqCategory() %>]</label>
@@ -240,23 +247,37 @@
                 
                 <div id="content_2_6">    
                     <div align="center" class="pagingArea">
-                        <button><</button>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>
-                        <button>></button>
-                        
-                    <br><br>
+
+						<% if(currentPage != 1) { %>
+			            	<button onclick="location.href='<%=contextPath%>/faqList.ct?currentPage=<%=currentPage-1%>&ctg=<%= list.get(0).getFaqCategory() %>';">이전</button>
+						<% } %>
+						
+						<% for(int p=startPage; p<=endPage; p++) { %>
+							
+							<% if(currentPage == p){ %>
+			            		<button disabled><%= p %></button>
+			            	<% }else{ %>
+			            		<button onclick="location.href='<%=contextPath%>/faqList.ct?currentPage=<%= p %>&ctg=<%= list.get(0).getFaqCategory() %>';"><%= p %></button>
+			            	<% } %>
+			            	
+						<% } %>
+						
+						<% if(currentPage != maxPage){ %>
+			            	<button onclick="location.href='<%=contextPath%>/faqList.ct?currentPage=<%=currentPage+1%>&ctg=<%= list.get(0).getFaqCategory() %>';">다음</button>
+						<% } %>
+						
+			         <br><br>
                     <button><a href="<%= contextPath%>/enrollQuery.ct">찾는내용이 없다면! 1:1문의하기</a></button>
+			        </div>
+                        
+                   
                     </div>
                     
                 </div>   
 
                 </div>
             </div>    
-            
+             
 
         </div>
     </div>

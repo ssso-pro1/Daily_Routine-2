@@ -16,7 +16,7 @@
 	
 	</entry>
 	
-	<entry key="increaseCount">
+	<entry key="noticeIncreaseCount">
 		UPDATE TB_NOTICE
 		   SET NOTICE_COUNT = NOTICE_COUNT +1
 	     WHERE NOTICE_NO = ?
@@ -84,7 +84,7 @@
 	</entry>
 	
 	
-	<entry key="selectListCount">
+	<entry key="noticeSelectListCount">
 	
 	SELECT COUNT(*) LISTCOUNT
 	FROM TB_NOTICE
@@ -92,7 +92,7 @@
 	
 	</entry>
 	
-	<entry key="selectList">
+	<entry key="noticeSelectList">
 	
 	SELECT *
 		  FROM (
@@ -119,12 +119,35 @@
 	
 	</entry>
 	
-	<entry key="">
+	<entry key="faqSelectListCount">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_FAQ
+	WHERE STATUS ='Y'
+  	AND FAQ_CATEGORY =?
 	
 	
 	</entry>
 	
-	<entry key="">
+	<entry key="faqselectList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       FAQ_NO
+		                     , FAQ_CATEGORY
+		                     , FAQ_TITLE
+		                     , FAQ_CONTENT
+		                 FROM TB_FAQ F
+		                 WHERE F.STATUS = 'Y'
+                         AND F.FAQ_CATEGORY=?
+		                 
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
 	
 	
 	</entry>

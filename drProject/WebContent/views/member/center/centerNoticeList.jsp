@@ -213,13 +213,11 @@
              
                     <br><br>
              
-             
-                    <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
-                    <!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
+             		<!-- 페이징처리 10개씩 -->
                     <div align="center" class="pagingArea">
 
 						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=currentPage-1%>';">이전</button>
+			            	<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%=currentPage-1%>';">이전</button>
 						<% } %>
 						
 						<% for(int p=startPage; p<=endPage; p++) { %>
@@ -227,13 +225,13 @@
 							<% if(currentPage == p){ %>
 			            		<button disabled><%= p %></button>
 			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%= p %>';"><%= p %></button>
+			            		<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%= p %>';"><%= p %></button>
 			            	<% } %>
 			            	
 						<% } %>
 						
 						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/list.bo?currentPage=<%=currentPage+1%>';">다음</button>
+			            	<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%=currentPage+1%>';">다음</button>
 						<% } %>
 						
 			        </div>

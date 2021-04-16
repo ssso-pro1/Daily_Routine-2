@@ -5,7 +5,8 @@
 	<entry key="selectListCount">
 		SELECT COUNT(*) LISTCOUNT 
 		  FROM TB_COMMUNITY 
-		 WHERE CATEGORY_NAME IN ('식단공유', '나만의운동tip!')
+		 WHERE CATEGORY_NAME = '식단공유' 
+		    OR CATEGORY_NAME = '나만의운동tip!'
 		   AND STATUS = 'N'
 	</entry>
 	

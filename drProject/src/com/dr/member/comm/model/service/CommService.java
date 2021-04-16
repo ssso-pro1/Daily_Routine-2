@@ -11,7 +11,7 @@ public class CommService {
 	public int selectListCount() {
 		
 		Connection conn = getConnection();
-		int listCount = new CommDao().selectListcount(conn); 
+		int listCount = new CommDao().selectListCount(conn); 
 		
 		close(conn);
 		

@@ -26,14 +26,14 @@ public class CommDao {
 		
 	}
 	
-	public int selectListcount(Connection conn) {
+	public int selectListCount(Connection conn) {
 		// select문 
 		int listCount = 0; 
 		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("selectListcount");
+		String sql = prop.getProperty("selectListCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

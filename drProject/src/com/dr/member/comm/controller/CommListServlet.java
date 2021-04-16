@@ -37,11 +37,11 @@ public class CommListServlet extends HttpServlet {
 		int boardLimit; 		
 
 		int maxPage; 			
-		int startPage;    		
-		int endPage; 		
+		int startPage;    		// pageLimit, currentPage에 영향을 받음 
+		int endPage; 			// pageLimit, startPage에 영향을 받음 
 		
 		listCount = new CommService().selectListCount(); 
-		System.out.println(listCount); // => SQLException error남 (ㅠㅠ) 
+		//System.out.println(listCount); 
 		
 		currentPage = Integer.parseInt(request.getParameter("currentPage")); 
 		pageLimit = 5; // 페이징 바 5개 단위 
@@ -56,8 +56,12 @@ public class CommListServlet extends HttpServlet {
 		}
 		
 		// 페이징 정보들을 한 공간에 담아둘 것
+		// 1. 페이징바 만들 때 필요한 PageInfo 객체 
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		System.out.println(pi);
+		//System.out.println(pi);
+		
+		// 2. currentPage에 보여질 게시글 리스트 조회 
+		
 		
 	}
 

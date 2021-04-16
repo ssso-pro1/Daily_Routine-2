@@ -217,13 +217,12 @@
 
                     <!-- 회원일 경우에만 보이는 버튼 -->
                     <button>글쓰기</button>
+                </div><br><br>
                 </div>
-                <br><br>
-            </div>
+
+
 
         </div>
     </div>
-
-
 </body>
 </html>

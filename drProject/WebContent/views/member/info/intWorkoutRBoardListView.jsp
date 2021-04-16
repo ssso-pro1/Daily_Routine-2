@@ -45,7 +45,7 @@
         height:150px;
     }
 
-    #content_2_2{height:10%; width:100%;}
+    #content_2_2{width:100%;}
 
     .listArea{
         width:700px;
@@ -122,8 +122,7 @@
                     <h2>Info & Tip > 운동 루틴</h2>
                     <hr>
                     <p>Daily Routine에서 제공하는 다양한 운동 루틴을 따라해보세요!</p>
-                </div>
-                <br>
+                </div><br>
 
 
                 <!-- 게시글 목록 카테고리 & 검색 버튼 -->
@@ -138,8 +137,8 @@
                     <div align="center" class="searchArea">
                         <input type="text">
                         <button>검색</button> 
-                       </div>
-                    <br><br>
+                    </div><br><br>
+                </div>
 
 
                 <!-- 게시글 목록 테이블-->
@@ -193,9 +192,9 @@
                                 2020-04-20
                             </p>
                         </div>
-                    </div>
-                    <br>
+                    </div><br>
                 </div>
+
 
                 <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
                 <!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
@@ -211,11 +210,10 @@
                
                <div align="right" class="btn">
                    <!-- 관리자만 사용할 수 있는 버튼 -->
-                    <button 
-                        style="background-color:rgb(250, 214, 9); border:rgb(250, 214, 9); color:white;" >글쓰기
+                    <button style="background-color:rgb(250, 214, 9); border:rgb(250, 214, 9); color:white;">
+                      글쓰기
                     </button>
-               </div>
-               <br><br>
+               </div><br><br>
                
 
             </div>     

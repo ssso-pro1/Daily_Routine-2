@@ -56,15 +56,15 @@
         right:500px;
     }
     .enrollButton>button{
-        background:hsl(46, 77%, 50%);
+        background:rgb(250, 214, 9);
         color:white;
-        border:hsl(46, 77%, 50%);
+        border:rgb(250, 214, 9);
     }
     div>button{
         cursor:pointer;
     }
 </style>
-<div>
+<body>
 
     <%@ include file="../../common/menubar.jsp"%>
 
@@ -96,8 +96,8 @@
                     <h2>커뮤니티 > 질문게시판</h2>
                     <hr>
                     <p>운동에 관한 모든 것들! 질문 게시판에서 함께 공유해봐요!</p>
-                </div>
-                <br>
+                </div><br>
+
 
                 <!-- 게시글 작성 폼 -->
                 <div id="content_2_2">
@@ -140,15 +140,17 @@
                             </table>
                             <br><br>
                         </form>
+                    </div>
 
                     <div align="right" class="enrollButton">
                         <button>등록</button>
                         <button>취소</button>
                     </div>
 
-
+                </div>
             </div>
         </div> 
+
     </div>
 </body>
 </html>

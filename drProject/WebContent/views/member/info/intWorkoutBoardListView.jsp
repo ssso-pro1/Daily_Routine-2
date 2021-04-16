@@ -28,7 +28,7 @@
     }
     a:hover{color:rgb(250, 214, 9);}
 
-    #content{height:100%; width:100%;}
+    #content{width:100%;}
 
     #content>div{
         height:100%;
@@ -122,8 +122,7 @@
                     <h2>Info & Tip > 운동 정보</h2>
                     <hr>
                     <p>Daily Routine에서 제공하는 다양한 운동 정보를 참고해보세요!</p>
-                </div>
-                <br>
+                </div><br>
 
 
                 <!-- 게시글 목록 카테고리 & 검색 버튼 -->
@@ -138,8 +137,8 @@
                     <div align="center" class="searchArea">
                         <input type="text">
                         <button>검색</button> 
-                       </div>
-                    <br><br>
+                    </div><br><br>
+                </div>
 
 
                 <!-- 게시글 목록 테이블-->
@@ -193,8 +192,7 @@
                                 2020-04-20
                             </p>
                         </div>
-                    </div>
-                    <br>
+                    </div><br>
                 </div>
 
                 <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
@@ -214,11 +212,12 @@
                     <button 
                         style="background-color:rgb(250, 214, 9); border:rgb(250, 214, 9); color:white;" >글쓰기
                     </button>
-               </div>
-               <br><br>
+               </div><br><br>
                
 
-            </div>     
+            </div>   
+            
+            
         </div>      
     </div>
 </body>

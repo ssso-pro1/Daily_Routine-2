@@ -75,7 +75,6 @@
         <div class="menu"><a href="<%=contextPath%>/intMain.in">Info&Tip</a></div>
         <div class="menu"><a href="">My D.R.</a></div>
     <hr>
-
     </div>
 
 

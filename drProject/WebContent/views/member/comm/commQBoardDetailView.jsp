@@ -154,15 +154,16 @@
                 <div class="buttonArea2" align="right">
                     <button>좋아요</button> 30
                     <button>신고</button> 0
-                </div>
-                <br>
+                </div><br>
 
                 <div class="buttonArea3" align="right">
                     <button>글쓰기</button>
                     <button>목록</button>
                 </div><br><br>
+                </div>
 
-            <!-- 댓글 영역 -->
+
+                <!-- 댓글 영역 -->
             <div id="content_3">
                 <div class="replyArea">
                     <table border="0" height="100">
@@ -190,7 +191,6 @@
                                 <td width="30"><button style="cursor:pointer";>삭제</button></td>
                                 <td width="45"><button style="cursor:pointer";>좋아요</button> 20</td>
                                 <td width="70"><button style="cursor:pointer";>신고</button> 0</td>
-                                </div>
                             </tr>
                             <tr>
                                 <th width="40">요요는시럿</th>

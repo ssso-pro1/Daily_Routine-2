@@ -64,7 +64,6 @@
         cursor:pointer;
     }
 </style>
-<div>
 
    <%@ include file="../../common/menubar.jsp"%>
 
@@ -96,8 +95,8 @@
                     <h2>커뮤니티 > 나만의 운동 Tip!</h2>
                     <hr>
                     <p>Daily Routine에서 나만의 식단과 운동 tip을 함께 공유해보세요!</p>
-                </div>
-                <br>
+                </div><br>
+
 
                 <!-- 게시글 작성 폼 -->
                 <div id="content_2_2">
@@ -145,9 +144,13 @@
                         <button>등록</button>
                         <button>취소</button>
                     </div>
-
+                    
+                    </div>
+                </div>
 
             </div>
+
+
         </div> 
     </div>
 </body>

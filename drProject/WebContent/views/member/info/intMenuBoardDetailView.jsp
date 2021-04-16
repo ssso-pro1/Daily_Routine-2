@@ -117,7 +117,7 @@
 
                 <!-- 게시글 세부 영역 -->
                 <div id="content_2_2">
-                    <div cass="detailArea">
+                    <div class="detailArea">
                         <table border="0">
                             <tr style="font-size:25px;">
                                 <th width="800">식단 제목</th>

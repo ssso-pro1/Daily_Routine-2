@@ -116,11 +116,9 @@
 
                 <!-- 상단 타이틀 -->
                 <div id="content_2_1">
-                    <h2>Info & Tip > 기타 팁 </h2>
-                    <hr>
+                    <h2>Info & Tip > 기타 팁 </h2><hr>
                     <p >Daily Routine에서 제공하는 다양한 팁을 참고해보세요!</p>
-                </div>
-                <br>
+                </div><br>
 
 
                 <!-- 게시글 목록 카테고리 & 검색 버튼 -->
@@ -132,11 +130,12 @@
                             <option value="view">조회수순</option>
                         </select>
                     </div>
+
                     <div align="center" class="searchArea">
                         <input type="text">
                         <button>검색</button> 
-                       </div>
-                    <br><br>
+                    </div><br><br>
+                </div>
 
 
                 <!-- 게시글 목록 테이블-->
@@ -191,8 +190,7 @@
                             </p>
                         </div>
                         
-                    </div>
-                    <br>
+                    </div><br>
                 </div>
 
                 <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
@@ -217,6 +215,7 @@
                
 
             </div>     
+
         </div>      
     </div>
 </body>

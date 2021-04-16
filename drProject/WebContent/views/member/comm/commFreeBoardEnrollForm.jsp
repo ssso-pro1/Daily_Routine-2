@@ -64,7 +64,7 @@
         cursor:pointer;
     }
 </style>
-<div>
+<body>
 
     <%@ include file="../../common/menubar.jsp"%>
 
@@ -98,6 +98,7 @@
                     <p>Daily Routine 회원들과 자유롭게 다양한 얘기를 나눠보세요!</p>
                 </div>
                 <br>
+              
 
                 <!-- 게시글 작성 폼 -->
                 <div id="content_2_2">
@@ -137,8 +138,7 @@
                                         </tr>
                                     </table>
                                 </tr>
-                            </table>
-                            <br><br>
+                            </table><br><br>
                         </form>
 
                     <div align="right" class="enrollButton">
@@ -147,8 +147,14 @@
                     </div>
 
 
-            </div>
-        </div> 
-    </div>
+            		</div>
+       			</div> 
+
+    		</div>
+
+
+    	</div>
+	</div>
+</div>
 </body>
 </html>

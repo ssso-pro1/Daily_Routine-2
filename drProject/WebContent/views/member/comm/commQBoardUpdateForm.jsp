@@ -64,7 +64,6 @@
         cursor:pointer;
     }
 </style>
-<div>
 
     <%@ include file="../../common/menubar.jsp"%>
 
@@ -88,61 +87,65 @@
             <div id="line"></div>
 
 
-        <!-- 게시글 수정 -->
-        <div id="content_2">
+            <!-- 게시글 수정 -->
+            <div id="content_2">
 
-            <!-- 상단 타이틀 -->
-            <div id="content_2_1">
-                <h2>커뮤니티 > 질문게시판</h2>
-                <hr>
-                <p>운동에 관한 모든 것들! 질문 게시판에서 함께 공유해봐요!</p>
-            </div>
-            <br>
 
-            <!-- 게시글 수정 폼 -->
-            <div id="content_2_2">
-                <div class="updateArea">
-                    <form action="" id="updateForm" method="post" enctype="multipart/form-data">
-                        <table>
-                            <tr>
-                                <table>
-                                    <tr>
-                                        <td width="700" height="30">
-                                            <input type="text" name="title" value="게시글 제목" required>
-                                        </td> 
-                                    </tr>
-                                    <tr>
-                                        <table>
-                                            <tr>
-                                                <td width="800" height="30">
-                                                    <input type="file" name="upfile" style="cursor:pointer;">
-                                                    <input type="file" name="upfile" style="cursor:pointer;">
-                                                </td>
-                                                <td>
-                                                    <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button><br>
-                                                    <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
-                                                </td>
-                                            </tr>
-                                        </table><br>
-                                    </tr>
-                                    <tr>
-                                        <td colspan="2" height="500">
-                                            <textarea name="content" rows="20" style="resize:none" required>게시글 내용</textarea>   
-                                        </td>
-                                    </tr>
-                                </table>
-                            </tr>
-                        </table>
-                        <br><br>
-                    </form>
+                <!-- 상단 타이틀 -->
+                <div id="content_2_1">
+                    <h2>커뮤니티 > 질문게시판</h2>
+                    <hr>
+                    <p>운동에 관한 모든 것들! 질문 게시판에서 함께 공유해봐요!</p>
+                </div><br>
+
+
+                <!-- 게시글 수정 폼 -->
+                <div id="content_2_2">
+                    <div class="updateArea">
+                        <form action="" id="updateForm" method="post" enctype="multipart/form-data">
+                            <table>
+                                <tr>
+                                    <table>
+                                        <tr>
+                                            <td width="700" height="30">
+                                                <input type="text" name="title" value="게시글 제목" required>
+                                            </td> 
+                                        </tr>
+                                        <tr>
+                                            <table>
+                                                <tr>
+                                                    <td width="800" height="30">
+                                                        <input type="file" name="upfile" style="cursor:pointer;">
+                                                        <input type="file" name="upfile" style="cursor:pointer;">
+                                                    </td>
+                                                    <td>
+                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button><br>
+                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
+                                                    </td>
+                                                </tr>
+                                            </table><br>
+                                        </tr>
+                                        <tr>
+                                            <td colspan="2" height="500">
+                                                <textarea name="content" rows="20" style="resize:none" required>게시글 내용</textarea>   
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </tr>
+                            </table>
+                            <br><br>
+                        </form>
+                    </div>
 
                 <div align="right" class="updateArea">
                     <button>수정</button>
                     <button>취소</button>
                 </div>
         
-
+                </div>
             </div>
+
+
         </div>    
     </div>
 </body>

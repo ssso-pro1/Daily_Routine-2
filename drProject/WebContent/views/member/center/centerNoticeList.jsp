@@ -3,6 +3,7 @@
 <% 
 
 	ArrayList<CenterNotice> list =(ArrayList<CenterNotice>)request.getAttribute("list"); 
+	
 
 %>    
     
@@ -107,7 +108,7 @@
 </style>
 </head>
 
-<%@ include file="../../common/menubar.jsp"%>
+<%@include file="../../common/menubar.jsp" %>
 
 <body>
 <div class="wrap">

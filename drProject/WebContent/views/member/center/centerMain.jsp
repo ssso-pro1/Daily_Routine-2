@@ -1,5 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.center.model.vo.CenterNotice"%>
+<%
+
+	ArrayList<CenterNotice>list = (ArrayList<CenterNotice>)request.getAttribute("list");
+
+	
+
+%>    
+    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -98,7 +107,7 @@
 </style>
 </head>
 
-<%@ include file="../../common/menubar.jsp"%>
+<%@include file="../../common/menubar.jsp" %>
 
 
 <div class="wrap">
@@ -160,7 +169,7 @@
 
             <!--무엇을 도와드릴까요-->
             <div id="content_2_4">
-                <p><h2>무엇을 도와드릴까요? <button><a href="">전체보기</a></button></h2></p>
+                <p><h2>무엇을 도와드릴까요? <button><a href="<%= contextPath %>/faqList.ct">전체보기</a></button></h2></p>
                 
                 <div class="helpArea">
                     <div class="helpImg" align="center">
@@ -172,25 +181,25 @@
                     <div class="helpImg" align="center">
                         <img src="../../resources/images/member.JPG" width="120" height="120">
                         <p>
-                            회원정보
+                           	 회원정보
                         </p>
                     </div>
                     <div class="helpImg" align="center">
                         <img src="../../resources/images/contents.JPG" width="120" height="120">
                         <p>
-                            게시글
+                            	게시글
                         </p>
                     </div>
                     <div class="helpImg" align="center">
                         <img src="../../resources/images/report.JPG" width="120" height="120">
                         <p>
-                            신고
+                          	  신고
                         </p>
                     </div>
                     <div class="helpImg" align="center">
                         <img src="../../resources/images/etc.JPG" width="120" height="120">
                         <p>
-                            기타
+                           	 기타
                         </p>
                     </div>
                 </div>    
@@ -198,23 +207,33 @@
 
             </div>
 
-            <!--공지사항-->
+            <!--공지사항 3개만 보여주기-->
             <div id="content_2_5"> 
-                <p><h2>공지사항 <button><a href="">전체보기</a></button></h2></p>
+                <p><h2>공지사항 <button><a href="<%= contextPath %>/notice.ct"></a>전체보기</a></button></h2></p>
 
                 <div class="noticeArea">
-                    <div class="noticeList">
-                        <label id="noticeTitle">공지공지1</label>
-                        <label style="float: right;" id="noticeDate">2021-04-15</label>
-                    </div>
-                        <p class="noticeContent">내용내용1</p>
+                
+                	<%if(list.isEmpty()) { %>
+                	
+                	<p>공지사항이 없습니다</p>
+                	
+                	<% } else { %>
+                		<% for(int i=0; i<3; i++) { %>
+		                    <div class="noticeList">
+		                        <label id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>
+		                        <label style="float: right;" id="noticeDate"><%=list.get(i).getCreateDate() %></label>
+		                    </div>
+		                        <p class="noticeContent"><%= list.get(i).getNoticeContent() %></p>
+		                 <% } %>       
+					<% } %>
 
-
+					<!--  
                     <div class="noticeList">
                         <label id="noticeTitle">공지공지2</label>
                         <label style="float: right;" id="noticeDate">2021-04-01</label>
                     </div>
                         <p class="noticeContent">내용내용2</p>
+                    -->
 
                 </div>  
                 

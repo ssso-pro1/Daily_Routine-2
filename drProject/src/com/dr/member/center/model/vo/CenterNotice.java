@@ -30,21 +30,18 @@ public class CenterNotice {
 	
 	
 
-	public CenterNotice(int noticeNo, String noticeTitle,  Date createDate, int noticeCount) {
+	
+	
+	
+	public CenterNotice(int noticeNo, String noticeTitle, String noticeContent, Date createDate, int noticeCount ) {
 		super();
 		this.noticeNo = noticeNo;
 		this.noticeTitle = noticeTitle;
-		this.createDate = createDate; 
+		this.noticeContent = noticeContent;
+		this.createDate = createDate;
 		this.noticeCount = noticeCount;
 	}
-	
-	
-	
-	
 
-	
-
-	
 	public CenterNotice(int noticeNo, String noticeTitle) {
 		super();
 		this.noticeNo = noticeNo;
@@ -58,9 +55,18 @@ public class CenterNotice {
 		this.noticeContent = noticeContent;
 		this.createDate = createDate;
 	}
+	
+	
 
 
 	
+
+	public CenterNotice(String noticeTitle, String noticeContent, Date createDate) {
+		super();
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.createDate = createDate;
+	}
 
 	public int getNoticeNo() {
 		return noticeNo;

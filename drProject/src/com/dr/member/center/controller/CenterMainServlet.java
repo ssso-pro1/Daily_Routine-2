@@ -1,11 +1,16 @@
 package com.dr.member.center.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.dr.member.center.model.service.CenterService;
+import com.dr.member.center.model.vo.CenterNotice;
 
 /**
  * Servlet implementation class cs_centerMainServlet
@@ -26,6 +31,11 @@ public class CenterMainServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
+		ArrayList<CenterNotice> list = new CenterService().noticeList();
+		
+		request.setAttribute("list", list); // 공지사항리스트
 		
 		request.getRequestDispatcher("views/member/center/centerMain.jsp").forward(request, response);
 		

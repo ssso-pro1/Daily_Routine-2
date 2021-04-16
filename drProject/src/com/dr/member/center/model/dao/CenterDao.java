@@ -1,5 +1,7 @@
 package com.dr.member.center.model.dao;
 
+import static com.dr.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -11,8 +13,7 @@ import java.util.Properties;
 
 import com.dr.member.center.model.vo.CenterFaq;
 import com.dr.member.center.model.vo.CenterNotice;
-
-import static com.dr.common.JDBCTemplate.*;
+import com.dr.member.center.model.vo.CenterQuery;
 
 public class CenterDao {
 	
@@ -45,6 +46,7 @@ public class CenterDao {
 				
 				list.add(new CenterNotice(rset.getInt("notice_no"),
 										  rset.getString("notice_title"),
+										  rset.getString("notice_content"),
 										  rset.getDate("create_date"),
 										  rset.getInt("notice_count")));
 			}
@@ -195,6 +197,72 @@ public class CenterDao {
 			close(rset);
 			close(pstmt);
 		} return faqList;
+		
+	}
+
+	public ArrayList<CenterNotice> shortNoticeList(Connection conn) {
+		ArrayList<CenterNotice> shortNoticeList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("shorNoticeList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				shortNoticeList.add(new CenterNotice(rset.getString("notice_title"),
+													rset.getString("notice_content"),
+													rset.getDate("create_date")));
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return shortNoticeList;
+	}
+
+	public ArrayList<CenterQuery> queryList(Connection conn, int userNo) {
+		
+		ArrayList<CenterQuery> queryList = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("queryList");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				queryList.add(new CenterQuery (rset.getInt("query_no"),
+											   rset.getInt("user_no"),
+											   rset.getString("query_category"),
+											   rset.getString("QUERY_TITLE"),
+											   rset.getString("QUERY_CONTENT"),
+											   rset.getDate("QUERY_CREATE_DATE"),
+											   rset.getString("REPLY_STATUS"),
+											   rset.getString("REPLY_CONTENT"),
+											   rset.getDate("REPLY_DATE")));
+			}
+			
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return queryList;
 		
 	}
 	

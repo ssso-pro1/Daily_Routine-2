@@ -40,6 +40,10 @@ public class CenterFaq {
 		this.faqContent = faqContent;
 	}
 	
+	
+	
+
+
 
 	public int getFaqNo() {
 		return faqNo;

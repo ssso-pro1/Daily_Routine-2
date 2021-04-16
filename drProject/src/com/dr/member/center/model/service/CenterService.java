@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import com.dr.member.center.model.dao.CenterDao;
 import com.dr.member.center.model.vo.CenterFaq;
 import com.dr.member.center.model.vo.CenterNotice;
+import com.dr.member.center.model.vo.CenterQuery;
 
 public class CenterService {
 
@@ -78,6 +79,25 @@ public class CenterService {
 		
 		close(conn);
 		return faqList;
+		
+	}
+
+	public ArrayList<CenterNotice> shortNoticeList() {
+		Connection conn = getConnection();
+		
+		ArrayList<CenterNotice> shortNoticeList = new CenterDao().shortNoticeList(conn);
+		
+		close(conn);
+		return shortNoticeList;
+	}
+
+	public ArrayList<CenterQuery> queryList(int userNo) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<CenterQuery> queryList = new CenterDao().queryList(conn, userNo);
+		close(conn);
+		return queryList;
 		
 	}
 

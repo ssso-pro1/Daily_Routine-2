@@ -32,6 +32,8 @@ public class CenterFaqListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.setCharacterEncoding("utf-8");
+		
 		String category = request.getParameter("ctg");
 		
 		ArrayList<CenterFaq> faqList = new CenterService().faqList(category);

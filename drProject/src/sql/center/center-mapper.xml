@@ -7,6 +7,7 @@
 		SELECT
 		      NOTICE_NO
 		    , NOTICE_TITLE
+		    , NOTICE_CONTENT
 		    , CREATE_DATE
 		    , NOTICE_COUNT
 		 FROM TB_NOTICE
@@ -63,7 +64,24 @@
 	
 	
 	
-	<entry key="">
+	<entry key="queryList">
+	
+	SELECT  
+			QUERY_NO
+	      , USER_NO
+	      , QUERY_CATEGORY
+	      , QUERY_TITLE
+	      , QUERY_CONTENT
+	      , QUERY_CREATE_DATE
+	      , REPLY_STATUS
+	      , REPLY_CONTENT
+	      , REPLY_DATE
+	   FROM TB_QUERY
+	  WHERE USER_NO = ?
+	    AND reply_status IN ('Y', 'N')
+	  ORDER BY QUERY_CREATE_DATE DESC
+	
+	  
 	
 	
 	</entry>

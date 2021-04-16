@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.center.model.vo.CenterQuery"%>
+<%
+
+	ArrayList<CenterQuery>queryList = (ArrayList<CenterQuery>)request.getAttribute("queryList");
+
+%>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +88,7 @@
 
     .queryContent{
         width: 100%;
-        height: 100px;
+        height: 300px;
         border:1px solid lightgray;
         margin-top: 5px;
         padding: 10px;
@@ -92,13 +97,28 @@
         display: none;
         }
     
+    .replyContent{
+
+        width: 100%;
+        height: auto;
+        border:1px solid lightgray;
+        margin-top: 5px;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 5px;
+       
+        }
+    .q{
+        background: wheat;
+    }
+    .a{ background-color: rgb(245, 239, 239);}    
     
     
 
 </style>
 </head>
 
-<%@ include file="../../common/menubar.jsp"%>
+<%@include file="../../common/menubar.jsp" %>
 
 <body>
 <div class="wrap">
@@ -153,46 +173,67 @@
             <!--나의 문의내역 리스트-->
             <div id="content_2_4">    
                 <div class="queryListArea" style="width: 95%; margin: auto;">
+                    
                     <!-- 문의내역이 없을경우-->
-                    <!--
+                    
+                    <% if(queryList.isEmpty()) { %>
                     <div align="center">
                         <p style="color: crimson; font-weight: bolder; font-size: 20px;">1:1 문의 내역이 없습니다</p>
                         <button>1:1 문의 하기</button>
 
                     </div>
-                    -->
+                    <% } else { %>
 
-                    
-                    
                     <!-- 문의 내역이 있을경우-->
+                    	<% for(CenterQuery q:queryList) { %>
+	                    
+		                    <div class="queryList">
+		                        
+		                        <table >
+		                            <tr>
+		                                <th style="width: 90px;">[<%= q.getQueryCategory() %>]</th>
+		                                <th style="width: 500px;" align="left"><%=q.getQueryTitle() %></th>
+                                        
+                                        <% if(q.getReplyStatus().equals("Y")) { %>
+                                        <th style="width: 90px;">답변완료</th>
+		                                <% } else { %>
+		                                <th style="width: 90px;">처리중</th>
+		                                <% } %>
+		                                
+		                                <th style="width: 90px;"><%=q.getQueryCreateDate() %></th>
+		                            </tr>
+		                            
+		                        </table>
+							 </div>
+		                    <div class="queryContent">
+		                        <div>
+                                    <table  style="margin: auto;">
+                                        <tbody class="q">
+                                            <tr>
+                                                <td style="height: 100px; width: 700px"><%=q.getQueryContent() %></td>
+                                            </tr>
+                                            <tr>
+                                                <td><button style="float: right;">삭제하기</button></td>
+                                            </tr>
+                                        </tbody>
+                                        <% if(q.getReplyStatus().equals("Y")) { %>
+                                        <tfoot class="a">
+                                            <tr>
+                                                <td style="height: 130px; width: 350px;"><%=q.getReplyContent() %></td>
+                                            </tr>
+                                        </tfoot>
+                                        <% } %>
+                                    </table>
+                                </div>
+		                     </div>    
+                              <% } %>  
+                            <% } %>     
+		                    
+
+                           
+                           
+						
                     
-                    <div class="queryList">
-                        <label id="queryTitle">문의1</label>
-                        <label style="float: right;" id="queryDate">2021-04-15</label>
-                    </div>
-                    <div class="queryContent">
-                        <p>내용</p>
-                        <button style="float: right;">삭제하기</button>
-                    </div>
-
-
-                    <div class="queryList">
-                        <label id="queryTitle">문의2</label>
-                        <label style="float: right;" id="queryDate">2021-04-01</label>
-                    </div>
-                    <div class="queryContent">
-                        <p>내용</p>
-                        <button style="float: right;">삭제하기</button>
-                    </div>
-
-                    <div class="queryList">
-                        <label id="queryTitle">문의3</label>
-                        <label style="float: right;" id="queryDate">2021-04-01</label>
-                    </div>
-                    <div class="queryContent">
-                        <p>내용</p>
-                        <button style="float: right;">삭제하기</button>
-                    </div>
                 </div>
 
                 <script>
@@ -201,13 +242,17 @@
             
                             // slideDown 또는 slideUp 시킬 p요소
                             var $queryContent = $(this).next(); // jQuery방식으로 선택한 요소를 담아둘 때 변수명 앞에 $
-            
+                            
+
                             if($queryContent.css("display") == "none"){
                                  $(this).siblings(".queryContent").slideUp();
+                                 
                                  $queryContent.slideDown();// 보여지게
+                                 
             
                             }else{
                                 $queryContent.slideUp(); // 사라지게
+                                
                             }
                                
                         })
@@ -216,23 +261,7 @@
 
             </div> 
 
-            <!--맨 아래 페이징 (고정하지말고 유연하게로 바꾸기)-->
-            <div id="content_2_5">    
-                <div align="center" class="pagingArea">
-                    <button><</button>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                    <button>></button>
-                </div>
-            </div>   
-             
-        </div>
-
-    </div>
-</div>
+           
 
 </body>
 </html>

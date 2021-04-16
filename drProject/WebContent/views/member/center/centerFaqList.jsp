@@ -107,7 +107,7 @@
 </style>
 </head>
 
-<%@ include file="../../common/menubar.jsp"%>
+<%@include file="../../common/menubar.jsp" %>
 
 <body>
 <div class="wrap">
@@ -246,8 +246,9 @@
                         <button>4</button>
                         <button>5</button>
                         <button>></button>
+                        
                     <br><br>
-                    <button>찾는내용이 없다면! 1:1문의하기</button>    
+                    <button><a href="<%= contextPath%>/enrollQuery.ct">찾는내용이 없다면! 1:1문의하기</a></button>
                     </div>
                     
                 </div>   

@@ -81,7 +81,45 @@
 	    AND reply_status IN ('Y', 'N')
 	  ORDER BY QUERY_CREATE_DATE DESC
 	
-	  
+	</entry>
+	
+	
+	<entry key="selectListCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
+	WHERE STATUS ='Y'
+	
+	</entry>
+	
+	<entry key="selectList">
+	
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , NOTICE_CONTENT
+		                     , CREATE_DATE
+		                     , NOTICE_COUNT
+		                     
+		                  FROM TB_NOTICE N
+		                  
+		                 WHERE N.STATUS = 'Y'
+		                 ORDER
+		                    BY CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+	
+	<entry key="">
 	
 	
 	</entry>

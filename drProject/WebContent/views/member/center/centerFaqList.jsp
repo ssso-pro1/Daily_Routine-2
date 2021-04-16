@@ -193,6 +193,7 @@
                     <% for(CenterFaq f:faqList){ %>	
                     
                     <div class="faqList">
+                        <label>[<%= f.getFaqCategory() %>]</label>
                         <label id="faqTitle"><%= f.getFaqTitle() %></label>
                     </div>
                      <div class="faqContent">

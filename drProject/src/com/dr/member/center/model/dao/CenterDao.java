@@ -11,6 +11,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
+import com.dr.common.model.vo.PageInfo;
 import com.dr.member.center.model.vo.CenterFaq;
 import com.dr.member.center.model.vo.CenterNotice;
 import com.dr.member.center.model.vo.CenterQuery;
@@ -30,6 +31,7 @@ public class CenterDao {
 		}
 	}
 
+	
 	public ArrayList<CenterNotice> noticeList(Connection conn) {
 		
 		ArrayList<CenterNotice> list = new ArrayList<>();
@@ -59,9 +61,9 @@ public class CenterDao {
 			close(pstmt);
 		} return list;
 		
-		
-		
 	}
+	
+	
 
 
 
@@ -264,6 +266,59 @@ public class CenterDao {
 			close(pstmt);
 		} return queryList;
 		
+	}
+
+	public int selectListCount(Connection conn) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	}
+
+	public ArrayList<CenterNotice> selectList(Connection conn, PageInfo pi) {
+		// select문 => ResultSet객체 (여러행)
+		ArrayList<CenterNotice> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectList");
+				
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+					
+			rset = pstmt.executeQuery();
+					
+			while(rset.next()) {
+				list.add(new CenterNotice(rset.getInt("notice_no"),
+						  rset.getString("notice_title"),
+						  rset.getString("notice_content"),
+						  rset.getDate("create_date"),
+						  rset.getInt("notice_count")));
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return list;
 	}
 	
 

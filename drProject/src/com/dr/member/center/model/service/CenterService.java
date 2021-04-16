@@ -5,6 +5,7 @@ import static com.dr.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import com.dr.common.model.vo.PageInfo;
 import com.dr.member.center.model.dao.CenterDao;
 import com.dr.member.center.model.vo.CenterFaq;
 import com.dr.member.center.model.vo.CenterNotice;
@@ -12,6 +13,8 @@ import com.dr.member.center.model.vo.CenterQuery;
 
 public class CenterService {
 
+	
+	
 	public ArrayList<CenterNotice> noticeList() {
 		
 		Connection conn = getConnection();
@@ -21,6 +24,9 @@ public class CenterService {
 		close(conn);
 		return list;
 	}
+	
+	
+	
 
 	public int increaseCount(int noticeNo) {
 		
@@ -99,6 +105,25 @@ public class CenterService {
 		close(conn);
 		return queryList;
 		
+	}
+
+	public int selectListCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new CenterDao().selectListCount(conn);
+		
+		close(conn);
+		return listCount;
+		
+		
+		
+	}
+
+	public ArrayList<CenterNotice> selectList(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<CenterNotice> list = new CenterDao().selectList(conn, pi);
+		close(conn);
+		return list;
 	}
 
 }

@@ -109,6 +109,7 @@
             location.href="<%=request.getContextPath()%>";
         }
 
+        // 회원가입2단계 servlet 으로 이동 (사용자 정보입력폼)
         function enrollForm2(){
             location.href = "<%=request.getContextPath()%>/enrollForm2.us";
         }

@@ -101,7 +101,7 @@
         <fieldset id="formWrap">
         
 
-        <form action="<%= request.getContextPath() %>/insert.me" method="post" id="enrollForm">
+        <form action="<%= request.getContextPath() %>/insert.us" method="post" id="enrollForm">
             
             <label for="">아이디</label> <br>
             <input type="text" value>
@@ -162,8 +162,9 @@
         </form>
 
             <div class="btn">
-                <button type="button" class="btn btn-secondary">가입하기</button>
+                <button type="submit" class="btn btn-secondary" >가입하기</button>
             </div>
+
         </fieldset>
  
     </div>

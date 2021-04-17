@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<!-- 1. 로그인하기 -->
+	<entry key="loginUser">
+		
+	
+	
+	</entry>
+	
+<!-- 2. 회원가입하기 -->
+	<entry key="insertUser">
+		SELECT 
+		       USER_NO
+		     , USER_ID
+		     , USER_PWD
+		     , USER_NAME
+		     , BIRTH
+		     , GENDER
+		     , EMAIL
+		     , PHONE
+		     , ENROLL_DATE
+		     , LEAVE_CHECK
+		     , SUSPENDED
+		     , REPORT_CHECK
+		     , ADMIN_CHECK
+		  FROM 
+		       TB_USER
+		 WHERE LEAVE_CHECK = 'N'
+		   AND USER_ID = ?
+		   AND USER_PWD = ?
+	</entry>
+	
+</properties>
+
+
+

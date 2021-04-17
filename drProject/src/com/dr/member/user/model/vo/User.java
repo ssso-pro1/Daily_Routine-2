@@ -38,8 +38,24 @@ public class User {
 		this.adminCheck = adminCheck;
 	}
 
+	
+	//회원가입
+	
+	
 	public int getUserNo() {
 		return userNo;
+	}
+
+	public User(String userId, String userPwd, String userName, String birth, String gender, String email,
+			String phone) {
+		super();
+		this.userId = userId;
+		this.userPwd = userPwd;
+		this.userName = userName;
+		this.birth = birth;
+		this.gender = gender;
+		this.email = email;
+		this.phone = phone;
 	}
 
 	public void setUserNo(int userNo) {

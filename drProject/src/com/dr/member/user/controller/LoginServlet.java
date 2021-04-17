@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dr.member.user.model.service.UserService;
 import com.dr.member.user.model.vo.User;
@@ -41,6 +42,20 @@ public class LoginServlet extends HttpServlet {
 		//null 출력됨... 일단 나머지 코드작성 후 나중에 해결하기
 		
 		User u = new UserService().loginUser(userId, userPwd);
+		
+		if(u == null) {
+			request.setAttribute("errorMsg", "로그인에 실패했습니다.");
+			
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+		
+		} else {
+			
+			HttpSession session = request.getSession();
+			
+			session.setAttribute("loginUser", u);
+			
+			response.sendRedirect(request.getContextPath());
+		}
 		
 	}
 

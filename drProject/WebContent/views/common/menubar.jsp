@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
 <%
-
+	User loginUser = (User)session.getAttribute("loginUser");
 	String contextPath = request.getContextPath();
 
 %>    
@@ -44,11 +44,20 @@
     }
     .outerWrap a:hover{
         color:darkorchid
-
+	}
 </style>
 </head>
 <body>
+	<script>
+    // 회원가입 성공 시 뜨는 알림창 메시지. 확인 누르면 메뉴바로 (메인페이지)
+    var msg = "<%=session.getAttribute("alertMsg")%>";
 
+    if(msg != "null"){
+        alert(msg);
+        <% session.removeAttribute("alertMsg"); %>
+    }
+    </script>
+    
     <div class="outerWrap">
         <p align="center">Reading is to the mind what exercise is to the body
 

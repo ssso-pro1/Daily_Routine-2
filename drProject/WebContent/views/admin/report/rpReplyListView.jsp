@@ -7,6 +7,31 @@
 <link href="/drProject/WebContent/resources/css/reListView.css" type="text/css" rel="stylesheat">
 
 <title>Insert title here</title>
+<style>
+    #rpCheck{
+        border: 1px solid orangered;
+        background-color: orangered;
+        color: white;
+        cursor: pointer;
+    }
+    #postList{
+        border: 1px solid #3DB7CC;
+        background-color: #3DB7CC;
+        color: white;
+        cursor: pointer;
+    }
+    #postList:hover{
+        border: 1px solid #4375DB;
+        background-color: #4375DB;
+        color: white;
+    }
+    #replyList{
+        border: 1px solid #4375DB;
+        background-color: #4375DB;
+        color: white;
+        cursor: pointer;
+    }
+</style>
 </head> 
 <body>
 
@@ -81,8 +106,8 @@
         <br><br>
         <form action="">
             <div class="buttons">
-                <button >게시글</button>
-                <button>댓글</button>
+                <button id="postList">게시글</button>
+                <button id="replyList">댓글</button>
             </div>
             <div align="right" class="searchArea">
                 <button>검색</button> 
@@ -209,7 +234,7 @@
             </table>
             <br>
             <div class="reportCheck">
-                <button>신고확인</button>
+                <button id="rpCheck">신고확인</button>
             </div>
         </form>
             

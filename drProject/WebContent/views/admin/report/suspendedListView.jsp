@@ -25,7 +25,7 @@
         cursor: pointer;
     }
     #rpList{
-        border: 1px solid #6799FF;
+        border: 1px solid #3DB7CC;
         background-color: #3DB7CC;
         color: white;
     }

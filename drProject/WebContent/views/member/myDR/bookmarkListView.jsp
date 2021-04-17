@@ -6,7 +6,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
-    .outer{
+	.outer{
+		width:1000px;
+		height:800px;
+		margin:auto;
+	}
+    .wrap{
         width: 630px;
         height: 800px;
         margin: auto;
@@ -44,74 +49,77 @@
 </style>
 </head>
 <body>
-    <div class="outer">
-        <button>북마크 보관함</button>
-        <div class="listArea">
-            <div class="thumbnail" align="center">
-                <img src="" width="250" height="150">
-                <p>
-                    초보자를 위한 운동 tip! <br>
-                    조회수 : 20 좋아요 : 150 <br>
-                    2020-04-20
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="250" height="150">
-                <p>
-                    초보자를 위한 운동 tip! <br>
-                    조회수 : 20 좋아요 : 150 <br>
-                    2020-04-20
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="250" height="150">
-                <p>
-                    초보자를 위한 운동 tip! <br>
-                    조회수 : 20 좋아요 : 150 <br>
-                    2020-04-20
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="250" height="150">
-                <p>
-                    초보자를 위한 운동 tip! <br>
-                    조회수 : 20 좋아요 : 150 <br>
-                    2020-04-20
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="250" height="150">
-                <p>
-                    초보자를 위한 운동 tip! <br>
-                    조회수 : 20 좋아요 : 150 <br>
-                    2020-04-20
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="250" height="150">
-                <p>
-                    초보자를 위한 운동 tip! <br>
-                    조회수 : 20 좋아요 : 150 <br>
-                    2020-04-20
-                </p>
-            </div>
-
-        </div>
-       
-        <br>
-
-        <div align="center" class="pagingArea">
-            <button><</button>
-            <button>1</button>
-            <button>2</button>
-            <button>3</button>
-            <button>4</button>
-            <button>5</button>
-            <button>></button>
-       </div>
-       <div class="Btns">
-           <button>수정</button>
-       </div>
-    </div>
+    <%@ include file="../../common/menubar.jsp" %>
+	<div class="outer">
+	    <div class="wrap">
+	        <button>북마크 보관함</button>
+	        <div class="listArea">
+	            <div class="thumbnail" align="center">
+	                <img src="" width="250" height="150">
+	                <p>
+	                    초보자를 위한 운동 tip! <br>
+	                    조회수 : 20 좋아요 : 150 <br>
+	                    2020-04-20
+	                </p>
+	            </div>
+	            <div class="thumbnail" align="center">
+	                <img src="" width="250" height="150">
+	                <p>
+	                    초보자를 위한 운동 tip! <br>
+	                    조회수 : 20 좋아요 : 150 <br>
+	                    2020-04-20
+	                </p>
+	            </div>
+	            <div class="thumbnail" align="center">
+	                <img src="" width="250" height="150">
+	                <p>
+	                    초보자를 위한 운동 tip! <br>
+	                    조회수 : 20 좋아요 : 150 <br>
+	                    2020-04-20
+	                </p>
+	            </div>
+	            <div class="thumbnail" align="center">
+	                <img src="" width="250" height="150">
+	                <p>
+	                    초보자를 위한 운동 tip! <br>
+	                    조회수 : 20 좋아요 : 150 <br>
+	                    2020-04-20
+	                </p>
+	            </div>
+	            <div class="thumbnail" align="center">
+	                <img src="" width="250" height="150">
+	                <p>
+	                    초보자를 위한 운동 tip! <br>
+	                    조회수 : 20 좋아요 : 150 <br>
+	                    2020-04-20
+	                </p>
+	            </div>
+	            <div class="thumbnail" align="center">
+	                <img src="" width="250" height="150">
+	                <p>
+	                    초보자를 위한 운동 tip! <br>
+	                    조회수 : 20 좋아요 : 150 <br>
+	                    2020-04-20
+	                </p>
+	            </div>
+	
+	        </div>
+	       
+	        <br>
+	
+	        <div align="center" class="pagingArea">
+	            <button><</button>
+	            <button>1</button>
+	            <button>2</button>
+	            <button>3</button>
+	            <button>4</button>
+	            <button>5</button>
+	            <button>></button>
+	       </div>
+	       <div class="Btns">
+	           <button>수정</button>
+	       </div>
+	    </div>
+	</div>
 </body>
 </html>

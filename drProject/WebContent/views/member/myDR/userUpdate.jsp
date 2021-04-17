@@ -7,9 +7,14 @@
 <title>Insert title here</title>
 <style>
     .outer{
-        width:700px;
-        height:600px;
+        width:1000px;
+        height:800px;
         margin: auto;
+    }
+    .form{
+    	width:800px;
+    	height:100%;
+    	margin:auto;
     }
     #updateForm th{
         width:130px;
@@ -20,9 +25,10 @@
 </head>
 <body>
     <div class="outer">
+    	<%@ include file="../../common/menubar.jsp" %>
         <form action="" name="updateEnrollForm">
-            &nbsp<button>회원 정보 수정</button>
-            <div>
+            <div class="form">
+            	&nbsp<button>회원 정보 수정</button>
                 <fieldset>
                     <table id="updateForm">
                         <br>

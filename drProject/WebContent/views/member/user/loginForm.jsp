@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>로그인</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -107,13 +107,21 @@
             <form action="<%= request.getContextPath() %>/login.me" method="post" id="loginForm">
                 <input id="id" style="width:70%" type="text" name="userId" maxlength="20" minlength="5" placeholder="ID를 입력하세요" required><br>
                 <input id="pwd" style="width:70%" type="password" name="password" minlength="8" maxlength="16" placeholder="비밀번호를 입력하세요" required> <br>
-                <button id="btn" style="width:70%" type="button" class="btn btn-secondary"> 로그인</button>            
+                <button onclick="login();" id="btn" style="width:70%" type="button" class="btn btn-secondary"> 로그인</button>            
+
+                <script>
+                    function login(){
+                        location.href = "<%=request.getContextPath()%>/login.us";
+                    }
+                </script>
 
                 <div id="content_1_2">
                    <input id="status" type="radio" value="status" > <label for="status">로그인상태유지</label>
                 </div>
             </form>
         </div>
+
+        
 
         <hr style="color:gray; width:90%">
             
@@ -128,7 +136,7 @@
         <div id= "content_3" style="font-size:10px; " align="center">
             <div><a href="" >아이디 찾기</a> </div> |
             <div><a href="">비밀번호 찾기</a> </div> |
-            <div><a href="~enrollForm.jsp">회원가입</a></div>
+            <div><a href="<%=request.getContextPath()%>/enrollForm1.us">회원가입</a></div>
         </div>
 
     

@@ -8,21 +8,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.member.user.model.service.UserService;
 import com.dr.member.user.model.vo.User;
 
 /**
  * Servlet implementation class LoginServlet
  */
-@WebServlet("/login.us")
-public class LoginServlet extends HttpServlet {
+@WebServlet("/loginForm.us")
+public class LoginFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
     /**
-     * @see HttpServlet#HttpServlet()
+     * Default constructor. 
      */
-    public LoginServlet() {
-        super();
+    public LoginFormServlet() {
         // TODO Auto-generated constructor stub
     }
 
@@ -31,16 +29,7 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.setCharacterEncoding("utf-8");
-		
-		String userId = request.getParameter("userId");
-		String userPwd = request.getParameter("userPwd");
-		
-		//System.out.println(userId);
-		//System.out.println(userPwd);
-		//null 출력됨... 일단 나머지 코드작성 후 나중에 해결하기
-		
-		User u = new UserService().loginUser(userId, userPwd);
+		request.getRequestDispatcher("views/member/user/loginForm.jsp").forward(request, response);
 		
 	}
 

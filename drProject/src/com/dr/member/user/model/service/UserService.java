@@ -11,7 +11,7 @@ import com.dr.member.user.model.vo.User;
 public class UserService {
 
 	/**
-	 * 1. 로그인하기
+	 * 1. 로그인
 	 */
 	public User loginUser(String userId, String userPwd) {
 		Connection conn = getConnection();
@@ -22,7 +22,7 @@ public class UserService {
 	}
 	
 	/**
-	 * 2. 회원가입하기
+	 * 2. 회원가입
 	 */
 	public int insertUser(User u) {
 		Connection conn = getConnection();

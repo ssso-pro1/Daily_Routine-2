@@ -57,7 +57,7 @@
         
         <table id="topMenu" align="right">
             <tr>
-                <th><a href="">로그인</a></th>
+                <th><a href="<%=contextPath%>/loginForm.us">로그인</a></th>
                 <th>|</th>
                 <th><a href="<%=contextPath%>/enrollForm1.us">회원가입</a></th>
                 <th>|</th>

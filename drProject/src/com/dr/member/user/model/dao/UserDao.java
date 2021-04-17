@@ -29,7 +29,7 @@ public class UserDao {
 	}
 	
 	/**
-	 * 1. 로그인하기
+	 * 1. 로그인
 	 */
 	public User loginUser(Connection conn, String userId, String userPwd) {
 		// select 문 => resultSet 객체 (한행) => User객체
@@ -74,7 +74,7 @@ public class UserDao {
 	
 	
 	/**
-	 * 2. 회원가입하기
+	 * 2. 회원가입
 	 */
 	public int insertUser(Connection conn, User u) {
 		//insert문 => DML 처리된 행수 

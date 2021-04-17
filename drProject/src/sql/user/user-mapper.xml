@@ -2,15 +2,8 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<!-- 1. 로그인하기 -->
+<!-- 1. 로그인 -->
 	<entry key="loginUser">
-		
-	
-	
-	</entry>
-	
-<!-- 2. 회원가입하기 -->
-	<entry key="insertUser">
 		SELECT 
 		       USER_NO
 		     , USER_ID
@@ -30,6 +23,33 @@
 		 WHERE LEAVE_CHECK = 'N'
 		   AND USER_ID = ?
 		   AND USER_PWD = ?
+	</entry>
+	
+<!-- 2. 회원가입 -->
+	<entry key="insertUser">
+		INSERT 
+		    INTO USER
+		        (
+		        USER_NO <!--  -->
+		      , USER_ID 
+		      , USER_PWD
+		      , USER_NAME
+		      , BIRTH
+		      , GENDER
+		      , EMAIL
+		      , PHONE
+		        )
+		  VALUES
+		        (
+		        SEQ_UNO.NEXTVAL
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		      , ?
+		        )
 	</entry>
 	
 </properties>

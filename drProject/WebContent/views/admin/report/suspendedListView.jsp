@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="css/reListView.css" rel="stylesheat">
+<link href="/drProject/WebContent/resources/css/reListView.css" type="text/css" rel="stylesheat">
 <style>
     #stopBtn{
         border:1px solid orangered;

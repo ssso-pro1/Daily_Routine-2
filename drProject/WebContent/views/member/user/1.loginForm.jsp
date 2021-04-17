@@ -78,12 +78,7 @@
 
         a{
             font:black;
-            ;
         }
-
-        #id, #pwd{}
-
-        #btn{}
 
         #rd{display:table-cell;
         display:flex;
@@ -94,6 +89,10 @@
          
             align-items: center;
         /* display:table-cell; */
+        }
+
+        #content_3{
+
         }
     </style>
 </head>
@@ -126,10 +125,10 @@
             <br>
         </div>
 
-        <div id= "content_3" style="font-size:10px; ">
-            <a href="" >아이디 찾기</a> |
-            <a href="">비밀번호 찾기</a> |
-            <a href="~enrollForm.jsp">회원가입</a>
+        <div id= "content_3" style="font-size:10px; " align="center">
+            <div><a href="" >아이디 찾기</a> </div> |
+            <div><a href="">비밀번호 찾기</a> </div> |
+            <div><a href="~enrollForm.jsp">회원가입</a></div>
         </div>
 
     

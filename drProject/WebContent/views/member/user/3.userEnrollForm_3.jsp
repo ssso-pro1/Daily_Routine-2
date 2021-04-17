@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- 왜 change안뜨지. -->
     <!-- 위에 메뉴바 + 회원가입 nav추가하기 (따로jsp로빼기)-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">

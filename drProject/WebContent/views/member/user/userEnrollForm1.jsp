@@ -1,3 +1,6 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -81,11 +84,11 @@
         
         <hr style="border:1px solid gray" width="100%">
 
-        <input type="radio" id="second">
-        <label for="second">DailyRoutine 이용약관</label>
+        <input type="radio" id="second" required>
+        <label for="second">DailyRoutine 이용약관(필수)</label>
         <input type="button" value="상세보기"> <br>
 
-        <input type="radio" id="third">
+        <input type="radio" id="third" required>
         <label for="third">개인정보 수집 및 이용 동의(필수)</label>
         <input type="button" value="상세보기"> <br>
 
@@ -96,9 +99,20 @@
     </div>
 
     <div class="btn">
-        <button type="button" class="btn btn-secondary ">취소</button>
-        <button type="button" class="btn btn-warning">확인</button>
+        <!-- 취소 : 메인페이지로 이동/ 확인 : 회원가입2단계 (/enrollForm2.us) -->
+        <button type="button" class="btn btn-secondary " onclick="mainPage();">취소</button>
+        <button type="button" class="btn btn-warning" onclick="enrollForm2();">확인</button>
     </div>
+
+    <script>
+        function mainPage(){
+            location.href="<%=request.getContextPath()%>";
+        }
+
+        function enrollForm2(){
+            location.href = "<%=request.getContextPath()%>/enrollForm2.us";
+        }
+    </script>
  
 
 

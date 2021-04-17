@@ -8,8 +8,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
-import com.dr.common.JDBCTemplate;
-import com.dr.common.JDBCTemplate.*;
+
+import static com.dr.common.JDBCTemplate.*;
 import com.dr.member.user.model.vo.User;
 
 public class UserDao {
@@ -28,6 +28,9 @@ public class UserDao {
 		
 	}
 	
+	/**
+	 * 1. 로그인하기
+	 */
 	public User loginUser(Connection conn, String userId, String userPwd) {
 		// select 문 => resultSet 객체 (한행) => User객체
 		
@@ -62,14 +65,46 @@ public class UserDao {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-		JDBCTemplate.close(rset);
-		JDBCTemplate.close(pstmt);
+		close(rset);
+		close(pstmt);
 	}
 	return u;
 	
+	}
+	
+	
+	/**
+	 * 2. 회원가입하기
+	 */
+	public int insertUser(Connection conn, User u) {
+		//insert문 => DML 처리된 행수 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, u.getUserId());
+			pstmt.setString(2, u.getUserPwd());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+		
+		
+		
+		
+	}
 	
 	
 	
 	
 	}
-}
+

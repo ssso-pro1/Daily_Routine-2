@@ -59,7 +59,7 @@
             <tr>
                 <th><a href="">로그인</a></th>
                 <th>|</th>
-                <th><a href="">회원가입</a></th>
+                <th><a href="<%=contextPath%>/enrollForm1.us">회원가입</a></th>
                 <th>|</th>
                 <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
             </tr>

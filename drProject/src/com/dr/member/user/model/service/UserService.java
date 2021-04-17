@@ -1,9 +1,12 @@
 package com.dr.member.user.model.service;
 
-import com.dr.common.JDBCTemplate;
+
+import static com.dr.common.JDBCTemplate.*;
+
+import java.sql.Connection;
+
 import com.dr.member.user.model.dao.UserDao;
 import com.dr.member.user.model.vo.User;
-import com.sun.corba.se.pept.transport.Connection;
 
 public class UserService {
 
@@ -11,10 +14,29 @@ public class UserService {
 	 * 1. 로그인하기
 	 */
 	public User loginUser(String userId, String userPwd) {
-		Connection conn = JDBCTemplate.getConnection();
+		Connection conn = getConnection();
 		
 		User loginUser = new UserDao().loginUser(conn, userId, userPwd);
 		
 		return loginUser;
+	}
+	
+	/**
+	 * 2. 회원가입하기
+	 */
+	public int insertUser(User u) {
+		Connection conn = getConnection();
+		
+		int result = new UserDao().insertUser(conn, u);
+		
+		if(result>0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+		
+		
 	}
 }

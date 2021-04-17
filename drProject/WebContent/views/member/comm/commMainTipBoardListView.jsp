@@ -98,7 +98,7 @@
             <div id="content_1">
                 <h1>커뮤니티</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/commMain.co">나만의 운동 Tip!</a></div>
+                    <div><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/free.co">자유게시판</a></div>
                     <br>

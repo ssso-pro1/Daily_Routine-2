@@ -1,6 +1,8 @@
 package com.dr.member.comm.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -9,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.comm.model.service.CommService;
+import com.dr.member.comm.model.vo.Comm;
 
 /**
  * Servlet implementation class CommListServlet
@@ -40,11 +43,11 @@ public class CommListServlet extends HttpServlet {
 		int startPage;    		// pageLimit, currentPage에 영향을 받음 
 		int endPage; 			// pageLimit, startPage에 영향을 받음 
 		
-		listCount = new CommService().selectListCount(); 
+		listCount = new CommService().tipselectListCount(); 
 		//System.out.println(listCount); 
 		
 		currentPage = Integer.parseInt(request.getParameter("currentPage")); 
-		pageLimit = 5; // 페이징 바 5개 단위 
+		pageLimit = 10; // 페이징 바 10개 단위 
 		boardLimit = 10; // 한 페이지당 게시글 10개씩 
 		
 		maxPage = (int)Math.ceil((double)listCount / boardLimit); 
@@ -60,8 +63,19 @@ public class CommListServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		//System.out.println(pi);
 		
-		// 2. currentPage에 보여질 게시글 리스트 조회 
+		// 2. currentPage(현재 페이지)에 보여질 게시글 리스트 조회 
+		ArrayList<Comm> list = new CommService().tipselectList(pi);
 		
+		/*
+		for(Comm c : list) { 
+			System.out.println(c); 
+		}
+		*/
+		
+		request.setAttribute("pi", pi);
+		request.setAttribute("list", list);
+		
+		request.getRequestDispatcher("views/member/comm/commMainTipBoardListView.jsp").forward(request, response);
 		
 	}
 

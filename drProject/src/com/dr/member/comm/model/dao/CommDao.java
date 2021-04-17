@@ -6,7 +6,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
+
+import com.dr.common.model.vo.PageInfo;
+import com.dr.member.comm.model.vo.Comm;
 
 import static com.dr.common.JDBCTemplate.*; 
 
@@ -26,14 +30,14 @@ public class CommDao {
 		
 	}
 	
-	public int selectListCount(Connection conn) {
-		// select문 
+	public int tipselectListCount(Connection conn) {
+		// select문 => ResultSet
 		int listCount = 0; 
 		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("selectListCount");
+		String sql = prop.getProperty("tipselectListCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -51,6 +55,42 @@ public class CommDao {
 		}
 		
 		return listCount;
+		
+	}
+	
+	public ArrayList<Comm> tipselectList(Connection conn, PageInfo pi) {
+		// select문 => ResultSet (여러 행) 
+		ArrayList<Comm> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("tipselectList"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+			
+			rset = pstmt.executeQuery(); 
+			
+			while(rset.next()) { 
+				list.add(new Comm(rset.getInt("comm_post_no"),
+								  rset.getString("user_id"),
+					              rset.getString("category_name"),
+					              rset.getString("post_title"),
+					              rset.getDate("enroll_date"),
+					              rset.getInt("board_view"))); 
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			close(rset); 
+			close(pstmt);	
+		}
+		
+		return list;
 		
 	}
 	

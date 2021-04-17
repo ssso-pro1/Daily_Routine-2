@@ -5,7 +5,7 @@ import java.sql.Date;
 public class Comm {
 	
 	private int commPostNo; 			// 커뮤니티 게시글번호 
-	private int userNo; 				// 회원번호(작성자 회원번호)
+	private String userNo; 				// 회원번호(작성자 회원번호)
 	private int fileNo; 				// 파일번호 
 	private String categoryName; 		// 카테고리명(1:운동tip!/2:식단공유)
 	private String postContent; 		// 게시글내용  
@@ -18,7 +18,7 @@ public class Comm {
 
 	public Comm(){}
 
-	public Comm(int commPostNo, int userNo, int fileNo, String categoryName, String postContent, String postTitle,
+	public Comm(int commPostNo, String userNo, int fileNo, String categoryName, String postContent, String postTitle,
 			Date enrollDate, Date updateDate, int boardView, String status, String adminNotice) {
 		super();
 		this.commPostNo = commPostNo;
@@ -34,6 +34,16 @@ public class Comm {
 		this.adminNotice = adminNotice;
 	}
 
+	public Comm(int commPostNo, String userNo, String categoryName, String postTitle, Date enrollDate, int boardView) {
+		super();
+		this.commPostNo = commPostNo;
+		this.userNo = userNo;
+		this.categoryName = categoryName;
+		this.postTitle = postTitle;
+		this.enrollDate = enrollDate;
+		this.boardView = boardView;
+	}
+
 	public int getCommPostNo() {
 		return commPostNo;
 	}
@@ -42,11 +52,11 @@ public class Comm {
 		this.commPostNo = commPostNo;
 	}
 
-	public int getUserNo() {
+	public String getUserNo() {
 		return userNo;
 	}
 
-	public void setUserNo(int userNo) {
+	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
 
@@ -129,5 +139,6 @@ public class Comm {
 				+ enrollDate + ", updateDate=" + updateDate + ", boardView=" + boardView + ", status=" + status
 				+ ", adminNotice=" + adminNotice + "]";
 	}
-
+	
 }
+

@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.dr.member.comm.model.vo.Comm, com.dr.common.model.vo.PageInfo" %>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi"); 
+	ArrayList<Comm> list = (ArrayList<Comm>)request.getAttribute("list"); 
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage(); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -71,7 +81,6 @@
     div>button{
         cursor:pointer;
     }
-
     .pagingArea, .searchArea{
         margin-left:120px;
     }
@@ -116,109 +125,71 @@
                         <thead>
                             <tr>
                                 <th width="100" style="color:red;">[공지]</th>
-                                <th width="400" style="color:hsl(46, 77%, 50%);">회원 간 비방과 욕설은 삼가주세요</th>
-                                <th width="150">관리자</th>
-                                <th width="150">2020-03-25</th>
-                                <th width="100">조회수 : 30</th>
+                                <th width="400" style="color:hsl(46, 77%, 50%);">공지내용</th>
+                                <th width="150">작성자</th>
+                                <th width="150">작성일</th>
+                                <th width="100">조회수</th>
                             </tr>
                         </thead>
                         <tbody>
-                            <tr>
-                                <td>10</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
-                            <tr>
-                                <td>9</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
-                            <tr>
-                                <td>8</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td>게시글 제목</td>
-                                <td>작성자</td>
-                                <td>2021-03-22</td>
-                                <td>조회수 : 55</td>
-                            </tr>
+                        	<!-- 조회된 결과가 없을 경우 -->
+                        	<% if(list.isEmpty()) { %> 
+                        	<tr>	
+                        		<td colspan="5">조회된 리스트가 없습니다.</td>
+                        	</tr>
+                        	<% }else { %>
+                        	<!-- 조회된 결과가 있을 경우 -->
+                        		<% for(Comm c : list) { %>
+		                            <tr>
+		                                <td><%= c.getCommPostNo() %></td>
+		                                <td><%= c.getPostTitle() %></td>
+		                                <td><%= c.getUserNo() %></td>
+		                                <td><%= c.getEnrollDate() %></td>
+		                                <td><%= c.getBoardView() %></td>
+		                            </tr>
+                            	<% } %>
+                            	
+                            <% } %>
                         </tbody>
                     </table>
                 </div>
                 <br><br>
 
+
                 <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
-                <!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
                 <div align="center" class="pagingArea">
-                    <button><</button>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                    <button>></button>
-                </div>
-                <br><br>
+                	
+                	<% if(currentPage != 1) { %>
+                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage-1%>';"><</button>
+                    <% } %>
+                    
+                    <% for(int p=startPage; p<=endPage; p++) { %>
+                    	
+                    	<% if(currentPage == p) { %>
+                    		<button disabled><%= p %></button>
+                    	<% }else { %>
+                    		<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%= p %>';"><%= p %></button>
+                    	<% } %>
+                    	
+                  	<% } %>
+                    
+                    <% if(currentPage != maxPage) { %>
+                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage+1%>';">></button>
+                    <% } %>
+                        
+                </div><br><br>
+            
             
                 <div align="center" class="searchArea">
+                
                     <input type="text">
-                    <button>검색</button> 
+                    <!-- <button>검색</button> -->
+                   	<a href="<%=contextPath%>">검색</a>
 
-                    <!-- 회원일 경우에만 보이는 버튼 -->
-                    <button>글쓰기</button>
-                </div>
-                <br><br>
+                  	<!-- <button>글쓰기</button> -->
+                  	<a href="<%=contextPath%>/tipEnrollForm.co">글쓰기</a>
+              
+                </div><br><br>
             </div>
 
         </div>

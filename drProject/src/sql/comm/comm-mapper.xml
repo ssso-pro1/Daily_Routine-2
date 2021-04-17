@@ -2,13 +2,38 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<entry key="selectListCount">
+	<entry key="tipselectListCount">
 		SELECT COUNT(*) LISTCOUNT 
 		  FROM TB_COMMUNITY 
-		 WHERE CATEGORY_NAME = '식단공유' 
-		    OR CATEGORY_NAME = '나만의운동tip!'
+		 WHERE COMM_NO = 1
 		   AND STATUS = 'N'
 	</entry>
+	
+	<entry key="tipselectList">
+		SELECT * 
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM 
+		             , A.*
+		          FROM (
+		                SELECT
+		                       COMM_POST_NO
+		                     , USER_ID
+		                     , CATEGORY_NAME
+		                     , POST_TITLE
+		                     , C.ENROLL_DATE 
+		                     , BOARD_VIEW 
+		                  FROM TB_COMMUNITY C 
+		                  JOIN TB_USER U ON (U.USER_NO = C.USER_NO)
+		                 WHERE COMM_NO = 1
+		                   AND STATUS = 'N'
+		                 ORDER 
+		                     BY ENROLL_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
 	
 	
 	

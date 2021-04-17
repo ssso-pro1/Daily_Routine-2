@@ -29,7 +29,7 @@ public class UserEnrollFormServlet1 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		RequestDispatcher view = request.getRequestDispatcher("views/user/userEnrollForm1.jsp");
+		RequestDispatcher view = request.getRequestDispatcher("views/member/user/userEnrollForm1.jsp");
 		view.forward(request, response);
 //		request.getRequestDispatcher("views/user/userEnrollForm1.jsp").forward(request,response);
 		

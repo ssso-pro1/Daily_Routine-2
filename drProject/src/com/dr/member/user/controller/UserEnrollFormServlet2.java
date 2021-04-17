@@ -26,7 +26,7 @@ public class UserEnrollFormServlet2 extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/user/userEnrollForm2.jsp").forward(request,response);
+		request.getRequestDispatcher("views/member/user/userEnrollForm2.jsp").forward(request,response);
 		
 	}
 

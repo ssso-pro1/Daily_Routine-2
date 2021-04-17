@@ -4,69 +4,82 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link href="css/reListView.css" rel="stylesheat">
+
 <title>Insert title here</title>
-</head>
-<style>
-    .outer{
-        width:800px;
-        height:550px;
-        margin:auto;
-        margin-top:50px;
-    }
-    #title{
-        margin-left:25px;
-    }
-    .listArea{
-        border:1px solid gray;
-        text-align:center;
-        margin-left:50px;
-    }
-    .listArea>tbody>tr:hover{
-        background:lightgray;
-        cursor:pointer;
-    }
-    .listArea>thead>tr{
-        background:lightgray;
-    }
-    .listArea>tr,th,td{
-        height:30px;
-    }
-    .searchArea>button{
-        background:hsl(46, 77%, 50%);
-        color:white;
-        border:hsl(46, 77%, 50%);
-    }
-    .buttons{
-        width:300px;
-        margin-left: 50px;
-        display: inline-block
-    }
-    .searchArea{
-        width:300px;
-        float: right
-        }
-    .reportCheck{
-        width:100px;
-        text-align: right;
-        float:right;
-    }
-    .pagingArea{
-        width: 500px;
-        margin: auto;
-    }
-</style>
+</head> 
 <body>
 
     <div class="outer">
+        <div id="nav">
+            <span align="left">Admin Center</span>
+
+            <span>
+                <!-- 로그인 전 -->
+                <i class="fas fa-user-circle"></i>
+                <span align="right" >Welcome님</span>
+                <!-- <i class="fas fa-bars"></i> -->
+                <a href=""><i class="fas fa-home"></i></a> <!-- 오븐에는 메뉴바로 돼있는데, 저희 왼쪽에 메뉴바가 있어서 홈으로 가는 기능으로 바꾸면 좋을 것 같아서 넣었어요!-->
+
+                <!-- 로그인 후
+                <div>admin01님</div> -->
+            </span>
+        </div>
        <br>
        <div id="title">
-       <h2>신고관리 > 전체 신고 보기</h2>
-       <hr>
-       <br><br><br>
-        
+       
+       <div id="content">
+
+        <!--왼쪽 공통메뉴-->
+       <div id="content_1">
+           
+           <div class="content_1_1">
+               <h2>회원관리</h2>
+               <div><a href="">회원 정보 관리</a></div>
+               <br>
+           </div>
+
+           <div class="content_1_2">
+               <h2>게시물관리</h2>
+               <div><a href="">HomeTraining</a></div> 
+               <div><a href="">Info&Tip</a></div> 
+               <br>
+           </div>
+
+           <div class="content_1_3">
+               <h2>고객센터</h2>
+               <div><a href="">공지사항</a></div> 
+               <div><a href="">FAQ</a></div> 
+               <div><a href="">1:1문의</a></div> 
+               <br>
+           </div>
+
+           <div class="content_1_4">
+               <h2 style="color: white;">신고관리</h2>
+               <div><a href="" style="color: white;">전체신고보기</a></div> 
+               <div><a href="">블랙리스트</a></div> 
+           </div>
+           
+       </div>
+    <div id="line"></div>
+       
+
+
+
+       <!-- content -->
+       <div id="content_2">
+
+           <!-- 상단 타이틀 -->
+           <div id="content2_1">
+               <h2>신고관리 > 전체 신고 보기</h2>
+           </div>
+
+           <hr style="border:1px solid gray">
+           <br><br>
+
         </div>
-       <br><br>
-       <form action="">
+        <br><br>
+        <form action="">
             <div class="buttons">
                 <button >게시글</button>
                 <button>댓글</button>
@@ -79,12 +92,12 @@
             <table class="listArea" align="center">
                     <thead>
                         <tr>
-                            <th width="80">check</th>
-                            <th width="120">신고자</th>
-                            <th width="120">피신고자</th>
-                            <th width="110">분류</th>
-                            <th width="300">게시글 제목</th>
-                            <th width="150">작성일</th>
+                            <th width="40">check</th>
+                            <th width="95">신고자</th>
+                            <th width="95">피신고자</th>
+                            <th width="90">분류</th>
+                            <th width="260">댓글</th>
+                            <th width="120">작성일</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -194,13 +207,16 @@
                         </tr>
                     </tbody>
             </table>
-            
+            <br>
+            <div class="reportCheck">
+                <button>신고확인</button>
+            </div>
         </form>
+            
+
 
        <br>
-       <div class="reportCheck">
-          <button>신고확인</button>
-        </div>
+       
        <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
        <!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
        <div align="center" class="pagingArea">

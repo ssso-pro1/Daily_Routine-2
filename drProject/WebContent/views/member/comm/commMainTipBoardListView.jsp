@@ -74,9 +74,9 @@
         height:30px;
     }
     .searchArea>button{
-        background:hsl(46, 77%, 50%);
+        background:rgb(250, 214, 9);
         color:white;
-        border:hsl(46, 77%, 50%);
+        border:rgb(250, 214, 9);
     }
     div>button{
         cursor:pointer;
@@ -98,14 +98,14 @@
             <div id="content_1">
                 <h1>커뮤니티</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
+                    <div><a href style="color:rgb(250, 214, 9);"<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/question.co?currentPage=1">질문게시판</a></div>
                 </div>
             </div>
-
+			
             <div id="line"></div>
 
             <!-- 게시판 목록 -->

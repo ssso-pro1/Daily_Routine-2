@@ -110,12 +110,12 @@
                                             <td width="100">
                                                 <select name="category">
                                                     <option selected>선택안함</option>
-                                                    <option value="menu">[식단공유]</option>
-                                                    <option value="health">[운동tip]</option>
+                                                    <option value="1">[식단공유]</option>
+                                                    <option value="2">[운동tip]</option>
                                                 </select>
                                             </td>
                                             <td width="800" height="30">
-                                                <input type="text" name="title" value="" placeholder="제목을 입력해주세요." required>
+                                                <input type="text" name="title" placeholder="제목을 입력해주세요." required>
                                             </td> 
                                             
                                         </tr>
@@ -141,7 +141,7 @@
                                     </table>
                                 </tr>
                             </table><br><br>
-                            <input type="hidden" name="userNo" value="로그인한회원번호">
+                            <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
 							<br><br>
                             <div align="right" class="enrollButton">
                                 <button type="submit">등록</button>

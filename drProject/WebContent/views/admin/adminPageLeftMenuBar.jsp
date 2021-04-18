@@ -2,8 +2,8 @@
     pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
-
-    <!-- 관리자 페이지 url..? -->
+	
+	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
 %>   
 
@@ -132,7 +132,7 @@
         <div id="content">
 
              <!--왼쪽 공통메뉴-->
-            <div id="content_1">
+             <div id="content_1">
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>

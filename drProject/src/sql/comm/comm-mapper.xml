@@ -34,12 +34,55 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
-	<entry key="">
+	<entry key="insertCommTip">
+		INSERT
+		  INTO TB_COMMUNITY 
+		  (
+		    COMM_POST_NO
+		  , COMM_NO
+		  , CATEGORY_NAME
+		  , POST_TITLE
+		  , POST_CONTENT
+		  , USER_NO 
+		  , ENROLL_DATE
+		  )
+		  VALUES
+		  (
+		    SEQ_COMMPNO.NEXTVAL
+		  , 1
+		  , ?
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  )
+	</entry>
 	
+	<entry key="insertCommFileList">
+		INSERT
+		  INTO TB_COMM_FILE
+		  (
+		    FILE_NO
+		  , COMM_POST_NO
+		  , COMM_NO
+		  , FILE_NAME
+		  , FILE_UPDATE
+		  , FILE_PATH
+		  )
+		  VALUES
+		  (
+		    SEQ_FNO.NEXTVAL
+		  , SEQ_COMMPNO.CURRVAL
+		  , 1
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  )
 	</entry>
 	
 	<entry key="">
-	
+		
 	</entry>
 	
 	

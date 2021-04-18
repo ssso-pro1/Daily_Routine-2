@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.comm.model.vo.Comm;
+import com.dr.member.comm.model.vo.CommFile;
 
 import static com.dr.common.JDBCTemplate.*; 
 
@@ -94,6 +95,65 @@ public class CommDao {
 		
 	}
 	
+	public int insertCommTip(Connection conn, Comm c) {
+		// insert문
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCommTip"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getCategoryName());
+			pstmt.setString(2, c.getPostTitle());
+			pstmt.setString(3, c.getPostContent());
+			pstmt.setString(4, c.getUserNo());
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result;
+		
+	}
+	
+	public int insertCommFileList(Connection conn, ArrayList<CommFile> list) {
+		// insert문 다수 
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCommFileList"); // 미완성된 sql 
+		
+		try {
+			
+			for(CommFile cf : list) {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, cf.getFileName());
+				pstmt.setString(2, cf.getFileUpdate());
+				pstmt.setString(3, cf.getFilePath());
+				
+				result = pstmt.executeUpdate(); 
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 }
+
+

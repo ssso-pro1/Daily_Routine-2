@@ -1,0 +1,83 @@
+
+	div{
+		box-sizing: border-box;
+	}
+	.wrap{
+        width:1000px;
+        height:800px;
+        margin:auto;
+        margin-top:15px;
+	}
+	.wrap>div{
+        width:100%;
+    }
+
+    .wrap>div{
+        width:100%;
+    }
+
+    a{
+        text-decoration:none;
+        color:black;
+        font-size:18px;
+        font-weight:bold;
+    }
+    a:hover{color:rgb(250, 214, 9);}
+
+    #content{height:100%; width:100%;}
+
+    #content>div{
+        height:100%;
+        float:left;
+    }
+
+	#line{
+        border:1px solid gray;
+        width:0.1px;
+        height:150px;
+		float: left;
+    }
+
+    #content_1{width:15%; float: left;}
+    #content_2{width:80%; margin-left:25px;}
+
+	#content_2_1{height:15%;}
+    #content_2_2{height:80%; margin-left:48px;}
+
+
+    .listArea{
+
+        width: 800px;
+        margin:auto;
+		
+    }
+    .thumbnail{
+        border:1px solid black;
+        width:230px;
+        display:inline-block;
+        margin:10px;
+    }
+    .tipcategory{
+        width: 200px;
+        display: inline-block;
+    }
+    .searchArea{
+        float: right;
+        margin-right: 5px;
+    }
+    .searchArea>button{
+        background:hsl(46, 77%, 50%);
+        color:white;
+        border:hsl(46, 77%, 50%);
+    }
+    .pagingArea{
+        width: 300px;
+        display: inline-block;
+        margin-left: 235px;
+    }
+    .btn{
+        width: 100px;
+        text-align: right;
+        float: right;
+        margin-right:55px;
+    }

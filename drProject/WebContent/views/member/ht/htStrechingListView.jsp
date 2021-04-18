@@ -13,18 +13,18 @@
 		<div id="content">
 			<div id="content_1">
                 <h1>Home<br>Training</h1><br>
-				<div class="leftMenu">
+                <div class="leftMenu">
                     <div><a href="<%=contextPath%>/workoutTip.co" >전체</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/free.co">코어 운동</a></div>
+                    <div><a href="<%=contextPath%>/free.co" >코어 운동</a></div>
                     <br>
 					<div><a href="<%=contextPath%>/free.co">전신 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co" style="color:rgb(250, 214, 9);">상체 운동</a></div>
+                    <div><a href="<%=contextPath%>/question.co">상체 운동</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/question.co">하체 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">스트레칭</a></div>
+                    <div><a href="<%=contextPath%>/question.co" style="color:rgb(250, 214, 9);">스트레칭</a></div>
                 </div>
             </div>
 
@@ -35,9 +35,9 @@
 
                 <!-- 상단 타이틀-->
                 <div id="content2_1">
-                    <h2>HomeTraining > 상체 운동</h2>
+                    <h2>HomeTraining > 스트레칭</h2>
                     <hr>
-                    <p>홈트레이닝 상체 운동 조회입니다.</p>
+                    <p>홈트레이닝 스트레칭 조회입니다.</p>
                 </div>
                 <br><br><br>
 				<div id="content_2_2">

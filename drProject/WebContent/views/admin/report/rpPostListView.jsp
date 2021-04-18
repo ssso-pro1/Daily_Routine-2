@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="/drProject/WebContent/resources/css/reListView.css" type="text/css" rel="stylesheat">
+<link rel="stylesheat" href="../../../resources/css/reListView.css">
 
 <title>Insert title here</title>
 <style>
@@ -105,7 +108,7 @@
 
         </div>
        <br><br>
-       <form action="">
+       <form action="<%= contextPath %>/ ">
             <div class="buttons">
                 <button id="postList">게시글</button>
                 <button id="replyList">댓글</button>
@@ -128,7 +131,7 @@
                     </thead>
                     <tbody>
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성</td>
@@ -136,7 +139,7 @@
                             <td>2021-02-28</td>
                         </tr>
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user04</td>
                             <td>user03</td>
                             <td>욕설</td>
@@ -144,7 +147,7 @@
                             <td>2021-02-26</td>
                         </tr>                
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user11</td>
                             <td>user05</td>
                             <td>음란성</td>
@@ -152,7 +155,7 @@
                             <td>2021-02-25</td>
                         </tr>                
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -160,7 +163,7 @@
                             <td>2021-02-24</td>
                         </tr>                
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -168,7 +171,7 @@
                             <td>2021-02-23</td>
                         </tr>                
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -176,7 +179,7 @@
                             <td>2021-02-22</td>
                         </tr>                
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -184,7 +187,7 @@
                             <td>2021-02-21</td>
                         </tr>                
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -192,7 +195,7 @@
                             <td>2021-02-21</td>
                         </tr>                
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -200,7 +203,7 @@
                             <td>2021-02-20</td>
                         </tr>                
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -208,7 +211,7 @@
                             <td>2021-02-19</td>
                         </tr>                
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -216,7 +219,7 @@
                             <td>2021-02-19</td>
                         </tr>   
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -224,7 +227,7 @@
                             <td>2021-02-19</td>
                         </tr>   
                         <tr>
-                            <td><input type="checkbox"></td>
+                            <td><input type="checkbox" value="check"></td>
                             <td>user01</td>
                             <td>user02</td>
                             <td>광고성 게시글</td>
@@ -235,7 +238,7 @@
             </table>
             <br>
             <div class="reportCheck">
-                <button id="rpCheck">신고확인</button>
+                <button type="submit" id="rpCheck">신고확인</button>
             </div>
         </form>
 

@@ -4,8 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link href="/drProject/WebContent/resources/css/reListView.css" type="text/css" rel="stylesheat">
-
+<link rel="stylesheat" href="../../../resources/css/reListView.css">
 <title>Insert title here</title>
 <style>
     #rpCheck{

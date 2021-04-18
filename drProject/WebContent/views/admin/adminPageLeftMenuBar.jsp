@@ -1,7 +1,15 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+<%
+	User loginUser = (User)session.getAttribute("loginUser");
+
+    <!-- 관리자 페이지 url..? -->
+	String contextPath = request.getContextPath();
+%>   
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- 인코딩확인용 -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -22,8 +30,6 @@
         }
 
         
-        
-
         #content{height:100%; width:100%;}
 
         #content>div{
@@ -41,6 +47,15 @@
             height:150px;
         }
 
+
+        #welcome{
+            text-decoration: none;
+            color:white;
+
+        }
+        #welcome:hover{
+            color: rgb(33, 33, 34);
+        }
         /* #content_2_1{height:10%;}
         #content_2_2{height:35%;}
         #content_2_3{height:35%;} */
@@ -78,19 +93,19 @@
             margin-left:10px;
         }
 
-        #content_1 a:hover{color:white;}
+        /* wrap a#content_1 a:hover{color:white;} */
 
         #content2_1{
             color:white;
             font-size:10px;
             padding:10px;
         }
+        
 
 
     </style>
 </head>
 <body>
-    <%@ include file="../common/menubar.jsp"%>
 	
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 
@@ -102,7 +117,9 @@
             <span>
                 <!-- 로그인 전 -->
                 <i class="fas fa-user-circle"></i>
-                <span align="right" >Welcome님</span>
+                
+                <a id="welcome" href="<%contextPath%>/loginForm.ad">Welcome님</a>
+                
                 <!-- <i class="fas fa-bars"></i> -->
                 <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a> <!-- 오븐에는 메뉴바로 돼있는데, 저희 왼쪽에 메뉴바가 있어서 홈으로 가는 기능으로 바꾸면 좋을 것 같아서 넣었어요!-->
 

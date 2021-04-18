@@ -84,6 +84,7 @@
     .pagingArea, .searchArea{
         margin-left:120px;
     }
+    .leftMenu>#menu1>a{color:rgb(250, 214, 9);}  
 </style>
 <body>
     
@@ -98,7 +99,7 @@
             <div id="content_1">
                 <h1>커뮤니티</h1><br>
                 <div class="leftMenu">
-                    <div><a href style="color:rgb(250, 214, 9);"<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
+                    <div id="menu1"><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
                     <br>

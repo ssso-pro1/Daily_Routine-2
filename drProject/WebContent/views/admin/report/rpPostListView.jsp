@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheat" href="../../../resources/css/reListView.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reListView.css">
 
 <title>Insert title here</title>
 <style>

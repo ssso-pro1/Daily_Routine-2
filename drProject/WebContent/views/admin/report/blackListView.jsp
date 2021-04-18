@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheat" href="../../../resources/css/reListView.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/reListView.css">
 <style>
     #stopBtn{
         border:1px solid orangered;

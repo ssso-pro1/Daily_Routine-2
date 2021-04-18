@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
 <style>
     div{
         box-sizing:border-box
@@ -145,26 +146,27 @@
                             <tr>
                                 <th>문의유형</th>
                                 <td>
+                                	
                                     <select name="qCategory" id="qCategory" required style="width: 100%;">
-                                        <option>선택해주세요</option>
+                                        <option id="qCategory" value="0">선택해주세요</option>
                                         <option name="qCategory" id="qCategory" value="회원정보" >회원정보</option>
                                         <option name="qCategory" id="qCategory" value="게시글">게시글/댓글</option>
                                         <option name="qCategory" id="qCategory" value="신고">신고</option>
                                         <option name="qCategory" id="qCategory" value="기타문의">기타문의</option>
                                     </select>
                                     
-
-                                </td>
+                                    
+                                 </td>
                             </tr>
                             <tr>
                                 <th>제목</th>
-                                <td><input type="text" name="qtitle" placeholder="제목을 입력해주세요" style="width: 100%;" required></td>
+                                <td><input type="text" name="qTitle" id="qTitle" placeholder="제목을 입력해주세요" style="width: 100%;" required></td>
                             </tr>
                             <tr>
                                 <th>내용</th>
                                 <td>
                                     <div>
-                                        <textarea id="qContent" name="qContent" style="width: 100%;" rows="10" style="resize: none;" placeholder="궁금하신 내용을 입력하세요 (300자 이내)"></textarea>
+                                        <textarea id="qContent" name="qContent" style="width: 100%;" rows="10" style="resize: none;" placeholder="궁금하신 내용을 입력하세요 (300자 이내)" required></textarea>
                                         <br>
                                     </div>
                                     <span id="count" name="count">0</span> / 300
@@ -172,7 +174,7 @@
                             </tr>
                             <tr>
                                 <td colspan="2" align="right">
-                                    <button type="submit">등록</button>
+                                    <button type="submit" onclick="return validate();">등록</button>
                                     <button type="reset">취소</button>
                                 </td>
                             </tr>
@@ -181,15 +183,69 @@
                         </table>
 
                                 <script>
+                                	// 300자 이상 입력 방지, 알러트
+                                    $(document).ready(function(){
+							            $("#qContent").on("keyup", function(){
+                                            //var inputlength=$(this).val().length;
+                                            //var remain = 300-inputlength;
+
+							                if($(this).val().length>300){
+							                    $(this).val($(this).val().substring(0, 300));
+                                                alert("300자이상 입력하실 수 없습니다.");
+							                }
+							            });
+							        });
+                                    
+                                    // 글자수 세기
                                     $(function(){
                                         $("#qContent").keyup(function(){
                                             var inputlength = $(this).val().length;
                                             $("#count").text(inputlength);
                                         })
-                                    })
+                                        
+                                    }) 
+                                    
+                                    
+                                    // 카테고리 유효성 체크
+                                    function validate(){
+                                    	
+                                    	var qCategory = $("#qCategory").val();
+                                    	var qTitle = $("#qTitle").val();
+                                    	var qContent = $("#qContent").val();
+                                    	
+                                    	if(qCategory=="0"){
+                                    		alert("문의유형을 선택해주세요");
+                                    		return false;
+                 
+                                    		}
+                                    	if(qTitle==''){ // 실행되는데 글을 입력안하고'   ' 이런식으로 입력해도 들어감
+                                    		alert("제목을 입력해주세요");
+                                    		return false;
+                                    		}
+                                    	
+                                    	if(qContent==''){ // 실행되는데 글을 입력안하고'   ' 이런식으로 입력해도 들어감
+                                    		alert("내용을 입력해주세요");
+                                    		return false;
+                                    		}
+                                    	
+                                    	var result = confirm("글을 등록하시겠습니까?");
+                                    	if(result){
+                                    		
+                                    	} else {
+                                    		alert("게시글 등록이 취소되었습니다");
+                                    		return false;
+                                    	}
+                                    
+                                    }
+                                    
+                                    
+                                    	
+                                    
+                                    
+                                    
+                                    
                                 </script>
-
-                    </form>
+                      </form>
                 </div>
             </div>
 

@@ -380,6 +380,30 @@ public class CenterDao {
 		} return list;
 	}
 
+
+	public int insertQuery(Connection conn, CenterQuery q) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertQuery");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, q.getUserNo());
+			pstmt.setString(2, q.getQueryCategory());
+			pstmt.setString(3, q.getQueryTitle());
+			pstmt.setString(4, q.getQueryContent());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		} return result;
+		
+	}
+
 	
 	
 

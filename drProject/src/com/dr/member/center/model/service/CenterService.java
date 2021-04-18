@@ -149,4 +149,20 @@ public class CenterService {
 		return list;
 	}
 
+
+
+
+	public int insertQuery(CenterQuery q) {
+		Connection conn = getConnection();
+		
+		int result = new CenterDao().insertQuery(conn, q);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
+	}
+
 }

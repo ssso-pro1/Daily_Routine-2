@@ -152,6 +152,33 @@
 	
 	</entry>
 	
+	<entry key="insertQuery">
+	INSERT 
+	    INTO TB_QUERY
+	        (
+	          QUERY_NO
+	        , USER_NO
+	        , QUERY_CATEGORY
+	        , QUERY_TITLE
+	        , QUERY_CONTENT
+	        )
+	        VALUES 
+	        (
+	          SEQ_QUERYNO.NEXTVAL
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         )
+		
+	
+	</entry>
+	
+	<entry key="">
+	
+	
+	</entry>
+	
 	<entry key="">
 	
 	

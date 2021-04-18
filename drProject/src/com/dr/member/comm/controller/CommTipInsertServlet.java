@@ -9,6 +9,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
+import com.oreilly.servlet.MultipartRequest;
+
 /**
  * Servlet implementation class CommTipInsertServlet
  */
@@ -44,10 +46,25 @@ public class CommTipInsertServlet extends HttpServlet {
 			
 			// 1_2. 전달된 파일을 저장할 서버의 폴더 경로 알아내기 (String savePath) 
 			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/comm/commTip_upfiles/"); 
-			System.out.println(savePath); 
+			//System.out.println(savePath); 
 			
 			// 2. 전달된 파일명 수정 후 서버에 업로드 작업 (MultipartRequest 객체 생성) 
+			// MultipartRequest 객체 생성과 동시에 넘어온 첨부파일이 해당 폴더에 무조건 업로드됨 
 			
+			// 원본 파일명을 그대로 해당 폴더에 업로드하지 않는 것이 일반적 
+			// 기본적으로 수정명 작업을 해주는 객체 (DefaultFileRenamePolicy 객체(cos 라이브러리))
+			// => 기존에 동일한 파일명 존재할 경우 카운팅된 숫자를 붙여줌 
+			
+			// 나만의 MyFileRenamePolicy 클래스 만들어서 rename 메소드 재정의할 것!
+			// 나만의 com.dr.common.MyFileRenamePolicy 클래스 만들어서 재정의 
+			
+			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", 나만의파일리네임폴리시객체); 
+			
+			
+			
+			// 3. 요청 시 전달된 값 뽑아서 vo에 담기
+			
+			// 4. 게시판 작성용 서비스 요청 및 결과 받기 
 			
 		
 		}

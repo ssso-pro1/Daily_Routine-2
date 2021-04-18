@@ -35,7 +35,20 @@ public class CommTipInsertServlet extends HttpServlet {
 		// enctype이 multipart/form-data로 전송 
 		if(ServletFileUpload.isMultipartContent(request)) { 
 			
-			//System.out.println("잘 실행되나?"); 
+			// System.out.println("잘 실행되나?"); 
+			
+			// 파일 업로드를 위한 외부 라이브러리 : cos.jar 
+			// 1. 전송되는 파일을 처리할 작업 내용 (전송되는 파일의 용량 제한, 전달된 파일을 저장할 폴더 경로) 
+			// 1_1. 전달되는 파일의 용량 제한 (int maxSize => byte 단위): 10Mbyte로 제한 
+			int maxSize = 10*1024*1024; 
+			
+			// 1_2. 전달된 파일을 저장할 서버의 폴더 경로 알아내기 (String savePath) 
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/comm/commTip_upfiles/"); 
+			System.out.println(savePath); 
+			
+			// 2. 전달된 파일명 수정 후 서버에 업로드 작업 (MultipartRequest 객체 생성) 
+			
+			
 		
 		}
 		

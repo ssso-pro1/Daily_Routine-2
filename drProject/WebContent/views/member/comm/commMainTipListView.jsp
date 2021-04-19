@@ -15,7 +15,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <style>
     div{
         box-sizing:border-box;
@@ -84,8 +83,11 @@
     .pagingArea, .searchArea{
         margin-left:120px;
     }
-    .leftMenu>#menu1>a{color:rgb(250, 214, 9);}  
+    .leftMenu>#menu1>a{
+    	color:rgb(250, 214, 9);
+    }  
 </style>
+</head>
 <body>
     
    <%@ include file="../../common/menubar.jsp"%>
@@ -122,80 +124,93 @@
                 
                 <!-- 게시판 목록 테이블 -->
                 <div id="content2_2">
-                    <table align="center" class="listArea">
-                        <thead>
-                            <tr>
-                                <th width="100" style="color:red;">[공지]</th>
-                                <th width="400" style="color:rgb(250, 214, 9);">공지내용</th>
-                                <th width="150">작성자</th>
-                                <th width="150">작성일</th>
-                                <th width="100">조회수</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                        	<!-- 조회된 결과가 없을 경우 -->
-                        	<% if(list.isEmpty()) { %> 
-                        	<tr>	
-                        		<td colspan="5" style="color: crimson; font-weight: bolder; font-size: 20px;">조회된 리스트가 없습니다.</td>
-                        	</tr>
-                        	<% }else { %>
-                        	<!-- 조회된 결과가 있을 경우 -->
-                        		<% for(Comm c : list) { %>
-		                            <tr>
-		                                <td><%= c.getCommPostNo() %></td>
-		                                <td><%= c.getPostTitle() %></td>
-		                                <td><%= c.getUserNo() %></td>
-		                                <td><%= c.getEnrollDate() %></td>
-		                                <td><%= c.getBoardView() %></td>
-		                            </tr>
-                            	<% } %>
-                            	
-                            <% } %>
-                        </tbody>
-                    </table>
-                </div>
-                <br><br>
-
-                <!-- 페이징 처리 -->
-                <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
-                <div align="center" class="pagingArea">
                 	
-                	<% if(currentPage != 1) { %>
-                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage-1%>';"><</button>
-                    <% } %>
-                    
-                    <% for(int p=startPage; p<=endPage; p++) { %>
-                    	
-                    	<% if(currentPage == p) { %>
-                    		<button disabled><%= p %></button>
-                    	<% }else { %>
-                    		<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%= p %>';"><%= p %></button>
-                    	<% } %>
-                    	
-                  	<% } %>
-                    
-                    <% if(currentPage != maxPage) { %>
-                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage+1%>';">></button>
-                    <% } %>
-                        
-                </div><br><br>
-            
-            
-                <div align="center" class="searchArea">
+                	<div class="commArea">
+                  		<table align="center" class="listArea">
+	                        <thead>
+	                            <tr>
+	                                <th width="100">글번호</th>
+	                                <th width="100">카테고리명</th>
+	                                <th width="500">글제목</th>
+	                                <th width="150">작성자</th>
+	                                <th width="150">작성일</th>
+	                                <th width="100">조회수</th>
+	                            </tr>
+	                        </thead>
+                      		<tbody>
+                        	
+	                        	<% if(list.isEmpty()) { %> 
+	                        	<tr>	
+	                        		<td colspan="6" style="color: crimson; font-weight: bolder; font-size: 20px;">조회된 리스트가 없습니다.</td>
+	                        	</tr>
+	                        	<% } else { %>
+	                        		<% for(Comm c : list) { %>
+			                    <tr>
+				                    <td width="8%"><%= c.getCommPostNo() %></td>
+		                            <td width="15%"><%= c.getCategoryName() %></td>
+				                    <td width="42%"><%= c.getPostTitle() %></td>
+				                    <td width="10%"><%= c.getUserNo() %></td>
+				                    <td width="15%"><%= c.getEnrollDate() %></td>
+				                    <td width="10%"><%= c.getBoardView() %></td>
+			                    </tr>
+	                            	<% } %>
+	                            <% } %>
+	                        </tbody>
+                   		</table>  
                 
-                    <input type="text">
-                    <!-- <button>검색</button> -->
-                   	<a href="<%=contextPath%>">검색</a>
+		                <script>
+		                	$(function() {
+		                		$(".listArea>tbody>tr").click(function() {
+		                			location.href= '<%=contextPath%>/tipDetail.co?cno=' + $(this).children().eq(0).text();
+		                		})
+		                	})
+		               	</script> 
+               	
+              		 	<br><br>
 
-                  	<!-- <button>글쓰기</button> -->
-                  	<a href="<%=contextPath%>/tipEnrollForm.co">글쓰기</a>
-              
-                </div><br><br>
-            </div>
+
+		                <!-- 페이징 처리 -->
+		                <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
+		                <div align="center" class="pagingArea">
+		                	
+		                	<% if(currentPage != 1) { %>
+		                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage-1%>';"><</button>
+		                    <% } %>
+		                    
+		                    <% for(int p=startPage; p<=endPage; p++) { %>
+		                    	
+		                    	<% if(currentPage == p) { %>
+		                    		<button disabled><%= p %></button>
+		                    	<% }else { %>
+		                    		<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%= p %>';"><%= p %></button>
+		                    	<% } %>
+		                    	
+		                  	<% } %>
+		                    
+		                    <% if(currentPage != maxPage) { %>
+		                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage+1%>';">></button>
+		                    <% } %>
+		                        
+		                </div>
+		                
+		                <br><br>
+            
+            
+		                <div align="center" class="searchArea">
+		                
+		                    <input type="text">
+		                    <!-- 검색기능 구현코드 추가 -->
+		                   	<a href="<%=contextPath%>">검색</a>
+		                  	<a href="<%=contextPath%>/tipEnroll.co">글쓰기</a>
+		              
+		                </div><br><br>
+                
+                
+           		 </div>
 
         </div>
     </div>
-
+</div>
 
 </body>
 </html>

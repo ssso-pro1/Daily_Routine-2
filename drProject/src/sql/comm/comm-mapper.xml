@@ -81,6 +81,45 @@
 		  )
 	</entry>
 	
+	<entry key="increaseCount">
+		UPDATE 
+			   TB_COMMUNITY 
+		   SET BOARD_VIEW = BOARD_VIEW + 1 
+		 WHERE COMM_POST_NO = ?
+		   AND STATUS = 'N' 
+	</entry>
+	
+	<entry key="selectCommTip">
+		SELECT 
+			   COMM_POST_NO
+			 , USER_ID
+			 , CATEGORY_NAME 
+			 , POST_CONTENT
+			 , POST_TITLE
+			 , C.ENROLL_DATE
+			 , BOARD_VIEW  
+	      FROM TB_COMMUNITY C
+	      JOIN TB_USER U ON (C.USER_NO = U.USER_NO)
+	     WHERE COMM_POST_NO = ?
+	       AND COMM_NO = 1 
+	       AND STATUS = 'N'	 
+	</entry>
+	
+	<entry key="selectCommTipFileList">
+		SELECT 
+			   FILE_NO
+			 , FILE_NAME
+			 , FILE_UPDATE
+			 , FILE_PATH
+		  FROM TB_COMM_FILE
+		 WHERE COMM_POST_NO = ? 
+		   AND COMM_NO = 1  	 
+	</entry>
+	
+	<entry key="">
+		
+	</entry>
+	
 	<entry key="">
 		
 	</entry>

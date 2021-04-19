@@ -1,5 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.comm.model.vo.*" %>
+<%
+	Comm c = (Comm)request.getAttribute("c");
+	// 게시글번호, 카테고리명, 제목, 내용, 작성자아이디, 작성일 
+	
+	CommFile cf = (CommFile)request.getAttribute("cf"); 
+	// null
+	// 파일번호, 원본명, 수정명(실제 서버에 업로드된 이름), 저장폴더경로
+	
+	ArrayList<CommFile> list = (ArrayList<CommFile>)request.getAttribute("list"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,7 +57,7 @@
     }
 
     #content_2_1{height:10%;}
-    #content_2_2{height:35%; margin-left:48px;}
+    #content_2_2{height:40%; margin-left:48px;}
     #content_2_3{height:35%;}
 
     .detailArea{
@@ -72,6 +82,9 @@
     div>button{
         cursor:pointer;
     }
+    .leftMenu>#menu1>a{
+    	color:rgb(250, 214, 9);
+    } 
 </style>
 </head>
 <body>
@@ -87,11 +100,11 @@
             <div id="content_1">
                 <h1>커뮤니티</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/workoutTip.co">나만의 운동 Tip!</a></div>
+                    <div id="menu1"><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/free.co">자유게시판</a></div>
+                    <div><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">질문게시판</a></div>
+                    <div><a href="<%=contextPath%>/question.co?currentPage=1">질문게시판</a></div>
                 </div>
             </div>
 
@@ -109,42 +122,41 @@
                 </div>
                 <br>
 
-                <div class="buttonArea1" align="right">
-                    <!-- 작성자만 보이는 버튼 -->
-                    <button>수정</button>
-                    <button>삭제</button>
-                </div>
-                <br><br>
+				<!-- 로그인되어있고, 로그인한 사용자가 게시글일 경우 보이는 버튼 -->
+			
+               		<div class="buttonArea1" align="right">
+	                    <a href="<%=contextPath%>/tipUpdate.co">수정</a>
+	                    <a href="<%=contextPath%>/tipDelete.co">삭제</a>
+                	</div><br><br>
+              
 
                 <!-- 게시글 세부 영역 -->
                 <div id="content_2_2">
                     <div class="detailArea">
                         <table border="1" height="100%">
                             <tr align="center">
-                                <td  width="5%">글번호</td>
-                                <td  width="70%">글제목</td>
-                                <td  width="15%">작성자 님</td>
-                                <td  width="10%">조회수 : 55</td>
+                                <td width="5%"><%=c.getCommPostNo()%></td>
+                                <td width="15%"><%=c.getCategoryName()%></td>
+                                <td width="40%"><%=c.getPostTitle()%></td>
+                                <td width="10%"><%=c.getUserNo()%>님</td>
+                                <td width="15%"><%=c.getEnrollDate()%></td>
+                                <td width="15%">조회수 : <%=c.getBoardView()%></td>
                             </tr>
                             <tr>
-                                <td colspan="4">
-                                    <p>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                        게시글 작성 내용 <br>
-                                    </p>
+                                <td colspan="6" height="70%">
+                                    <p style=""><%=c.getPostContent()%></p>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="4">첨부파일명.png</td>        
+                            	<td colspan="6">
+	                            	<!-- 첨부파일이 없을 경우 -->
+	                            	<% if(cf == null) { %>
+	                            		첨부파일이 없습니다. 
+	                            	<!-- 첨부파일이 있을 경우 -->
+	                            	<% }else { %>
+	                                	<a download ="<%=cf.getFileName()%>" href="<%=contextPath%>/<%=cf.getFilePath() + cf.getFileUpdate()%>"><%=cf.getFileName()%></a>
+	                                <% } %>	
+                                </td>        
                             </tr>
                         </table><br>
                     </div>
@@ -158,8 +170,8 @@
                 </div><br>
 
                 <div class="buttonArea3" align="right">
-                    <button>글쓰기</button>
-                    <button>목록</button>
+	                <a href="<%=contextPath%>/tipEnroll.co">글쓰기</a>
+	                <a href="<%=contextPath%>/commMain.co?currentPage=1">목록</a>
                 </div><br><br>
 
 

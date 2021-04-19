@@ -148,6 +148,95 @@ public class CommDao {
 		
 	}
 	
+	public int increaseCount(Connection conn, int commPostNo) {
+		
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
+				
+	}
+	
+	public Comm selectCommTip(Connection conn, int commPostNo) {
+		// select문 => ResultSet객체 한 행 
+		Comm c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; // 조회문이기 때문에 rset 필요 
+		String sql = prop.getProperty("selectCommTip");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { 
+				c = new Comm(rset.getInt("comm_post_no"), 
+						   	 rset.getString("user_id"),
+						     rset.getString("category_name"),
+						     rset.getString("post_content"),
+						     rset.getString("post_title"),
+						     rset.getDate("enroll_date"),
+							 rset.getInt("board_view"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt); 
+		}
+		
+		return c;
+	
+	}
+	
+	public ArrayList<CommFile> selectCommTipFileList(Connection conn, int commPostNo) {
+		// select문 => ResultSet객체 여러 행
+		ArrayList<CommFile> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCommTipFileList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql); // 완성된 sql문 
+			pstmt.setInt(1, commPostNo); 
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				CommFile cf = new CommFile();
+				cf.setFileNo(rset.getInt("file_no"));
+				cf.setFileUpdate(rset.getString("file_update"));
+				cf.setFilePath(rset.getString("file_path")); 
+				
+				list.add(cf); 
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list; 
+		
+	}
 	
 	
 	

@@ -20,7 +20,7 @@ import com.oreilly.servlet.MultipartRequest;
 /**
  * Servlet implementation class CommTipInsertServlet
  */
-@WebServlet("/insertTip.co")
+@WebServlet("/tipInsert.co")
 public class CommTipInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -102,7 +102,7 @@ public class CommTipInsertServlet extends HttpServlet {
 			}else { // 실패 => 에러 문구 담아서 에러 페이지 포워딩 
 				
 				request.setAttribute("errorMsg", "게시글 등록을 실패하였습니다.");
-				request.getRequestDispatcher("views/common/errorPage.jsp");
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);;
 					
 			}
 			

@@ -56,12 +56,15 @@
         right:500px;
     }
     .updateArea>button{
-        background:hsl(46, 77%, 50%);
+        background:rgb(250, 214, 9);
         color:white;
-        border:hsl(46, 77%, 50%);
+        border:rgb(250, 214, 9);
     }
     div>button{
         cursor:pointer;
+    }
+    .leftMenu>#menu1>a{
+    	color:rgb(250, 214, 9);
     }
 </style>
 
@@ -76,11 +79,11 @@
             <div id="content_1">
                 <h1>커뮤니티</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/workoutTip.co">나만의 운동 Tip!</a></div>
+                    <div id="menu1"><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/free.co">자유게시판</a></div>
+                    <div><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">질문게시판</a></div>
+                    <div><a href="<%=contextPath%>/question.co?currentPage=1">질문게시판</a></div>
                 </div>
             </div>
        

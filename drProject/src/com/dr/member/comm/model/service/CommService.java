@@ -50,8 +50,44 @@ public class CommService {
 				
 	}
 	
+	public int increaseCount(int commPostNo) {
+		
+		Connection conn = getConnection();
+		int result = new CommDao().increaseCount(conn, commPostNo); 
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	}
 	
+	public Comm selectCommTip(int commPostNo) {
+		
+		Connection conn = getConnection();
+		Comm c = new CommDao().selectCommTip(conn, commPostNo); 
+		
+		close(conn);
+		
+		return c; 
+		
+	}
 	
+	public ArrayList<CommFile> selectCommTipFileList(int commPostNo) {
+	
+		Connection conn = getConnection();
+		ArrayList<CommFile> list = new CommDao().selectCommTipFileList(conn, commPostNo); 
+		
+		close(conn);
+		
+		return list;
+		
+	}
 	
 	
 }

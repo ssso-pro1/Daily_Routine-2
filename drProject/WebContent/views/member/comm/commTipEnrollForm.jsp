@@ -63,7 +63,9 @@
     div>button{
         cursor:pointer;
     }
-    .leftMenu>#menu1>a{color:rgb(250, 214, 9);}  
+    .leftMenu>#menu1>a{
+    	color:rgb(250, 214, 9);
+    }  
 </style>
 
    <%@ include file="../../common/menubar.jsp"%>
@@ -102,13 +104,13 @@
                 <!-- 게시글 작성 폼 -->
                 <div id="content_2_2">
                     <div class="enrollArea">
-                       <form action="<%=contextPath%>/insertTip.co" id="enrollForm" method="post" enctype="multipart/form-data">
+                       <form action="<%=contextPath%>/tipInsert.co" id="enrollForm" method="post" enctype="multipart/form-data">
                             <table align="center">
                                 <tr>
                                     <table>
                                         <tr>
                                             <td width="100">
-                                                <select name="category">
+                                                <select name="category" required>
                                                     <option value="0">선택안함</option>
                                                     <option value="1">[식단공유]</option>
                                                     <option value="2">[운동tip]</option>
@@ -127,6 +129,7 @@
                                                         <input type="file" name="upfile" style="cursor:pointer;">
                                                     </td>
                                                     <td>
+                                                    	<!-- 버튼 클릭 시 파일 삭제 -->
                                                         <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button><br>
                                                         <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
                                                     </td>
@@ -141,7 +144,7 @@
                                     </table>
                                 </tr>
                             </table><br><br>
-                            <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
+                            <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>"> <!-- userNo이 아직 안 넘어가서 오류 발생 -->
 							<br><br>
                             <div align="right" class="enrollButton">
                                 <button type="submit" onclick="return validate();">등록</button>

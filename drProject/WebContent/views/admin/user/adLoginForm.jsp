@@ -207,7 +207,7 @@
                     <form id="login-form" action="">
                         <input type="text" placeholder="관리자 아이디를 입력하세요">
                         <input type="password" placeholder="비밀번호를 입력하세요">
-                        <a href="<%= request.getContextPath()%>/adMain"></a><input id="btn" type="submit" value="로그인">
+                        <a href="<%= request.getContextPath()%>/mainPage.ad"></a><input id="btn" type="submit" value="로그인">
                     </form>
                 </div>
 

@@ -106,16 +106,11 @@
 
     <fieldset style="border:1px solid gray">
         <div id="content_1">
-            <form action="<%= request.getContextPath() %>/login.me" method="post" id="loginForm">
+            <form action="<%= request.getContextPath() %>/login.us" method="post" id="loginForm">
                 <input id="id" style="width:70%" type="text" name="userId" maxlength="20" minlength="5" placeholder="ID를 입력하세요" required><br>
                 <input id="pwd" style="width:70%" type="password" name="password" minlength="8" maxlength="16" placeholder="비밀번호를 입력하세요" required> <br>
-                <button onclick="login();" id="btn" style="width:70%" type="button" class="btn btn-secondary"> 로그인</button>            
+                <button id="btn" style="width:70%" type="button" class="btn btn-secondary"> 로그인</button>            
 
-                <script>
-                    function login(){
-                        location.href = "<%=request.getContextPath()%>/login.us";
-                    }
-                </script>
 
                 <div id="content_1_2">
                    <input id="status" type="radio" value="status" > <label for="status">로그인상태유지</label>

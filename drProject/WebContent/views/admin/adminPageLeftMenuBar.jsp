@@ -3,7 +3,6 @@
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
-	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
 %>   
 
@@ -14,6 +13,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    <!-- jQuery library-->
+    <script src="https://ajax.googleeapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
         div{
@@ -94,15 +95,14 @@
             margin-left:10px;
         }
 
-        /* wrap a#content_1 a:hover{color:white;} */
+        #content a:hover{color:white;}
 
-        #content2_1{
+        #content_2_1{
             color:white;
             font-size:10px;
             padding:10px;
         }
         
-
 
     </style>
 </head>
@@ -172,8 +172,8 @@
             <div id="content_2">
 
                 <!-- 상단 타이틀 -->
-                <div id="content2_1">
-                    <h2>회원관리 > 회원 정보 관리(수정/삭제)</h2>
+                <div id="content_2_1">
+                    <h2>회원관리 > 전체 회원 조회</h2>
                 </div>
 
                 <hr style="border:1px solid gray">

@@ -10,6 +10,7 @@
     <%@ include file = "../adminPageLeftMenuBar.jsp" %>
     
     <div class="outer">
+        
         <form action="<%=request.getContextPath()%>/delete.aus" name="deleteUserForm">
             <div class="form">
                 &nbsp<button>회원 탙퇴</button>

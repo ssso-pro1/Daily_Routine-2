@@ -2,14 +2,18 @@
     pageEncoding="UTF-8" %>
 <%@ page import="java.util.ArrayList, com.dr.member.center.model.vo.CenterNotice, com.dr.common.model.vo.PageInfo"%>
 <%
+	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<CenterNotice> list =(ArrayList<CenterNotice>)request.getAttribute("list");
+	
 	
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
+	
+	
 %>    
     
 <!DOCTYPE html>
@@ -181,11 +185,12 @@
                          </thead>
                          <tbody>
                          
-                         	<% if(list.isEmpty()) { %>
+                         	<% if(list.isEmpty() && (list.isEmpty())) { %>
                          	<tr>
             					<td colspan="4">존재하는 공지사항이 없습니다.</td>
             				</tr>
-            				<% } else { %>
+            				
+            				<% } else if (!list.isEmpty() && list.isEmpty())  { %>
             					<% for(CenterNotice n:list){ %>	
                          	
                             <tr>
@@ -195,7 +200,18 @@
                                 <td><%= n.getNoticeCount() %></td>
                             </tr>
                             	<% } %>
-                            <% } %>
+                            <% } else {%>
+		                        <% for(CenterNotice n:list){ %>	
+		                         	
+		                            <tr>
+		                                <td><%= n.getNoticeNo() %></td>
+		                                <td><%= n.getNoticeTitle() %></td>
+		                                <td><%= n.getCreateDate() %></td>
+		                                <td><%= n.getNoticeCount() %></td>
+		                            </tr>
+		                         <% } %>
+                         
+                         	<% } %>
                          </tbody>
                     </table>
              
@@ -219,7 +235,7 @@
                     <div align="center" class="pagingArea">
 
 						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%=currentPage-1%>';">이전</button>
+			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ct?currentPage=<%=currentPage-1%>';">이전</button>
 						<% } %>
 						
 						<% for(int p=startPage; p<=endPage; p++) { %>
@@ -227,13 +243,13 @@
 							<% if(currentPage == p){ %>
 			            		<button disabled><%= p %></button>
 			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%= p %>';"><%= p %></button>
+			            		<button onclick="location.href='<%=contextPath%>/searchNotice.ct?currentPage=<%= p %>';"><%= p %></button>
 			            	<% } %>
 			            	
 						<% } %>
 						
 						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%=currentPage+1%>';">다음</button>
+			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ct?currentPage=<%=currentPage+1%>';">다음</button>
 						<% } %>
 						
 			        </div>

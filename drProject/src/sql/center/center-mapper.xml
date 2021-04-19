@@ -128,7 +128,7 @@
 	
 	</entry>
 	
-	<entry key="faqselectList">
+	<entry key="faqSelectList">
 	SELECT *
 		  FROM (
 		        SELECT
@@ -214,10 +214,127 @@
 	
 	
 	
+	<entry key="searchFaqListCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_FAQ F
+	WHERE F.status ='Y'
+  	AND F.FAQ_CONTENT LIKE '%'||?||'%'
+	
+	
+	</entry>
+	
+	
+	<entry key="searchFaqList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT 
+					            FAQ_NO
+					          , USER_NO
+					          , FAQ_CATEGORY
+							  , FAQ_TITLE
+					          , FAQ_CONTENT
+						   FROM TB_FAQ F
+						  WHERE F.FAQ_CONTENT LIKE '%'||?||'%'
+						    AND F.STATUS = 'Y'
+		                 ORDER BY
+		                    FAQ_CATEGORY
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	<entry key="searchNoticetTitleCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
+	WHERE status ='Y'
+  	AND NOTICE_TITLE LIKE '%'||?||'%'
+	
+	
+	</entry>
+	
+	<entry key="searchNoticetContentCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
+	WHERE status ='Y'
+  	AND NOTICE_CONTENT LIKE '%'||?||'%'
+	
+	
+	</entry>
+	<entry key="searchNoticeTitle">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                 SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , NOTICE_CONTENT
+		                     , CREATE_DATE
+		                     , NOTICE_COUNT
+		                     
+		                  FROM TB_NOTICE N
+		                  
+		                 WHERE N.STATUS = 'Y'
+		                 AND NOTICE_TITLE LIKE '%'||?||'%'
+		                 ORDER
+		                    BY CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+	
+	<entry key="searchNoticeContent">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                 SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , NOTICE_CONTENT
+		                     , CREATE_DATE
+		                     , NOTICE_COUNT
+		                     
+		                  FROM TB_NOTICE N
+		                  
+		                 WHERE N.STATUS = 'Y'
+		                 AND NOTICE_CONTENT LIKE '%'||?||'%'
+		                 ORDER
+		                    BY CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+	
 	<entry key="">
 	
 	
 	</entry>
 	
+	<entry key="">
+	
+	
+	</entry>
+	
+	<entry key="">
+	
+	
+	</entry>
 	
 </properties>

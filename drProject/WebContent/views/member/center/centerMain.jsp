@@ -159,8 +159,8 @@
             <!--검색-->
             <div id="content_2_3">    
                 <div class="searchArea" align="center">
-                    <form action="" method="">
-                        <input type="text" name="search" id="serch" placeholder="궁금한내용을 입력해주세요">
+                    <form action="<%=contextPath %>/searchFaq.ct?currentPage=1" method="post">
+                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
                         <button type="submit">검색</button>
                     </form>
                 </div>

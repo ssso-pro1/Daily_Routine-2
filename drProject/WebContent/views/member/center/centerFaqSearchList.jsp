@@ -3,7 +3,9 @@
 <%@ page import="java.util.ArrayList, com.dr.member.center.model.vo.CenterFaq, com.dr.common.model.vo.PageInfo"%>
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<CenterFaq> list =(ArrayList<CenterFaq>)request.getAttribute("list"); 
+	ArrayList<CenterFaq> searchList =(ArrayList<CenterFaq>)request.getAttribute("searchList"); 
+	int listCount = (int)request.getAttribute("listCount");
+	String searchFaq = (String)request.getAttribute("searchFaq");
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -175,12 +177,11 @@
                 
                 <table>
                     <tr>
-                        <th></th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">자주찾는 질문 TOP10 |</a></th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=회원정보">회원정보|</a></th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=게시글">게시글/댓글</a> |</th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=신고">신고</a> |</th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=기타">기타</a></th>
+                        <th>
+                            <label style="font-size: 20px; color: rgb(96, 206, 23);"><%= searchFaq %> </label>검색결과 총 
+                            <label style="font-size: 20px; color: rgb(226, 166, 14);"><%=listCount %></label>개
+                        </th>
+                        
                     </tr>
                 </table>
                 <div class="underLine"></div>
@@ -193,11 +194,11 @@
             <div id="content_2_5">
                 <div class="faqListArea" style="width: 95%; margin: auto;">
                     
-                    <% if(list.isEmpty()) { %>    
+                    <% if(searchList.isEmpty()) { %>    
                     <p>존재하는 게시글이 없습니다 </p>
                     
                     <% } else { %>
-                    <% for(CenterFaq f:list){ %>	
+                    <% for(CenterFaq f:searchList){ %>	
                     
                     <div class="faqList">
                         <label>[<%= f.getFaqCategory() %>]</label>
@@ -248,11 +249,11 @@
                 <div id="content_2_6">    
                     <div align="center" class="pagingArea">
 
-						<%if (list.isEmpty()) { %>
+						<%if (searchList.isEmpty()) { %>
 					<p></p>
 					<% } else { %>
 						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/faqList.ct?currentPage=<%=currentPage-1%>&ctg=<%= list.get(0).getFaqCategory() %>';">이전</button>
+			            	<button onclick="location.href='<%=contextPath%>/search.ct?currentPage=<%=currentPage-1%>';">이전</button>
 						<% } %>
 						
 						<% for(int p=startPage; p<=endPage; p++) { %>
@@ -260,13 +261,13 @@
 							<% if(currentPage == p){ %>
 			            		<button disabled><%= p %></button>
 			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/faqList.ct?currentPage=<%= p %>&ctg=<%= list.get(0).getFaqCategory() %>';"><%= p %></button>
+			            		<button onclick="location.href='<%=contextPath%>/search.ct?currentPage=<%= p %>';"><%= p %></button>
 			            	<% } %>
 			            	
 						<% } %>
 						
 						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/faqList.ct?currentPage=<%=currentPage+1%>&ctg=<%= list.get(0).getFaqCategory() %>';">다음</button>
+			            	<button onclick="location.href='<%=contextPath%>/search.ct?currentPage=<%=currentPage+1%>';">다음</button>
 						<% } %>
 					 <% } %>	
 			         <br><br>

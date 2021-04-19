@@ -353,12 +353,12 @@ public class CenterDao {
 	}
 
 
-	public ArrayList<CenterFaq> faqselectList(Connection conn, PageInfo pi, String category) {
+	public ArrayList<CenterFaq> faqSelectList(Connection conn, PageInfo pi, String category) {
 		
 		ArrayList<CenterFaq> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("faqselectList");
+		String sql = prop.getProperty("faqSelectList");
 						
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -470,14 +470,201 @@ public class CenterDao {
 	}
 
 
-	
-	
-	
+	public int searchFaqListCount(Connection conn, String searchFaq) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchFaqListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, searchFaq);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	}
+
+
+	public ArrayList<CenterFaq> searchFaqList(Connection conn, PageInfo pi, String searchFaq) {
+		// select문 => ResultSet객체 (여러행)
+		ArrayList<CenterFaq> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchFaqList");
+								
+		try {
+			pstmt = conn.prepareStatement(sql);
+					
+			pstmt.setString(1, searchFaq);
+			pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+									
+			rset = pstmt.executeQuery();
+									
+			while(rset.next()) {
+				list.add(new CenterFaq(rset.getInt("faq_no"),
+						   rset.getString("FAQ_CATEGORY"),
+						   rset.getString("faq_title"),
+						   rset.getString("faq_content")));
+				}	
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			} return list;
+	}
+
 
 	
 
 
-}
+	public int searchNoticeCount(Connection conn, String searchNoticeCtg, String searchNoticeText) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchNoticeCtg.equals("제목")) {
+			
+			String sql = prop.getProperty("searchNoticeTitletentCount");
+		
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchNoticeText);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("LISTCOUNT");
+				}
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			} return listCount;
+		
+		
+		} else {
+			String sql = prop.getProperty("searchNoticeContentCount");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchNoticeText);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("LISTCOUNT");
+				}
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			} return listCount;
+			
+			
+		
+		}	
+		
+		
+	}
+
+	
+	
+	
+	
+
+	public ArrayList<CenterNotice> searchNoticeList(Connection conn, PageInfo pi, String searchNoticeCtg,
+		String searchNoticeText) {
+		
+		ArrayList<CenterNotice> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchNoticeCtg.equals("제목")) {
+			
+			String sql = prop.getProperty("searchNoticeTitle");
+			try {
+				pstmt = conn.prepareStatement(sql);
+						
+				pstmt.setString(1, searchNoticeText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+										
+				rset = pstmt.executeQuery();
+								
+				while(rset.next()) {
+					list.add(new CenterNotice(rset.getInt("notice_no"),
+							                   rset.getString("notice_title"),
+								               rset.getString("notice_content"),
+											   rset.getDate("create_date"),
+											   rset.getInt("notice_count")));
+						}		
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}finally {
+						close(rset);
+						close(pstmt);
+					} return list;
+				
+			
+		} else {
+			
+			String sql = prop.getProperty("searchNoticeContent");
+			try {
+				pstmt = conn.prepareStatement(sql);
+						
+				pstmt.setString(1, searchNoticeText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+										
+				rset = pstmt.executeQuery();
+								
+				while(rset.next()) {
+					list.add(new CenterNotice(rset.getInt("notice_no"),
+							                   rset.getString("notice_title"),
+								               rset.getString("notice_content"),
+											   rset.getDate("create_date"),
+											   rset.getInt("notice_count")));
+						}		
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}finally {
+						close(rset);
+						close(pstmt);
+					} return list;
+				}
+			
+		} 
+		
+		
+		
+		
+		
+	}
+
+
+
+	
+	
+	
+
+
+
+
+
 
 
 	

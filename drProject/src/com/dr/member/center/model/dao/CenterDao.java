@@ -232,6 +232,7 @@ public class CenterDao {
 		} return shortNoticeList;
 	}
 
+	/* 단순히 문의내역 가져오는거 => 필요없음 나중에 지우자 spl문도 지우자
 	public ArrayList<CenterQuery> queryList(Connection conn, int userNo) {
 		
 		ArrayList<CenterQuery> queryList = new ArrayList<>();
@@ -270,6 +271,8 @@ public class CenterDao {
 		} return queryList;
 		
 	}
+	
+	*/
 
 	public int noticeSelectListCount(Connection conn) {
 		int listCount = 0;
@@ -404,11 +407,48 @@ public class CenterDao {
 		
 	}
 
+
+	public ArrayList<CenterQuery> querySelectList(Connection conn, PageInfo pi, int userNo) {
+		// select문 => ResultSet객체 (여러행)
+		ArrayList<CenterQuery> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("querySelectList");
+						
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+							
+			rset = pstmt.executeQuery();
+							
+			while(rset.next()) {
+				list.add(new CenterQuery (rset.getInt("query_no"),
+											   rset.getInt("user_no"),
+											   rset.getString("query_category"),
+											   rset.getString("QUERY_TITLE"),
+											   rset.getString("QUERY_CONTENT"),
+											   rset.getDate("QUERY_CREATE_DATE"),
+											   rset.getString("REPLY_STATUS"),
+											   rset.getString("REPLY_CONTENT"),
+											   rset.getDate("REPLY_DATE")));
+				}
+			}catch (SQLException e) {
+					e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			} return list;
+		
+	}
+
 	
 	
 
 	
-	
+
 
 }
 

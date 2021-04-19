@@ -98,6 +98,7 @@ public class CenterService {
 		return shortNoticeList;
 	}
 
+	/* 단순히 문의내역 가져오는거 => 필요없음 나중에 지우자
 	public ArrayList<CenterQuery> queryList(int userNo) {
 		
 		Connection conn = getConnection();
@@ -107,6 +108,7 @@ public class CenterService {
 		return queryList;
 		
 	}
+	*/
 
 	public int noticeSelectListCount() {
 		Connection conn = getConnection();
@@ -164,5 +166,21 @@ public class CenterService {
 		}
 		return result;
 	}
+
+
+
+
+	public ArrayList<CenterQuery> querySelectList(PageInfo pi, int userNo) {
+		Connection conn = getConnection();
+		ArrayList<CenterQuery> list = new CenterDao().querySelectList(conn, pi, userNo);
+		close(conn);
+		return list;
+	}
+
+
+
+
+	
+	
 
 }

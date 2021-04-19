@@ -1,10 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.center.model.vo.CenterQuery"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.center.model.vo.CenterQuery, com.dr.common.model.vo.PageInfo"%>
 <%
 
-	ArrayList<CenterQuery>queryList = (ArrayList<CenterQuery>)request.getAttribute("queryList");
+	ArrayList<CenterQuery>list = (ArrayList<CenterQuery>)request.getAttribute("list");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	
+%>
 
-%>    
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -176,7 +184,7 @@
                     
                     <!-- 문의내역이 없을경우-->
                     
-                    <% if(queryList.isEmpty()) { %>
+                    <% if(list.isEmpty()) { %>
                     <div align="center">
                         <p style="color: crimson; font-weight: bolder; font-size: 20px;">1:1 문의 내역이 없습니다</p>
                         <button>1:1 문의 하기</button>
@@ -185,7 +193,7 @@
                     <% } else { %>
 
                     <!-- 문의 내역이 있을경우-->
-                    	<% for(CenterQuery q:queryList) { %>
+                    	<% for(CenterQuery q:list) { %>
 	                    
 		                    <div class="queryList">
 		                        
@@ -229,12 +237,7 @@
                               <% } %>  
                             <% } %>     
 		                    
-
-                           
-                           
-						
-                    
-                </div>
+				</div>
 
                 <script>
                     $(function(){
@@ -260,6 +263,29 @@
                 </script>
 
             </div> 
+            
+            		<!-- 페이징처리 10개씩 -->
+                    <div align="center" class="pagingArea">
+
+						<% if(currentPage != 1) { %>
+			            	<button onclick="location.href='<%=contextPath%>/queryList.ct?currentPage=<%=currentPage-1%>';">이전</button>
+						<% } %>
+						
+						<% for(int p=startPage; p<=endPage; p++) { %>
+							
+							<% if(currentPage == p){ %>
+			            		<button disabled><%= p %></button>
+			            	<% }else{ %>
+			            		<button onclick="location.href='<%=contextPath%>/queryList.ct?currentPage=<%= p %>';"><%= p %></button>
+			            	<% } %>
+			            	
+						<% } %>
+						
+						<% if(currentPage != maxPage){ %>
+			            	<button onclick="location.href='<%=contextPath%>/queryList.ct?currentPage=<%=currentPage+1%>';">다음</button>
+						<% } %>
+						
+			        </div>
 
            
 

@@ -174,7 +174,35 @@
 	
 	</entry>
 	
-	<entry key="">
+	<entry key="querySelectList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       QUERY_NO
+						      , USER_NO
+						      , QUERY_CATEGORY
+						      , QUERY_TITLE
+						      , QUERY_CONTENT
+						      , QUERY_CREATE_DATE
+						      , REPLY_STATUS
+						      , REPLY_CONTENT
+						      , REPLY_DATE
+		                     
+		                  FROM TB_QUERY Q
+		                 WHERE Q.USER_NO = ?
+		                 AND  Q.reply_status IN ('Y', 'N')
+		                 ORDER BY
+		                    QUERY_CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+		 
+		 
+		
 	
 	
 	</entry>

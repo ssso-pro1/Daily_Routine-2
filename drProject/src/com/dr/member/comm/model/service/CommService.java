@@ -90,4 +90,40 @@ public class CommService {
 	}
 	
 	
+	
+public int insertCommTip(Comm c, ArrayList<CommFile> list) {
+		
+		Connection conn = getConnection();
+		
+		int result1 = new CommDao().insertCommTip(conn, c); 
+		int result2 = new CommDao().insertCommFileList(conn, list); 
+		
+		if(result1 > 0 && result2 > 0) { 
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result1 * result2; 
+				
+	}
+	
+	public int updateCommTip(Comm c, ArrayList<CommFile> list) {
+		
+		Connection conn = getConnection();
+		
+		int result1 = new CommDao().updateCommTip(conn, c);
+		int result2 = 1; 
+		
+		}
+	}
+	
+	
+	
+	
+	
+	
+	
+	
 }

@@ -138,7 +138,6 @@
 	                            </tr>
 	                        </thead>
                       		<tbody>
-                        	
 	                        	<% if(list.isEmpty()) { %> 
 	                        	<tr>	
 	                        		<td colspan="6" style="color: crimson; font-weight: bolder; font-size: 20px;">조회된 리스트가 없습니다.</td>
@@ -194,15 +193,18 @@
 		                </div>
 		                
 		                <br><br>
-            
+            	
             
 		                <div align="center" class="searchArea">
-		                
-		                    <input type="text">
-		                    <!-- 검색기능 구현코드 추가 -->
-		                   	<a href="<%=contextPath%>">검색</a>
-		                  	<a href="<%=contextPath%>/tipEnroll.co">글쓰기</a>
-		              
+		                	<form action="<%=contextPath%>/tipSearch.co?currentPage=1" method="post">
+			                    <select name="searchTip">
+			                    	<option name="searchTip" value="제목">제목</option>
+			                    	<option name="searchTip" value="내용">내용</option>
+			                    </select>
+			                    <input type="text" name="searchTipText">
+			                   	<button type="submit">검색</button>
+			                  	<a href="<%=contextPath%>/tipEnroll.co">글쓰기</a>
+		              		</form>
 		                </div><br><br>
                 
                 

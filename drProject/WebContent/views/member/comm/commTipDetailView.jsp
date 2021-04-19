@@ -7,8 +7,6 @@
 	CommFile cf = (CommFile)request.getAttribute("cf"); 
 	// null
 	// 파일번호, 원본명, 수정명(실제 서버에 업로드된 이름), 저장폴더경로
-	
-	ArrayList<CommFile> list = (ArrayList<CommFile>)request.getAttribute("list"); 
 %>
 <!DOCTYPE html>
 <html>
@@ -123,12 +121,13 @@
                 <br>
 
 				<!-- 로그인되어있고, 로그인한 사용자가 게시글일 경우 보이는 버튼 -->
-			
-               		<div class="buttonArea1" align="right">
-	                    <a href="<%=contextPath%>/tipUpdate.co">수정</a>
-	                    <a href="<%=contextPath%>/tipDelete.co">삭제</a>
-                	</div><br><br>
+              	
+               	<div class="buttonArea1" align="right">
+	                <a href="<%=contextPath%>/tipUpdateForm.co?cno=<%=c.getCommPostNo()%>">수정</a>
+	                <a href="<%=contextPath%>/tipDelete.co?cno=<%=c.getCommPostNo()%>">삭제</a>
+                </div><br><br>
               
+
 
                 <!-- 게시글 세부 영역 -->
                 <div id="content_2_2">
@@ -144,7 +143,7 @@
                             </tr>
                             <tr>
                                 <td colspan="6" height="70%">
-                                    <p style=""><%=c.getPostContent()%></p>
+                                    <p><%=c.getPostContent()%></p>
                                 </td>
                             </tr>
                             <tr>

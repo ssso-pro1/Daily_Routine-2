@@ -111,7 +111,6 @@
                                         <tr>
                                             <td width="100">
                                                 <select name="category" required>
-                                                    <option value="0">선택안함</option>
                                                     <option value="1">[식단공유]</option>
                                                     <option value="2">[운동tip]</option>
                                                 </select>
@@ -119,7 +118,6 @@
                                             <td width="800" height="30">
                                                 <input type="text" name="title" placeholder="제목을 입력해주세요." required>
                                             </td> 
-                                            
                                         </tr>
                                         <tr>
                                             <table>
@@ -144,8 +142,9 @@
                                     </table>
                                 </tr>
                             </table><br><br>
-                            <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>"> <!-- userNo이 아직 안 넘어가서 오류 발생 -->
+                            <!--<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>"> -->
 							<br><br>
+
                             <div align="right" class="enrollButton">
                                 <button type="submit" onclick="return validate();">등록</button>
                                 <button type="reset">취소</button>
@@ -186,10 +185,8 @@
 								}
 								
 							</script>
-							
-							
-                        </form>
-                    
+
+                        </form>  
                     </div>
                 </div>
             </div>

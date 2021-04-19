@@ -10,14 +10,14 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class AdUserDeleteViewServlet
  */
-@WebServlet("/deleteView.aus")
-public class AdUserDeleteViewServlet extends HttpServlet {
+@WebServlet("/deleteForm.aus")
+public class AdUserDeleteFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdUserDeleteViewServlet() {
+    public AdUserDeleteFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -26,8 +26,9 @@ public class AdUserDeleteViewServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		
+		request.getRequestDispatcher("views/admin/user/adUserDeleteForm.jsp").forward(request,response);
+		
 	}
 
 	/**

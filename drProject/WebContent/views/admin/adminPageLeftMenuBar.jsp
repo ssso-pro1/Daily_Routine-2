@@ -14,6 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 메인 페이지- 좌측 메뉴바</title>
+
     <style>
         div{
             box-sizing:border-box;
@@ -118,7 +119,7 @@
                 <!-- 로그인 전 -->
                 <i class="fas fa-user-circle"></i>
                 
-                <a id="welcome" href="<%contextPath%>/loginForm.ad">Welcome님</a>
+                <a id="welcome" href="<%=contextPath%>/loginForm.us">Welcome님</a>
                 
                 <!-- <i class="fas fa-bars"></i> -->
                 <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a> <!-- 오븐에는 메뉴바로 돼있는데, 저희 왼쪽에 메뉴바가 있어서 홈으로 가는 기능으로 바꾸면 좋을 것 같아서 넣었어요!-->
@@ -137,7 +138,7 @@
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userManage.aus">전체 회원 조회 </a></div>
-                    <div><a href="<%=contextPath%>/userManage.aus">회원 탈퇴처리</a></div>
+                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 

@@ -29,7 +29,7 @@ public class LoginFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/member/user/loginForm.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin/user/loginForm.jsp").forward(request, response);
 		
 	}
 

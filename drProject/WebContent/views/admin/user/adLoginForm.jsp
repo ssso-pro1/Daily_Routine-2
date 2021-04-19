@@ -144,7 +144,7 @@
             <span>
                 <!-- 로그인 전 -->
                 <i class="fas fa-user-circle"></i>
-                <a id="welcome" href="<%=request.getContextPath()%>/loginForm.ad">Welcome님</a>
+                <a id="welcome" href="<%=request.getContextPath()%>/loginForm.aus">Welcome님</a>
                 <!-- <i class="fas fa-bars"></i> -->
                 <a href="<%=request.getContextPath()%>/"><i class="fas fa-home"></i></a> <!-- 오븐에는 메뉴바로 돼있는데, 저희 왼쪽에 메뉴바가 있어서 홈으로 가는 기능으로 바꾸면 좋을 것 같아서 넣었어요!-->
 

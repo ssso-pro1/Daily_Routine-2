@@ -106,7 +106,7 @@ public class CommDao {
 			pstmt.setString(1, c.getCategoryName());
 			pstmt.setString(2, c.getPostTitle());
 			pstmt.setString(3, c.getPostContent());
-			pstmt.setString(4, c.getUserNo());
+			pstmt.setInt(4, Integer.parseInt(c.getUserNo()));
 			
 			result = pstmt.executeUpdate(); 
 			

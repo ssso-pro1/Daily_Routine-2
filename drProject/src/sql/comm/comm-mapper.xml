@@ -28,7 +28,8 @@
 		                 WHERE COMM_NO = 1
 		                   AND STATUS = 'N'
 		                 ORDER 
-		                     BY ENROLL_DATE DESC
+		                     BY ENROLL_DATE DESC, 
+		                        COMM_POST_NO DESC
 		               ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?

@@ -647,7 +647,34 @@ public class CenterDao {
 					} return list;
 				}
 			
-		} 
+		}
+
+
+	public int deleteQuery(Connection conn, int queryNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteQuery");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, queryNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+		
+		
+		
+		
+	}
+
+
+	
 		
 		
 		

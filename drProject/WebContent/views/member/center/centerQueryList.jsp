@@ -187,7 +187,7 @@
                     <% if(list.isEmpty()) { %>
                     <div align="center">
                         <p style="color: crimson; font-weight: bolder; font-size: 20px;">1:1 문의 내역이 없습니다</p>
-                        <button>1:1 문의 하기</button>
+                        <button><a href="<%=contextPath %>/enrollQuery.ct">1:1 문의 하기</a></button>
 
                     </div>
                     <% } else { %>
@@ -218,10 +218,14 @@
                                     <table  style="margin: auto;">
                                         <tbody class="q">
                                             <tr>
-                                                <td style="height: 100px; width: 700px"><%=q.getQueryContent() %></td>
+                                                <td style="height: 100px; width: 700px"><%=q.getQueryContent()  %></td>
                                             </tr>
                                             <tr>
-                                                <td><button style="float: right;">삭제하기</button></td>
+                                                <td>
+                                                <button type="submit" onclick="return confirmation();" style="float: right;">
+                                                <a href="<%= contextPath %>/deleteQuery.ct?qno=<%=q.getQueryNo()%>">삭제하기</a>
+                                                </button></td>
+                                            
                                             </tr>
                                         </tbody>
                                         <% if(q.getReplyStatus().equals("Y")) { %>
@@ -260,6 +264,19 @@
                                
                         })
                     })
+                    
+                    function confirmation(){ // 문의글 삭제버튼 클릭시 컴펌창
+                    	
+                    	var result = confirm("문의글을 삭제하시겠습니까?");
+                    	if(result){
+                    		return true;
+                    		
+                    	} else {
+                    		alert("문의글 삭제가 취소되었습니다");
+                    		return false;
+                    	}
+                    }
+                    
                 </script>
 
             </div> 

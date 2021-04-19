@@ -229,6 +229,20 @@ public class CenterService {
 
 
 
+	public int deleteQuery(int queryNo) { // 문의내역 삭제 메소드
+		Connection conn = getConnection();
+		int result = new CenterDao().deleteQuery(conn, queryNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		} return result;
+	}
+
+
+
+
 	
 
 

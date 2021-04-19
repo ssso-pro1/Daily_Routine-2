@@ -182,8 +182,20 @@
 
                         </table>
 
-                                <script>
-                                	// 300자 이상 입력 방지, 알러트
+                                 <script>
+                                	
+ 									// 문의글 제목 50글짜 이상 입력방지 , 알러트
+                                    $(document).ready(function(){
+							            $("#qTitle").on("keyup", function(){
+                                            
+							            	if($(this).val().length>50){
+							                    $(this).val($(this).val().substring(0, 50));
+                                                alert("50자이상 입력하실 수 없습니다.");
+							                }
+							            });
+							        });
+
+									// 문의글 내용 300자 이상 입력 방지, 알러트
                                     $(document).ready(function(){
 							            $("#qContent").on("keyup", function(){
                                             //var inputlength=$(this).val().length;
@@ -195,6 +207,7 @@
 							                }
 							            });
 							        });
+
                                     
                                     // 글자수 세기
                                     $(function(){
@@ -206,27 +219,43 @@
                                     }) 
                                     
                                     
-                                    // 카테고리 유효성 체크
+                                    // 글등록 유효성 체크
                                     function validate(){
                                     	
                                     	var qCategory = $("#qCategory").val();
-                                    	var qTitle = $("#qTitle").val();
-                                    	var qContent = $("#qContent").val();
+                                    	var qTitle = document.getElementById("qTitle");
+                                    	var qContent = document.getElementById("qContent");
+                                    	var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
                                     	
                                     	if(qCategory=="0"){
                                     		alert("문의유형을 선택해주세요");
+                                    		
                                     		return false;
                  
                                     		}
-                                    	if(qTitle==''){ // 실행되는데 글을 입력안하고'   ' 이런식으로 입력해도 들어감
-                                    		alert("제목을 입력해주세요");
-                                    		return false;
-                                    		}
                                     	
-                                    	if(qContent==''){ // 실행되는데 글을 입력안하고'   ' 이런식으로 입력해도 들어감
-                                    		alert("내용을 입력해주세요");
+                                    	
+                                    	
+                                    	if(!regExp.test(qTitle.value)){
+                                    		alert("제목을 입력해주세요");
+                                    	
+                                    		qTitle.value="";
+                                    		qTitle.focus();
+                                    		
                                     		return false;
-                                    		}
+                                    	}
+                                    	
+                                    	
+                                        
+                                    	if(!regExp.test(qContent.value)){ 
+                                    		alert("내용을 입력해주세요");
+                                    	
+                                    		qContent.value="";
+                                    		qContent.focus();
+                                    		
+                                    		return false;
+                                    	}
+                                    	
                                     	
                                     	var result = confirm("글을 등록하시겠습니까?");
                                     	if(result){
@@ -238,13 +267,7 @@
                                     
                                     }
                                     
-                                    
-                                    	
-                                    
-                                    
-                                    
-                                    
-                                </script>
+                               </script>
                       </form>
                 </div>
             </div>

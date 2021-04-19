@@ -21,7 +21,14 @@
             width:100%;
         }
 
-        
+        #welcome{
+            text-decoration: none;
+            color:white;
+
+        }
+        #welcome:hover{
+            color: rgb(33, 33, 34);
+        }
         
 
         #content{height:100%; width:100%;}
@@ -135,9 +142,9 @@
             <span>
                 <!-- 로그인 전 -->
                 <i class="fas fa-user-circle"></i>
-                <span align="right" >Welcome님</span>
+                <a id="welcome" href="<%=request.getContextPath()%>/loginForm.ad">Welcome님</a>
                 <!-- <i class="fas fa-bars"></i> -->
-                <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a> <!-- 오븐에는 메뉴바로 돼있는데, 저희 왼쪽에 메뉴바가 있어서 홈으로 가는 기능으로 바꾸면 좋을 것 같아서 넣었어요!-->
+                <a href="<%=request.getContextPath()%>/"><i class="fas fa-home"></i></a> <!-- 오븐에는 메뉴바로 돼있는데, 저희 왼쪽에 메뉴바가 있어서 홈으로 가는 기능으로 바꾸면 좋을 것 같아서 넣었어요!-->
 
                 <!-- 로그인 후
                 <div>admin01님</div> -->
@@ -152,29 +159,29 @@
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">회원 정보 관리</a></div>
+                    <div><a href="<%=request.getContextPath()%>/userManage.aus">회원 정보 관리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
+                    <div><a href="<%=request.getContextPath()%>/userManage.aus">HomeTraining</a></div> 
+                    <div><a href="<%=request.getContextPath()%>/userManage.aus">Info&Tip</a></div> 
                     <br>
                 </div>
 
                 <div class="content_1_3">
                     <h2>고객센터</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">공지사항</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">FAQ</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">1:1문의</a></div> 
+                    <div><a href="<%=request.getContextPath()%>/userManage.aus">공지사항</a></div> 
+                    <div><a href="<%=request.getContextPath()%>/userManage.aus">FAQ</a></div> 
+                    <div><a href="<%=request.getContextPath()%>/userManage.aus">1:1문의</a></div> 
                     <br>
                 </div>
 
                 <div class="content_1_4">
                     <h2>신고관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체신고보기</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">블랙리스트</a></div> 
+                    <div><a href="<%=request.getContextPath()%>/userManage.aus">전체신고보기</a></div> 
+                    <div><a href="<%=request.getContextPath()%>/userManage.aus">블랙리스트</a></div> 
                 </div>
             </div>
 
@@ -198,7 +205,7 @@
                     <form id="login-form" action="">
                         <input type="text" placeholder="관리자 아이디를 입력하세요">
                         <input type="password" placeholder="비밀번호를 입력하세요">
-                        <input id="btn" type="submit" value="로그인">
+                        <a href="<%= request.getContextPath()%>/adMain"></a><input id="btn" type="submit" value="로그인">
                     </form>
                 </div>
 

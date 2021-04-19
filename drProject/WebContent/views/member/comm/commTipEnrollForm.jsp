@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.Comm" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,7 +109,7 @@
                                         <tr>
                                             <td width="100">
                                                 <select name="category">
-                                                    <option selected>선택안함</option>
+                                                    <option value="0">선택안함</option>
                                                     <option value="1">[식단공유]</option>
                                                     <option value="2">[운동tip]</option>
                                                 </select>
@@ -144,10 +144,47 @@
                             <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
 							<br><br>
                             <div align="right" class="enrollButton">
-                                <button type="submit">등록</button>
+                                <button type="submit" onclick="return validate();">등록</button>
                                 <button type="reset">취소</button>
                             </div>
+							
+							<script>
+								
+								// 카테고리 유효성 체크 
+								function validate() { 
+									
+									var category = $("#category").val();
+									var title = $("#title").val();
+									var content = $("#content").val();
+									
+									if(category == "0"){
+										alert("카테고리를 선택해주세요"); 
+										return false;	
+										}
+									
+									if(title == '') {
+										alert("제목을 입력해주세요"); 
+										return false; 
+										}
+									
+									if(content = '') {
+										alert("내용을 입력해주세요"); 
+										return false; 
+										}
+									
+									var result = confirom("글을 등록하시겠습니까?"); 
+									if(result) {
+										
+									}else { 
+										alert("게시글 등록이 취소되었습니다."); 
+										return false; 
+									}
 
+								}
+								
+							</script>
+							
+							
                         </form>
                     
                     </div>

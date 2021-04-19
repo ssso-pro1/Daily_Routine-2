@@ -75,7 +75,7 @@ public class CommListServlet extends HttpServlet {
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("views/member/comm/commMainTipBoardListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/member/comm/commMainTipListView.jsp").forward(request, response);
 		
 	}
 

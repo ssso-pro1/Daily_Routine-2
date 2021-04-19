@@ -126,7 +126,7 @@
                         <thead>
                             <tr>
                                 <th width="100" style="color:red;">[공지]</th>
-                                <th width="400" style="color:hsl(46, 77%, 50%);">공지내용</th>
+                                <th width="400" style="color:rgb(250, 214, 9);">공지내용</th>
                                 <th width="150">작성자</th>
                                 <th width="150">작성일</th>
                                 <th width="100">조회수</th>
@@ -136,7 +136,7 @@
                         	<!-- 조회된 결과가 없을 경우 -->
                         	<% if(list.isEmpty()) { %> 
                         	<tr>	
-                        		<td colspan="5">조회된 리스트가 없습니다.</td>
+                        		<td colspan="5" style="color: crimson; font-weight: bolder; font-size: 20px;">조회된 리스트가 없습니다.</td>
                         	</tr>
                         	<% }else { %>
                         	<!-- 조회된 결과가 있을 경우 -->
@@ -156,7 +156,7 @@
                 </div>
                 <br><br>
 
-
+                <!-- 페이징 처리 -->
                 <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
                 <div align="center" class="pagingArea">
                 	

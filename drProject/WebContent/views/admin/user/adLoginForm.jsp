@@ -161,7 +161,8 @@
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
-                    <div><a href="<%=request.getContextPath()%>/userManage.aus">회원 정보 관리</a></div>
+                    <div><a href="<%=request.getContextPath()%>/userManage.aus">전체 회원 조회 </a></div>
+                    <div><a href="<%=request.getContextPath()%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 

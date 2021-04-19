@@ -96,12 +96,10 @@ public class UserDao {
 			close(pstmt);
 		}
 		return result;
-		
-		
-		
-		
-		
 	}
+	
+	
+
 	
 	
 	

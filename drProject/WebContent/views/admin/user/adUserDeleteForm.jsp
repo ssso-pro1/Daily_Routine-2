@@ -10,7 +10,7 @@
     <%@ include file = "../adminPageLeftMenuBar.jsp" %>
     
     <div class="outer">
-        <form action="<%=request.getContextPath%>/delete.aus" name="deleteUserForm">
+        <form action="<%=request.getContextPath()%>/delete.aus" name="deleteUserForm">
             <div class="form">
                 &nbsp<button>회원 탙퇴</button>
                 <fieldset>
@@ -30,7 +30,8 @@
                         </tr>
                         <tr>
                             <th>비밀번호</th>
-                            <td><input type="password" size="25" maxlength="15" placeholder="비밀번호를 입력해주세요" required></td>
+                            <td><input type="password" name="userPwd" size="25" maxlength="15" placeholder="비밀번호를 입력해주세요" required></td>
+                            <input type="hidden" name="userId" value="<%=userId%>">
                         </tr>
                     </table>
                     <br>

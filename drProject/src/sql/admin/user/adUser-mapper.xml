@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+<!-- 1. 관리자- 회원탈퇴시키기 -->
+	<entry key="adDeleteUser">
+		UPDATE
+		       TB_USER
+		   SET LEAVE_CHECK = 'Y'
+		 WHERE USER_ID = ?
+		   AND USER_PWD = ?
+	</entry>
+	
+</properties>

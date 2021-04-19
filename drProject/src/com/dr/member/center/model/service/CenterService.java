@@ -168,6 +168,14 @@ public class CenterService {
 	}
 
 
+	public int querySelectListCount(int userNo) {
+		Connection conn = getConnection();
+		
+		int listCount = new CenterDao().querySelectListCount(conn, userNo);
+		
+		close(conn);
+		return listCount;
+	}
 
 
 	public ArrayList<CenterQuery> querySelectList(PageInfo pi, int userNo) {
@@ -177,6 +185,10 @@ public class CenterService {
 		return list;
 	}
 
+
+
+
+	
 
 
 

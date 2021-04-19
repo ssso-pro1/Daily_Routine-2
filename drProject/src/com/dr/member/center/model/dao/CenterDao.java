@@ -407,6 +407,31 @@ public class CenterDao {
 		
 	}
 
+	
+	public int querySelectListCount(Connection conn, int userNo) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("querySelectListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	}
+
 
 	public ArrayList<CenterQuery> querySelectList(Connection conn, PageInfo pi, int userNo) {
 		// select문 => ResultSet객체 (여러행)
@@ -444,6 +469,8 @@ public class CenterDao {
 		
 	}
 
+
+	
 	
 	
 

@@ -43,7 +43,13 @@ public class CenterQueryListServlet extends HttpServlet {
 		int endPage;		// 현재 페이지에 하단에 보여질 페이징 바의 끝 수 (startPage, pageLimit, maxPage를 가지고 구할꺼임)
 				
 		
-		listCount = new CenterService().noticeSelectListCount();
+		//로그인 유저가 없으니까 그냥 번호는 2라고 가정 해서 조회해보겠음
+		//int userNo = Integer.parseInt(request.getParameter("userNo"));
+				
+		int userNo =2;
+		
+		
+		listCount = new CenterService().querySelectListCount(userNo);
 				
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 				
@@ -66,12 +72,8 @@ public class CenterQueryListServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		// 2. 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 조회해오기
-		
-		//로그인 유저가 없으니까 그냥 번호는 2라고 가정 해서 조회해보겠음
-		//int userNo = Integer.parseInt(request.getParameter("userNo"));
-		
-		int userNo =2;
 		ArrayList<CenterQuery> list = new CenterService().querySelectList(pi, userNo);
+		
 		
 		
 		request.setAttribute("pi", pi);

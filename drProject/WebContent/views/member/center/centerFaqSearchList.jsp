@@ -253,7 +253,7 @@
 					<p></p>
 					<% } else { %>
 						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/search.ct?currentPage=<%=currentPage-1%>';">이전</button>
+			            	<button onclick="location.href='<%=contextPath%>/searchFaq.ct?currentPage=<%=currentPage-1%>&searchFaq=<%=searchFaq%>';">이전</button>
 						<% } %>
 						
 						<% for(int p=startPage; p<=endPage; p++) { %>
@@ -261,13 +261,13 @@
 							<% if(currentPage == p){ %>
 			            		<button disabled><%= p %></button>
 			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/search.ct?currentPage=<%= p %>';"><%= p %></button>
+			            		<button onclick="location.href='<%=contextPath%>/searchFaq.ct?currentPage=<%= p %>&searchFaq=<%=searchFaq%>';"><%= p %></button>
 			            	<% } %>
 			            	
 						<% } %>
 						
 						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/search.ct?currentPage=<%=currentPage+1%>';">다음</button>
+			            	<button onclick="location.href='<%=contextPath%>/searchFaq.ct?currentPage=<%=currentPage+1%>&searchFaq=<%=searchFaq%>';">다음</button>
 						<% } %>
 					 <% } %>	
 			         <br><br>

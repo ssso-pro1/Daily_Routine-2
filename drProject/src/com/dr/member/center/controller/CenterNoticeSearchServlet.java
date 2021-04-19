@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.center.model.service.CenterService;
@@ -54,12 +55,15 @@ public class CenterNoticeSearchServlet extends HttpServlet {
 		
 		listCount = new CenterService().searchNoticeCount(searchNoticeCtg, searchNoticeText);	
 		
-		
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
+		
 		pageLimit = 10;
+		
 		boardLimit = 10;
 		
+		
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);
+		
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
 			
 		endPage = startPage + pageLimit - 1;
@@ -76,17 +80,19 @@ public class CenterNoticeSearchServlet extends HttpServlet {
 		
 		ArrayList<CenterNotice> list = new CenterService().searchNoticeList(pi, searchNoticeCtg, searchNoticeText);
 		
-		request.setAttribute("pi", pi);
+		
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/member/center/centerNoticeSearchList.jsp").forward(request, response);
+		
 			
+		request.setAttribute("pi", pi);
 		
+		request.setAttribute("searchNoticeText", searchNoticeText);
+		request.setAttribute("searchNoticeCtg", searchNoticeCtg);
 		
-		
-		
+		request.getRequestDispatcher("views/member/center/centerNoticeSearchList.jsp").forward(request, response);
 		
 				
-		//request.setAttribute("pi", pi);
+		//
 		//request.setAttribute("list", list);
 		//request.getRequestDispatcher("views/member/center/centerNoticeList.jsp").forward(request, response);
 		

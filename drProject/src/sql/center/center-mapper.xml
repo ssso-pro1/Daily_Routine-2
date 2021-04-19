@@ -249,7 +249,7 @@
 	
 	</entry>
 	
-	<entry key="searchNoticetTitleCount">
+	<entry key="searchNoticeTitleCount">
 	
 	SELECT COUNT(*) LISTCOUNT
 	FROM TB_NOTICE
@@ -259,7 +259,7 @@
 	
 	</entry>
 	
-	<entry key="searchNoticetContentCount">
+	<entry key="searchNoticeContentCount">
 	
 	SELECT COUNT(*) LISTCOUNT
 	FROM TB_NOTICE

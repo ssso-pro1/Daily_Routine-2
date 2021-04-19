@@ -5,7 +5,8 @@
 	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<CenterNotice> list =(ArrayList<CenterNotice>)request.getAttribute("list");
-	
+	String searchNoticeText = (String)request.getAttribute("searchNoticeText");
+	String searchNoticeCtg = (String)request.getAttribute("searchNoticeCtg");
 	
 	
 	int currentPage = pi.getCurrentPage();
@@ -185,21 +186,11 @@
                          </thead>
                          <tbody>
                          
-                         	<% if(list.isEmpty() && (list.isEmpty())) { %>
+                         	<% if(list.isEmpty()) { %>
                          	<tr>
             					<td colspan="4">존재하는 공지사항이 없습니다.</td>
             				</tr>
             				
-            				<% } else if (!list.isEmpty() && list.isEmpty())  { %>
-            					<% for(CenterNotice n:list){ %>	
-                         	
-                            <tr>
-                                <td><%= n.getNoticeNo() %></td>
-                                <td><%= n.getNoticeTitle() %></td>
-                                <td><%= n.getCreateDate() %></td>
-                                <td><%= n.getNoticeCount() %></td>
-                            </tr>
-                            	<% } %>
                             <% } else {%>
 		                        <% for(CenterNotice n:list){ %>	
 		                         	
@@ -233,9 +224,13 @@
              
                     <!-- 페이징처리 10개씩 -->
                     <div align="center" class="pagingArea">
+                    
+	                <%if (list.isEmpty()) { %>
+					<p></p>
+					<% } else { %>
 
 						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ct?currentPage=<%=currentPage-1%>';">이전</button>
+			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ct?currentPage=<%=currentPage-1%>&searchNoticeText=<%=searchNoticeText %>&searchNoticeCtg=<%=searchNoticeCtg%>';">이전</button>
 						<% } %>
 						
 						<% for(int p=startPage; p<=endPage; p++) { %>
@@ -243,15 +238,15 @@
 							<% if(currentPage == p){ %>
 			            		<button disabled><%= p %></button>
 			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/searchNotice.ct?currentPage=<%= p %>';"><%= p %></button>
+			            		<button onclick="location.href='<%=contextPath%>/searchNotice.ct?currentPage=<%= p %>&searchNoticeText=<%=searchNoticeText %>&searchNoticeCtg=<%=searchNoticeCtg%>';"><%= p %></button>
 			            	<% } %>
 			            	
 						<% } %>
 						
 						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ct?currentPage=<%=currentPage+1%>';">다음</button>
+			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ct?currentPage=<%=currentPage+1%>&searchNoticeText=<%=searchNoticeText %>&searchNoticeCtg=<%=searchNoticeCtg%>';">다음</button>
 						<% } %>
-						
+					<% } %>
 			        </div>
              
              

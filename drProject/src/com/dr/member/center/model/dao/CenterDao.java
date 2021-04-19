@@ -536,7 +536,7 @@ public class CenterDao {
 		
 		if(searchNoticeCtg.equals("제목")) {
 			
-			String sql = prop.getProperty("searchNoticeTitletentCount");
+			String sql = prop.getProperty("searchNoticeTitleCount");
 		
 			try {
 				pstmt=conn.prepareStatement(sql);

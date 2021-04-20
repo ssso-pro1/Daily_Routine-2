@@ -49,18 +49,18 @@ public class UserDao {
 			
 			if(rset.next()) {
 				u = new User(rset.getInt("user_no"),
-						     rset.getString("userId"),
-						     rset.getString("userPwd"),
-						     rset.getString("userName"),
+						     rset.getString("user_id"),
+						     rset.getString("user_pwd"),
+						     rset.getString("user_name"),
 						     rset.getString("birth"),
 						     rset.getString("gender"),
 						     rset.getString("email"),
 						     rset.getString("phone"),
-						     rset.getDate("enrollDate"),
-						     rset.getString("leaveCheck"),
+						     rset.getDate("enroll_date"),
+						     rset.getString("leave_check"),
 						     rset.getString("suspended"),
-						     rset.getString("reportCheck"),
-						     rset.getString("adminCheck"));
+						     rset.getString("report_check"),
+						     rset.getString("admin_check"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

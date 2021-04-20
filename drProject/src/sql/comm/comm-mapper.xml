@@ -129,17 +129,17 @@
 	</entry>
 	
 	<!-- 기존의 첨부파일이 있었는데 새로 넘어온 첨부파일이 있을 경우 -->
-	<entry key="">
+	<entry key="updateCommFileList">
 		UPDATE 
 		       TB_COMM_FILE 
-		   SET FILE_NAME
-		     , FILE_UPDATE
-		     , FILE_PATH  
+		   SET FILE_NAME = ?
+		     , FILE_UPDATE = ? 
+		     , FILE_PATH = ?
 		 WHERE FILE_NO = ?        
 	</entry>
 	
 	<!-- 기존의 첨부파일이 없었는데 새로 넘어온 첨부파일이 있을 경우 -->
-	<entry key="">
+	<entry key="insertNewCommFile">
 		INSERT 
 		  INTO TB_COMM_FILE 
 		  (
@@ -151,7 +151,7 @@
 		  )
 		  VALUES
 		  (
-		    SEQ_FNO.NEXTVAL 
+		    SEQ_FNO.NEXTVAL
 		  , ? 
 		  , ?
 		  , ?

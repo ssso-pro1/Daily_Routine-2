@@ -218,7 +218,7 @@
             <div id="content_2_4" style="background: white; width: 800px; height: 600px;">
                 <br>
                 <div id="faqDetail">
-                    <form action="">
+                    
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
@@ -258,7 +258,7 @@
                                     <td><%=f.getCreateDate() %></td>
                                     <% } else { %>
                                     <td><%=f.getUpdateDate() %></td>
-                                    <% } %>
+                                    <% }%>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
@@ -273,8 +273,9 @@
                                <tr>
                                    <td colspan="4">
                                     <label style="float: right;">
-                                            <button type="submit">수정</button>
-                                            <button type="reset">삭제</button>
+                                            <button>수정</button>
+                                            
+                                            <button onclick ="return check();"><a href="<%= contextPath %>/ctFaqDelete.ad?fno=<%= f.getFaqNo()%>&ctg=<%= f.getFaqCategory() %>">삭제</a></button>
                                             <button type="reset">취소</button>
                                         </label>
                                     </td>
@@ -283,6 +284,8 @@
                             </tfoot>
                             
                         </table>
+                        
+                        
                         
                         <script>
 							$(function(){
@@ -299,6 +302,18 @@
 								
 								
 							})
+							
+							function check(){
+								
+								var result = confirm("FAQ 글을 완전히 삭제 하시겠습니까?");
+                            	if(result){
+                            		
+                            		
+                            	} else {
+                            		alert("삭제가 취소되었습니다");
+                            		return false;
+                            	}
+							}
 						</script>
 
             

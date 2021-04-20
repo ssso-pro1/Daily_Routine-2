@@ -71,6 +71,20 @@ public class adCenterService {
 
 
 
+
+	public int deleteFaq(int faqNo) { // faq테이블에서 삭제할거임
+		Connection conn = getConnection();
+		int result = new adCenterDao().deleteFaq(conn, faqNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		} return result;
+	}
+
+
+
 	
 
 

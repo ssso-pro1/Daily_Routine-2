@@ -128,11 +128,13 @@
 	</entry>
 	
 	
+	<entry key="deleteFaq">
+	
+	DELETE FROM TB_FAQ
+	WHERE FAQ_NO = ?
 	
 	
-	
-	
-	
+	</entry>
 	
 	
 	

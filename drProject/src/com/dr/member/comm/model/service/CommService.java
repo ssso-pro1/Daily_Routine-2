@@ -7,6 +7,7 @@ import com.dr.common.model.vo.PageInfo;
 import com.dr.member.comm.model.dao.CommDao;
 import com.dr.member.comm.model.vo.Comm;
 import com.dr.member.comm.model.vo.CommFile;
+import com.dr.member.comm.model.vo.Reply;
 
 import static com.dr.common.JDBCTemplate.*; 
 
@@ -141,7 +142,16 @@ public class CommService {
 		
 	}
 	
-	
+	public ArrayList<Reply> selectTipReplyList(int commPostNo) { 
+		
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new CommDao().selectTipReplyList(conn, commPostNo); 
+		
+		close(conn);
+		
+		return list; 
+		
+	}
 	
 	
 	

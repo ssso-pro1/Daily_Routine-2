@@ -17,14 +17,14 @@ import com.google.gson.GsonBuilder;
 /**
  * Servlet implementation class ReplyListServlet
  */
-@WebServlet("/replyList.co")
-public class ReplyListServlet extends HttpServlet {
+@WebServlet("/replyTipList.co")
+public class ReplyTipListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReplyListServlet() {
+    public ReplyTipListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -36,7 +36,7 @@ public class ReplyListServlet extends HttpServlet {
 	
 		int commPostNo = Integer.parseInt(request.getParameter("cno"));
 		
-		ArrayList<Reply> list = new CommService().selectReplyList(commPostNo);
+		ArrayList<Reply> list = new CommService().selectTipReplyList(commPostNo);
 		
 		response.setContentType("application/json; charset=UTF-8"); 
 		

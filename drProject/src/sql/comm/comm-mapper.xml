@@ -170,6 +170,28 @@
 		   AND COMM_NO = 1    	   
 	</entry>
 	
+	<entry key="selectTipReplyList">
+		SELECT 
+			   REPLY_NO
+			 , USER_ID
+			 , REPLY_CONTENT
+			 , R.ENROLL_DATE
+		  FROM TB_REPLY R 
+		  JOIN TB_USER U ON (R.USER_NO = U.USER_NO)	
+		 WHERE COMM_POST_NO = ?
+		   AND COMM_NO = 1 
+		   AND STATUS = 'N' 
+		 ORDER BY ENROLL_DATE DESC
+	</entry>
+	
+	<entry key="">
+		
+	</entry>
+	
+	<entry key="">
+		
+	</entry>
+	
 	<entry key="">
 		
 	</entry>

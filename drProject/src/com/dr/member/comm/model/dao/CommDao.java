@@ -12,6 +12,7 @@ import java.util.Properties;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.comm.model.vo.Comm;
 import com.dr.member.comm.model.vo.CommFile;
+import com.dr.member.comm.model.vo.Reply;
 
 import static com.dr.common.JDBCTemplate.*; 
 
@@ -330,8 +331,36 @@ public class CommDao {
 		
 	}
 	
-
-	
+	public ArrayList<Reply> selectTipReplyList(Connection conn, int commPostNo) { 
+		
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; 
+		String sql = prop.getProperty("selectTipReplyList"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			rset = pstmt.executeQuery(); 
+			
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_no"), 
+								   rset.getString("user_id"),
+								   rset.getString("reply_content"), 
+								   rset.getDate("enroll_date"))); 
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list;
+		
+	}
 	
 	
 }

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.comm.model.vo.*" %>
+    pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.*" %>
 <%
 	Comm c = (Comm)request.getAttribute("c");
 	// 게시글번호, 카테고리명, 제목, 내용, 작성자아이디, 작성일 
@@ -135,11 +135,11 @@
                         <table border="1" height="100%">
                             <tr align="center">
                                 <td width="5%"><%=c.getCommPostNo()%></td>
-                                <td width="15%"><%=c.getCategoryName()%></td>
-                                <td width="40%"><%=c.getPostTitle()%></td>
+                                <td width="12%"><%=c.getCategoryName()%></td>
+                                <td width="46%"><%=c.getPostTitle()%></td>
                                 <td width="10%"><%=c.getUserNo()%>님</td>
                                 <td width="15%"><%=c.getEnrollDate()%></td>
-                                <td width="15%">조회수 : <%=c.getBoardView()%></td>
+                                <td width="12%">조회수 : <%=c.getBoardView()%></td>
                             </tr>
                             <tr>
                                 <td colspan="6" height="70%">
@@ -151,7 +151,7 @@
 	                            	<% if(cf == null) { %>
 	                            		첨부파일이 없습니다. 
 	                            	<% }else { %>
-	                                	<a download ="<%=cf.getFileName() %>" href="<%=contextPath%>/<%=cf.getFilePath() + cf.getFileUpdate()%>"><%=cf.getFileName()%></a>
+	                                	첨부파일 > <a download ="<%=cf.getFileName() %>" href="<%=contextPath%>/<%=cf.getFilePath() + cf.getFileUpdate()%>"><%=cf.getFileName()%></a>
 	                                <% } %>	
                                 </td>        
                             </tr>
@@ -175,17 +175,15 @@
             <!-- 댓글 영역 -->
             <div id="content_3">
                 <div class="replyArea">
-                    <table border="0" height="100">
+                    <table border="0" height="100" width="100%" align="center">
                         <h3>> 댓글 쓰기</h3>
                         <thead>
                             <tr>
-                                <td colspan="5">
-                                    <textarea cols="80" rows="3" style="resize:none" placeholder="댓글 등록 시 상대에 대한 비방이나 욕설은 삼가주세요 ^^."></textarea>
+                                <td colspan="6">
+                                    <textarea id="replyContent" cols="80" rows="3" style="resize:none" placeholder="댓글 등록 시 상대에 대한 비방이나 욕설은 삼가주세요 ^^."></textarea>
                                 </td>
                                 <td width="50"> 
-                                    <button 
-                                        type="submit" style="color:white; background:rgb(250, 214, 9); border:rgb(250, 214, 9); cursor:pointer;">댓글 <br>등록
-                                    </button>
+                                    <button onclick="addReply();" style="color:white; background:rgb(250, 214, 9); border:rgb(250, 214, 9); cursor:pointer;">댓글<br>등록</button>
                                 </td>
                             </tr>
                             <tr>
@@ -194,24 +192,89 @@
                         </thead>
                         <tbody>
                             <tr>
-                                <th width="40">헬스맨</th>
+                                <th width="50">헬스맨</th>
                                 <td width="200">댓글내용</td>
-                                <td width="30"><button style="cursor:pointer";>수정</button></td>
-                                <td width="30"><button style="cursor:pointer";>삭제</button></td>
-                                <td width="45"><button style="cursor:pointer";>좋아요</button> 20</td>
+                                <td width="50">20-02-02</td>
+                                <td width="25"><button style="cursor:pointer";>수정</button></td>
+                                <td width="25"><button style="cursor:pointer";>삭제</button></td>
+                                <td width="50"><button style="cursor:pointer";>좋아요</button> 20</td>
                                 <td width="70"><button style="cursor:pointer";>신고</button> 0</td>
                             </tr>
                             <tr>
-                                <th width="40">요요는시럿</th>
-                                <td width="110">댓글내용</td>
-                                <td width="20"><button style="cursor:pointer";>수정</button></td>
-                                <td width="20"><button style="cursor:pointer";>삭제</button></td>
-                                <td width="45"><button style="cursor:pointer";>좋아요</button> 15</td>
+                                <th width="50">요요는시럿</th>
+                                <td width="200">댓글내용</td>
+                                <td width="50">20-02-02</td>
+                                <td width="25"><button style="cursor:pointer";>수정</button></td>
+                                <td width="25"><button style="cursor:pointer";>삭제</button></td>
+                                <td width="50"><button style="cursor:pointer";>좋아요</button> 15</td>
                                 <td width="70"><button style="cursor:pointer";>신고</button> 0</td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
+                
+                <script>
+                	$(function(){
+                		
+                		selectTipReplyList();
+                		
+                		// 1초 간격으로 주기적, 실시간으로 갱신된 댓글 리스트 조회 요청 
+                		setInterval(selectTipReplyList, 1000); 
+                		
+                	})
+                	
+                	// 해당 게시글에 댓글 작성용 ajax 
+                	function addReply() { 
+                		
+                		// 요청 시 회원번호는 넘기지 않을 것 
+                		$.ajax({
+                			url:"<%=contextPath%>/replyTipInsert.co", 
+                			type:"post",
+                			data:{
+                				content:$("#replyContent").val(),
+                				cno:<%=c.getCommPostNo()%>
+                			}, success:function(result) {
+                				
+                				if(result > 0) { // 댓글 성공 
+                					// 갱신된 리스트 다시 조회해서 화면에 뿌려줘야 함 
+                					selectTipReplyList(); 
+                					$("#replyContent").val(""); 
+                				}
+                				
+                			}, error:function(){
+                				console.log("댓글 작성용 ajax 통신 실패"); 
+                			}
+                		}); 
+                		
+                	}
+                	
+                	// 해당 게시글에 달린 댓글 리스트 조회용 ajax 
+                	function selectTipReplyList() {
+                		
+                		$.ajax({
+                			url:"<%=contextPath%>/replyTipList.co",
+                			data:{cno:<%=c.getCommPostNo()%>}, 
+                			success:function(list){
+                				// console.log(list); 
+                				
+                				var result = ""; 
+                				for(var i in list){
+                					result += "<tr>"
+                						    +    "<td>" + list[i].userId + "</td>"
+                						    +    "<td>" + list[i].replyContent + "</td>"
+                						    +    "<td>" + list[i].enrollDate + "</td>"
+                						    + "</tr>"; 
+                				}
+                				
+                				$("#replyArea tbody").html(result); 
+                				
+                			}, error:function(){
+                				console.log("댓글 리스트 조회용 ajax 통신 실패"); 
+                			}
+                		}); 
+                		
+                	}
+                </script>
 
             </div>
             </div>

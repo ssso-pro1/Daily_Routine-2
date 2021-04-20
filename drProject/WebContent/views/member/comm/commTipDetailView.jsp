@@ -148,12 +148,10 @@
                             </tr>
                             <tr>
                             	<td colspan="6">
-	                            	<!-- 첨부파일이 없을 경우 -->
 	                            	<% if(cf == null) { %>
 	                            		첨부파일이 없습니다. 
-	                            	<!-- 첨부파일이 있을 경우 -->
 	                            	<% }else { %>
-	                                	<a download ="<%=cf.getFileName()%>" href="<%=contextPath%>/<%=cf.getFilePath() + cf.getFileUpdate()%>"><%=cf.getFileName()%></a>
+	                                	<a download ="<%=cf.getFileName() %>" href="<%=contextPath%>/<%=cf.getFilePath() + cf.getFileUpdate()%>"><%=cf.getFileName()%></a>
 	                                <% } %>	
                                 </td>        
                             </tr>

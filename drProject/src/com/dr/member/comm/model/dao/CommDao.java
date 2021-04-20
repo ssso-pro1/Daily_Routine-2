@@ -205,7 +205,7 @@ public class CommDao {
 		CommFile cf = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null; 
-		String sql = prop.getProperty("selectCommFile"); 
+		String sql = prop.getProperty("selectCommTipFile"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -282,11 +282,11 @@ public class CommDao {
 		
 	}
 	
-	public int insertNewCommFile(Connection conn, CommFile cf) {
+	public int insertNewCommTipFile(Connection conn, CommFile cf) {
 		// insert문 
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertNewCommFile"); 
+		String sql = prop.getProperty("insertNewCommTipFile"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

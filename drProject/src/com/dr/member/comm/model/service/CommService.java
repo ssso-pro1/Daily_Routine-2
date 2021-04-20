@@ -108,7 +108,7 @@ public class CommService {
 				result2 = new CommDao().updateCommTipFile(conn, cf); 
 			// 기존의 첨부파일이 없을 경우 => CommFile Insert 
 			}else {
-				result2 = new CommDao().insertNewCommFile(conn, cf); 
+				result2 = new CommDao().insertNewCommTipFile(conn, cf); 
 			}
 		}
 		

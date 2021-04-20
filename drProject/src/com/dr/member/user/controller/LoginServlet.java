@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 		
 		//System.out.println(userId);
 		//System.out.println(userPwd);
-		//null 출력됨... 일단 나머지 코드작성 후 나중에 해결하기
+		//제대로 출력됨!
 		
 		User u = new UserService().loginUser(userId, userPwd);
 		
@@ -55,6 +55,7 @@ public class LoginServlet extends HttpServlet {
 			session.setAttribute("loginUser", u);
 			
 			response.sendRedirect(request.getContextPath());
+			
 		}
 		
 	}

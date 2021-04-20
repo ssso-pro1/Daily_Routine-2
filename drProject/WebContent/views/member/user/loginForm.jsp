@@ -107,9 +107,9 @@
     <fieldset style="border:1px solid gray">
         <div id="content_1">
             <form action="<%= request.getContextPath() %>/login.us" method="post" id="loginForm">
-                <input id="id" style="width:70%" type="text" name="userId" maxlength="20" minlength="5" placeholder="ID를 입력하세요" required><br>
-                <input id="pwd" style="width:70%" type="password" name="password" minlength="8" maxlength="16" placeholder="비밀번호를 입력하세요" required> <br>
-                <button id="btn" style="width:70%" type="button" class="btn btn-secondary"> 로그인</button>            
+                <input id="userId" style="width:70%" type="text" name="userId" maxlength="20" minlength="5" placeholder="ID를 입력하세요" required><br>
+                <input id="userPwd" style="width:70%" type="password" name="userPwd" minlength="8" maxlength="16" placeholder="비밀번호를 입력하세요" required> <br>
+                <button id="btn" style="width:70%" type="submit" class="btn btn-secondary"> 로그인</button>            
 
 
                 <div id="content_1_2">

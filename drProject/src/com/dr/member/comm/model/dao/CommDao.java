@@ -32,6 +32,8 @@ public class CommDao {
 		
 	}
 	
+	// 나만의운동팁 게시판 
+	
 	public int tipSelectListCount(Connection conn) {
 		// select문 => ResultSet
 		int listCount = 0; 
@@ -361,6 +363,144 @@ public class CommDao {
 		return list;
 		
 	}
+	
+	
+	
+	// 자유게시판 
+	
+	public int freeSelectListCount(Connection conn) {
+		// select문 => ResultSet
+		int listCount = 0; 
+		
+		PreparedStatement pstmt = null; 
+		ResultSet rset = null; 
+		
+		String sql = prop.getProperty("freeSelectListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery(); 
+			
+			if(rset.next()) { 
+				listCount = rset.getInt("LISTCOUNT"); 
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset); 
+			close(pstmt); 
+		}
+		
+		return listCount;
+		
+	}
+	
+	public ArrayList<Comm> freeSelectList(Connection conn, PageInfo pi) {
+		// select문 => ResultSet (여러 행) 
+		ArrayList<Comm> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("freeSelectList"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+			
+			rset = pstmt.executeQuery(); 
+			
+			while(rset.next()) { 
+				list.add(new Comm(rset.getInt("comm_post_no"),
+								  rset.getString("user_id"),
+					              rset.getString("post_title"),
+					              rset.getDate("enroll_date"),
+					              rset.getInt("board_view"))); 
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			close(rset); 
+			close(pstmt);	
+		}
+		
+		return list;
+		
+	}
+	
+	
+	
+	// 질문게시판 
+	
+	public int qSelectListCount(Connection conn) {
+		// select문 => ResultSet
+		int listCount = 0; 
+		
+		PreparedStatement pstmt = null; 
+		ResultSet rset = null; 
+		
+		String sql = prop.getProperty("qSelectListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery(); 
+			
+			if(rset.next()) { 
+				listCount = rset.getInt("LISTCOUNT"); 
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset); 
+			close(pstmt); 
+		}
+		
+		return listCount;
+		
+	}
+	
+	public ArrayList<Comm> qSelectList(Connection conn, PageInfo pi) {
+		// select문 => ResultSet (여러 행) 
+		ArrayList<Comm> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("qSelectList"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+			
+			rset = pstmt.executeQuery(); 
+			
+			while(rset.next()) { 
+				list.add(new Comm(rset.getInt("comm_post_no"),
+								  rset.getString("user_id"),
+					              rset.getString("post_title"),
+					              rset.getDate("enroll_date"),
+					              rset.getInt("board_view"))); 
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally { 
+			close(rset); 
+			close(pstmt);	
+		}
+		
+		return list;
+		
+	}
+	
+	
+	
+
 	
 	
 }

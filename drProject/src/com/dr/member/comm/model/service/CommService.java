@@ -13,6 +13,8 @@ import static com.dr.common.JDBCTemplate.*;
 
 public class CommService {
 	
+	// 나만의운동팁 게시판 
+	
 	public int tipSelectListCount() {
 		
 		Connection conn = getConnection();
@@ -32,7 +34,7 @@ public class CommService {
 		return list; 
 		
 	}
-	
+ 	
 	public int insertCommTip(Comm c, CommFile cf) {
 		
 		Connection conn = getConnection();
@@ -154,6 +156,50 @@ public class CommService {
 	}
 	
 	
+	// 자유게시판 
+	
+	public int freeSelectListCount() {
+		
+		Connection conn = getConnection();
+		int listCount = new CommDao().freeSelectListCount(conn); 
+		
+		close(conn);
+		
+		return listCount; 
+
+	}
+	
+	public ArrayList<Comm> freeSelectList(PageInfo pi) {
+		// 조회문 
+		Connection conn = getConnection();
+		ArrayList<Comm> list = new CommDao().freeSelectList(conn, pi); 
+		close(conn);
+		return list; 
+		
+	}
+	
+	
+	// 질문게시판 
+	
+	public int qSelectListCount() {
+		
+		Connection conn = getConnection();
+		int listCount = new CommDao().qSelectListCount(conn); 
+		
+		close(conn);
+		
+		return listCount; 
+
+	}
+	
+	public ArrayList<Comm> qSelectList(PageInfo pi) {
+		// 조회문 
+		Connection conn = getConnection();
+		ArrayList<Comm> list = new CommDao().qSelectList(conn, pi); 
+		close(conn);
+		return list; 
+		
+	}
 	
 	
 	

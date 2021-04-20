@@ -57,6 +57,15 @@ public class Comm {
 		this.boardView = boardView;
 	}
 
+	public Comm(int commPostNo, String userNo, String postTitle, Date enrollDate, int boardView) {
+		super();
+		this.commPostNo = commPostNo;
+		this.userNo = userNo;
+		this.postTitle = postTitle;
+		this.enrollDate = enrollDate;
+		this.boardView = boardView;
+	}
+
 	public int getCommPostNo() {
 		return commPostNo;
 	}

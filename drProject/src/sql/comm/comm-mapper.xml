@@ -184,6 +184,74 @@
 		 ORDER BY ENROLL_DATE DESC
 	</entry>
 	
+	
+	<!-- 자유 게시판 -->
+	<entry key="freeSelectListCount">
+		SELECT COUNT(*) LISTCOUNT 
+		  FROM TB_COMMUNITY 
+		 WHERE COMM_NO = 2
+		   AND STATUS = 'N'
+	</entry>
+	
+	<entry key="freeSelectList">
+		SELECT * 
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM 
+		             , A.*
+		          FROM (
+		                SELECT
+		                       COMM_POST_NO
+		                     , USER_ID
+		                     , POST_TITLE
+		                     , C.ENROLL_DATE 
+		                     , BOARD_VIEW 
+		                  FROM TB_COMMUNITY C 
+		                  JOIN TB_USER U ON (U.USER_NO = C.USER_NO)
+		                 WHERE COMM_NO = 2
+		                   AND STATUS = 'N'
+		                 ORDER 
+		                     BY ENROLL_DATE DESC, 
+		                        COMM_POST_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<!-- 질문 게시판  -->
+	<entry key="qSelectListCount">
+		SELECT COUNT(*) LISTCOUNT 
+		  FROM TB_COMMUNITY 
+		 WHERE COMM_NO = 3
+		   AND STATUS = 'N'
+	</entry>
+	
+	<entry key="qSelectList">
+		SELECT * 
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM 
+		             , A.*
+		          FROM (
+		                SELECT
+		                       COMM_POST_NO
+		                     , USER_ID
+		                     , POST_TITLE
+		                     , C.ENROLL_DATE 
+		                     , BOARD_VIEW 
+		                  FROM TB_COMMUNITY C 
+		                  JOIN TB_USER U ON (U.USER_NO = C.USER_NO)
+		                 WHERE COMM_NO = 3
+		                   AND STATUS = 'N'
+		                 ORDER 
+		                     BY ENROLL_DATE DESC, 
+		                        COMM_POST_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
 	<entry key="">
 		
 	</entry>

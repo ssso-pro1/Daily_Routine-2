@@ -59,40 +59,34 @@ public class CommTipInsertServlet extends HttpServlet {
 			
 			// 3. 요청 시 전달된 값 뽑아서 vo에 담기
 			// 3_1. Comm 테이블에 insert 할 카테고리번호, 게시판제목, 게시판내용, 작성자회원번호를 Comm 객체에 담기 
+			String category = multiRequest.getParameter("category"); 
+			String commTitle = multiRequest.getParameter("title"); 
+			String commContent = multiRequest.getParameter("content");
+			String userNo = multiRequest.getParameter("userNo"); 
+			
 			Comm c = new Comm();
-			c.setCategoryName(multiRequest.getParameter("category")); 
-			c.setPostTitle(multiRequest.getParameter("commTitle")); 
-			c.setPostContent(multiRequest.getParameter("commContent"));
-			c.setUserNo(multiRequest.getParameter("userNo"));
+			c.setCategoryName(category);
+			c.setPostTitle(commTitle); 
+			c.setPostContent(commContent);
+			c.setUserNo(userNo);
 			
 			// 3_2. CommFile 테이블에 Insert할 원본명, 수정명, 저장폴더경로를 CommFile 객체에 담기 
-			//      단, 여러 개의 첨부파일을 담을 예정이기 때문에 해당 CommFile 객체들을 ArrayList에 담을 것! 
-			ArrayList<CommFile> list = new ArrayList<>(); 		
+			CommFile cf = null;  		
 			
-			for(int i=1; i<=3; i++) {
+			if(multiRequest.getOriginalFileName("upfile") != null) { 
 				
-				String key = "file" + i; 
-				if(multiRequest.getOriginalFileName(key) != null) { 
-					// CommFile 객체 생성 + 원본명,수정명,폴더경로,파일레벨(0/1)
-					CommFile cf = new CommFile();
-					cf.setFileName(multiRequest.getOriginalFileName(key)); 
-					cf.setFileUpdate(multiRequest.getFilesystemName(key)); 
-					cf.setFilePath("resources/file/comm/commTip_upfiles/");
-					
-					/* 인포앤팁 첨부파일 파일레벨 추가 
-					 * if(i == 1) { 
-					 * 	   at.setFileLevel(0); 
-					 * }else { 
-					 * 	   at.setFileLevel(1); 
-					 * }
-					 */
-					
-					list.add(cf); 	
-				}
+				cf = new CommFile(); 
+				// 원본명, 수정명(실제 서버에 업로드된 파일명), 저장 폴더 경로 
+				cf.setFileName(multiRequest.getOriginalFileName("upfile")); 
+				cf.setFileUpdate(multiRequest.getFilesystemName("upfile")); 
+				cf.setFilePath("resources/file/comm/commTip_upfiles/");
+
 			}
 			
 			// 4. 게시판 작성용 서비스 요청 및 결과 받기 
-			int result = new CommService().insertCommTip(c, list);
+			int result = new CommService().insertCommTip(c, cf);
+			// case 1 : 첨부파일 있던 경우 => insertCommTip(생성된 Comm객체, 생성된 CommFile 객체) 
+			// case 2 : 첨부파일 없던 경우 => insertCommTip(생성된 Comm객체, null)  
 			
 			if(result > 0) { // 성공 => /commMain.co url 재요청 => 나만의운동tip!게시판리스트페이지 
 				

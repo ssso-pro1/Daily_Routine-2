@@ -120,23 +120,19 @@ public class CommDao {
 		
 	}
 	
-	public int insertCommFileList(Connection conn, ArrayList<CommFile> list) {
-		// insert문 다수 
+	public int insertCommFile(Connection conn, CommFile cf) { 
+		// insert문 
 		int result = 0; 
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertCommFileList"); // 미완성된 sql 
+		String sql = prop.getProperty("insertCommFile"); 
 		
 		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cf.getFileName());
+			pstmt.setString(2, cf.getFileUpdate());
+			pstmt.setString(3, cf.getFilePath());
 			
-			for(CommFile cf : list) {
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, cf.getFileName());
-				pstmt.setString(2, cf.getFileUpdate());
-				pstmt.setString(3, cf.getFilePath());
-				
-				result = pstmt.executeUpdate(); 
-				
-			}
+			result = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -168,7 +164,7 @@ public class CommDao {
 		
 		return result; 
 				
-	}
+	} 
 	
 	public Comm selectCommTip(Connection conn, int commPostNo) {
 		// select문 => ResultSet객체 한 행 
@@ -204,39 +200,37 @@ public class CommDao {
 	
 	}
 	
-	public ArrayList<CommFile> selectCommTipFileList(Connection conn, int commPostNo) {
-		// select문 => ResultSet객체 여러 행
-		ArrayList<CommFile> list = new ArrayList<>();
+	public CommFile selectCommTipFile(Connection conn, int commPostNo) {
+		// select문 => ResultSet객체 
+		CommFile cf = null;
 		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectCommTipFileList");
+		ResultSet rset = null; 
+		String sql = prop.getProperty("selectCommFile"); 
 		
 		try {
-			pstmt = conn.prepareStatement(sql); // 완성된 sql문 
-			pstmt.setInt(1, commPostNo); 
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
 			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
-				
-				CommFile cf = new CommFile();
+			if(rset.next()) {
+				cf = new CommFile();
 				cf.setFileNo(rset.getInt("file_no"));
+				cf.setFileName(rset.getString("file_name"));
 				cf.setFileUpdate(rset.getString("file_update"));
-				cf.setFilePath(rset.getString("file_path")); 
-				
-				list.add(cf); 
+				cf.setFilePath(rset.getString("file_path"));
 			}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally { 
+		} finally {
 			close(rset);
-			close(pstmt);
+			close(pstmt); 
 		}
 		
-		return list; 
+		return cf;		
 		
-	}
+	} 
 	
 	public int updateCommTip(Connection conn, Comm c) {
 		// update문 
@@ -246,12 +240,12 @@ public class CommDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, c.getCategoryName()); // 오류 생기면 확인해보기 
+			pstmt.setString(1, c.getCategoryName());
 			pstmt.setString(2, c.getPostTitle());
 			pstmt.setString(3, c.getPostContent());
 			pstmt.setInt(4, c.getCommPostNo());
 			
-			result = pstmt.executeUpdate(); 
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -259,29 +253,24 @@ public class CommDao {
 			close(pstmt); 
 		}
 		
-		return result;
-			
+		return result; 
+	
 	}
 	
-	public int updateCommFileList(Connection conn, ArrayList<CommFile> list) {
-		// update문 다수 
-		int result = 0; 
+	public int updateCommTipFile(Connection conn, CommFile cf) {
+		// update문 
+		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("updateCommFileList"); // 미완성된 sql문 
+		String sql = prop.getProperty("updateCommTipFile");
 		
 		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cf.getFileName());
+			pstmt.setString(2, cf.getFileUpdate());
+			pstmt.setString(3, cf.getFilePath());
+			pstmt.setInt(4, cf.getFileNo()); 
 			
-			for(CommFile cf : list) { 
-				
-				pstmt = conn.prepareStatement(sql);
-				pstmt.setString(1, cf.getFileName());
-				pstmt.setString(2, cf.getFileUpdate());
-				pstmt.setString(3, cf.getFilePath());
-				pstmt.setInt(4, cf.getFileNo()); 
-				
-				result = pstmt.executeUpdate(); 
-				
-			}
+			result = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -293,6 +282,33 @@ public class CommDao {
 		
 	}
 	
+	public int insertNewCommFile(Connection conn, CommFile cf) {
+		// insert문 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNewCommFile"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cf.getCommPostNo());
+			pstmt.setString(2, cf.getFileName());
+			pstmt.setString(3, cf.getFileUpdate());
+			pstmt.setString(4, cf.getFilePath());
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
+		
+	}
+	
+	
+
 	
 	
 	

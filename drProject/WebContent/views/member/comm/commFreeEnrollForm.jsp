@@ -122,10 +122,8 @@
                                                 <tr>
                                                     <td width="800" height="30">
                                                         <input type="file" name="upfile" style="cursor:pointer;">
-                                                        <input type="file" name="upfile" style="cursor:pointer;">
                                                     </td>
                                                     <td>
-                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button><br>
                                                         <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
                                                     </td>
                                                 </tr>
@@ -142,8 +140,8 @@
                         </form>
 
                     <div align="right" class="enrollButton">
-                        <button>등록</button>
-                        <button>취소</button>
+                        <button type="submit">등록</button>
+                        <button type="reset">취소</button>
                     </div>
 
 

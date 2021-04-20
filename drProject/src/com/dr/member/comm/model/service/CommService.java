@@ -32,18 +32,23 @@ public class CommService {
 		
 	}
 	
-	public int insertCommTip(Comm c, ArrayList<CommFile> list) {
+	public int insertCommTip(Comm c, CommFile cf) {
 		
 		Connection conn = getConnection();
 		
 		int result1 = new CommDao().insertCommTip(conn, c); 
-		int result2 = new CommDao().insertCommFileList(conn, list); 
+		int result2 = 1; // 첨부파일이 없을 때도 result2를 1로 초기화하기 위해 1로 지정 
+		
+		if(cf != null) { // 첨부파일이 있떤 경우 
+			result2 = new CommDao().insertCommFile(conn, cf); 
+		}
 		
 		if(result1 > 0 && result2 > 0) { 
 			commit(conn);
 		}else {
 			rollback(conn);
 		}
+		
 		close(conn);
 		
 		return result1 * result2; 
@@ -65,7 +70,7 @@ public class CommService {
 		
 		return result;
 		
-	}
+	} 
 	
 	public Comm selectCommTip(int commPostNo) {
 		
@@ -78,47 +83,48 @@ public class CommService {
 		
 	}
 	
-	public ArrayList<CommFile> selectCommTipFileList(int commPostNo) {
-	
+	public CommFile selectCommTipFile(int commPostNo) { 
+		
 		Connection conn = getConnection();
-		ArrayList<CommFile> list = new CommDao().selectCommTipFileList(conn, commPostNo); 
+		CommFile cf = new CommDao().selectCommTipFile(conn, commPostNo); 
 		
 		close(conn);
 		
-		return list;
+		return cf; 
 		
 	}
 	
-	public int updateCommTip(Comm c, ArrayList<CommFile> list) {
-		// 하나의 서비스에 2개의 Dao 호출 
+	public int updateCommTip(Comm c, CommFile cf) { 
+		
 		Connection conn = getConnection();
 		
 		int result1 = new CommDao().updateCommTip(conn, c);
-		int result2 = new CommDao().updateCommFileList(conn, list); 
+		int result2 = 1; 
 		
 		// 새로운 첨부파일이 있을 경우 
-		if(list != null) { 
-			
-			// 기존의 첨부파일이 있을 경우 => CommFile Update  
-			if(list.getFileNo() != 0) { 
-				result2 = new CommDao().updateCommFileList(conn, list);
+		if(cf != null) {
+			// 기존의 첨부파일이 있을 경우 => CommFile Update 
+			if(cf.getFileNo() != 0) {
+				result2 = new CommDao().updateCommTipFile(conn, cf); 
 			// 기존의 첨부파일이 없을 경우 => CommFile Insert 
 			}else {
-				result2 = new CommDao().insertNewCommFile(conn, list); 
+				result2 = new CommDao().insertNewCommFile(conn, cf); 
 			}
 		}
 		
 		if(result1 > 0 && result2 > 0) {
 			commit(conn);
-		}else {
-			rollback(conn); 
+		}else { 
+			rollback(conn);
 		}
-
+		
 		close(conn);
 		
 		return result1 * result2; 
 		
 	}
+	
+
 	
 	
 	

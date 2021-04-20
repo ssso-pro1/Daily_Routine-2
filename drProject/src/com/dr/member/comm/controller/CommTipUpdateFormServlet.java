@@ -35,13 +35,13 @@ public class CommTipUpdateFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int commFileNo = Integer.parseInt(request.getParameter("cno"));
+		int commPostNo = Integer.parseInt(request.getParameter("cno"));
 		
-		Comm c = new CommService().selectCommTip(commFileNo); 
-		ArrayList<CommFile> list = new CommService().selectCommTipFileList(commFileNo);
+		Comm c = new CommService().selectCommTip(commPostNo); 
+		CommFile cf = new CommService().selectCommTipFile(commPostNo); 
 		
 		request.setAttribute("c", c);
-		request.setAttribute("list", list);
+		request.setAttribute("cf", cf);
 		
 		request.getRequestDispatcher("views/member/comm/commTipUpdateForm.jsp").forward(request, response); 
 		

@@ -113,15 +113,15 @@
                 <div id="content_2_2">
                     <div class="updateArea">
                         <form action="<%=contextPath%>/tipUpdate.co" id="updateForm" method="post" enctype="multipart/form-data">
-                            <!-- <input type="hidden" name="cno" value="<%=c.getCommPostNo()%>"> -->
+                            <input type="hidden" name="cno" value="<%=c.getCommPostNo()%>">
                             <table align="center">
                                 <tr>
                                     <table>
                                         <tr>
                                             <td width="100">
                                                 <select name="category" required>
-                                                    <option value="1">[식단공유]</option>
-                                                    <option value="2">[운동tip]</option>
+                                                    <option value="식단공유">[식단공유]</option>
+                                                    <option value="운동tip">[운동tip]</option>
                                                 </select>
                                                 <script>
                                                     $(function(){
@@ -141,8 +141,7 @@
                                             <table>
                                                 <tr>
                                                     <td width="800" height="30">
-                                                        <input type="file" name="upfile" style="cursor:pointer;">
-                                                        <input type="file" name="upfile" style="cursor:pointer;">
+                                                        <input type="file" name="reUpfile" style="cursor:pointer;">
                                                     </td>
                                                     <td>
                                                         <!-- 기존의 첨부파일이 있었다면 -->
@@ -151,11 +150,8 @@
                                                             <input type="hidden" name="originFileNo" value="<%=cf.getFileNo()%>">
                                                             <input type="hidden" name="originFileName" value="<%=cf.getFileUpdate()%>">
                                                         <% } %>
-                                                        
-                                                        <input type="file" name="reUpfile">
                                                          
                                                         <!-- 버튼 클릭 시 파일 삭제 -->
-                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button><br>
                                                         <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
                                                     </td>
                                                 </tr>
@@ -169,15 +165,15 @@
                                     </table>
                                 </tr>
                             </table><br><br>
+                            
+                            <div align="right" class="updateArea">
+			                   	<button type="submit">등록</button>
+			               	</div>
                         </form>
+                        
                     </div>
                 </div>
 
-                <div align="right" class="updateArea">
-                    <button type="submit">수정</button>
-                    <button type="submit">등록</button>
-                </div>
-        
             </div>
 
 

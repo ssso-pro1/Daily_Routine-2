@@ -41,10 +41,10 @@ public class CommTipDetailServlet extends HttpServlet {
 		if(result > 0) { // 유효한 게시글 => 게시글, 첨부파일 조회 => 상세보기 페이지 
 			
 			Comm c = new CommService().selectCommTip(commPostNo); 
-			ArrayList<CommFile> list = new CommService().selectCommTipFileList(commPostNo);
+			CommFile cf = new CommService().selectCommTipFile(commPostNo); 
 			
 			request.setAttribute("c", c);
-			request.setAttribute("list", list);
+			request.setAttribute("cf", cf);
 			
 			request.getRequestDispatcher("views/member/comm/commTipDetailView.jsp").forward(request, response);
 			

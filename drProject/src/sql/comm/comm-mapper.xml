@@ -59,7 +59,7 @@
 		  )
 	</entry>
 	
-	<entry key="insertCommFileList">
+	<entry key="insertCommFile">
 		INSERT
 		  INTO TB_COMM_FILE
 		  (
@@ -106,7 +106,7 @@
 	       AND STATUS = 'N'	 
 	</entry>
 	
-	<entry key="selectCommTipFileList">
+	<entry key="selectCommTipFile">
 		SELECT 
 			   FILE_NO
 			 , FILE_NAME
@@ -129,13 +129,14 @@
 	</entry>
 	
 	<!-- 기존의 첨부파일이 있었는데 새로 넘어온 첨부파일이 있을 경우 -->
-	<entry key="updateCommFileList">
+	<entry key="updateCommTipFile">
 		UPDATE 
 		       TB_COMM_FILE 
 		   SET FILE_NAME = ?
 		     , FILE_UPDATE = ? 
 		     , FILE_PATH = ?
-		 WHERE FILE_NO = ?        
+		 WHERE FILE_NO = ?   
+		   AND COMM_NO = 1      
 	</entry>
 	
 	<!-- 기존의 첨부파일이 없었는데 새로 넘어온 첨부파일이 있을 경우 -->
@@ -145,6 +146,7 @@
 		  (
 		    FILE_NO
 		  , COMM_POST_NO 
+		  , COMM_NO 
 		  , FILE_NAME
 		  , FILE_UPDATE
 		  , FILE_PATH  
@@ -156,6 +158,7 @@
 		  , ?
 		  , ?
 		  , ? 
+		  , ?
 		  )
 	</entry>
 	

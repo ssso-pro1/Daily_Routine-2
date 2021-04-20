@@ -14,7 +14,7 @@
 
 <style>
     /* menubar */
-    #header>p{
+    /* #header>p{
         background:rgb(250, 214, 9);
         font-size: 15px;
     }
@@ -49,7 +49,7 @@
     .outerWrap a:hover{
         color:darkorchid
 	}
-   
+    */
    /* content */
     #content1{
         width:100%;
@@ -80,9 +80,10 @@
 </style>
 </head>
 <body>
-    <!-- <%@ include file = "menubar.jsp"%> -->
+    <!-- 메뉴바에로그인 기능 등 메뉴바에 넣고, 메인페이지: 메뉴바, 푸터바 include시키기 -->
+    <%@ include file = "menubar.jsp"%>
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
-
+<!-- 
 	<script>
     // 회원가입 성공 시 뜨는 알림창 메시지. 확인 누르면 메뉴바로 (메인페이지)
     var msg = "<%=session.getAttribute("alertMsg")%>";
@@ -123,12 +124,9 @@
             <div></div>
         </div>
         
-        <!-- 얘 위치 조정이 안돼요.. 흑흑 -->
-        <div class="nav2" align="right">
-            Welcome DR님<i class="fas fa-user-circle"></i>
-        </div>
+        
         <hr>
-    </div>
+    </div> -->
 
     <div id="content1" style="margin-top:20px; margin-bottom:50px;">
         <video src="https://youtube.com" autoplay width="100%" height="150px" controls></video>

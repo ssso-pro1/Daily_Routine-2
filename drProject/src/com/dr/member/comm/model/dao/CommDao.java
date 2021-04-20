@@ -31,14 +31,14 @@ public class CommDao {
 		
 	}
 	
-	public int tipselectListCount(Connection conn) {
+	public int tipSelectListCount(Connection conn) {
 		// select문 => ResultSet
 		int listCount = 0; 
 		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("tipselectListCount");
+		String sql = prop.getProperty("tipSelectListCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -59,14 +59,14 @@ public class CommDao {
 		
 	}
 	
-	public ArrayList<Comm> tipselectList(Connection conn, PageInfo pi) {
+	public ArrayList<Comm> tipSelectList(Connection conn, PageInfo pi) {
 		// select문 => ResultSet (여러 행) 
 		ArrayList<Comm> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("tipselectList"); 
+		String sql = prop.getProperty("tipSelectList"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

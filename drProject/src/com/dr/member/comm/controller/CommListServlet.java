@@ -35,7 +35,7 @@ public class CommListServlet extends HttpServlet {
 		
 		// 페이징 처리 
 		int listCount; 			
-		int currentPage;		
+		int currentPage = 1;		
 		int pageLimit; 			
 		int boardLimit; 		
 
@@ -43,10 +43,14 @@ public class CommListServlet extends HttpServlet {
 		int startPage;    		// pageLimit, currentPage에 영향을 받음 
 		int endPage; 			// pageLimit, startPage에 영향을 받음 
 		
-		listCount = new CommService().tipselectListCount(); 
+		listCount = new CommService().tipSelectListCount(); 
 		//System.out.println(listCount); 
 		
-		currentPage = Integer.parseInt(request.getParameter("currentPage")); 
+		String currentPageParam = request.getParameter("currentPage");
+		
+		if(currentPageParam!=null)	currentPage =  Integer.parseInt(currentPageParam);
+	 
+		
 		pageLimit = 10; // 페이징 바 10개 단위 
 		boardLimit = 10; // 한 페이지당 게시글 10개씩 
 		
@@ -64,7 +68,7 @@ public class CommListServlet extends HttpServlet {
 		//System.out.println(pi);
 		
 		// 2. currentPage(현재 페이지)에 보여질 게시글 리스트 조회 
-		ArrayList<Comm> list = new CommService().tipselectList(pi);
+		ArrayList<Comm> list = new CommService().tipSelectList(pi);
 		
 		/*
 		for(Comm c : list) { 

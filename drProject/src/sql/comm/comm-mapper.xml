@@ -2,14 +2,14 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<entry key="tipselectListCount">
+	<entry key="tipSelectListCount">
 		SELECT COUNT(*) LISTCOUNT 
 		  FROM TB_COMMUNITY 
 		 WHERE COMM_NO = 1
 		   AND STATUS = 'N'
 	</entry>
 	
-	<entry key="tipselectList">
+	<entry key="tipSelectList">
 		SELECT * 
 		  FROM (
 		        SELECT 

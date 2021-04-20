@@ -12,10 +12,10 @@ import static com.dr.common.JDBCTemplate.*;
 
 public class CommService {
 	
-	public int tipselectListCount() {
+	public int tipSelectListCount() {
 		
 		Connection conn = getConnection();
-		int listCount = new CommDao().tipselectListCount(conn); 
+		int listCount = new CommDao().tipSelectListCount(conn); 
 		
 		close(conn);
 		
@@ -23,10 +23,10 @@ public class CommService {
 
 	}
 	
-	public ArrayList<Comm> tipselectList(PageInfo pi) {
+	public ArrayList<Comm> tipSelectList(PageInfo pi) {
 		// 조회문 
 		Connection conn = getConnection();
-		ArrayList<Comm> list = new CommDao().tipselectList(conn, pi); 
+		ArrayList<Comm> list = new CommDao().tipSelectList(conn, pi); 
 		close(conn);
 		return list; 
 		

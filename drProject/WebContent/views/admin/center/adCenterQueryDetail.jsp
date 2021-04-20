@@ -209,7 +209,7 @@
 
             <!--1:1문의 관리-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">1:1문의 관리</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">1:1문의 관리 > 문의내역 (답변/수정/삭제)</p>
             </div>
 
 

@@ -1,10 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+<%@ page import="java.util.ArrayList, com.dr.admin.center.model.vo.adCenterFaq, com.dr.common.model.vo.PageInfo"%>    
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
+	
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<adCenterFaq> list =(ArrayList<adCenterFaq>)request.getAttribute("list"); 
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>   
 
 <!DOCTYPE html>
@@ -13,6 +22,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>관리자 메인 페이지- 좌측 메뉴바</title>
 
     <style>
@@ -196,7 +206,7 @@
 
                 <!-- 상단 타이틀 -->
                 <div id="content2_1">
-                    <h2>고객센터 > FAQ 관리(수정/삭제)</h2>
+                    <h2>고객센터 > FAQ 관리</h2>
                 </div>
 
                 <hr style="border:1px solid rgb(145, 144, 144)">
@@ -217,11 +227,11 @@
                     <table>
                         <tr>
                             <th></th>
-                            <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">자주찾는 질문 TOP10 |</a></th>
-                            <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=회원정보">회원정보|</a></th>
-                            <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=게시글">게시글/댓글</a> |</th>
-                            <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=신고">신고</a> |</th>
-                            <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=기타">기타</a></th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">자주찾는 질문 TOP10 </a>|</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=회원정보">회원정보</a>|</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=게시글">게시글/댓글</a> |</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=신고">신고</a> |</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=기타">기타</a></th>
                         </tr>
                     </table>
 
@@ -232,44 +242,35 @@
                     <table align="center" class="listArea" border="1">
                          <thead>
                              <tr>
-                                 <th width="30">글선택</th>
-                                 <th width="40" style="color:black">글번호</th>
-                                 <th width="200" style="color:black">제목</th>
-                                 <th width="50">게시자</th>
-                                 <th width="60">게시일</th>
+                                <th width="30">글선택</th>
+                                <th width="40" style="color:black">글번호</th>
+                                <th width="40" style="color:black">문의유형</th>
+                                <th width="200" style="color:black">제목</th>
+                                <th width="50">게시자</th>
+                                <th width="60">게시상태</th>
+                                <th width="60">게시일</th>
                              </tr>
                          </thead>
                          <tbody>
                          
-                         	<!--
+                         	<%if(list.isEmpty()){ %>
                          	<tr>
-            					<td colspan="4">존재하는 공지사항이 없습니다.</td>
+            					<td colspan="7">존재하는 글이 없습니다.</td>
             				</tr>
-            				
-                         	-->
+            				<% } else {%>
+            					<% for (adCenterFaq n:list) { %>
+                         
                             <tr>
                                 <td><input type="checkbox"></td>
-                                <td>1</td>
-                                <td>제목제목</td>
-                                <td>admin1</td>
-                                <td>2021-04-20</td>
+                                <td><%= n.getFaqNo() %></td>
+                                <td><%= n.getFaqCategory() %></td>
+                                <td><%=n.getFaqTitle() %></td>
+                                <td><%=n.getUserId() %></td>
+                                <td><%=n.getStatus() %></td>
+                                <td><%=n.getCreateDate() %></td>
                             </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>1</td>
-                                <td>제목제목</td>
-                                <td>admin1</td>
-                                <td>2021-04-20</td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>1</td>
-                                <td>제목제목</td>
-                                <td>admin1</td>
-                                <td>2021-04-20</td>
-                            </tr>
+								<% } %>
+                            <% } %>
                             	
                          </tbody>
                     </table>
@@ -277,19 +278,23 @@
              		<script>
 				    	$(function(){
 							$(".listArea>tbody>tr").click(function(){
-								location.href = '<%=contextPath%>/noticeDetail.ct?nno=' + $(this).children().eq(0).text();			
+								location.href = '<%=contextPath%>/ctFaqDetail.ad?fno=' + $(this).children().eq(1).text();			
 								
 							})
 				    	})
 				    </script>
              
                     <br><br>
+                    
                     <!-- 페이징처리 10개씩 -->
-                    <!--
+                   
                     <div align="center" class="pagingArea">
 
+						<%if (list.isEmpty()) { %>
+					<p></p>
+					<% } else { %>
 						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%=currentPage-1%>';">이전</button>
+			            	<button onclick="location.href='<%=contextPath%>/ctFaqList.ad?currentPage=<%=currentPage-1%>&ctg=<%= list.get(0).getFaqCategory() %>';">이전</button>
 						<% } %>
 						
 						<% for(int p=startPage; p<=endPage; p++) { %>
@@ -297,33 +302,26 @@
 							<% if(currentPage == p){ %>
 			            		<button disabled><%= p %></button>
 			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%= p %>';"><%= p %></button>
+			            		<button onclick="location.href='<%=contextPath%>/ctFaqList.ad?currentPage=<%= p %>&ctg=<%= list.get(0).getFaqCategory() %>';"><%= p %></button>
 			            	<% } %>
 			            	
 						<% } %>
 						
 						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%=currentPage+1%>';">다음</button>
+			            	<button onclick="location.href='<%=contextPath%>/ctFaqList.ad?currentPage=<%=currentPage+1%>&ctg=<%= list.get(0).getFaqCategory() %>';">다음</button>
 						<% } %>
+					 <% } %>	
 						
 			        </div>
-                    -->
-                    <div align="center" class="pagingArea">
-                        <button><</button>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>
-                        <button>></button>
-                   </div>
+                    
+                    
 
 
 
 
 
 
-             
+             		<!-- 검색부분
                     <br><br>
                     <div align="center" class="searchArea">
                         <form action="<%= contextPath %>/searchNotice.ct?currentPage=1" method="post">
@@ -335,7 +333,8 @@
                             <button type="submit">검색</button> 
              
                         </form>
-
+					 -->	
+                    
                         <div>
                             <br>
                             <button>새 글 등록</button>

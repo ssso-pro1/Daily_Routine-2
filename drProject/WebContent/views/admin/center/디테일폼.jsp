@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User, com.dr.admin.center.model.vo.adCenterFaq,"%>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
+	
+	adCenterFaq f = (adCenterFaq)request.getAttribute("f");
 %>   
 
 <!DOCTYPE html>
@@ -122,7 +124,6 @@
         .listArea>tr,th,td{
             height:30px;
         }
-
         
         
         
@@ -208,76 +209,59 @@
 
             <!--FAQ-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 등록</p>
-                <div class="underLine"></div>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 상세보기</p>
             </div>
 
 
-            <!--FAQ 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 500px;">
+            <!--FAQ 디테일뷰-->
+            <div id="content_2_4" style="background: white; width: 800px; height: 600px;">
                 <br>
                 <div id="noticeEnroll">
                     <form action="">
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
-                                    <th>문의유형</th>
-                                    <td width=300px>
-                                        <select name="qCategory" id="qCategory" required style="width: 100%;">
-                                            <option id="qCategory" value="0">선택해주세요</option>
-                                            <option name="qCategory" id="qCategory" value="top" >TOP10</option>
-                                            <option name="qCategory" id="qCategory" value="회원정보" >회원정보</option>
-                                            <option name="qCategory" id="qCategory" value="게시글">게시글/댓글</option>
-                                            <option name="qCategory" id="qCategory" value="신고">신고</option>
-                                            <option name="qCategory" id="qCategory" value="기타문의">기타문의</option>
-                                        </select>
-                                    </td>
+                                    <th>작성자</th>
+                                    <td colspan="3"></td>
                                 </tr>
                                 <tr>
+                                    <th>문의유형</th>
+                                    <td colspan="3"></td>
+                                </tr>
+                                
+                                <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="qTitle" id="qTitle" placeholder="제목을 입력해주세요" style="width: 100%;" required maxlength="50"></td>
+                                    <td colspan="3"></td>
+                                </tr>
+                                <tr>
+                                    <th>게시여부</th>
+                                    <td>
+                                        <input type="checkbox">게시
+                                        <input type="checkbox">보류
+                                    </td>
+                                    <th>마지막 수정일</th>
+                                    <td>2021-04-20</td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
-                                    <td>
-                                        <div>
-                                            <textarea id="qContent" name="qContent" cols="50" rows="20" style="resize: none;" placeholder="내용을 입력하세요 (300자 이내)" required></textarea>
-                                            <br>
-                                        </div>
-                                        <span id="count" name="count">0</span> / 300
-                                    </td>
+                                    <td colspan="3"><textarea name="noticeContent" cols="50" rows="20" style="resize: none;"></textarea></td>
                                 </tr>
+
                             </tbody>
                             <tfoot>
-                            
-                                <tr>
-                                    <th>게시여부 선택</th>
-                                    <th>
-                                        <input type="checkbox">게시
-                                        <input type="checkbox">보류
-                                        
-                                        <label style="float: right;">
-                                        <button type="submit" onclick="return validate();">등록</button>
-                                        <button type="reset">취소</button>
+                               <tr>
+                                   <td colspan="4">
+                                    <label style="float: right;">
+                                            <button type="submit">수정</button>
+                                            <button type="reset">삭제</button>
+                                            <button type="reset">취소</button>
                                         </label>
                                     </td>
                                 </tr>
+                                
                             </tfoot>
-
+                            
                         </table>
-
-
-
-
-                    </form>
-
-                </div>
-               
-             
-                 
-
-
-			</div>    
 
             
 

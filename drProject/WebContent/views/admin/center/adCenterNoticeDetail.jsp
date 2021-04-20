@@ -196,7 +196,7 @@
 
                 <!-- 상단 타이틀 -->
                 <div id="content2_1">
-                    <h2>고객센터 > 공지사항 관리(수정/삭제)</h2>
+                    <h2>고객센터 > 공지사항 관리</h2>
                 </div>
 
                 <hr style="border:1px solid rgb(145, 144, 144)">
@@ -207,7 +207,7 @@
 
             <!--공지사항-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">공지사항 관리</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">공지사항 관리 > 공지사항 글 보기</p>
                 <div class="underLine"></div>
             </div>
 
@@ -239,10 +239,16 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="2" align="right">
-                                        <button type="submit">수정</button>
+                                    <th>게시여부 선택</th>
+                                    <th>
+                                        <input type="checkbox">게시
+                                        <input type="checkbox">보류
+                                        
+                                        <label style="float: right;">
+                                        <button type="submit" onclick="return validate();">수정</button>
                                         <button type="reset">삭제</button>
                                         <button type="reset">취소</button>
+                                        </label>
                                     </td>
                                 </tr>
                             </tfoot>

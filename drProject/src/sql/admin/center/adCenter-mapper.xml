@@ -1,0 +1,386 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- faq 게시판 -->
+	
+	<!-- faq글번호 조회 (게시여부 Y/N모두 -->
+	<entry key="faqSelectListCount">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_FAQ
+	WHERE FAQ_CATEGORY =?
+	
+	
+	</entry>
+	
+	<entry key="faqSelectList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       FAQ_NO
+		                     , FAQ_CATEGORY
+		                     , FAQ_TITLE
+		                     , FAQ_CONTENT
+		                     , CREATE_DATE
+                             , UPDATE_DATE
+                             , STATUS
+                             , USER_ID
+		                 FROM TB_FAQ F
+                         JOIN TB_USER USING(USER_NO)
+		                 WHERE F.FAQ_CATEGORY=?
+		                 ORDER BY CREATE_DATE DESC
+		                 
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	
+	</entry>
+	
+	<entry key="faqIncreaseCount">
+		UPDATE TB_NOTICE
+		   SET NOTICE_COUNT = NOTICE_COUNT +1
+	     WHERE NOTICE_NO = ?
+	       AND STATUS = 'Y'
+	
+	
+	</entry>
+	
+	<!-- 글번호로 faq디테일 내역조회 -->
+	<entry key="selectFaq">
+	  SELECT
+		     FAQ_NO
+		   , FAQ_CATEGORY
+		   , FAQ_TITLE
+		   , FAQ_CONTENT
+		   , CREATE_DATE
+           , UPDATE_DATE
+           , STATUS
+           , USER_ID
+	   FROM TB_FAQ F
+       JOIN TB_USER USING(USER_NO)
+       WHERE FAQ_NO = ?
+	
+	</entry>
+	
+	<entry key="searchFaqListCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_FAQ F
+	WHERE F.status ='Y'
+  	AND F.FAQ_CONTENT LIKE '%'||?||'%'
+	
+	
+	</entry>
+	
+	
+	<entry key="searchFaqList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT 
+					            FAQ_NO
+					          , USER_NO
+					          , FAQ_CATEGORY
+							  , FAQ_TITLE
+					          , FAQ_CONTENT
+						   FROM TB_FAQ F
+						  WHERE F.FAQ_CONTENT LIKE '%'||?||'%'
+						    AND F.STATUS = 'Y'
+		                 ORDER BY
+		                    FAQ_CATEGORY
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	<!-- 필요없음 -->
+	<entry key="faqList">
+	
+	SELECT 
+            FAQ_NO
+          , USER_NO
+          , FAQ_CATEGORY
+		  , FAQ_TITLE
+          , FAQ_CONTENT
+	   FROM TB_FAQ
+	  WHERE FAQ_CATEGORY = ?
+	    AND STATUS = 'Y'
+	
+	
+	</entry>
+	
+	
+	<!-- 공지사항 게시판 -->
+
+	<entry key="noticeList">
+		
+		SELECT
+		      NOTICE_NO
+		    , NOTICE_TITLE
+		    , NOTICE_CONTENT
+		    , CREATE_DATE
+		    , NOTICE_COUNT
+		 FROM TB_NOTICE
+		WHERE STATUS = 'Y'
+		ORDER BY CREATE_DATE DESC
+	
+	</entry>
+	
+	<entry key="noticeIncreaseCount">
+		UPDATE TB_NOTICE
+		   SET NOTICE_COUNT = NOTICE_COUNT +1
+	     WHERE NOTICE_NO = ?
+	       AND STATUS = 'Y'
+	
+	
+	</entry>
+	
+	<entry key="selectNotice">
+	SELECT 
+		   NOTICE_NO
+		 , NOTICE_TITLE
+		 , NOTICE_CONTENT
+		 , CREATE_DATE
+	  FROM TB_NOTICE
+	 WHERE NOTICE_NO= ?
+	   AND STATUS = 'Y'
+	
+	</entry>
+	
+	<entry key="selectNotice2">
+	SELECT 
+		   NOTICE_NO
+		 , NOTICE_TITLE
+	  FROM TB_NOTICE
+	 WHERE NOTICE_NO= ?
+	   AND STATUS = 'Y'
+	
+	</entry>
+	
+	<entry key="noticeSelectListCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
+	WHERE STATUS ='Y'
+	
+	</entry>
+	
+	<entry key="noticeSelectList">
+	
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , NOTICE_CONTENT
+		                     , CREATE_DATE
+		                     , NOTICE_COUNT
+		                     
+		                  FROM TB_NOTICE N
+		                  
+		                 WHERE N.STATUS = 'Y'
+		                 ORDER
+		                    BY CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+	
+	<entry key="searchNoticeTitleCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
+	WHERE status ='Y'
+  	AND NOTICE_TITLE LIKE '%'||?||'%'
+	
+	
+	</entry>
+	
+	<entry key="searchNoticeContentCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
+	WHERE status ='Y'
+  	AND NOTICE_CONTENT LIKE '%'||?||'%'
+	
+	
+	</entry>
+	<entry key="searchNoticeTitle">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                 SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , NOTICE_CONTENT
+		                     , CREATE_DATE
+		                     , NOTICE_COUNT
+		                     
+		                  FROM TB_NOTICE N
+		                  
+		                 WHERE N.STATUS = 'Y'
+		                 AND NOTICE_TITLE LIKE '%'||?||'%'
+		                 ORDER
+		                    BY CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+	
+	<entry key="searchNoticeContent">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                 SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , NOTICE_CONTENT
+		                     , CREATE_DATE
+		                     , NOTICE_COUNT
+		                     
+		                  FROM TB_NOTICE N
+		                  
+		                 WHERE N.STATUS = 'Y'
+		                 AND NOTICE_CONTENT LIKE '%'||?||'%'
+		                 ORDER
+		                    BY CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+	
+	
+	
+	
+	
+	<!-- 1:1문의 게시판 -->
+	<entry key="queryList">
+	
+	SELECT  
+			QUERY_NO
+	      , USER_NO
+	      , QUERY_CATEGORY
+	      , QUERY_TITLE
+	      , QUERY_CONTENT
+	      , QUERY_CREATE_DATE
+	      , REPLY_STATUS
+	      , REPLY_CONTENT
+	      , REPLY_DATE
+	   FROM TB_QUERY
+	  WHERE USER_NO = ?
+	    AND reply_status IN ('Y', 'N')
+	  ORDER BY QUERY_CREATE_DATE DESC
+	
+	</entry>
+	
+	
+	
+	
+	
+	<entry key="insertQuery">
+	INSERT 
+	    INTO TB_QUERY
+	        (
+	          QUERY_NO
+	        , USER_NO
+	        , QUERY_CATEGORY
+	        , QUERY_TITLE
+	        , QUERY_CONTENT
+	        )
+	        VALUES 
+	        (
+	          SEQ_QUERYNO.NEXTVAL
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         )
+		
+	
+	</entry>
+	
+	<entry key="querySelectListCount">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_QUERY
+	WHERE reply_status IN ('Y','N')
+  	AND USER_NO = ?
+	
+	
+	</entry>
+	
+	<entry key="querySelectList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       QUERY_NO
+						      , USER_NO
+						      , QUERY_CATEGORY
+						      , QUERY_TITLE
+						      , QUERY_CONTENT
+						      , QUERY_CREATE_DATE
+						      , REPLY_STATUS
+						      , REPLY_CONTENT
+						      , REPLY_DATE
+		                     
+		                  FROM TB_QUERY Q
+		                 WHERE Q.USER_NO = ?
+		                 AND  Q.QUERY_STATUS = 'Y'
+		                 ORDER BY
+		                    QUERY_CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+		 
+	</entry>
+	
+	
+	<entry key="deleteQuery">
+	
+	UPDATE TB_QUERY
+	SET QUERY_STATUS = 'N'
+	WHERE QUERY_NO = ?
+	
+	
+	</entry>
+	
+	<entry key="">
+	
+	
+	</entry>
+	
+	<entry key="">
+	
+	
+	</entry>
+	
+</properties>

@@ -208,7 +208,7 @@
 
             <!--FAQ-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 등록</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 수정</p>
                 <div class="underLine"></div>
             </div>
 
@@ -249,19 +249,19 @@
                                 </tr>
                             </tbody>
                             <tfoot>
-                            
                                 <tr>
-                                    <th>게시여부 선택</th>
+                                    <th>게시여부</th>
                                     <th>
                                         <input type="checkbox">게시
                                         <input type="checkbox">보류
                                         
                                         <label style="float: right;">
-                                        <button type="submit" onclick="return validate();">등록</button>
+                                        <button type="submit" onclick="return validate();">수정</button>
                                         <button type="reset">취소</button>
                                         </label>
                                     </td>
                                 </tr>
+
                             </tfoot>
 
                         </table>

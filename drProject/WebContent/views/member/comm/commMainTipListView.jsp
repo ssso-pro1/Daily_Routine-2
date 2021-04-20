@@ -126,7 +126,7 @@
                 <div id="content2_2">
                 	
                 	<div class="commArea">
-                  		<table align="center" class="listArea">
+                  		<table align="center" class="listArea" width="100%">
 	                        <thead>
 	                            <tr>
 	                                <th width="100">글번호</th>
@@ -139,15 +139,15 @@
 	                        </thead>
                       		<tbody>
 	                        	<% if(list.isEmpty()) { %> 
-	                        	<tr>	
-	                        		<td colspan="6" style="color: crimson; font-weight: bolder; font-size: 20px;">조회된 리스트가 없습니다.</td>
-	                        	</tr>
+                                <div align="center">
+                                <p style="color: crimson; font-weight: bolder; font-size:20px; ">조회된 리스트가 없습니다.</p>
+                                </div>
 	                        	<% } else { %>
 	                        		<% for(Comm c : list) { %>
 			                    <tr>
-				                    <td width="8%"><%= c.getCommPostNo() %></td>
+				                    <td width="7%"><%= c.getCommPostNo() %></td>
 		                            <td width="15%"><%= c.getCategoryName() %></td>
-				                    <td width="42%"><%= c.getPostTitle() %></td>
+				                    <td width="43%"><%= c.getPostTitle() %></td>
 				                    <td width="10%"><%= c.getUserNo() %></td>
 				                    <td width="15%"><%= c.getEnrollDate() %></td>
 				                    <td width="10%"><%= c.getBoardView() %></td>

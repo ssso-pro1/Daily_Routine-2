@@ -124,12 +124,10 @@
                                                 <tr>
                                                     <td width="800" height="30">
                                                         <input type="file" name="upfile" style="cursor:pointer;">
-                                                        <input type="file" name="upfile" style="cursor:pointer;">
                                                     </td>
                                                     <td>
                                                     	<!-- 버튼 클릭 시 파일 삭제 -->
                                                         <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button><br>
-                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
                                                     </td>
                                                 </tr>
                                             </table><br>
@@ -142,7 +140,7 @@
                                     </table>
                                 </tr>
                             </table><br><br>
-                            <!--<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>"> -->
+                            <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
 							<br><br>
 
                             <div align="right" class="enrollButton">

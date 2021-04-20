@@ -307,6 +307,28 @@ public class CommDao {
 		
 	}
 	
+	public int deleteCommTip(Connection conn, int commPostNo) {
+		// update문 
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteCommTip");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result; 
+		
+	}
 	
 
 	

@@ -96,7 +96,7 @@ public class CommTipInsertServlet extends HttpServlet {
 			}else { // 실패 => 에러 문구 담아서 에러 페이지 포워딩 
 				
 				request.setAttribute("errorMsg", "게시글 등록을 실패하였습니다.");
-				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);;
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 					
 			}
 			

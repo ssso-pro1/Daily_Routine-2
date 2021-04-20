@@ -103,6 +103,42 @@
 	
 	</entry>
 	
+	<entry key="insertFaq">
+	INSERT 
+	    INTO TB_FAQ
+	        (
+	          FAQ_NO
+	        , USER_NO
+	        , FAQ_CATEGORY
+	        , FAQ_TITLE
+	        , FAQ_CONTENT
+	        , STATUS
+	        )
+	        VALUES 
+	        (
+	           SEQ_FAQNO.NEXTVAL
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         , ?
+	         )
+		
+	
+	</entry>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 필요없음 -->
 	<entry key="faqList">
 	

@@ -13,6 +13,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>관리자 메인 페이지- 좌측 메뉴바</title>
 
     <style>
@@ -214,37 +215,37 @@
 
 
             <!--FAQ 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 500px;">
+            <div id="content_2_4" style="background: white; width: 800px; height: 550px;">
                 <br>
                 <div id="noticeEnroll">
-                    <form action="">
+                    <form action="<%=contextPath %>/ctFaqInsert.ad" method="post">
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
                                     <th>문의유형</th>
                                     <td width=300px>
-                                        <select name="qCategory" id="qCategory" required style="width: 100%;">
-                                            <option id="qCategory" value="0">선택해주세요</option>
-                                            <option name="qCategory" id="qCategory" value="top" >TOP10</option>
-                                            <option name="qCategory" id="qCategory" value="회원정보" >회원정보</option>
-                                            <option name="qCategory" id="qCategory" value="게시글">게시글/댓글</option>
-                                            <option name="qCategory" id="qCategory" value="신고">신고</option>
-                                            <option name="qCategory" id="qCategory" value="기타문의">기타문의</option>
+                                        <select name="fCategory" id="fCategory" required style="width: 100%;">
+                                            <option id="fCategory" value="0">선택해주세요</option>
+                                            <option name="fCategory" id="fCategory" value="top" >TOP10</option>
+                                            <option name="fCategory" id="fCategory" value="userInfo" >회원정보</option>
+                                            <option name="fCategory" id="fCategory" value="content">게시글/댓글</option>
+                                            <option name="fCategory" id="fCategory" value="report">신고</option>
+                                            <option name="fCategory" id="fCategory" value="etc">기타</option>
                                         </select>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="qTitle" id="qTitle" placeholder="제목을 입력해주세요" style="width: 100%;" required maxlength="50"></td>
+                                    <td><input type="text" name="fTitle" id="fTitle" placeholder="제목을 입력해주세요" style="width: 100%;"  maxlength="50" required></td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
                                     <td>
                                         <div>
-                                            <textarea id="qContent" name="qContent" cols="50" rows="20" style="resize: none;" placeholder="내용을 입력하세요 (300자 이내)" required></textarea>
+                                            <textarea id="fContent" name="fContent" cols="50" rows="20" style="resize: none;" placeholder="내용을 입력하세요 (450자 이내)" required></textarea>
                                             <br>
                                         </div>
-                                        <span id="count" name="count">0</span> / 300
+                                        <label style="float: right;"><span id="count" name="count" >0</span> / 450</label>
                                     </td>
                                 </tr>
                             </tbody>
@@ -253,8 +254,8 @@
                                 <tr>
                                     <th>게시여부 선택</th>
                                     <th>
-                                        <input type="checkbox">게시
-                                        <input type="checkbox">보류
+                                        <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
+                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
                                         
                                         <label style="float: right;">
                                         <button type="submit" onclick="return validate();">등록</button>
@@ -266,7 +267,117 @@
 
                         </table>
 
+                        <p align="center"><button onclick="return back();"><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=top">목록으로</a></button></p>
+                        
+                        
+                        
+                        <script>
+                        			function back(){
+                        				var result = confirm("게시글 작성을 취소하시겠습니까?");
+                                    	if(result){
+                                    		
+                                    		return true;
+                                    	} else {
+                                    		
+                                    		return false;
+                                    	}
+                        			}
+                        
+                        
+                        
+                                	
+ 									// 글 제목 50글짜 이상 입력방지 , 알러트
+                                    $(document).ready(function(){
+							            $("#fTitle").on("keyup", function(){
+                                            
+							            	if($(this).val().length>50){
+							                    $(this).val($(this).val().substring(0, 50));
+                                                alert("50자이상 입력하실 수 없습니다.");
+							                }
+							            });
+							        });
 
+									// 글 내용 450자 이상 입력 방지, 알러트
+                                    $(document).ready(function(){
+							            $("#fContent").on("keyup", function(){
+                                            //var inputlength=$(this).val().length;
+                                            //var remain = 450-inputlength;
+
+							                if($(this).val().length>450){
+							                    $(this).val($(this).val().substring(0, 450));
+                                                alert("450자이상 입력하실 수 없습니다.");
+							                }
+							            });
+							        });
+
+                                    
+                                    // 글자수 세기
+                                    $(function(){
+                                        $("#fContent").keyup(function(){
+                                            var inputlength = $(this).val().length;
+                                            $("#count").text(inputlength);
+                                        })
+                                        
+                                    }) 
+                                    
+                                    
+                                    // 글등록 유효성 체크
+                                    function validate(){
+                                    	
+                                    	var fCategory = $("#fCategory").val();
+                                    	var fTitle = document.getElementById("fTitle");
+                                    	var fContent = document.getElementById("fContent");
+                                        
+                                    	var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+                                    	
+                                    	if(fCategory=="0"){
+                                    		alert("문의유형을 선택해주세요");
+                                    		
+                                    		return false;
+                 
+                                    	}
+                                    	
+                                    	
+                                    	
+                                    	if(!regExp.test(fTitle.value)){
+                                    		alert("제목을 입력해주세요");
+                                    	
+                                    		qTitle.value="";
+                                    		qTitle.focus();
+                                    		
+                                    		return false;
+                                    	}
+                                    	
+                                    	
+                                        
+                                    	if(!regExp.test(fContent.value)){ 
+                                    		alert("내용을 입력해주세요");
+                                    	
+                                    		fContent.value="";
+                                    		fContent.focus();
+                                    		
+                                    		return false;
+                                    	}
+                                    	
+                                        
+
+                                    	
+                                    	var result = confirm("글을 등록하시겠습니까?");
+                                    	if(result){
+                                    		
+                                    		
+                                    	} else {
+                                    		alert("게시글 등록이 취소되었습니다");
+                                    		return false;
+                                    	}
+
+                                        
+                                    
+                                    }
+                                    
+                               </script>
+
+                               
 
 
                     </form>

@@ -1,7 +1,9 @@
 package com.dr.admin.center.model.service;
 
 import static com.dr.common.JDBCTemplate.close;
+import static com.dr.common.JDBCTemplate.commit;
 import static com.dr.common.JDBCTemplate.getConnection;
+import static com.dr.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -9,6 +11,7 @@ import java.util.ArrayList;
 import com.dr.admin.center.model.dao.adCenterDao;
 import com.dr.admin.center.model.vo.adCenterFaq;
 import com.dr.common.model.vo.PageInfo;
+import com.dr.member.center.model.dao.CenterDao;
 
 public class adCenterService {
 
@@ -43,8 +46,7 @@ public class adCenterService {
 		return f;
 	}
 
-
-
+	
 	/*
 	public int faqIncreaseCount(int faqNo) { // faq조회수 증가
 		Connection conn = getConnection();
@@ -52,6 +54,24 @@ public class adCenterService {
 	}
 	
 	*/
+
+
+	public int insertFaq(adCenterFaq f) { // faq글 등록하기
+		Connection conn = getConnection();
+		
+		int result = new adCenterDao().insertFaq(conn, f);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		return result;
+	}
+
+
+
+	
 
 
 

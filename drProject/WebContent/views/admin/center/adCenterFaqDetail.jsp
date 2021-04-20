@@ -227,18 +227,30 @@
                                 </tr>
                                 <tr>
                                     <th>문의유형</th>
-                                    <td colspan="3"><%=f.getFaqCategory() %></td>
+                                    <td colspan="3">
+                                     	<% if(f.getFaqCategory().equals("top")) { %>
+	                                		<label>TOP10</label>
+	                                	<% } else if (f.getFaqCategory().equals("userInfo")) { %>
+	                                		<label>회원정보</label>
+	                                	<% } else if (f.getFaqCategory().equals("content")) { %>
+	                                		<label>게시글/댓글</label>
+	                                	<% } else if (f.getFaqCategory().equals("report")) { %>
+	                                		<label>신고</label>
+	                                	<% } else if (f.getFaqCategory().equals("etc")) { %>
+	                                		<label>기타</label>
+	                                	<% } %>
+                                    </td>
                                 </tr>
                                 
                                 <tr>
                                     <th>제목</th>
-                                    <td colspan="3"><%=f.getFaqTitle() %></td>
+                                    <td colspan="3"><%= f.getFaqTitle() %></td>
                                 </tr>
                                 <tr>
                                     <th>게시여부</th>
                                     <td>
-                                        <input type="checkbox" name="status" id="Y" value="Y">게시
-                                        <input type="checkbox" name="status" id="N" value="N">보류
+                                        <input type="radio" id="statusY" name="status" value="Y"><label for="statusY" readonly>게시</label>
+                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN" readonly>보류</label>
                                     </td>
                                     <th>마지막 수정일</th>
                                     <!-- 수정일이 없으면 작성일 나오도록 -->
@@ -251,7 +263,7 @@
                                 <tr>
                                     <th>내용</th>
                                     <td colspan="3">
-                                    	<textarea name="noticeContent" cols="50" rows="20" style="resize: none;"><%=f.getFaqContent() %>
+                                    	<textarea name="noticeContent" cols="50" rows="20" style="resize: none;" readonly><%=f.getFaqContent() %>
                                     	</textarea>
                                     </td>
                                 </tr>
@@ -279,7 +291,7 @@
 								
 								// 체크박스인 input요소들에 순차적으로 접근하면서
 								// 해당 그 input요소의 value값이 interest에 포함되어있을 경우 => 해당 input요소에 checked속성 부여
-								$("input[type=checkbox]").each(function(){
+								$("input[type=radio]").each(function(){
 									if(status.search($(this).val()) != -1){
 										$(this).attr("checked", true);
 									}

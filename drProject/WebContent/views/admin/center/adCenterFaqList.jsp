@@ -10,6 +10,7 @@
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<adCenterFaq> list =(ArrayList<adCenterFaq>)request.getAttribute("list"); 
 	
+	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
@@ -228,10 +229,10 @@
                         <tr>
                             <th></th>
                             <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">자주찾는 질문 TOP10 </a>|</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=회원정보">회원정보</a>|</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=게시글">게시글/댓글</a> |</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=신고">신고</a> |</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=기타">기타</a></th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=userInfo">회원정보</a>|</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=content">게시글/댓글</a> |</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=report">신고</a> |</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=etc">기타</a></th>
                         </tr>
                     </table>
 
@@ -261,9 +262,21 @@
             					<% for (adCenterFaq n:list) { %>
                          
                             <tr>
-                                <td><input type="checkbox"></td>
+                                <th><input type="checkbox"></th>
                                 <td><%= n.getFaqNo() %></td>
-                                <td><%= n.getFaqCategory() %></td>
+                                <td>
+                                	<% if(n.getFaqCategory().equals("top")) { %>
+                                		<label>TOP10</label>
+                                	<% } else if (n.getFaqCategory().equals("userInfo")) { %>
+                                		<label>회원정보</label>
+                                	<% } else if (n.getFaqCategory().equals("content")) { %>
+                                		<label>게시글/댓글</label>
+                                	<% } else if (n.getFaqCategory().equals("report")) { %>
+                                		<label>신고</label>
+                                	<% } else if (n.getFaqCategory().equals("etc")) { %>
+                                		<label>기타</label>
+                                	<% } %>
+                                </td>
                                 <td><%=n.getFaqTitle() %></td>
                                 <td><%=n.getUserId() %></td>
                                 <td><%=n.getStatus() %></td>
@@ -277,8 +290,8 @@
              
              		<script>
 				    	$(function(){
-							$(".listArea>tbody>tr").click(function(){
-								location.href = '<%=contextPath%>/ctFaqDetail.ad?fno=' + $(this).children().eq(1).text();			
+							$(".listArea>tbody>tr>td").click(function(){
+								location.href = '<%=contextPath%>/ctFaqDetail.ad?fno=' + $(this).siblings().eq(1).text();			
 								
 							})
 				    	})
@@ -335,9 +348,9 @@
                         </form>
 					 -->	
                     
-                        <div>
+                        <div align="center" class="buttonArea">
                             <br>
-                            <button>새 글 등록</button>
+                            <button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
                             <button>선택 삭제</button>
 
                         </div>

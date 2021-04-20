@@ -131,8 +131,6 @@ public class adCenterDao {
 	}
 
 
-
-
 	/*
 	
 	public int faqIncreaseCount(Connection conn, int faqNo) {
@@ -157,7 +155,29 @@ public class adCenterDao {
 	*/
 
 
-	
+	public int insertFaq(Connection conn, adCenterFaq f) { // faq글 등록
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertFaq");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, f.getUserNo());
+			pstmt.setString(2, f.getFaqCategory());
+			pstmt.setString(3, f.getFaqTitle());
+			pstmt.setString(4, f.getFaqContent());
+			pstmt.setString(5, f.getStatus());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		} return result;
+	}
+
 		
 		
 }

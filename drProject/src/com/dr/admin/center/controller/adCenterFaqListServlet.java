@@ -38,7 +38,7 @@ public class adCenterFaqListServlet extends HttpServlet {
 		String category = request.getParameter("ctg"); //클릭되어 전달된 카테고리 명
 		
 		// 페이징
-		
+		int allCount;
 		int listCount;		
 		int currentPage;	
 		int pageLimit;		
@@ -48,7 +48,7 @@ public class adCenterFaqListServlet extends HttpServlet {
 		int startPage;		
 		int endPage;		
 						
-				
+			
 		listCount = new adCenterService().faqSelectListCount(category); // 각자카테고리에 들어있는 리스트 수
 						
 				

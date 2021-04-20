@@ -201,7 +201,20 @@
                     <% for(CenterFaq f:searchList){ %>	
                     
                     <div class="faqList">
-                        <label>[<%= f.getFaqCategory() %>]</label>
+                        <label>[
+                        <% if(f.getFaqCategory().equals("top")) { %>
+                                		TOP10
+                        <% } else if (f.getFaqCategory().equals("userInfo")) { %>
+                                		회원정보
+                        <% } else if (f.getFaqCategory().equals("content")) { %>
+                                		게시글/댓글
+                        <% } else if (f.getFaqCategory().equals("report")) { %>
+                                		신고
+                        <% } else if (f.getFaqCategory().equals("etc")) { %>
+                                		기타
+                        <% } %>
+                        
+                        ]</label>
                         <label id="faqTitle"><%= f.getFaqTitle() %></label>
                     </div>
                      <div class="faqContent">

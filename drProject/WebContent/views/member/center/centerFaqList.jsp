@@ -176,11 +176,11 @@
                 <table>
                     <tr>
                         <th></th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">자주찾는 질문 TOP10 |</a></th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=회원정보">회원정보|</a></th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=게시글">게시글/댓글</a> |</th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=신고">신고</a> |</th>
-                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=기타">기타</a></th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">자주찾는 질문 TOP10 </a>|</th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=userInfo">회원정보 </a>|</th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=content">게시글/댓글 </a> |</th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=report">신고 </a>|</th>
+                        <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=etc">기타</a></th>
                     </tr>
                 </table>
                 <div class="underLine"></div>
@@ -197,16 +197,29 @@
                     <p>존재하는 게시글이 없습니다 </p>
                     
                     <% } else { %>
-                    <% for(CenterFaq f:list){ %>	
+                     <% for(CenterFaq f:list){ %>	
                     
                     <div class="faqList">
-                        <label>[<%= f.getFaqCategory() %>]</label>
+                        <label>[
+                        <% if(f.getFaqCategory().equals("top")) { %>
+                                		TOP10
+                        <% } else if (f.getFaqCategory().equals("userInfo")) { %>
+                                		회원정보
+                        <% } else if (f.getFaqCategory().equals("content")) { %>
+                                		게시글/댓글
+                        <% } else if (f.getFaqCategory().equals("report")) { %>
+                                		신고
+                        <% } else if (f.getFaqCategory().equals("etc")) { %>
+                                		기타
+                        <% } %>
+                        
+                        ]</label>
                         <label id="faqTitle"><%= f.getFaqTitle() %></label>
                     </div>
                      <div class="faqContent">
                         <p><%= f.getFaqContent() %></p>
                     </div>
-    				<% } %>
+    				 <% } %>
                     <% } %>
     
                     <!--  

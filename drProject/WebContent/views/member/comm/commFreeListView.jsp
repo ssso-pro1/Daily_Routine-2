@@ -172,7 +172,7 @@
                		 	<div align="center" class="pagingArea">
                		 
                    	 		<% if(currentPage != 1) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage-1%>';"><</button>
+		                    	<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%=currentPage-1%>';"><</button>
 		                	<% } %>
 		                    
 		                	<% for(int p=startPage; p<=endPage; p++) { %>
@@ -180,13 +180,13 @@
 		                    	<% if(currentPage == p) { %>
 		                    		<button disabled><%= p %></button>
 		                    	<% }else { %>
-		                    		<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%= p %>';"><%= p %></button>
+		                    		<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%= p %>';"><%= p %></button>
 		                   		<% } %>
 		                    	
 		                	<% } %>
 		                    
 		                	<% if(currentPage != maxPage) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage+1%>';">></button>
+		                    	<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%=currentPage+1%>';">></button>
 		                	<% } %>
 		                
                 	 	</div>
@@ -195,12 +195,12 @@
             		
             		
             		 	<div align="center" class="searchArea">
-		                	<form action="<%=contextPath%>/tipSearch.co?currentPage=1" method="post">
-			                	<select name="searchTip">
-			                   		<option name="searchTip" value="제목">제목</option>
-			                   		<option name="searchTip" value="내용">내용</option>
+		                	<form action="<%=contextPath%>/freeSearch.co?currentPage=1" method="post">
+			                	<select name="searchFree">
+			                   		<option name="searchFree" value="제목">제목</option>
+			                   		<option name="searchFree" value="내용">내용</option>
 			                 	</select>
-	                         	<input type="text" name="searchTipText">
+	                         	<input type="text" name="searchFreeText">
 		                   	 	<button type="submit">검색</button>
 		                  	 	<a href="<%=contextPath%>/freeEnroll.co">글쓰기</a>
 		              		</form>

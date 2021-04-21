@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User, com.dr.admin.center.model.vo.adCenterQuery"%>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
+	
+	adCenterQuery q = (adCenterQuery)request.getAttribute("q");
 %>   
 
 <!DOCTYPE html>
@@ -216,68 +218,218 @@
 
             <!--1:1문의 디테일/ 답변하기폼-->
             <div id="content_2_4" style="background: white;">
-               <div class="queryDetailArea" align="center">
-                    <table border="1" class="queryArea">
-                        <tr>
-                            <th>아이디</th>
-                            <td>apple1234</td>
-                        </tr>
-                        <tr>
-                            <th>작성일</th>
-                            <td>2021-04-20</td>
-                        </tr>
-                        <tr>
-                            <th>문의유형</th>
-                            <td>회원정보</td>
-                        </tr>
-                        <tr>
-                            <th>문의내용</th>
-                            <td>
-                                <textarea name="" id="" cols="30" rows="10">
-                                    회원탈퇴해주라
-                                </textarea>
-                            </td>
-                        </tr>
-                    </table>
-                    <table border="1" class="replyArea">
-                        <tr>
-                            <th>처리상태</th>
-                            <td>처리중</td>
-                        </tr>
-                        <tr>
-                            <th>답변내용</th>
-                            <td>
-                                <textarea name="" id="" cols="30" rows="10">
-                                    답변내용입력쓰
-                                </textarea>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td colspan="2" align="right">
-                                <!--처리상태가 처리완료일때-->
-                                <!--
-                                <button>수정</button>
-                                <button>삭제</button>
-                                <button>취소</button>
-                                -->
-
-                                <!-- 처리상태가 처리중일때-->
-                                <button>등록</button>
-                                <button>삭제</button>
-                                <button>취소</button>
-                                
-                            </td>
-                        </tr>
-                    </table>
-               
+                <div class="queryDetailArea" align="center">
+                     <table border="1" class="queryArea">
+                         <tr>
+                             <th>아이디</th>
+                             <td><%=q.getUserId() %></td>
+                             <th>문의 여부</th>
+                             <td>
+                             	<%if(q.getQueryStatus().equals("Y")) { %>
+                            	 <label>문의중</label>
+                            	<% } else {%>
+                             	 <label>삭제된 문의글</label>
+                             	<% } %>
+                             </td>
+                         </tr>
+                         
+                         <tr>
+                             <th>문의유형</th>
+                             <td><%=q.getQueryCategory() %></td>
+                             <th>문의작성일</th>
+                             <td><%=q.getQueryCreateDate() %></td>
+                         </tr>
+                         <tr>
+                             <th>문의제목</th>
+                             <td colspan="3"><%=q.getQueryTitle() %></td>
+                         </tr>
+                         <tr>
+                             <th>문의내용</th>
+                             <td colspan="3">
+                                 <textarea name="" id="" cols="30" rows="10" readonly><%=q.getQueryContent() %></textarea>
+                             </td>
+                         </tr>
+                     </table>
+                 </div>    
+                  
+                  
+                 <div class="queryReplyArea" align="center">    
+                     
+                     <!-- 답변 수정, 등록 가능한 폼 -->
+                     <form action="<%= contextPath %>/ctQueryReplyUpdate.ad" method="post" >
+                     <input type="hidden" name="qno" value="<%= q.getQueryNo() %>">
+                     
+                     <table border="1" class="replyArea">
+                     
+                     <!-- 답변 완료시 -->
+                        <% if(q.getReplyStatus().equals("Y")) { %>
                         
+	                       <tr>
+	                            <th>처리상태</th>
+	                            <td>답변완료</td>
+	                            <th>답변등록일</th>
+	                            <td><%= q.getReplyDate() %></td>
+	                        </tr>
+	                        <tr>
+	                            <th>답변내용</th>
+	                            <td colspan="3">
+	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="30" rows="10"><%= q.getReplyContent() %></textarea>
+	                            	<label style="float: right;"><span id="count" name="count" >0</span> / 450</label>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                            <td colspan="4" align="right">
+	                                <button type="submit" onclick="return validate()">수정</button>
+	                                <button>삭제</button>
+	                                <button onclick="return back();"><a href="<%=contextPath %>/ctQuery.ad?currentPage=1">취소</a></button>
+	                            </td>
+	                        </tr>
+                       
+                       	<!-- 답변 처리중일때 -->
+                        <% } else if (q.getReplyStatus().equals("N")){ %>
+	                        <tr>
+	                            <th>처리상태</th>
+	                            <td>답변대기</td>
+	                            <th>답변등록일</th>
+	                            <td></td>
+	                        </tr>
+	                        <tr>
+	                            <th>답변내용</th>
+	                            <td colspan="3">
+	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="30" rows="10"></textarea>
+	                            	<label style="float: right;"><span id="count" name="count" >0</span> / 450</label>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                            <td colspan="4" align="right">
+	                                <button type="submit" onclick="return validate()">답변등록</a></button>
+	                                <button>삭제</button>
+	                                <button onclick="return back();"><a href="<%=contextPath %>/ctQuery.ad?currentPage=1">취소</a></button>
+	                            </td>
+	                        </tr>
+	                   
+	                   <!-- 회원이 삭제한 게시글일때 -->
+	                   <% } else { %>
+	                   		<tr>
+	                            <th>처리상태</th>
+	                            <td>
+	                            <%if(q.getReplyContent() != null){ %>
+	                           	<label>답변완료</label>
+	                            <% } else { %>
+	                            <label>답변대기</label>
+	                            <% } %>
+	                            </td>
+	                            <th>답변등록일</th>
+	                            <td><%=q.getReplyDate() %></td>
+	                        </tr>
+	                        <tr>
+	                            <th>답변내용</th>
+	                            <td colspan="3">
+	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="30" rows="10"><%=q.getReplyContent() %></textarea>
+	                            </td>
+	                        </tr>
+	                        <tr>
+	                            <td colspan="4" align="right">
+	                                <button>삭제</button>
+	                                <button onclick="return back();"><a href="<%=contextPath %>/ctQuery.ad?currentPage=1">취소</a></button>
+	                            </td>
+	                        </tr>
+	                   
+	                   <% }  %>
+	                   
+                   </table>
+                    			<script>
+                        			function back(){
+                        				var result = confirm("현재 페이지에서 나가시겠습니까?");
+                                    	if(result){
+                                    		
+                                    		return true;
+                                    	} else {
+                                    		
+                                    		return false;
+                                    	}
+                        			}
+                        
+                        
+                        
+									// 글 내용 450자 이상 입력 방지, 알러트
+                                    $(document).ready(function(){
+							            $("#queryReplyContent").on("keyup", function(){
+                                            //var inputlength=$(this).val().length;
+                                            //var remain = 450-inputlength;
+
+							                if($(this).val().length>450){
+							                    $(this).val($(this).val().substring(0, 450));
+                                                alert("450자이상 입력하실 수 없습니다.");
+							                }
+							            });
+							        });
+
+                                    
+                                    // 글자수 세기
+                                    $(function(){
+                                        $("#queryReplyContent").keyup(function(){
+                                            var inputlength = $(this).val().length;
+                                            $("#count").text(inputlength);
+                                        })
+                                        
+                                    }) 
+                                    
+                                    
+                                    // 글등록 유효성 체크
+                                    function validate(){
+                                    	
+                                    	var queryReplyContent = document.getElementById("queryReplyContent");
+                                    	var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+                                    	
+                                    	
+                                    	
+                                    	if(!regExp.test(queryReplyContent.value)){
+                                    		alert("제목을 입력해주세요");
+                                    	
+                                    		queryReplyContent.value="";
+                                    		queryReplyContent.focus();
+                                    		
+                                    		return false;
+                                    	}
+                                    	
+                                    	
+                                       
+
+                                    	
+                                    	var result = confirm("답변을 등록/수정 하시겠습니까?");
+                                    	if(result){
+                                    		alert("답변이 등록/수정 되었습니다");
+                                    		
+                                    	} else {
+                                    		alert("취소되었습니다");
+                                    		return false;
+                                    	}
+
+                                        
+                                    
+                                    }
+                                    
+                               </script>
+                   
+                   
+                   
+                   
+                   
+                   
+                   </form>
+                   
+                   
+                   
+                   
+                   
+                   
+                   
+                   
                 </div>
 			</div>    
 
-            
-
         </div>
-
 
 
 

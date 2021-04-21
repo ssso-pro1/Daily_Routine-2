@@ -424,6 +424,72 @@ public class adCenterDao {
 	}
 
 
+
+
+
+	public adCenterQuery selectQuery(Connection conn, int queryNo) { // 글번호로 문의내역 디테일조회
+		adCenterQuery q = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectQuery");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, queryNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				q = new adCenterQuery(rset.getInt("QUERY_NO"),
+									  rset.getString("QUERY_CATEGORY"),
+									  rset.getString("QUERY_TITLE"),
+									  rset.getString("QUERY_CONTENT"),
+								      rset.getDate("QUERY_CREATE_DATE"),
+								      rset.getString("QUERY_STATUS"),
+									  rset.getString("REPLY_STATUS"),
+									  rset.getString("REPLY_CONTENT"),
+									  rset.getDate("REPLY_DATE"),
+									  rset.getString("USER_ID"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return q;
+	}
+
+
+
+
+
+	public int queryReplyUpdate(Connection conn, int queryNo, String replyContent) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("queryReplyUpdate");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, replyContent);
+			pstmt.setInt(2, queryNo);
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+		
+		
+	
+
+
+
 		
 		
 }

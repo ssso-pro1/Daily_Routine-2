@@ -4,7 +4,7 @@
 
 	<!-- faq 게시판 -->
 	
-	<!-- faq글번호 조회 (게시여부 Y/N모두 -->
+	<!-- faq글번호 조회 (게시여부 Y/N모두) -->
 	<entry key="faqSelectListCount">
 	SELECT COUNT(*) LISTCOUNT
 	FROM TB_FAQ
@@ -370,11 +370,11 @@
 	<!-- 1:1문의 게시판 -->
 	
 	
-	<!--  처리중,처리완료 모두-->
+	<!--  답변상태 처리중,처리완료 모두 / 삭제된글까지-->
 	<entry key="queryListCount"> 
 	SELECT COUNT(*) LISTCOUNT
 	FROM TB_QUERY
-	WHERE reply_status IN ('Y', 'N')
+	WHERE reply_status IN ('Y', 'N', 'D')
 	  AND QUERY_STATUS= 'Y'
 	
 	</entry>
@@ -397,8 +397,8 @@
 		                     
 		                  FROM TB_QUERY Q
 		                  JOIN TB_USER USING(USER_NO)
-		                 WHERE reply_status IN ('Y', 'N')
-		                   AND QUERY_STATUS= 'Y'
+		                 WHERE reply_status IN ('Y', 'N', 'D')
+		                   
 		                 ORDER BY
 		                    QUERY_NO DESC
 		               ) A
@@ -410,12 +410,12 @@
 	
 	
 	
-	<!-- 처리완료/처리중 따로 -->
+	<!-- 답변상태 처리완료/처리중 따로 + 회원이 삭제한글 -->
 	<entry key="querySelectListCount">
 	SELECT COUNT(*) LISTCOUNT
 	FROM TB_QUERY
 	WHERE reply_status = ?
-	  AND QUERY_STATUS= 'Y'
+	  
   	
 	
 	</entry>
@@ -439,7 +439,7 @@
 		                  FROM TB_QUERY Q
 		                  JOIN TB_USER USING(USER_NO)
 		                 WHERE reply_status = ?
-		                   AND QUERY_STATUS= 'Y'
+		                   
 		                 ORDER BY
 		                    QUERY_NO DESC
 		               ) A
@@ -448,6 +448,44 @@
 		 
 		 
 	</entry>
+	
+	<!-- 글번호로 문의내역 디테일 내역조회 -->
+	<!-- 문의내역 데이터 전부뽑아넣기 -->
+	<entry key="selectQuery">
+	  SELECT
+		     QUERY_NO
+		   , QUERY_CATEGORY
+		   , QUERY_TITLE
+		   , QUERY_CONTENT
+		   , QUERY_CREATE_DATE
+           , QUERY_STATUS
+           , REPLY_STATUS
+           , REPLY_CONTENT
+           , REPLY_DATE
+           , USER_ID
+	   FROM TB_QUERY F
+       JOIN TB_USER USING(USER_NO)
+       WHERE QUERY_NO = ?
+	
+	</entry>
+	
+	<entry key="queryReplyUpdate">
+		UPDATE TB_QUERY
+		   SET  REPLY_CONTENT = ?
+		      , REPLY_STATUS = 'Y'
+		      , REPLY_DATE = SYSDATE
+	     WHERE QUERY_NO = ?
+	       AND QUERY_STATUS = 'Y'
+	
+	</entry>
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<entry key="insertQuery">

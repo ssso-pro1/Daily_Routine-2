@@ -10,6 +10,7 @@ public class adCenterQuery {
 	private String queryTitle;
 	private String queryContent;
 	private Date queryCreateDate;
+	private String queryStatus;
 	private String replyStatus;
 	private String replyContent;
 	private Date replyDate;
@@ -33,13 +34,7 @@ public class adCenterQuery {
 	}
 	
 	
-	
 
-	
-
-	
-
-	
 	public adCenterQuery(int queryNo, String queryCategory, String queryTitle, Date queryCreateDate, String replyStatus,
 			Date replyDate, String userId) {
 		super();
@@ -48,6 +43,26 @@ public class adCenterQuery {
 		this.queryTitle = queryTitle;
 		this.queryCreateDate = queryCreateDate;
 		this.replyStatus = replyStatus;
+		this.replyDate = replyDate;
+		this.userId = userId;
+	}
+	
+	
+
+	
+
+	public adCenterQuery(int queryNo, String queryCategory, String queryTitle, String queryContent,
+			Date queryCreateDate, String queryStatus, String replyStatus, String replyContent, Date replyDate,
+			String userId) {
+		super();
+		this.queryNo = queryNo;
+		this.queryCategory = queryCategory;
+		this.queryTitle = queryTitle;
+		this.queryContent = queryContent;
+		this.queryCreateDate = queryCreateDate;
+		this.queryStatus = queryStatus;
+		this.replyStatus = replyStatus;
+		this.replyContent = replyContent;
 		this.replyDate = replyDate;
 		this.userId = userId;
 	}
@@ -100,6 +115,14 @@ public class adCenterQuery {
 		this.queryCreateDate = queryCreateDate;
 	}
 
+	public String getQueryStatus() {
+		return queryStatus;
+	}
+
+	public void setQueryStatus(String queryStatus) {
+		this.queryStatus = queryStatus;
+	}
+
 	public String getReplyStatus() {
 		return replyStatus;
 	}
@@ -123,15 +146,6 @@ public class adCenterQuery {
 	public void setReplyDate(Date replyDate) {
 		this.replyDate = replyDate;
 	}
-	
-	
-	
-	public adCenterQuery(String userId) {
-		super();
-		this.userId = userId;
-	}
-	
-	
 
 	public String getUserId() {
 		return userId;
@@ -145,13 +159,8 @@ public class adCenterQuery {
 	public String toString() {
 		return "adCenterQuery [queryNo=" + queryNo + ", userNo=" + userNo + ", queryCategory=" + queryCategory
 				+ ", queryTitle=" + queryTitle + ", queryContent=" + queryContent + ", queryCreateDate="
-				+ queryCreateDate + ", replyStatus=" + replyStatus + ", replyContent=" + replyContent + ", replyDate="
-				+ replyDate + ", userId=" + userId + "]";
+				+ queryCreateDate + ", queryStatus=" + queryStatus + ", replyStatus=" + replyStatus + ", replyContent="
+				+ replyContent + ", replyDate=" + replyDate + ", userId=" + userId + "]";
 	}
-
-	
-	
-	
-	
-	
 }
+	

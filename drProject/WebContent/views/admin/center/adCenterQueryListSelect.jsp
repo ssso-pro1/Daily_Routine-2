@@ -229,8 +229,9 @@
                         <tr>
                             <th></th>
                             <th><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">전체보기 </a>|</th>
-                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=N">처리중</a> |</th>
-                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=Y">처리완료</a> |</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=N">답변대기</a> |</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=Y">답변완료</a> |</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=D">회원삭제 글</a> |</th>
                         </tr>
                     </table>
 
@@ -245,7 +246,7 @@
                                  <th width="40" style="color:black">글번호</th>
                                  <th width="40" style="color:black">문의유형</th>
                                  <th width="200" style="color:black">제목</th>
-                                 <th width="50">게시자</th>
+                                 <th width="50">회원아이디</th>
                                  <th width="60">처리상태</th>
                                  <th width="60">게시일</th>
                              </tr>
@@ -265,7 +266,15 @@
                                 <td><%= q.getQueryCategory() %></td>
                                 <td><%= q.getQueryTitle() %></td>
                                 <td><%= q.getUserId() %></td>
-                                <td><%= q.getReplyStatus() %></td>
+                                <td>
+                                <% if(q.getReplyStatus().equals("Y")){ %>
+                                <label style="color: black; font-weight: 600;">답변완료</label>
+                                <% } else if (q.getReplyStatus().equals("N")){ %>
+                                <label style="color: red; font-weight: 600;">답변대기</label>
+                                <% } else {%>
+                                <label style="color: green; font-weight: 600;">삭제글</label>
+                                <% } %>
+                                </td>
                                 <td><%= q.getQueryCreateDate() %></td>
                             </tr>
 								<% } %>
@@ -275,9 +284,9 @@
                     </table>
              
              		<script>
-				    	$(function(){
-							$(".listArea>tbody>tr").click(function(){
-								location.href = '<%=contextPath%>/noticeDetail.ct?nno=' + $(this).children().eq(0).text();			
+	             		$(function(){
+							$(".listArea>tbody>tr>td").click(function(){
+								location.href = '<%=contextPath%>/ctQueryDetail.ad?qno=' + $(this).siblings().eq(1).text();			
 								
 							})
 				    	})

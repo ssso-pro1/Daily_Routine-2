@@ -165,6 +165,33 @@ public class adCenterService {
 
 
 
+
+	public adCenterQuery selectQuery(int queryNo) {
+		Connection conn = getConnection();
+		
+		adCenterQuery q = new adCenterDao().selectQuery(conn, queryNo);
+		close(conn);
+		return q;
+	}
+
+
+
+
+	public int queryReplyUpdate(int queryNo, String replyContent) {
+		Connection conn = getConnection();
+		
+		int result = new adCenterDao().queryReplyUpdate(conn, queryNo, replyContent);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}return result;
+		
+	}
+
+
+
 	
 
 

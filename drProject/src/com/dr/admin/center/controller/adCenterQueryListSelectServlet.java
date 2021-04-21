@@ -35,7 +35,7 @@ public class adCenterQueryListSelectServlet extends HttpServlet {
 		
 		// 문의내역 리스트로 보낼것
 		// 페이징 처리해서
-		// 전체, 처리중, 처리완료로
+		// 처리중, 처리완료 + 회원삭제글
 		
 		request.setCharacterEncoding("utf-8");
 		String reStatus = request.getParameter("reStatus"); //클릭되어 전달된 reply_status // 처리중

@@ -324,9 +324,10 @@
 	
 	<entry key="deleteQuery">
 	
-	UPDATE TB_QUERY
-	SET QUERY_STATUS = 'N'
-	WHERE QUERY_NO = ?
+	 UPDATE TB_QUERY
+	    SET QUERY_STATUS = 'N'
+	      , REPLY_STATUS = 'D'
+	  WHERE QUERY_NO = ?
 	
 	
 	</entry>

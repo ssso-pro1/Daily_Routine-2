@@ -149,6 +149,13 @@
                                 <button type="reset">취소</button>
                             </div>
 
+							 <script>
+                 		    
+                 		    	// 유효성 체크 
+                 		    	
+                 		     </script>
+                 		    
+                 		    
                         </form>  
                     </div>
                 </div>

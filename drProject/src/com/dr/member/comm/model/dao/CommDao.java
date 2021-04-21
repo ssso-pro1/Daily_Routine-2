@@ -488,6 +488,61 @@ public class CommDao {
 	
 	}
 	
+	public CommFile selectCommFreeFile(Connection conn, int commPostNo) {
+		// select문 => ResultSet객체 
+		CommFile cf = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; 
+		String sql = prop.getProperty("selectCommFreeFile"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				cf = new CommFile();
+				cf.setFileNo(rset.getInt("file_no"));
+				cf.setFileName(rset.getString("file_name"));
+				cf.setFileUpdate(rset.getString("file_update"));
+				cf.setFilePath(rset.getString("file_path"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt); 
+		}
+		
+		return cf;		
+		
+	} 
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -558,37 +613,8 @@ public class CommDao {
 		
 	}
 	
-	public CommFile selectCommFreeFile(Connection conn, int commPostNo) {
-		// select문 => ResultSet객체 
-		CommFile cf = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null; 
-		String sql = prop.getProperty("selectCommFreeFile"); 
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, commPostNo);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				cf = new CommFile();
-				cf.setFileNo(rset.getInt("file_no"));
-				cf.setFileName(rset.getString("file_name"));
-				cf.setFileUpdate(rset.getString("file_update"));
-				cf.setFilePath(rset.getString("file_path"));
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt); 
-		}
-		
-		return cf;		
-		
-	} 
+	
+	
 	
 
 	

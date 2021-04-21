@@ -135,10 +135,10 @@
                         <table border="1" height="100%">
                             <tr align="center">
                                 <td  width="5%"><%=c.getCommPostNo()%></td>
-                                <td  width="70%"><%=c.getPostTitle()%></td>
-                                <td  width="15%"><%=c.getUserNo()%>님</td>
+                                <td  width="58%"><%=c.getPostTitle()%></td>
+                                <td  width="10%"><%=c.getUserNo()%>님</td>
                                 <td width="15%"><%=c.getEnrollDate()%></td>
-                                <td  width="10%">조회수 : <%=c.getBoardView()%></td>
+                                <td  width="12%">조회수 : <%=c.getBoardView()%></td>
                             </tr>
                             <tr>
                                 <td colspan="5" height="70%">

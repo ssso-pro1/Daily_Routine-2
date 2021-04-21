@@ -123,30 +123,30 @@
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체 회원 조회 </a></div>
-                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
+                    <div><a href="<%=contextPath%>/">전체 회원 조회 </a></div>
+                    <div><a href="">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
+                    <div><a href="">HomeTraining</a></div> 
+                    <div><a href="">Info&Tip</a></div> 
                     <br>
                 </div>
 
                 <div class="content_1_3">
                     <h2>고객센터</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">공지사항</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">FAQ</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">1:1문의</a></div> 
+                    <div><a href="">공지사항</a></div> 
+                    <div><a href="">FAQ</a></div> 
+                    <div><a href="">1:1문의</a></div> 
                     <br>
                 </div>
 
                 <div class="content_1_4">
                     <h2>신고관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체신고보기</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">블랙리스트</a></div> 
+                    <div><a href="">전체신고보기</a></div> 
+                    <div><a href="">블랙리스트</a></div> 
                 </div>
             </div>
 

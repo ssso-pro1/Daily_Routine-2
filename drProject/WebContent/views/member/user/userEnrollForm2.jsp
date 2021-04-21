@@ -4,10 +4,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!-- 유효성검사 resource -->
+    <link rel="stylesheet" type="text/javascript" href="../../../resources/js/userEnrollForm.js"/>
+
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3.회원가입_2.회원정보입력</title>
+    <title>회원가입_2.회원정보입력</title>
         
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -103,7 +107,7 @@
                     <th><button type="button" onclick="idCheck();">중복확인</button></th>
                 </tr>
                 <tr>
-                    <td colspan="3" id="msg1">5~30자의 영문,소문자,숫자와 특수기호(_)(-)만 사용가능합니다.</td>
+                    <td colspan="3" id="msg1">5~20자의 영문,소문자,숫자만 사용가능합니다.</td>
                 </tr>
                 
                 <tr>
@@ -176,7 +180,8 @@
                 <tr>
                     <th colspan="3">
                         <div class="btn">
-                            <button type="submit" class="btn btn-warning" disabled>가입하기</button>
+                            <!-- 유효성검사 -->
+                            <button type="submit" class="btn btn-warning" disabled onclick="return validate();">회원가입</button>
                         </div>
                     </th>
                 </tr>
@@ -222,6 +227,10 @@
             })
             
     }
+    
+
+
+    
     
     </script>
 

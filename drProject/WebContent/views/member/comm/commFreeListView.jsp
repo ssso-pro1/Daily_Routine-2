@@ -201,7 +201,7 @@
 			                 	</select>
 	                         	<input type="text" name="searchTipText">
 		                   	 	<button type="submit">검색</button>
-		                  	 	<a href="<%=contextPath%>/tipEnroll.co">글쓰기</a>
+		                  	 	<a href="<%=contextPath%>/freeEnroll.co">글쓰기</a>
 		              		</form>
 		             	</div><br><br>
    

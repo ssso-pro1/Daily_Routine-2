@@ -1,11 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.Comm"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <style>
     div{
         box-sizing:border-box
@@ -46,7 +45,7 @@
     }
 
     #content_2_1{height:15%;}
-    #content_2_2{height:60%; margin-left:48px;}
+    #content_2_2{height:70%; margin-left:48px;}
     
     #enrollForm input, #enrollForm textarea{
         width:100%;
@@ -63,7 +62,11 @@
     div>button{
         cursor:pointer;
     }
+    .leftMenu>#menu3>a{
+    	color:rgb(250, 214, 9);
+    }
 </style>
+</head>
 <body>
 
     <%@ include file="../../common/menubar.jsp"%>
@@ -77,11 +80,11 @@
             <div id="content_1">
                 <h1>커뮤니티</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/workoutTip.co">나만의 운동 Tip!</a></div>
+                    <div><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/free.co">자유게시판</a></div>
+                    <div><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">질문게시판</a></div>
+                    <div id="menu3"><a href="<%=contextPath%>/question.co?currentPage=1">질문게시판</a></div>
                 </div>
             </div>
 
@@ -97,23 +100,18 @@
                     <hr>
                     <p>운동에 관한 모든 것들! 질문 게시판에서 함께 공유해봐요!</p>
                 </div><br>
-
+              
 
                 <!-- 게시글 작성 폼 -->
                 <div id="content_2_2">
                     <div class="enrollArea">
-                       <form action="" id="enrollForm" method="post" enctype="multipart/form-data">
+                       <form action="<%=contextPath%>/qInsert.co" id="enrollForm" method="post" enctype="multipart/form-data">
                             <table>
-                                <tr>
-                                    <td width="700" height="30">
-                                        <input type="text" name="title" placeholder="제목을 입력해주세요." required>
-                                    </td> 
-                                </tr>
                                 <tr>
                                     <table>
                                         <tr>
                                             <td width="700" height="30">
-                                                <input type="text" name="title" value="게시글 제목" required>
+                                                <input type="text" name="title" placeholder="제목을 입력해주세요." required>
                                             </td> 
                                         </tr>
                                         <tr>
@@ -121,10 +119,9 @@
                                                 <tr>
                                                     <td width="800" height="30">
                                                         <input type="file" name="upfile" style="cursor:pointer;">
-                                                        <input type="file" name="upfile" style="cursor:pointer;">
                                                     </td>
                                                     <td>
-                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button><br>
+                                                    	<!--  버튼 클릭 시 파일 삭제 -->
                                                         <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
                                                     </td>
                                                 </tr>
@@ -132,25 +129,33 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" height="500">
-                                                <textarea name="content" rows="20" style="resize:none" required>게시글 내용</textarea>   
+                                                <textarea name="content" rows="20" style="resize:none" placeholder="내용을 입력해주세요." required></textarea>   
                                             </td>
                                         </tr>
                                     </table>
                                 </tr>
-                            </table>
+                            </table><br><br>
+                          	
                             <br><br>
+                            
+                            <div align="right" class="enrollButton">
+		                        <button type="submit">등록</button>
+		                        <button type="reset">취소</button>
+                 		    </div>
+                 		    
+                 		    <script>
+                 		    
+                 		    	// 유효성 체크 
+                 		    	
+                 		    </script>
+                 		    
                         </form>
-                    </div>
+            		</div>
+       			</div> 
+    		</div>
 
-                    <div align="right" class="enrollButton">
-                        <button>등록</button>
-                        <button>취소</button>
-                    </div>
 
-                </div>
-            </div>
-        </div> 
-
-    </div>
+    	</div>
+	</div>
 </body>
 </html>

@@ -84,7 +84,7 @@
     .pagingArea, .searchArea{
         margin-left:120px;
     }
-    .leftMenu>#menu2>a{
+    .leftMenu>#menu3>a{
     	color:rgb(250, 214, 9);
     } 
 </style>
@@ -103,9 +103,9 @@
                 <div class="leftMenu">
                     <div><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
-                    <div id="menu2"><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
+                    <div><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co?currentPage=1">질문게시판</a></div>
+                    <div id="menu3"><a href="<%=contextPath%>/question.co?currentPage=1">질문게시판</a></div>
                 </div>
             </div>
 
@@ -201,7 +201,7 @@
 			                 	</select>
 	                         	<input type="text" name="searchTipText">
 		                   	 	<button type="submit">검색</button>
-		                  	 	<a href="<%=contextPath%>/tipEnroll.co">글쓰기</a>
+		                  	 	<a href="<%=contextPath%>/qEnroll.co">글쓰기</a>
 		              		</form>
 		             	</div><br><br>
    

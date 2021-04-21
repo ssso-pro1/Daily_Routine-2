@@ -112,8 +112,8 @@
                                         <tr>
                                             <td width="100">
                                                 <select name="category" required>
-                                                    <option value="1">[식단공유]</option>
-                                                    <option value="2">[운동tip]</option>
+                                                    <option value="식단공유">[식단공유]</option>
+                                                    <option value="운동tip">[운동tip]</option>
                                                 </select>
                                             </td>
                                             <td width="800" height="30">
@@ -148,42 +148,6 @@
                                 <button type="submit" onclick="return validate();">등록</button>
                                 <button type="reset">취소</button>
                             </div>
-							
-							<script>
-								
-								// 카테고리 유효성 체크 
-								function validate() { 
-									
-									var category = $("#category").val();
-									var title = $("#title").val();
-									var content = $("#content").val();
-									
-									if(category == "0"){
-										alert("카테고리를 선택해주세요"); 
-										return false;	
-										}
-									
-									if(title == '') {
-										alert("제목을 입력해주세요"); 
-										return false; 
-										}
-									
-									if(content = '') {
-										alert("내용을 입력해주세요"); 
-										return false; 
-										}
-									
-									var result = confirom("글을 등록하시겠습니까?"); 
-									if(result) {
-										
-									}else { 
-										alert("게시글 등록이 취소되었습니다."); 
-										return false; 
-									}
-
-								}
-								
-							</script>
 
                         </form>  
                     </div>

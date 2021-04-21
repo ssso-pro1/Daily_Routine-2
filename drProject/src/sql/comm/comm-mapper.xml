@@ -218,6 +218,41 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
+	<entry key="insertCommFree">
+		INSERT
+		  INTO TB_COMMUNITY 
+		  (
+		    COMM_POST_NO
+		  , POST_TITLE
+		  , POST_CONTENT
+		  , USER_NO 
+		  , COMM_NO
+		  , ENROLL_DATE
+		  )
+		  VALUES
+		  (
+		    SEQ_COMMPNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , 2
+		  , SYSDATE
+		  )
+	</entry>
+	
+	<entry key="">
+		
+	</entry>
+	
+	<entry key="">
+		
+	</entry>
+	
+	
+	
+	
+	
+	
 	<!-- 질문 게시판  -->
 	<entry key="qSelectListCount">
 		SELECT COUNT(*) LISTCOUNT 

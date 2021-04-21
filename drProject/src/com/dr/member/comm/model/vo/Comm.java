@@ -15,11 +15,12 @@ public class Comm {
 	private int boardView; 				// 게시글조회수 
 	private String status;  			// 게시글삭제유무(Y/N) 
 	private String adminNotice; 		// 관리자공지글여부(Y/N) 
-
+	private int commNo; 				// 게시판번호(1:나만의운동Tip/2:자유/3:질문)
+	
 	public Comm(){}
 
 	public Comm(int commPostNo, String userNo, int fileNo, String categoryName, String postContent, String postTitle,
-			Date enrollDate, Date updateDate, int boardView, String status, String adminNotice) {
+			Date enrollDate, Date updateDate, int boardView, String status, String adminNotice, int commNo) {
 		super();
 		this.commPostNo = commPostNo;
 		this.userNo = userNo;
@@ -32,6 +33,7 @@ public class Comm {
 		this.boardView = boardView;
 		this.status = status;
 		this.adminNotice = adminNotice;
+		this.commNo = commNo;
 	}
 
 	public Comm(int commPostNo, String userNo, String categoryName, String postTitle, Date enrollDate, int boardView) {
@@ -154,13 +156,20 @@ public class Comm {
 		this.adminNotice = adminNotice;
 	}
 
+	public int getCommNo() {
+		return commNo;
+	}
+
+	public void setCommNo(int commNo) {
+		this.commNo = commNo;
+	}
+
 	@Override
 	public String toString() {
 		return "Comm [commPostNo=" + commPostNo + ", userNo=" + userNo + ", fileNo=" + fileNo + ", categoryName="
 				+ categoryName + ", postContent=" + postContent + ", postTitle=" + postTitle + ", enrollDate="
 				+ enrollDate + ", updateDate=" + updateDate + ", boardView=" + boardView + ", status=" + status
-				+ ", adminNotice=" + adminNotice + "]";
+				+ ", adminNotice=" + adminNotice + ", commNo=" + commNo + "]";
 	}
-	
-}
 
+}

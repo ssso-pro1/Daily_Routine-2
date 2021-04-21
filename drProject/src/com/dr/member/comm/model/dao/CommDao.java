@@ -431,6 +431,32 @@ public class CommDao {
 		
 	}
 	
+	public int insertCommFree(Connection conn, Comm c) {
+		// insert문
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCommFree"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getPostTitle());
+			pstmt.setString(2, c.getPostContent());
+			pstmt.setInt(3, Integer.parseInt(c.getUserNo()));
+		
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result;
+		
+	}
+	
+	
+	
 	
 	
 	// 질문게시판 

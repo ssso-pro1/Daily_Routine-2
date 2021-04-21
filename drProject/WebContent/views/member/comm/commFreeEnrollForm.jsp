@@ -137,6 +137,8 @@
                             </table><br><br>
                           	
                             <br><br>
+                            <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
+                            <input type="hidden" name="commNo" value="2">
                             
                             <div align="right" class="enrollButton">
 		                        <button type="submit">등록</button>

@@ -200,82 +200,12 @@
                                 <td width="50"><button style="cursor:pointer";>좋아요</button> 20</td>
                                 <td width="70"><button style="cursor:pointer";>신고</button> 0</td>
                             </tr>
-                            <tr>
-                                <th width="50">요요는시럿</th>
-                                <td width="200">댓글내용</td>
-                                <td width="50">20-02-02</td>
-                                <td width="25"><button style="cursor:pointer";>수정</button></td>
-                                <td width="25"><button style="cursor:pointer";>삭제</button></td>
-                                <td width="50"><button style="cursor:pointer";>좋아요</button> 15</td>
-                                <td width="70"><button style="cursor:pointer";>신고</button> 0</td>
-                            </tr>
+                           
                         </tbody>
                     </table>
                 </div>
                 
-                <script>
-                	$(function(){
-                		
-                		selectTipReplyList();
-                		
-                		// 1초 간격으로 주기적, 실시간으로 갱신된 댓글 리스트 조회 요청 
-                		setInterval(selectTipReplyList, 1000); 
-                		
-                	})
-                	
-                	// 해당 게시글에 댓글 작성용 ajax 
-                	function addReply() { 
-                		
-                		// 요청 시 회원번호는 넘기지 않을 것 
-                		$.ajax({
-                			url:"<%=contextPath%>/replyTipInsert.co", 
-                			type:"post",
-                			data:{
-                				content:$("#replyContent").val(),
-                				cno:<%=c.getCommPostNo()%>
-                			}, success:function(result) {
-                				
-                				if(result > 0) { // 댓글 성공 
-                					// 갱신된 리스트 다시 조회해서 화면에 뿌려줘야 함 
-                					selectTipReplyList(); 
-                					$("#replyContent").val(""); 
-                				}
-                				
-                			}, error:function(){
-                				console.log("댓글 작성용 ajax 통신 실패"); 
-                			}
-                		}); 
-                		
-                	}
-                	
-                	// 해당 게시글에 달린 댓글 리스트 조회용 ajax 
-                	function selectTipReplyList() {
-                		
-                		$.ajax({
-                			url:"<%=contextPath%>/replyTipList.co",
-                			data:{cno:<%=c.getCommPostNo()%>}, 
-                			success:function(list){
-                				// console.log(list); 
-                				
-                				var result = ""; 
-                				for(var i in list){
-                					result += "<tr>"
-                						    +    "<td>" + list[i].userId + "</td>"
-                						    +    "<td>" + list[i].replyContent + "</td>"
-                						    +    "<td>" + list[i].enrollDate + "</td>"
-                						    + "</tr>"; 
-                				}
-                				
-                				$("#replyArea tbody").html(result); 
-                				
-                			}, error:function(){
-                				console.log("댓글 리스트 조회용 ajax 통신 실패"); 
-                			}
-                		}); 
-                		
-                	}
-                </script>
-
+                
             </div>
             </div>
 

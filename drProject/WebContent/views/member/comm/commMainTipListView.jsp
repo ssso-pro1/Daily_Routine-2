@@ -142,10 +142,11 @@
                                 <div align="center">
                                 <p style="color: crimson; font-weight: bolder; font-size:20px; ">조회된 리스트가 없습니다.</p>
                                 </div>
-	                        	<% } else { %>
+	                        	<% } else { int count=1; %>
 	                        		<% for(Comm c : list) { %>
 			                    <tr>
-				                    <td width="7%"><%= c.getCommPostNo() %></td>
+			                   		<input type="hidden" value="<%= c.getCommPostNo() %>">
+				                    <td width="7%"><%= count++ %></td>
 		                            <td width="15%"><%= c.getCategoryName() %></td>
 				                    <td width="43%"><%= c.getPostTitle() %></td>
 				                    <td width="10%"><%= c.getUserNo() %></td>

@@ -178,6 +178,35 @@ public class CommService {
 		
 	}
 	
+	public int insertCommFree(Comm c, CommFile cf) {
+		
+		Connection conn = getConnection();
+		
+		int result1 = new CommDao().insertCommFree(conn, c); 
+		int result2 = 1; // 첨부파일이 없을 때도 result2를 1로 초기화하기 위해 1로 지정 
+		
+		if(cf != null) { // 첨부파일이 있던 경우 
+			result2 = new CommDao().insertCommFile(conn, cf); 
+		}
+		
+		if(result1 > 0 && result2 > 0) { 
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2; 
+				
+	}
+	
+	
+	
+	
+	
+	
+	
 	
 	// 질문게시판 
 	

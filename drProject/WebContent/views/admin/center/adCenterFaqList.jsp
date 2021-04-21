@@ -247,9 +247,9 @@
                                 <th width="40" style="color:black">글번호</th>
                                 <th width="40" style="color:black">문의유형</th>
                                 <th width="200" style="color:black">제목</th>
-                                <th width="50">게시자</th>
+                                <th width="50">글쓴이</th>
                                 <th width="60">게시상태</th>
-                                <th width="60">게시일</th>
+                                <th width="60">등록일</th>
                              </tr>
                          </thead>
                          <tbody>

@@ -10,9 +10,11 @@ import java.util.ArrayList;
 
 import com.dr.admin.center.model.dao.adCenterDao;
 import com.dr.admin.center.model.vo.adCenterFaq;
+import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.admin.center.model.vo.adCenterQuery;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.center.model.dao.CenterDao;
+import com.dr.member.center.model.vo.CenterNotice;
 
 public class adCenterService {
 
@@ -188,6 +190,88 @@ public class adCenterService {
 			rollback(conn);
 		}return result;
 		
+	}
+
+
+
+
+	public int deleteQuery(int queryNo) {
+		Connection conn = getConnection();
+		
+		int result = new adCenterDao().deleteQuery(conn, queryNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}return result;
+	}
+
+
+
+	//-------공지사항--------------------------------------------------------------
+	
+	public int noticeListCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new adCenterDao().noticeListCount(conn);
+		
+		close(conn);
+		return listCount;
+	}
+
+
+
+
+	public ArrayList<adCenterNotice> noticeList(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList<adCenterNotice> list = new adCenterDao().noticeList(conn, pi);
+		close(conn);
+		return list;
+	}
+
+
+
+
+	public int noticeSelectListCount(String status) {
+		Connection conn = getConnection();
+		
+		int listCount = new adCenterDao().noticeSelectListCount(conn, status);
+		
+		close(conn);
+		return listCount;
+	}
+
+
+
+
+	public ArrayList<adCenterNotice> noticeSelectList(PageInfo pi, String status) {
+		Connection conn = getConnection();
+		ArrayList <adCenterNotice> list = new adCenterDao().noticeSelectList(conn, pi, status);
+		close(conn);
+		return list;
+	}
+
+
+
+
+	public int searchNoticeCount(String searchNoticeCtg, String searchNoticeText) {
+		Connection conn = getConnection();
+		
+		int listCount = new adCenterDao().searchNoticeCount(conn, searchNoticeCtg, searchNoticeText);
+		
+		close(conn);
+		return listCount;
+	}
+
+
+
+
+	public ArrayList<adCenterNotice> searchNoticeList(PageInfo pi, String searchNoticeCtg, String searchNoticeText) {
+		Connection conn = getConnection();
+		ArrayList<adCenterNotice> list = new adCenterDao().searchNoticeList(conn, pi, searchNoticeCtg, searchNoticeText);
+		close(conn);
+		return list;
 	}
 
 

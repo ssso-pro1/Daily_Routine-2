@@ -13,6 +13,8 @@ public class adCenterNotice {
 	private Date updateDate;
 	private String status;	
 	
+	private String userId;
+	
 	public adCenterNotice() {}
 
 	public adCenterNotice(int noticeNo, int userNo, String noticeTitle, String noticeContent, int noticeCount,
@@ -33,6 +35,15 @@ public class adCenterNotice {
 	
 	
 	
+	public adCenterNotice(int noticeNo, String noticeTitle, Date createDate, String status, String userId) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.createDate = createDate;
+		this.status = status;
+		this.userId = userId;
+	}
+
 	public adCenterNotice(int noticeNo, String noticeTitle, String noticeContent, Date createDate, int noticeCount ) {
 		super();
 		this.noticeNo = noticeNo;
@@ -131,13 +142,33 @@ public class adCenterNotice {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+
+	public adCenterNotice(String userId) {
+		super();
+		this.userId = userId;
+	}
+	
+	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	@Override
 	public String toString() {
-		return "centerNotice [noticeNo=" + noticeNo + ", userNo=" + userNo + ", noticeTitle=" + noticeTitle
+		return "adCenterNotice [noticeNo=" + noticeNo + ", userNo=" + userNo + ", noticeTitle=" + noticeTitle
 				+ ", noticeContent=" + noticeContent + ", noticeCount=" + noticeCount + ", createDate=" + createDate
-				+ ", updateDate=" + updateDate + ", status=" + status + "]";
+				+ ", updateDate=" + updateDate + ", status=" + status + ", userId=" + userId + "]";
 	}
+
+	
+	
 	
 	
 	

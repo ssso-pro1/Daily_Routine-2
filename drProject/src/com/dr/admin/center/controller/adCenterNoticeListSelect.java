@@ -10,20 +10,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dr.admin.center.model.service.adCenterService;
-import com.dr.admin.center.model.vo.adCenterQuery;
+import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.common.model.vo.PageInfo;
 
 /**
- * Servlet implementation class adCenterQueryListServlet
+ * Servlet implementation class adCenterNoticeListSelect
  */
-@WebServlet("/ctQuery.ad")
-public class adCenterQueryListAllServlet extends HttpServlet {
+@WebServlet("/ctNoticeSelect.ad")
+public class adCenterNoticeListSelect extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adCenterQueryListAllServlet() {
+    public adCenterNoticeListSelect() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,13 +33,8 @@ public class adCenterQueryListAllServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		// 문의내역 리스트로 보낼것
-		// 페이징 처리해서
-		
-		
-		// 전체글 조회 답변상태 (Y/N)
-		
 		request.setCharacterEncoding("utf-8");
+		String status = request.getParameter("status"); //클릭되어 전달된 reply_status // 처리중
 		
 		// 페이징
 		int listCount;		
@@ -52,7 +47,7 @@ public class adCenterQueryListAllServlet extends HttpServlet {
 		int endPage;		
 						
 			
-		listCount = new adCenterService().queryListCount(); // 전체글
+		listCount = new adCenterService().noticeSelectListCount(status); // 각자 reStatus에 들어있는 리스트 수
 						
 				
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -71,16 +66,11 @@ public class adCenterQueryListAllServlet extends HttpServlet {
 		
 		
 		// 2. 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 조회해오기
-		ArrayList<adCenterQuery> list = new adCenterService().queryList(pi);
+		ArrayList<adCenterNotice> list = new adCenterService().noticeSelectList(pi, status);
 						
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/admin/center/adCenterQueryListAll.jsp").forward(request, response);
-		
-		
-		
-		
-		
+		request.getRequestDispatcher("views/admin/center/adCenterNoticeListSelect.jsp").forward(request, response);
 		
 		
 	}

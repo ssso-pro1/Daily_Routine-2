@@ -12,8 +12,10 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.dr.admin.center.model.vo.adCenterFaq;
+import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.admin.center.model.vo.adCenterQuery;
 import com.dr.common.model.vo.PageInfo;
+import com.dr.member.center.model.vo.CenterNotice;
 
 public class adCenterDao {
 	
@@ -484,6 +486,282 @@ public class adCenterDao {
 			close(pstmt);
 		} return result;
 	}
+
+
+
+
+
+	public int deleteQuery(Connection conn, int queryNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteQuery");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, queryNo);
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+
+
+
+
+	//------------공지사항---------------------------------------
+	
+	public int noticeListCount(Connection conn) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("noticeListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	}
+
+
+
+
+
+	public ArrayList<adCenterNotice> noticeList(Connection conn, PageInfo pi) {
+		ArrayList<adCenterNotice> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("noticeList");
+				
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+					
+			rset = pstmt.executeQuery();
+					
+			while(rset.next()) {
+				list.add(new adCenterNotice(rset.getInt("notice_no"),
+						  					rset.getString("notice_title"),
+						  					rset.getDate("create_date"),
+						  					rset.getString("status"),
+						  					rset.getString("user_id")));
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return list;
+	}
+
+
+
+
+
+	public int noticeSelectListCount(Connection conn, String status) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("noticeSelectListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, status);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	}
+
+
+
+
+
+
+	public ArrayList<adCenterNotice> noticeSelectList(Connection conn, PageInfo pi, String status) {
+		ArrayList<adCenterNotice> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("noticeSelectList");
+				
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, status);
+			pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+					
+			rset = pstmt.executeQuery();
+					
+			while(rset.next()) {
+				list.add(new adCenterNotice(rset.getInt("notice_no"),
+						  					rset.getString("notice_title"),
+						  					rset.getDate("create_date"),
+						  					rset.getString("status"),
+						  					rset.getString("user_id")));
+			}		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return list;
+	}
+
+
+
+
+
+	public int searchNoticeCount(Connection conn, String searchNoticeCtg, String searchNoticeText) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchNoticeCtg.equals("제목")) {
+			
+			String sql = prop.getProperty("searchNoticeTitleCount");
+		
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchNoticeText);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("LISTCOUNT");
+				}
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			} return listCount;
+		
+		
+		} else {
+			String sql = prop.getProperty("searchNoticeContentCount");
+			
+			try {
+				pstmt=conn.prepareStatement(sql);
+				pstmt.setString(1, searchNoticeText);
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					listCount = rset.getInt("LISTCOUNT");
+				}
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			} return listCount;
+			
+			
+		
+		}	
+		
+		
+	}
+
+
+
+
+
+
+	public ArrayList<adCenterNotice> searchNoticeList(Connection conn, PageInfo pi, String searchNoticeCtg,
+			String searchNoticeText) {
+		
+		ArrayList<adCenterNotice> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchNoticeCtg.equals("제목")) {
+			
+			String sql = prop.getProperty("searchNoticeTitle");
+			try {
+				pstmt = conn.prepareStatement(sql);
+						
+				pstmt.setString(1, searchNoticeText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+										
+				rset = pstmt.executeQuery();
+								
+				while(rset.next()) {
+					list.add(new adCenterNotice(rset.getInt("notice_no"),
+							                    rset.getString("notice_title"),
+								                rset.getDate("create_date"),
+											    rset.getString("STATUS"),
+											    rset.getString("user_id")));
+						}		
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}finally {
+						close(rset);
+						close(pstmt);
+					} return list;
+				
+			
+		} else {
+			
+			String sql = prop.getProperty("searchNoticeContent");
+			try {
+				pstmt = conn.prepareStatement(sql);
+						
+				pstmt.setString(1, searchNoticeText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+										
+				rset = pstmt.executeQuery();
+								
+				while(rset.next()) {
+					list.add(new adCenterNotice(rset.getInt("notice_no"),
+							                    rset.getString("notice_title"),
+								                rset.getDate("create_date"),
+											    rset.getString("STATUS"),
+											    rset.getString("user_id")));
+						}		
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}finally {
+						close(rset);
+						close(pstmt);
+					} return list;
+				}
+			
+		}
+	
+
+	
+
+	
 		
 		
 	

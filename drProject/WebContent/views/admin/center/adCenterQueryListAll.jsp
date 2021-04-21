@@ -1,21 +1,22 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="java.util.ArrayList"%>
-<%@ page import="java.util.ArrayList, com.dr.admin.center.model.vo.adCenterFaq, com.dr.common.model.vo.PageInfo"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+<%@ page import="java.util.ArrayList, com.dr.admin.center.model.vo.adCenterQuery, com.dr.common.model.vo.PageInfo"%>    
 <%
+	User loginUser = (User)session.getAttribute("loginUser");
+	
+	// 관리자 페이지 url ..? 
+	String contextPath = request.getContextPath();
+	
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<adCenterFaq> searchList =(ArrayList<adCenterFaq>)request.getAttribute("searchList"); 
-	int listCount = (int)request.getAttribute("listCount");
-	String searchFaq = (String)request.getAttribute("searchFaq");
+	ArrayList<adCenterQuery> list =(ArrayList<adCenterQuery>)request.getAttribute("list"); 
+	
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
-	
-	String contextPath = request.getContextPath();
 %>   
 
-    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -206,7 +207,7 @@
 
                 <!-- 상단 타이틀 -->
                 <div id="content2_1">
-                    <h2>고객센터 > FAQ 관리</h2>
+                    <h2>고객센터 > 1:1 문의 관리</h2>
                 </div>
 
                 <hr style="border:1px solid rgb(145, 144, 144)">
@@ -215,95 +216,77 @@
 
 
 
-            <!--FAQ관리-->
+            <!--1:1문의 관리-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">1:1문의 관리</p>
             </div>
 
 
             <!--FAQ 게시판-->
             <div id="content_2_4" style="background: white;">
-                <div class="faqCategoryArea">
+                <div class="replyStatusArea">
                     <table>
                         <tr>
                             <th></th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">자주찾는 질문 TOP10 </a>|</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=userInfo">회원정보</a>|</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=content">게시글/댓글</a> |</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=report">신고</a> |</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=etc">기타</a></th>
+                            <th><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">전체보기 </a>|</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=N">답변대기</a> |</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=Y">답변완료</a> |</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=D">회원삭제 글</a> |</th>
                         </tr>
                     </table>
 
                 </div>
                 
-                <div class="searchResultArea">
-	                <table>
-	                    <tr>
-	                        <th>
-	                            <label style="font-size: 20px; color: rgb(96, 206, 23);"><%= searchFaq %> </label>검색결과 총 
-	                            <label style="font-size: 20px; color: rgb(226, 166, 14);"><%=listCount %></label>개
-	                        </th>
-	                        
-	                    </tr>
-	                </table>
-                </div>
-                
-                
-                <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
+                <div class="queryListArea" style="background: white; width: 800px; height: 500px;">
                     <br><br>
                     <table align="center" class="listArea" border="1">
                          <thead>
                              <tr>
-                                <th width="30">글선택</th>
-                                <th width="40" style="color:black">글번호</th>
-                                <th width="40" style="color:black">문의유형</th>
-                                <th width="200" style="color:black">제목</th>
-                                <th width="50">글쓴이</th>
-                                <th width="60">게시상태</th>
-                                <th width="60">등록일</th>
+                                 <th width="30">글선택</th>
+                                 <th width="40" style="color:black">글번호</th>
+                                 <th width="40" style="color:black">문의유형</th>
+                                 <th width="200" style="color:black">제목</th>
+                                 <th width="50">회원아이디</th>
+                                 <th width="60">처리상태</th>
+                                 <th width="60">등록일</th>
                              </tr>
                          </thead>
                          <tbody>
                          
-                         	<%if(searchList.isEmpty()){ %>
+                         	<% if(list.isEmpty()) { %>
                          	<tr>
-            					<td colspan="7">존재하는 글이 없습니다.</td>
+            					<td colspan="7">존재하는 문의글이 없습니다.</td>
             				</tr>
-            				<% } else {%>
-            					<% for (adCenterFaq n:searchList) { %>
-                         
-                            <tr>
-                                <th><input type="checkbox"></th>
-                                <td><%= n.getFaqNo() %></td>
+            				<% } else { %>
+                         		<% for(adCenterQuery q:list) { %>
+                         	
+                         	<tr>
+                                <td><input type="checkbox"></td>
+                                <td><%= q.getQueryNo() %></td>
+                                <td><%= q.getQueryCategory() %></td>
+                                <td><%= q.getQueryTitle() %></td>
+                                <td><%= q.getUserId() %></td>
                                 <td>
-                                	<% if(n.getFaqCategory().equals("top")) { %>
-                                		<label>TOP10</label>
-                                	<% } else if (n.getFaqCategory().equals("userInfo")) { %>
-                                		<label>회원정보</label>
-                                	<% } else if (n.getFaqCategory().equals("content")) { %>
-                                		<label>게시글/댓글</label>
-                                	<% } else if (n.getFaqCategory().equals("report")) { %>
-                                		<label>신고</label>
-                                	<% } else if (n.getFaqCategory().equals("etc")) { %>
-                                		<label>기타</label>
-                                	<% } %>
+                                <% if(q.getReplyStatus().equals("Y")){ %>
+                                <label style="color: black; font-weight: 600;">답변완료</label>
+                                <% } else if (q.getReplyStatus().equals("N")){ %>
+                                <label style="color: red; font-weight: 600;">답변대기</label>
+                                <% } else {%>
+                                <label style="color: green; font-weight: 600;">삭제글</label>
+                                <% } %>
                                 </td>
-                                <td><%=n.getFaqTitle() %></td>
-                                <td><%=n.getUserId() %></td>
-                                <td><%=n.getStatus() %></td>
-                                <td><%=n.getCreateDate() %></td>
+                                <td><%= q.getQueryCreateDate() %></td>
                             </tr>
 								<% } %>
-                            <% } %>
+                           <% } %>
                             	
                          </tbody>
                     </table>
              
              		<script>
-				    	$(function(){
+	             		$(function(){
 							$(".listArea>tbody>tr>td").click(function(){
-								location.href = '<%=contextPath%>/ctFaqDetail.ad?fno=' + $(this).siblings().eq(1).text();			
+								location.href = '<%=contextPath%>/ctQueryDetail.ad?qno=' + $(this).siblings().eq(1).text();			
 								
 							})
 				    	})
@@ -311,15 +294,15 @@
              
                     <br><br>
                     
-                    <!-- 페이징처리 10개씩 -->
-                   
+                    
+                    
                     <div align="center" class="pagingArea">
 
-						<%if (searchList.isEmpty()) { %>
+					<%if (list.isEmpty()) { %>
 					<p></p>
 					<% } else { %>
 						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/ctFaqSearch.ad?currentPage=<%=currentPage-1%>&searchFaq=<%=searchFaq%>';">이전</button>
+			            	<button onclick="location.href='<%=contextPath%>/ctQuery.ad?currentPage=<%=currentPage-1%>';">이전</button>
 						<% } %>
 						
 						<% for(int p=startPage; p<=endPage; p++) { %>
@@ -327,54 +310,38 @@
 							<% if(currentPage == p){ %>
 			            		<button disabled><%= p %></button>
 			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/ctFaqSearch.ad?currentPage=<%= p %>&searchFaq=<%=searchFaq%>';"><%= p %></button>
+			            		<button onclick="location.href='<%=contextPath%>/ctQuery.ad?currentPage=<%= p %>';"><%= p %></button>
 			            	<% } %>
 			            	
 						<% } %>
 						
 						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/ctFaqSearch.ad?currentPage=<%=currentPage+1%>&searchFaq=<%=searchFaq%>';">다음</button>
+			            	<button onclick="location.href='<%=contextPath%>/ctQuery.ad?currentPage=<%=currentPage+1%>';">다음</button>
 						<% } %>
 					 <% } %>	
 						
 			        </div>
                     
                     
+                   
+                   <div align="center">
+                       <% if(list.isEmpty()) { %>
+                   			
+	                   <% } else { %>
+	                    <br>
+	                        <button>선택 삭제</button>
+	                   <% } %>
+                    </div>
 
-
-
-
-
-
-             		<!-- 검색부분-->
-                    <br><br>
-                    	<div class="searchArea" align="center">
-		                    <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
-		                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
-		                        <button type="submit">검색</button>
-		                    </form>
-		                </div>
-					 	
-                    
-                        <div align="center" class="buttonArea">
-                            <br>
-                            <button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
-                            <button>선택 삭제</button>
-
-                        </div>
-               
-
-			</div>    
-
-            
+                </div>    
 
         </div>
 
-
+    </div>
 
 
 
 
 
 </body>
-</html></html>
+</html>

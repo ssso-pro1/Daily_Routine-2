@@ -209,20 +209,175 @@
 	
 	
 	<!-- 공지사항 게시판 -->
-
-	<entry key="noticeList">
-		
-		SELECT
-		      NOTICE_NO
-		    , NOTICE_TITLE
-		    , NOTICE_CONTENT
-		    , CREATE_DATE
-		    , NOTICE_COUNT
-		 FROM TB_NOTICE
-		WHERE STATUS = 'Y'
-		ORDER BY CREATE_DATE DESC
+	
+	<!-- 전체공지사항수 -->
+	<entry key="noticeListCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
 	
 	</entry>
+	
+	<entry key="noticeList">
+	
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , CREATE_DATE
+		                     , STATUS
+		                     , USER_ID
+		                     
+		                  FROM TB_NOTICE N
+		                  JOIN TB_USER USING(USER_NO)
+		                
+		                 ORDER
+		                    BY NOTICE_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+	
+	<entry key="noticeSelectListCount">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
+	WHERE STATUS = ?
+	  
+  	
+	
+	</entry>
+	
+	<entry key="noticeSelectList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , CREATE_DATE
+		                     , STATUS
+		                     , USER_ID
+		                     
+		                  FROM TB_NOTICE N
+		                  JOIN TB_USER USING(USER_NO)
+		                  WHERE STATUS = ?
+		                
+		                 ORDER
+		                    BY NOTICE_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+		 
+		 
+	</entry>
+	
+	<!-- 상태값을 다뽑을것 -->
+	
+	<entry key="searchNoticeTitleCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
+	WHERE NOTICE_TITLE LIKE '%'||?||'%'
+	
+	
+	</entry>
+	
+	<entry key="searchNoticeContentCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_NOTICE
+	WHERE NOTICE_CONTENT LIKE '%'||?||'%'
+	
+	
+	</entry>
+	<entry key="searchNoticeTitle">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                 SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , NOTICE_CONTENT
+		                     , CREATE_DATE
+		                     , NOTICE_COUNT
+		                     , STATUS
+		                     , USER_ID
+		                  FROM TB_NOTICE N
+		                  JOIN TB_USER USING(USER_NO)
+		                 WHERE N.NOTICE_TITLE LIKE '%'||?||'%'
+		                 ORDER
+		                    BY N.CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+	
+	<entry key="searchNoticeContent">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                 SELECT
+		                       NOTICE_NO
+		                     , NOTICE_TITLE
+		                     , NOTICE_CONTENT
+		                     , CREATE_DATE
+		                     , NOTICE_COUNT
+		                     , STATUS
+		                     , USER_ID
+		                  FROM TB_NOTICE N
+		                  JOIN TB_USER USING(USER_NO)
+		                 WHERE N.NOTICE_CONTENT LIKE '%'||?||'%'
+		                 ORDER
+		                    BY N.CREATE_DATE DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	</entry>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+
+	
 	
 	<entry key="noticeIncreaseCount">
 		UPDATE TB_NOTICE
@@ -255,113 +410,9 @@
 	
 	</entry>
 	
-	<entry key="noticeSelectListCount">
-	
-	SELECT COUNT(*) LISTCOUNT
-	FROM TB_NOTICE
-	WHERE STATUS ='Y'
-	
-	</entry>
-	
-	<entry key="noticeSelectList">
-	
-	SELECT *
-		  FROM (
-		        SELECT
-		               ROWNUM RNUM
-		             , A.*
-		          FROM (
-		                SELECT
-		                       NOTICE_NO
-		                     , NOTICE_TITLE
-		                     , NOTICE_CONTENT
-		                     , CREATE_DATE
-		                     , NOTICE_COUNT
-		                     
-		                  FROM TB_NOTICE N
-		                  
-		                 WHERE N.STATUS = 'Y'
-		                 ORDER
-		                    BY CREATE_DATE DESC
-		               ) A
-		       )
-		 WHERE RNUM BETWEEN ? AND ?
 	
 	
-	</entry>
 	
-	<entry key="searchNoticeTitleCount">
-	
-	SELECT COUNT(*) LISTCOUNT
-	FROM TB_NOTICE
-	WHERE status ='Y'
-  	AND NOTICE_TITLE LIKE '%'||?||'%'
-	
-	
-	</entry>
-	
-	<entry key="searchNoticeContentCount">
-	
-	SELECT COUNT(*) LISTCOUNT
-	FROM TB_NOTICE
-	WHERE status ='Y'
-  	AND NOTICE_CONTENT LIKE '%'||?||'%'
-	
-	
-	</entry>
-	<entry key="searchNoticeTitle">
-	SELECT *
-		  FROM (
-		        SELECT
-		               ROWNUM RNUM
-		             , A.*
-		          FROM (
-		                 SELECT
-		                       NOTICE_NO
-		                     , NOTICE_TITLE
-		                     , NOTICE_CONTENT
-		                     , CREATE_DATE
-		                     , NOTICE_COUNT
-		                     
-		                  FROM TB_NOTICE N
-		                  
-		                 WHERE N.STATUS = 'Y'
-		                 AND NOTICE_TITLE LIKE '%'||?||'%'
-		                 ORDER
-		                    BY CREATE_DATE DESC
-		               ) A
-		       )
-		 WHERE RNUM BETWEEN ? AND ?
-	
-	
-	</entry>
-	
-	<entry key="searchNoticeContent">
-	SELECT *
-		  FROM (
-		        SELECT
-		               ROWNUM RNUM
-		             , A.*
-		          FROM (
-		                 SELECT
-		                       NOTICE_NO
-		                     , NOTICE_TITLE
-		                     , NOTICE_CONTENT
-		                     , CREATE_DATE
-		                     , NOTICE_COUNT
-		                     
-		                  FROM TB_NOTICE N
-		                  
-		                 WHERE N.STATUS = 'Y'
-		                 AND NOTICE_CONTENT LIKE '%'||?||'%'
-		                 ORDER
-		                    BY CREATE_DATE DESC
-		               ) A
-		       )
-		 WHERE RNUM BETWEEN ? AND ?
-	
-	
-	</entry>
 	
 	
 	
@@ -517,8 +568,7 @@
 	
 	<entry key="deleteQuery">
 	
-	UPDATE TB_QUERY
-	SET QUERY_STATUS = 'N'
+	DELETE FROM TB_QUERY
 	WHERE QUERY_NO = ?
 	
 	

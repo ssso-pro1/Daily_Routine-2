@@ -44,6 +44,8 @@ public class adCenterQueryReplyUpdateServlet extends HttpServlet {
 			
 		} else { // 실패
 			
+			request.setAttribute("errorMsg", "오류가 발생했습니다");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			
 		}
 		

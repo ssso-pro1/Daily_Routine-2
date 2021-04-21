@@ -201,6 +201,31 @@ public class CommService {
 				
 	}
 	
+	public Comm selectCommFree(int commPostNo) {
+		
+		Connection conn = getConnection();
+		Comm c = new CommDao().selectCommFree(conn, commPostNo); 
+		
+		close(conn);
+		
+		return c; 
+		
+	}
+	
+	public CommFile selectCommFreeFile(int commPostNo) { 
+		
+		Connection conn = getConnection();
+		CommFile cf = new CommDao().selectCommFreeFile(conn, commPostNo); 
+		
+		close(conn);
+		
+		return cf; 
+		
+	}
+	
+	
+	
+	
 	
 	
 	

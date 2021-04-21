@@ -240,6 +240,32 @@
 		  )
 	</entry>
 	
+	<entry key="selectCommFree">
+		SELECT 
+			   COMM_POST_NO
+			 , USER_ID
+			 , POST_CONTENT
+			 , POST_TITLE
+			 , C.ENROLL_DATE
+			 , BOARD_VIEW  
+	      FROM TB_COMMUNITY C
+	      JOIN TB_USER U ON (C.USER_NO = U.USER_NO)
+	     WHERE COMM_POST_NO = ?
+	       AND COMM_NO = 2 
+	       AND STATUS = 'N'	 
+	</entry>
+	
+	<entry key="selectCommFreeFile">
+		SELECT 
+			   FILE_NO
+			 , FILE_NAME
+			 , FILE_UPDATE
+			 , FILE_PATH
+		  FROM TB_COMM_FILE
+		 WHERE COMM_POST_NO = ? 
+		   AND COMM_NO = 2  	 
+	</entry>
+	
 	<entry key="">
 		
 	</entry>

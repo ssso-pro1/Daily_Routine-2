@@ -192,14 +192,7 @@
                                 <td width="45"><button style="cursor:pointer";>좋아요</button> 20</td>
                                 <td width="70"><button style="cursor:pointer";>신고</button> 0</td>
                             </tr>
-                            <tr>
-                                <th width="40">요요는시럿</th>
-                                <td width="110">댓글내용</td>
-                                <td width="20"><button style="cursor:pointer";>수정</button></td>
-                                <td width="20"><button style="cursor:pointer";>삭제</button></td>
-                                <td width="45"><button style="cursor:pointer";>좋아요</button> 15</td>
-                                <td width="70"><button style="cursor:pointer";>신고</button> 0</td>
-                            </tr>
+                          
                         </tbody>
                     </table>
                	 </div>

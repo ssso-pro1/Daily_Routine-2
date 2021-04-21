@@ -13,7 +13,6 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <style>
     div{
         box-sizing:border-box
@@ -75,6 +74,8 @@
     	color:rgb(250, 214, 9);
     }
 </style>
+</head>
+<body>
 
     <%@ include file="../../common/menubar.jsp"%>
 
@@ -173,7 +174,6 @@
                         
                     </div>
                 </div>
-
             </div>
 
 

@@ -455,6 +455,40 @@ public class CommDao {
 		
 	}
 	
+	public Comm selectCommFree(Connection conn, int commPostNo) {
+		// select문 => ResultSet객체 한 행 
+		Comm c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; // 조회문이기 때문에 rset 필요 
+		String sql = prop.getProperty("selectCommFree");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { 
+				c = new Comm(rset.getInt("comm_post_no"), 
+						   	 rset.getString("user_id"),
+						     rset.getString("post_content"),
+						     rset.getString("post_title"),
+						     rset.getDate("enroll_date"),
+							 rset.getInt("board_view"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt); 
+		}
+		
+		return c;
+	
+	}
+	
+	
 	
 	
 	
@@ -524,7 +558,37 @@ public class CommDao {
 		
 	}
 	
-	
+	public CommFile selectCommFreeFile(Connection conn, int commPostNo) {
+		// select문 => ResultSet객체 
+		CommFile cf = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; 
+		String sql = prop.getProperty("selectCommFreeFile"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				cf = new CommFile();
+				cf.setFileNo(rset.getInt("file_no"));
+				cf.setFileName(rset.getString("file_name"));
+				cf.setFileUpdate(rset.getString("file_update"));
+				cf.setFilePath(rset.getString("file_path"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt); 
+		}
+		
+		return cf;		
+		
+	} 
 	
 
 	

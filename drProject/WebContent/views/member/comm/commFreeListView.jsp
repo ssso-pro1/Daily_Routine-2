@@ -159,7 +159,7 @@
            			 	<script>
 		               		$(function() {
 		                		$(".listArea>tbody>tr").click(function() {
-		                			location.href= '<%=contextPath%>/tipDetail.co?cno=' + $(this).children().eq(0).text();
+		                			location.href= '<%=contextPath%>/freeDetail.co?cno=' + $(this).children().eq(0).val();
 		                		})
 		                	})
 		             	</script> 

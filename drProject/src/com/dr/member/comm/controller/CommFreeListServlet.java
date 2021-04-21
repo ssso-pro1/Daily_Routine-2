@@ -43,7 +43,7 @@ public class CommFreeListServlet extends HttpServlet {
 		int startPage;    		// pageLimit, currentPage에 영향을 받음 
 		int endPage; 			// pageLimit, startPage에 영향을 받음 
 		
-		listCount = new CommService().tipSelectListCount(); 
+		listCount = new CommService().freeSelectListCount(); 
 		//System.out.println(listCount); 
 		
 		String currentPageParam = request.getParameter("currentPage");

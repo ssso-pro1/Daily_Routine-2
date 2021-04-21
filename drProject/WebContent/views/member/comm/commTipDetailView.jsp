@@ -121,7 +121,6 @@
                 <br>
 
 				<!-- 로그인되어있고, 로그인한 사용자가 게시글일 경우 보이는 버튼 -->
-              	
                	<div class="buttonArea1" align="right">
 	                <a href="<%=contextPath%>/tipUpdateForm.co?cno=<%=c.getCommPostNo()%>">수정</a>
 	                <a href="<%=contextPath%>/tipDelete.co?cno=<%=c.getCommPostNo()%>">삭제</a>

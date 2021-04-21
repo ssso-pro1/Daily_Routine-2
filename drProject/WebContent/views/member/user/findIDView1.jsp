@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- 됐나 -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -51,7 +50,7 @@
 </head>
 <body>
     
-    <!-- <%@ include file="../common/menubar.jsp" %> -->
+    <!-- <%@ include file="../../common/menubar.jsp" %> -->
     
     <div class="menuWrap" align="center">
         <div class="menu"><a href=""> 아이디 찾기</a> </div>
@@ -134,9 +133,14 @@
         </div>
         <br>
         <div align="center">
-            <button type="submit">다음</button>
+            <button type="submit" onclick="ID1();">다음</button>
         </div>
         
+        <script>
+            function ID1(){
+                location.href = "<%= request.getContextPath()%>/findID2.us ";
+            }
+        </script>
     </div>
 
 

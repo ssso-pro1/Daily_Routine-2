@@ -3,11 +3,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- 인코딩 확인용 -->
+    <!-- 인코딩 확인 -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>03. 비밀번호 재설정</title>
+    <title>findID_1</title>
     <style>
         .outer{
             width:800px;
@@ -15,11 +15,11 @@
             margin:auto;
             margin-top:30px;
         }
-        .wrap{border:1px solid gray;}
+        #content_2{border:1px solid gray;}
 
         .menuWrap{
             background:lightgray;
-            color:#F5DA01;
+            color:yellow;
             width:1200px;
             height:50px;
 
@@ -39,19 +39,23 @@
             height:100%;
             margin:0px 50px;
         }
-        .menu a:hover{color:#F5DA01;}
+        .menu a:hover{color:yellow;}
 
-        .wrap>table{
+        #content_2>table{
             margin:auto; 
             margin-top:50px;
             margin-bottom:50px;
+        }
+
+        #content_2 {
+            display:flex;
         }
             
     </style>
 </head>
 <body>
     
-    <!-- <%@ include file="../common/menubar.jsp" %> -->
+    <%@ include file="../../common/menubar.jsp" %>
     
     <div class="menuWrap" align="center">
         <div class="menu"><a href=""> 아이디 찾기</a> </div>
@@ -59,12 +63,10 @@
     </div>
     
     <div class="outer">
-
-
-        <div id="title">
-            <h3>비밀번호 재설정</h3>
+        <div id="content_1">
+            <h3>아이디 찾기</h3>
             <hr>
-            <p>비밀번호 변경해 주세요.</p>
+            <p>고객님의 정보와 일치하는 아이디 목록입니다.</p>
         </div>
         
         <br>
@@ -73,39 +75,47 @@
         <!-- 1 휴대전화로 인증/ 2. 이메일로 인증
              1 선택시 1보이고 2는 hidden -->
         
-        <form action="" id="findPWD"></form>
-        <div class="wrap" >
-            <div style="margin-top:20px; margin-left:20px;">
-                <p><small>
-                   -영문, 숫자, 특수문자를 함께 사용하면 (8자 이상 16자 이하)보다 안전합니다. <br>
-                   -다른 사이트와 다른 DR만의 비밀번호를 만들어 주세요.
-                </small>
-                </p>
-                <hr>
-            </div>
-            <table>
+        <div id="content_2" >
+        <form action="" id="idList"></form>
+        
+
+            <table id="idList_1">
                 <tr>
-                    <th colspan="2" align="left">DR아이디 : xxx</th>
+                    <th colspan="3"><input type="radio">user_01 <br>
+                    
                 </tr>
                 <tr>
-                    <th align="left">이름</th>
-                    <td><input type="text" placeholder="이름을 입력하세요"></td>
+                    <th colspan="3"><input type="radio">user_02 <br>
+                </tr>
+            </table>
+            
+            <table id="idList_2">
+                <tr>
+                    <td>가입 : 2021.03.25 </td>
                 </tr>
                 <tr>
-                    <th align="left">아이디</th>
-                    <td><input type="text" placeholder="아이디를 입력하세요"></td>
+                    <td>가입 : 2015.08.29 </td>
                 </tr>
-                <tr>
-                    <th></th>
-                    <td><button>다음</button></td>
-                </tr>
-                
             </table>
         </div>
-        
-        
-    </div>
+        <br>
+        <div id="btns" align="center"> <!--선택한 회원의 아이디정보 보내야함-->
+            <!-- <div><a href="<%=request.getContextPath()%>/loginForm.us" >로그인하기</a> </div>
+            <div><a href="<%=request.getContextPath()%>/loginForm.us" >비밀번호 찾기</a> </div> -->
 
+            <button type="submit" onclick="login();">로그인하기</button>
+            <button type="" onclick="findPwd();">비밀번호 찾기</button>
+        </div>
+        
+        <script>
+            function login(){
+                location.href="<%=request.getContextPath() %>/loginForm.us";
+            }
+            function findPwd(){
+                location.href="<%=request.getContextPath() %>/findPwd1.us";
+            }
+        </script>
+    </div>
 
 </body>
 </html>

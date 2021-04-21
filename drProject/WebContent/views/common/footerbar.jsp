@@ -31,6 +31,7 @@
             /* color:rgb(250, 214, 9); */
             color:white;
             align-items: center;
+            margin-top:12px;
             
         }
 

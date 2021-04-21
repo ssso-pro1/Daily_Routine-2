@@ -51,8 +51,7 @@
 </head>
 <body>
     
-    <!-- <%@ include file="../common/menubar.jsp" %> -->
-    
+    <%@ include file="../../common/menubar.jsp" %>    
     <div class="menuWrap" align="center">
         <div class="menu"><a href=""> 아이디 찾기</a> </div>
         <div class="menu"><a href="">비밀번호 찾기</a></div>
@@ -87,12 +86,17 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <td><button>다음</button></td>
+                    <td><button onclick="findPwd1()";>다음</button></td>
                 </tr>
                 
             </table>
         </div>
         
+        <script>
+            function findPwd1(){
+                location.href="<%=request.getContextPath() %>/findPwd2.us";
+            }
+        </script>
         
     </div>
 

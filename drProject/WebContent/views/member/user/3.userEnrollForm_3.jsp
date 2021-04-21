@@ -3,7 +3,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- 위에 메뉴바 + 회원가입 nav추가하기 (따로jsp로빼기)-->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -21,9 +20,12 @@
         }
 
         
+        
     </style>
 </head>
 <body>
+    <%@ include file="../../common/menubar.jsp" %>    
+
     <fieldset>
         <div>
             <p style="font-weight:bold; font-size:17px;">회원가입이 완료되었습니다.</p>
@@ -31,6 +33,12 @@
         </div>
     </fieldset>
 
-    <button align="center" type="button" id="home">Daily Routine 홈 바로가기</button>
+    <button id="btn" align="center" type="submit" onclick="main();">홈 바로가기</button>
+
+    <script>
+        function main(){
+            location.href= "<%=request.getContextPath() %>/";
+        }
+    </script>
 </body>
 </html>

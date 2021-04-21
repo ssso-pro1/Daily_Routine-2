@@ -129,8 +129,8 @@
         </div>
 
         <div id= "content_3" style="font-size:10px; " align="center">
-            <div><a href="" >아이디 찾기</a> </div> |
-            <div><a href="">비밀번호 찾기</a> </div> |
+            <div><a href="<%=request.getContextPath()%>/findID1.us" >아이디 찾기</a> </div> |
+            <div><a href="<%=request.getContextPath()%>/findPwd1.us">비밀번호 찾기</a> </div> |
             <div><a href="<%=request.getContextPath()%>/enrollForm1.us">회원가입</a></div>
         </div>
 

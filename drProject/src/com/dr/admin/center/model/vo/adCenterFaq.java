@@ -46,6 +46,15 @@ public class adCenterFaq {
 
 
 
+	public adCenterFaq(String faqCategory, String faqTitle, String faqContent, Date updateDate, String status) {
+		super();
+		this.faqCategory = faqCategory;
+		this.faqTitle = faqTitle;
+		this.faqContent = faqContent;
+		this.updateDate = updateDate;
+		this.status = status;
+	}
+
 	public adCenterFaq(int faqNo, String faqCategory, String faqTitle, String faqContent, Date createDate,
 			Date updateDate, String status, String userId) {
 		super();

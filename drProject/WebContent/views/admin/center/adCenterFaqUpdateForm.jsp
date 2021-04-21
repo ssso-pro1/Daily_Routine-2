@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User, com.dr.admin.center.model.vo.adCenterFaq"%>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
+	
+	adCenterFaq f = (adCenterFaq)request.getAttribute("f");
 %>   
 
 <!DOCTYPE html>
@@ -209,16 +211,17 @@
 
             <!--FAQ-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 등록</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 수정</p>
                 <div class="underLine"></div>
             </div>
 
 
             <!--FAQ 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 550px;">
+            <div id="content_2_4" style="background: white; width: 800px; height: 600px;">
                 <br>
-                <div id="faqEnroll">
-                    <form action="<%=contextPath %>/ctFaqInsert.ad" method="post">
+                <div id="faqUpdate">
+                    <form action="<%=contextPath %>/ctFaqUpdate.ad" method="post">
+                    <input type="hidden" name="fno" value="<%=f.getFaqNo()%>">
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
@@ -226,8 +229,8 @@
                                     <td width=300px>
                                         <select name="fCategory" id="fCategory" required style="width: 100%;">
                                             <option id="fCategory" value="0">선택해주세요</option>
-                                            <option name="fCategory" id="fCategory" value="top" >TOP10</option>
-                                            <option name="fCategory" id="fCategory" value="userInfo" >회원정보</option>
+                                            <option name="fCategory" id="fCategory" value="top">TOP10</option>
+                                            <option name="fCategory" id="fCategory" value="userInfo">회원정보</option>
                                             <option name="fCategory" id="fCategory" value="content">게시글/댓글</option>
                                             <option name="fCategory" id="fCategory" value="report">신고</option>
                                             <option name="fCategory" id="fCategory" value="etc">기타</option>
@@ -236,13 +239,13 @@
                                 </tr>
                                 <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="fTitle" id="fTitle" placeholder="제목을 입력해주세요" style="width: 100%;"  maxlength="50" required></td>
+                                    <td><input type="text" name="fTitle" id="fTitle" placeholder="제목을 입력해주세요" style="width: 100%;"  maxlength="50" required value="<%=f.getFaqTitle() %>"></td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
                                     <td>
                                         <div>
-                                            <textarea id="fContent" name="fContent" cols="50" rows="20" style="resize: none;" placeholder="내용을 입력하세요 (450자 이내)" required></textarea>
+                                            <textarea id="fContent" name="fContent" cols="50" rows="20" style="resize: none;" placeholder="내용을 입력하세요 (450자 이내)" required ><%=f.getFaqContent() %></textarea>
                                             <br>
                                         </div>
                                         <label style="float: right;"><span id="count" name="count" >0</span> / 450</label>
@@ -258,8 +261,8 @@
                                         <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
                                         
                                         <label style="float: right;">
-                                        <button type="submit" onclick="return validate();">등록</button>
-                                        <button type="reset">취소</button>
+                                        <button type="submit" onclick="return validate();"><a">수정</a></button>
+                                        <button type="reset">초기화</button>
                                         </label>
                                     </td>
                                 </tr>
@@ -267,120 +270,134 @@
 
                         </table>
 
-                        <p align="center"><button onclick="return back();"><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=top">목록으로</a></button></p>
-                        
-                        
-                        
-                        <script>
-                        			function back(){
-                        				var result = confirm("게시글 작성을 취소하시겠습니까?");
-                                    	if(result){
+						<p align="center"><button onclick="return back();"><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=top">목록으로</a></button></p>
+					</form>
+					
+					
+					<script>
+                        			
+					$(function(){
+						var status = "<%= f.getStatus()%>";
+						// "Y" / "N"
+						
+						// 체크박스인 input요소들에 순차적으로 접근하면서
+						// 해당 그 input요소의 value값이 interest에 포함되어있을 경우 => 해당 input요소에 checked속성 부여
+						$("input[type=radio]").each(function(){
+							if(status.search($(this).val()) != -1){
+								$(this).attr("checked", true);
+							}
+						})
+						
+						
+					})
+					
+				
+					function back(){
+                        var result = confirm("게시글 수정을 취소하시겠습니까?");
+                           if(result){
                                     		
-                                    		return true;
-                                    	} else {
+                              return true;
+                          } else {
                                     		
-                                    		return false;
-                                    	}
-                        			}
+                              return false;
+                          }
+                    }
                         
                         
                         
                                 	
- 									// 글 제목 50글짜 이상 입력방지 , 알러트
-                                    $(document).ready(function(){
-							            $("#fTitle").on("keyup", function(){
-                                            
-							            	if($(this).val().length>50){
-							                    $(this).val($(this).val().substring(0, 50));
-                                                alert("50자이상 입력하실 수 없습니다.");
-							                }
-							            });
-							        });
+ 				   // 글 제목 50글짜 이상 입력방지 , 알러트
+                   $(document).ready(function(){
+					   $("#fTitle").on("keyup", function(){
+	                                            
+						if($(this).val().length>50){
+							 $(this).val($(this).val().substring(0, 50));
+	                            alert("50자이상 입력하실 수 없습니다.");
+							}
+						});
+					});
 
-									// 글 내용 450자 이상 입력 방지, 알러트
-                                    $(document).ready(function(){
-							            $("#fContent").on("keyup", function(){
-                                            //var inputlength=$(this).val().length;
-                                            //var remain = 450-inputlength;
+					// 글 내용 450자 이상 입력 방지, 알러트
+                    $(document).ready(function(){
+						$("#fContent").on("keyup", function(){
+                         //var inputlength=$(this).val().length;
+                        //var remain = 450-inputlength;
 
-							                if($(this).val().length>450){
-							                    $(this).val($(this).val().substring(0, 450));
-                                                alert("450자이상 입력하실 수 없습니다.");
-							                }
-							            });
-							        });
+						if($(this).val().length>450){
+							 $(this).val($(this).val().substring(0, 450));
+                                 alert("450자이상 입력하실 수 없습니다.");
+							  }
+						});
+					});
 
                                     
-                                    // 글자수 세기
-                                    $(function(){
-                                        $("#fContent").keyup(function(){
-                                            var inputlength = $(this).val().length;
-                                            $("#count").text(inputlength);
-                                        })
+                    // 글자수 세기
+                    $(function(){
+                        $("#fContent").keyup(function(){
+                          var inputlength = $(this).val().length;
+                          $("#count").text(inputlength);
+                         })
                                         
-                                    }) 
+                     }) 
                                     
                                     
-                                    // 글등록 유효성 체크
-                                    function validate(){
+                    // 글등록 유효성 체크
+                    function validate(){
                                     	
-                                    	var fCategory = $("#fCategory").val();
-                                    	var fTitle = document.getElementById("fTitle");
-                                    	var fContent = document.getElementById("fContent");
+                       var fCategory = $("#fCategory").val();
+                       var fTitle = document.getElementById("fTitle");
+                       var fContent = document.getElementById("fContent");
                                         
-                                    	var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+                       var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
                                     	
-                                    	if(fCategory=="0"){
-                                    		alert("문의유형을 선택해주세요");
+                       if(fCategory=="0"){
+                            alert("문의유형을 선택해주세요");
                                     		
-                                    		return false;
+                            return false;
                  
-                                    	}
+                       }
                                     	
                                     	
                                     	
-                                    	if(!regExp.test(fTitle.value)){
-                                    		alert("제목을 입력해주세요");
+                       if(!regExp.test(fTitle.value)){
+                             alert("제목을 입력해주세요");
                                     	
-                                    		qTitle.value="";
-                                    		qTitle.focus();
+                              qTitle.value="";
+                              qTitle.focus();
                                     		
-                                    		return false;
-                                    	}
+                               return false;
+						}
                                     	
                                     	
                                         
-                                    	if(!regExp.test(fContent.value)){ 
-                                    		alert("내용을 입력해주세요");
+                        if(!regExp.test(fContent.value)){ 
+                              alert("내용을 입력해주세요");
                                     	
-                                    		fContent.value="";
-                                    		fContent.focus();
+                              fContent.value="";
+                              fContent.focus();
                                     		
-                                    		return false;
-                                    	}
+                              return false;
+                        }
                                     	
                                         
 
                                     	
-                                    	var result = confirm("글을 등록하시겠습니까?");
-                                    	if(result){
+                        var result = confirm("FAQ를 수정하시겠습니까?");
+                        if(result){
                                     		
                                     		
-                                    	} else {
-                                    		alert("게시글 등록이 취소되었습니다");
-                                    		return false;
-                                    	}
+                        } else {
+                             alert("게시글 수정이 취소되었습니다");
+                             return false;
+                        }
 
                                         
                                     
-                                    }
+                  }
                                     
-                               </script>
-
-                               
-
-
-                    </form>
+                     </script>
+					
+					
 
                 </div>
                

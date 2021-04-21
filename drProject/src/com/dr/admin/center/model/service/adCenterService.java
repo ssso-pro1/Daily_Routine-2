@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 import com.dr.admin.center.model.dao.adCenterDao;
 import com.dr.admin.center.model.vo.adCenterFaq;
+import com.dr.admin.center.model.vo.adCenterQuery;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.center.model.dao.CenterDao;
 
@@ -81,6 +82,85 @@ public class adCenterService {
 		} else {
 			rollback(conn);
 		} return result;
+	}
+
+
+
+
+	public int updateFaq(adCenterFaq f) {
+		Connection conn = getConnection();
+		int result = new adCenterDao().updateFaq(conn, f);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		} return result;
+	}
+
+
+
+
+	public int searchFaqListCount(String searchFaq) { // FAQ검색결과 카운트
+		Connection conn = getConnection();
+		
+		int listCount = new adCenterDao().searchFaqListCount(conn, searchFaq);
+		
+		close(conn);
+		return listCount;
+		}
+
+	
+	
+	public ArrayList<adCenterFaq> searchFaqList(PageInfo pi, String searchFaq) { // FAQ검색결과 리스트
+		Connection conn = getConnection();
+		ArrayList<adCenterFaq> list = new adCenterDao().searchFaqList(conn, pi, searchFaq);
+		close(conn);
+		return list;
+	}
+
+
+
+	//----------------------------1:1문의---------------------------
+	public int queryListCount() { // 전체 문의 글갯수 카운트
+		Connection conn = getConnection();
+		
+		int listCount = new adCenterDao().queryListCount(conn);
+		
+		close(conn);
+		return listCount;
+	}
+
+
+
+
+	public ArrayList<adCenterQuery> queryList(PageInfo pi) {
+		Connection conn = getConnection();
+		ArrayList <adCenterQuery> list = new adCenterDao().queryList(conn, pi);
+		close(conn);
+		return list;
+	}
+	
+	
+	
+	
+	public int querySelectListCount(String reStatus) { // 답변상태값으로 글갯수 카운트
+		Connection conn = getConnection();
+		
+		int listCount = new adCenterDao().querySelectListCount(conn, reStatus);
+		
+		close(conn);
+		return listCount;
+	}
+
+
+
+
+	public ArrayList<adCenterQuery> querySelectList(PageInfo pi, String reStatus) {
+		Connection conn = getConnection();
+		ArrayList <adCenterQuery> list = new adCenterDao().querySelectList(conn, pi, reStatus);
+		close(conn);
+		return list;
 	}
 
 

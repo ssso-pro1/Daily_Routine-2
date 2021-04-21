@@ -273,10 +273,10 @@
                                <tr>
                                    <td colspan="4">
                                     <label style="float: right;">
-                                            <button>수정</button>
+                                            <button><a href="<%= contextPath%>/ctFaqUpdateForm.ad?fno=<%= f.getFaqNo()%>">수정</a></button>
                                             
                                             <button onclick ="return check();"><a href="<%= contextPath %>/ctFaqDelete.ad?fno=<%= f.getFaqNo()%>&ctg=<%= f.getFaqCategory() %>">삭제</a></button>
-                                            <button type="reset">취소</button>
+                                            <button><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=<%= f.getFaqCategory() %>">목록으로</a></button>
                                         </label>
                                     </td>
                                 </tr>

@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.dr.admin.center.model.vo.adCenterFaq;
+import com.dr.admin.center.model.vo.adCenterQuery;
 import com.dr.common.model.vo.PageInfo;
 
 public class adCenterDao {
@@ -199,6 +200,229 @@ public class adCenterDao {
 			close(pstmt);
 		} return result;
 	}
+
+
+
+
+
+	public int updateFaq(Connection conn, adCenterFaq f) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateFaq");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, f.getFaqCategory());
+			pstmt.setString(2, f.getFaqTitle());
+			pstmt.setString(3, f.getFaqContent());
+			pstmt.setString(4, f.getStatus());
+			pstmt.setInt(5, f.getFaqNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+
+
+
+
+
+	public int searchFaqListCount(Connection conn, String searchFaq) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("searchFaqListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, searchFaq);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	}
+
+
+	public ArrayList<adCenterFaq> searchFaqList(Connection conn, PageInfo pi, String searchFaq) {
+		// select문 => ResultSet객체 (여러행)
+		ArrayList<adCenterFaq> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("searchFaqList");
+								
+		try {
+			pstmt = conn.prepareStatement(sql);
+					
+			pstmt.setString(1, searchFaq);
+			pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+									
+			rset = pstmt.executeQuery();
+									
+			while(rset.next()) {
+				list.add(new adCenterFaq(rset.getInt("faq_no"),
+									     rset.getString("FAQ_CATEGORY"),
+									     rset.getString("faq_title"),
+									     rset.getString("faq_content"),
+									     rset.getDate("CREATE_DATE"),
+									     rset.getDate("UPDATE_DATE"),
+									     rset.getString("STATUS"),
+									     rset.getString("USER_ID")));
+				}	
+			}catch (SQLException e) {
+				e.printStackTrace();
+			}finally {
+				close(rset);
+				close(pstmt);
+			} return list;
+	}
+
+
+
+
+	//-----------------------------------1:1문의-----------------------------
+	
+	public int queryListCount(Connection conn) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("queryListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	}
+
+
+
+
+
+	public ArrayList<adCenterQuery> queryList(Connection conn, PageInfo pi) {
+		ArrayList<adCenterQuery> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("queryList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+							
+			rset = pstmt.executeQuery();
+							
+			while(rset.next()) {
+				list.add(new adCenterQuery(rset.getInt("query_no"),
+										   rset.getString("QUERY_CATEGORY"),
+										   rset.getString("QUERY_title"),
+										   rset.getDate("QUERY_CREATE_DATE"),
+										   rset.getString("REPLY_STATUS"),
+										   rset.getDate("REPLY_DATE"),
+										   rset.getString("USER_ID")
+										));
+			}		
+		} catch (SQLException e) {
+					e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return list;
+	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	public int querySelectListCount(Connection conn, String reStatus) {
+		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("querySelectListCount");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, reStatus);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	}
+
+
+
+
+
+	public ArrayList<adCenterQuery> querySelectList(Connection conn, PageInfo pi, String reStatus) {
+		ArrayList<adCenterQuery> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("querySelectList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, reStatus);
+			pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+							
+			rset = pstmt.executeQuery();
+							
+			while(rset.next()) {
+				list.add(new adCenterQuery(rset.getInt("query_no"),
+										   rset.getString("QUERY_CATEGORY"),
+										   rset.getString("QUERY_title"),
+										   rset.getDate("QUERY_CREATE_DATE"),
+										   rset.getString("REPLY_STATUS"),
+										   rset.getDate("REPLY_DATE"),
+										   rset.getString("USER_ID")
+										));
+			}		
+		} catch (SQLException e) {
+					e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return list;
+	}
+
 
 		
 		

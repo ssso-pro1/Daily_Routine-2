@@ -1,27 +1,23 @@
 package com.dr.admin.center.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.admin.center.model.service.adCenterService;
-import com.dr.admin.center.model.vo.adCenterFaq;
-
 /**
- * Servlet implementation class adCenterFaqEnrollFormServlet
+ * Servlet implementation class testtest
  */
-@WebServlet("/ctFaqEnroll.ad")
-public class adCenterFaqEnrollFormServlet extends HttpServlet {
+@WebServlet("/adminMain.ad")
+public class testtest extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adCenterFaqEnrollFormServlet() {
+    public testtest() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,8 +27,10 @@ public class adCenterFaqEnrollFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		request.getRequestDispatcher("views/admin/adMainPageView.jsp").forward(request, response);
 		
-		request.getRequestDispatcher("views/admin/center/adCenterFaqEnrollForm.jsp").forward(request, response);
+		
+		
 	}
 
 	/**

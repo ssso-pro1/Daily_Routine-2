@@ -12,16 +12,16 @@ import com.dr.admin.center.model.service.adCenterService;
 import com.dr.admin.center.model.vo.adCenterFaq;
 
 /**
- * Servlet implementation class adCenterFaqEnrollFormServlet
+ * Servlet implementation class adCenterFaqUpdateFormServlet
  */
-@WebServlet("/ctFaqEnroll.ad")
-public class adCenterFaqEnrollFormServlet extends HttpServlet {
+@WebServlet("/ctFaqUpdateForm.ad")
+public class adCenterFaqUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adCenterFaqEnrollFormServlet() {
+    public adCenterFaqUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,8 +31,15 @@ public class adCenterFaqEnrollFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		int faqNo = Integer.parseInt(request.getParameter("fno")); // 글번호넘기고
 		
-		request.getRequestDispatcher("views/admin/center/adCenterFaqEnrollForm.jsp").forward(request, response);
+		adCenterFaq f = new adCenterService().selectFaq(faqNo);
+		// 글번호, 카테고리, 제목, 내용, 작성일, 업데이트일, 게시상태, 작성자아이디
+		
+		request.setAttribute("f", f);
+		request.getRequestDispatcher("views/admin/center/adCenterFaqUpdateForm.jsp").forward(request, response);
+		
+		
 	}
 
 	/**

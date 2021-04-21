@@ -136,7 +136,57 @@
 	
 	</entry>
 	
+	<entry key="updateFaq">
 	
+      UPDATE
+		 	 TB_FAQ
+	     SET  FAQ_CATEGORY = ?
+	        , FAQ_TITLE = ?
+		    , FAQ_CONTENT = ?
+		    , UPDATE_DATE = SYSDATE
+		    , STATUS = ?
+		    
+	  WHERE FAQ_NO = ?
+	
+	</entry>
+	
+	<entry key="searchFaqListCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_FAQ F
+	WHERE F.status ='Y'
+  	AND F.FAQ_CONTENT LIKE '%'||?||'%'
+	
+	
+	</entry>
+	
+	
+	<entry key="searchFaqList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       FAQ_NO
+		                     , FAQ_CATEGORY
+		                     , FAQ_TITLE
+		                     , FAQ_CONTENT
+		                     , CREATE_DATE
+                             , UPDATE_DATE
+                             , STATUS
+                             , USER_ID
+		                 FROM TB_FAQ F
+                         JOIN TB_USER USING(USER_NO)
+		                 WHERE F.FAQ_CONTENT LIKE '%'||?||'%'
+		                 ORDER BY CREATE_DATE DESC
+		                 
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
 	
 	
 	
@@ -318,27 +368,86 @@
 	
 	
 	<!-- 1:1문의 게시판 -->
+	
+	
+	<!--  처리중,처리완료 모두-->
+	<entry key="queryListCount"> 
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_QUERY
+	WHERE reply_status IN ('Y', 'N')
+	  AND QUERY_STATUS= 'Y'
+	
+	</entry>
+	
 	<entry key="queryList">
-	
-	SELECT  
-			QUERY_NO
-	      , USER_NO
-	      , QUERY_CATEGORY
-	      , QUERY_TITLE
-	      , QUERY_CONTENT
-	      , QUERY_CREATE_DATE
-	      , REPLY_STATUS
-	      , REPLY_CONTENT
-	      , REPLY_DATE
-	   FROM TB_QUERY
-	  WHERE USER_NO = ?
-	    AND reply_status IN ('Y', 'N')
-	  ORDER BY QUERY_CREATE_DATE DESC
-	
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                        QUERY_NO
+						      , QUERY_CATEGORY
+						      , QUERY_TITLE
+						      , QUERY_CREATE_DATE
+						      , REPLY_STATUS
+						      , REPLY_DATE
+						      , USER_ID
+		                     
+		                  FROM TB_QUERY Q
+		                  JOIN TB_USER USING(USER_NO)
+		                 WHERE reply_status IN ('Y', 'N')
+		                   AND QUERY_STATUS= 'Y'
+		                 ORDER BY
+		                    QUERY_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+		 
+		 
 	</entry>
 	
 	
 	
+	<!-- 처리완료/처리중 따로 -->
+	<entry key="querySelectListCount">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_QUERY
+	WHERE reply_status = ?
+	  AND QUERY_STATUS= 'Y'
+  	
+	
+	</entry>
+	
+	<entry key="querySelectList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                        QUERY_NO
+						      , QUERY_CATEGORY
+						      , QUERY_TITLE
+						      , QUERY_CREATE_DATE
+						      , REPLY_STATUS
+						      , REPLY_DATE
+						      , USER_ID
+		                     
+		                  FROM TB_QUERY Q
+		                  JOIN TB_USER USING(USER_NO)
+		                 WHERE reply_status = ?
+		                   AND QUERY_STATUS= 'Y'
+		                 ORDER BY
+		                    QUERY_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+		 
+		 
+	</entry>
 	
 	
 	<entry key="insertQuery">
@@ -363,43 +472,9 @@
 	
 	</entry>
 	
-	<entry key="querySelectListCount">
-	SELECT COUNT(*) LISTCOUNT
-	FROM TB_QUERY
-	WHERE reply_status IN ('Y','N')
-  	AND USER_NO = ?
 	
 	
-	</entry>
 	
-	<entry key="querySelectList">
-	SELECT *
-		  FROM (
-		        SELECT
-		               ROWNUM RNUM
-		             , A.*
-		          FROM (
-		                SELECT
-		                       QUERY_NO
-						      , USER_NO
-						      , QUERY_CATEGORY
-						      , QUERY_TITLE
-						      , QUERY_CONTENT
-						      , QUERY_CREATE_DATE
-						      , REPLY_STATUS
-						      , REPLY_CONTENT
-						      , REPLY_DATE
-		                     
-		                  FROM TB_QUERY Q
-		                 WHERE Q.USER_NO = ?
-		                 AND  Q.QUERY_STATUS = 'Y'
-		                 ORDER BY
-		                    QUERY_CREATE_DATE DESC
-		               ) A
-		       )
-		 WHERE RNUM BETWEEN ? AND ?
-		 
-	</entry>
 	
 	
 	<entry key="deleteQuery">

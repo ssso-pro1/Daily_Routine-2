@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+    <%@ page import="java.util.ArrayList, com.dr.admin.center.model.vo.adCenterQuery, com.dr.common.model.vo.PageInfo"%>    
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
+	
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<adCenterQuery> list =(ArrayList<adCenterQuery>)request.getAttribute("list"); 
+	
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>   
 
 <!DOCTYPE html>
@@ -13,6 +23,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>관리자 메인 페이지- 좌측 메뉴바</title>
 
     <style>
@@ -122,7 +133,6 @@
         .listArea>tr,th,td{
             height:30px;
         }
-
         
         
         
@@ -197,7 +207,7 @@
 
                 <!-- 상단 타이틀 -->
                 <div id="content2_1">
-                    <h2>고객센터 > FAQ 관리</h2>
+                    <h2>고객센터 > 1:1 문의 관리</h2>
                 </div>
 
                 <hr style="border:1px solid rgb(145, 144, 144)">
@@ -206,84 +216,115 @@
 
 
 
-            <!--FAQ-->
+            <!--1:1문의 관리-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 수정</p>
-                <div class="underLine"></div>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">1:1문의 관리</p>
             </div>
 
 
-            <!--FAQ 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 500px;">
-                <br>
-                <div id="noticeEnroll">
-                    <form action="">
-                        <table border="1" align="center">
-                            <tbody>
-                                <tr>
-                                    <th>문의유형</th>
-                                    <td width=300px>
-                                        <select name="qCategory" id="qCategory" required style="width: 100%;">
-                                            <option id="qCategory" value="0">선택해주세요</option>
-                                            <option name="qCategory" id="qCategory" value="top" >TOP10</option>
-                                            <option name="qCategory" id="qCategory" value="회원정보" >회원정보</option>
-                                            <option name="qCategory" id="qCategory" value="게시글">게시글/댓글</option>
-                                            <option name="qCategory" id="qCategory" value="신고">신고</option>
-                                            <option name="qCategory" id="qCategory" value="기타문의">기타문의</option>
-                                        </select>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>제목</th>
-                                    <td><input type="text" name="qTitle" id="qTitle" placeholder="제목을 입력해주세요" style="width: 100%;" required maxlength="50"></td>
-                                </tr>
-                                <tr>
-                                    <th>내용</th>
-                                    <td>
-                                        <div>
-                                            <textarea id="qContent" name="qContent" cols="50" rows="20" style="resize: none;" placeholder="내용을 입력하세요 (300자 이내)" required></textarea>
-                                            <br>
-                                        </div>
-                                        <span id="count" name="count">0</span> / 300
-                                    </td>
-                                </tr>
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>게시여부</th>
-                                    <th>
-                                        <input type="checkbox">게시
-                                        <input type="checkbox">보류
-                                        
-                                        <label style="float: right;">
-                                        <button type="submit" onclick="return validate();">수정</button>
-                                        <button type="reset">취소</button>
-                                        </label>
-                                    </td>
-                                </tr>
-
-                            </tfoot>
-
-                        </table>
-
-
-
-
-                    </form>
+            <!--FAQ 게시판-->
+            <div id="content_2_4" style="background: white;">
+                <div class="replyStatusArea">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">전체보기 </a>|</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=N">처리중</a> |</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=Y">처리완료</a> |</th>
+                        </tr>
+                    </table>
 
                 </div>
-               
+                
+                <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
+                    <br><br>
+                    <table align="center" class="listArea" border="1">
+                         <thead>
+                             <tr>
+                                 <th width="30">글선택</th>
+                                 <th width="40" style="color:black">글번호</th>
+                                 <th width="40" style="color:black">문의유형</th>
+                                 <th width="200" style="color:black">제목</th>
+                                 <th width="50">게시자</th>
+                                 <th width="60">처리상태</th>
+                                 <th width="60">게시일</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                         
+                         	<% if(list.isEmpty()) { %>
+                         	<tr>
+            					<td colspan="7">존재하는 문의글이 없습니다.</td>
+            				</tr>
+            				<% } else { %>
+                         		<% for(adCenterQuery q:list) { %>
+                         	
+                         	<tr>
+                                <td><input type="checkbox"></td>
+                                <td><%= q.getQueryNo() %></td>
+                                <td><%= q.getQueryCategory() %></td>
+                                <td><%= q.getQueryTitle() %></td>
+                                <td><%= q.getUserId() %></td>
+                                <td><%= q.getReplyStatus() %></td>
+                                <td><%= q.getQueryCreateDate() %></td>
+                            </tr>
+								<% } %>
+                           <% } %>
+                            	
+                         </tbody>
+                    </table>
              
-                 
+             		<script>
+				    	$(function(){
+							$(".listArea>tbody>tr").click(function(){
+								location.href = '<%=contextPath%>/noticeDetail.ct?nno=' + $(this).children().eq(0).text();			
+								
+							})
+				    	})
+				    </script>
+             
+                    <br><br>
+                    
+                    
+                    
+                    <div align="center" class="pagingArea">
 
+						<%if (list.isEmpty()) { %>
+					<p></p>
+					<% } else { %>
+						<% if(currentPage != 1) { %>
+			            	<button onclick="location.href='<%=contextPath%>/ctQuery.ad?currentPage=<%=currentPage-1%>';">이전</button>
+						<% } %>
+						
+						<% for(int p=startPage; p<=endPage; p++) { %>
+							
+							<% if(currentPage == p){ %>
+			            		<button disabled><%= p %></button>
+			            	<% }else{ %>
+			            		<button onclick="location.href='<%=contextPath%>/ctQuery.ad?currentPage=<%= p %>';"><%= p %></button>
+			            	<% } %>
+			            	
+						<% } %>
+						
+						<% if(currentPage != maxPage){ %>
+			            	<button onclick="location.href='<%=contextPath%>/ctQuery.ad?currentPage=<%=currentPage+1%>';">다음</button>
+						<% } %>
+					 <% } %>	
+						
+			        </div>
+                    
+                    
+                   
+                   <div align="center">
+                        <br>
+                        <button>선택 삭제</button>
+                    </div>
 
-			</div>    
-
-            
+                </div>    
 
         </div>
 
-
+    </div>
 
 
 

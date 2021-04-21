@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+    <%@ page import="java.util.ArrayList, com.dr.admin.center.model.vo.adCenterQuery, com.dr.common.model.vo.PageInfo"%>    
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
+	
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<adCenterQuery> list =(ArrayList<adCenterQuery>)request.getAttribute("list"); 
+	
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 %>   
 
 <!DOCTYPE html>
@@ -123,7 +133,6 @@
         .listArea>tr,th,td{
             height:30px;
         }
-
         
         
         
@@ -194,11 +203,11 @@
 
 
             <!-- content -->
-            <div id="content_2">s
+            <div id="content_2">
 
                 <!-- 상단 타이틀 -->
                 <div id="content2_1">
-                    <h2>고객센터 > 공지사항 관리</h2>
+                    <h2>고객센터 > 1:1 문의 관리</h2>
                 </div>
 
                 <hr style="border:1px solid rgb(145, 144, 144)">
@@ -207,73 +216,110 @@
 
 
 
-            <!--공지사항-->
+            <!--1:1문의 관리-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">공지사항 관리 > 새 공지 등록</p>
-                <div class="underLine"></div>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">1:1문의 관리</p>
             </div>
 
 
-            <!--공지사항 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 500px;">
-                <br>
-                <div id="noticeEnroll">
-                    <form action="">
-                        <table border="1" align="center">
-                            <tbody>
-                                <tr>
-                                    <th>제목</th>
-                                    <td><input type="text" name="noticeTitle"></td>
-                                </tr>
-                                <tr>
-                                    <th>작성자</th>
-                                    <td><input type="text" name="noticeWriter"></td>
-                                </tr>
-                                <tr>
-                                    <th>첨부파일</th>
-                                    <td><input type="file" name="noticeFile"></td>
-                                </tr>
-                                <tr>
-                                    <th>내용</th>
-                                    <td><textarea name="noticeContent" cols="50" rows="20" style="resize: none;"></textarea></td>
-                                </tr>
-
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <th>게시여부 선택</th>
-                                    <th>
-                                        <input type="checkbox">게시
-                                        <input type="checkbox">보류
-                                        
-                                        <label style="float: right;">
-                                        <button type="submit" onclick="return validate();">등록</button>
-                                        <button type="reset">취소</button>
-                                        </label>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                            
-                        </table>
-
-
-
-
-                    </form>
+            <!--FAQ 게시판-->
+            <div id="content_2_4" style="background: white;">
+                <div class="replyStatusArea">
+                    <table>
+                        <tr>
+                            <th></th>
+                            <th><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">전체보기 </a>|</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=N">처리중</a> |</th>
+                            <th><a href="<%=contextPath%>/ctQuerySelect.ad?currentPage=1&reStatus=Y">처리완료</a> |</th>
+                        </tr>
+                    </table>
 
                 </div>
-               
+                
+                <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
+                    <br><br>
+                    <table align="center" class="listArea" border="1">
+                         <thead>
+                             <tr>
+                                 <th width="30">글선택</th>
+                                 <th width="40" style="color:black">글번호</th>
+                                 <th width="40" style="color:black">문의유형</th>
+                                 <th width="200" style="color:black">제목</th>
+                                 <th width="50">게시자</th>
+                                 <th width="60">처리상태</th>
+                                 <th width="60">게시일</th>
+                             </tr>
+                         </thead>
+                         <tbody>
+                         
+                         	<% if(list.isEmpty()) { %>
+                         	<tr>
+            					<td colspan="7">존재하는 문의글이 없습니다.</td>
+            				</tr>
+            				<% } else { %>
+                         		<% for(adCenterQuery q:list) { %>
+                         	
+                         	<tr>
+                                <td><input type="checkbox"></td>
+                                <td><%= q.getQueryNo() %></td>
+                                <td><%= q.getQueryCategory() %></td>
+                                <td><%= q.getQueryTitle() %></td>
+                                <td><%= q.getUserId() %></td>
+                                <td><%= q.getReplyStatus() %></td>
+                                <td><%= q.getQueryCreateDate() %></td>
+                            </tr>
+								<% } %>
+                           <% } %>
+                            	
+                         </tbody>
+                    </table>
              
-                 
+             		<script>
+				    	$(function(){
+							$(".listArea>tbody>tr").click(function(){
+								location.href = '<%=contextPath%>/noticeDetail.ct?nno=' + $(this).children().eq(0).text();			
+								
+							})
+				    	})
+				    </script>
+             
+                    <br><br>
+                    <div align="center" class="pagingArea">
 
+						<%if (list.isEmpty()) { %>
+					<p></p>
+					<% } else { %>
+						<% if(currentPage != 1) { %>
+			            	<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%=currentPage-1%>&reStatus=<%=list.get(0).getReplyStatus() %>';">이전</button>
+						<% } %>
+						
+						<% for(int p=startPage; p<=endPage; p++) { %>
+							
+							<% if(currentPage == p){ %>
+			            		<button disabled><%= p %></button>
+			            	<% }else{ %>
+			            		<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%= p %>&reStatus=<%=list.get(0).getReplyStatus() %>';"><%= p %></button>
+			            	<% } %>
+			            	
+						<% } %>
+						
+						<% if(currentPage != maxPage){ %>
+			            	<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%=currentPage+1%>&reStatus=<%=list.get(0).getReplyStatus() %>';">다음</button>
+						<% } %>
+					 <% } %>	
+						
+			        </div>
+                   
+                   <div align="center">
+                        <br>
+                        <button>선택 삭제</button>
+                    </div>
 
-			</div>    
-
-            
+                </div>    
 
         </div>
 
-
+    </div>
 
 
 

@@ -14,6 +14,8 @@ public class adCenterQuery {
 	private String replyContent;
 	private Date replyDate;
 	
+	private String userId;
+	
 	public adCenterQuery() {}
 
 	public adCenterQuery(int queryNo, int userNo, String queryCategory, String queryTitle, String queryContent,
@@ -32,6 +34,23 @@ public class adCenterQuery {
 	
 	
 	
+
+	
+
+	
+
+	
+	public adCenterQuery(int queryNo, String queryCategory, String queryTitle, Date queryCreateDate, String replyStatus,
+			Date replyDate, String userId) {
+		super();
+		this.queryNo = queryNo;
+		this.queryCategory = queryCategory;
+		this.queryTitle = queryTitle;
+		this.queryCreateDate = queryCreateDate;
+		this.replyStatus = replyStatus;
+		this.replyDate = replyDate;
+		this.userId = userId;
+	}
 
 	public int getQueryNo() {
 		return queryNo;
@@ -104,15 +123,32 @@ public class adCenterQuery {
 	public void setReplyDate(Date replyDate) {
 		this.replyDate = replyDate;
 	}
+	
+	
+	
+	public adCenterQuery(String userId) {
+		super();
+		this.userId = userId;
+	}
+	
+	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	@Override
 	public String toString() {
-		return "CenterQuery [queryNo=" + queryNo + ", userNo=" + userNo + ", queryCategory=" + queryCategory
+		return "adCenterQuery [queryNo=" + queryNo + ", userNo=" + userNo + ", queryCategory=" + queryCategory
 				+ ", queryTitle=" + queryTitle + ", queryContent=" + queryContent + ", queryCreateDate="
 				+ queryCreateDate + ", replyStatus=" + replyStatus + ", replyContent=" + replyContent + ", replyDate="
-				+ replyDate + "]";
+				+ replyDate + ", userId=" + userId + "]";
 	}
-	
+
 	
 	
 	

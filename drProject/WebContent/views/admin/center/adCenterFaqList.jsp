@@ -218,7 +218,7 @@
 
             <!--FAQ관리-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000; ">FAQ 관리</p>
             </div>
 
 
@@ -238,9 +238,9 @@
 
                 </div>
                 
-                <div class="faqListArea">
+                <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
                     <br><br>
-                    <table align="center" class="listArea" border="1">
+                    <table align="center" class="listArea" border="1" >
                          <thead>
                              <tr>
                                 <th width="30">글선택</th>
@@ -262,7 +262,7 @@
             					<% for (adCenterFaq n:list) { %>
                          
                             <tr>
-                                <th><input type="checkbox"></th>
+                                <th><input type="checkbox" name="selectFaqNo" value="<%=n.getFaqNo() %>"></th>
                                 <td><%= n.getFaqNo() %></td>
                                 <td>
                                 	<% if(n.getFaqCategory().equals("top")) { %>
@@ -334,19 +334,15 @@
 
 
 
-             		<!-- 검색부분
+             		<!-- 검색부분-->
                     <br><br>
-                    <div align="center" class="searchArea">
-                        <form action="<%= contextPath %>/searchNotice.ct?currentPage=1" method="post">
-                            <select name="searchNoticeCtg">
-                                <option name="searchNoticeCtg" value="제목">제목</option>
-                                <option name="searchNoticeCtg" value="내용">내용</option>
-                            </select>  
-                            <input type="text" name="searchNoticeText">
-                            <button type="submit">검색</button> 
-             
-                        </form>
-					 -->	
+                    	<div class="searchArea" align="center">
+		                    <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
+		                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
+		                        <button type="submit">검색</button>
+		                    </form>
+		                </div>
+					 	
                     
                         <div align="center" class="buttonArea">
                             <br>
@@ -354,11 +350,7 @@
                             <button>선택 삭제</button>
 
                         </div>
-                        
-             
-                 </div>
-                 <br><Br>
-
+               
 
 			</div>    
 

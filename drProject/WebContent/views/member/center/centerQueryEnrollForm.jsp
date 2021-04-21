@@ -160,7 +160,7 @@
                             </tr>
                             <tr>
                                 <th>제목</th>
-                                <td><input type="text" name="qTitle" id="qTitle" placeholder="제목을 입력해주세요" style="width: 100%;" required></td>
+                                <td><input type="text" name="qTitle" id="qTitle" placeholder="제목을 입력해주세요" style="width: 100%;" required maxlength="50"></td>
                             </tr>
                             <tr>
                                 <th>내용</th>
@@ -182,7 +182,7 @@
 
                         </table>
 
-                                 <script>
+                                <script>
                                 	
  									// 문의글 제목 50글짜 이상 입력방지 , 알러트
                                     $(document).ready(function(){

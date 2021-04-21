@@ -1,18 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList"%>
+<%@ page import="java.util.ArrayList, com.dr.admin.center.model.vo.adCenterFaq, com.dr.common.model.vo.PageInfo"%>
 <%
-	User loginUser = (User)session.getAttribute("loginUser");
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<adCenterFaq> searchList =(ArrayList<adCenterFaq>)request.getAttribute("searchList"); 
+	int listCount = (int)request.getAttribute("listCount");
+	String searchFaq = (String)request.getAttribute("searchFaq");
 	
-	// 관리자 페이지 url ..? 
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
+	
 	String contextPath = request.getContextPath();
 %>   
 
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <title>관리자 메인 페이지- 좌측 메뉴바</title>
 
     <style>
@@ -196,7 +206,7 @@
 
                 <!-- 상단 타이틀 -->
                 <div id="content2_1">
-                    <h2>고객센터 > 1:1 문의 관리</h2>
+                    <h2>고객센터 > FAQ 관리</h2>
                 </div>
 
                 <hr style="border:1px solid rgb(145, 144, 144)">
@@ -205,97 +215,111 @@
 
 
 
-            <!--1:1문의 관리-->
+            <!--FAQ관리-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">1:1문의 관리</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리</p>
             </div>
 
 
             <!--FAQ 게시판-->
             <div id="content_2_4" style="background: white;">
-                <div class="replyStatusArea">
+                <div class="faqCategoryArea">
                     <table>
                         <tr>
                             <th></th>
-                            <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">전체보기 </a>|</th>
-                            <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=회원정보">처리중</a> |</th>
-                            <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=게시글">처리완료</a> |</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">자주찾는 질문 TOP10 </a>|</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=userInfo">회원정보</a>|</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=content">게시글/댓글</a> |</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=report">신고</a> |</th>
+                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=etc">기타</a></th>
                         </tr>
                     </table>
 
                 </div>
                 
-                <div class="faqListArea">
+                <div class="searchResultArea">
+	                <table>
+	                    <tr>
+	                        <th>
+	                            <label style="font-size: 20px; color: rgb(96, 206, 23);"><%= searchFaq %> </label>검색결과 총 
+	                            <label style="font-size: 20px; color: rgb(226, 166, 14);"><%=listCount %></label>개
+	                        </th>
+	                        
+	                    </tr>
+	                </table>
+                </div>
+                
+                
+                <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
                     <br><br>
                     <table align="center" class="listArea" border="1">
                          <thead>
                              <tr>
-                                 <th width="30">글선택</th>
-                                 <th width="40" style="color:black">글번호</th>
-                                 <th width="40" style="color:black">문의유형</th>
-                                 <th width="200" style="color:black">제목</th>
-                                 <th width="50">게시자</th>
-                                 <th width="60">처리상태</th>
-                                 <th width="60">게시일</th>
+                                <th width="30">글선택</th>
+                                <th width="40" style="color:black">글번호</th>
+                                <th width="40" style="color:black">문의유형</th>
+                                <th width="200" style="color:black">제목</th>
+                                <th width="50">게시자</th>
+                                <th width="60">게시상태</th>
+                                <th width="60">게시일</th>
                              </tr>
                          </thead>
                          <tbody>
                          
-                         	<!--
+                         	<%if(searchList.isEmpty()){ %>
                          	<tr>
-            					<td colspan="4">존재하는 공지사항이 없습니다.</td>
+            					<td colspan="7">존재하는 글이 없습니다.</td>
             				</tr>
-            				
-                         	-->
+            				<% } else {%>
+            					<% for (adCenterFaq n:searchList) { %>
+                         
                             <tr>
-                                <td><input type="checkbox"></td>
-                                <td>3</td>
-                                <td>회원정보</td>
-                                <td>제목제목</td>
-                                <td>user01</td>
-                                <td>처리중</td>
-                                <td>2021-04-21</td>
+                                <th><input type="checkbox"></th>
+                                <td><%= n.getFaqNo() %></td>
+                                <td>
+                                	<% if(n.getFaqCategory().equals("top")) { %>
+                                		<label>TOP10</label>
+                                	<% } else if (n.getFaqCategory().equals("userInfo")) { %>
+                                		<label>회원정보</label>
+                                	<% } else if (n.getFaqCategory().equals("content")) { %>
+                                		<label>게시글/댓글</label>
+                                	<% } else if (n.getFaqCategory().equals("report")) { %>
+                                		<label>신고</label>
+                                	<% } else if (n.getFaqCategory().equals("etc")) { %>
+                                		<label>기타</label>
+                                	<% } %>
+                                </td>
+                                <td><%=n.getFaqTitle() %></td>
+                                <td><%=n.getUserId() %></td>
+                                <td><%=n.getStatus() %></td>
+                                <td><%=n.getCreateDate() %></td>
                             </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>2</td>
-                                <td>회원정보</td>
-                                <td>제목제목</td>
-                                <td>user01</td>
-                                <td>처리중</td>
-                                <td>2021-04-20</td>
-                            </tr>
-
-                            <tr>
-                                <td><input type="checkbox"></td>
-                                <td>1</td>
-                                <td>회원정보</td>
-                                <td>제목제목</td>
-                                <td>user01</td>
-                                <td>처리중</td>
-                                <td>2021-04-19</td>
-                            </tr>
+								<% } %>
+                            <% } %>
                             	
                          </tbody>
                     </table>
              
              		<script>
 				    	$(function(){
-							$(".listArea>tbody>tr").click(function(){
-								location.href = '<%=contextPath%>/noticeDetail.ct?nno=' + $(this).children().eq(0).text();			
+							$(".listArea>tbody>tr>td").click(function(){
+								location.href = '<%=contextPath%>/ctFaqDetail.ad?fno=' + $(this).siblings().eq(1).text();			
 								
 							})
 				    	})
 				    </script>
              
                     <br><br>
+                    
                     <!-- 페이징처리 10개씩 -->
-                    <!--
+                   
                     <div align="center" class="pagingArea">
 
+						<%if (searchList.isEmpty()) { %>
+					<p></p>
+					<% } else { %>
 						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%=currentPage-1%>';">이전</button>
+			            	<button onclick="location.href='<%=contextPath%>/ctFaqSearch.ad?currentPage=<%=currentPage-1%>&searchFaq=<%=searchFaq%>';">이전</button>
 						<% } %>
 						
 						<% for(int p=startPage; p<=endPage; p++) { %>
@@ -303,44 +327,54 @@
 							<% if(currentPage == p){ %>
 			            		<button disabled><%= p %></button>
 			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%= p %>';"><%= p %></button>
+			            		<button onclick="location.href='<%=contextPath%>/ctFaqSearch.ad?currentPage=<%= p %>&searchFaq=<%=searchFaq%>';"><%= p %></button>
 			            	<% } %>
 			            	
 						<% } %>
 						
 						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%=currentPage+1%>';">다음</button>
+			            	<button onclick="location.href='<%=contextPath%>/ctFaqSearch.ad?currentPage=<%=currentPage+1%>&searchFaq=<%=searchFaq%>';">다음</button>
 						<% } %>
+					 <% } %>	
 						
 			        </div>
-                    -->
                     
                     
-                    
-                    <div align="center" class="pagingArea">
-                        <button><</button>
-                        <button>1</button>
-                        <button>2</button>
-                        <button>3</button>
-                        <button>4</button>
-                        <button>5</button>
-                        <button>></button>
-                   </div>
-                   
-                   <div align="center">
-                        <br>
-                        <button>선택 삭제</button>
-                    </div>
 
-                </div>    
+
+
+
+
+
+             		<!-- 검색부분-->
+                    <br><br>
+                    	<div class="searchArea" align="center">
+		                    <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
+		                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
+		                        <button type="submit">검색</button>
+		                    </form>
+		                </div>
+					 	
+                    
+                        <div align="center" class="buttonArea">
+                            <br>
+                            <button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                            <button>선택 삭제</button>
+
+                        </div>
+               
+
+			</div>    
+
+            
 
         </div>
 
-    </div>
+
 
 
 
 
 
 </body>
-</html>
+</html></html>

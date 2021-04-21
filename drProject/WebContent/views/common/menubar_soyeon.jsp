@@ -67,17 +67,18 @@
     }
     </script>
     
+
+
     <div class="outerWrap">
         <p align="center">Reading is to the mind what exercise is to the body</p>
         
-        
-        
+
         <div class="loginArea">
         <!--  로그인 전에 보여지는 로그인 버튼 -->
         
 	        <% if(loginUser == null){ %>
 	
-	        <table id="topMenu" align="right">
+	        <table id="topMenu1" align="right">
 	            <tr>
 	                <th><a href="<%=contextPath%>/loginForm.us">로그인</a></th>
 	                <th>|</th>
@@ -96,7 +97,7 @@
         
         <!--  로그인 후 -->
         	
-        	<table id="topMenu" align="right">
+        	<table id="topMenu2" align="right">
 	            <tr>
 	                <th><a href="<%=contextPath%>/logout.us">로그아웃</a></th>
 	                <th>|</th>

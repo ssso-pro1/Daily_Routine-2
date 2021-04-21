@@ -158,14 +158,17 @@
             <div id="msg"> 이메일 주소를 다시 확인해주세요.</div>
 
             <label for="">휴대전화</label> <br>
-            <input type="text" placeholder="전화번호(-) 빼고 입력"> <button>인증하기</button> <br>
+            <input type="text" placeholder="전화번호(-) 빼고 입력"> <button type="button">인증하기</button> <br>
             <input type="text" placeholder="인증번호를 입력하세요">            
     
-        </form>
 
             <div class="btn">
-                <button type="submit" class="btn btn-secondary" disabled >회원가입</button>
+                <!-- <button type="button" class="btn btn-secondary">가입하기</button> -->
+                <button type="submit" disabled>가입하기</button>
             </div>
+        </form>
+
+        
 
         </fieldset>
  
@@ -196,7 +199,7 @@
                 			
                 		}else{
                 			//다시 입력
-                			$userId.focus();
+                			$userId.focus(); 
                 		}
                 	}
                 	

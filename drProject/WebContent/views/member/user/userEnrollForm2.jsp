@@ -7,7 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3.회원가입_2.회원정보입력</title>
-        
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -28,16 +28,15 @@
         }
 
         .menuWrap{
-            /* background:lightgray; */
-            /* color:white; */
-            width:1200px;
+            width:100%;
             height:50px;
+            margin-bottom:60px;
 
             display:flex;
             justify-content:center;
         }
         
-        .step_1, .step_2, .step_3{
+        .menuWrap>span{
             text-decoration:none;
             /* color:white; */
             font-size:15px;
@@ -48,10 +47,10 @@
             margin:0px 50px;
         }
 
-        .step_2, .arrow2 {color:yellow;}
-        .step_1, .step_3{color:gray;}
+        .step_2, .arrow2 {color:rgb(250, 214, 9);}
+        .step_1, .step_3{color:rgb(116, 116, 116);}
 
-        i{margin-top:20px; color:gray;}
+        i{margin-top:20px; color:rgb(116, 116, 116);}
 
 
 
@@ -88,15 +87,13 @@
     <%@ include file="../../common/menubar.jsp" %>
 
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
-    
-    <hr style="border:1px solid lightgray">
+
     
     <div class="menuWrap" align="center">
-        <span class="step_1">회원약관동의</span> <i class="arrow1 fas fa-chevron-right fa-lg"></i>
-        <span class="step_2">회원정보입력</span> <i class="arrow2 fas fa-chevron-right fa-lg"></i>
+        <span class="step_1">회원약관동의</span> <i class="arrow1 fas fa-chevron-circle-right fa-lg"></i>
+        <span class="step_2">회원정보입력</span> <i class="arrow2 fas fa-chevron-circle-right fa-lg"></i>
         <span class="step_3">회원가입완료</span>
     </div>
-
     <!-- 상세보기 팝업 -->
     <div class="outer">
 
@@ -164,7 +161,7 @@
 
             <div class="btn">
                 <!-- <button type="button" class="btn btn-secondary">가입하기</button> -->
-                <button type="submit" disabled>가입하기</button>
+                <button type="submit" class="btn btn-secondary" disabled>가입하기</button>
             </div>
         </form>
 

@@ -136,9 +136,10 @@
                                 </tr>
                             </table><br><br>
                             <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
+                            <br><br>
                             
                             <div align="right" class="enrollButton">
-		                        <button type="submit" onclick="return validate();">등록</button>
+		                        <button type="submit">등록</button>
 		                        <button type="reset">취소</button>
                  		    </div>
                  		    

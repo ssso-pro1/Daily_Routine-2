@@ -59,7 +59,7 @@
 		  )
 	</entry>
 	
-	<entry key="insertCommFile">
+	<entry key="insertCommTipFile">
 		INSERT
 		  INTO TB_COMM_FILE
 		  (
@@ -78,7 +78,6 @@
 		  , ?
 		  , ?
 		  , ?
-		  , SYSDATE
 		  )
 	</entry>
 	
@@ -223,22 +222,46 @@
 		  INTO TB_COMMUNITY 
 		  (
 		    COMM_POST_NO
+		  , COMM_NO
 		  , POST_TITLE
 		  , POST_CONTENT
 		  , USER_NO 
-		  , COMM_NO
 		  , ENROLL_DATE
 		  )
 		  VALUES
 		  (
 		    SEQ_COMMPNO.NEXTVAL
-		  , ?
-		  , ?
-		  , ?
 		  , 2
+		  , ?
+		  , ?
+		  , ?
 		  , SYSDATE
 		  )
 	</entry>
+	
+	<entry key="insertCommFreeFile">
+		INSERT
+		  INTO TB_COMM_FILE
+		  (
+		    FILE_NO
+		  , COMM_POST_NO
+		  , COMM_NO
+		  , FILE_NAME
+		  , FILE_UPDATE
+		  , FILE_PATH
+		  )
+		  VALUES
+		  (
+		    SEQ_FNO.NEXTVAL
+		  , SEQ_COMMPNO.CURRVAL
+		  , 2
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
+	
+	
 	
 	<entry key="selectCommFree">
 		SELECT 

@@ -134,15 +134,15 @@
                     <div class="detailArea">
                         <table border="1" height="100%">
                             <tr align="center">
-                                <td  width="5%"><%=c.getCommPostNo()%></td>
-                                <td  width="58%"><%=c.getPostTitle()%></td>
-                                <td  width="10%"><%=c.getUserNo()%>님</td>
+                                <td width="5%"><%=c.getCommPostNo()%></td>
+                                <td width="58%"><%=c.getPostTitle()%></td>
+                                <td width="10%"><%=c.getUserNo()%>님</td>
                                 <td width="15%"><%=c.getEnrollDate()%></td>
-                                <td  width="12%">조회수 : <%=c.getBoardView()%></td>
+                                <td width="12%">조회수 : <%=c.getBoardView()%></td>
                             </tr>
                             <tr>
                                 <td colspan="5" height="70%">
-                                    <p><%=c.getPostContent()%></p>
+                                     <p><%=c.getPostContent()%></p>
                                 </td>
                             </tr>
                             <tr>
@@ -181,7 +181,7 @@
                                     <textarea id="replyContent" cols="80" rows="3" style="resize:none" placeholder="댓글 등록 시 상대에 대한 비방이나 욕설은 삼가주세요 ^^."></textarea>
                                 </td>
                                 <td width="50"> 
-                                    <button onclick"addReply();" style="color:white; background:rgb(250, 214, 9); border:rgb(250, 214, 9); cursor:pointer;">댓글<br>등록</button>
+                                    <button onclick="addReply();" style="color:white; background:rgb(250, 214, 9); border:rgb(250, 214, 9); cursor:pointer;">댓글<br>등록</button>
                                 </td>
                             </tr>
                             <tr>

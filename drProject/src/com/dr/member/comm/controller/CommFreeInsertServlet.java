@@ -82,10 +82,10 @@ public class CommFreeInsertServlet extends HttpServlet {
 			
 			// 4. 게시판 작성용 서비스 요청 및 결과 받기 
 			int result = new CommService().insertCommFree(c, cf);
-			// case 1 : 첨부파일 있던 경우 => insertCommTip(생성된 Comm객체, 생성된 CommFile 객체) 
-			// case 2 : 첨부파일 없던 경우 => insertCommTip(생성된 Comm객체, null)  
+			// case 1 : 첨부파일 있던 경우 => insertCommFree(생성된 Comm객체, 생성된 CommFile 객체) 
+			// case 2 : 첨부파일 없던 경우 => insertCommFree(생성된 Comm객체, null)  
 			
-			if(result > 0) { // 성공 => /commMain.co url 재요청 => 자유게시판 리스트 페이지 
+			if(result > 0) { // 성공 => /free.co url 재요청 => 자유게시판 리스트 페이지 
 				
 				request.getSession().setAttribute("alertMsg", "작성하신 게시글이 등록되었습니다.");
 				response.sendRedirect(request.getContextPath() + "/free.co?currentPage=1"); 

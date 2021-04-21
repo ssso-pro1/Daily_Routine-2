@@ -123,11 +123,11 @@ public class CommDao {
 		
 	}
 	
-	public int insertCommFile(Connection conn, CommFile cf) { 
+	public int insertCommTipFile(Connection conn, CommFile cf) { 
 		// insert문 
 		int result = 0; 
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertCommFile"); 
+		String sql = prop.getProperty("insertCommTipFile"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -452,6 +452,30 @@ public class CommDao {
 		}
 		
 		return result;
+		
+	}
+	
+	public int insertCommFreeFile(Connection conn, CommFile cf) { 
+		// insert문 
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCommFreeFile"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cf.getFileName());
+			pstmt.setString(2, cf.getFileUpdate());
+			pstmt.setString(3, cf.getFilePath());
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
 		
 	}
 	

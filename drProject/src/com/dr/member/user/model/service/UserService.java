@@ -38,6 +38,17 @@ public class UserService {
 		return result;
 	}
 	
+	/**
+	 * 회원가입 시 아이디 중복체크
+	 */
+	public int idCheck(String checkId) {
+		Connection conn = getConnection();
+		
+		int count = new UserDao().idCheck(conn, checkId);
+		
+		close(conn);
+		return count;
+	}
 	
 	
 	

@@ -93,9 +93,7 @@
         /* display:table-cell; */
         }
 
-        #content_3{
-
-        }
+        
     </style>
 </head>
 <body>

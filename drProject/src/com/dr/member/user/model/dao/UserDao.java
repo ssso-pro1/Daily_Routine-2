@@ -1,5 +1,7 @@
 package com.dr.member.user.model.dao;
 
+import static com.dr.common.JDBCTemplate.*;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -9,7 +11,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 
 
-import static com.dr.common.JDBCTemplate.*;
+
 import com.dr.member.user.model.vo.User;
 
 public class UserDao {
@@ -87,7 +89,12 @@ public class UserDao {
 			
 			pstmt.setString(1, u.getUserId());
 			pstmt.setString(2, u.getUserPwd());
-			
+			pstmt.setString(3, u.getUserName());
+			pstmt.setString(4, u.getBirth());
+			pstmt.setString(5, u.getGender());
+			pstmt.setString(6, u.getEmail());
+			pstmt.setString(7, u.getPhone());
+
 			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
@@ -98,6 +105,39 @@ public class UserDao {
 		return result;
 	}
 	
+	/**
+	 * 회원가입 시 아이디 중복체크
+	 */
+	public int idCheck(Connection conn, String checkId) {
+		//select 문 => ResultSet 객체(한개의 값)
+		int count = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("idCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, checkId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				count = rset.getInt("count");
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return count;
+		
+		
+	}
 	
 
 	

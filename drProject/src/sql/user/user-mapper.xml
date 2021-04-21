@@ -28,7 +28,7 @@
 <!-- 2. 회원가입 -->
 	<entry key="insertUser">
 		INSERT 
-		    INTO USER
+		    INTO TB_USER
 		        (
 		        USER_NO <!--  -->
 		      , USER_ID 
@@ -51,6 +51,17 @@
 		      , ?
 		        )
 	</entry>
+	
+<!-- 아이디 중복체크시 실행할 sql문 -->
+	<entry key="idCheck">
+		SELECT
+		       COUNT(*) "count"
+		  FROM TB_USER
+		 WHERE USER_ID = ?
+	
+	</entry>
+	
+	
 	
 </properties>
 

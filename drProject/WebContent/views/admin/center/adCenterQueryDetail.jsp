@@ -223,12 +223,12 @@
                          <tr>
                              <th>아이디</th>
                              <td><%=q.getUserId() %></td>
-                             <th>문의 여부</th>
+                             <th>문의 상태</th>
                              <td>
                              	<%if(q.getQueryStatus().equals("Y")) { %>
-                            	 <label>문의중</label>
+                            	 <label>정상</label>
                             	<% } else {%>
-                             	 <label>삭제된 문의글</label>
+                             	 <label style="color:red;">삭제된 문의글</label>
                              	<% } %>
                              </td>
                          </tr>
@@ -280,7 +280,7 @@
 	                        <tr>
 	                            <td colspan="4" align="right">
 	                                <button type="submit" onclick="return validate()">수정</button>
-	                                <button>삭제</button>
+	                                <button onclick="return confirmDelete();"><a href="<%=contextPath %>/ctQueryDelete.ad?qno=<%= q.getQueryNo() %>">삭제</a></button>
 	                                <button onclick="return back();"><a href="<%=contextPath %>/ctQuery.ad?currentPage=1">취소</a></button>
 	                            </td>
 	                        </tr>
@@ -291,7 +291,7 @@
 	                            <th>처리상태</th>
 	                            <td>답변대기</td>
 	                            <th>답변등록일</th>
-	                            <td></td>
+	                            <td>처리중</td>
 	                        </tr>
 	                        <tr>
 	                            <th>답변내용</th>
@@ -303,7 +303,7 @@
 	                        <tr>
 	                            <td colspan="4" align="right">
 	                                <button type="submit" onclick="return validate()">답변등록</a></button>
-	                                <button>삭제</button>
+	                                <button onclick="return confirmDelete();"><a href="<%=contextPath %>/ctQueryDelete.ad?qno=<%= q.getQueryNo() %>">삭제</a></button>
 	                                <button onclick="return back();"><a href="<%=contextPath %>/ctQuery.ad?currentPage=1">취소</a></button>
 	                            </td>
 	                        </tr>
@@ -320,17 +320,24 @@
 	                            <% } %>
 	                            </td>
 	                            <th>답변등록일</th>
-	                            <td><%=q.getReplyDate() %></td>
+	                            <td>
+	                            <%if(q.getReplyDate()==null) {%>
+	                            	처리중
+	                            <% } else { %>
+	                            	<%= q.getReplyDate() %>
+	                            <% } %>
+	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <th>답변내용</th>
 	                            <td colspan="3">
-	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="30" rows="10"><%=q.getReplyContent() %></textarea>
+	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="30" rows="10" readonly><%if(q.getReplyContent()==null) {%><% } else { %><%=q.getReplyContent() %><% } %>
+	                                </textarea>
 	                            </td>
 	                        </tr>
 	                        <tr>
 	                            <td colspan="4" align="right">
-	                                <button>삭제</button>
+	                                <button onclick="return confirmDelete();"><a href="<%=contextPath %>/ctQueryDelete.ad?qno=<%= q.getQueryNo() %>">삭제</a></button>
 	                                <button onclick="return back();"><a href="<%=contextPath %>/ctQuery.ad?currentPage=1">취소</a></button>
 	                            </td>
 	                        </tr>
@@ -346,6 +353,17 @@
                                     		return true;
                                     	} else {
                                     		
+                                    		return false;
+                                    	}
+                        			}
+                        			
+                        			
+                        			function confirmDelete(){
+                        				var result = confirm("해당 문의글을 완전히 삭제하시겠습니까?");
+                                    	if(result){
+                                    		return true;
+                                    	} else {
+                                    		alert("삭제가 취소되었습니다")
                                     		return false;
                                     	}
                         			}

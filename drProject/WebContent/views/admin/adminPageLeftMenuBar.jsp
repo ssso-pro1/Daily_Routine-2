@@ -144,7 +144,7 @@
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">HomeTraining</a></div> 
+                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
                     <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
                     <br>
                 </div>

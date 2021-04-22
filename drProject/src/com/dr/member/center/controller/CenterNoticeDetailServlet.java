@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dr.admin.center.model.service.adCenterService;
+import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.member.center.model.service.CenterService;
 import com.dr.member.center.model.vo.CenterNotice;
 
@@ -47,6 +49,10 @@ public class CenterNoticeDetailServlet extends HttpServlet {
 			request.setAttribute("n", n);
 			request.setAttribute("nPre", nPre);
 			request.setAttribute("nNext", nNext);
+			
+			centerNoticeFile fi = new adCenterService().selectAttachment(noticeNo);
+			
+			request.setAttribute("fi", fi);
 			
 			request.getRequestDispatcher("views/member/center/centerNoticeDetailView.jsp").forward(request, response);
 			

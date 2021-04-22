@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.center.model.vo.CenterNotice"%>
+    pageEncoding="UTF-8" import="com.dr.member.center.model.vo.CenterNotice, com.dr.admin.center.model.vo.centerNoticeFile" %>
 <%
 
 	CenterNotice n = (CenterNotice)request.getAttribute("n");		  // 현재글 (글번호, 제목, 내용, 작성일)
 	CenterNotice nPre = (CenterNotice)request.getAttribute("nPre");   // 이전글 (글번호, 제목)
 	CenterNotice nNext = (CenterNotice)request.getAttribute("nNext"); // 다음글 (글번호, 제목)
 	
-	
+	centerNoticeFile fi = (centerNoticeFile)request.getAttribute("fi");
 
 %>    
 <!DOCTYPE html>
@@ -156,6 +156,23 @@
                             <td><%=n.getCreateDate() %></td>
                             <th>조회수</th>
                             <td><%=n.getNoticeCount() %></td>
+                        </tr>
+                        <tr>
+                            <th>첨부파일</th>
+                            <td colspan="3">
+                            
+                            <!-- 첨부파일이 없을경우-->
+					        <%if(fi == null) { %>
+					                    
+					            첨부파일이 없습니다
+					                    
+							<% } else { %>
+										
+					       <!--첨부파일이 있을경우-->
+					       <a download="<%= fi.getFileName() %>" href= "<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>"><%= fi.getFileName() %></a>
+					                	
+					       <% } %>  
+					       </td>
                         </tr>
                         <tr>
                             <th>글내용</th>

@@ -32,7 +32,7 @@
 		                 FROM TB_FAQ F
                          JOIN TB_USER USING(USER_NO)
 		                 WHERE F.FAQ_CATEGORY=?
-		                 ORDER BY CREATE_DATE DESC
+		                 ORDER BY FAQ_NO DESC
 		                 
 		               ) A
 		       )
@@ -180,7 +180,7 @@
 		                 FROM TB_FAQ F
                          JOIN TB_USER USING(USER_NO)
 		                 WHERE F.FAQ_CONTENT LIKE '%'||?||'%'
-		                 ORDER BY CREATE_DATE DESC
+		                 ORDER BY FAQ_NO DESC
 		                 
 		               ) A
 		       )
@@ -364,7 +364,63 @@
 	</entry>
 	
 	
+	<entry key="insertNotice">
+		INSERT
+		    INTO TB_NOTICE
+		    (
+		       NOTICE_NO
+		     , NOTICE_TITLE
+		     , NOTICE_CONTENT
+		     , USER_NO
+		     , CREATE_DATE
+		     , STATUS
+		    )
+		    VALUES
+		    (
+		      SEQ_NOTICENO.NEXTVAL
+		    , ?
+		    , ?
+		    , ?
+		    , SYSDATE
+		    , ?
+		    )
 	
+	</entry>
+	
+	<entry key="insertAttachment">
+		
+		INSERT
+		    INTO TB_NOTICE_FILE
+		    (
+		      FILE_NO
+		    , NOTICE_NO
+		    , FILE_NAME
+		    , FILE_UPDATE
+		    , FILE_PATH
+		    )
+		    VALUES
+		   (
+		     SEQ_NOTICE_FNO.NEXTVAL
+		   , SEQ_NOTICENO.CURRVAL
+		   , ?
+		   , ?
+		   , ?
+		   )
+	
+	
+	
+	</entry>
+	
+	<entry key="selectAttachment">
+		SELECT
+		        FILE_NO
+		      , FILE_NAME
+		   	  , FILE_UPDATE
+		      , FILE_PATH
+		   FROM TB_NOTICE_FILE
+		  WHERE NOTICE_NO = ?
+		
+	</entry>
 	
 	
 	

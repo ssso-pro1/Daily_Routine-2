@@ -220,20 +220,20 @@
             <div id="content_2_4" style="background: white; width: 800px; height: 600px;">
                 <br>
                 <div id="faqUpdate">
-                    <form action="<%=contextPath %>/ctFaqUpdate.ad" method="post">
+                    <form action="<%=contextPath %>/ctFaqUpdate.ad" method="post" id="updateForm">
                     <input type="hidden" name="fno" value="<%=f.getFaqNo()%>">
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
                                     <th>문의유형</th>
                                     <td width=300px>
-                                        <select name="fCategory" id="fCategory" required style="width: 100%;">
-                                            <option id="fCategory" value="0">선택해주세요</option>
-                                            <option name="fCategory" id="fCategory" value="top">TOP10</option>
-                                            <option name="fCategory" id="fCategory" value="userInfo">회원정보</option>
-                                            <option name="fCategory" id="fCategory" value="content">게시글/댓글</option>
-                                            <option name="fCategory" id="fCategory" value="report">신고</option>
-                                            <option name="fCategory" id="fCategory" value="etc">기타</option>
+                                        <select name="fCategory"  style="width: 100%;">
+                                            <option value="0">선택해주세요</option>
+                                            <option value="top">TOP10</option>
+                                            <option value="userInfo">회원정보</option>
+                                            <option value="content">게시글/댓글</option>
+                                            <option value="report">신고</option>
+                                            <option value="etc">기타</option>
                                         </select>
                                     </td>
                                 </tr>
@@ -275,6 +275,21 @@
 					
 					
 					<script>
+					$(function(){
+                		
+                		// option요소들에 순차적으로 접근하면서 그때의 text값을 해당 이 게시글의 카테고리명과 비교
+                		// 일치할 경우 그 때의 option요소에 selected 속성 부여
+                		$("#updateForm option").each(function(){
+                			if($(this).val() == "<%= f.getFaqCategory() %>"){
+                				$(this).attr("selected", true);
+                			}
+                		})
+                		
+                	})
+					
+					
+					
+					
                         			
 					$(function(){
 						var status = "<%= f.getStatus()%>";

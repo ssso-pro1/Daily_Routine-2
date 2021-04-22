@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dr.admin.center.model.service.adCenterService;
+import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.member.center.model.service.CenterService;
 import com.dr.member.center.model.vo.CenterNotice;
 
@@ -36,9 +38,15 @@ public class adCenterNoticeDetailServlet extends HttpServlet {
 		int result = new CenterService().noticeIncreaseCount(noticeNo);
 		
 		
+		
+		
 		// 사용자거랑 같이쓸것임
 		
 		if(result > 0) { // 조회수증가 조회성공
+			
+			centerNoticeFile fi = new adCenterService().selectAttachment(noticeNo);
+			
+			request.setAttribute("fi", fi);
 			
 			
 			CenterNotice n = new CenterService().selectNotice(noticeNo); // 현재글

@@ -194,7 +194,7 @@
 
 
             <!-- content -->
-            <div id="content_2">s
+            <div id="content_2">
 
                 <!-- 상단 타이틀 -->
                 <div id="content2_1">
@@ -216,26 +216,31 @@
 
             <!--공지사항 글쓰기폼-->
             <div id="content_2_4" style="background: white; width: 800px; height: 500px;">
+                <form action="<%= contextPath %>/ctNoticeInsert.ad" id="enrollForm" method="post" enctype="multipart/form-data">
                 <br>
-                <div id="noticeEnroll">
-                    <form action="">
+                	<div id="noticeEnroll">
+                    
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="noticeTitle"></td>
+                                    <td><input type="text" name="noticeTitle" required></td>
                                 </tr>
+                                
+                                <!--  
                                 <tr>
                                     <th>작성자</th>
-                                    <td><input type="text" name="noticeWriter"></td>
+                                    <td><input type="text" name="noticeWriter" required></td>
                                 </tr>
+                                -->
+                                
                                 <tr>
                                     <th>첨부파일</th>
-                                    <td><input type="file" name="noticeFile"></td>
+                                    <td><input type="file" name="upfile"></td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
-                                    <td><textarea name="noticeContent" cols="50" rows="20" style="resize: none;"></textarea></td>
+                                    <td><textarea name="noticeContent" cols="50" rows="20" style="resize: none;" required></textarea></td>
                                 </tr>
 
                             </tbody>
@@ -243,10 +248,14 @@
                                 <tr>
                                     <th>게시여부 선택</th>
                                     <th>
-                                        <input type="checkbox">게시
-                                        <input type="checkbox">보류
+                                        <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
+                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
                                         
                                         <label style="float: right;">
+                                        
+                                        <!-- userNo value=로 나중에 수정하자/ 지금은 1이라고 가정 -->
+                                        <input type="hidden" name="userNo" value="1">
+                                        
                                         <button type="submit" onclick="return validate();">등록</button>
                                         <button type="reset">취소</button>
                                         </label>
@@ -257,24 +266,17 @@
                         </table>
 
 
+					</div>
 
-
-                    </form>
-
-                </div>
-               
-             
-                 
-
-
+                  </form>
 			</div>    
 
             
 
-        </div>
+         </div>
 
 
-
+</div>
 
 
 

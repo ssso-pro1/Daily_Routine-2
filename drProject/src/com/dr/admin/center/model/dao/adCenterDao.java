@@ -14,6 +14,7 @@ import java.util.Properties;
 import com.dr.admin.center.model.vo.adCenterFaq;
 import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.admin.center.model.vo.adCenterQuery;
+import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.center.model.vo.CenterNotice;
 
@@ -824,21 +825,107 @@ public class adCenterDao {
 		} return result;
 	}
 
+
+
+
+
+	public int insertNotice(Connection conn, adCenterNotice n) {
+		int result = 0;
+		PreparedStatement pstmt = null;
 	
+		String sql = prop.getProperty("insertNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContent());
+			pstmt.setInt(3, n.getUserNo());
+			pstmt.setString(4, n.getStatus());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
-	
-//---------test------------------
-	
-	
 
 
 
 
-	
+	public int insertAttachment(Connection conn, centerNoticeFile fi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fi.getFileName());
+			pstmt.setString(2, fi.getFileUpdate());
+			pstmt.setString(3, fi.getFilePath());
+			
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 
 
-	
+
+
+
+	public centerNoticeFile selectAttachment(Connection conn, int noticeNo) {
+		centerNoticeFile fi = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				fi = new centerNoticeFile();
+				fi.setFileNo(rset.getInt("file_no"));
+				fi.setFileName(rset.getString("file_name"));
+				fi.setFileUpdate(rset.getString("file_update"));
+				fi.setFilePath(rset.getString("file_path"));
+				
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return fi;
+	}
+
+
+
+
 }
+
+	
+
+	
+
 	
 
 

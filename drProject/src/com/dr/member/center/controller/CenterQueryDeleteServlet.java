@@ -35,7 +35,7 @@ public class CenterQueryDeleteServlet extends HttpServlet {
 		
 		int result = new CenterService().deleteQuery(queryNo);
 		
-		if(result > 0) { // 삭제성공 (상태값 'N'으로 변경)
+		if(result > 0) { // 삭제성공 (QueryStaust 상태값 'N'으로 변경 / replyStatus 'D'로 변경)
 			
 			
 			request.getSession().setAttribute("alertMsg", "게시글이 삭제되었습니다");

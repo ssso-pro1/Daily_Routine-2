@@ -61,7 +61,7 @@ public class CenterQueryInsertServlet extends HttpServlet {
 		
 		if (result > 0) { // 등록성공
 			request.getSession().setAttribute("alertMsg", "1:1문의글 등록에 성공했습니다");
-			response.sendRedirect(request.getContextPath() + "/queryList.ct?currentPage=1"); //문의내역 리스트로 이동
+			response.sendRedirect(request.getContextPath()+"/queryList.ct?currentPage=1"); //문의내역 리스트로 이동
 		
 		} else { //등록실패
 			

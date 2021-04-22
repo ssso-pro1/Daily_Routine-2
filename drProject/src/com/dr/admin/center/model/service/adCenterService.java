@@ -12,6 +12,7 @@ import com.dr.admin.center.model.dao.adCenterDao;
 import com.dr.admin.center.model.vo.adCenterFaq;
 import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.admin.center.model.vo.adCenterQuery;
+import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.center.model.dao.CenterDao;
 import com.dr.member.center.model.vo.CenterNotice;
@@ -298,11 +299,45 @@ public class adCenterService {
 		} return result;
 	}
 
+
+//-------------------test----------------
+
+	public int insertNotice(adCenterNotice n, centerNoticeFile fi) {
+		Connection conn = getConnection();
+		
+		int result1 = new adCenterDao().insertNotice(conn, n);
+		
+		int result2 = 1;
+		if(fi != null) { // 첨부파일이 있었을 경우 
+			result2 = new adCenterDao().insertAttachment(conn, fi);
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2;
+	}
+
+
+
+
+	public centerNoticeFile selectAttachment(int noticeNo) {
+		Connection conn = getConnection();
+		centerNoticeFile fi = new adCenterDao().selectAttachment(conn, noticeNo);
+		close(conn);
+		return fi;
+	}
+
 	
 
 
 
-//-------------------test----------------
+
 	
 	
 

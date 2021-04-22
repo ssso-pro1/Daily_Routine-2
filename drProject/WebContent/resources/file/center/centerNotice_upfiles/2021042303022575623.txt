@@ -1,0 +1,149 @@
+-- 앞부분은 테이블과 시퀀스가 있다면, 삭제되고 새로 생성되게했습니다
+
+
+DROP TABLE TB_FAQ;
+DROP TABLE TB_NOTICE_FILE; 
+DROP TABLE TB_NOTICE;
+DROP TABLE TB_QUERY;
+
+
+
+DROP SEQUENCE SEQ_FAQNO;        -- FAQ글번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_NOTICENO;     -- 공지사항번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_NOTICE_FNO;   -- 공지사항 파일번호 발생시킬 시퀀스
+DROP SEQUENCE SEQ_QUERYNO;      -- 문의글번호 발생시킬 시퀀스
+
+
+
+--FAQ----------------------------------------------------------------------------
+CREATE TABLE TB_FAQ(
+    FAQ_NO NUMBER NOT NULL PRIMARY KEY, -- 시퀀스
+    USER_NO NUMBER NOT NULL, -- FK;
+    FAQ_CATEGORY VARCHAR2(30) NOT NULL,
+    FAQ_TITLE VARCHAR2(200) NOT NULL,
+    FAQ_CONTENT VARCHAR2(1000) NOT NULL,
+    CREATE_DATE DATE DEFAULT SYSDATE,
+    UPDATE_DATE DATE DEFAULT SYSDATE,
+    STATUS VARCHAR2(1) DEFAULT 'Y' CHECK(STATUS IN('Y','N')),  
+    FOREIGN KEY(USER_NO) REFERENCES TB_USER(USER_NO)
+);
+
+CREATE SEQUENCE SEQ_FAQNO
+NOCACHE;
+
+COMMENT ON COLUMN tb_faq.faq_no IS 'FAQ번호'; 
+COMMENT ON COLUMN tb_faq.user_no IS '회원번호'; 
+COMMENT ON COLUMN tb_faq.faq_category IS 'FAQ카테고리';
+COMMENT ON COLUMN tb_faq.faq_title IS 'FAQ제목';
+COMMENT ON COLUMN tb_faq.faq_content IS 'FAQ내용';
+COMMENT ON COLUMN tb_faq.create_date IS '작성일';
+COMMENT ON COLUMN tb_faq.update_date IS '수정일';
+COMMENT ON COLUMN tb_faq.status IS '게시여부(Y/N)';
+
+INSERT INTO TB_FAQ 
+VALUES (SEQ_FAQNO.NEXTVAL, 1, '회원정보', 'FAQ 글1', 'FAQ 내용1', SYSDATE, NULL, DEFAULT);
+
+INSERT INTO TB_FAQ 
+VALUES (SEQ_FAQNO.NEXTVAL, 1, '신고', 'FAQ 글2', 'FAQ 내용2', '200210', SYSDATE, DEFAULT);
+
+--공지사항------------------------------------------------------------------------
+CREATE TABLE TB_NOTICE(
+    NOTICE_NO NUMBER NOT NULL PRIMARY KEY, --시퀀스
+    USER_NO NUMBER NOT NULL, --FK
+    NOTICE_TITLE VARCHAR2(200) NOT NULL,
+    NOTICE_CONTENT VARCHAR2(3000) NOT NULL,
+    NOTICE_COUNT NUMBER	DEFAULT 0,
+    CREATE_DATE DATE DEFAULT SYSDATE,
+    UPDATE_DATE DATE DEFAULT SYSDATE,
+    STATUS VARCHAR2(1) DEFAULT 'Y' CHECK(STATUS IN('Y','N')),
+    FOREIGN KEY(USER_NO) REFERENCES TB_USER(USER_NO)
+    
+    
+);
+
+CREATE SEQUENCE SEQ_NOTICENO
+NOCACHE;
+
+COMMENT ON COLUMN tb_notice.notice_no IS '공지사항글번호';
+COMMENT ON COLUMN tb_notice.user_no IS '회원번호';
+COMMENT ON COLUMN tb_notice.notice_title IS '공지사항제목';
+COMMENT ON COLUMN tb_notice.notice_content IS '공지사항내용';
+COMMENT ON COLUMN tb_notice.notice_count IS '조회수';
+COMMENT ON COLUMN tb_notice.create_date IS '작성일';
+COMMENT ON COLUMN tb_notice.update_date IS '수정일';
+COMMENT ON COLUMN tb_notice.status IS '게시여부(Y/N)';
+
+INSERT INTO TB_NOTICE 
+VALUES (SEQ_NOTICENO.NEXTVAL, 1, '공지사항 제목1', '공지사항 내용1', DEFAULT, '201212', NULL, DEFAULT);
+
+INSERT INTO TB_NOTICE 
+VALUES (SEQ_NOTICENO.NEXTVAL, 1, '공지사항 제목2', '공지사항 내용2', DEFAULT, SYSDATE, NULL, DEFAULT);
+
+--공지사항첨부파일-----------------------------------------------------------------
+CREATE TABLE TB_NOTICE_FILE(
+    FILE_NO NUMBER NOT NULL PRIMARY KEY, -- 시퀀스
+    NOTICE_NO NUMBER NOT NULL, -- FK
+    FILE_NAME VARCHAR2(300) NOT NULL,
+    FILE_UPDATE VARCHAR2(300) NOT NULL,
+    FILE_PATH VARCHAR2(1000) NOT NULL,
+    UPLOAD_DATE DATE DEFAULT SYSDATE,
+    CONSTRAINT NOTICE_NO_FK FOREIGN KEY(NOTICE_NO) REFERENCES TB_NOTICE(NOTICE_NO)
+);
+
+COMMENT ON COLUMN tb_notice_file.file_no IS '첨부파일번호';
+COMMENT ON COLUMN tb_notice_file.notice_no is '공지사항글번호';
+COMMENT ON COLUMN tb_notice_file.file_name IS '파일원본명';
+COMMENT ON COLUMN tb_notice_file.file_update is '파일수정명';
+COMMENT ON COLUMN tb_notice_file.file_path is '파일경로';
+COMMENT ON COLUMN tb_notice_file.upload_date is '파일업로드일';
+
+CREATE SEQUENCE SEQ_NOTICE_FNO
+NOCACHE;
+
+-- 공지사항게시판에 첨부파일번호 FK (FILE_NO_FK) 추가
+--ALTER TABLE TB_NOTICE
+--ADD CONSTRAINT FILE_NO_FK FOREIGN KEY(FILE_NO) REFERENCES TB_NOTICE_FILE;
+
+
+
+
+--1:1문의게시판------------------------------------------------------------------------
+CREATE TABLE TB_QUERY(
+    QUERY_NO NUMBER NOT NULL PRIMARY KEY, --시퀀스
+    USER_NO NUMBER NOT NULL, --FK
+    QUERY_CATEGORY VARCHAR2(30) NOT NULL,
+    QUERY_TITLE VARCHAR2(200) NOT NULL,
+    QUERY_CONTENT VARCHAR2(1000) NOT NULL,
+    QUERY_CREATE_DATE DATE DEFAULT SYSDATE,
+    QUERY_STATUS VARCHAR2(1) DEFAULT 'Y' CHECK(QUERY_STATUS IN('Y','N')),
+    REPLY_STATUS VARCHAR2(1) DEFAULT 'N' CHECK(REPLY_STATUS IN('Y','N','D')),
+    REPLY_CONTENT VARCHAR2(2000),
+	REPLY_DATE DATE,
+    FOREIGN KEY(USER_NO) REFERENCES TB_USER(USER_NO)
+
+);
+
+COMMENT ON COLUMN tb_query.query_no IS '문의글번호';
+COMMENT ON COLUMN tb_query.user_no IS '회원번호';
+COMMENT ON COLUMN tb_query.query_category IS '문의글카테고리';
+COMMENT ON COLUMN tb_query.query_title IS '문의글제목';
+COMMENT ON COLUMN tb_query.query_content IS '문의글내용';
+COMMENT ON COLUMN tb_query.query_create_date IS '문의글등록일';
+COMMENT ON COLUMN tb_query.query_status IS '게시여부(Y/N)';
+COMMENT ON COLUMN tb_query.reply_status IS '답변여부(Y/N/D)';
+COMMENT ON COLUMN tb_query.reply_content IS '답변글내용';
+COMMENT ON COLUMN tb_query.reply_date IS '답변글등록일';
+
+
+CREATE SEQUENCE SEQ_QUERYNO
+NOCACHE;
+
+INSERT INTO TB_QUERY 
+VALUES (SEQ_QUERYNO.NEXTVAL, 2, '회원정보', '문의 제목1', '문의 내용1', '210101', DEFAULT, DEFAULT, NULL, NULL);
+
+INSERT INTO TB_QUERY 
+VALUES (SEQ_QUERYNO.NEXTVAL, 2, '신고', '문의 제목2', '문의 내용2', SYSDATE, DEFAULT, DEFAULT, NULL, NULL);
+
+
+
+COMMIT;

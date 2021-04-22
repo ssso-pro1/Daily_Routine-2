@@ -10,6 +10,7 @@ public class CenterQuery {
 	private String queryTitle;
 	private String queryContent;
 	private Date queryCreateDate;
+	private String queryStatus;
 	private String replyStatus;
 	private String replyContent;
 	private Date replyDate;
@@ -29,9 +30,21 @@ public class CenterQuery {
 		this.replyContent = replyContent;
 		this.replyDate = replyDate;
 	}
-	
-	
-	
+
+	public CenterQuery(int queryNo, int userNo, String queryCategory, String queryTitle, String queryContent,
+			Date queryCreateDate, String queryStatus, String replyStatus, String replyContent, Date replyDate) {
+		super();
+		this.queryNo = queryNo;
+		this.userNo = userNo;
+		this.queryCategory = queryCategory;
+		this.queryTitle = queryTitle;
+		this.queryContent = queryContent;
+		this.queryCreateDate = queryCreateDate;
+		this.queryStatus = queryStatus;
+		this.replyStatus = replyStatus;
+		this.replyContent = replyContent;
+		this.replyDate = replyDate;
+	}
 
 	public int getQueryNo() {
 		return queryNo;
@@ -81,6 +94,14 @@ public class CenterQuery {
 		this.queryCreateDate = queryCreateDate;
 	}
 
+	public String getQueryStatus() {
+		return queryStatus;
+	}
+
+	public void setQueryStatus(String queryStatus) {
+		this.queryStatus = queryStatus;
+	}
+
 	public String getReplyStatus() {
 		return replyStatus;
 	}
@@ -109,13 +130,11 @@ public class CenterQuery {
 	public String toString() {
 		return "CenterQuery [queryNo=" + queryNo + ", userNo=" + userNo + ", queryCategory=" + queryCategory
 				+ ", queryTitle=" + queryTitle + ", queryContent=" + queryContent + ", queryCreateDate="
-				+ queryCreateDate + ", replyStatus=" + replyStatus + ", replyContent=" + replyContent + ", replyDate="
-				+ replyDate + "]";
+				+ queryCreateDate + ", queryStatus=" + queryStatus + ", replyStatus=" + replyStatus + ", replyContent="
+				+ replyContent + ", replyDate=" + replyDate + "]";
 	}
 	
 	
 	
-	
-	
-	
+
 }

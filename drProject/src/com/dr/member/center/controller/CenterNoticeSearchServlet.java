@@ -8,8 +8,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
+import com.dr.admin.center.model.service.adCenterService;
+import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.center.model.service.CenterService;
 import com.dr.member.center.model.vo.CenterNotice;
@@ -53,7 +54,7 @@ public class CenterNoticeSearchServlet extends HttpServlet {
 		String searchNoticeCtg = request.getParameter("searchNoticeCtg"); // 카테고리
 		String searchNoticeText = request.getParameter("searchNoticeText"); // 검색어
 		
-		listCount = new CenterService().searchNoticeCount(searchNoticeCtg, searchNoticeText);	
+		listCount = new adCenterService().searchNoticeCount(searchNoticeCtg, searchNoticeText);	
 		
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
@@ -78,7 +79,7 @@ public class CenterNoticeSearchServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		ArrayList<CenterNotice> list = new CenterService().searchNoticeList(pi, searchNoticeCtg, searchNoticeText);
+		ArrayList<adCenterNotice> list = new adCenterService().searchNoticeList(pi, searchNoticeCtg, searchNoticeText);
 		
 		
 		request.setAttribute("list", list);
@@ -89,12 +90,7 @@ public class CenterNoticeSearchServlet extends HttpServlet {
 		request.setAttribute("searchNoticeText", searchNoticeText);
 		request.setAttribute("searchNoticeCtg", searchNoticeCtg);
 		
-		request.getRequestDispatcher("views/member/center/centerNoticeSearchList.jsp").forward(request, response);
-		
-				
-		//
-		//request.setAttribute("list", list);
-		//request.getRequestDispatcher("views/member/center/centerNoticeList.jsp").forward(request, response);
+		request.getRequestDispatcher("views/member/center/CenterNoticeSearchList.jsp").forward(request, response);
 		
 		
 		

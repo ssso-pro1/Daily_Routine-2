@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import= "java.util.ArrayList, com.dr.admin.ht.model.vo.AdHT, com.dr.common.model.vo.PageInfo" %>
+<%@ page import = "java.util.ArrayList, com.dr.admin.ht.model.vo.AdHT, com.dr.common.model.vo.PageInfo" %>
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<AdHT> list = (ArrayList<AdHT>)request.getAttribute("list");
@@ -125,7 +125,7 @@
     
          <!-- 관리자 메뉴바에서 hometraining 클릭시 : AdHTListServlet 에서 views/admin/ht/adHTListView.jsp 로이동 / 이 페이지에서 페이징 눌렀을 떄 : -->
          <% if(currentPage != 1) { %>   
-			<button onclick="location.href='localhost:8881/drProject/htList.aht?currentPage=<%=currentPage-1%>';"><</button>
+			<button onclick="location.href='<%= contextPath %>/htList.aht?currentPage=<%=currentPage-1%>';"><</button>
 		 	
 		 <% } %>
 		 
@@ -135,13 +135,13 @@
 			<% if(currentPage == p){ %>
 				<button disabled><%= p %></button> <!-- 현재보고있는 페이지는 다시 클릭불가 / bo?currentPage = 현재누른페이지-->
 			<% }else{ %>
-				<button onclick="location.href='localhost:8881/drProject/htList.aht?currentPage=<%= p %>';"><%= p %></button>
+				<button onclick="location.href='<%= contextPath %>/htList.aht?currentPage=<%= p %>';"><%= p %></button>
 			<% } %>
             
 		<% } %>
 		
 		<% if(currentPage != maxPage) { %>
-			<button onclick="location.href='localhost:8881/drProject/htList.aht?currentPage=<%= currentPage+1 %>';">></button>
+			<button onclick="location.href='<%= contextPath %>/htList.aht?currentPage=<%= currentPage+1 %>';">></button>
 			
 		<% } %>
 	        

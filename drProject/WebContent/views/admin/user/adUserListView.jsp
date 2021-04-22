@@ -98,7 +98,7 @@
                		 	<div align="center" class="pagingArea">
                		 
                    	 		<% if(currentPage != 1) { %>
-		                    	<button onclick="location.href='localhost:8881/drProject/userListView.aus?currentPage=<%=currentPage-1%>';"><</button>
+		                    	<button onclick="location.href='<%= contextPath %>/userListView.aus?currentPage=<%=currentPage-1%>';"><</button>
 		                	<% } %>
 		                    
 		                	<% for(int p=startPage; p<=endPage; p++) { %>
@@ -106,13 +106,13 @@
 		                    	<% if(currentPage == p) { %>
 		                    		<button disabled><%= p %></button>
 		                    	<% }else { %>
-		                    		<button onclick="location.href='localhost:8881/drProject/userListView.aus?currentPage=<%= p %>';"><%= p %></button>
+		                    		<button onclick="location.href='<%= contextPath %>/userListView.aus?currentPage=<%= p %>';"><%= p %></button>
 		                   		<% } %>
 		                    	
 		                	<% } %>
 		                    
 		                	<% if(currentPage != maxPage) { %>
-		                    	<button onclick="location.href='localhost:8881/drProject/userListView.aus?currentPage=<%=currentPage+1%>';">></button>
+		                    	<button onclick="location.href='<%= contextPath %>/userListView.aus?currentPage=<%=currentPage+1%>';">></button>
 		                	<% } %>
 		                
                 	 	</div>

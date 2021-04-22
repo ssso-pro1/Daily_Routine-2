@@ -37,7 +37,7 @@
     }
     a:hover{color:rgb(250, 214, 9);}
 
-    #content{width:100%;}
+    #content{height:100%; width:100%;}
 
     #content>div{
         height:100%;
@@ -53,9 +53,7 @@
         width:0.1px;
         height:150px;
     }
-
-    #content_2_2{height:10%; width:100%;}
-
+    
     .listArea{
         width:700px;
         margin:auto;
@@ -123,12 +121,12 @@
             <div id="line"></div>
 
 
-            <!-- 게시판 목록 -->
+            <!-- 게시글 목록 -->
             <div id="content_2">
 
                 <!-- 상단 타이틀 -->
                 <div id="content_2_1">
-                    <h2>Info & Tip > 운동 정보</h2>
+                    <h2>Info & Tip > 운동 정보 </h2>
                     <hr>
                     <p>Daily Routine에서 제공하는 다양한 운동 정보를 참고해보세요!</p>
                 </div><br>
@@ -136,7 +134,7 @@
 
                 <!-- 게시글 목록 카테고리 & 검색 버튼 -->
                 <div id="content_2_2">
-                    <div class="category" style="margin-left:60px">
+                    <div class="tipcategory" style="margin-left:60px">
                         <select name="category">
                             <option value="upload">업로드순</option>
                             <option value="like">좋아요순</option>
@@ -146,31 +144,30 @@
                     <div align="center" class="searchArea">
                         <input type="text">
                         <button>검색</button> 
-                    </div><br><br>
-                </div>
+                    </div>
+                </div><br><br><br><br>
 
 
                 <!-- 게시글 목록 -->
                 <div id="content_2_3">
-                    <div class="listArea">    
-                    
-                    	<% for(Info if : list) { %>
-                        <div class="thumbnail" align="center">	
-                        
-                        	<input type="hidden" value="<%= if.getIntPostNo() %>">
+                    <div class="listArea">
+                    	
+                    	<% for(Info i : list) { %>
+                        <div class="thumbnail" align="center">
                         	
-                            <img src="<%=contextPath%>/<%= if.get %>" width="200" height="150">
+                        	<input type="hidden" value="<%=i.getIntPostNo()%>">
+                        	
+                            <img src="<%=contextPath%>" width="200" height="150">
                             <p>
-                                <%= if.getPostTitle() %> <br>
-                                조회수 : <%= if.getBoardView() %> 좋아요 : <%= if.getLikeCount() %> <br>
-                                <%= if.getEnrollDate() %>
+                                <%=i.getPostTitle()%> <br>
+                                조회수 : <%=i.getBoardView()%> 좋아요 : <%=i.getLikeCount()%> <br>
+                                <%=i.getEnrollDate()%>
                             </p>
                         </div>
                         <% } %>
                         
                     </div><br>
                 </div>
-
 
 				<script>
 			        $(function() {
@@ -180,9 +177,8 @@
 	                })
 		        </script>
 				<br><br>
-				
-				
-                <!-- 페이징 처리 -->
+
+				<!-- 페이징 처리 -->
 		        <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
 		        <div align="center" class="pagingArea">
 		                	
@@ -205,9 +201,9 @@
 		            <% } %>
 		                        
 		         </div>
-		                
-		         <br><br>
-		         
+				
+               	 <br><br>
+               	 
                  <div align="right" class="btn">
                      <!-- 관리자만 사용할 수 있는 버튼 -->
                      <a href="<%=contextPath%>/workoutEnroll.in">글쓰기</a>

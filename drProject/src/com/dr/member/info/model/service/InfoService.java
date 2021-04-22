@@ -34,7 +34,40 @@ public class InfoService {
 		
 	}
 	
+	
+	
+	
+	
+	
+	
+	
 	// 식단 게시판 
+	public int menuSelectListCount() {
+		
+		Connection conn = getConnection();
+		int listCount = new InfoDao().menuSelectListCount(conn); 
+		
+		close(conn); 
+		
+		return listCount; 
+		
+	}
+	
+	public ArrayList<Info> menuSelectList(PageInfo pi) {
+		
+		Connection conn = getConnection(); 
+		ArrayList<Info> list = new InfoDao().menuSelectList(conn, pi); 
+		
+		close(conn);
+		
+		return list; 
+		
+	}
+	
+	
+	
+	
+	
 	
 	// 전체 게시판 
 	public int infoMainSelectListCount() {

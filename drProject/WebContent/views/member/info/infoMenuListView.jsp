@@ -1,11 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.dr.member.info.model.vo.Info, com.dr.common.model.vo.PageInfo" %>
+<%
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Info> list = (ArrayList<Info>)request.getAttribute("list"); 
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage(); 
+	int endPage = pi.getEndPage(); 
+	int maxPage = pi.getMaxPage(); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <style>
      div{
         box-sizing:border-box;
@@ -44,6 +53,7 @@
         width:0.1px;
         height:150px;
     }
+    
     .listArea{
         width:700px;
         margin:auto;
@@ -86,6 +96,7 @@
     	color:rgb(250, 214, 9);
     }
 </style>
+</head>
 <body>
     
     <%@ include file="../../common/menubar.jsp"%>
@@ -99,11 +110,11 @@
             <div id="content_1">
                 <h1>Info & Tip</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/total.in">전체</a></div>
+                    <div><a href="<%=contextPath%>/infoMain.in?currentPage=1">전체</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/workout.in">운동 정보</a></div>
+                    <div><a href="<%=contextPath%>/workout.in?currentPage=1">운동 정보</a></div>
                     <br>
-                    <div id="menu3"><a href="<%=contextPath%>/menu.in">식단 정보</a></div>
+                    <div id="menu3"><a href="<%=contextPath%>/menu.in?currentPage=1">식단 정보</a></div>
                 </div>
             </div>
 
@@ -134,82 +145,69 @@
                         <input type="text">
                         <button>검색</button> 
                     </div>
-                    <br><br>
-                </div>
+                </div><br><br><br><br>
 
 
-                <!-- 게시글 목록 테이블-->
+                <!-- 게시글 목록 -->
                 <div id="content_2_3">
                     <div class="listArea">
+                    	
+                    	<% for(Info i : list) { %>
                         <div class="thumbnail" align="center">
-                            <img src="" width="200" height="150">
+                        	
+                        	<input type="hidden" value="<%=i.getIntPostNo()%>">
+                        	
+                            <img src="<%=contextPath%>" width="200" height="150">
                             <p>
-                                식단 정보 1 <br>
-                                조회수 : 20 좋아요 : 150 <br>
-                                2020-04-20
+                                <%=i.getPostTitle()%> <br>
+                                조회수 : <%=i.getBoardView()%> 좋아요 : <%=i.getLikeCount()%> <br>
+                                <%=i.getEnrollDate()%>
                             </p>
                         </div>
-                        <div class="thumbnail" align="center">
-                            <img src="" width="200" height="150">
-                            <p>
-                                식단 제목 1 <br>
-                                조회수 : 20 좋아요 : 150 <br>
-                                2020-04-20
-                            </p>
-                        </div>
-                        <div class="thumbnail" align="center">
-                            <img src="" width="200" height="150">
-                            <p>
-                                식단 제목 1 <br>
-                                조회수 : 20 좋아요 : 150 <br>
-                                2020-04-20
-                            </p>
-                        </div>
-                        <div class="thumbnail" align="center">
-                            <img src="" width="200" height="150">
-                            <p>
-                                식단 제목 1 <br>
-                                조회수 : 20 좋아요 : 150 <br>
-                                2020-04-20
-                            </p>
-                        </div>
-                        <div class="thumbnail" align="center">
-                            <img src="" width="200" height="150">
-                            <p>
-                                식단 제목 1 <br>
-                                조회수 : 20 좋아요 : 150 <br>
-                                2020-04-20
-                            </p>
-                        </div>
-                        <div class="thumbnail" align="center">
-                            <img src="" width="200" height="150">
-                            <p>
-                                식단 제목 1 <br>
-                                조회수 : 20 좋아요 : 150 <br>
-                                2020-04-20
-                            </p>
-                        </div>
+                        <% } %>
+                        
                     </div><br>
                 </div>
 
-                <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
-                <!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
-                <div align="center" class="pagingArea">
-                    <button><</button>
-                    <button>1</button>
-                    <button>2</button>
-                    <button>3</button>
-                    <button>4</button>
-                    <button>5</button>
-                    <button>></button>
-               </div>
-               
-               <div align="right" class="btn">
-                   <!-- 관리자만 사용할 수 있는 버튼 -->
-                    <button style="background-color:rgb(250, 214, 9); border:rgb(250, 214, 9); color:white;">
-                         글쓰기
-                    </button>
-               </div><br><br>
+				<script>
+			        $(function() {
+	                	$(".thumbnail").click(function() {
+	                    	location.href= '<%=contextPath%>/menuDetail.in?ino=' + $(this).children().eq(0).val();
+	                    })
+	                })
+		        </script>
+				<br><br>
+
+				<!-- 페이징 처리 -->
+		        <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
+		        <div align="center" class="pagingArea">
+		                	
+		        	<% if(currentPage != 1) { %>
+		            	<button onclick="location.href='<%=contextPath%>/menu.in?currentPage=<%=currentPage-1%>';"><</button>
+		            <% } %>
+		        	
+		            <% for(int p=startPage; p<=endPage; p++) { %>
+		                    	
+		            	<% if(currentPage == p) { %>
+		                    <button disabled><%= p %></button>
+		                <% }else { %>
+		                    <button onclick="location.href='<%=contextPath%>/menu.in?currentPage=<%= p %>';"><%= p %></button>
+		                <% } %>
+		                    	
+		            <% } %>
+		                    
+		            <% if(currentPage != maxPage) { %>
+		                <button onclick="location.href='<%=contextPath%>/menu.in?currentPage=<%=currentPage+1%>';">></button>
+		            <% } %>
+		                        
+		         </div>
+				
+               	 <br><br>
+               	 
+                 <div align="right" class="btn">
+                     <!-- 관리자만 사용할 수 있는 버튼 -->
+                     <a href="<%=contextPath%>/menuEnroll.in">글쓰기</a>
+                 </div><br><br>
                
 
             </div>   

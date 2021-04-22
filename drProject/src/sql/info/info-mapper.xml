@@ -41,8 +41,40 @@
 	
 	<!-- 식단게시판 -->
 	<entry key="menuSelectListCount">
-		
+		SELECT COUNT(*) LISTCOUNT 
+		  FROM TB_INFO_N_TIP
+		 WHERE COMM_NO = 2
+		   AND STATUS = 'N'
 	</entry>
+	
+	<entry key="menuSelectList">
+		SELECT * 
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM 
+		             , A.*
+		          FROM (
+		                SELECT
+		                       INT_POST_NO
+		                     , USER_ID
+		                     , POST_TITLE
+		                     , I.ENROLL_DATE 
+		                     , BOARD_VIEW 
+		                  FROM TB_INFO_N_TIP I 
+		                  JOIN TB_USER U ON (U.USER_NO = I.USER_NO)
+		                 WHERE COMM_NO = 2
+		                   AND STATUS = 'N'
+		                 ORDER 
+		                     BY ENROLL_DATE DESC, 
+		                        INT_POST_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	
+	
 	
 	
 	

@@ -101,6 +101,72 @@ public class InfoDao {
 	
 	
 	// 식단 게시판 
+	public int menuSelectListCount(Connection conn) { 
+		// select문 
+		int listCount = 0; 
+		
+		PreparedStatement pstmt = null; 
+		ResultSet rset = null; 
+		
+		String sql = prop.getProperty("menuSelectListCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery(); 
+			
+			if(rset.next()) { 
+				listCount = rset.getInt("LISTCOUNT"); 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset); 
+			close(pstmt); 
+		}
+		
+		return listCount; 
+		
+	}
+	
+	public ArrayList<Info> menuSelectList(Connection conn, PageInfo pi) {
+		// select문 
+		ArrayList<Info> list = new ArrayList<>(); 
+		
+		PreparedStatement pstmt = null; 
+		ResultSet rset = null; 
+		
+		String sql = prop.getProperty("menuSelectList"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+			
+			rset = pstmt.executeQuery(); 
+			 
+			while(rset.next()) {
+				list.add(new Info(rset.getInt("int_post_no"),
+					   	          rset.getString("user_id"),
+					   	          rset.getString("post_title"),
+					   	          rset.getDate("enroll_date"),
+					   	          rset.getInt("board_view"))); 
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset); 
+			close(pstmt); 
+		}
+		
+		return list; 
+			
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

@@ -51,7 +51,7 @@ public class InfoWorkoutListServlet extends HttpServlet {
 		if(currentPageParam!=null)	currentPage =  Integer.parseInt(currentPageParam);
 					 		
 		pageLimit = 10; // 페이징 바 10개 단위 
-		boardLimit = 10; // 한 페이지당 게시글 10개씩 
+		boardLimit = 6; // 한 페이지당 게시글 6개씩 
 						
 		maxPage = (int)Math.ceil((double)listCount / boardLimit); 
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;

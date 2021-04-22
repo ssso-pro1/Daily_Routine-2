@@ -299,35 +299,7 @@
                     <br><br>
                     
                     
-                    <div align="center" class="pagingArea">
-
-					<%if (list.isEmpty()) { %>
-					<p></p>
-					
-					<% } else { %>
-						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ad?currentPage=<%=currentPage-1%>&status=<%= list.get(0).getStatus() %>';">이전</button>
-						<% } %>
-						
-						<% for(int p=startPage; p<=endPage; p++) { %>
-							
-							<% if(currentPage == p){ %>
-			            		<button disabled><%= p %></button>
-			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/searchNotice.ad?currentPage=<%= p %>&status=<%= list.get(0).getStatus() %>';"><%= p %></button>
-			            	<% } %>
-			            	
-						<% } %>
-						
-						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ad?currentPage=<%=currentPage+1%>&status=<%= list.get(0).getStatus() %>';">다음</button>
-						<% } %>
-					 <% } %>	
-			        </div>
-
-
-
-             <div align="center" class="buttonArea">
+                  	    <div align="center" class="buttonArea">
                     	<br><br>
                     	<% if(list.isEmpty() ) { %>
                     	
@@ -345,8 +317,36 @@
                         
                         </div>
 
-					</form> 
+					</form>
+					</div> 
+						
+						
+						
+					<div align="center" class="pagingArea">
 
+					<%if (list.isEmpty()) { %>
+					<p></p>
+					
+					<% } else { %>
+						<% if(currentPage != 1) { %>
+			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ad?currentPage=<%=currentPage-1%>&searchNoticeText=<%=searchNoticeText %>&searchNoticeCtg=<%=searchNoticeCtg%>';">이전</button>
+						<% } %>
+						
+						<% for(int p=startPage; p<=endPage; p++) { %>
+							
+							<% if(currentPage == p){ %>
+			            		<button disabled><%= p %></button>
+			            	<% }else{ %>
+			            		<button onclick="location.href='<%=contextPath%>/searchNotice.ad?currentPage=<%= p %>&searchNoticeText=<%=searchNoticeText %>&searchNoticeCtg=<%=searchNoticeCtg%>';"><%= p %></button>
+			            	<% } %>
+			            	
+						<% } %>
+						
+						<% if(currentPage != maxPage){ %>
+			            	<button onclick="location.href='<%=contextPath%>/searchNotice.ad?currentPage=<%=currentPage+1%>&searchNoticeText=<%=searchNoticeText %>&searchNoticeCtg=<%=searchNoticeCtg%>';">다음</button>
+						<% } %>
+					 <% } %>	
+			        </div>	
 
 
 
@@ -394,7 +394,7 @@
         </div>
 
 
-
+</div>
 
 
 

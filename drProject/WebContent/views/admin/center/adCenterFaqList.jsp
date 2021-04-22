@@ -238,11 +238,11 @@
 
                 </div>
                  
-             <form action="<%= contextPath %>/ctFaqDelete.ad" method="post" > <!-- 삭제하기서블릿 -->
-                <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
-                
+             
+                <div class="faqListArea" style="background: white; width: 800px; height: 550px;">
+                	<form action="<%= contextPath %>/ctFaqDelete.ad" method="post" > <!-- 삭제하기서블릿 -->
                    <br><br>
-                    <table align="center" class="listArea" border="1" >
+                    <table align="center" class="listArea" border="1">
                          <thead>
                              <tr>
                                 <th width="30">선택</th>
@@ -306,7 +306,30 @@
                     
                     <!-- 페이징처리 10개씩 -->
                    
-                    <div align="center" class="pagingArea">
+                    
+              
+                    <div align="center" class="buttonArea">
+                    	<br><br>
+                    	<% if(list.isEmpty() ) { %>
+                    	
+                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                            
+
+                        
+                        
+                        <% } else { %>
+                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                       		<button type="submit"  onclick="return check();">선택 삭제</button> 
+                       	    <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
+                       	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
+                        <% } %>
+                        
+                    </div>
+
+					</form> 
+				</div>
+					
+					<div align="center" class="pagingArea">
 
 						<%if (list.isEmpty()) { %>
 					<p></p>
@@ -331,27 +354,6 @@
 					 <% } %>	
 						
 			        </div>
-                    
-                    <div align="center" class="buttonArea">
-                    	<br><br>
-                    	<% if(list.isEmpty() ) { %>
-                    	
-                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
-                            
-
-                        
-                        
-                        <% } else { %>
-                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
-                       		<button type="submit"  onclick="return check();">선택 삭제</button> 
-                       	    <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
-                       	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
-                        <% } %>
-                        
-                        </div>
-
-					</form> 
-
 
 
 
@@ -366,7 +368,7 @@
 					 	
                     	
                     	
-                        
+            </div>         
                     
                     	<script>
 	                 		function check(){
@@ -399,7 +401,7 @@
                     
                     
                     
-                    </div>
+                    
                     
                  
                  		

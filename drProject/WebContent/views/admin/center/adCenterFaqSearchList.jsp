@@ -201,15 +201,15 @@
 
 
 
-            <!-- content -->
-            <div id="content_2">
+        <!-- content -->
+        <div id="content_2">
 
-                <!-- 상단 타이틀 -->
-                <div id="content2_1">
-                    <h2>고객센터 > FAQ 관리</h2>
-                </div>
+            <!-- 상단 타이틀 -->
+            <div id="content2_1">
+                <h2>고객센터 > FAQ 관리</h2>
+            </div>
 
-                <hr style="border:1px solid rgb(145, 144, 144)">
+            <hr style="border:1px solid rgb(145, 144, 144)">
 
 
 
@@ -251,11 +251,12 @@
                 
                 
                 <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
+                <form action="<%= contextPath %>/ctFaqDelete.ad" method="post" >
                     <br><br>
                     <table align="center" class="listArea" border="1">
                          <thead>
                              <tr>
-                                <th width="30">글선택</th>
+                                <th width="30">선택</th>
                                 <th width="40" style="color:black">글번호</th>
                                 <th width="40" style="color:black">문의유형</th>
                                 <th width="200" style="color:black">제목</th>
@@ -311,11 +312,27 @@
              
                     <br><br>
                     
-                    <!-- 페이징처리 10개씩 -->
+                    
                    
-                    <div align="center" class="pagingArea">
+                    
+					 	
+                    
+                    <div align="center" class="buttonArea">
+                    <br>
+                    <button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                            
+                            
+                    <button type="submit">선택 삭제</button>
+				
+                </form>	
+                </div>
+                    
 
-						<%if (searchList.isEmpty()) { %>
+
+                    <!-- 페이징처리 10개씩 -->
+                <div align="center" class="pagingArea">
+
+					<%if (searchList.isEmpty()) { %>
 					<p></p>
 					<% } else { %>
 						<% if(currentPage != 1) { %>
@@ -337,7 +354,7 @@
 						<% } %>
 					 <% } %>	
 						
-			        </div>
+			    </div>
                     
                     
 
@@ -345,23 +362,15 @@
 
 
 
-
-             		<!-- 검색부분-->
-                    <br><br>
-                    	<div class="searchArea" align="center">
-		                    <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
-		                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
-		                        <button type="submit">검색</button>
-		                    </form>
-		                </div>
-					 	
+                <br><br>
+             	<!-- 검색부분-->
                     
-                        <div align="center" class="buttonArea">
-                            <br>
-                            <button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
-                            <button>선택 삭제</button>
-
-                        </div>
+                <div class="searchArea" align="center">
+		            <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
+		                <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
+		                <button type="submit">검색</button>
+		            </form>
+		        </div>
                
 
 			</div>    
@@ -370,7 +379,7 @@
 
         </div>
 
-
+</div>
 
 
 

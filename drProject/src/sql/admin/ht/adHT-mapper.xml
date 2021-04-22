@@ -19,16 +19,6 @@
 		               , A.*  
 				 FROM (
 				        SELECT 
-				        <!-- 순서!!!! -->  
-				        <!-- 
-				               HT_POST_NO
-				             , CATEGORY_NAME
-				             , HT_POST_TITLE
-				             , USER_NAME      
-				             , HT_ENROLL_DATE
-				             , HT_UPDATE_DATE
-				             , HT_BOARD_VIEW -->
-				             
 				               HT_POST_NO
 				             , HT_POST_TITLE
 				             , CATEGORY_NAME

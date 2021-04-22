@@ -2,7 +2,42 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<!-- 1. 관리자- 회원탈퇴시키기 -->
+<!-- 1. 관리자- 전체 회원 조회 : 갯수 조회 -->
+	<entry key="selectListCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_USER
+		 WHERE LEAVE_CHECK = 'N'
+	</entry>
+
+<!-- 1. 관리자- 전체 회원 조회  -->
+	<entry key="selectList">
+		SELECT *
+		  FROM (
+		         SELECT 
+		                ROWNUM RNUM
+		                , A.*
+		               
+		          FROM (
+		                SELECT 
+		                       USER_NO
+		                     , USER_ID
+		                     , USER_NAME
+		                     , GENDER
+		                     , PHONE
+		                     , ENROLL_DATE
+		                     , LEAVE_CHECK
+		                  FROM TB_USER
+		                 ORDER
+		                    BY USER_NO DESC
+		       		)A
+		       )
+		  WHERE RNUM BETWEEN ? AND ?
+	</entry>
+
+
+
+
+<!-- 2. 관리자- 회원탈퇴시키기 -->
 	<entry key="adDeleteUser">
 		UPDATE
 		       TB_USER

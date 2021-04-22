@@ -1,22 +1,48 @@
 package com.dr.admin.user.model.service;
+import static com.dr.common.JDBCTemplate.*;
 
-import static com.dr.common.JDBCTemplate.close;
-import static com.dr.common.JDBCTemplate.commit;
-import static com.dr.common.JDBCTemplate.getConnection;
-import static com.dr.common.JDBCTemplate.rollback;
+
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import com.dr.admin.user.model.dao.AdUserDao;
+import com.dr.admin.user.model.vo.AdUser;
+import com.dr.common.model.vo.PageInfo;
 
 public class AdUserService {
 
+	/**
+	 * 1. 회원전체 조회 : 갯수 조회
+	 */
+	public int selectListCount() {
+		Connection conn = getConnection();
+		
+		int listCount = new AdUserDao().selectListCount(conn);
+		
+		close(conn);
+		
+		return listCount;
+	}
 	
+	/**
+	 * 1. 회원 전체 조회
+	 */
+	public ArrayList<AdUser> selectList(PageInfo pi){
+		Connection conn = getConnection();
+		
+		ArrayList<AdUser> list = new AdUserDao().selectList(conn, pi);
+		
+		close(conn);
+		
+		return list;
+		
+	}
 	
 	
 	
 	/**
-	 * 1. 관리자- 회원 탈퇴시키기
+	 * 2. 관리자- 회원 탈퇴시키기
 	 */
 	public int deleteUser(String userId, String userPwd) {
 		Connection conn = getConnection();

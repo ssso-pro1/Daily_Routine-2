@@ -88,7 +88,7 @@ public class AdHTDao {
 			while(rset.next()) { 
 //				순서!!!!!!
 				list.add(new AdHT(rset.getInt("ht_post_no"),
-						rset.getString("ht_post_title"),
+								  rset.getString("ht_post_title"),
 								  rset.getString("category_name"),
 								  rset.getDate("ht_enroll_date"),
 								  rset.getDate("ht_update_date"),

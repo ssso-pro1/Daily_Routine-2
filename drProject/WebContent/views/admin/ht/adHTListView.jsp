@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     
-<%@ page import = "java.util.ArrayList, com.dr.admin.ht.model.vo.AdHT, com.dr.common.model.vo.PageInfo" %>
+<%@ page import= "java.util.ArrayList, com.dr.admin.ht.model.vo.AdHT, com.dr.common.model.vo.PageInfo" %>
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<AdHT> list = (ArrayList<AdHT>)request.getAttribute("list");
@@ -32,7 +32,7 @@
             background:rgb(33, 33, 34);
             margin:auto;
             /* margin-top:10px; */
-            padding-top:70px;
+            /* padding-top:70px; */
         }
 
         .listArea{
@@ -50,6 +50,7 @@
 </head>
 <body>
     <%@ include file="../adminPageLeftMenuBar.jsp" %>
+
      <!-- content -->
      <div id="content_2">
 
@@ -124,7 +125,7 @@
     
          <!-- 관리자 메뉴바에서 hometraining 클릭시 : AdHTListServlet 에서 views/admin/ht/adHTListView.jsp 로이동 / 이 페이지에서 페이징 눌렀을 떄 : -->
          <% if(currentPage != 1) { %>   
-			<button onclick="location.href='localhost:8881/drProject/htList.aht?currentPage=<%=currentPage-1%>';">이전</button>
+			<button onclick="location.href='localhost:8881/drProject/htList.aht?currentPage=<%=currentPage-1%>';"><</button>
 		 	
 		 <% } %>
 		 
@@ -136,11 +137,11 @@
 			<% }else{ %>
 				<button onclick="location.href='localhost:8881/drProject/htList.aht?currentPage=<%= p %>';"><%= p %></button>
 			<% } %>
-			
+            
 		<% } %>
 		
 		<% if(currentPage != maxPage) { %>
-			<button onclick="location.href='localhost:8881/drProject/htList.aht?currentPage=<%= currentPage+1 %>';">다음</button>
+			<button onclick="location.href='localhost:8881/drProject/htList.aht?currentPage=<%= currentPage+1 %>';">></button>
 			
 		<% } %>
 	        

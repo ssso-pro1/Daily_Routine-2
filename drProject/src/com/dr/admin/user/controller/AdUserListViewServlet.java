@@ -1,4 +1,4 @@
-package com.dr.admin.ht.controller;
+package com.dr.admin.user.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,44 +9,43 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.admin.ht.model.service.AdHTService;
-import com.dr.admin.ht.model.vo.AdHT;
+import com.dr.admin.user.model.service.AdUserService;
+import com.dr.admin.user.model.vo.AdUser;
 import com.dr.common.model.vo.PageInfo;
 
 /**
- * Servlet implementation class AdHTListServlet
+ * Servlet implementation class AdUserListViewServlet
  */
-@WebServlet("/htList.aht")
-public class AdHTListServlet extends HttpServlet {
+@WebServlet("/userListView.aus")
+public class AdUserListViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdHTListServlet() {
+    public AdUserListViewServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
 
-    /**
+	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-
-		int listCount;		// 현재 총 게시글 갯수 (db에서 조회해옴)
-		int currentPage;	// 현재 페이지 (요청한 페이지)
-		int pageLimit;		// 한 페이지 하단에 보여질 페이징바의 페이지 최대갯수 (몇개단위)
-		int boardLimit; 	// 한 페이지내에 보여질 게시글 최대갯수 (몇개단위)
+		int listCount;
+		int currentPage;
+		int pageLimit;
+		int boardLimit;
 		
-		int maxPage;		// 전체 페이지들 중에서 가장 마지막페이지 (listCount, boardLimit를 갖고 구할거임)
-		int startPage; 		// 현재 페이지의 하단에 보여질 페이징 바의 시작 수 (currentPage, pageLimit를 가지고 구할거임)
-		int endPage;		// 현재 페이지의 하단에 보여질 페이징 바의 끝 수
+		int maxPage;
+		int startPage;
+		int endPage;
 		
-		listCount = new AdHTService().selectListCount();
+		listCount = new AdUserService().selectListCount();
 		
 		//System.out.println(listCount);
-		
+
 		
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
@@ -68,26 +67,24 @@ public class AdHTListServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		System.out.println(pi);
 		
-		ArrayList<AdHT> list = new AdHTService().selectList(pi);
-		
+		ArrayList<AdUser> list = new AdUserService().selectList(pi);
 		/*
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));
 		}
 		
-		for(AdHT a : list) {
-			System.out.println(a); //아직흰페이지 보이고 , 리스트 출력된느지
+		for(User u : list) {
+			System.out.println(u); //아직흰페이지 보이고 , 리스트 출력된느지
 			
 		}
 		System.out.println("===================="); //다음단계가기 전 한번 출력해보기 
 		*/
 		
+		
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		
-		request.getRequestDispatcher("views/admin/ht/adHTListView.jsp").forward(request,response);
-		
-		
+		request.getRequestDispatcher("views/admin/user/adUserListView.jsp").forward(request,response);
 	}
 
 	/**

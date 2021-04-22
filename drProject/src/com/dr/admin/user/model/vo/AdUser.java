@@ -2,7 +2,7 @@ package com.dr.admin.user.model.vo;
 
 import java.sql.Date;
 
-public class User {
+public class AdUser {
 
 	private int userNo;
 	private String userId;
@@ -18,9 +18,9 @@ public class User {
 	private String reportCheck;
 	private String adminCheck;
 	
-	public User() {}
+	public AdUser() {}
 
-	public User(int userNo, String userId, String userPwd, String userName, String birth, String gender, String email,
+	public AdUser(int userNo, String userId, String userPwd, String userName, String birth, String gender, String email,
 			String phone, Date enrollDate, String leaveCheck, String suspended, String reportCheck, String adminCheck) {
 		super();
 		this.userNo = userNo;
@@ -40,13 +40,7 @@ public class User {
 
 	
 	//회원가입
-	
-	
-	public int getUserNo() {
-		return userNo;
-	}
-
-	public User(String userId, String userPwd, String userName, String birth, String gender, String email,
+	public AdUser(String userId, String userPwd, String userName, String birth, String gender, String email,
 			String phone) {
 		super();
 		this.userId = userId;
@@ -57,7 +51,29 @@ public class User {
 		this.email = email;
 		this.phone = phone;
 	}
+	
+	
+	//관리자 회원조호
+	
+	public AdUser(int userNo, String userId, String userName, String gender, String phone, Date enrollDate,
+			String leaveCheck) {
+		super();
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userName = userName;
+		this.gender = gender;
+		this.phone = phone;
+		this.enrollDate = enrollDate;
+		this.leaveCheck = leaveCheck;
+	}
 
+	
+	
+	public int getUserNo() {
+		return userNo;
+	}
+
+	
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;
 	}

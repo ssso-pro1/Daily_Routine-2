@@ -73,7 +73,7 @@ public class adCenterService {
 	}
 
 
-
+	/*
 
 	public int deleteFaq(int faqNo) { // faq테이블에서 삭제할거임
 		Connection conn = getConnection();
@@ -86,6 +86,18 @@ public class adCenterService {
 		} return result;
 	}
 
+	 */
+	
+	public int deleteFaq (String[] faqNo) { // faq테이블에서 삭제할거임
+		Connection conn = getConnection();
+		int result = new adCenterDao().deleteFaq(conn, faqNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		} return result;
+	}
 
 
 
@@ -195,7 +207,7 @@ public class adCenterService {
 
 
 
-	public int deleteQuery(int queryNo) {
+	public int deleteQuery(String[] queryNo) {
 		Connection conn = getConnection();
 		
 		int result = new adCenterDao().deleteQuery(conn, queryNo);
@@ -275,12 +287,41 @@ public class adCenterService {
 	}
 
 
+	public int deleteNotice(String[] noticeNo) {
+		Connection conn = getConnection();
+		int result = new adCenterDao().deleteNotice(conn, noticeNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		} return result;
+	}
+
+	
+
+
+
+//-------------------test----------------
+	
+	
+
+
+
+	
+
+
 
 	
 
 
 
 
+	
+
+
+
+	
 	
 
 	

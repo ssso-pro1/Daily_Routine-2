@@ -236,12 +236,15 @@
                     </table>
 
                 </div>
-                <div class="noticeArea">
+               
+                <!-- 삭제하기서블릿으로 -->
+                <form action="<%= contextPath %>/ctNoticeDelete.ad" method="post" > 
+                <div class="NoticeListArea" style="background: white; width: 800px; height: 500px;">
                     <br><br>
                     <table align="center" class="listArea" border="1">
                          <thead>
                              <tr>
-                                 <th width="30">글선택</th>
+                                 <th width="30">선택</th>
                                  <th width="40" style="color:black">글번호</th>
                                  <th width="200" style="color:black">제목</th>
                                  <th width="50">글쓴이</th>
@@ -258,7 +261,10 @@
             				<% } else { %>
                          		<% for (adCenterNotice n:list) { %>
 		                            <tr>
-		                                <td><input type="checkbox"></td>
+		                                 <th>
+			                                <input type="checkbox" name="nno" id="nno" value="<%=n.getNoticeNo() %>">
+			                                <input type="hidden" name="status" value="<%= n.getStatus() %>">
+		                                </th>
 		                                <td><%= n.getNoticeNo() %></td>
 		                                <td><%= n.getNoticeTitle() %></td>
 		                                <td><%= n.getUserId() %></td>
@@ -312,9 +318,33 @@
 
 
              
+                    <div align="center" class="buttonArea">
+                    	<br><br>
+                    	<% if(list.isEmpty() ) { %>
+                    	
+                        	<button><a href="">새 글 등록</a></button>
+                            
+
+                        
+                        
+                        <% } else { %>
+                        	<button><a href="">새 글 등록</a></button>
+                       		<button type="submit"  onclick="return check();">선택 삭제</button> 
+                       	    <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
+                       	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
+                        <% } %>
+                        
+                        </div>
+
+					</form> 
+
+
+
+
+             		<!-- 검색부분-->
                     <br><br>
-                    <div align="center" class="searchArea">
-                        <form action="<%= contextPath %>/searchNotice.ad?currentPage=1" method="post">
+                    	<div class="searchArea" align="center">
+		                    <form action="<%= contextPath %>/searchNotice.ad?currentPage=1" method="post">
                             <select name="searchNoticeCtg">
                                 <option name="searchNoticeCtg" value="제목">제목</option>
                                 <option name="searchNoticeCtg" value="내용">내용</option>
@@ -324,19 +354,31 @@
              
                         </form>
 
-                        <div>
-                            <br>
-                            <button>새 글 등록</button>
-                            <button>선택 삭제</button>
-
-                        </div>
+		                </div>
+					 	
+                    	
+                    	
                         
-             
-                 </div>
-                 <br><Br>
+                    
+                    	<script>
+	                 		function check(){
+	                 			
+	                 			var result = confirm("선택한 FAQ 글을 완전히 삭제 하시겠습니까?");
+			                	
+	                 			if(result){
+	                            		
+	                            		
+	                            } else {
+	                            	alert("삭제가 취소되었습니다");
+	                            		return false;
+	                            }
+	                 			
+	                 		}
 
 
-			</div>    
+						</script>   
+                   
+           </div>    
 
             
 

@@ -183,7 +183,7 @@ public class adCenterDao {
 
 
 
-
+/*
 
 	public int deleteFaq(Connection conn, int faqNo) {
 		int result = 0;
@@ -204,6 +204,35 @@ public class adCenterDao {
 	}
 
 
+*/
+	
+	public int deleteFaq(Connection conn, String[] faqNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteFaq");
+		
+		
+		try {
+			
+			for(int i=0; i<faqNo.length; i++) {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setString(1,faqNo[i]); 
+			
+			result = pstmt.executeUpdate();   
+			
+			}
+			
+		
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
 
 
 
@@ -491,18 +520,27 @@ public class adCenterDao {
 
 
 
-	public int deleteQuery(Connection conn, int queryNo) {
+	public int deleteQuery(Connection conn, String[] queryNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String sql = prop.getProperty("deleteQuery");
 		
+		
 		try {
+			
+			for(int i=0; i<queryNo.length; i++) {
+			
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, queryNo);
 			
 			
-			result = pstmt.executeUpdate();
+			pstmt.setString(1,queryNo[i]); 
 			
+			result = pstmt.executeUpdate();   
+			
+			}
+			
+		
+		
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -758,24 +796,49 @@ public class adCenterDao {
 			
 		}
 	
+	public int deleteNotice(Connection conn, String[] noticeNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("deleteNotice");
+		
+		
+		try {
+			
+			for(int i=0; i<noticeNo.length; i++) {
+			
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setString(1,noticeNo[i]); 
+			
+			result = pstmt.executeUpdate();   
+			
+			}
+			
+		
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
 
 	
 
 	
-		
-		
+//---------test------------------
+	
 	
 
 
 
-		
-		
+
+	
+
+
+	
 }
-
-
-
-	
-	
 	
 
 

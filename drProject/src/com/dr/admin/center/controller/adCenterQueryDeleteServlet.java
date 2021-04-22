@@ -30,7 +30,11 @@ public class adCenterQueryDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		int queryNo = Integer.parseInt(request.getParameter("qno")); // 글번호 넘긴다
+		//int queryNo = Integer.parseInt(request.getParameter("qno")); // 글번호 넘긴다
+		
+		String[] queryNo = request.getParameterValues("qno");
+		
+		
 		
 		int result = new adCenterService().deleteQuery(queryNo);
 		

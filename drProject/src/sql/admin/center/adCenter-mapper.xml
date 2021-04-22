@@ -355,7 +355,13 @@
 	
 	</entry>
 	
+	<entry key="deleteNotice">
 	
+	DELETE FROM TB_NOTICE
+	WHERE NOTICE_NO = ?
+	
+	
+	</entry>
 	
 	
 	
@@ -415,7 +421,7 @@
 	SELECT COUNT(*) LISTCOUNT
 	FROM TB_QUERY
 	WHERE reply_status IN ('Y', 'N', 'D')
-	  AND QUERY_STATUS= 'Y'
+	  
 	
 	</entry>
 	
@@ -567,7 +573,6 @@
 	
 	
 	</entry>
-	
 	<entry key="">
 	
 	

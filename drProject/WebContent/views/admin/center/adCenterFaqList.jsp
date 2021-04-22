@@ -238,16 +238,14 @@
 
                 </div>
                  
-             <form action="<%= contextPath %>/ctFaqDelete.ad" method="post" >
+             <form action="<%= contextPath %>/ctFaqDelete.ad" method="post" > <!-- 삭제하기서블릿 -->
                 <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
                 
-                   
-                    
-                    <br><br>
+                   <br><br>
                     <table align="center" class="listArea" border="1" >
                          <thead>
                              <tr>
-                                <th width="30">글선택</th>
+                                <th width="30">선택</th>
                                 <th width="40" style="color:black">글번호</th>
                                 <th width="40" style="color:black">문의유형</th>
                                 <th width="200" style="color:black">제목</th>
@@ -334,24 +332,7 @@
 						
 			        </div>
                     
-                    
-
-
-
-
-
-
-             		<!-- 검색부분-->
-                    <br><br>
-                    	<div class="searchArea" align="center">
-		                    <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
-		                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
-		                        <button type="submit">검색</button>
-		                    </form>
-		                </div>
-					 	
-                    	
-                    	<div align="center" class="buttonArea">
+                    <div align="center" class="buttonArea">
                     	<br><br>
                     	<% if(list.isEmpty() ) { %>
                     	
@@ -368,27 +349,58 @@
                         <% } %>
                         
                         </div>
+
+					</form> 
+
+
+
+
+             		<!-- 검색부분-->
+                    <br><br>
+                    	<div class="searchArea" align="center">
+		                    <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
+		                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
+		                        <button type="submit">검색</button>
+		                    </form>
+		                </div>
+					 	
+                    	
+                    	
                         
                     
                     	<script>
 	                 		function check(){
-									
-								var result = confirm("선택한 FAQ 글을 완전히 삭제 하시겠습니까?");
-		                		if(result){
-                            		
-                            		
-                            	} else {
-                            		alert("삭제가 취소되었습니다");
-                            		return false;
-                            	}
-							}
+	                 			
+	                 			var result = confirm("선택한 FAQ 글을 완전히 삭제 하시겠습니까?");
+			                	
+	                 			if(result){
+	                            		
+	                            		
+	                            } else {
+	                            	alert("삭제가 취소되었습니다");
+	                            		return false;
+	                            }
+	                 			
+	                 		}
+
+
 						</script>   
+
+
+
+
+
+
+
+
+
+    
                     
                     
                     
                     
                     </div>
-                 </form>    
+                    
                  
                  		
            	    

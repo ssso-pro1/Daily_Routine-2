@@ -142,9 +142,10 @@
 	SELECT 
 		   NOTICE_NO
 		 , NOTICE_TITLE
+		 , STATUS
 	  FROM TB_NOTICE
 	 WHERE NOTICE_NO= ?
-	   AND STATUS = 'Y'
+	   AND STATUS ='Y'
 	
 	</entry>
 	

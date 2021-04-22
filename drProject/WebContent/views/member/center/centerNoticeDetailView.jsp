@@ -148,20 +148,24 @@
                 <div class="noticeDetailArea" align="center">
                     <table border="1">
                         <tr>
-                            <th>
-                            <div id="noticeTitle" style="width: 500px; height: 30px;"><%= n.getNoticeTitle() %>
-                                <label style="float: right;"><%=n.getCreateDate() %></label></div>
-                            
-                            </th>
+                            <th>글제목</th>
+                            <td colspan="3"><%= n.getNoticeTitle() %></td>
                         </tr>
                         <tr>
-                            <td><div id="noticeContent" style="height: 400px;"><%=n.getNoticeContent() %></div></td>
+                            <th>등록일</th>
+                            <td><%=n.getCreateDate() %></td>
+                            <th>조회수</th>
+                            <td><%=n.getNoticeCount() %></td>
+                        </tr>
+                        <tr>
+                            <th>글내용</th>
+                            <td colspan="3"><textarea name="" id="" cols="50" rows="20" style="resize: none;" readonly><%=n.getNoticeContent() %></textarea></td>
                         </tr>
                         
                         
                         <%if(nNext==null){ %>
                         <tr>
-                            <td>
+                            <td colspan="4">
                                 <button disabled>다음글</button>
                                 <label>다음글이 없습니다</label>
                             </td>
@@ -170,8 +174,13 @@
                         <% } else { %>
                         
                         <tr>
-                            <td>
-                                <button><a href="<%= contextPath %>/noticeDetail.ct?nno=<%= nNext.getNoticeNo() %>">다음글</a></button>
+                            <td colspan="4">
+                                <button>
+                                
+                                <a href="<%= contextPath %>/noticeDetail.ct?nno=<%= nNext.getNoticeNo() %>">다음글</a>
+                                
+                                
+                                </button>
                                 <label><%= nNext.getNoticeTitle() %></label>
                             </td>
                         </tr>
@@ -180,7 +189,7 @@
                         
                         <%if(nPre==null){ %>
                         <tr>
-                            <td>
+                            <td colspan="4">
                                 <button disabled>이전글</button>
                                 <label>이전글이 없습니다</label>
                             </td>
@@ -189,7 +198,7 @@
                         <% } else { %>
                         
                         <tr>
-                            <td>
+                            <td colspan="4">
                                 <button><a href="<%= contextPath %>/noticeDetail.ct?nno=<%= nPre.getNoticeNo() %>">이전글</a></button>
                                 <label><%= nPre.getNoticeTitle() %></label>
                             </td>

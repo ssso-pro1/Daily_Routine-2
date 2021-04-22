@@ -87,6 +87,8 @@ public class CenterDao {
 		
 	}
 
+	
+	// ------------------어드민이랑 같이쓸거임 -----------------------------
 	public CenterNotice selectNotice(Connection conn, int noticeNo) {
 		
 		CenterNotice n = null;
@@ -105,8 +107,14 @@ public class CenterDao {
 				n = new CenterNotice(rset.getInt("notice_no"),
 									 rset.getString("notice_title"),
 									 rset.getString("notice_content"),
-									 rset.getDate("create_date"));
+									 rset.getInt("notice_count"),
+									 rset.getDate("create_date"),
+									 rset.getDate("update_date"),
+									 rset.getString("status"),
+									 rset.getString("user_id"));
 			}
+			
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -116,6 +124,8 @@ public class CenterDao {
 		} return n;
 	}
 
+	// 공지사항 이전글 다음글
+	
 	public CenterNotice selectNoticePre(Connection conn, int noticeNo) {
 		CenterNotice nPre = null;
 		PreparedStatement pstmt = null;
@@ -131,7 +141,8 @@ public class CenterDao {
 			
 			if(rset.next()) {
 				nPre = new CenterNotice(rset.getInt("notice_no"),
-						 				rset.getString("notice_title"));
+						 				rset.getString("notice_title"),
+						 				rset.getString("status"));
 			}
 			
 		} catch (SQLException e) {
@@ -157,7 +168,8 @@ public class CenterDao {
 			
 			if(rset.next()) {
 				nNext = new CenterNotice(rset.getInt("notice_no"),
-		 							     rset.getString("notice_title"));
+		 							     rset.getString("notice_title"),
+		 							     rset.getString("status"));
 			}
 			
 		} catch (SQLException e) {

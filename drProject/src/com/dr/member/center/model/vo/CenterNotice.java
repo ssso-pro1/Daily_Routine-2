@@ -13,6 +13,8 @@ public class CenterNotice {
 	private Date updateDate;
 	private String status;	
 	
+	private String userId;
+	
 	public CenterNotice() {}
 
 	public CenterNotice(int noticeNo, int userNo, String noticeTitle, String noticeContent, int noticeCount,
@@ -33,6 +35,43 @@ public class CenterNotice {
 	
 	
 	
+	
+
+	
+
+
+
+	public CenterNotice(int noticeNo, String noticeTitle, String status) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.status = status;
+	}
+
+	public CenterNotice(int noticeNo, String noticeTitle, String noticeContent, int noticeCount, Date createDate,
+			Date updateDate, String status, String userId) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.noticeCount = noticeCount;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.status = status;
+		this.userId = userId;
+	}
+
+	public CenterNotice(int noticeNo, String noticeTitle, String noticeContent, Date createDate, int noticeCount,
+			String status) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.createDate = createDate;
+		this.noticeCount = noticeCount;
+		this.status = status;
+	}
+
 	public CenterNotice(int noticeNo, String noticeTitle, String noticeContent, Date createDate, int noticeCount ) {
 		super();
 		this.noticeNo = noticeNo;
@@ -131,13 +170,25 @@ public class CenterNotice {
 	public void setStatus(String status) {
 		this.status = status;
 	}
+	
+	
+
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
 
 	@Override
 	public String toString() {
-		return "centerNotice [noticeNo=" + noticeNo + ", userNo=" + userNo + ", noticeTitle=" + noticeTitle
+		return "CenterNotice [noticeNo=" + noticeNo + ", userNo=" + userNo + ", noticeTitle=" + noticeTitle
 				+ ", noticeContent=" + noticeContent + ", noticeCount=" + noticeCount + ", createDate=" + createDate
-				+ ", updateDate=" + updateDate + ", status=" + status + "]";
+				+ ", updateDate=" + updateDate + ", status=" + status + ", userId=" + userId + "]";
 	}
+
+	
 	
 	
 	

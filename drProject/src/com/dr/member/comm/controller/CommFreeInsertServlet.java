@@ -56,7 +56,7 @@ public class CommFreeInsertServlet extends HttpServlet {
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy()); 
 			
 			// 3. 요청 시 전달된 값 뽑아서 vo에 담기
-			// 3_1. Comm 테이블에 insert 할 카테고리번호, 게시판제목, 게시판내용, 작성자회원번호, 게시판번호를 Comm 객체에 담기 
+			// 3_1. Comm 테이블에 insert 할 게시판제목, 게시판내용, 작성자회원번호를 Comm 객체에 담기 
 			String commTitle = multiRequest.getParameter("title"); 
 			String commContent = multiRequest.getParameter("content");
 			String userNo = multiRequest.getParameter("userNo"); 
@@ -65,7 +65,6 @@ public class CommFreeInsertServlet extends HttpServlet {
 			c.setPostTitle(commTitle); 
 			c.setPostContent(commContent);
 			c.setUserNo(userNo);
-		
 			
 			// 3_2. CommFile 테이블에 Insert할 원본명, 수정명, 저장폴더경로를 CommFile 객체에 담기 
 			CommFile cf = null;  		

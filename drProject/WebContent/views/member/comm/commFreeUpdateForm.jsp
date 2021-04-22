@@ -128,6 +128,12 @@
                                                 <tr>
                                                     <td width="800" height="30">
                                                         <input type="file" name="upfile" style="cursor:pointer;"> 
+                                                   		<!-- 기존의 첨부파일이 있었다면 -->
+                                                        <% if(cf != null) { %>
+                                                            <%=cf.getFileName() %>
+                                                            <input type="hidden" name="originFileNo" value="<%=cf.getFileNo()%>">
+                                                            <input type="hidden" name="originFileName" value="<%=cf.getFileUpdate()%>">
+                                                        <% } %>   
                                                     </td>
                                                     <td>
                                                     	<!-- 버튼 클릭 시 파일 삭제 -->

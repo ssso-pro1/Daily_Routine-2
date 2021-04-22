@@ -442,7 +442,7 @@ public class CommDao {
 			pstmt.setString(1, c.getPostTitle());
 			pstmt.setString(2, c.getPostContent());
 			pstmt.setInt(3, Integer.parseInt(c.getUserNo()));
-		
+			
 			result = pstmt.executeUpdate(); 
 			
 		} catch (SQLException e) {
@@ -493,12 +493,18 @@ public class CommDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) { 
-				c = new Comm(rset.getInt("comm_post_no"), 
-						   	 rset.getString("user_id"),
+				c = new Comm(rset.getInt("comm_post_no"),
+						     rset.getString("user_id"),
+						     rset.getInt("file_no"),
+						     rset.getString("category_name"),
 						     rset.getString("post_content"),
 						     rset.getString("post_title"),
 						     rset.getDate("enroll_date"),
-							 rset.getInt("board_view"));
+						     rset.getDate("update_date"),
+						     rset.getInt("board_view"),
+						     rset.getString("status"),
+						     rset.getString("admin_notice"),
+						     rset.getInt("comm_no"));
 			}
 			
 		} catch (SQLException e) {

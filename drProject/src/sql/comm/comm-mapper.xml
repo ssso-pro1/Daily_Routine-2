@@ -261,16 +261,20 @@
 		  )
 	</entry>
 	
-	
-	
 	<entry key="selectCommFree">
 		SELECT 
 			   COMM_POST_NO
 			 , USER_ID
+			 , FILE_NO
+			 , CATEGORY_NAME
 			 , POST_CONTENT
 			 , POST_TITLE
 			 , C.ENROLL_DATE
+			 , UPDATE_DATE 
 			 , BOARD_VIEW  
+			 , STATUS 
+			 , ADMIN_NOTICE
+			 , COMM_NO
 	      FROM TB_COMMUNITY C
 	      JOIN TB_USER U ON (C.USER_NO = U.USER_NO)
 	     WHERE COMM_POST_NO = ?

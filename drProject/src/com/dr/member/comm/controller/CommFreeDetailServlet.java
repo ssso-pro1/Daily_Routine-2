@@ -44,6 +44,8 @@ public class CommFreeDetailServlet extends HttpServlet {
 			request.setAttribute("c", c);
 			request.setAttribute("cf", cf);
 			
+			System.out.println(c); 
+			
 			request.getRequestDispatcher("views/member/comm/commFreeDetailView.jsp").forward(request, response);
 			
 		}else { // 유효한 게시글 x => 에러 문구 담아서 에러 페이지로 포워딩 

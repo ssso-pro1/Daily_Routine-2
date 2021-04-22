@@ -4,8 +4,11 @@ import static com.dr.common.JDBCTemplate.close;
 import static com.dr.common.JDBCTemplate.getConnection;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
-import com.dr.member.ht.model.dao.AdHTDao;
+import com.dr.admin.ht.model.dao.AdHTDao;
+import com.dr.admin.ht.model.vo.AdHT;
+import com.dr.common.model.vo.PageInfo;
 
 public class AdHTService {
 
@@ -21,4 +24,17 @@ public class AdHTService {
 		return listCount;
 	}
 	
+	/**
+	 * 1. 홈트 게시글 전체 조회 
+	 */
+	public ArrayList<AdHT> selectList(PageInfo pi) {
+		
+		Connection conn = getConnection();
+		
+		ArrayList<AdHT> list = new AdHTDao().selectList(conn, pi);
+		
+		close(conn);
+		return list;
+		
+	}
 }

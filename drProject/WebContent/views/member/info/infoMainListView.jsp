@@ -217,8 +217,8 @@
 		         <br><br>
 		         
               	 <div align="right" class="btn">
-                  <!-- 관리자만 사용할 수 있는 버튼 -->
-                  <a href="<%=contextPath%>/infoMainEnroll.in">글쓰기</a>
+                 <!-- 관리자만 사용할 수 있는 버튼 -->
+                 <a href="<%=contextPath%>/infoMainEnroll.in">글쓰기</a>
                  </div><br><br>
                
 

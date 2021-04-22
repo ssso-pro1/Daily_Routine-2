@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.info.model.vo.*" %>
+<%
+	Info i = (Info)request.getAttribute("i"); 
+	ArrayList<InfoFile> list = (ArrayList<InfoFile>)request.getAttribute("list"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <style>
     div{
         box-sizing:border-box;
@@ -63,6 +66,7 @@
         border-bottom: 1px solid black;
         border:1px solid black;
     }
+    
     p{
         text-align:center;
     }
@@ -79,6 +83,7 @@
     	color:rgb(250, 214, 9);
     }
 </style>
+</head>
 <body>
 
     <%@ include file="../../common/menubar.jsp"%>
@@ -92,11 +97,11 @@
             <div id="content_1">
                 <h1>Info & Tip</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/total.in">전체</a></div>
+                    <div><a href="<%=contextPath%>/infoMain.in?currentPage=1">전체</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/workout.in">운동 정보</a></div>
+                    <div><a href="<%=contextPath%>/workout.in?currentPage=1">운동 정보</a></div>
                     <br>
-                    <div id="menu3"><a href="<%=contextPath%>/menu.in">식단 정보</a></div>
+                    <div id="menu3"><a href="<%=contextPath%>/menu.in?currentPage=1">식단 정보</a></div>
                 </div>
             </div>
 
@@ -119,30 +124,18 @@
                     <div class="detailArea">
                         <table border="0">
                             <tr style="font-size:25px;">
-                                <th width="800">식단 제목</th>
+                                <th width="800"><%=i.getPostTitle()%></th>
                             </tr>
                             <tr>
                                 <td height="280">
                                     <div align="center">
-                                        <img src="">
+                                         <img src="<%=contextPath%>/<%=list.get(0).getFilePath() + list.get(0).getFileUpdate()%>">
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td height="200"> 
-                                    <p>
-                                        <b style="font-size:15px;">식단 정보</b> <br><br>
-                                        * 추천 대상 <br>
-                                        * 추천 대상 <br>
-                                        * 추천 대상 <br><br><br>
-                                        
-                                        <b style="font-size:15px;""># 식단 내용 </b> <br><br>
-                                        식단 내용 설명 <br>
-                                        식단 내용 설명 <br>
-                                        식단 내용 설명 <br>
-                                        식단 내용 설명 <br>
-                                        식단 내용 설명 <br><br>
-                                    </p>
+ 									<p style="height:50px;"><%=i.getPostContent()%></p>
                                 </td>
                             </tr>
                         </table>

@@ -1,13 +1,16 @@
 package com.dr.member.info.model.service;
 
-import static com.dr.common.JDBCTemplate.*; 
-
 import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.dr.common.model.vo.PageInfo;
+import com.dr.member.comm.model.dao.CommDao;
+import com.dr.member.comm.model.vo.CommFile;
 import com.dr.member.info.model.dao.InfoDao;
 import com.dr.member.info.model.vo.Info;
+import com.dr.member.info.model.vo.InfoFile;
+
+import static com.dr.common.JDBCTemplate.*; 
 
 public class InfoService {
 	
@@ -34,7 +37,22 @@ public class InfoService {
 		
 	}
 	
-	
+	public int increaseCount(int intPostNo) {
+		
+		Connection conn = getConnection();
+		int result = new InfoDao().increaseCount(conn, intPostNo); 
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result;
+		
+	} 
 	
 	
 	
@@ -91,6 +109,19 @@ public class InfoService {
 		return list; 
 		
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	

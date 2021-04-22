@@ -11,6 +11,7 @@ import java.util.Properties;
 
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.info.model.vo.Info;
+import com.dr.member.info.model.vo.InfoFile;
 
 import static com.dr.common.JDBCTemplate.*; 
 
@@ -79,7 +80,8 @@ public class InfoDao {
 					   	          rset.getString("user_id"),
 					   	          rset.getString("post_title"),
 					   	          rset.getDate("enroll_date"),
-					   	          rset.getInt("board_view"))); 
+					   	          rset.getInt("board_view"),
+					   	          rset.getInt("like_count"))); 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -92,7 +94,27 @@ public class InfoDao {
 			
 	}
 	
-	
+	public int increaseCount(Connection conn, int intPostNo) {
+		
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("increaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, intPostNo);
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
+				
+	} 
 	
 	
 	
@@ -149,7 +171,8 @@ public class InfoDao {
 					   	          rset.getString("user_id"),
 					   	          rset.getString("post_title"),
 					   	          rset.getDate("enroll_date"),
-					   	          rset.getInt("board_view"))); 
+					   	          rset.getInt("board_view"),
+					   	          rset.getInt("like_count"))); 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -223,7 +246,8 @@ public class InfoDao {
 					   	          rset.getString("category_name"),
 					   	          rset.getString("post_title"),
 					   	          rset.getDate("enroll_date"),
-					   	          rset.getInt("board_view"))); 
+					   	          rset.getInt("board_view"),
+					   	          rset.getInt("like_count"))); 
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -235,7 +259,6 @@ public class InfoDao {
 		return list; 
 			
 	}
-	
 	
 	
 	

@@ -127,9 +127,18 @@
                                 <th width="800"><%=i.getPostTitle()%></th>
                             </tr>
                             <tr>
-                                <td height="280">
+                                <td height="200" width="100%">
                                     <div align="center">
                                          <img src="<%=contextPath%>/<%=list.get(0).getFilePath() + list.get(0).getFileUpdate()%>">
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td height="180">
+                                    <div align="center">
+                                        <% for(int j=1; j<list.size(); j++) { %>
+                                        <img src="<%=contextPath%>/<%=list.get(j).getFilePath() + list.get(j).getFileUpdate()%>">
+                                        <% } %>
                                     </div>
                                 </td>
                             </tr>

@@ -127,7 +127,7 @@
                                             <table>
                                                 <tr>
                                                     <td width="800" height="30">
-                                                        <input type="file" name="upfile" style="cursor:pointer;"> 
+                                                        <input type="file" name="reUpfile" style="cursor:pointer;"> 
                                                    		<!-- 기존의 첨부파일이 있었다면 -->
                                                         <% if(cf != null) { %>
                                                             <%=cf.getFileName() %>

@@ -550,11 +550,102 @@ public class CommDao {
 		
 	} 
 	
+	public int updateCommFree(Connection conn, Comm c) {
+		// update문 
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCommFree"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getPostTitle());
+			pstmt.setString(2, c.getPostContent());
+			pstmt.setInt(3, c.getCommPostNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result; 
 	
+	}
 	
+	public int updateCommFreeFile(Connection conn, CommFile cf) {
+		// update문 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCommFreeFile");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cf.getFileName());
+			pstmt.setString(2, cf.getFileUpdate());
+			pstmt.setString(3, cf.getFilePath());
+			pstmt.setInt(4, cf.getFileNo()); 
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
+		
+	}
 	
+	public int insertNewCommFreeFile(Connection conn, CommFile cf) {
+		// insert문 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNewCommFreeFile"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cf.getCommPostNo());
+			pstmt.setString(2, cf.getFileName());
+			pstmt.setString(3, cf.getFileUpdate());
+			pstmt.setString(4, cf.getFilePath());
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
+		
+	}
 	
-	
+	public int deleteCommFree(Connection conn, int commPostNo) {
+		// update문 
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteCommFree");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result; 
+		
+	}
 	
 	
 	
@@ -642,6 +733,7 @@ public class CommDao {
 		return list;
 		
 	}
+	
 	
 	
 	

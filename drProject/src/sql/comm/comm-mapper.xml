@@ -293,6 +293,62 @@
 		   AND COMM_NO = 2  	 
 	</entry>
 	
+	<!-- 게시글 수정 시 실행할 sql -->
+	<entry key="updateCommFree">
+		UPDATE 
+			   TB_COMMUNITY 
+		   SET POST_TITLE = ?
+		     , POST_CONTENT = ?
+		 WHERE COMM_POST_NO = ?
+		   AND COMM_NO = 2     
+	</entry>
+	
+	<!-- 기존의 첨부파일이 있었는데 새로 넘어온 첨부파일이 있을 경우 -->
+	<entry key="updateCommFreeFile">
+		UPDATE 
+		       TB_COMM_FILE 
+		   SET FILE_NAME = ?
+		     , FILE_UPDATE = ? 
+		     , FILE_PATH = ?
+		 WHERE FILE_NO = ?   
+		   AND COMM_NO = 2     
+	</entry>
+	
+	<!-- 기존의 첨부파일이 없었는데 새로 넘어온 첨부파일이 있을 경우 -->
+	<entry key="insertNewCommFreeFile">
+		INSERT 
+		  INTO TB_COMM_FILE 
+		  (
+		    FILE_NO
+		  , COMM_POST_NO 
+		  , COMM_NO 
+		  , FILE_NAME
+		  , FILE_UPDATE
+		  , FILE_PATH  
+		  )
+		  VALUES
+		  (
+		    SEQ_FNO.NEXTVAL
+		  , ? 
+		  , 2
+		  , ?
+		  , ? 
+		  , ?
+		  )
+	</entry>
+	
+	<entry key="deleteCommFree">
+		UPDATE 
+			   TB_COMMUNITY 
+		   SET STATUS = 'Y'
+		 WHERE COMM_POST_NO = ? 
+		   AND COMM_NO = 2    	   
+	</entry>
+	
+	<entry key="">
+		
+	</entry>
+	
 	<entry key="">
 		
 	</entry>
@@ -300,8 +356,6 @@
 	<entry key="">
 		
 	</entry>
-	
-	
 	
 	
 	

@@ -44,7 +44,7 @@ public class CommFreeDetailServlet extends HttpServlet {
 			request.setAttribute("c", c);
 			request.setAttribute("cf", cf);
 			
-			System.out.println(c); 
+			//System.out.println(c); 
 			
 			request.getRequestDispatcher("views/member/comm/commFreeDetailView.jsp").forward(request, response);
 			

@@ -85,6 +85,9 @@
     div>button{
         cursor:pointer;
     }
+    .leftMenu>#menu2>a{
+    	color:rgb(250, 214, 9);
+    }
 </style>
 <body>
     
@@ -101,13 +104,9 @@
                 <div class="leftMenu">
                     <div><a href="<%=contextPath%>/total.in">전체</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/workoutRT.in">운동 루틴</a></div>
-                    <br>
-                    <div><a href="<%=contextPath%>/workout.in">운동 정보</a></div>
+                    <div id="menu2"><a href="<%=contextPath%>/workout.in">운동 정보</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/menu.in">식단 정보</a></div>
-                    <br>
-                    <div><a href="<%=contextPath%>/etc.in">기타 팁</a></div>
                 </div>
             </div>
 

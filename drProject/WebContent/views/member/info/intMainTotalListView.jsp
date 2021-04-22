@@ -85,6 +85,9 @@
     div>button{
         cursor:pointer;
     }
+    .leftMenu>#menu1>a{
+    	color:rgb(250, 214, 9);
+    }
 </style>
 <body>
     
@@ -99,15 +102,11 @@
             <div id="content_1">
                 <h1>Info & Tip</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/intMain.in">전체</a></div>
-                    <br>
-                    <div><a href="<%=contextPath%>/workoutR.in">운동 루틴</a></div>
+                    <div id="menu1"><a href="<%=contextPath%>/total.in">전체</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/workout.in">운동 정보</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/menu.in">식단 정보</a></div>
-                    <br>
-                    <div><a href="<%=contextPath%>/etc.in">기타 팁</a></div>
                 </div>
             </div>
 
@@ -127,13 +126,7 @@
 
                 <!-- 게시글 목록 카테고리 & 검색 버튼 -->
                 <div id="content_2_2">
-                    <div class="tipcategory" style="margin-left:60px">
-                        <select name="category">
-                            <option value="upload">업로드순</option>
-                            <option value="like">좋아요순</option>
-                            <option value="view">조회수순</option>
-                        </select>
-                    </div>
+                    
 
                     <div align="center" class="searchArea">
                         <input type="text">
@@ -144,12 +137,9 @@
                 <!-- 게시글 목록 테이블-->
                 <div id="content_2_3">
                     <div class="listArea">
-                        <div class="thumbnail" align="center">
-                            <img src="" width="200" height="150">
-                            <p>
-                                전체 1 <br>
-                                조회수 : 20 좋아요 : 150 <br>
-                                2020-04-20
+                        <div class="subTitle1">
+                            <p style= "font-weight:bolder; font-size:20px;">
+                                오늘의 운동
                             </p>
                         </div>
                         <div class="thumbnail" align="center">
@@ -166,6 +156,19 @@
                                 전체 1 <br>
                                 조회수 : 20 좋아요 : 150 <br>
                                 2020-04-20
+                            </p>
+                        </div>
+                        <div class="thumbnail" align="center">
+                            <img src="" width="200" height="150">
+                            <p>
+                                전체 1 <br>
+                                조회수 : 20 좋아요 : 150 <br>
+                                2020-04-20
+                            </p>
+                        </div>
+                        <div class="subTitle1">
+                            <p style= "font-weight:bolder; font-size:20px;">
+                                오늘의 식단
                             </p>
                         </div>
                         <div class="thumbnail" align="center">
@@ -194,6 +197,8 @@
                         </div>
                     </div><br>
                 </div>
+
+                <br><br>
 
                 <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
                 <!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->

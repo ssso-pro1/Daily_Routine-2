@@ -1,10 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User, com.dr.member.center.model.vo.CenterNotice"%>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
+	
+	CenterNotice n = (CenterNotice)request.getAttribute("n");
 %>   
 
 <!DOCTYPE html>
@@ -216,46 +218,94 @@
             <!--공지사항 디테일뷰-->
             <div id="content_2_4" style="background: white; width: 800px; height: 500px;">
                 <br>
-                <div id="noticeEnroll">
+                <div id="noticeDetail">
                     <form action="">
+                        
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
-                                    <th>제목</th>
-                                    <td><input type="text" name="noticeTitle"></td>
+                                    <th>작성자</th>
+                                    <td colspan="3"><input type="text" name="noticeWriter" value="<%= n.getUserId() %>"></td>
                                 </tr>
                                 <tr>
-                                    <th>작성자</th>
-                                    <td><input type="text" name="noticeWriter"></td>
+                                    <th>제목</th>
+                                    <td colspan="3"><input type="text" name="noticeTitle" value="<%= n.getNoticeTitle() %>"></td>
+                                </tr>
+                                
+                                
+                                <tr>
+                                    <th>게시여부</th>
+                                    <td colspan="3">
+                                        <input type="radio" id="statusY" name="status" value="Y"><label for="statusY" >게시</label>
+                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN" >보류</label>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>글등록일</th>
+                                    <td><%= n.getCreateDate() %></td>
+                                    <th>마지막 수정일</th>
+                                    <!-- 수정일이 없으면 작성일 나오도록 -->
+                                    <%if(n.getUpdateDate() == null) { %>
+                                    <td><%=n.getCreateDate() %></td>
+                                    <% } else { %>
+                                    <td><%=n.getUpdateDate() %></td>
+                                    <% }%>
                                 </tr>
                                 <tr>
                                     <th>첨부파일</th>
-                                    <td><input type="file" name="noticeFile"></td>
+                                    <td colspan="3"><input type="file" name="noticeFile"></td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
-                                    <td><textarea name="noticeContent" cols="50" rows="20" style="resize: none;"></textarea></td>
+                                    <td colspan="3"><textarea name="noticeContent" cols="50" rows="20" style="resize: none;"><%= n.getNoticeContent() %></textarea></td>
                                 </tr>
+                                
 
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>게시여부 선택</th>
-                                    <th>
-                                        <input type="checkbox">게시
-                                        <input type="checkbox">보류
-                                        
-                                        <label style="float: right;">
-                                        <button type="submit" onclick="return validate();">수정</button>
-                                        <button type="reset">삭제</button>
-                                        <button type="reset">취소</button>
-                                        </label>
-                                    </td>
-                                </tr>
-                            </tfoot>
+                                    <td colspan="4">
+                                     <label style="float: right;">
+                                             <button><a href="<%= contextPath%>/ctFaqUpdateForm.ad?fno=<%= n.getNoticeNo()%>">수정</a></button>
+                                             
+                                             <button onclick ="return check();"><a href="">삭제</a></button>
+                                             <button><a href="">목록으로</a></button>
+                                         </label>
+                                     </td>
+                                 </tr>
+                                 
+                             </tfoot>
                             
                         </table>
-
+							
+							 <script>
+							$(function(){
+								var status = "<%= n.getStatus()%>";
+								// "Y" / "N"
+								
+								// 체크박스인 input요소들에 순차적으로 접근하면서
+								// 해당 그 input요소의 value값이 interest에 포함되어있을 경우 => 해당 input요소에 checked속성 부여
+								$("input[type=radio]").each(function(){
+									if(status.search($(this).val()) != -1){
+										$(this).attr("checked", true);
+									}
+								})
+								
+								
+							})
+							
+							function check(){
+								
+								var result = confirm("FAQ 글을 완전히 삭제 하시겠습니까?");
+                            	if(result){
+                            		
+                            		
+                            	} else {
+                            		alert("삭제가 취소되었습니다");
+                            		return false;
+                            	}
+							}
+						</script>
             
 
         </div>

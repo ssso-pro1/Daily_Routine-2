@@ -218,7 +218,7 @@
                 	<p>공지사항이 없습니다</p>
                 	
                 	<% } else { %>
-                		<% for(int i=0; i<3; i++) { %>
+                		<% for(int i=0; i<3; i++) { %> <!-- 글이 3개 이상 있어야지만 나온다...흠.. -->
 		                    <div class="noticeList">
 		                        <label id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>
 		                        <label style="float: right;" id="noticeDate"><%=list.get(i).getCreateDate() %></label>

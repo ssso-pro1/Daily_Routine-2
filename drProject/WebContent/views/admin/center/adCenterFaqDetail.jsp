@@ -248,10 +248,14 @@
                                 </tr>
                                 <tr>
                                     <th>게시여부</th>
-                                    <td>
+                                    <td colspan="3">
                                         <input type="radio" id="statusY" name="status" value="Y"><label for="statusY" readonly>게시</label>
                                         <input type="radio" id="statusN" name="status" value="N"><label for="statusN" readonly>보류</label>
                                     </td>
+                                </tr>
+                                <tr>
+                                    <th>글등록일</th>
+                                    <td><%= f.getCreateDate() %></td>
                                     <th>마지막 수정일</th>
                                     <!-- 수정일이 없으면 작성일 나오도록 -->
                                     <%if(f.getUpdateDate() == null) { %>

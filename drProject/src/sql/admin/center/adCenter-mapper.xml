@@ -375,7 +375,6 @@
 	
 	
 	
-	
 
 	
 	
@@ -388,17 +387,7 @@
 	
 	</entry>
 	
-	<entry key="selectNotice">
-	SELECT 
-		   NOTICE_NO
-		 , NOTICE_TITLE
-		 , NOTICE_CONTENT
-		 , CREATE_DATE
-	  FROM TB_NOTICE
-	 WHERE NOTICE_NO= ?
-	   AND STATUS = 'Y'
 	
-	</entry>
 	
 	<entry key="selectNotice2">
 	SELECT 

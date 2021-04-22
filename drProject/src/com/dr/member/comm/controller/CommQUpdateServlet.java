@@ -17,16 +17,16 @@ import com.dr.member.comm.model.vo.CommFile;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
- * Servlet implementation class CommFreeUpdateServlet
+ * Servlet implementation class CommQUpdateServlet
  */
-@WebServlet("/freeUpdate.co")
-public class CommFreeUpdateServlet extends HttpServlet {
+@WebServlet("/qUpdate.co")
+public class CommQUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommFreeUpdateServlet() {
+    public CommQUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -43,7 +43,7 @@ public class CommFreeUpdateServlet extends HttpServlet {
 			// 1_1. 전송되는 파일의 용량 제한 
 			int maxSize = 10 * 1024 * 1024; // 10Mb
 			// 1_2. 전송되는 파일을 저장시킬 서버의 폴더 물리적 경로 (String savePath) 
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/comm/commFree_upfiles/");
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/comm/commQ_upfiles/");
 			
 			// 2. HttpServletRequest request => MultipartRequest multiRequest 변환 
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
@@ -69,7 +69,7 @@ public class CommFreeUpdateServlet extends HttpServlet {
 				cf = new CommFile();
 				cf.setFileName(multiRequest.getOriginalFileName("reUpfile"));
 				cf.setFileUpdate(multiRequest.getFilesystemName("reUpfile"));
-				cf.setFilePath("resources/file/comm/commFree_upfiles/");
+				cf.setFilePath("resources/file/comm/commQ_upfiles/");
 				
 				// 새로운 첨부파일이 있고, 기존의 첨부파일이 있을 경우 
 				// => CommFile Update + 기존의 첨부파일 고유번호 
@@ -87,20 +87,22 @@ public class CommFreeUpdateServlet extends HttpServlet {
 			}
 
 			// 4. 게시판 작성용 서비스 요청 및 결과 받기 
-			int result = new CommService().updateCommFree(c, cf); 
+			int result = new CommService().updateCommQ(c, cf); 
 			// case 1 : 새로운 첨부파일 x 				  => updateComm(c, null)  				=> Comm update
 			// case 2 : 새로운 첨부파일 o, 기존의 첨부파일 o  => updateComm(c, fileNo이 담긴 cf)  	=> Comm Update, CommFile Update
 			// case 3 : 새로운 첨부파일 o, 기존의 첨부파일 x  => updateComm(c, commPostNo이 담긴 cf)  => Comm Update, CommFile Insert  
 				
 			if(result > 0) { // 성공 => 해당 게시글 상세조회 페이지 
 				request.getSession().setAttribute("alertMsg", "게시글이 수정되었습니다.");
-				response.sendRedirect(request.getContextPath() + "/freeDetail.co?cno=" + commPostNo);
+				response.sendRedirect(request.getContextPath() + "/qDetail.co?cno=" + commPostNo);
 					
 			}else { // 실패 => 에러 문구 담아서 에러 페이지 포워딩 
 				request.setAttribute("errorMsg", "게시글 수정 실패했습니다.");
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
+			
 		}
+		
 	}
 
 	/**

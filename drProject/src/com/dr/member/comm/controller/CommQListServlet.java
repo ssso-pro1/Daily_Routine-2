@@ -44,7 +44,6 @@ public class CommQListServlet extends HttpServlet {
 		int endPage; 			// pageLimit, startPage에 영향을 받음 
 				
 		listCount = new CommService().qSelectListCount(); 
-		//System.out.println(listCount); 
 				
 		String currentPageParam = request.getParameter("currentPage");
 				
@@ -65,7 +64,6 @@ public class CommQListServlet extends HttpServlet {
 		// 페이징 정보들을 한 공간에 담아둘 것
 		// 1. 페이징바 만들 때 필요한 PageInfo 객체 
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		//System.out.println(pi);
 				
 		// 2. currentPage(현재 페이지)에 보여질 게시글 리스트 조회 
 		ArrayList<Comm> list = new CommService().qSelectList(pi);

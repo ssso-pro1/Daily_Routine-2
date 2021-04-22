@@ -1,11 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.*"%>
+<%
+    Comm c = (Comm)request.getAttribute("c"); 
+    // 게시글번호, 카테고리명, 제목, 내용, 작성자아이디, 작성일, 조회수
+
+    CommFile cf = (CommFile)request.getAttribute("cf"); 
+    // null 
+    // 파일번호, 원본명, 수정명, 저장경로 
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-</head>
 <style>
     div{
         box-sizing:border-box
@@ -47,7 +54,7 @@
 
     #content_2_1{height:15%;}
     #content_2_2{height:60%; margin-left:48px;}
- 
+
     #updateForm input, #updateForm textarea{
         width:100%;
         box-sizing:border-box;
@@ -56,14 +63,19 @@
         right:500px;
     }
     .updateArea>button{
-        background:hsl(46, 77%, 50%);
+        background:rgb(250, 214, 9);
         color:white;
-        border:hsl(46, 77%, 50%);
+        border:rgb(250, 214, 9);
     }
     div>button{
         cursor:pointer;
     }
+    .leftMenu>#menu3>a{
+    	color:rgb(250, 214, 9);
+    }
 </style>
+</head>
+<body>
 
     <%@ include file="../../common/menubar.jsp"%>
 
@@ -76,11 +88,11 @@
             <div id="content_1">
                 <h1>커뮤니티</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/workoutTip.co">나만의 운동 Tip!</a></div>
+                    <div><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/free.co">자유게시판</a></div>
+                    <div><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">질문게시판</a></div>
+                    <div id="menu3"><a href="<%=contextPath%>/question.co?currentPage=1">질문게시판</a></div>
                 </div>
             </div>
        
@@ -90,7 +102,6 @@
             <!-- 게시글 수정 -->
             <div id="content_2">
 
-
                 <!-- 상단 타이틀 -->
                 <div id="content_2_1">
                     <h2>커뮤니티 > 질문게시판</h2>
@@ -98,55 +109,60 @@
                     <p>운동에 관한 모든 것들! 질문 게시판에서 함께 공유해봐요!</p>
                 </div><br>
 
-
+        
                 <!-- 게시글 수정 폼 -->
                 <div id="content_2_2">
                     <div class="updateArea">
-                        <form action="" id="updateForm" method="post" enctype="multipart/form-data">
+                        <form action="<%=contextPath%>/qUpdate.co" id="updateForm" method="post" enctype="multipart/form-data">
+                            <input type="hidden" name="cno" value="<%=c.getCommPostNo()%>">
                             <table>
                                 <tr>
                                     <table>
                                         <tr>
                                             <td width="700" height="30">
-                                                <input type="text" name="title" value="게시글 제목" required>
+                                                <input type="text" name="title" value="<%=c.getPostTitle()%>" required>
                                             </td> 
                                         </tr>
                                         <tr>
                                             <table>
                                                 <tr>
                                                     <td width="800" height="30">
-                                                        <input type="file" name="upfile" style="cursor:pointer;">
-                                                        <input type="file" name="upfile" style="cursor:pointer;">
+                                                        <input type="file" name="reUpfile" style="cursor:pointer;"> 
+                                                   		<!-- 기존의 첨부파일이 있었다면 -->
+                                                        <% if(cf != null) { %>
+                                                            <%=cf.getFileName() %>
+                                                            <input type="hidden" name="originFileNo" value="<%=cf.getFileNo()%>">
+                                                            <input type="hidden" name="originFileName" value="<%=cf.getFileUpdate()%>">
+                                                        <% } %>   
                                                     </td>
                                                     <td>
-                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button><br>
-                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
+                                                    	<!-- 버튼 클릭 시 파일 삭제 -->
+                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>       
                                                     </td>
                                                 </tr>
                                             </table><br>
                                         </tr>
                                         <tr>
                                             <td colspan="2" height="500">
-                                                <textarea name="content" rows="20" style="resize:none" required>게시글 내용</textarea>   
+                                                <textarea name="content" rows="20" style="resize:none" required><%=c.getPostContent()%></textarea>   
                                             </td>
                                         </tr>
                                     </table>
                                 </tr>
-                            </table>
-                            <br><br>
+                            </table><br><br>
+                            
+                            <div align="right" class="updateArea">
+                        		<button type="submit">등록</button>
+                    		</div>
+                    		
                         </form>
-                    </div>
-
-                <div align="right" class="updateArea">
-                    <button>수정</button>
-                    <button>취소</button>
+                        
+					</div>
                 </div>
-        
-                </div>
-            </div>
+  	        </div>
 
 
-        </div>    
+  	    </div>
     </div>
 </body>
 </html>

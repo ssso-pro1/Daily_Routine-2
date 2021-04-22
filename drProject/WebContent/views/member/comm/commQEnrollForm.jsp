@@ -135,7 +135,7 @@
                                     </table>
                                 </tr>
                             </table><br><br>
-                          	
+                          	<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
                             <br><br>
                             
                             <div align="right" class="enrollButton">

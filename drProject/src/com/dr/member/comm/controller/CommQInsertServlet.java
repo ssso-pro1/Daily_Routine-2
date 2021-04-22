@@ -16,16 +16,16 @@ import com.dr.member.comm.model.vo.CommFile;
 import com.oreilly.servlet.MultipartRequest;
 
 /**
- * Servlet implementation class CommFreeInsertServlet
+ * Servlet implementation class CommQInsertServlet
  */
-@WebServlet("/freeInsert.co")
-public class CommFreeInsertServlet extends HttpServlet {
+@WebServlet("/qInsert.co")
+public class CommQInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommFreeInsertServlet() {
+    public CommQInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +34,7 @@ public class CommFreeInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
+
 		request.setCharacterEncoding("UTF-8"); 
 		
 		// 폼 전송을 일반 방식이 아닌 multipart/form-data로 전송하는 경우 request로 값을 뽑을 수 없음 
@@ -45,8 +45,8 @@ public class CommFreeInsertServlet extends HttpServlet {
 			// 1_1. 전달되는 파일의 용량 제한 
 			int maxSize = 10 * 1024 * 1024; 
 			
-			// 1_2. 전달된 파일을 저장할 서버의 폴더 경로 알아내기 (String savePath) 
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/comm/commFree_upfiles/"); 
+			// 1_2. 전달된 파일을 저장할 서버의 폴더 경로 알아내기 
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/comm/commQ_upfiles/"); 
 			
 			// 2. 전달된 파일명 수정 후 서버에 업로드 작업 (MultipartRequest 객체 생성) request => multiRequest
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy()); 
@@ -62,6 +62,8 @@ public class CommFreeInsertServlet extends HttpServlet {
 			c.setPostContent(commContent);
 			c.setUserNo(userNo);
 			
+			//System.out.println(c); 
+			
 			// 3_2. CommFile 테이블에 Insert할 원본명, 수정명, 저장폴더경로를 CommFile 객체에 담기 
 			CommFile cf = null;  		
 			
@@ -71,19 +73,19 @@ public class CommFreeInsertServlet extends HttpServlet {
 				// 원본명, 수정명(실제 서버에 업로드된 파일명), 저장 폴더 경로 
 				cf.setFileName(multiRequest.getOriginalFileName("upfile")); 
 				cf.setFileUpdate(multiRequest.getFilesystemName("upfile")); 
-				cf.setFilePath("resources/file/comm/commFree_upfiles/");
+				cf.setFilePath("resources/file/comm/commQ_upfiles/");
 
 			}
 			
 			// 4. 게시판 작성용 서비스 요청 및 결과 받기 
-			int result = new CommService().insertCommFree(c, cf);
-			// case 1 : 첨부파일 있던 경우 => insertCommFree(생성된 Comm객체, 생성된 CommFile 객체) 
-			// case 2 : 첨부파일 없던 경우 => insertCommFree(생성된 Comm객체, null)  
+			int result = new CommService().insertCommQ(c, cf);
+			// case 1 : 첨부파일 있던 경우 => insertCommQ(생성된 Comm객체, 생성된 CommFile 객체) 
+			// case 2 : 첨부파일 없던 경우 => insertCommQ(생성된 Comm객체, null)  
 			
-			if(result > 0) { // 성공 => /free.co url 재요청 => 자유게시판 리스트 페이지 
+			if(result > 0) { // 성공 => /question.co url 재요청 => 질문게시판 리스트 페이지 
 				
 				request.getSession().setAttribute("alertMsg", "작성하신 게시글이 등록되었습니다.");
-				response.sendRedirect(request.getContextPath() + "/free.co?currentPage=1"); 
+				response.sendRedirect(request.getContextPath() + "/question.co?currentPage=1"); 
 				
 			}else { // 실패 => 에러 문구 담아서 에러 페이지 포워딩 
 				
@@ -91,7 +93,7 @@ public class CommFreeInsertServlet extends HttpServlet {
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 					
 			}	
-		}
+		}	
 	}
 
 	/**

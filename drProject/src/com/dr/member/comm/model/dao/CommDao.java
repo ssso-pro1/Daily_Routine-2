@@ -649,26 +649,6 @@ public class CommDao {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	// 질문게시판 
 	
 	public int qSelectListCount(Connection conn) {
@@ -734,11 +714,132 @@ public class CommDao {
 		
 	}
 	
+	public int insertCommQ(Connection conn, Comm c) {
+		// insert문
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCommQ"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getPostTitle());
+			pstmt.setString(2, c.getPostContent());
+			pstmt.setInt(3, Integer.parseInt(c.getUserNo()));
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result;
+		
+	}
+	
+	public int insertCommQFile(Connection conn, CommFile cf) { 
+		// insert문 
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertCommQFile"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cf.getFileName());
+			pstmt.setString(2, cf.getFileUpdate());
+			pstmt.setString(3, cf.getFilePath());
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
+		
+	}
+	
+	public Comm selectCommQ(Connection conn, int commPostNo) {
+		// select문 => ResultSet객체 한 행 
+		Comm c = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; // 조회문이기 때문에 rset 필요 
+		String sql = prop.getProperty("selectCommQ");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) { 
+				c = new Comm(rset.getInt("comm_post_no"),
+						     rset.getString("user_id"),
+						     rset.getInt("file_no"),
+						     rset.getString("category_name"),
+						     rset.getString("post_content"),
+						     rset.getString("post_title"),
+						     rset.getDate("enroll_date"),
+						     rset.getDate("update_date"),
+						     rset.getInt("board_view"),
+						     rset.getString("status"),
+						     rset.getString("admin_notice"),
+						     rset.getInt("comm_no"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt); 
+		}
+		
+		return c;
+	
+	}
+	
+	public CommFile selectCommQFile(Connection conn, int commPostNo) {
+		// select문 => ResultSet객체 
+		CommFile cf = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; 
+		String sql = prop.getProperty("selectCommQFile"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				cf = new CommFile();
+				cf.setFileNo(rset.getInt("file_no"));
+				cf.setFileName(rset.getString("file_name"));
+				cf.setFileUpdate(rset.getString("file_update"));
+				cf.setFilePath(rset.getString("file_path"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt); 
+		}
+		
+		return cf;		
+		
+	} 
 	
 	
 	
 	
-
+	
+	
+	
+	
 	
 	
 }

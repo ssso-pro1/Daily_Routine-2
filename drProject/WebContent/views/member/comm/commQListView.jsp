@@ -141,10 +141,11 @@
                                 <div align="center">
                                 <p style="color: crimson; font-weight: bolder; font-size:20px; ">조회된 리스트가 없습니다.</p>
                                 </div>
-	                        	<% } else { %>
+	                        	<% } else { int count=1; %>
 	                        		<% for(Comm c : list) { %>
                            		<tr>
-				                    <td width="10%"><%= c.getCommPostNo() %></td>
+                           			<input type="hidden" value="<%= c.getCommPostNo() %>">
+				                    <td width="10%"><%= count++ %></td>
 				                    <td width="55%"><%= c.getPostTitle() %></td>
 				                    <td width="10%"><%= c.getUserNo() %></td>
 				                    <td width="15%"><%= c.getEnrollDate() %></td>
@@ -158,7 +159,7 @@
            			 	<script>
 		               		$(function() {
 		                		$(".listArea>tbody>tr").click(function() {
-		                			location.href= '<%=contextPath%>/tipDetail.co?cno=' + $(this).children().eq(0).text();
+		                			location.href= '<%=contextPath%>/qDetail.co?cno=' + $(this).children().eq(0).val();
 		                		})
 		                	})
 		             	</script> 
@@ -171,7 +172,7 @@
                		 	<div align="center" class="pagingArea">
                		 
                    	 		<% if(currentPage != 1) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage-1%>';"><</button>
+		                    	<button onclick="location.href='<%=contextPath%>/question.co?currentPage=<%=currentPage-1%>';"><</button>
 		                	<% } %>
 		                    
 		                	<% for(int p=startPage; p<=endPage; p++) { %>
@@ -179,13 +180,13 @@
 		                    	<% if(currentPage == p) { %>
 		                    		<button disabled><%= p %></button>
 		                    	<% }else { %>
-		                    		<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%= p %>';"><%= p %></button>
+		                    		<button onclick="location.href='<%=contextPath%>/question.co?currentPage=<%= p %>';"><%= p %></button>
 		                   		<% } %>
 		                    	
 		                	<% } %>
 		                    
 		                	<% if(currentPage != maxPage) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage+1%>';">></button>
+		                    	<button onclick="location.href='<%=contextPath%>/question.co?currentPage=<%=currentPage+1%>';">></button>
 		                	<% } %>
 		                
                 	 	</div>
@@ -194,12 +195,12 @@
             		
             		
             		 	<div align="center" class="searchArea">
-		                	<form action="<%=contextPath%>/tipSearch.co?currentPage=1" method="post">
-			                	<select name="searchTip">
-			                   		<option name="searchTip" value="제목">제목</option>
-			                   		<option name="searchTip" value="내용">내용</option>
+		                	<form action="<%=contextPath%>/qSearch.co?currentPage=1" method="post">
+			                	<select name="searchQ">
+			                   		<option name="searchQ" value="제목">제목</option>
+			                   		<option name="searchQ" value="내용">내용</option>
 			                 	</select>
-	                         	<input type="text" name="searchTipText">
+	                         	<input type="text" name="searchQText">
 		                   	 	<button type="submit">검색</button>
 		                  	 	<a href="<%=contextPath%>/qEnroll.co">글쓰기</a>
 		              		</form>

@@ -272,13 +272,6 @@ public class CommService {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
 	// 질문게시판 
 	
 	public int qSelectListCount() {
@@ -300,6 +293,52 @@ public class CommService {
 		return list; 
 		
 	}
+	
+	public int insertCommQ(Comm c, CommFile cf) {
+		
+		Connection conn = getConnection();
+		
+		int result1 = new CommDao().insertCommQ(conn, c); 
+		int result2 = 1; // 첨부파일이 없을 때도 result2를 1로 초기화하기 위해 1로 지정 
+		
+		if(cf != null) { // 첨부파일이 있던 경우 
+			result2 = new CommDao().insertCommQFile(conn, cf); 
+		}
+		
+		if(result1 > 0 && result2 > 0) { 
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2; 
+				
+	}
+	
+	public Comm selectCommQ(int commPostNo) {
+		
+		Connection conn = getConnection();
+		Comm c = new CommDao().selectCommQ(conn, commPostNo); 
+		
+		close(conn);
+		
+		return c; 
+		
+	}
+	
+	public CommFile selectCommQFile(int commPostNo) { 
+		
+		Connection conn = getConnection();
+		CommFile cf = new CommDao().selectCommQFile(conn, commPostNo); 
+		
+		close(conn);
+		
+		return cf; 
+		
+	}
+	
 	
 	
 	

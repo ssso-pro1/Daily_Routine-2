@@ -342,7 +342,8 @@
 			   TB_COMMUNITY 
 		   SET STATUS = 'Y'
 		 WHERE COMM_POST_NO = ? 
-		   AND COMM_NO = 2    	   
+		   AND COMM_NO = 2    	
+		      
 	</entry>
 	
 	<entry key="">
@@ -356,8 +357,6 @@
 	<entry key="">
 		
 	</entry>
-	
-	
 	
 	
 	<!-- 질문 게시판  -->
@@ -393,6 +392,81 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
+	<entry key="insertCommQ">
+		INSERT
+		  INTO TB_COMMUNITY 
+		  (
+		    COMM_POST_NO
+		  , COMM_NO
+		  , POST_TITLE
+		  , POST_CONTENT
+		  , USER_NO 
+		  , ENROLL_DATE
+		  )
+		  VALUES
+		  (
+		    SEQ_COMMPNO.NEXTVAL
+		  , 3
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  )
+	</entry>
+	
+	<entry key="insertCommQFile">
+		INSERT
+		  INTO TB_COMM_FILE
+		  (
+		    FILE_NO
+		  , COMM_POST_NO
+		  , COMM_NO
+		  , FILE_NAME
+		  , FILE_UPDATE
+		  , FILE_PATH
+		  )
+		  VALUES
+		  (
+		    SEQ_FNO.NEXTVAL
+		  , SEQ_COMMPNO.CURRVAL
+		  , 3
+		  , ?
+		  , ?
+		  , ?
+		  )
+	</entry>
+	
+	<entry key="selectCommQ">
+		SELECT 
+			   COMM_POST_NO
+			 , USER_ID
+			 , FILE_NO
+			 , CATEGORY_NAME
+			 , POST_CONTENT
+			 , POST_TITLE
+			 , C.ENROLL_DATE
+			 , UPDATE_DATE 
+			 , BOARD_VIEW  
+			 , STATUS 
+			 , ADMIN_NOTICE
+			 , COMM_NO
+	      FROM TB_COMMUNITY C
+	      JOIN TB_USER U ON (C.USER_NO = U.USER_NO)
+	     WHERE COMM_POST_NO = ?
+	       AND COMM_NO = 3 
+	       AND STATUS = 'N'	 
+	</entry>
+	
+	<entry key="selectCommQFile">
+		SELECT 
+			   FILE_NO
+			 , FILE_NAME
+			 , FILE_UPDATE
+			 , FILE_PATH
+		  FROM TB_COMM_FILE
+		 WHERE COMM_POST_NO = ? 
+		   AND COMM_NO = 3  	 
+	</entry>
 	
 	<entry key="">
 		

@@ -237,8 +237,8 @@
 
                 </div>
                 
+                <div class="queryListArea" style="background: white; width: 800px; height: 500px;">
                 <form action="<%= contextPath %>/ctQueryDelete.ad" method="post" > <!-- 삭제하기서블릿으로 -->
-                <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
                     <br><br>
                     <table align="center" class="listArea" border="1">
                          <thead>
@@ -296,33 +296,9 @@
 				    </script>
              
                     <br><br>
-                    <div align="center" class="pagingArea">
-
-						<%if (list.isEmpty()) { %>
-					<p></p>
-					<% } else { %>
-						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%=currentPage-1%>&reStatus=<%=list.get(0).getReplyStatus() %>';">이전</button>
-						<% } %>
-						
-						<% for(int p=startPage; p<=endPage; p++) { %>
-							
-							<% if(currentPage == p){ %>
-			            		<button disabled><%= p %></button>
-			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%= p %>&reStatus=<%=list.get(0).getReplyStatus() %>';"><%= p %></button>
-			            	<% } %>
-			            	
-						<% } %>
-						
-						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%=currentPage+1%>&reStatus=<%=list.get(0).getReplyStatus() %>';">다음</button>
-						<% } %>
-					 <% } %>	
-						
-			        </div>
-                   
-                    <div align="center">
+                    
+                  
+                  	<div align="center">
                        <% if(list.isEmpty()) { %>
                    			
 	                   <% } else { %>
@@ -332,8 +308,38 @@
                        	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
 	                   <% } %>
                     </div>
+                  </form>  
+                  </div>    
+                
                     
-                    <script>
+                     <div align="center" class="pagingArea">
+
+						<%if (list.isEmpty()) { %>
+						<p></p>
+						<% } else { %>
+							<% if(currentPage != 1) { %>
+				            	<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%=currentPage-1%>&reStatus=<%=list.get(0).getReplyStatus() %>';">이전</button>
+							<% } %>
+							
+							<% for(int p=startPage; p<=endPage; p++) { %>
+								
+								<% if(currentPage == p){ %>
+				            		<button disabled><%= p %></button>
+				            	<% }else{ %>
+				            		<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%= p %>&reStatus=<%=list.get(0).getReplyStatus() %>';"><%= p %></button>
+				            	<% } %>
+				            	
+							<% } %>
+							
+							<% if(currentPage != maxPage){ %>
+				            	<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%=currentPage+1%>&reStatus=<%=list.get(0).getReplyStatus() %>';">다음</button>
+							<% } %>
+						 <% } %>	
+						
+			           </div>
+                    
+				
+					<script>
 	                 		function check(){
 	                 			
 	                 			var result = confirm("선택한 FAQ 글을 완전히 삭제 하시겠습니까?");
@@ -349,16 +355,15 @@
 	                 		}
 
 
-					</script>  
-				
+					</script>   
 
-
-                </div>    
-                </form>
+                
 
         </div>
 
     </div>
+
+</div>
 
 
 

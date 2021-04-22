@@ -237,9 +237,10 @@
 
                 </div>
                
+                 <div class="NoticeListArea" style="background: white; width: 800px; height: 500px;">
                 <!-- 삭제하기서블릿으로 -->
                 <form action="<%= contextPath %>/ctNoticeDelete.ad" method="post" > 
-                <div class="NoticeListArea" style="background: white; width: 800px; height: 500px;">
+
                     <br><br>
                     <table align="center" class="listArea" border="1">
                          <thead>
@@ -288,36 +289,6 @@
              
                     <br><br>
                     
-                    
-                    <div align="center" class="pagingArea">
-
-					<%if (list.isEmpty()) { %>
-					<p></p>
-					
-					<% } else { %>
-						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%=currentPage-1%>&status=<%= list.get(0).getStatus() %>';">이전</button>
-						<% } %>
-						
-						<% for(int p=startPage; p<=endPage; p++) { %>
-							
-							<% if(currentPage == p){ %>
-			            		<button disabled><%= p %></button>
-			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%= p %>&status=<%= list.get(0).getStatus() %>';"><%= p %></button>
-			            	<% } %>
-			            	
-						<% } %>
-						
-						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/ctQuerySelect.ad?currentPage=<%=currentPage+1%>&status=<%= list.get(0).getStatus() %>';">다음</button>
-						<% } %>
-					 <% } %>	
-			        </div>
-
-
-
-             
                     <div align="center" class="buttonArea">
                     	<br><br>
                     	<% if(list.isEmpty() ) { %>
@@ -336,8 +307,34 @@
                         
                         </div>
 
-					</form> 
+		        </form> 
+                </div>
 
+                    <div align="center" class="pagingArea">
+
+                        <%if (list.isEmpty()) { %>
+                        <p></p>
+                        
+                        <% } else { %>
+                            <% if(currentPage != 1) { %>
+                                <button onclick="location.href='<%=contextPath%>/ctNoticeSelect.ad?currentPage=<%=currentPage-1%>&status=<%= list.get(0).getStatus() %>';">이전</button>
+                            <% } %>
+                            
+                            <% for(int p=startPage; p<=endPage; p++) { %>
+                                
+                                <% if(currentPage == p){ %>
+                                    <button disabled><%= p %></button>
+                                <% }else{ %>
+                                    <button onclick="location.href='<%=contextPath%>/ctNoticeSelect.ad?currentPage=<%= p %>&status=<%= list.get(0).getStatus() %>';"><%= p %></button>
+                                <% } %>
+                                
+                            <% } %>
+                            
+                            <% if(currentPage != maxPage){ %>
+                                <button onclick="location.href='<%=contextPath%>/ctNoticeSelect.ad?currentPage=<%=currentPage+1%>&status=<%= list.get(0).getStatus() %>';">다음</button>
+                            <% } %>
+                        <% } %>	
+                    </div>
 
 
 
@@ -352,7 +349,7 @@
                             <input type="text" name="searchNoticeText">
                             <button type="submit">검색</button> 
              
-                        </form>
+                        	</form>
 
 		                </div>
 					 	
@@ -384,7 +381,7 @@
 
         </div>
 
-
+    </div>
 
 
 

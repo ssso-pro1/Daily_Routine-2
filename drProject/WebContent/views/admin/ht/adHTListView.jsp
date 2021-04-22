@@ -66,11 +66,17 @@
      <br><br>
 
      <div class="outer">
-         <!-- 관리자 로그인시 보여짐  -->
+        <!-- 관리자 로그인시 보여짐 (로그인 && 로그인한 사용자가 admin일 경우) -->
+        
+        <% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+        
         <div align="right" style="width:750px">
-            <button>글작성</button>
+            
             <br><br>
+            <a href="<%=contextPath%>/enrollForm.aus" class="btn btn-warning"></a>
         </div>
+
+		<% } %>
 
         <table class="listArea" align="center">
                 <thead>

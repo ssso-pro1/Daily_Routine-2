@@ -1,5 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.dr.admin.user.model.vo.AdUser"%>
+<%
+	AdUser loginUser = (AdUser)session.getAttribute("loginUser");
+	
+	String contextPath = request.getContextPath();
+%> 
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -161,15 +166,15 @@
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
-                    <div><a href="<%=request.getContextPath()%>/userManage.aus">전체 회원 조회 </a></div>
-                    <div><a href="<%=request.getContextPath()%>/deleteForm.aus">회원 탈퇴처리</a></div>
+                    <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="<%=request.getContextPath()%>/userManage.aus">HomeTraining</a></div> 
-                    <div><a href="<%=request.getContextPath()%>/userManage.aus">Info&Tip</a></div> 
+                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
                     <br>
                 </div>
 
@@ -208,7 +213,7 @@
                     <form id="login-form" action="">
                         <input type="text" placeholder="관리자 아이디를 입력하세요">
                         <input type="password" placeholder="비밀번호를 입력하세요">
-                        <a href="<%= request.getContextPath()%>/mainPage.ad"></a><input id="btn" type="submit" value="로그인">
+                        <a href="<%= request.getContextPath()%>/views/admin/adminPageLeftMenuBar.jsp"></a><input id="btn" type="submit" value="로그인">
                     </form>
                 </div>
 

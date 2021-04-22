@@ -1,5 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.dr.admin.user.model.vo.AdUser"%>
+<%
+	AdUser loginUser = (AdUser)session.getAttribute("loginUser");
+	
+	String contextPath = request.getContextPath();
+%>   
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +18,7 @@
         div{
             box-sizing:border-box;
         }
+        
         .wrap{
             width:1000px;
             height:800px;
@@ -105,13 +112,27 @@
 
             <span>
                 <!-- 로그인 전 -->
-                <i class="fas fa-user-circle"></i>
-                <span align="right" >Welcome님</span>
-                <!-- <i class="fas fa-bars"></i> -->
-                <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a> <!-- 오븐에는 메뉴바로 돼있는데, 저희 왼쪽에 메뉴바가 있어서 홈으로 가는 기능으로 바꾸면 좋을 것 같아서 넣었어요!-->
-
-                <!-- 로그인 후
-                <div>admin01님</div> -->
+                <div id="userInfo">
+	                <i class="fas fa-user-circle"></i>
+	                
+	                <!-- 로그인 && 로그인한 아이디가 admin -->
+	                <% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
+	                
+	                   <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
+                </div>
+	            
+	            	<%} else {%>
+		            	<div>
+		               <br><br>
+		               <!-- <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> -->
+		               <b><%=loginUser.getUserName() %>님</b> DR에 오신 것을 환영합니다. 
+		                   
+		                   <!-- <i class="fas fa-bars"></i> -->
+		                  
+		                   </div>
+		               <% } %>
+	               
+	               	   <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a>
             </span>
         </div>
 
@@ -123,7 +144,7 @@
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
-                    <div><a href="<%=contextPath%>/">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/loginForm.aus">전체 회원 조회 </a></div>
                     <div><a href="">회원 탈퇴처리</a></div>
                     <br>
                 </div>
@@ -167,8 +188,8 @@
                     <p style="color:white">Daily Routine 관리자 페이지에 오신 것을 환영합니다. <br>
                         페이지 관리를 위해 로그인 후 좌측 메뉴를 선택하세요.</p>
                 </div>
-
-
+            </div>
+        </div>
 
 </body>
 </html>

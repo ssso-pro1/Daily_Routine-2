@@ -415,7 +415,7 @@
 	SELECT COUNT(*) LISTCOUNT
 	FROM TB_QUERY
 	WHERE reply_status IN ('Y', 'N', 'D')
-	  AND QUERY_STATUS= 'Y'
+	  
 	
 	</entry>
 	

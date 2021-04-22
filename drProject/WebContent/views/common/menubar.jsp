@@ -119,7 +119,7 @@ welcome이 어떻게 해도 이상하게 넣어져서 아예 우측 상단 테�
         <div class="menu"><a href="<%=contextPath%>">메인페이지</a></div>
         <div class="menu"><a href="">HomeTraining</a></div>
         <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
-        <div class="menu"><a href="<%=contextPath%>/intMain.in">Info&Tip</a></div>
+        <div class="menu"><a href="<%=contextPath%>/infoMain.in?currentPage=1">Info&Tip</a></div>
         <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
 
         <span class="line1"></span>

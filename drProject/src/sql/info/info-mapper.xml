@@ -1,11 +1,105 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
+	
+	<!-- 운동게시판 -->
+	<entry key="workoutSelectListCount">
+		SELECT COUNT(*) LISTCOUNT 
+		  FROM TB_INFO_N_TIP
+		 WHERE COMM_NO = 1
+		   AND STATUS = 'N'
+	</entry>
+	
+	<entry key="workoutSelectList">
+		SELECT * 
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM 
+		             , A.*
+		          FROM (
+		                SELECT
+		                       INT_POST_NO
+		                     , USER_ID
+		                     , POST_TITLE
+		                     , I.ENROLL_DATE 
+		                     , BOARD_VIEW 
+		                  FROM TB_INFO_N_TIP I 
+		                  JOIN TB_USER U ON (U.USER_NO = I.USER_NO)
+		                 WHERE COMM_NO = 1
+		                   AND STATUS = 'N'
+		                 ORDER 
+		                     BY ENROLL_DATE DESC, 
+		                        INT_POST_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	
+	
+	
+	<!-- 식단게시판 -->
+	<entry key="menuSelectListCount">
+		
+	</entry>
+	
+	
+	
+	
+	<!-- 전체게시판 -->
+	<entry key="infoMainSelectListCount">
+		SELECT COUNT(*) LISTCOUNT 
+		  FROM TB_INFO_N_TIP
+		 WHERE COMM_NO = 3
+		   AND STATUS = 'N'
+	</entry>
+	
+	<entry key="infoMainSelectList">
+		SELECT * 
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM 
+		             , A.*
+		          FROM (
+		                SELECT
+		                       INT_POST_NO
+		                     , USER_ID
+		                     , CATEGORY_NAME
+		                     , POST_TITLE
+		                     , I.ENROLL_DATE 
+		                     , BOARD_VIEW 
+		                  FROM TB_INFO_N_TIP I 
+		                  JOIN TB_USER U ON (U.USER_NO = I.USER_NO)
+		                 WHERE COMM_NO = 3
+		                   AND STATUS = 'N'
+		                 ORDER 
+		                     BY ENROLL_DATE DESC, 
+		                        INT_POST_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	
+	<entry key="">
 
+	</entry>
+	
 	<entry key="">
 		
+
+	</entry>
 	
+	<entry key="">
+		
+
+	</entry>
 	
+	<entry key="">
+		
+
 	</entry>
 	
 	

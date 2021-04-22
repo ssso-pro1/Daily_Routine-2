@@ -833,13 +833,102 @@ public class CommDao {
 		
 	} 
 	
+	public int updateCommQ(Connection conn, Comm c) {
+		// update문 
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCommQ"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, c.getPostTitle());
+			pstmt.setString(2, c.getPostContent());
+			pstmt.setInt(3, c.getCommPostNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result; 
 	
+	}
 	
+	public int updateCommQFile(Connection conn, CommFile cf) {
+		// update문 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateCommQFile");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cf.getFileName());
+			pstmt.setString(2, cf.getFileUpdate());
+			pstmt.setString(3, cf.getFilePath());
+			pstmt.setInt(4, cf.getFileNo()); 
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
+		
+	}
 	
+	public int insertNewCommQFile(Connection conn, CommFile cf) {
+		// insert문 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNewCommQFile"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, cf.getCommPostNo());
+			pstmt.setString(2, cf.getFileName());
+			pstmt.setString(3, cf.getFileUpdate());
+			pstmt.setString(4, cf.getFilePath());
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result; 
+		
+	}
 	
-	
-	
-	
+	public int deleteCommQ(Connection conn, int commPostNo) {
+		// update문 
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteCommQ");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result; 
+		
+	}
 	
 	
 }

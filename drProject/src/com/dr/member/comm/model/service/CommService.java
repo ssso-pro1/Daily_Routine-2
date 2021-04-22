@@ -339,8 +339,52 @@ public class CommService {
 		
 	}
 	
+	public int updateCommQ(Comm c, CommFile cf) { 
+		
+		Connection conn = getConnection();
+		
+		int result1 = new CommDao().updateCommQ(conn, c);
+		int result2 = 1; 
+		
+		// 새로운 첨부파일이 있을 경우 
+		if(cf != null) {
+			// 기존의 첨부파일이 있을 경우 => CommFile Update 
+			if(cf.getFileNo() != 0) {
+				result2 = new CommDao().updateCommQFile(conn, cf); 
+			// 기존의 첨부파일이 없을 경우 => CommFile Insert 
+			}else {
+				result2 = new CommDao().insertNewCommQFile(conn, cf); 
+			}
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		}else { 
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result1 * result2; 
+		
+	}
 	
-	
+	public int deleteCommQ(int commPostNo) { 
+		
+		Connection conn = getConnection();
+		int result = new CommDao().deleteCommQ(conn, commPostNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn); 
+		}
+		
+		close(conn);
+		
+		return result; 
+		
+	}
 	
 	
 	

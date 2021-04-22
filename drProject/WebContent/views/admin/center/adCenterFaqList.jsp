@@ -237,8 +237,12 @@
                     </table>
 
                 </div>
-                
+                 
+             <form action="<%= contextPath %>/ctFaqDelete.ad" method="post" >
                 <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
+                
+                   
+                    
                     <br><br>
                     <table align="center" class="listArea" border="1" >
                          <thead>
@@ -262,7 +266,10 @@
             					<% for (adCenterFaq n:list) { %>
                          
                             <tr>
-                                <th><input type="checkbox" name="selectFaqNo" value="<%=n.getFaqNo() %>"></th>
+                                <th>
+	                                <input type="checkbox" name="fno" id="fno" value="<%=n.getFaqNo() %>">
+	                                <input type="hidden" name="ctg" value="<%= n.getFaqCategory() %>">
+                                </th>
                                 <td><%= n.getFaqNo() %></td>
                                 <td>
                                 	<% if(n.getFaqCategory().equals("top")) { %>
@@ -343,17 +350,49 @@
 		                    </form>
 		                </div>
 					 	
-                    
-                        <div align="center" class="buttonArea">
-                            <br>
-                            <button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
-                            <button>선택 삭제</button>
+                    	
+                    	<div align="center" class="buttonArea">
+                    	<br><br>
+                    	<% if(list.isEmpty() ) { %>
+                    	
+                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                            
 
+                        
+                        
+                        <% } else { %>
+                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                       		<button type="submit"  onclick="return check();">선택 삭제</button> 
+                       	    <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
+                       	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
+                        <% } %>
+                        
                         </div>
-               
-
-			</div>    
-
+                        
+                    
+                    	<script>
+	                 		function check(){
+									
+								var result = confirm("선택한 FAQ 글을 완전히 삭제 하시겠습니까?");
+		                		if(result){
+                            		
+                            		
+                            	} else {
+                            		alert("삭제가 취소되었습니다");
+                            		return false;
+                            	}
+							}
+						</script>   
+                    
+                    
+                    
+                    
+                    </div>
+                 </form>    
+                 
+                 		
+           	    
+			
             
 
         </div>

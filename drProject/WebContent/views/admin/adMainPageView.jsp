@@ -99,6 +99,10 @@
             margin:30px 10px;
         }
 
+        .wrap *{
+            text-decoration: none;
+            color:white;
+        }
     </style>
 </head>
 <body>
@@ -108,33 +112,32 @@
     <div class="wrap">
 
         <div id="nav">
-            <span align="left">Admin Center</span>
-
-            <span>
+            
                 <!-- 로그인 전 -->
                 
-                   <i class="fas fa-user-circle"></i>
+                   <!-- <i class="fas fa-user-circle"></i> -->
                    
-                   <!-- 로그인 && 로그인한 아이디가 admin -->
-                    <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
-                        
+                   <!-- 로그인 && 로그인한 아이디가 관리자유무가 n 이 아님 : admin01 -->
+                        <span align="left">Admin Center</span>
+
+                        <span>
                             <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
-                        
+                       
                
-                  <%} else {%>
-                        <div>
-                          <br><br>
+                    <span align="left">Admin Center &nbsp;&nbsp;
+                        <small><a href="<%=contextPath%>/logout.us">로그아웃</a></small> 
+                        </span>
+
+                     <span>
                            <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> 
-                          <b><%=loginUser.getUserName() %>님</b> DR에 오신 것을 환영합니다. 
                          
                          <!-- <i class="fas fa-bars"></i> -->
                         
-                        </div>
-                     <% } %>
+                        
                   
-                        <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a>
             </span>
         </div>
+
         <div id="content">
 
              <!--왼쪽 공통메뉴-->
@@ -142,7 +145,7 @@
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
-                    <div><a href="<%=contextPath%>/loginForm.aus">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
                     <div><a href="">회원 탈퇴처리</a></div>
                     <br>
                 </div>

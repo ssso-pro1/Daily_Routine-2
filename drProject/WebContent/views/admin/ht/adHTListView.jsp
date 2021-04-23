@@ -79,8 +79,7 @@
      <br><br>
 
      <div id="content2_2">
-        <!-- 관리자 로그인시 보여짐 (로그인 && 로그인한 사용자가 admin일 경우) -->
-        <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
+        <!-- 관리자 로그인시 보여짐 (로그인 && 로그인한 사용자가 admin일 경우) : 어차피 관리자 로그인해야 들어갈 수잇어서 필요없음-->
         
         <div align="right" style="width:750px">
             <br><br>
@@ -88,7 +87,7 @@
             <a href="<%=contextPath%>/enrollForm.aus" class="btn btn-warning"></a>
         </div>
 
-		<% } %>
+		
 
         <div class="listArea" align="center">
             <div class="thumbnail" align="center">

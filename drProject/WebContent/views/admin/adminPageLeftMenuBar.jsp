@@ -30,30 +30,23 @@
         .wrap>div{
             width:100%;
         }
-
         
         #content{height:100%; width:100%;}
-
         #content>div{
             height:100%;
             float:left;
         }
-
         #content_1{width:15%;}
         #content_2{width:80%; margin-left:30px;}
         #line{width:1%;}
-
         #line{
             border:1px solid gray;
             width:0.1px;
             height:150px;
         }
-
-
         #welcome{
             text-decoration: none;
             color:white;
-
         }
         #welcome:hover{
             color: rgb(33, 33, 34);
@@ -61,7 +54,6 @@
         /* #content_2_1{height:10%;}
         #content_2_2{height:35%;}
         #content_2_3{height:35%;} */
-
         #nav{
             width:100%;
             height:40px;
@@ -70,40 +62,32 @@
             
             display:flex;
             justify-content:space-between;
-
             color:white;
             font-weight:bold;
             font-size:20px;
         }
-
-
         #content_1 *{
             color:gray;
             margin: 10px 3px;
         }
-
         #content_1>div{
             font-size:13px;
             margin-top:20px;
             margin-left:10px;
         }
-
         #content_1 a{
             font-size:12px;
             text-decoration:none;
             font-weight:bold;
             margin-left:10px;
         }
-
         #content a:hover{color:white;}
-
         #content_2_1{
             color:white;
             font-size:10px;
             padding:10px;
         }
         
-
     </style>
 </head>
 <body>
@@ -121,21 +105,17 @@
                    <i class="fas fa-user-circle"></i>
                    
                    <!-- 로그인 && 로그인한 아이디가 admin -->
-                    <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
                         
                             <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
                         
                
-                  <%} else {%>
                         <div>
                           <br><br>
                            <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> 
-                          <b><%=loginUser.getUserName() %>님</b> DR에 오신 것을 환영합니다. 
                          
                          <!-- <i class="fas fa-bars"></i> -->
                         
                         </div>
-                     <% } %>
                   
                         <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a>
             </span>

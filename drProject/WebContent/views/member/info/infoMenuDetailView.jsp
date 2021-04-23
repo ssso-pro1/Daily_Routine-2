@@ -129,7 +129,7 @@
                             <tr>
                                 <td height="200" width="100%">
                                     <div align="center">
-                                         <img src="<%=contextPath%>/<%=list.get(0).getFilePath() + list.get(0).getFileUpdate()%>">
+                                    	<img src="<%=contextPath%>/<%=list.get(0).getFilePath() + list.get(0).getFileUpdate()%>">
                                     </div>
                                 </td>
                             </tr>

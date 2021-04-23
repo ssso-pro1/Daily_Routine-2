@@ -14,16 +14,16 @@ import com.dr.member.info.model.vo.Info;
 import com.dr.member.info.model.vo.InfoFile;
 
 /**
- * Servlet implementation class InfoMainDetailServlet
+ * Servlet implementation class InfoMenuDetailServlet
  */
-@WebServlet("/mainDetail.in")
-public class InfoMainDetailServlet extends HttpServlet {
+@WebServlet("/menuDetail.in")
+public class InfoMenuDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InfoMainDetailServlet() {
+    public InfoMenuDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,29 +32,26 @@ public class InfoMainDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 		int intPostNo = Integer.parseInt(request.getParameter("ino")); 
 		
 		int result = new InfoService().increaseCount(intPostNo);
 		
 		if(result > 0) { // 유효한 게시글 => 게시글 정보 조회, 게시글 썸네일 조회  => 상세조회 페이지 
 			
-			Info i = new InfoService().selectInfoMain(intPostNo); 
-			ArrayList<InfoFile> list = new InfoService().selectInfoMainFileList(intPostNo); 
+			Info i = new InfoService().selectMenu(intPostNo); 
+			ArrayList<InfoFile> list = new InfoService().selectMenuFileList(intPostNo); 
 			
 			request.setAttribute("i", i);
 			request.setAttribute("list", list);
 			
-			request.getRequestDispatcher("views/member/info/infoMainDetailView.jsp").forward(request, response);
-			
-			System.out.println(i); 
+			request.getRequestDispatcher("views/member/info/infoMenuDetailView.jsp").forward(request, response);
 			
 		}else { // 유효한 게시글 x => 에러 페이지 포워딩 
 				
 			request.setAttribute("errorMsg", "유효한 게시글이 아닙니다. 다른 게시글을 선택해주세요.");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
-		
 	}
 
 	/**

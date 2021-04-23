@@ -15,14 +15,14 @@ public class Info {
 	private int boardView;			// 게시글조회수 
 	private int likeCount; 			// 게시글좋아요수 
 	private String status; 			// 삭제유무(Y/N)
-	private int commNo; 			// 게시판번호(1:운동/2:식단/3:전체)
+	private int intNo; 			// 게시판번호(1:운동/2:식단/3:전체)
 	
 	private String titleImg;		// 해당 게시글 대표이미지경로
 	
 	public Info(){}
 
 	public Info(int intPostNo, String userNo, int fileNo, String categoryName, String postContent, String postTitle,
-			Date enrollDate, Date updateDate, int boardView, int likeCount, String status, int commNo) {
+			Date enrollDate, Date updateDate, int boardView, int likeCount, String status, int intNo) {
 		super();
 		this.intPostNo = intPostNo;
 		this.userNo = userNo;
@@ -35,10 +35,31 @@ public class Info {
 		this.boardView = boardView;
 		this.likeCount = likeCount;
 		this.status = status;
-		this.commNo = commNo;
+		this.intNo = intNo;
 	}
 	
-	
+	public Info(int intPostNo, String categoryName, String postContent, String postTitle, Date enrollDate,
+			int boardView, int likeCount) {
+		super();
+		this.intPostNo = intPostNo;
+		this.categoryName = categoryName;
+		this.postContent = postContent;
+		this.postTitle = postTitle;
+		this.enrollDate = enrollDate;
+		this.boardView = boardView;
+		this.likeCount = likeCount;
+	}
+
+	public Info(int intPostNo, String postContent, String postTitle, Date enrollDate, int boardView, int likeCount) {
+		super();
+		this.intPostNo = intPostNo;
+		this.postContent = postContent;
+		this.postTitle = postTitle;
+		this.enrollDate = enrollDate;
+		this.boardView = boardView;
+		this.likeCount = likeCount;
+	}
+
 	public String getTitleImg() {
 		return titleImg;
 	}
@@ -135,12 +156,12 @@ public class Info {
 		this.status = status;
 	}
 
-	public int getCommNo() {
-		return commNo;
+	public int getIntNo() {
+		return intNo;
 	}
 
-	public void setCommNo(int commNo) {
-		this.commNo = commNo;
+	public void setIntNo(int intNo) {
+		this.intNo = intNo;
 	}
 
 	@Override
@@ -148,7 +169,7 @@ public class Info {
 		return "Info [intPostNo=" + intPostNo + ", userNo=" + userNo + ", fileNo=" + fileNo + ", categoryName="
 				+ categoryName + ", postContent=" + postContent + ", postTitle=" + postTitle + ", enrollDate="
 				+ enrollDate + ", updateDate=" + updateDate + ", boardView=" + boardView + ", likeCount=" + likeCount
-				+ ", status=" + status + ", commNo=" + commNo + "]";
+				+ ", status=" + status + ", intNo=" + intNo + "]";
 	}
 	
 }

@@ -3,14 +3,14 @@
 <properties>
 	
 	<!-- 운동게시판 -->
-	<entry key="workoutSelectListCount">
+	<entry key="selectWorkoutListCount">
 		SELECT COUNT(*) LISTCOUNT 
 		  FROM TB_INFO_N_TIP
-		 WHERE COMM_NO = 1
+		 WHERE INT_NO = 1
 		   AND STATUS = 'N'
 	</entry>
 	
-	<entry key="workoutSelectThumbnailList">
+	<entry key="selectWorkoutThumbnailList">
 		SELECT * 
 		  FROM (
 		        SELECT 
@@ -26,7 +26,7 @@
 		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
 		                  FROM TB_INFO_N_TIP I 
 		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
-		                 WHERE I.COMM_NO = 1
+		                 WHERE I.INT_NO = 1
 		                   AND I.STATUS = 'N'
 		                   AND FILE_LEVEL = 1 
 		                 ORDER 
@@ -45,19 +45,47 @@
 		   AND STATUS = 'N' 
 	</entry>
 	
+	<entry key="selectWorkout">
+		SELECT
+			   INT_POST_NO
+			 , POST_CONTENT 
+			 , POST_TITLE
+			 , I.ENROLL_DATE
+			 , BOARD_VIEW
+			 , LIKE_COUNT
+	      FROM TB_INFO_N_TIP I
+	     WHERE INT_POST_NO = ? 
+	       AND INT_NO = 1 
+		   AND STATUS = 'N' 	
+	</entry>
+	
+	<entry key="selectWorkoutFileList">
+		SELECT 
+			   FILE_NO
+			 , FILE_NAME
+			 , FILE_UPDATE
+			 , FILE_PATH
+		  FROM TB_INT_FILE
+		 WHERE INT_POST_NO = ?  
+		   AND INT_NO = 1 	 
+	</entry>
+	
+	
+	
+	
 	
 	
 	
 	
 	<!-- 식단게시판 -->
-	<entry key="menuSelectListCount">
+	<entry key="selectMenuListCount">
 		SELECT COUNT(*) LISTCOUNT 
 		  FROM TB_INFO_N_TIP
-		 WHERE COMM_NO = 2
+		 WHERE INT_NO = 2
 		   AND STATUS = 'N'
 	</entry>
 	
-	<entry key="menuSelectThumbnailList">
+	<entry key="selectMenuThumbnailList">
 		SELECT * 
 		  FROM (
 		        SELECT 
@@ -73,7 +101,7 @@
 		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
 		                  FROM TB_INFO_N_TIP I 
 		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
-		                 WHERE I.COMM_NO = 2
+		                 WHERE I.INT_NO = 2
 		                   AND I.STATUS = 'N'
 		                   AND FILE_LEVEL = 1 
 		                 ORDER 
@@ -83,6 +111,35 @@
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	
+	<entry key="selectMenu">
+		SELECT
+			   INT_POST_NO
+			 , POST_CONTENT 
+			 , POST_TITLE
+			 , I.ENROLL_DATE
+			 , BOARD_VIEW
+			 , LIKE_COUNT
+	      FROM TB_INFO_N_TIP I
+	     WHERE INT_POST_NO = ? 
+	       AND INT_NO = 2
+		   AND STATUS = 'N' 	
+	</entry>
+	
+	<entry key="selectMenuFileList">
+		SELECT 
+			   FILE_NO
+			 , FILE_NAME
+			 , FILE_UPDATE
+			 , FILE_PATH
+		  FROM TB_INT_FILE
+		 WHERE INT_POST_NO = ?  
+		   AND INT_NO = 2 	 
+	</entry>
+	
+	
+	
+	
 	
 	
 	
@@ -92,14 +149,15 @@
 	
 	
 	<!-- 전체게시판 -->
-	<entry key="mainSelectListCount">
+	<entry key="selectMainListCount">
 		SELECT COUNT(*) LISTCOUNT 
 		  FROM TB_INFO_N_TIP
-		 WHERE COMM_NO = 3
+		 WHERE INT_NO = 3
 		   AND STATUS = 'N'
 	</entry>
 	
-	<entry key="mainSelectThumbnailList">
+	<!-- 나중에 수정하거나 삭제할 것 -->
+	<entry key="selectMainThumbnailList">
 		SELECT * 
 		  FROM (
 		        SELECT 
@@ -108,7 +166,7 @@
 		          FROM (
 		                SELECT
 		                       I.INT_POST_NO
-		                     , CATEGORY_NAME
+		                     , CATEGORY_NAME  
 		                     , POST_TITLE
 		                     , I.ENROLL_DATE 
 		                     , BOARD_VIEW 
@@ -116,8 +174,7 @@
 		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
 		                  FROM TB_INFO_N_TIP I 
 		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
-		                 WHERE I.COMM_NO = 1
-		                   AND I.STATUS = 'N'
+		                 WHERE I.STATUS = 'N'
 		                   AND FILE_LEVEL = 1 
 		                 ORDER 
 		                     BY I.ENROLL_DATE DESC, 
@@ -127,15 +184,30 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
-	
-
-
-	<entry key="">
-		
+	<entry key="selectInfoMain">
+		SELECT
+			   INT_POST_NO
+			 , CATEGORY_NAME
+			 , POST_CONTENT 
+			 , POST_TITLE
+			 , I.ENROLL_DATE
+			 , BOARD_VIEW
+			 , LIKE_COUNT
+	      FROM TB_INFO_N_TIP I
+	     WHERE INT_POST_NO = ? 
+	       AND INT_NO = 3 
+		   AND STATUS = 'N' 	
 	</entry>
 	
-	<entry key="">
-		
+	<entry key="selectInfoMainFileList">
+		SELECT 
+			   FILE_NO
+			 , FILE_NAME
+			 , FILE_UPDATE
+			 , FILE_PATH
+		  FROM TB_INT_FILE
+		 WHERE INT_POST_NO = ?  
+		   AND INT_NO = 3 	 
 	</entry>
 	
 	<entry key="">

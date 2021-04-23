@@ -4,8 +4,6 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.dr.common.model.vo.PageInfo;
-import com.dr.member.comm.model.dao.CommDao;
-import com.dr.member.comm.model.vo.CommFile;
 import com.dr.member.info.model.dao.InfoDao;
 import com.dr.member.info.model.vo.Info;
 import com.dr.member.info.model.vo.InfoFile;
@@ -15,10 +13,10 @@ import static com.dr.common.JDBCTemplate.*;
 public class InfoService {
 	
 	// 운동 게시판 
-	public int workoutSelectListCount() {
+	public int selectWorkoutListCount() {
 		
 		Connection conn = getConnection();
-		int listCount = new InfoDao().workoutSelectListCount(conn); 
+		int listCount = new InfoDao().selectWorkoutListCount(conn); 
 		
 		close(conn); 
 		
@@ -26,10 +24,10 @@ public class InfoService {
 		
 	}
 	
-	public ArrayList<Info> workoutSelectThumbnailList(PageInfo pi) {
+	public ArrayList<Info> selectWorkoutThumbnailList(PageInfo pi) {
 		
 		Connection conn = getConnection(); 
-		ArrayList<Info> list = new InfoDao().workoutSelectThumbnailList(conn, pi); 
+		ArrayList<Info> list = new InfoDao().selectWorkoutThumbnailList(conn, pi); 
 		
 		close(conn);
 		
@@ -54,16 +52,36 @@ public class InfoService {
 		
 	} 
 	
+	public Info selectWorkout(int intPostNo) {
+		
+		Connection conn = getConnection();
+		Info i = new InfoDao().selectWorkout(conn, intPostNo); 
+		
+		close(conn);
+		
+		return i; 
+		
+	}
 	
+	public ArrayList<InfoFile> selectWorkoutFileList(int intPostNo) {
+		
+		Connection conn = getConnection();
+		ArrayList<InfoFile> list = new InfoDao().selectWorkoutFileList(conn, intPostNo); 
+		
+		close(conn);
+		
+		return list; 
+		
+	}
 	
 	
 	
 	
 	// 식단 게시판 
-	public int menuSelectListCount() {
+	public int selectMenuListCount() {
 		
 		Connection conn = getConnection();
-		int listCount = new InfoDao().menuSelectListCount(conn); 
+		int listCount = new InfoDao().selectMenuListCount(conn); 
 		
 		close(conn); 
 		
@@ -71,16 +89,44 @@ public class InfoService {
 		
 	}
 	
-	public ArrayList<Info> menuSelectThumbnailList(PageInfo pi) {
+	public ArrayList<Info> selectMenuThumbnailList(PageInfo pi) {
 		
 		Connection conn = getConnection(); 
-		ArrayList<Info> list = new InfoDao().menuSelectThumbnailList(conn, pi); 
+		ArrayList<Info> list = new InfoDao().selectMenuThumbnailList(conn, pi); 
 		
 		close(conn);
 		
 		return list; 
 		
 	}
+	
+	public Info selectMenu(int intPostNo) {
+		
+		Connection conn = getConnection();
+		Info i = new InfoDao().selectMenu(conn, intPostNo); 
+		
+		close(conn);
+		
+		return i; 
+		
+	}
+	
+	public ArrayList<InfoFile> selectMenuFileList(int intPostNo) {
+		
+		Connection conn = getConnection();
+		ArrayList<InfoFile> list = new InfoDao().selectMenuFileList(conn, intPostNo); 
+		
+		close(conn);
+		
+		return list; 
+		
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -88,10 +134,10 @@ public class InfoService {
 	
 	
 	// 전체 게시판 
-	public int mainSelectListCount() {
+	public int selectMainListCount() {
 		
 		Connection conn = getConnection();
-		int listCount = new InfoDao().mainSelectListCount(conn); 
+		int listCount = new InfoDao().selectMainListCount(conn); 
 		
 		close(conn); 
 		
@@ -99,10 +145,10 @@ public class InfoService {
 		
 	}
 	
-	public ArrayList<Info> mainSelectThumbnailList(PageInfo pi) {
+	public ArrayList<Info> selectMainThumbnailList(PageInfo pi) {
 		
 		Connection conn = getConnection(); 
-		ArrayList<Info> list = new InfoDao().mainSelectThumbnailList(conn, pi); 
+		ArrayList<Info> list = new InfoDao().selectMainThumbnailList(conn, pi); 
 		
 		close(conn);
 		
@@ -110,7 +156,27 @@ public class InfoService {
 		
 	}
 	
+	public Info selectInfoMain(int intPostNo) {
+		
+		Connection conn = getConnection();
+		Info i = new InfoDao().selectInfoMain(conn, intPostNo); 
+		
+		close(conn);
+		
+		return i; 
+		
+	}
 	
+	public ArrayList<InfoFile> selectInfoMainFileList(int intPostNo) {
+		
+		Connection conn = getConnection();
+		ArrayList<InfoFile> list = new InfoDao().selectInfoMainFileList(conn, intPostNo); 
+		
+		close(conn);
+		
+		return list; 
+		
+	}
 	
 	
 	

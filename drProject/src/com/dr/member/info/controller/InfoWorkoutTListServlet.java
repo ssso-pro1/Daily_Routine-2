@@ -43,7 +43,7 @@ public class InfoWorkoutTListServlet extends HttpServlet {
 		int startPage;    		// pageLimit, currentPage에 영향을 받음 
 		int endPage; 			// pageLimit, startPage에 영향을 받음 
 						
-		listCount = new InfoService().workoutSelectListCount(); 
+		listCount = new InfoService().selectWorkoutListCount(); 
 		//System.out.println(listCount); 
 						
 		String currentPageParam = request.getParameter("currentPage");
@@ -67,7 +67,7 @@ public class InfoWorkoutTListServlet extends HttpServlet {
 		//System.out.println(pi);
 						
 		// 2. currentPage(현재 페이지)에 보여질 게시글 리스트 조회 
-		ArrayList<Info> list = new InfoService().workoutSelectThumbnailList(pi);
+		ArrayList<Info> list = new InfoService().selectWorkoutThumbnailList(pi);
 						
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

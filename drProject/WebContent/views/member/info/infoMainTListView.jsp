@@ -137,7 +137,7 @@
                 <div id="content_2_3">
                     <div class="listArea">
                     
-                        <div class="subTitle1">
+                        <div class="subTitle">
                             <p style= "font-weight:bolder; font-size:20px;">
                                 오늘의 운동
                             </p>
@@ -157,7 +157,7 @@
                         </div>
                         <% } %>
                         
-                        <div class="subTitle2">
+                        <div class="subTitle">
                             <p style= "font-weight:bolder; font-size:20px;">
                                 오늘의 식단
                             </p>
@@ -184,7 +184,7 @@
 				<script>
 			        $(function() {
 	                	$(".thumbnail").click(function() {
-	                    	location.href= '<%=contextPath%>/infoMainDetail.in?ino=' + $(this).children().eq(0).val();
+	                    	location.href= '<%=contextPath%>/mainDetail.in?ino=' + $(this).children().eq(0).val();
 	                    })
 	                })
 		        </script>

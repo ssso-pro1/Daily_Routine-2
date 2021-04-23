@@ -32,14 +32,14 @@ public class InfoDao {
 	}
 	
 	// 운동 게시판 
-	public int workoutSelectListCount(Connection conn) { 
+	public int selectWorkoutListCount(Connection conn) { 
 		// select문 
 		int listCount = 0; 
 		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("workoutSelectListCount");
+		String sql = prop.getProperty("selectWorkoutListCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -59,13 +59,13 @@ public class InfoDao {
 		
 	}
 	
-	public ArrayList<Info> workoutSelectThumbnailList(Connection conn, PageInfo pi) {
+	public ArrayList<Info> selectWorkoutThumbnailList(Connection conn, PageInfo pi) {
 		// select문 
 		ArrayList<Info> list = new ArrayList<>(); 
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("workoutSelectThumbnailList"); 
+		String sql = prop.getProperty("selectWorkoutThumbnailList"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -121,6 +121,74 @@ public class InfoDao {
 				
 	} 
 	
+	public Info selectWorkout(Connection conn, int intPostNo) {
+		// select문 
+		Info i = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectWorkout");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, intPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				i = new Info(rset.getInt("int_post_no"),
+							 rset.getString("post_content"),
+							 rset.getString("post_title"),
+							 rset.getDate("enroll_date"),
+							 rset.getInt("board_view"),
+							 rset.getInt("like_count"));
+						
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return i; 
+				
+	}
+	
+	public ArrayList<InfoFile> selectWorkoutFileList(Connection conn, int intPostNo) {
+		// select문 
+		ArrayList<InfoFile> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectWorkoutFileList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, intPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) { 
+				
+				InfoFile inf = new InfoFile();
+				inf.setFileNo(rset.getInt("file_no"));
+				inf.setFileUpdate(rset.getString("file_update"));
+				inf.setFilePath(rset.getString("file_path"));
+				
+				list.add(inf); 
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list; 		
+		 
+	}
 	
 	
 	
@@ -128,14 +196,14 @@ public class InfoDao {
 	
 	
 	// 식단 게시판 
-	public int menuSelectListCount(Connection conn) { 
+	public int selectMenuListCount(Connection conn) { 
 		// select문 
 		int listCount = 0; 
 		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("menuSelectListCount");
+		String sql = prop.getProperty("selectMenuListCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -155,13 +223,13 @@ public class InfoDao {
 		
 	}
 	
-	public ArrayList<Info> menuSelectThumbnailList(Connection conn, PageInfo pi) {
+	public ArrayList<Info> selectMenuThumbnailList(Connection conn, PageInfo pi) {
 		// select문 
 		ArrayList<Info> list = new ArrayList<>(); 
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("menuSelectThumbnailList"); 
+		String sql = prop.getProperty("selectMenuThumbnailList"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -195,9 +263,74 @@ public class InfoDao {
 			
 	}
 	
+	public Info selectMenu(Connection conn, int intPostNo) {
+		// select문 
+		Info i = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMenu");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, intPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				i = new Info(rset.getInt("int_post_no"),
+							 rset.getString("post_content"),
+							 rset.getString("post_title"),
+							 rset.getDate("enroll_date"),
+							 rset.getInt("board_view"),
+							 rset.getInt("like_count"));
+						
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return i; 
+				
+	}
 	
-	
-	
+	public ArrayList<InfoFile> selectMenuFileList(Connection conn, int intPostNo) {
+		// select문 
+		ArrayList<InfoFile> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMenuFileList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, intPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) { 
+				
+				InfoFile inf = new InfoFile();
+				inf.setFileNo(rset.getInt("file_no"));
+				inf.setFileUpdate(rset.getString("file_update"));
+				inf.setFilePath(rset.getString("file_path"));
+				
+				list.add(inf); 
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list; 		
+		 
+	}
 	
 	
 	
@@ -216,14 +349,14 @@ public class InfoDao {
 	
 	
 	// 전체 게시판 
-	public int mainSelectListCount(Connection conn) { 
+	public int selectMainListCount(Connection conn) { 
 		// select문 
 		int listCount = 0; 
 		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("mainSelectListCount");
+		String sql = prop.getProperty("selectMainListCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -243,13 +376,14 @@ public class InfoDao {
 		
 	}
 	
-	public ArrayList<Info> mainSelectThumbnailList(Connection conn, PageInfo pi) {
+	// 나중에 수정하거나 삭제할 것
+	public ArrayList<Info> selectMainThumbnailList(Connection conn, PageInfo pi) {
 		// select문 
 		ArrayList<Info> list = new ArrayList<>(); 
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("mainSelectThumbnailList"); 
+		String sql = prop.getProperty("selectMainThumbnailList"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -284,8 +418,77 @@ public class InfoDao {
 			
 	}
 	
+	public Info selectInfoMain(Connection conn, int intPostNo) {
+		// select문 
+		Info i = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectInfoMain");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, intPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				i = new Info(rset.getInt("int_post_no"),
+							 rset.getString("category_name"),
+							 rset.getString("post_content"),
+							 rset.getString("post_title"),
+							 rset.getDate("enroll_date"),
+							 rset.getInt("board_view"),
+							 rset.getInt("like_count"));
+						
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return i; 
+				
+	}
 	
-	
+	public ArrayList<InfoFile> selectInfoMainFileList(Connection conn, int intPostNo) {
+		// select문 
+		ArrayList<InfoFile> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectInfoMainFileList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, intPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) { 
+				
+				InfoFile inf = new InfoFile();
+				inf.setFileNo(rset.getInt("file_no"));
+				inf.setFileUpdate(rset.getString("file_update"));
+				inf.setFilePath(rset.getString("file_path"));
+				
+				list.add(inf); 
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return list; 
+		
+		
+		 
+	}
 	
 	
 	

@@ -207,7 +207,9 @@
 			                  	<a href="<%=contextPath%>/tipEnroll.co">글쓰기</a>
 		              		</form>
 		                </div><br><br>
-                
+                		
+                		
+                		
                 
            		 </div>
 

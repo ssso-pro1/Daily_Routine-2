@@ -111,14 +111,14 @@
                                     <table>
                                         <tr>
                                             <td width="700" height="30">
-                                                <input type="text" name="title" placeholder="제목을 입력해주세요." required>
+                                                <input type="text" name="title" id="title" placeholder="제목을 입력해주세요." required>
                                             </td> 
                                         </tr>
                                         <tr>
                                             <table>
                                                 <tr>
                                                     <td width="800" height="30">
-                                                        <input type="file" name="upfile" style="cursor:pointer;">
+                                                        <input type="file" name="upfile" id="upfile" style="cursor:pointer;">
                                                     </td>
                                                     <td>
                                                     	<!--  버튼 클릭 시 파일 삭제 -->
@@ -129,23 +129,72 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" height="500">
-                                                <textarea name="content" rows="20" style="resize:none" placeholder="내용을 입력해주세요." required></textarea>   
+                                                <textarea name="qContent" id="qContent" rows="20" style="resize:none" placeholder="내용을 입력해주세요." required></textarea>   
                                             </td>
                                         </tr>
                                     </table>
                                 </tr>
+                                <div align="right" class="enrollButton">
+		                        <button type="submit" onclick="return validate();">등록</button>
+		                        <button type="reset" onclick="return back();"><a href="<%=contextPath%>/question.co?currentPage=1">취소</a></button>
+                 		    </div>
                             </table><br><br>
                           	<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
                             <br><br>
                             
-                            <div align="right" class="enrollButton">
-		                        <button type="submit">등록</button>
-		                        <button type="reset">취소</button>
-                 		    </div>
+                           
                  		    
                  		    <script>
                  		    
-                 		    	// 유효성 체크 
+                 			// 게시글 작성 취소 
+                        	function back(){
+                				var result = confirm("게시글 작성을 취소하시겠습니까?");
+                            	if(result){
+                            		
+                            		return true;
+                            	} else {
+                            		
+                            		return false;
+                            	}
+                			}
+                        	
+                            // 유효성 검사 
+                        	function validate() {
+                        		
+                        		var title = document.getElementById("title");
+                        		var qContent = document.getElementById("qContent"); 
+                        		
+                        		var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+                        		
+                        		
+                        		if(!regExp.test(title.value)){
+                            		alert("제목을 입력해주세요");
+                            	
+                            		title.value="";
+                            		title.focus();
+                            		
+                            		return false;
+                            	}
+                        			
+                        		if(!regExp.test(qContent.value)){ 
+                            		alert("내용을 입력해주세요");
+                            	
+                            		qContent.value="";
+                            		qContent.focus();
+                            		
+                            		return false;
+                            	}	
+                        		
+                        		var result = confirm("글을 등록하시겠습니까?");
+                            	if(result){
+                            		
+                            		
+                            	} else {
+                            		alert("게시글 등록이 취소되었습니다");
+                            		return false;
+                            	}
+                        		
+                        	}
                  		    	
                  		    </script>
                  		    

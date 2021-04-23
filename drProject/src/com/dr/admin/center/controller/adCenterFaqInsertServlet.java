@@ -7,9 +7,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dr.admin.center.model.service.adCenterService;
 import com.dr.admin.center.model.vo.adCenterFaq;
+import com.dr.member.user.model.vo.User;
 
 /**
  * Servlet implementation class adCenterFaqInsertServlet
@@ -38,18 +40,10 @@ public class adCenterFaqInsertServlet extends HttpServlet {
 		String fContent = request.getParameter("fContent");
 		String status = request.getParameter("status");
 		
-		//HttpSession session = request.getSession();
-		//User loginUser = (User)session.getAttribute("loginUser");
-		//int userNo = loginUser.getUserNo();
+		HttpSession session = request.getSession();
+		User loginUser = (User)session.getAttribute("loginUser");
+		int userNo = loginUser.getUserNo();
 		
-		//CenterQuery q = new CenterQuery();
-		//q.setQueryContent(qContent);
-		//q.setUserNo(String.valueOf(userNo)); // 1 => "1"
-		
-		//int result = new CenterService().insertQuery(q);
-		
-		// 지금은 회원번호를 2 라고 가정해서 넣어보겠음
-		int userNo = 2;
 		
 		adCenterFaq f= new adCenterFaq();
 		f.setUserNo(userNo);

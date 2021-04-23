@@ -216,7 +216,7 @@
                     
                     
                 <form action="<%= contextPath %>/ctNoticeInsert.ad" id="enrollForm" method="post" enctype="multipart/form-data">
-                <br>
+                
                 	<div id="noticeEnroll">
                     
                         <table border="1" align="center" >
@@ -254,8 +254,7 @@
                                         
                                         <label style="float: right;">
                                         
-                                        <!-- userNo value=로 나중에 수정하자/ 지금은 1이라고 가정 -->
-                                        <input type="hidden" name="userNo" value="1">
+                                        <input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
                                         
                                         <button type="submit" onclick="return validate();">등록</button>
                                         <button onclick="return back();"><a href="<%=contextPath %>/ctNotice.ad?currentPage=1">취소</button>

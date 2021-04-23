@@ -219,6 +219,7 @@
                 <br>
                 <div id="faqEnroll">
                     <form action="<%=contextPath %>/ctFaqInsert.ad" method="post">
+                    <input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
                         <table border="1" align="center">
                             <tbody>
                                 <tr>

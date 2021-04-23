@@ -6,6 +6,9 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.dr.member.user.model.vo.User;
 
 /**
  * Servlet implementation class QueryEnrollForm
@@ -27,8 +30,20 @@ public class CenterQueryEnrollForm extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		User loginUser = (User)session.getAttribute("loginUser");
+		
+		
+		if(loginUser != null) {
+		
 		request.getRequestDispatcher("views/member/center/centerQueryEnrollForm.jsp").forward(request, response);
 		
+		} else {
+			
+			request.getSession().setAttribute("alertMsg", "로그인이 필요한 페이지입니다");
+			response.sendRedirect(request.getContextPath()+"/loginForm.us");
+			
+		}
 	}
 
 	/**

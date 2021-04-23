@@ -141,7 +141,7 @@
                 
                 <div class="queryArea">
                     <form id="enrollQueryFrorm" action="<%= contextPath %>/insertQuery.ct" method="post">
-                    
+                    	<input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
                         <table border="1">
                             <tr>
                                 <th>문의유형</th>

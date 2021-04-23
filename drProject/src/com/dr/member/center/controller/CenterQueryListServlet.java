@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.center.model.service.CenterService;
 import com.dr.member.center.model.vo.CenterQuery;
+import com.dr.member.user.model.vo.User;
 
 /**
  * Servlet implementation class CenterQueryListServlet
@@ -33,6 +35,15 @@ public class CenterQueryListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		HttpSession session = request.getSession();
+		User loginUser = (User)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+		
+		
+		
+		
 		int listCount;		// 현재 총 게시글 갯수
 		int currentPage;	// 현재 페이지 (즉, 요청한 페이지)
 		int pageLimit;		// 한 페이지 하단에 보여질 페이징바의 페이지 최대갯수 (몇개단위)
@@ -43,11 +54,7 @@ public class CenterQueryListServlet extends HttpServlet {
 		int endPage;		// 현재 페이지에 하단에 보여질 페이징 바의 끝 수 (startPage, pageLimit, maxPage를 가지고 구할꺼임)
 				
 		
-		//로그인 유저가 없으니까 그냥 번호는 2라고 가정 해서 조회해보겠음
-		//int userNo = Integer.parseInt(request.getParameter("userNo"));
-				
-		int userNo =2;
-		
+		int userNo = loginUser.getUserNo();
 		
 		listCount = new CenterService().querySelectListCount(userNo);
 				
@@ -82,6 +89,13 @@ public class CenterQueryListServlet extends HttpServlet {
 		//ArrayList<CenterQuery>queryList = new CenterService().queryList(userNo);
 		//request.setAttribute("queryList", queryList);
 		request.getRequestDispatcher("views/member/center/centerQueryList.jsp").forward(request, response);
+		
+		
+		} else {
+			
+			request.getSession().setAttribute("alertMsg", "로그인이 필요한 페이지입니다");
+			response.sendRedirect(request.getContextPath()+"/loginForm.us");
+		}
 		
 	}
 

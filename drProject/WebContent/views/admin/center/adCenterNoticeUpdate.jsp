@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<%@ page  import="com.dr.member.user.model.vo.User, com.dr.member.center.model.vo.CenterNotice, com.dr.admin.center.model.vo.centerNoticeFile" %>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
-	
-	CenterNotice n = (CenterNotice)request.getAttribute("n");
-	
-	centerNoticeFile fi = (centerNoticeFile)request.getAttribute("fi");
 %>   
 
 <!DOCTYPE html>
@@ -19,8 +13,17 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    
+    <!-- include libraries(jQuery, bootstrap) -->
+	<link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+	<script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+	
+	<!-- include summernote css/js-->
+	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+	
+	<title>공지사항</title>
 
     <style>
         div{
@@ -113,22 +116,8 @@
         #title{
             margin-left:25px;
         }
-        .listArea{
-            border:1px solid gray;
-            text-align:center;
-            width: 95%;
-            margin: auto;
-        }
-        .listArea>tbody>tr:hover{
-            background:rgb(219, 217, 217);
-            cursor:pointer;
-        }
-        .listArea>thead>tr{
-            background:rgb(247, 209, 86);
-        }
-        .listArea>tr,th,td{
-            height:30px;
-        }
+        
+
         
         
         
@@ -214,121 +203,132 @@
 
             <!--공지사항-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">공지사항 관리 > 공지사항 글 보기</p>
+                <p style="font-size: 20px; color: white; font-weight: 600;">공지사항 관리 > 새 공지 등록</p>
                 <div class="underLine"></div>
             </div>
 
 
-            <!--공지사항 디테일뷰-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 500px;">
+            <!--공지사항 글쓰기폼-->
+            <div id="content_2_4" style="background: white; width: 800px; height: 6000px;">
+
+                
+                  
+                    
+                    
+                <form action="<%= contextPath %>/ctNoticeInsert.ad" id="enrollForm" method="post" enctype="multipart/form-data">
                 <br>
-                <div id="noticeDetail">
-                    <form action="">
-                        
-                        <table border="1" align="center">
+                	<div id="noticeEnroll">
+                    
+                        <table border="1" align="center" >
                             <tbody>
                                 <tr>
-                                    <th>작성자</th>
-                                    <td colspan="3"><input type="text" name="noticeWriter" value="<%= n.getUserId() %>"></td>
-                                </tr>
-                                <tr>
                                     <th>제목</th>
-                                    <td colspan="3"><input type="text" name="noticeTitle" value="<%= n.getNoticeTitle() %>"></td>
+                                    <td><input type="text" name="noticeTitle" style="width: 80%;" required></td>
                                 </tr>
                                 
-                                
+                                <!--  
                                 <tr>
-                                    <th>게시여부</th>
-                                    <td colspan="3">
-                                        <input type="radio" id="statusY" name="status" value="Y"><label for="statusY" >게시</label>
-                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN" >보류</label>
-                                    </td>
+                                    <th>작성자</th>
+                                    <td><input type="text" name="noticeWriter" required></td>
                                 </tr>
-                                <tr>
-                                    <th>글등록일</th>
-                                    <td><%= n.getCreateDate() %></td>
-                                    <th>마지막 수정일</th>
-                                    <!-- 수정일이 없으면 작성일 나오도록 -->
-                                    <%if(n.getUpdateDate() == null) { %>
-                                    <td><%=n.getCreateDate() %></td>
-                                    <% } else { %>
-                                    <td><%=n.getUpdateDate() %></td>
-                                    <% }%>
-                                </tr>
+                                -->
+                            
                                 <tr>
                                     <th>첨부파일</th>
-                                    <td colspan="3">
-                                    
-                                    	<!-- 첨부파일이 없을경우-->
-					                    <%if(fi == null) { %>
-					                    
-					                        	첨부파일이 없습니다
-					                    
-										<% } else { %>
-										
-					                    <!--첨부파일이 있을경우-->
-					                    <a download="<%= fi.getFileName() %>" href= "<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>"><%= fi.getFileName() %></a>
-					                	
-					                	<% } %>
-                                    
-                                    </td>
+                                    <td><input type="file" name="upfile" value=""></td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
-                                    <td colspan="3"><div><%= n.getNoticeContent() %></div></td>
+                                    <td>
+	                                    <textarea name="noticeContent" id="summernote" cols="10" rows="" style="resize: none;"></textarea>    
+				                    </td>
                                 </tr>
-                                
 
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="4">
-                                     <label style="float: right;">
-                                             <button><a href="<%=contextPath %>/ctNoticeUpdate.ad">수정</a></button>
-                                             
-                                             <button onclick ="return check();"><a href="">삭제</a></button>
-                                             <button><a href="<%= contextPath%>/ctNotice.ad?currentPage=1">목록으로</a></button>                                         </label>
-                                     </td>
-                                 </tr>
-                                 
-                             </tfoot>
+                                    <th>게시여부 선택</th>
+                                    <th>
+                                        <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
+                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
+                                        
+                                        <label style="float: right;">
+                                        
+                                        <!-- userNo value=로 나중에 수정하자/ 지금은 1이라고 가정 -->
+                                        <input type="hidden" name="userNo" value="1">
+                                        
+                                        <button type="submit" onclick="return validate();">등록</button>
+                                        <button type="reset">취소</button>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tfoot>
                             
                         </table>
-							
-							 <script>
-							$(function(){
-								var status = "<%= n.getStatus()%>";
-								// "Y" / "N"
-								
-								// 체크박스인 input요소들에 순차적으로 접근하면서
-								// 해당 그 input요소의 value값이 interest에 포함되어있을 경우 => 해당 input요소에 checked속성 부여
-								$("input[type=radio]").each(function(){
-									if(status.search($(this).val()) != -1){
-										$(this).attr("checked", true);
-									}
-								})
-								
-								
-							})
-							
-							function check(){
-								
-								var result = confirm("이 글을 완전히 삭제 하시겠습니까?");
-                            	if(result){
-                            		
-                            		
-                            	} else {
-                            		alert("삭제가 취소되었습니다");
-                            		return false;
-                            	}
-							}
-						</script>
+
+
+					</div>
+
+                  </form>
+                  
+                  <script>
+                    $('#summernote').summernote({
+                          // 에디터 높이
+                          height: 350,
+                          // 에디터 한글 설정
+                          width:700,
+                          lang: "ko-KR",
+                          // 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)
+                          focus : true,
+                          toolbar: [
+                                // 글꼴 설정
+                                ['fontname', ['fontname']],
+                                // 글자 크기 설정
+                                ['fontsize', ['fontsize']],
+                                // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+                                ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+                                // 글자색
+                                ['color', ['forecolor','color']],
+                                // 표만들기
+                                ['table', ['table']],
+                                // 글머리 기호, 번호매기기, 문단정렬
+                                ['para', ['ul', 'ol', 'paragraph']],
+                                // 줄간격
+                                ['height', ['height']],
+                                // 그림첨부, 링크만들기, 동영상첨부
+                                ['insert',['picture','link','video']],
+                               
+                              ],
+                              // 추가한 글꼴
+                            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+                             // 추가한 폰트사이즈
+                            fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+                            
+                        });
+                    </script>
+        
+        
+        
+
+
+      
+     
+
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+			</div>    
+
             
 
-        </div>
+         </div>
 
 
-
+</div>
 
 
 

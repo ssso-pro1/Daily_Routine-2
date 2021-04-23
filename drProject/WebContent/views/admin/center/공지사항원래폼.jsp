@@ -1,16 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-
-<%@ page  import="com.dr.member.user.model.vo.User, com.dr.member.center.model.vo.CenterNotice, com.dr.admin.center.model.vo.centerNoticeFile" %>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
-	
-	CenterNotice n = (CenterNotice)request.getAttribute("n");
-	
-	centerNoticeFile fi = (centerNoticeFile)request.getAttribute("fi");
 %>   
 
 <!DOCTYPE html>
@@ -129,6 +123,7 @@
         .listArea>tr,th,td{
             height:30px;
         }
+
         
         
         
@@ -214,121 +209,74 @@
 
             <!--공지사항-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">공지사항 관리 > 공지사항 글 보기</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">공지사항 관리 > 새 공지 등록</p>
                 <div class="underLine"></div>
             </div>
 
 
-            <!--공지사항 디테일뷰-->
+            <!--공지사항 글쓰기폼-->
             <div id="content_2_4" style="background: white; width: 800px; height: 500px;">
+                <form action="<%= contextPath %>/ctNoticeInsert.ad" id="enrollForm" method="post" enctype="multipart/form-data">
                 <br>
-                <div id="noticeDetail">
-                    <form action="">
-                        
+                	<div id="noticeEnroll">
+                    
                         <table border="1" align="center">
                             <tbody>
                                 <tr>
-                                    <th>작성자</th>
-                                    <td colspan="3"><input type="text" name="noticeWriter" value="<%= n.getUserId() %>"></td>
-                                </tr>
-                                <tr>
                                     <th>제목</th>
-                                    <td colspan="3"><input type="text" name="noticeTitle" value="<%= n.getNoticeTitle() %>"></td>
+                                    <td><input type="text" name="noticeTitle" required></td>
                                 </tr>
                                 
+                                <!--  
+                                <tr>
+                                    <th>작성자</th>
+                                    <td><input type="text" name="noticeWriter" required></td>
+                                </tr>
+                                -->
                                 
-                                <tr>
-                                    <th>게시여부</th>
-                                    <td colspan="3">
-                                        <input type="radio" id="statusY" name="status" value="Y"><label for="statusY" >게시</label>
-                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN" >보류</label>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <th>글등록일</th>
-                                    <td><%= n.getCreateDate() %></td>
-                                    <th>마지막 수정일</th>
-                                    <!-- 수정일이 없으면 작성일 나오도록 -->
-                                    <%if(n.getUpdateDate() == null) { %>
-                                    <td><%=n.getCreateDate() %></td>
-                                    <% } else { %>
-                                    <td><%=n.getUpdateDate() %></td>
-                                    <% }%>
-                                </tr>
                                 <tr>
                                     <th>첨부파일</th>
-                                    <td colspan="3">
-                                    
-                                    	<!-- 첨부파일이 없을경우-->
-					                    <%if(fi == null) { %>
-					                    
-					                        	첨부파일이 없습니다
-					                    
-										<% } else { %>
-										
-					                    <!--첨부파일이 있을경우-->
-					                    <a download="<%= fi.getFileName() %>" href= "<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>"><%= fi.getFileName() %></a>
-					                	
-					                	<% } %>
-                                    
-                                    </td>
+                                    <td><input type="file" name="upfile"></td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
-                                    <td colspan="3"><div><%= n.getNoticeContent() %></div></td>
+                                    <td><textarea name="noticeContent" cols="50" rows="20" style="resize: none;" required></textarea></td>
                                 </tr>
-                                
 
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <td colspan="4">
-                                     <label style="float: right;">
-                                             <button><a href="<%=contextPath %>/ctNoticeUpdate.ad">수정</a></button>
-                                             
-                                             <button onclick ="return check();"><a href="">삭제</a></button>
-                                             <button><a href="<%= contextPath%>/ctNotice.ad?currentPage=1">목록으로</a></button>                                         </label>
-                                     </td>
-                                 </tr>
-                                 
-                             </tfoot>
+                                    <th>게시여부 선택</th>
+                                    <th>
+                                        <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
+                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
+                                        
+                                        <label style="float: right;">
+                                        
+                                        <!-- userNo value=로 나중에 수정하자/ 지금은 1이라고 가정 -->
+                                        <input type="hidden" name="userNo" value="1">
+                                        
+                                        <button type="submit" onclick="return validate();">등록</button>
+                                        <button type="reset">취소</button>
+                                        </label>
+                                    </td>
+                                </tr>
+                            </tfoot>
                             
                         </table>
-							
-							 <script>
-							$(function(){
-								var status = "<%= n.getStatus()%>";
-								// "Y" / "N"
-								
-								// 체크박스인 input요소들에 순차적으로 접근하면서
-								// 해당 그 input요소의 value값이 interest에 포함되어있을 경우 => 해당 input요소에 checked속성 부여
-								$("input[type=radio]").each(function(){
-									if(status.search($(this).val()) != -1){
-										$(this).attr("checked", true);
-									}
-								})
-								
-								
-							})
-							
-							function check(){
-								
-								var result = confirm("이 글을 완전히 삭제 하시겠습니까?");
-                            	if(result){
-                            		
-                            		
-                            	} else {
-                            		alert("삭제가 취소되었습니다");
-                            		return false;
-                            	}
-							}
-						</script>
+
+
+					</div>
+
+                  </form>
+			</div>    
+
             
 
-        </div>
+         </div>
 
 
-
+</div>
 
 
 

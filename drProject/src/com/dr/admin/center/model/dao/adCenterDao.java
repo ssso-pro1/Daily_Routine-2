@@ -16,7 +16,6 @@ import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.admin.center.model.vo.adCenterQuery;
 import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.common.model.vo.PageInfo;
-import com.dr.member.center.model.vo.CenterNotice;
 
 public class adCenterDao {
 	
@@ -920,6 +919,117 @@ public class adCenterDao {
 
 
 
+
+	public adCenterNotice selectNotice(Connection conn, int noticeNo) {
+		adCenterNotice n = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, noticeNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				n = new adCenterNotice(rset.getInt("notice_no"),
+									   rset.getString("notice_title"),
+									   rset.getString("notice_content"),
+									   rset.getInt("notice_count"),
+									   rset.getDate("create_date"),
+									   rset.getDate("update_date"),
+									   rset.getString("status"),
+									   rset.getString("user_id"));
+}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return n;
+
+
+	}
+
+
+
+
+
+	public int updateNotice(Connection conn, adCenterNotice n) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateNotice");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, n.getNoticeTitle());
+			pstmt.setString(2, n.getNoticeContent());
+			pstmt.setString(3, n.getStatus());
+			pstmt.setInt(4, n.getNoticeNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+
+
+
+
+
+	public int updateAttachment(Connection conn, centerNoticeFile fi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fi.getFileName());
+			pstmt.setString(2, fi.getFileUpdate());
+			pstmt.setString(3, fi.getFilePath());
+			pstmt.setInt(4, fi.getFileNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+
+
+
+
+
+	public int insertNewAttachment(Connection conn, centerNoticeFile fi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNewAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fi.getNoticeNo());
+			pstmt.setString(2, fi.getFileName());
+			pstmt.setString(3, fi.getFileUpdate());
+			pstmt.setString(4, fi.getFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
 }
 
 	

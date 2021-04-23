@@ -259,7 +259,7 @@
                                         
                                         <label style="float: right;">
                                         <button type="submit" onclick="return validate();">등록</button>
-                                        <button type="reset">취소</button>
+                                        <button onclick="return back();"><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=top">취소</a></button>
                                         </label>
                                     </td>
                                 </tr>

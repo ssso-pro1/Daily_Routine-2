@@ -333,6 +333,48 @@ public class adCenterService {
 		return fi;
 	}
 
+
+
+
+	public adCenterNotice selectNotice(int noticeNo) {
+		Connection conn = getConnection();
+		adCenterNotice n = new adCenterDao().selectNotice(conn, noticeNo);
+		
+		close(conn);
+		
+		return n;
+	}
+
+
+
+
+	public int updateNotice(adCenterNotice n, centerNoticeFile fi) {
+		Connection conn = getConnection();
+		
+		int result1 = new adCenterDao().updateNotice(conn, n);
+		
+		int result2 = 1;
+		if(fi !=null) { // 새로운 첨부파일이 있을경우
+			if(fi.getFileNo() !=0) { 
+				// 기존dml 첨부파일이 있었을 경우 => Attachment Update
+				result2 = new adCenterDao().updateAttachment(conn, fi);
+				
+			} else {
+				// 기존의 첨부파일이 없었을 경우 => Attachment Insert
+				result2 = new adCenterDao().insertNewAttachment(conn, fi);
+					
+			}
+			
+			if(result1 > 0 && result2 > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			close(conn);
+			
+		} return result1 * result2;
+	}
+
 	
 
 

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class centerNoticeFile {
 	
 	private int fileNo;			// 첨부파일고유번호
-	private int refNoticeNo;		// 참조하고 있는 게시글 번호
+	private int noticeNo;		// 참조하고 있는 게시글 번호
 	private String fileName;	// 첨부파일의 원본명
 	private String fileUpdate;	// 첨부파일의 수정명
 	private String filePath;	// 첨부파일이 저장된 폴더 경로
@@ -14,11 +14,11 @@ public class centerNoticeFile {
 	
 	public centerNoticeFile() {}
 
-	public centerNoticeFile(int fileNo, int refNoticeNo, String fileName, String fileUpdate, String filePath,
+	public centerNoticeFile(int fileNo, int noticeNo, String fileName, String fileUpdate, String filePath,
 			Date uploadDate, String status) {
 		super();
 		this.fileNo = fileNo;
-		this.refNoticeNo = refNoticeNo;
+		this.noticeNo = noticeNo;
 		this.fileName = fileName;
 		this.fileUpdate = fileUpdate;
 		this.filePath = filePath;
@@ -34,12 +34,12 @@ public class centerNoticeFile {
 		this.fileNo = fileNo;
 	}
 
-	public int getRefNoticeNo() {
-		return refNoticeNo;
+	public int getNoticeNo() {
+		return noticeNo;
 	}
 
-	public void setRefNoticeNo(int refNoticeNo) {
-		this.refNoticeNo = refNoticeNo;
+	public void setNoticeNo(int noticeNo) {
+		this.noticeNo = noticeNo;
 	}
 
 	public String getFileName() {
@@ -84,10 +84,12 @@ public class centerNoticeFile {
 
 	@Override
 	public String toString() {
-		return "centerNoticeFile [fileNo=" + fileNo + ", refNoticeNo=" + refNoticeNo + ", fileName=" + fileName
+		return "centerNoticeFile [fileNo=" + fileNo + ", noticeNo=" + noticeNo + ", fileName=" + fileName
 				+ ", fileUpdate=" + fileUpdate + ", filePath=" + filePath + ", uploadDate=" + uploadDate + ", status="
 				+ status + "]";
 	}
+
+	
 
 
 	

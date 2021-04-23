@@ -1,10 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+
+<%@ page  import="com.dr.member.user.model.vo.User, com.dr.admin.center.model.vo.adCenterNotice, com.dr.admin.center.model.vo.centerNoticeFile" %>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
+	
+	
+	adCenterNotice n = (adCenterNotice)request.getAttribute("n");
+	
+	centerNoticeFile fi = (centerNoticeFile)request.getAttribute("fi");
+	
+	
+	
 %>   
 
 <!DOCTYPE html>
@@ -215,7 +225,7 @@
                   
                     
                     
-                <form action="<%= contextPath %>/ctNoticeInsert.ad" id="enrollForm" method="post" enctype="multipart/form-data">
+                <form action="<%= contextPath %>/ctNoticeUpdate.ad" id="enrollForm" method="post" enctype="multipart/form-data">
                 <br>
                 	<div id="noticeEnroll">
                     
@@ -223,7 +233,7 @@
                             <tbody>
                                 <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="noticeTitle" style="width: 80%;" required></td>
+                                    <td><input type="text" name="noticeTitle" id="noticeTitle" style="width: 80%;" required value="<%= n.getNoticeTitle() %>"></td>
                                 </tr>
                                 
                                 <!--  
@@ -235,12 +245,23 @@
                             
                                 <tr>
                                     <th>첨부파일</th>
-                                    <td><input type="file" name="upfile" value=""></td>
+                                    <td> <!-- 기존의 첨부파일이 있었다면 -->
+				                        <% if(fi != null) { %>
+				                        	<%= fi.getFileName() %>
+				                        	<input type="hidden" name="originFileNo" value="<%= fi.getFileNo() %>">
+				                        	<input type="hidden" name="originFileName" value="<%=fi.getFileUpdate() %>">
+				                        <% } %>
+                        			
+                        					<input type="file" name="reUpfile">
+                        			</td>
+                        
+                        				
                                 </tr>
                                 <tr>
                                     <th>내용</th>
                                     <td>
-	                                    <textarea name="noticeContent" id="summernote" cols="10" rows="" style="resize: none;"></textarea>    
+                                    	<textarea name="noticeContent" id="summernote" cols="10" rows="" style="resize: none;"><%= n.getNoticeContent() %></textarea>    
+                                    	 
 				                    </td>
                                 </tr>
 
@@ -256,8 +277,10 @@
                                         
                                         <!-- userNo value=로 나중에 수정하자/ 지금은 1이라고 가정 -->
                                         <input type="hidden" name="userNo" value="1">
+                                        <input type="hidden" name="nno" value="<%= n.getNoticeNo() %>">
                                         
-                                        <button type="submit" onclick="return validate();">등록</button>
+                                        
+                                        <button type="submit" onclick="return validate();">수정</button>
                                         <button type="reset">취소</button>
                                         </label>
                                     </td>
@@ -265,11 +288,77 @@
                             </tfoot>
                             
                         </table>
-
-
 					</div>
 
                   </form>
+                  <script>
+					$(function(){
+						var status = "<%= n.getStatus()%>";
+						// "Y" / "N"
+								
+						// 체크박스인 input요소들에 순차적으로 접근하면서
+						// 해당 그 input요소의 value값이 interest에 포함되어있을 경우 => 해당 input요소에 checked속성 부여
+						$("input[type=radio]").each(function(){
+							if(status.search($(this).val()) != -1){
+								$(this).attr("checked", true);
+							}
+						})
+								
+								
+					})
+							
+					function validate(){
+                                    	
+                       var title = document.getElementById("title");
+                       var content = document.getElementById("summernote");
+                                        
+                       var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+                                    	
+                                    	
+                                    	
+                                    	
+                                    	
+                       if(!regExp.test(title.value)){
+                             alert("제목을 입력해주세요");
+                                    	
+                                 title.value="";
+                                 title.focus();
+                                    		
+                             return false;
+                         }
+                                    	
+                                    	
+                       if(!regExp.test(content.value)){ 
+                               alert("내용을 입력해주세요");
+                                    	
+                                   content.value="";
+                                   content.focus();
+                                    		
+                                  return false;
+                         }
+                                    	
+                                        
+
+                                    	
+                       var result = confirm("글을 수정하시겠습니까?");
+                           if(result){
+                                    		
+                                    		
+                            } else {
+                                alert("게시글 수정이 취소되었습니다");
+                               return false;
+                            }
+
+                                        
+                                    
+                        }
+				   </script>
+                  
+                  
+                  
+                  
+                  
+                  
                   
                   <script>
                     $('#summernote').summernote({

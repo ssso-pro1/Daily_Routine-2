@@ -35,6 +35,19 @@ public class adCenterNotice {
 	
 	
 	
+	public adCenterNotice(int noticeNo, String noticeTitle, String noticeContent, int noticeCount, Date createDate,
+			Date updateDate, String status, String userId) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.noticeCount = noticeCount;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.status = status;
+		this.userId = userId;
+	}
+
 	public adCenterNotice(int noticeNo, String noticeTitle, Date createDate, String status, String userId) {
 		super();
 		this.noticeNo = noticeNo;

@@ -284,10 +284,11 @@
                                 <tr>
                                     <td colspan="4">
                                      <label style="float: right;">
-                                             <button><a href="<%=contextPath %>/ctNoticeUpdate.ad">수정</a></button>
+                                             <button><a href="<%=contextPath %>/ctNoticeUpdateForm.ad?nno=<%= n.getNoticeNo() %>">수정</a></button>
                                              
-                                             <button onclick ="return check();"><a href="">삭제</a></button>
-                                             <button><a href="<%= contextPath%>/ctNotice.ad?currentPage=1">목록으로</a></button>                                         </label>
+                                             <button onclick ="return check();"><a href="<%= contextPath %>/ctNoticeDelete.ad?nno=<%= n.getNoticeNo() %>">삭제</a></button>
+                                             <button><a href="<%= contextPath%>/ctNotice.ad?currentPage=1">목록으로</a></button>                                         
+                                      </label>
                                      </td>
                                  </tr>
                                  

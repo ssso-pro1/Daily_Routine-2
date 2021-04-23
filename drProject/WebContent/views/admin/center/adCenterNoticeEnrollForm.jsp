@@ -223,7 +223,7 @@
                             <tbody>
                                 <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="noticeTitle" style="width: 80%;" required></td>
+                                    <td><input type="text" name="noticeTitle" id="title" style="width: 80%;" required></td>
                                 </tr>
                                 
                                 <!--  
@@ -238,7 +238,7 @@
                                     <td><input type="file" name="upfile" value=""></td>
                                 </tr>
                                 <tr>
-                                    <th>내용</th>s
+                                    <th>내용</th>
                                     <td>
 	                                    <textarea name="noticeContent" id="summernote" cols="10" rows="" style="resize: none;"></textarea>    
 				                    </td>
@@ -258,7 +258,7 @@
                                         <input type="hidden" name="userNo" value="1">
                                         
                                         <button type="submit" onclick="return validate();">등록</button>
-                                        <button type="reset">취소</button>
+                                        <button onclick="return back();"><a href="<%=contextPath %>/ctNotice.ad?currentPage=1">취소</button>
                                         </label>
                                     </td>
                                 </tr>
@@ -270,6 +270,117 @@
 					</div>
 
                   </form>
+                  
+                  			<script>
+                        			function back(){
+                        				var result = confirm("게시글 작성을 취소하시겠습니까?");
+                                    	if(result){
+                                    		
+                                    		return true;
+                                    	} else {
+                                    		
+                                    		return false;
+                                    	}
+                        			}
+                        
+                        
+                        
+                                	
+ 									// 글 제목 50글짜 이상 입력방지 , 알러트
+                                    $(document).ready(function(){
+							            $("#title").on("keyup", function(){
+                                            
+							            	if($(this).val().length>50){
+							                    $(this).val($(this).val().substring(0, 50));
+                                                alert("50자이상 입력하실 수 없습니다.");
+							                }
+							            });
+							        });
+
+									// 글 내용 5000자 이상 입력 방지, 알러트
+                                    $(document).ready(function(){
+							            $("#summernote").on("keyup", function(){
+                                            //var inputlength=$(this).val().length;
+                                            //var remain = 450-inputlength;
+
+							                if($(this).val().length>5000){
+							                    $(this).val($(this).val().substring(0, 5000));
+                                                alert("5000자이상 입력하실 수 없습니다.");
+							                }
+							            });
+							        });
+
+                                    
+                                    
+                                    
+                                    
+                                    // 글등록 유효성 체크
+                                    function validate(){
+                                    	
+                                    	var title = document.getElementById("title");
+                                    	var content = document.getElementById("summernote");
+                                        
+                                    	var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+                                    	
+                                    	
+                                    	
+                                    	
+                                    	
+                                    	if(!regExp.test(title.value)){
+                                    		alert("제목을 입력해주세요");
+                                    	
+                                    		title.value="";
+                                    		title.focus();
+                                    		
+                                    		return false;
+                                    	}
+                                    	
+                                    	
+                                        
+                                    	if(!regExp.test(content.value)){ 
+                                    		alert("내용을 입력해주세요");
+                                    	
+                                    		content.value="";
+                                    		content.focus();
+                                    		
+                                    		return false;
+                                    	}
+                                    	
+                                        
+
+                                    	
+                                    	var result = confirm("글을 등록하시겠습니까?");
+                                    	if(result){
+                                    		
+                                    		
+                                    	} else {
+                                    		alert("게시글 등록이 취소되었습니다");
+                                    		return false;
+                                    	}
+
+                                        
+                                    
+                                    }
+                                    
+                               </script>
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                   
                   <script>
                     $('#summernote').summernote({

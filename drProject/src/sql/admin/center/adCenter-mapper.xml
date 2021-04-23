@@ -423,9 +423,63 @@
 	</entry>
 	
 	
+	<entry key="selectNotice">
+	SELECT 
+		   NOTICE_NO
+		 , NOTICE_TITLE
+		 , NOTICE_CONTENT
+		 , NOTICE_COUNT
+		 , CREATE_DATE
+		 , UPDATE_DATE
+		 , STATUS
+		 , USER_ID
+	  FROM TB_NOTICE
+	  JOIN TB_USER USING (USER_NO)
+	 WHERE NOTICE_NO= ?
+	   
 	
+	</entry>
 	
+	<entry key="updateNotice">
+	   	UPDATE
+				TB_NOTICE
+		    SET NOTICE_TITLE = ?
+		      , NOTICE_CONTENT = ?
+		      , STATUS = ?
+		      , UPDATE_DATE = SYSDATE
+		  WHERE NOTICE_NO = ?     
+			
+	</entry>
 	
+	<entry key="updateAttachment">
+		UPDATE
+				TB_NOTICE_FILE
+		    SET FILE_NAME = ?
+		      , FILE_UPDATE = ?
+			  , FILE_PATH = ?
+		  WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="insertNewAttachment">
+		INSERT
+			INTO TB_NOTICE_FILE
+			(
+			  FILE_NO
+		    , NOTICE_NO
+		    , FILE_NAME
+		    , FILE_UPDATE
+		    , FILE_PATH
+			)
+			VALUES
+			(
+			  SEQ_NOTICE_FNO.NEXTVAL
+		    , ?
+		    , ?
+		    , ?
+		    , ?
+		   )
+		
+	</entry>
 	
 	
 	

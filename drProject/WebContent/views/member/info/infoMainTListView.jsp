@@ -155,7 +155,7 @@
                                 <%= i.getEnrollDate() %>
                             </p>
                         </div>
-                        <% } %>
+                        <% } %>         
                         
                         <div class="subTitle">
                             <p style= "font-weight:bolder; font-size:20px;">
@@ -177,17 +177,19 @@
                         </div>
                         <% } %>
                         
+                        <script>
+	                        $(function() {
+	                			$(".thumbnail").click(function() {
+	                    			location.href= '<%=contextPath%>/mainDetail.in?ino=' + $(this).children().eq(0).val();
+	                   		 	})
+	                		})
+		        		</script>
+		        		
                     </div><br>
                 </div>
 
 
-				<script>
-			        $(function() {
-	                	$(".thumbnail").click(function() {
-	                    	location.href= '<%=contextPath%>/mainDetail.in?ino=' + $(this).children().eq(0).val();
-	                    })
-	                })
-		        </script>
+			
                 <br><br>
 
 

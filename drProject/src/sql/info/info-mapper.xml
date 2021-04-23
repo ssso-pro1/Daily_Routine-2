@@ -50,10 +50,10 @@
 			   INT_POST_NO
 			 , POST_CONTENT 
 			 , POST_TITLE
-			 , I.ENROLL_DATE
+			 , ENROLL_DATE
 			 , BOARD_VIEW
 			 , LIKE_COUNT
-	      FROM TB_INFO_N_TIP I
+	      FROM TB_INFO_N_TIP 
 	     WHERE INT_POST_NO = ? 
 	       AND INT_NO = 1 
 		   AND STATUS = 'N' 	
@@ -117,10 +117,10 @@
 			   INT_POST_NO
 			 , POST_CONTENT 
 			 , POST_TITLE
-			 , I.ENROLL_DATE
+			 , ENROLL_DATE
 			 , BOARD_VIEW
 			 , LIKE_COUNT
-	      FROM TB_INFO_N_TIP I
+	      FROM TB_INFO_N_TIP
 	     WHERE INT_POST_NO = ? 
 	       AND INT_NO = 2
 		   AND STATUS = 'N' 	
@@ -190,10 +190,10 @@
 			 , CATEGORY_NAME
 			 , POST_CONTENT 
 			 , POST_TITLE
-			 , I.ENROLL_DATE
+			 , ENROLL_DATE
 			 , BOARD_VIEW
 			 , LIKE_COUNT
-	      FROM TB_INFO_N_TIP I
+	      FROM TB_INFO_N_TIP
 	     WHERE INT_POST_NO = ? 
 	       AND INT_NO = 3 
 		   AND STATUS = 'N' 	

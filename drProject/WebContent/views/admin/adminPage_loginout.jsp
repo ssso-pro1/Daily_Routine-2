@@ -9,16 +9,17 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- 인코딩확인용 -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    <!-- jQuery library-->
+    <script src="https://ajax.googleeapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
     <style>
         div{
             box-sizing:border-box;
         }
-        
         .wrap{
             width:1000px;
             height:800px;
@@ -31,8 +32,6 @@
         }
 
         
-        
-
         #content{height:100%; width:100%;}
 
         #content>div{
@@ -50,6 +49,15 @@
             height:150px;
         }
 
+
+        #welcome{
+            text-decoration: none;
+            color:white;
+
+        }
+        #welcome:hover{
+            color: rgb(33, 33, 34);
+        }
         /* #content_2_1{height:10%;}
         #content_2_2{height:35%;}
         #content_2_3{height:35%;} */
@@ -87,17 +95,14 @@
             margin-left:10px;
         }
 
-        #content_1 a:hover{color:white;}
+        #content a:hover{color:white;}
 
         #content_2_1{
             color:white;
             font-size:10px;
             padding:10px;
         }
-
-        p{
-            margin:30px 10px;
-        }
+        
 
     </style>
 </head>
@@ -112,71 +117,83 @@
 
             <span>
                 <!-- 로그인 전 -->
-                <i class="fas fa-user-circle"></i>
-                
-                <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
-                
-                <!-- <i class="fas fa-bars"></i> -->
-                <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a> <!-- 오븐에는 메뉴바로 돼있는데, 저희 왼쪽에 메뉴바가 있어서 홈으로 가는 기능으로 바꾸면 좋을 것 같아서 넣었어요!-->
-
-                <!-- 로그인 후
-                <div>admin01님</div> -->
+                <div id="userInfo">
+	                <i class="fas fa-user-circle"></i>
+                    <br><br>
+	                <!-- 로그인 && 로그인한 아이디가 관리자 (admin01/ admincheck y) -->
+                    <!-- <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %> -->
+	                <!-- <% if(loginUser != null && loginUser.getUserId().equals("admin01")){ %> -->
+                    <% if(loginUser != null){ %>
+	                   <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
+                </div>
+	            
+	            	<%} else {%>
+		            	<div>
+		              
+		               <!-- <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> -->
+		               <b><%=loginUser.getUserName() %>님</b> DR에 오신 것을 환영합니다. 
+		                   
+		                   <!-- <i class="fas fa-bars"></i> -->
+		                  
+		                   </div>
+		               <% } %>
+	               
+	               	   <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a>
             </span>
         </div>
+
 
         <div id="content">
 
              <!--왼쪽 공통메뉴-->
-            <div id="content_1">
+             <div id="content_1">
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
-                    <div><a href="<%=contextPath%>/loginForm.aus">전체 회원 조회 </a></div>
-                    <div><a href="">회원 탈퇴처리</a></div>
+                    <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="">HomeTraining</a></div> 
-                    <div><a href="">Info&Tip</a></div> 
+                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
                     <br>
                 </div>
 
                 <div class="content_1_3">
                     <h2>고객센터</h2>
-                    <div><a href="">공지사항</a></div> 
-                    <div><a href="">FAQ</a></div> 
-                    <div><a href="">1:1문의</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">공지사항</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">FAQ</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">1:1문의</a></div> 
                     <br>
                 </div>
 
                 <div class="content_1_4">
                     <h2>신고관리</h2>
-                    <div><a href="">전체신고보기</a></div> 
-                    <div><a href="">블랙리스트</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">전체신고보기</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">블랙리스트</a></div> 
                 </div>
             </div>
 
             <div id="line"></div>
 
+
+
+            <!-- content -->
             <div id="content_2">
 
                 <!-- 상단 타이틀 -->
                 <div id="content_2_1">
-                    <h2>Daily Routine</h2>
+                    <h2>회원관리 > 전체 회원 조회</h2>
                 </div>
 
                 <hr style="border:1px solid gray">
+                
 
 
-            <!-- content -->
-                <div id="content_2_2">
-                    <p style="color:white">Daily Routine 관리자 페이지에 오신 것을 환영합니다. <br>
-                        페이지 관리를 위해 로그인 후 좌측 메뉴를 선택하세요.</p>
-                </div>
-            </div>
-        </div>
+
 
 </body>
 </html>

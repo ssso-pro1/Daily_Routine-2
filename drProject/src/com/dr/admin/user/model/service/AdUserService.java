@@ -1,7 +1,10 @@
 package com.dr.admin.user.model.service;
+import static com.dr.common.JDBCTemplate.close;
+import static com.dr.common.JDBCTemplate.commit;
+import static com.dr.common.JDBCTemplate.getConnection;
+import static com.dr.common.JDBCTemplate.rollback;
+
 import static com.dr.common.JDBCTemplate.*;
-
-
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -12,6 +15,19 @@ import com.dr.common.model.vo.PageInfo;
 
 public class AdUserService {
 
+	/**
+	 * 1. 로그인
+	 */
+	public AdUser loginUser(String userId, String userPwd) {
+		Connection conn = getConnection();
+		
+		AdUser loginUser = new AdUserDao().loginUser(conn, userId, userPwd);
+		return loginUser;
+		
+	}
+	
+	
+	
 	/**
 	 * 1. 회원전체 조회 : 갯수 조회
 	 */

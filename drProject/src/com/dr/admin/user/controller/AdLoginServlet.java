@@ -1,6 +1,7 @@
 package com.dr.admin.user.controller;
 
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -8,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dr.member.user.model.service.UserService;
-import com.dr.member.user.model.vo.User;
+import com.dr.admin.user.model.service.AdUserService;
+import com.dr.admin.user.model.vo.AdUser;
 
 /**
  * Servlet implementation class AdLoginServlet
@@ -40,7 +41,7 @@ public class AdLoginServlet extends HttpServlet {
 		//System.out.println(userPwd);
 		//null 출력됨... 일단 나머지 코드작성 후 나중에 해결하기
 		
-		User u = new UserService().loginUser(userId, userPwd);
+		AdUser u = new AdUserService().loginUser(userId, userPwd);
 		
 		if(u == null) {
 			request.setAttribute("errorMsg", "로그인에 실패했습니다.");

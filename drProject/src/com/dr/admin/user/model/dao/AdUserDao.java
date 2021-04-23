@@ -15,6 +15,7 @@ import java.util.Properties;
 import com.dr.admin.user.model.vo.AdUser;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.user.model.dao.UserDao;
+import com.dr.member.user.model.vo.User;
 
 public class AdUserDao {
 
@@ -31,6 +32,54 @@ private Properties prop = new Properties();
 		}
 		
 	}
+	
+	/**
+	 * 1. 로그인
+	 */
+	public AdUser loginUser(Connection conn, String userId, String userPwd) {
+		// select 문 => resultSet 객체 (한행) => User객체
+		
+		AdUser u = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("loginUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			pstmt.setString(2, userPwd);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				u = new AdUser(rset.getInt("user_no"),
+						     rset.getString("user_id"),
+						     rset.getString("user_pwd"),
+						     rset.getString("user_name"),
+						     rset.getString("birth"),
+						     rset.getString("gender"),
+						     rset.getString("email"),
+						     rset.getString("phone"),
+						     rset.getDate("enroll_date"),
+						     rset.getString("leave_check"),
+						     rset.getString("suspended"),
+						     rset.getString("report_check"),
+						     rset.getString("admin_check"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+		close(rset);
+		close(pstmt);
+	}
+	return u;
+	
+	}
+	
+	
+	
+	
 	
 	/**
 	 * 1. 회원전체 조회 : 갯수 조회

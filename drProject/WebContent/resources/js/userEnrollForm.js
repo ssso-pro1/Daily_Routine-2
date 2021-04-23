@@ -8,8 +8,8 @@ function validate(){
     var userPwd2 = document.getElementById("userPwd2");
     var userName = document.getElementById("userName");
 
-    // 1) 아이디 검사 (영문자,숫자로만 총 4글자~12글자로 이뤄져야만 하고 단, 첫글자는 영문자(소문자 한글자)로.)
-    var regExp = /^[a-z][a-z\d]{3,11}$/;
+    // 1) 아이디 검사 (영문자,숫자로만 총 5~20글자로 이뤄져야만 하고 단, 첫글자는 영문자(소문자 한글자)로.)
+    var regExp = /^[a-z][a-z\d]{4,19}$/;
     if(!regExp.test(userId.value)) { //userId는 요소객체이기 때문에 value붙여야함
         alert("유효한 아이디를 입력하세요");
 

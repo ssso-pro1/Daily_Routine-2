@@ -210,10 +210,10 @@
             
                 <div id="content_2_2">
                     <!-- 관리자 로그인 페이지 -->
-                    <form id="login-form" action="">
+                    <form id="login-form" action="<%= request.getContextPath()%>/views/admin/adMainPageView.jsp">
                         <input type="text" placeholder="관리자 아이디를 입력하세요">
                         <input type="password" placeholder="비밀번호를 입력하세요">
-                        <a href="<%= request.getContextPath()%>/views/admin/adminPageLeftMenuBar.jsp"></a><input id="btn" type="submit" value="로그인">
+                        <input id="btn" type="submit" value="로그인">
                     </form>
                 </div>
 

@@ -104,7 +104,7 @@
                     <th >아이디</th>
                     <th><input type="text" name="userId" id="userId" minlength="5" maxlength="30" required placeholder="아이디를 입력하세요">
                     </th>
-                    <th><button type="button" onclick="idCheck();">중복확인</button></th>
+                    <th><button type="button" onclick="idValidate(); idCheck();">중복확인</button></th>
                 </tr>
                 <tr>
                     <td colspan="3" id="msg1">5~20자의 영문,소문자,숫자만 사용가능합니다.</td>
@@ -119,7 +119,7 @@
                 </tr>
                 <tr>
                     <th>비밀번호 재확인</th>
-                    <th><input type="password" maxlength="15" placeholder="비밀번호 재확인" required ></th> 
+                    <th><input type="password"  name="userPwd2" maxlength="15" placeholder="비밀번호 재확인" required ></th> 
                     <td></td>
                 </tr>
                 <tr>
@@ -194,7 +194,24 @@
  
     </div>
 
-    <script> /*중복확인 펑션*/
+    <script> 
+        // 아이디 유효성 먼저 -> 다음 중복확인
+        function idValidate(){
+            var userId = document.getElementById("userId");
+
+            // 1) 아이디 검사 (영문자,숫자로만 총 5~20글자로 이뤄져야만 + 첫글자는 영문자(소문자 한글자)로.)
+            var regExp = /^[a-z][a-z\d]{4,19}$/;
+                if(!regExp.test(userId.value)) { //userId는 요소객체이기 때문에 value붙여야함
+                    alert("유효한 아이디를 입력하세요");
+            
+                    userId.value = "";
+                    userId.focus();   //입력칸에 깜빡깜빡 focus감(입력유도)
+            
+                    return false; //틀리면 넘어가지 않게.
+                }
+        }
+    
+        /*중복확인 펑션*/
         function idCheck(){
         
             var $userId = $("#enrollForm input[name=userId]");
@@ -265,7 +282,7 @@
                 }
             
                 // 3) 비밀번호 일치 검사
-                if(userPwd1.value != userPwd2.value){
+                if(userPwd.value != userPwd2.value){
                     alert("동일한 비밀번호를 입력하세요");
             
                     userPwd2.select(); //입력한 비번내용이 파랗게 선택됨.

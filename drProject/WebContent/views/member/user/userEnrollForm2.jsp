@@ -89,8 +89,8 @@
     <hr style="border:1px solid lightgray"> -->
     
     <div class="menuWrap" align="center">
-        <span class="step_1">회원약관동의</span> <i class="arrow1 fas fa-chevron-right fa-lg"></i>
-        <span class="step_2">회원정보입력</span> <i class="arrow2 fas fa-chevron-right fa-lg"></i>
+        <span class="step_1">회원약관동의</span> <i class="arrow1 fas fa-chevron-circle-right fa-lg"></i>
+        <span class="step_2">회원정보입력</span> <i class="arrow2 fas fa-chevron-circle-right fa-lg"></i>
         <span class="step_3">회원가입완료</span>
     </div>
 
@@ -135,6 +135,7 @@
                 </tr>
                 <tr>
                     <th>생년월일</th>
+                    <!--  -->
                     <th><input name="birth" type="text" size="3" maxlength="4"> 년 &nbsp;
                         <select name="birth">
                             <option value="1" selected>01</option>

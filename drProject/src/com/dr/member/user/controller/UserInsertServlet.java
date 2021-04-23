@@ -1,14 +1,13 @@
 package com.dr.member.user.controller;
 
 import java.io.IOException;
-import java.sql.Date;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import com.dr.member.user.model.service.UserService;
 import com.dr.member.user.model.vo.User;
@@ -60,15 +59,20 @@ public class UserInsertServlet extends HttpServlet {
 	      int result = new UserService().insertUser(u);
 	      
 	      if(result > 0) {
-	    	 //그냥 회원가입 3번째 단계빼고 이렇게 할까 ㅎㅎ
-	         HttpSession session = request.getSession();
-	         session.setAttribute("alertMsg", "성공적으로 회원가입 되었습니다.");
+	    	
+	    	  
+//	         HttpSession session = request.getSession();
+//	         session.setAttribute("alertMsg", "성공적으로 회원가입 되었습니다.");
 	         
-	         response.sendRedirect(request.getContextPath());
+//	         response.sendRedirect(request.getContextPath());
+
+	    	 //3단계로 가기 
+		     request.getRequestDispatcher("/enrollForm3.us").forward(request, response);
 	      }else {
 	         request.setAttribute("errorMsg", "회원가입에 실패했습니다.");
+	         RequestDispatcher view = request.getRequestDispatcher("views/common/errorPage.jsp");
+			 view.forward(request, response); 
 	         
-	         request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 	      }
 	   }
 	

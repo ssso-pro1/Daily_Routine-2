@@ -10,7 +10,7 @@
 		   AND STATUS = 'N'
 	</entry>
 	
-	<entry key="workoutSelectList">
+	<entry key="workoutSelectThumbnailList">
 		SELECT * 
 		  FROM (
 		        SELECT 
@@ -18,19 +18,20 @@
 		             , A.*
 		          FROM (
 		                SELECT
-		                       INT_POST_NO
-		                     , USER_ID
+		                       I.INT_POST_NO
 		                     , POST_TITLE
 		                     , I.ENROLL_DATE 
 		                     , BOARD_VIEW 
 		                     , LIKE_COUNT
+		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
 		                  FROM TB_INFO_N_TIP I 
-		                  JOIN TB_USER U ON (U.USER_NO = I.USER_NO)
-		                 WHERE COMM_NO = 1
-		                   AND STATUS = 'N'
+		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
+		                 WHERE I.COMM_NO = 1
+		                   AND I.STATUS = 'N'
+		                   AND FILE_LEVEL = 1 
 		                 ORDER 
-		                     BY ENROLL_DATE DESC, 
-		                        INT_POST_NO DESC
+		                     BY I.ENROLL_DATE DESC, 
+		                        I.INT_POST_NO DESC
 		               ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
@@ -56,7 +57,7 @@
 		   AND STATUS = 'N'
 	</entry>
 	
-	<entry key="menuSelectList">
+	<entry key="menuSelectThumbnailList">
 		SELECT * 
 		  FROM (
 		        SELECT 
@@ -64,19 +65,20 @@
 		             , A.*
 		          FROM (
 		                SELECT
-		                       INT_POST_NO
-		                     , USER_ID
+		                       I.INT_POST_NO
 		                     , POST_TITLE
 		                     , I.ENROLL_DATE 
 		                     , BOARD_VIEW 
 		                     , LIKE_COUNT
+		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
 		                  FROM TB_INFO_N_TIP I 
-		                  JOIN TB_USER U ON (U.USER_NO = I.USER_NO)
-		                 WHERE COMM_NO = 2
-		                   AND STATUS = 'N'
+		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
+		                 WHERE I.COMM_NO = 2
+		                   AND I.STATUS = 'N'
+		                   AND FILE_LEVEL = 1 
 		                 ORDER 
-		                     BY ENROLL_DATE DESC, 
-		                        INT_POST_NO DESC
+		                     BY I.ENROLL_DATE DESC, 
+		                        I.INT_POST_NO DESC
 		               ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
@@ -90,14 +92,14 @@
 	
 	
 	<!-- 전체게시판 -->
-	<entry key="infoMainSelectListCount">
+	<entry key="mainSelectListCount">
 		SELECT COUNT(*) LISTCOUNT 
 		  FROM TB_INFO_N_TIP
 		 WHERE COMM_NO = 3
 		   AND STATUS = 'N'
 	</entry>
 	
-	<entry key="infoMainSelectList">
+	<entry key="mainSelectThumbnailList">
 		SELECT * 
 		  FROM (
 		        SELECT 
@@ -105,20 +107,21 @@
 		             , A.*
 		          FROM (
 		                SELECT
-		                       INT_POST_NO
-		                     , USER_ID
+		                       I.INT_POST_NO
 		                     , CATEGORY_NAME
 		                     , POST_TITLE
 		                     , I.ENROLL_DATE 
 		                     , BOARD_VIEW 
 		                     , LIKE_COUNT
+		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
 		                  FROM TB_INFO_N_TIP I 
-		                  JOIN TB_USER U ON (U.USER_NO = I.USER_NO)
-		                 WHERE COMM_NO = 3
-		                   AND STATUS = 'N'
+		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
+		                 WHERE I.COMM_NO = 1
+		                   AND I.STATUS = 'N'
+		                   AND FILE_LEVEL = 1 
 		                 ORDER 
-		                     BY ENROLL_DATE DESC, 
-		                        INT_POST_NO DESC
+		                     BY I.ENROLL_DATE DESC, 
+		                        I.INT_POST_NO DESC
 		               ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?

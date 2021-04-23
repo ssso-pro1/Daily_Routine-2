@@ -59,14 +59,13 @@ public class InfoDao {
 		
 	}
 	
-	public ArrayList<Info> workoutSelectList(Connection conn, PageInfo pi) {
+	public ArrayList<Info> workoutSelectThumbnailList(Connection conn, PageInfo pi) {
 		// select문 
 		ArrayList<Info> list = new ArrayList<>(); 
-		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("workoutSelectList"); 
+		String sql = prop.getProperty("workoutSelectThumbnailList"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -76,13 +75,19 @@ public class InfoDao {
 			rset = pstmt.executeQuery(); 
 			 
 			while(rset.next()) {
-				list.add(new Info(rset.getInt("int_post_no"),
-					   	          rset.getString("user_id"),
-					   	          rset.getString("post_title"),
-					   	          rset.getDate("enroll_date"),
-					   	          rset.getInt("board_view"),
-					   	          rset.getInt("like_count"))); 
+				
+				Info i = new Info();
+				i.setIntPostNo(rset.getInt("int_post_no"));
+				i.setPostTitle(rset.getString("post_title"));
+				i.setEnrollDate(rset.getDate("enroll_date"));
+				i.setBoardView(rset.getInt("board_view"));
+				i.setLikeCount(rset.getInt("like_count"));
+				i.setTitleImg(rset.getString("titleimg"));
+				
+				list.add(i); 
+				
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -150,14 +155,13 @@ public class InfoDao {
 		
 	}
 	
-	public ArrayList<Info> menuSelectList(Connection conn, PageInfo pi) {
+	public ArrayList<Info> menuSelectThumbnailList(Connection conn, PageInfo pi) {
 		// select문 
 		ArrayList<Info> list = new ArrayList<>(); 
-		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("menuSelectList"); 
+		String sql = prop.getProperty("menuSelectThumbnailList"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -167,13 +171,19 @@ public class InfoDao {
 			rset = pstmt.executeQuery(); 
 			 
 			while(rset.next()) {
-				list.add(new Info(rset.getInt("int_post_no"),
-					   	          rset.getString("user_id"),
-					   	          rset.getString("post_title"),
-					   	          rset.getDate("enroll_date"),
-					   	          rset.getInt("board_view"),
-					   	          rset.getInt("like_count"))); 
+				
+				Info i = new Info();
+				i.setIntPostNo(rset.getInt("int_post_no"));
+				i.setPostTitle(rset.getString("post_title"));
+				i.setEnrollDate(rset.getDate("enroll_date"));
+				i.setBoardView(rset.getInt("board_view"));
+				i.setLikeCount(rset.getInt("like_count"));
+				i.setTitleImg(rset.getString("titleimg"));
+				
+				list.add(i); 
+				
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -196,15 +206,24 @@ public class InfoDao {
 	
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	// 전체 게시판 
-	public int infoMainSelectListCount(Connection conn) { 
+	public int mainSelectListCount(Connection conn) { 
 		// select문 
 		int listCount = 0; 
 		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("infoMainSelectListCount");
+		String sql = prop.getProperty("mainSelectListCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -224,14 +243,13 @@ public class InfoDao {
 		
 	}
 	
-	public ArrayList<Info> infoMainSelectList(Connection conn, PageInfo pi) {
+	public ArrayList<Info> mainSelectThumbnailList(Connection conn, PageInfo pi) {
 		// select문 
 		ArrayList<Info> list = new ArrayList<>(); 
-		
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
-		String sql = prop.getProperty("infoMainSelectList"); 
+		String sql = prop.getProperty("mainSelectThumbnailList"); 
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -241,14 +259,20 @@ public class InfoDao {
 			rset = pstmt.executeQuery(); 
 			 
 			while(rset.next()) {
-				list.add(new Info(rset.getInt("int_post_no"),
-					   	          rset.getString("user_id"),
-					   	          rset.getString("category_name"),
-					   	          rset.getString("post_title"),
-					   	          rset.getDate("enroll_date"),
-					   	          rset.getInt("board_view"),
-					   	          rset.getInt("like_count"))); 
+				
+				Info i = new Info();
+				i.setIntPostNo(rset.getInt("int_post_no"));
+				i.setPostTitle(rset.getString("category_name"));
+				i.setPostTitle(rset.getString("post_title"));
+				i.setEnrollDate(rset.getDate("enroll_date"));
+				i.setBoardView(rset.getInt("board_view"));
+				i.setLikeCount(rset.getInt("like_count"));
+				i.setTitleImg(rset.getString("titleimg"));
+				
+				list.add(i); 
+				
 			}
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -259,8 +283,6 @@ public class InfoDao {
 		return list; 
 			
 	}
-	
-	
 	
 	
 	

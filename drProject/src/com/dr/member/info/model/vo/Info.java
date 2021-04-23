@@ -17,6 +17,8 @@ public class Info {
 	private String status; 			// 삭제유무(Y/N)
 	private int commNo; 			// 게시판번호(1:운동/2:식단/3:전체)
 	
+	private String titleImg;		// 해당 게시글 대표이미지경로
+	
 	public Info(){}
 
 	public Info(int intPostNo, String userNo, int fileNo, String categoryName, String postContent, String postTitle,
@@ -36,25 +38,13 @@ public class Info {
 		this.commNo = commNo;
 	}
 	
-	public Info(int intPostNo, String userNo, String postTitle, Date enrollDate, int boardView, int likeCount) {
-		super();
-		this.intPostNo = intPostNo;
-		this.userNo = userNo;
-		this.postTitle = postTitle;
-		this.enrollDate = enrollDate;
-		this.boardView = boardView;
-		this.likeCount = likeCount;
-	}
 	
-	public Info(int intPostNo, String userNo, String categoryName, String postTitle, Date enrollDate, int boardView, int likeCount) {
-		super();
-		this.intPostNo = intPostNo;
-		this.userNo = userNo;
-		this.categoryName = categoryName;
-		this.postTitle = postTitle;
-		this.enrollDate = enrollDate;
-		this.boardView = boardView;
-		this.likeCount = likeCount;
+	public String getTitleImg() {
+		return titleImg;
+	}
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
 	}
 
 	public int getIntPostNo() {

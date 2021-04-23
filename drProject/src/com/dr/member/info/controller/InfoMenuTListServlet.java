@@ -17,13 +17,13 @@ import com.dr.member.info.model.vo.Info;
  * Servlet implementation class InfoMenuListServlet
  */
 @WebServlet("/menu.in")
-public class InfoMenuListServlet extends HttpServlet {
+public class InfoMenuTListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InfoMenuListServlet() {
+    public InfoMenuTListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -48,7 +48,7 @@ public class InfoMenuListServlet extends HttpServlet {
 						
 		String currentPageParam = request.getParameter("currentPage");
 						
-		if(currentPageParam!=null)	currentPage =  Integer.parseInt(currentPageParam);
+		if(currentPageParam!=null) currentPage = Integer.parseInt(currentPageParam);
 					 		
 		pageLimit = 10; // 페이징 바 10개 단위 
 		boardLimit = 6; // 한 페이지당 게시글 6개씩 
@@ -67,12 +67,12 @@ public class InfoMenuListServlet extends HttpServlet {
 		//System.out.println(pi);
 						
 		// 2. currentPage(현재 페이지)에 보여질 게시글 리스트 조회 
-		ArrayList<Info> list = new InfoService().menuSelectList(pi);
+		ArrayList<Info> list = new InfoService().menuSelectThumbnailList(pi);
 						
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 						
-		request.getRequestDispatcher("views/member/info/infoMenuListView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/member/info/infoMenuTListView.jsp").forward(request, response);
 	}
 
 	/**

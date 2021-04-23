@@ -157,7 +157,7 @@
                         	
                         	<input type="hidden" value="<%=i.getIntPostNo()%>">
                         	
-                            <img src="<%=contextPath%>" width="200" height="150">
+                            <img src="<%=contextPath%>/<%=i.getTitleImg()%>" width="200" height="150">
                             <p>
                                 <%=i.getPostTitle()%> <br>
                                 조회수 : <%=i.getBoardView()%> 좋아요 : <%=i.getLikeCount()%> <br>
@@ -169,6 +169,7 @@
                     </div><br>
                 </div>
 
+
 				<script>
 			        $(function() {
 	                	$(".thumbnail").click(function() {
@@ -177,6 +178,7 @@
 	                })
 		        </script>
 				<br><br>
+
 
 				<!-- 페이징 처리 -->
 		        <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
@@ -204,11 +206,6 @@
 				
                	 <br><br>
                	 
-                 <div align="right" class="btn">
-                     <!-- 관리자만 사용할 수 있는 버튼 -->
-                     <a href="<%=contextPath%>/workoutEnroll.in">글쓰기</a>
-                 </div><br><br>
-               
 
             </div>   
             

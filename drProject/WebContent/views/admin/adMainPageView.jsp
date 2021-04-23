@@ -112,18 +112,29 @@
 
             <span>
                 <!-- 로그인 전 -->
-                <i class="fas fa-user-circle"></i>
                 
-                <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
-                
-                <!-- <i class="fas fa-bars"></i> -->
-                <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a> <!-- 오븐에는 메뉴바로 돼있는데, 저희 왼쪽에 메뉴바가 있어서 홈으로 가는 기능으로 바꾸면 좋을 것 같아서 넣었어요!-->
-
-                <!-- 로그인 후
-                <div>admin01님</div> -->
+                   <i class="fas fa-user-circle"></i>
+                   
+                   <!-- 로그인 && 로그인한 아이디가 admin -->
+                    <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
+                        
+                            <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
+                        
+               
+                  <%} else {%>
+                        <div>
+                          <br><br>
+                           <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> 
+                          <b><%=loginUser.getUserName() %>님</b> DR에 오신 것을 환영합니다. 
+                         
+                         <!-- <i class="fas fa-bars"></i> -->
+                        
+                        </div>
+                     <% } %>
+                  
+                        <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a>
             </span>
         </div>
-
         <div id="content">
 
              <!--왼쪽 공통메뉴-->
@@ -138,7 +149,7 @@
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="">HomeTraining</a></div> 
+                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
                     <div><a href="">Info&Tip</a></div> 
                     <br>
                 </div>

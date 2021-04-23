@@ -20,23 +20,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ht게시글 리스트 조회</title>
     <style>
-        /*  */
+        table *{
+            text-align: center;
+        }
         /* #content_2{
             background:rgb(33, 33, 34);
         } */
-    #content2_2{
-            /* width:1000px; */
-            height:800px;
+        .outer{
+            width:800px;
+            height:auto;
             background:rgb(33, 33, 34);
             margin:auto;
-            margin-top:10px;
+            /* margin-top:10px; */
             /* padding-top:70px; */
         }
 
         .listArea{
-            width:760px;
-            margin:auto;
-            /* border:1px solid gray; */
+            border:1px solid gray;
             text-align:center;
             color:white;
         }
@@ -44,17 +44,6 @@
             background:gray;
             
             cursor:pointer;
-        }
-
-        .thumbnail{
-            /* border:1px solid white; */
-            width:220px;
-            display:inline-block;
-            margin:14px;
-        }
-        .thumbnail:hover{
-            cursor:pointer;
-            opacity:0.7;
         }
 
     </style>
@@ -68,85 +57,67 @@
         <!-- 상단 타이틀 -->
         <div id="content2_1">
             <h2>게시물 관리 > HomeTraining</h2>
-            <p>홈트레이닝 전체 조회입니다.</p>
-
         </div>
 
         <hr style="border:1px solid gray">
         <br><br>
 
-     
+     </div>
      <br><br>
 
-     <div id="content2_2">
+     <div class="outer">
         <!-- 관리자 로그인시 보여짐 (로그인 && 로그인한 사용자가 admin일 경우) -->
-        <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
+        
+        <% if(loginUser != null && loginUser.getUserId().equals("admin")){ %>
         
         <div align="right" style="width:750px">
+            
             <br><br>
-            <button>글작성</button>
             <a href="<%=contextPath%>/enrollForm.aus" class="btn btn-warning"></a>
         </div>
 
 		<% } %>
 
-        <div class="listArea" align="center">
-            <div class="thumbnail" align="center">
-                <img src="" width="200" height="150">
-                <p>
-                    글번호. 카테고리. 제목  <br>
-                    작성일. 조회수 <br>
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="200" height="150">
-                <p>
-                    글번호. 카테고리. 제목  <br>
-                    작성일. 조회수 <br>
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="200" height="150">
-                <p>
-                    글번호. 카테고리. 제목  <br>
-                    작성일. 조회수 <br>
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="200" height="150">
-                <p>
-                    글번호. 카테고리. 제목  <br>
-                    작성일. 조회수 <br>
-                </p>
-            </div>
-               
-                
-                <!-- 조회된 결과가 없을 경우 -->
-                <% if(list.isEmpty()){ %>
+        <table class="listArea" align="center">
+                <thead>
                     <tr>
-                        <td colspan="7"> 조회된 리스트가 없습니다. </td>
+                        <th width="60">글번호</th>
+                        <th width="70">카테고리</th>
+                        <th width="300">제목</th>
+                        <th width="100">작성자</th>
+                        <th width="100">작성일</th>
+                        <th width="100">수정일</th>
+                        <th width="60">조회수</th>
                     </tr>
-                <% } else { %>
+                </thead>
                 
-                <!-- 조회된 결과가 있을 경우 -->
-                
-                    <% for(AdHT a : list){ %>
-                
-                
-                        <tr>
-                            <td><%= a.getHtPostNo() %></td>
-                            <td><%= a.getCategoryName() %></td>
-                            <td><%= a.getHtPostTitle() %></td>
-                            <!-- <td><%= a.getUserNo() %></td> -->
-                            <td><%= a.getHtEnrollDate() %></td>
-                            <!-- <td><%= a.getHtUpdateDate() %></td> -->
-                            <td><%= a.getHtBoardView() %></td>
-                        </tr>
+                <tbody>
+              		<!-- 조회된 결과가 없을 경우 -->
+              		<% if(list.isEmpty()){ %>
+              			<tr>
+              				<td colspan="7"> 조회된 리스트가 없습니다. </td>
+              			</tr>
+              		<% } else { %>
+              		
+              		<!-- 조회된 결과가 있을 경우 -->
+              		
+              			<% for(AdHT a : list){ %>
+              		
+              		
+		                    <tr>
+		                        <td><%= a.getHtPostNo() %></td>
+								<td><%= a.getCategoryName() %></td>
+								<td><%= a.getHtPostTitle() %></td>
+								<td><%= a.getUserNo() %></td>
+								<td><%= a.getHtEnrollDate() %></td>
+								<td><%= a.getHtUpdateDate() %></td>
+								<td><%= a.getHtBoardView() %></td>
+		                    </tr>
+                    	<% } %>
+                    	
                     <% } %>
-                    
-                <% } %>
-              
-            </div>
+                </tbody>
+        </table>
          <br>
 
     <br>

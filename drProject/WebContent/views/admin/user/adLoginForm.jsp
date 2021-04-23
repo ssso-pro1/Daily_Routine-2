@@ -210,9 +210,9 @@
             
                 <div id="content_2_2">
                     <!-- 관리자 로그인 페이지 -->
-                    <form id="login-form" action="<%= request.getContextPath()%>/views/admin/adMainPageView.jsp">
-                        <input type="text" placeholder="관리자 아이디를 입력하세요">
-                        <input type="password" placeholder="비밀번호를 입력하세요">
+                    <form id="login-form" action="<%= request.getContextPath()%>/login.aus" method="post">
+                        <input name="userId" type="text" maxlength="20" minlength="5" placeholder="관리자 아이디를 입력하세요">
+                        <input name="userPwd" type="password" minlength="8" maxlength="16" placeholder="비밀번호를 입력하세요">
                         <input id="btn" type="submit" value="로그인">
                     </form>
                 </div>

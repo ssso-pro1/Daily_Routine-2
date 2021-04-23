@@ -39,7 +39,7 @@ public class AdLoginServlet extends HttpServlet {
 		
 		//System.out.println(userId);
 		//System.out.println(userPwd);
-		//null 출력됨... 일단 나머지 코드작성 후 나중에 해결하기
+		
 		
 		AdUser u = new AdUserService().loginUser(userId, userPwd);
 		
@@ -54,7 +54,11 @@ public class AdLoginServlet extends HttpServlet {
 			
 			session.setAttribute("loginUser", u);
 			
-			response.sendRedirect(request.getContextPath());
+			//response.sendRedirect(request.getContextPath());
+			
+			request.getRequestDispatcher("views/admin/adMainPageView.jsp").forward(request, response);
+
+			
 		}
 		
 	}

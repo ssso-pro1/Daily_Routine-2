@@ -133,16 +133,15 @@
                 <div id="content_2_2">
                     <div class="detailArea">
                         <table border="1" height="100%">
-                            <tr align="center">
-                                <td width="5%"><%=c.getCommPostNo()%></td>
-                                <td width="58%"><%=c.getPostTitle()%></td>
-                                <td width="10%"><%=c.getUserNo()%>님</td>
-                                <td width="15%"><%=c.getEnrollDate()%></td>
-                                <td width="12%">조회수 : <%=c.getBoardView()%></td>
+                            <tr align="center" height="40px;">
+                                <th width="55%"><%=c.getPostTitle()%></th>
+                                <th width="15%"><%=c.getUserNo()%>님</th>
+                                <th width="15%"><%=c.getEnrollDate()%></th>
+                                <th width="15%">조회수 : <%=c.getBoardView()%></th>
                             </tr>
-                            <tr>
-                                <td colspan="5" height="70%">
-                                     <p><%=c.getPostContent()%></p>
+                            <tr align="left">
+                                <td colspan="5" height="100%">
+                                     <p style="margin-bottom:250px;"><%=c.getPostContent()%></p>
                                 </td>
                             </tr>
                             <tr>
@@ -156,7 +155,7 @@
                             </tr>
                         </table><br>
                     </div>
-                </div><br>
+                </div><br><br><br><br><br>
 
                 <!-- 게시글 버튼 영역-->
                 <div class="buttonArea2" align="right">

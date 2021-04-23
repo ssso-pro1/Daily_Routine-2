@@ -11,8 +11,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
+<meta charset="UTF-8">	
+<title>커뮤니티 > 나만의운동팁 게시글 상세조회</title>
 <style>
     div{
         box-sizing:border-box
@@ -133,17 +133,16 @@
                 <div id="content_2_2">
                     <div class="detailArea">
                         <table border="1" height="100%">
-                            <tr align="center">
-                                <td width="5%"><%=c.getCommPostNo()%></td>
-                                <td width="12%"><%=c.getCategoryName()%></td>
-                                <td width="46%"><%=c.getPostTitle()%></td>
-                                <td width="10%"><%=c.getUserNo()%>님</td>
-                                <td width="15%"><%=c.getEnrollDate()%></td>
-                                <td width="12%">조회수 : <%=c.getBoardView()%></td>
+                            <tr align="center" height="40px;">
+                                <th width="10%"><%=c.getCategoryName()%></th>
+                                <th width="48%"><%=c.getPostTitle()%></th>
+                                <th width="10%"><%=c.getUserNo()%>님</th>
+                                <th width="15%"><%=c.getEnrollDate()%></th>
+                                <th width="12%">조회수 : <%=c.getBoardView()%></th>
                             </tr>
-                            <tr>
-                                <td colspan="6" height="70%">
-                                    <p><%=c.getPostContent()%></p>
+                            <tr align="left">
+                                <td colspan="6" height="100%">
+                                    <p style="margin-bottom:250px;"><%=c.getPostContent()%></p>
                                 </td>
                             </tr>
                             <tr>
@@ -157,7 +156,7 @@
                             </tr>
                         </table><br>
                     </div>
-                </div><br>
+                </div><br><br>
 
 
                 <!-- 게시글 버튼 영역-->

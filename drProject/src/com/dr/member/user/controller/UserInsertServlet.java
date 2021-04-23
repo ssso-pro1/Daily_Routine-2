@@ -38,7 +38,14 @@ public class UserInsertServlet extends HttpServlet {
 	      String userId = request.getParameter("userId");
 	      String userPwd = request.getParameter("userPwd");
 	      String userName = request.getParameter("userName");
-	      String birth = request.getParameter("birth");
+	      
+	      String[] birthArr = request.getParameterValues("birth");
+	      
+	      String birth = "";
+	      if(birthArr != null) {
+	    	  birth = String.join("", birthArr);
+	      }
+	      
 	      String gender = request.getParameter("gender");
 	      String email = request.getParameter("email");
 	      String phone = request.getParameter("phone");

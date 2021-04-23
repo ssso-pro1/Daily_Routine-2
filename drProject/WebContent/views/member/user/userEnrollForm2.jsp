@@ -5,8 +5,8 @@
 <html lang="en">
 <head>
     <!-- 유효성검사 resource -->
-    <link rel="stylesheet" type="text/javascript" href="../../../resources/js/userEnrollForm.js"/>
-
+    <!-- <link rel="script" type="text/javascript" href="../../../resources/js/userEnrollForm.js"/> -->
+    <!-- href="${pageContext.request.contextPath}/resources/js/userEnrollForm.js"> -->
 
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -65,19 +65,19 @@
         }
 
     
-    #enrollForm table{margin:auto; 
-        /*정 가운데로 옮김*/}
-    #enrollForm input{margin:5px;}
-     /*아래 위 서로 간격 띄움*/
+        #enrollForm table{margin:auto; 
+            /*정 가운데로 옮김*/}
+        #enrollForm input{margin:5px;}
+        /*아래 위 서로 간격 띄움*/
 
-    table th{
-        font-size:15px;
-    }
+        table th{
+            font-size:15px;
+        }
 
-    table td{
-        padding-bottom:10px;
-        font-size:12px;
-    }
+        table td{
+            padding-bottom:10px;
+            font-size:12px;
+        }
 
     </style>
 </head>
@@ -102,7 +102,7 @@
                 <!-- AJAX -->
                 <tr>
                     <th >아이디</th>
-                    <th><input type="text" name="userId" minlength="5" maxlength="30" required placeholder="아이디를 입력하세요">
+                    <th><input type="text" name="userId" id="userId" minlength="5" maxlength="30" required placeholder="아이디를 입력하세요">
                     </th>
                     <th><button type="button" onclick="idCheck();">중복확인</button></th>
                 </tr>
@@ -135,22 +135,22 @@
                 </tr>
                 <tr>
                     <th>생년월일</th>
-                    <th><input type="text" size="3" maxlength="4"> 년 &nbsp;
-                        <select name="month">
-                            <option value="1" selected>1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                            <option value="6">6</option>
-                            <option value="7">7</option>
-                            <option value="8">8</option>
-                            <option value="9">9</option>
+                    <th><input name="birth" type="text" size="3" maxlength="4"> 년 &nbsp;
+                        <select name="birth">
+                            <option value="1" selected>01</option>
+                            <option value="2">02</option>
+                            <option value="3">03</option>
+                            <option value="4">04</option>
+                            <option value="5">05</option>
+                            <option value="6">06</option>
+                            <option value="7">07</option>
+                            <option value="8">08</option>
+                            <option value="9">09</option>
                             <option value="10">10</option>
                             <option value="11">11</option>
                             <option value="12">12</option>
                         </select> 월 
-                        <input type="text" size="3" maxlength="2"> 일 &nbsp;</th>
+                        <input name="birth" type="text" size="3" maxlength="2"> 일 &nbsp;</th>
                 </tr>
                 <tr>
                     <th>성별</th>
@@ -182,6 +182,7 @@
                         <div class="btn">
                             <!-- 유효성검사 -->
                             <button type="submit" class="btn btn-warning" disabled onclick="return validate();">회원가입</button>
+                            <button type="reset" class="btn btn-secondary">취소</button>
                         </div>
                     </th>
                 </tr>
@@ -211,7 +212,7 @@
                 		if(confirm("사용가능한 아이디입니다. 정말로 사용하시겠습니까?")){
                 			
                 			//사용하겠다 =>더 이상 변경불가, 회원가입버튼 활성화
-                			$userId.attr("readonly", true);
+                			// $userId.attr("readonly", true);
                 			$("#enrollForm :submit").removeAttr("disabled"); 
                 			
                 		}else{
@@ -227,6 +228,64 @@
             })
             
     }
+
+
+        //유효성 검사
+        function validate(){
+                
+                // 유효성 검사 : 아이디, 비밀번호, 비밀번호 일치, 이름
+            
+                // input요소 객체들 가져다두기 (작성되어있는값 아님! input요소객체임!)
+                var userId = document.getElementById("userId");
+                var userPwd1 = document.getElementById("userPwd1");
+                var userPwd2 = document.getElementById("userPwd2");
+                var userName = document.getElementById("userName");
+            
+                // 1) 아이디 검사 (영문자,숫자로만 총 5~20글자로 이뤄져야만 하고 단, 첫글자는 영문자(소문자 한글자)로.)
+                var regExp = /^[a-z][a-z\d]{4,19}$/;
+                if(!regExp.test(userId.value)) { //userId는 요소객체이기 때문에 value붙여야함
+                    alert("유효한 아이디를 입력하세요");
+            
+                    userId.value = "";
+                    userId.focus();   //입력칸에 깜빡깜빡 focus감(입력유도)
+            
+                    return false; //틀리면 넘어가지 않게.
+                }
+            
+                // 2) 비밀번호 검사 (영문자,숫자,특수문자(!@#$%^&*) 포함 총 8자~15자 입력되게)
+                regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
+                if(!regExp.test(userPwd1.value)){
+                    alert("유효한 비번 입력하세요.");
+            
+                    userPwd1.value = ""; //기존값 초기화시키고, 포커스 가게
+                    userPwd1.focus();
+            
+                    return false;
+                }
+            
+                // 3) 비밀번호 일치 검사
+                if(userPwd1.value != userPwd2.value){
+                    alert("동일한 비밀번호를 입력하세요");
+            
+                    userPwd2.select(); //입력한 비번내용이 파랗게 선택됨.
+                    return false;
+                }
+                
+                // 4) 이름 검사 (한글(결합)로만, 2글자 이상)
+                regExp = /^[가-힣]{2,}$/; //{2} : 그냥 2글자
+                if(!regExp.test(userName.value)){
+                    alert("유효한 이름을 입력하세요");
+            
+                    userName.value = "";
+                    userName.focus();
+            
+                    return false;
+                }
+            
+            
+                
+            }
+            
     
 
 

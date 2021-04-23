@@ -144,7 +144,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" height="500">
-                                                <textarea name="content" rows="20" style="resize:none" required><%=c.getPostContent()%></textarea>   
+                                                <textarea name="qContent" rows="20" style="resize:none" required><%=c.getPostContent()%></textarea>   
                                             </td>
                                         </tr>
                                     </table>

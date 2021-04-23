@@ -135,7 +135,7 @@
                                                 </script>
                                             </td>
                                             <td width="800" height="30">
-                                                <input type="text" name="title" value="<%=c.getPostTitle()%>" required>
+                                                <input type="text" name="title" id="title" value="<%=c.getPostTitle()%>" required>
                                             </td> 
                                         </tr>
                                         <tr>
@@ -159,7 +159,7 @@
                                         </tr>
                                         <tr>
                                             <td colspan="2" height="500">
-                                                <textarea name="content" rows="20" style="resize:none" required><%=c.getPostContent()%></textarea>   
+                                                <textarea name="tContent" id="tContent" rows="20" style="resize:none" required><%=c.getPostContent()%></textarea>   
                                             </td>
                                         </tr>
                                     </table>
@@ -167,9 +167,50 @@
                             </table><br><br>
                             
                             <div align="right" class="updateArea">
-			                   	<button type="submit">등록</button>
+			                   	<button type="submit" onclick="return validate();">등록</button>
 			               	</div>
 			               	
+			               	
+			               	<script>
+			               	
+			               		function validate() {
+			               			
+			               			var title = document.getElementById("title");
+                            		var tContent = document.getElementById("tContent"); 
+                            		
+                            		var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+                            		
+                            		
+                            		if(!regExp.test(title.value)){
+                                		alert("제목을 입력해주세요");
+                                	
+                                		title.value="";
+                                		title.focus();
+                                		
+                                		return false;
+                                	}
+                            			
+                            		if(!regExp.test(tContent.value)){ 
+                                		alert("내용을 입력해주세요");
+                                	
+                                		tContent.value="";
+                                		tContent.focus();
+                                		
+                                		return false;
+                                	}	
+                            		
+                            		var result = confirm("게시글 수정을 완료하시겠습니까?");
+                                	if(result){
+                                		
+                                		
+                                	} else {
+                                		alert("게시글 수정이 취소되었습니다");
+                                		return false;
+                                	}
+			               		}
+			               	
+			               	
+			               	</script>
                         </form>
                         
                     </div>

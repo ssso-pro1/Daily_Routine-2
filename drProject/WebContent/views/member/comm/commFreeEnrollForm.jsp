@@ -121,8 +121,7 @@
                                                         <input type="file" name="upfile" id="upfile" style="cursor:pointer;">
                                                     </td>
                                                     <td>
-                                                    	<!--  버튼 클릭 시 파일 삭제 -->
-                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
+                                                        <button onclick="delete();" value="deleteBtn" id="deleteBtn" style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
                                                     </td>
                                                 </tr>
                                             </table><br>
@@ -158,8 +157,8 @@
                                     	}
                         			}
                                 	
-                                    // 유효성 검사 
-                                	function validate() {
+                                // 유효성 검사 
+                               	 	function validate() {
                                 		
                                 		var title = document.getElementById("title");
                                 		var fContent = document.getElementById("fContent"); 
@@ -195,6 +194,14 @@
                                     	}
                                 		
                                 	}
+                                
+                                // 버튼 클릭 시 파일 삭제 
+                                	
+                                
+                                    
+                                   
+                                    
+                                    
                  		    	
                  		    </script>
                  		    

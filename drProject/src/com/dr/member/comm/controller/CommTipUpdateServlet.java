@@ -55,7 +55,7 @@ public class CommTipUpdateServlet extends HttpServlet {
 			int commPostNo = Integer.parseInt(multiRequest.getParameter("cno"));
 			String categoryName = multiRequest.getParameter("category"); 
 			String postTitle = multiRequest.getParameter("title");
-			String postContent = multiRequest.getParameter("content"); 
+			String postContent = multiRequest.getParameter("tContent"); 
 			
 			Comm c = new Comm();
 			c.setCommPostNo(commPostNo);

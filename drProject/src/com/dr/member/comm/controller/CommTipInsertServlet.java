@@ -61,7 +61,7 @@ public class CommTipInsertServlet extends HttpServlet {
 			// 3_1. Comm 테이블에 insert 할 카테고리번호, 게시판제목, 게시판내용, 작성자회원번호를 Comm 객체에 담기 
 			String category = multiRequest.getParameter("category"); 
 			String commTitle = multiRequest.getParameter("title"); 
-			String commContent = multiRequest.getParameter("content");
+			String commContent = multiRequest.getParameter("tContent");
 			String userNo = multiRequest.getParameter("userNo"); 
 			
 			Comm c = new Comm();

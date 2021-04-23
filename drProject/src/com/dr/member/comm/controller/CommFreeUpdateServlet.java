@@ -52,7 +52,7 @@ public class CommFreeUpdateServlet extends HttpServlet {
 			// 3_1. 첨부파일과 무관하게 Comm 테이블에 Update할 값 뽑기 
 			int commPostNo = Integer.parseInt(multiRequest.getParameter("cno"));
 			String postTitle = multiRequest.getParameter("title");
-			String postContent = multiRequest.getParameter("content"); 
+			String postContent = multiRequest.getParameter("fContent"); 
 			
 			Comm c = new Comm();
 			c.setCommPostNo(commPostNo);

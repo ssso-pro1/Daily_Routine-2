@@ -54,7 +54,7 @@ public class CommFreeInsertServlet extends HttpServlet {
 			// 3. 요청 시 전달된 값 뽑아서 vo에 담기
 			// 3_1. Comm 테이블에 insert 할 게시판제목, 게시판내용, 작성자회원번호를 Comm 객체에 담기 
 			String commTitle = multiRequest.getParameter("title"); 
-			String commContent = multiRequest.getParameter("content");
+			String commContent = multiRequest.getParameter("fContent");
 			String userNo = multiRequest.getParameter("userNo"); 
 			
 			Comm c = new Comm();

@@ -204,8 +204,8 @@
 			                   		<option name="searchQCtg" value="내용">내용</option>
 			                 	</select>
 	                         	<input type="text" name="searchQText">
-		                   	 	<button type="submit">검색</button>
-		                  	 	<a href="<%=contextPath%>/qEnroll.co">글쓰기</a>
+		                   	 	<button type="submit" class="fas fa-search"></button>
+		                  	 	<a href="<%=contextPath%>/qEnroll.co" class="fas fa-pencil-alt"> 글쓰기</a>
 		              		</form>
 		             	</div><br><br>
    

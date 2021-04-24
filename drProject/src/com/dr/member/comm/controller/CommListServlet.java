@@ -8,10 +8,12 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.comm.model.service.CommService;
 import com.dr.member.comm.model.vo.Comm;
+import com.dr.member.user.model.vo.User;
 
 /**
  * Servlet implementation class CommListServlet
@@ -33,6 +35,12 @@ public class CommListServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
+		User loginUser = (User)session.getAttribute("loginUser");
+		
+		if(loginUser != null) { 
+			
+			
 		// 페이징 처리 
 		int listCount; 			
 		int currentPage = 1;		
@@ -80,6 +88,13 @@ public class CommListServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("views/member/comm/commMainTipListView.jsp").forward(request, response);
+		
+		
+		} else {
+			
+			request.getSession().setAttribute("alertMsg", "회원만 이용 가능한 서비스입니다. 로그인 후 이용 부탁드립니다.");
+			response.sendRedirect(request.getContextPath()+"/loginForm.us");
+		}
 		
 	}
 

@@ -620,8 +620,7 @@ public class CenterDao {
 				while(rset.next()) {
 					list.add(new CenterNotice(rset.getInt("notice_no"),
 							                   rset.getString("notice_title"),
-								               rset.getString("notice_content"),
-											   rset.getDate("create_date"),
+								               rset.getDate("create_date"),
 											   rset.getInt("notice_count")));
 						}		
 					} catch (SQLException e) {
@@ -647,8 +646,7 @@ public class CenterDao {
 				while(rset.next()) {
 					list.add(new CenterNotice(rset.getInt("notice_no"),
 							                   rset.getString("notice_title"),
-								               rset.getString("notice_content"),
-											   rset.getDate("create_date"),
+								               rset.getDate("create_date"),
 											   rset.getInt("notice_count")));
 						}		
 					} catch (SQLException e) {

@@ -200,12 +200,16 @@
                     </table>
              
              		<script>
+             		<% if(list.isEmpty()) { %>
+         			//클릭x
+             		<% } else { %>
 				    	$(function(){
 							$(".listArea>tbody>tr").click(function(){
 								location.href = '<%=contextPath%>/noticeDetail.ct?nno=' + $(this).children().eq(0).text();			
 								
 							})
 				    	})
+				    <% } %>	
 				    </script>
              
              
@@ -247,7 +251,7 @@
                                 <option name="searchNoticeCtg" value="내용">내용</option>
                             </select>  
                             <input type="text" name="searchNoticeText">
-                            <button type="submit">검색</button> 
+                            <button type="submit" >검색</button> 
              
                         </form>
              

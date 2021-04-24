@@ -275,7 +275,10 @@
             					<% for (adCenterFaq n:searchList) { %>
                          
                             <tr>
-                                <th><input type="checkbox"></th>
+                                <th>
+	                                <input type="checkbox" name="fno" id="fno" value="<%=n.getFaqNo() %>">
+	                                <input type="hidden" name="ctg" value="<%= n.getFaqCategory() %>">
+                                </th>
                                 <td><%= n.getFaqNo() %></td>
                                 <td>
                                 	<% if(n.getFaqCategory().equals("top")) { %>
@@ -302,33 +305,43 @@
                     </table>
              
              		<script>
+             		<% if(searchList.isEmpty()) { %>
+         			//클릭x
+             		<% } else { %>
 				    	$(function(){
 							$(".listArea>tbody>tr>td").click(function(){
 								location.href = '<%=contextPath%>/ctFaqDetail.ad?fno=' + $(this).siblings().eq(1).text();			
 								
 							})
 				    	})
+				    <% } %>	
 				    </script>
              
                     <br><br>
                     
                     
-                   
-                    
-					 	
-                    
-                    <div align="center" class="buttonArea">
-                    <br>
-                    <button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                   <div align="center" class="buttonArea">
+                    	<br><br>
+                    	<% if(searchList.isEmpty() ) { %>
+                    	
+                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
                             
-                            
-                    <button type="submit">선택 삭제</button>
+
+                        
+                        
+                        <% } else { %>
+                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                       		<button type="submit"  onclick="return check();">선택 삭제</button> 
+                       	    <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
+                       	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
+                        <% } %>
+                        
+                    </div>
+
+					</form> 
+				</div>
 				
-                </form>	
-                </div>
-                    
-
-
+				
                     <!-- 페이징처리 10개씩 -->
                 <div align="center" class="pagingArea">
 
@@ -362,28 +375,74 @@
 
 
 
-                <br><br>
-             	<!-- 검색부분-->
+                <!-- 검색부분-->
+                    <br><br>
+                    	<div class="searchArea" align="center">
+		                    <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
+		                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
+		                        <button type="submit">검색</button>
+		                    </form>
+		                </div>
+					 	
+                    	
+                    	
+            	</div>         
                     
-                <div class="searchArea" align="center">
-		            <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
-		                <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
-		                <button type="submit">검색</button>
-		            </form>
-		        </div>
-               
+                    	<script>
+                    	//체크박스 선택안하고 삭제누르면 알람띄우기
+                    	function check(){
+	                 		
+                    		if($("input:checkbox[id='fno']").is(":checked") == true) {
+	                 				var result = confirm("선택한 FAQ 글을 완전히 삭제 하시겠습니까?");
+		                 			if(result){
+		                            		
+		                            		
+		                            } else {
+		                            	alert("삭제가 취소되었습니다");
+		                            		return false;
+		                            }
+		                 				
+	                 				
+	                 			} else {
+	                 				alert("게시글을 선택해주세요");
+	                 				return false;
+	                 			}
+	                 			
+	                 			
+			                	
+	                 			
+	                 		}
 
-			</div>    
+						</script>   
 
+
+
+
+
+
+
+
+
+    
+                    
+                    
+                    
+                    
+                    
+                    
+                 
+                 		
+           	    
+			
             
 
         </div>
 
-</div>
+
 
 
 
 
 
 </body>
-</html></html>
+</html>

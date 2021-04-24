@@ -207,12 +207,16 @@
                     </table>
              
              		<script>
+             		<% if(list.isEmpty()) { %>
+         			//클릭x
+             		<% } else { %>
 				    	$(function(){
 							$(".listArea>tbody>tr").click(function(){
 								location.href = '<%=contextPath%>/noticeDetail.ct?nno=' + $(this).children().eq(0).text();			
 								
 							})
 				    	})
+				    <% } %>	
 				    </script>
              
              

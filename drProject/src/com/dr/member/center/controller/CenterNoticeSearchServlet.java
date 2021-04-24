@@ -79,7 +79,7 @@ public class CenterNoticeSearchServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		ArrayList<adCenterNotice> list = new adCenterService().searchNoticeList(pi, searchNoticeCtg, searchNoticeText);
+		ArrayList<CenterNotice> list = new CenterService().searchNoticeList(pi, searchNoticeCtg, searchNoticeText);
 		
 		
 		request.setAttribute("list", list);
@@ -90,7 +90,7 @@ public class CenterNoticeSearchServlet extends HttpServlet {
 		request.setAttribute("searchNoticeText", searchNoticeText);
 		request.setAttribute("searchNoticeCtg", searchNoticeCtg);
 		
-		request.getRequestDispatcher("views/member/center/CenterNoticeSearchList.jsp").forward(request, response);
+		request.getRequestDispatcher("views/member/center/centerNoticeSearchList.jsp").forward(request, response);
 		
 		
 		

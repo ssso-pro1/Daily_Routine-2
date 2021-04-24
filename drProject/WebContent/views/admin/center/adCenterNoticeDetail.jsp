@@ -209,6 +209,18 @@
                 <hr style="border:1px solid rgb(145, 144, 144)">
 
 
+			<!-- 알러트 전달했을때 뜨게하기/ 메뉴바에 포함되어있으면 지워버리기! -->
+			<script>
+			
+			var msg = "<%=session.getAttribute("alertMsg")%>";
+
+		    if(msg != "null"){
+		        alert(msg);
+		        <% session.removeAttribute("alertMsg"); %>
+		    }
+			
+			
+			</script>
 
 
 

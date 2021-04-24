@@ -222,6 +222,7 @@
                 <div id="faqUpdate">
                     <form action="<%=contextPath %>/ctFaqUpdate.ad" method="post" id="updateForm">
                     <input type="hidden" name="fno" value="<%=f.getFaqNo()%>">
+                    <input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
                         <table border="1" align="center">
                             <tbody>
                                 <tr>

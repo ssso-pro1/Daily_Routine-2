@@ -210,7 +210,21 @@
 
 
 
-            <!--1:1문의 관리-->
+
+			<!-- 알러트 전달했을때 뜨게하기/ 메뉴바에 포함되어있으면 지워버리기! -->
+			<script>
+			
+			var msg = "<%=session.getAttribute("alertMsg")%>";
+
+		    if(msg != "null"){
+		        alert(msg);
+		        <% session.removeAttribute("alertMsg"); %>
+		    }
+			
+			
+			</script>
+			
+			<!--1:1문의 관리-->
             <div id="content_2_3">    
                 <p style="font-size: 20px; color: white; font-weight: 1000;">1:1문의 관리 > 문의내역 (답변/수정/삭제)</p>
             </div>
@@ -417,7 +431,7 @@
                                     	
                                     	var result = confirm("답변을 등록/수정 하시겠습니까?");
                                     	if(result){
-                                    		alert("답변이 등록/수정 되었습니다");
+                                    		//alert("답변이 등록/수정 되었습니다");
                                     		
                                     	} else {
                                     		alert("취소되었습니다");

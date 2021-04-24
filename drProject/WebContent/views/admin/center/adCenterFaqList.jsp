@@ -212,7 +212,18 @@
 
                 <hr style="border:1px solid rgb(145, 144, 144)">
 
+			<!-- 알러트 전달했을때 뜨게하기/ 메뉴바에 포함되어있으면 지워버리기! -->
+			<script>
+			
+			var msg = "<%=session.getAttribute("alertMsg")%>";
 
+		    if(msg != "null"){
+		        alert(msg);
+		        <% session.removeAttribute("alertMsg"); %>
+		    }
+			
+			
+			</script>
 
 
 
@@ -294,17 +305,21 @@
                     </table>
              
              		<script>
+             		<% if(list.isEmpty()) { %>
+         			//클릭x
+             		<% } else { %>
 				    	$(function(){
 							$(".listArea>tbody>tr>td").click(function(){
 								location.href = '<%=contextPath%>/ctFaqDetail.ad?fno=' + $(this).siblings().eq(1).text();			
 								
 							})
 				    	})
+				    <% } %>	
 				    </script>
              
                     <br><br>
                     
-                    <!-- 페이징처리 10개씩 -->
+                    
                    
                     
               
@@ -371,20 +386,29 @@
             </div>         
                     
                     	<script>
-	                 		function check(){
+                    	//체크박스 선택안하고 삭제누르면 알람띄우기
+                    	function check(){
+	                 		
+                    		if($("input:checkbox[id='fno']").is(":checked") == true) {
+	                 				var result = confirm("선택한 FAQ 글을 완전히 삭제 하시겠습니까?");
+		                 			if(result){
+		                            		
+		                            		
+		                            } else {
+		                            	alert("삭제가 취소되었습니다");
+		                            		return false;
+		                            }
+		                 				
+	                 				
+	                 			} else {
+	                 				alert("게시글을 선택해주세요");
+	                 				return false;
+	                 			}
 	                 			
-	                 			var result = confirm("선택한 FAQ 글을 완전히 삭제 하시겠습니까?");
+	                 			
 			                	
-	                 			if(result){
-	                            		
-	                            		
-	                            } else {
-	                            	alert("삭제가 취소되었습니다");
-	                            		return false;
-	                            }
 	                 			
 	                 		}
-
 
 						</script>   
 

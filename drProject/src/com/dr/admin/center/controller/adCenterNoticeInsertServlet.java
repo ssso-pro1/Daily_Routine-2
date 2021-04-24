@@ -103,7 +103,7 @@ public class adCenterNoticeInsertServlet extends HttpServlet {
 			
 			if(result > 0) { //  성공 => list.bo?currentPage=1 url재요청 => 게시판 리스트 페이지
 				
-				//request.getSession().setAttribute("alertMsg", "게시글 등록성공!!");
+				request.getSession().setAttribute("alertMsg", "게시글 등록에 성공했습니다");
 				response.sendRedirect(request.getContextPath()+ "/ctNotice.ad?currentPage=1");
 				
 			} else { // 실패

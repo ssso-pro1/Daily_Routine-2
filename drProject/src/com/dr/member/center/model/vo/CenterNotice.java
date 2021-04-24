@@ -31,15 +31,39 @@ public class CenterNotice {
 	}
 	
 	
-
-	
-	
 	
 	
 
 	
+	
+	
+	
+
+	
 
 
+
+	public CenterNotice(int noticeNo, String noticeTitle, Date createDate, int noticeCount) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.createDate = createDate;
+		this.noticeCount = noticeCount;
+	}
+
+	public CenterNotice(int noticeNo, int userNo, String noticeTitle, String noticeContent, int noticeCount,
+			Date createDate, Date updateDate, String status, String userId) {
+		super();
+		this.noticeNo = noticeNo;
+		this.userNo = userNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.noticeCount = noticeCount;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.status = status;
+		this.userId = userId;
+	}
 
 	public CenterNotice(int noticeNo, String noticeTitle, String status) {
 		super();
@@ -187,6 +211,9 @@ public class CenterNotice {
 				+ ", noticeContent=" + noticeContent + ", noticeCount=" + noticeCount + ", createDate=" + createDate
 				+ ", updateDate=" + updateDate + ", status=" + status + ", userId=" + userId + "]";
 	}
+
+	
+	
 
 	
 	

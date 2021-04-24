@@ -218,12 +218,15 @@
                 	<p>공지사항이 없습니다</p>
                 	
                 	<% } else { %>
-                		<% for(int i=0; i<3; i++) { %> <!-- 글이 3개 이상 있어야지만 나온다...흠.. -->
+                		<% for(int i=0; i<3; i++) { %> <!-- 글이 3개 이상 있어야지만 나온다...흠.. / 눌렀을때 슬라이드로 아니고 그냥 공지사항 디테일뷰로 이동하도록 수정!-->
 		                    <div class="noticeList">
+		                    <a href="<%= contextPath%>/noticeDetail.ct?nno=<%=list.get(i).getNoticeNo() %>">
 		                        <label id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>
 		                        <label style="float: right;" id="noticeDate"><%=list.get(i).getCreateDate() %></label>
-		                    </div>
-		                        <p class="noticeContent"><%= list.get(i).getNoticeContent() %></p>
+		                        <!--  <p class="noticeContent"><%= list.get(i).getNoticeContent() %></p>-->
+		                   	</a>
+		                   </div>
+		                       
 		                 <% } %>       
 					<% } %>
 
@@ -237,6 +240,7 @@
 
                 </div>  
                 
+                <!--  
                 <script>
                     $(function(){
                         $(".noticeList").click(function(){
@@ -255,7 +259,7 @@
                         })
                     })
                 </script>
-                
+                -->
 
             </div>
 

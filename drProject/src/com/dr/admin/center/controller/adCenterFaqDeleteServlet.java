@@ -39,7 +39,7 @@ public class adCenterFaqDeleteServlet extends HttpServlet {
 		if(result > 0) { // 삭제성공 (테이블에서 완전삭제해버림)
 					
 					
-			//request.getSession().setAttribute("alertMsg", "게시글이 삭제되었습니다");
+			request.getSession().setAttribute("alertMsg", "게시글이 삭제되었습니다");
 					
 			request.setCharacterEncoding("utf-8");
 			String ctg = request.getParameter("ctg");

@@ -176,7 +176,7 @@
                         </tr>
                         <tr>
                             <th>글내용</th>
-                            <td colspan="3"><textarea name="" id="" cols="50" rows="20" style="resize: none;" readonly><%=n.getNoticeContent() %></textarea></td>
+                            <td colspan="3"><div><%=n.getNoticeContent() %></div></td>
                         </tr>
                         
                         

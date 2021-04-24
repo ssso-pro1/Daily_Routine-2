@@ -58,7 +58,7 @@ public class adCenterFaqInsertServlet extends HttpServlet {
 			request.setCharacterEncoding("utf-8");
 			String ctg = request.getParameter("fCategory");
 			
-			//request.getSession().setAttribute("alertMsg", "FAQ 등록에 성공했습니다");
+			request.getSession().setAttribute("alertMsg", "FAQ 등록에 성공했습니다");
 			response.sendRedirect(request.getContextPath()+"/ctFaqList.ad?currentPage=1&ctg="+ctg); // 자기가 등록한 글있는 카테고리목록 보여지게 => 영어로만 값넘어감 ㅠㅠ 나중에 고쳐보자
 			
 		

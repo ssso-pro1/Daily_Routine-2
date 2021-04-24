@@ -184,6 +184,100 @@
 	</entry>
 	
 	
+	<!-- 나만의운동팁 검색 / 상태값을 다 뽑을 것! -->
+	
+	<entry key="searchTipTitleCount">
+		SELECT COUNT(*) LISTCOUNT
+		FROM TB_COMMUNITY 
+		WHERE POST_TITLE LIKE '%'||?||'%'
+		  AND COMM_NO = 1 
+	</entry>
+	
+	<entry key="searchTipContentCount">
+		SELECT COUNT(*) LISTCOUNT
+		FROM TB_COMMUNITY 
+		WHERE POST_CONTENT LIKE '%'||?||'%'
+		  AND COMM_NO = 1 
+	</entry>
+	
+	<entry key="searchTipTitle">
+		SELECT *
+			  FROM (
+			        SELECT
+			               ROWNUM RNUM
+			             , A.*
+			          FROM (
+			                 SELECT
+			                        COMM_POST_NO
+			                      , USER_ID
+			                      , FILE_NO
+			                      , CATEGORY_NAME
+			                      , POST_CONTENT
+			                      , POST_TITLE
+			                      , C.ENROLL_DATE
+			                      , UPDATE_DATE
+			                      , BOARD_VIEW 
+			                      , STATUS 
+			                      , ADMIN_NOTICE
+			                      , COMM_NO
+			                   FROM TB_COMMUNITY C 
+			                   JOIN TB_USER USING(USER_NO)
+			                  WHERE C.POST_TITLE LIKE '%'||?||'%'
+			                    AND COMM_NO = 1 
+			                  ORDER
+			                     BY C.ENROLL_DATE DESC
+			               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="searchTipContent">
+		SELECT *
+			  FROM (
+			        SELECT
+			               ROWNUM RNUM
+			             , A.*
+			          FROM (
+			                 SELECT
+			                        COMM_POST_NO
+			                      , USER_ID
+			                      , FILE_NO
+			                      , CATEGORY_NAME
+			                      , POST_CONTENT
+			                      , POST_TITLE
+			                      , C.ENROLL_DATE
+			                      , UPDATE_DATE
+			                      , BOARD_VIEW 
+			                      , STATUS 
+			                      , ADMIN_NOTICE
+			                      , COMM_NO
+			                   FROM TB_COMMUNITY C
+			                   JOIN TB_USER USING(USER_NO)
+			                  WHERE C.POST_CONTENT LIKE '%'||?||'%'
+			                    AND COMM_NO = 1 
+			                  ORDER
+			                     BY C.ENROLL_DATE DESC
+			               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	<!-- 자유 게시판 -->
 	<entry key="freeSelectListCount">
 		SELECT COUNT(*) LISTCOUNT 
@@ -345,17 +439,101 @@
 		   AND COMM_NO = 2    			      
 	</entry>
 	
-	<entry key="">
-		
+	
+	
+	
+	
+	<!-- 자유게시판 검색 / 상태값을 다 뽑을 것! -->
+	
+	<entry key="searchFreeTitleCount">
+		SELECT COUNT(*) LISTCOUNT
+		FROM TB_COMMUNITY 
+		WHERE POST_TITLE LIKE '%'||?||'%'
+		  AND COMM_NO = 2 
 	</entry>
 	
-	<entry key="">
-		
+	<entry key="searchFreeContentCount">
+		SELECT COUNT(*) LISTCOUNT
+		FROM TB_COMMUNITY 
+		WHERE POST_CONTENT LIKE '%'||?||'%'
+		  AND COMM_NO = 2 
 	</entry>
 	
-	<entry key="">
-		
+	<entry key="searchFreeTitle">
+		SELECT *
+			  FROM (
+			        SELECT
+			               ROWNUM RNUM
+			             , A.*
+			          FROM (
+			                 SELECT
+			                        COMM_POST_NO
+			                      , USER_ID
+			                      , FILE_NO
+			                      , CATEGORY_NAME
+			                      , POST_CONTENT
+			                      , POST_TITLE
+			                      , C.ENROLL_DATE
+			                      , UPDATE_DATE
+			                      , BOARD_VIEW 
+			                      , STATUS 
+			                      , ADMIN_NOTICE
+			                      , COMM_NO
+			                   FROM TB_COMMUNITY C 
+			                   JOIN TB_USER USING(USER_NO)
+			                  WHERE C.POST_TITLE LIKE '%'||?||'%'
+			                    AND COMM_NO = 2 
+			                  ORDER
+			                     BY C.ENROLL_DATE DESC
+			               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	
+	<entry key="searchFreeContent">
+		SELECT *
+			  FROM (
+			        SELECT
+			               ROWNUM RNUM
+			             , A.*
+			          FROM (
+			                 SELECT
+			                        COMM_POST_NO
+			                      , USER_ID
+			                      , FILE_NO
+			                      , CATEGORY_NAME
+			                      , POST_CONTENT
+			                      , POST_TITLE
+			                      , C.ENROLL_DATE
+			                      , UPDATE_DATE
+			                      , BOARD_VIEW 
+			                      , STATUS 
+			                      , ADMIN_NOTICE
+			                      , COMM_NO
+			                   FROM TB_COMMUNITY C
+			                   JOIN TB_USER USING(USER_NO)
+			                  WHERE C.POST_CONTENT LIKE '%'||?||'%'
+			                    AND COMM_NO = 2 
+			                  ORDER
+			                     BY C.ENROLL_DATE DESC
+			               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<!-- 질문 게시판  -->
@@ -520,8 +698,82 @@
 	</entry>   
 		
 	
-	<entry key="">
-		
+	<!-- 질문게시판 검색 / 상태값을 다 뽑을 것! -->
+	
+	<entry key="searchQTitleCount">
+		SELECT COUNT(*) LISTCOUNT
+		FROM TB_COMMUNITY 
+		WHERE POST_TITLE LIKE '%'||?||'%'
+		  AND COMM_NO = 3 
+	</entry>
+	
+	<entry key="searchQContentCount">
+		SELECT COUNT(*) LISTCOUNT
+		FROM TB_COMMUNITY 
+		WHERE POST_CONTENT LIKE '%'||?||'%'
+		  AND COMM_NO = 3 
+	</entry>
+	
+	<entry key="searchQTitle">
+		SELECT *
+			  FROM (
+			        SELECT
+			               ROWNUM RNUM
+			             , A.*
+			          FROM (
+			                 SELECT
+			                        COMM_POST_NO
+			                      , USER_ID
+			                      , FILE_NO
+			                      , CATEGORY_NAME
+			                      , POST_CONTENT
+			                      , POST_TITLE
+			                      , C.ENROLL_DATE
+			                      , UPDATE_DATE
+			                      , BOARD_VIEW 
+			                      , STATUS 
+			                      , ADMIN_NOTICE
+			                      , COMM_NO
+			                   FROM TB_COMMUNITY C 
+			                   JOIN TB_USER USING(USER_NO)
+			                  WHERE C.POST_TITLE LIKE '%'||?||'%'
+			                    AND COMM_NO = 3 
+			                  ORDER
+			                     BY C.ENROLL_DATE DESC
+			               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="searchQContent">
+		SELECT *
+			  FROM (
+			        SELECT
+			               ROWNUM RNUM
+			             , A.*
+			          FROM (
+			                 SELECT
+			                        COMM_POST_NO
+			                      , USER_ID
+			                      , FILE_NO
+			                      , CATEGORY_NAME
+			                      , POST_CONTENT
+			                      , POST_TITLE
+			                      , C.ENROLL_DATE
+			                      , UPDATE_DATE
+			                      , BOARD_VIEW 
+			                      , STATUS 
+			                      , ADMIN_NOTICE
+			                      , COMM_NO
+			                   FROM TB_COMMUNITY C
+			                   JOIN TB_USER USING(USER_NO)
+			                  WHERE C.POST_CONTENT LIKE '%'||?||'%'
+			                    AND COMM_NO = 3
+			                  ORDER
+			                     BY C.ENROLL_DATE DESC
+			               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
 	<entry key="">
@@ -536,9 +788,9 @@
 		
 	</entry>
 	
-	
-	
-	
+	<entry key="">
+		
+	</entry>
 	
 	
 </properties>

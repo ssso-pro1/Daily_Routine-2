@@ -6,6 +6,9 @@
 	PageInfo pi = (PageInfo)request.getAttribute("pi"); 
 	ArrayList<Comm> list = (ArrayList<Comm>)request.getAttribute("list"); 
 	
+	String searchFreeText = (String)request.getAttribute("searchFreeText");
+	String searchFreeCtg = (String)request.getAttribute("searchFreeCtg");
+	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
@@ -20,7 +23,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <style>
-    div{
+	div{
         box-sizing:border-box;
     }
     .wrap{
@@ -92,11 +95,11 @@
     } 
 </style>
 <body>
-    
-    <%@ include file="../../common/menubar.jsp"%>
-	
 
-    <div class="wrap">
+	<%@ include file="../../common/menubar.jsp"%>
+	
+	
+	 <div class="wrap">
 
         <div id="content">
 
@@ -173,9 +176,13 @@
            			 	<!-- 페이징 처리 -->	
                 	 	<!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
                		 	<div align="center" class="pagingArea">
-               		 
+               		 	
+               		 	<%if (list.isEmpty()) { %>
+						<p></p>
+						<% } else { %>	
+						
                    	 		<% if(currentPage != 1) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%=currentPage-1%>';"><</button>
+		                    	<button onclick="location.href='<%=contextPath%>/searchFree.co?currentPage=<%=currentPage-1%>&searchFreeText=<%=searchFreeText%>&searchFreeCtg=<%=searchFreeCtg%>';"><</button>
 		                	<% } %>
 		                    
 		                	<% for(int p=startPage; p<=endPage; p++) { %>
@@ -183,15 +190,15 @@
 		                    	<% if(currentPage == p) { %>
 		                    		<button disabled><%= p %></button>
 		                    	<% }else { %>
-		                    		<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%= p %>';"><%= p %></button>
+		                    		<button onclick="location.href='<%=contextPath%>/searchFree.co?currentPage=<%= p %>&searchFreeText=<%=searchFreeText%>&searchFreeCtg=<%=searchFreeCtg%>';"><%= p %></button>
 		                   		<% } %>
 		                    	
 		                	<% } %>
 		                    
 		                	<% if(currentPage != maxPage) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%=currentPage+1%>';">></button>
+		                		<button onclick="location.href='<%=contextPath%>/searchFree.co?currentPage=<%=currentPage+1%>&searchFreeText=<%=searchFreeText%>&searchFreeCtg=<%=searchFreeCtg%>';">></button>
 		                	<% } %>
-		                
+		                <% } %> 
                 	 	</div>
                 	 
                      	<br><br>
@@ -215,6 +222,6 @@
         </div>
     </div>	 
 </div>
-
+		
 </body>
 </html>

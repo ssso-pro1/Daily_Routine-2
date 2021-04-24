@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.dr.member.comm.model.vo.Comm, com.dr.common.model.vo.PageInfo" %>
 <%
+
 	PageInfo pi = (PageInfo)request.getAttribute("pi"); 
 	ArrayList<Comm> list = (ArrayList<Comm>)request.getAttribute("list"); 
 	
@@ -9,12 +10,14 @@
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage(); 
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <style>
     div{
@@ -195,10 +198,10 @@
             		
             		
             		 	<div align="center" class="searchArea">
-		                	<form action="<%=contextPath%>/qSearch.co?currentPage=1" method="post">
-			                	<select name="searchQ">
-			                   		<option name="searchQ" value="제목">제목</option>
-			                   		<option name="searchQ" value="내용">내용</option>
+		                	<form action="<%=contextPath%>/searchQ.co?currentPage=1" method="post">
+			                	<select name="searchQCtg">
+			                   		<option name="searchQCtg" value="제목">제목</option>
+			                   		<option name="searchQCtg" value="내용">내용</option>
 			                 	</select>
 	                         	<input type="text" name="searchQText">
 		                   	 	<button type="submit">검색</button>

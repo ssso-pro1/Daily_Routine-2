@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.Comm, com.dr.member.user.model.vo.User"%>
+    pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.Comm, com.dr.member.user.model.vo.User" %>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
@@ -19,7 +19,6 @@
   <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
    
-	
 <title>Insert title here</title>
 <style>
     div{
@@ -382,8 +381,6 @@
                                     
                                     
                                 </script>
-
-
 
 
                  		    

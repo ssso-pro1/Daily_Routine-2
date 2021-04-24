@@ -155,6 +155,38 @@ public class CommService {
 		
 	}
 	
+	// 나만의운동팁 검색 
+	public int searchTipCount(String searchTipCtg, String searchTipText) {
+		
+		Connection conn = getConnection();	
+		int listCount = new CommDao().searchTipCount(conn, searchTipCtg, searchTipText);
+		
+		close(conn);
+		
+		return listCount; 
+		
+	}
+	
+	public ArrayList<Comm> searchTipList(PageInfo pi, String searchTipCtg, String searchTipText) {
+		
+		Connection conn = getConnection();
+		ArrayList<Comm> list = new CommDao().searchTipList(conn, pi, searchTipCtg, searchTipText);
+		
+		close(conn);
+		
+		return list; 
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 자유게시판 
 	
@@ -269,6 +301,40 @@ public class CommService {
 		return result; 
 		
 	}
+	
+
+	// 자유게시판 검색 
+	public int searchFreeCount(String searchFreeCtg, String searchFreeText) {
+		
+		Connection conn = getConnection();	
+		int listCount = new CommDao().searchFreeCount(conn, searchFreeCtg, searchFreeText);
+		
+		close(conn);
+		
+		return listCount; 
+		
+	}
+	
+	public ArrayList<Comm> searchFreeList(PageInfo pi, String searchFreeCtg, String searchFreeText) {
+		
+		Connection conn = getConnection();
+		ArrayList<Comm> list = new CommDao().searchFreeList(conn, pi, searchFreeCtg, searchFreeText);
+		
+		close(conn);
+		
+		return list; 
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	
@@ -385,6 +451,33 @@ public class CommService {
 		return result; 
 		
 	}
+	
+	
+	// 질문게시판 검색 
+	public int searchQCount(String searchQCtg, String searchQText) {
+			
+		Connection conn = getConnection();	
+		int listCount = new CommDao().searchQCount(conn, searchQCtg, searchQText);
+			
+		close(conn);
+			
+		return listCount; 
+			
+	}
+		
+	public ArrayList<Comm> searchQList(PageInfo pi, String searchQCtg, String searchQText) {
+			
+		Connection conn = getConnection();
+		ArrayList<Comm> list = new CommDao().searchQList(conn, pi, searchQCtg, searchQText);
+			
+		close(conn);
+			
+		return list; 
+			
+	}	
+	
+	
+	
 	
 	
 	

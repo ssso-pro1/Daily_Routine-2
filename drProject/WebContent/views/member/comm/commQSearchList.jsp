@@ -6,6 +6,9 @@
 	PageInfo pi = (PageInfo)request.getAttribute("pi"); 
 	ArrayList<Comm> list = (ArrayList<Comm>)request.getAttribute("list"); 
 	
+	String searchQText = (String)request.getAttribute("searchQText");
+	String searchQCtg = (String)request.getAttribute("searchQCtg");
+	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
@@ -20,7 +23,7 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 </head>
 <style>
-    div{
+	div{
         box-sizing:border-box;
     }
     .wrap{
@@ -87,16 +90,16 @@
     .pagingArea, .searchArea{
         margin-left:120px;
     }
-    .leftMenu>#menu2>a{
+    .leftMenu>#menu3>a{
     	color:rgb(250, 214, 9);
     } 
 </style>
 <body>
-    
-    <%@ include file="../../common/menubar.jsp"%>
-	
 
-    <div class="wrap">
+	 <%@ include file="../../common/menubar.jsp"%>
+
+
+	 <div class="wrap">
 
         <div id="content">
 
@@ -106,9 +109,9 @@
                 <div class="leftMenu">
                     <div><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
-                    <div id="menu2"><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
+                    <div><a href="<%=contextPath%>/free.co?currentPage=1">자유게시판</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co?currentPage=1">질문게시판</a></div>
+                    <div id="menu3"><a href="<%=contextPath%>/question.co?currentPage=1">질문게시판</a></div>
                 </div>
             </div>
 
@@ -119,9 +122,9 @@
 
                 <!-- 상단 타이틀-->
                 <div id="content2_1">
-                    <h2>커뮤니티 > 자유게시판</h2>
+                    <h2>커뮤니티 > 질문게시판</h2>
                     <hr>
-                    <p>Daily Routine 회원들과 자유롭게 다양한 얘기를 나눠보세요!</p>
+                    <p>운동에 관한 모든 것들! 질문 게시판에서 함께 공유해봐요!</p>
                 </div>
                 <br><br><br>
                 
@@ -162,7 +165,7 @@
            			 	<script>
 		               		$(function() {
 		                		$(".listArea>tbody>tr").click(function() {
-		                			location.href= '<%=contextPath%>/freeDetail.co?cno=' + $(this).children().eq(0).val();
+		                			location.href= '<%=contextPath%>/qDetail.co?cno=' + $(this).children().eq(0).val();
 		                		})
 		                	})
 		             	</script> 
@@ -173,9 +176,13 @@
            			 	<!-- 페이징 처리 -->	
                 	 	<!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
                		 	<div align="center" class="pagingArea">
-               		 
+               		 	
+               		 	<%if (list.isEmpty()) { %>
+						<p></p>
+						<% } else { %>	
+						
                    	 		<% if(currentPage != 1) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%=currentPage-1%>';"><</button>
+		                    	<button onclick="location.href='<%=contextPath%>/searchQ.co?currentPage=<%=currentPage-1%>&searchQText=<%=searchQText%>&searchQCtg=<%=searchQCtg%>';"><</button>
 		                	<% } %>
 		                    
 		                	<% for(int p=startPage; p<=endPage; p++) { %>
@@ -183,29 +190,29 @@
 		                    	<% if(currentPage == p) { %>
 		                    		<button disabled><%= p %></button>
 		                    	<% }else { %>
-		                    		<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%= p %>';"><%= p %></button>
+		                    		<button onclick="location.href='<%=contextPath%>/searchQ.co?currentPage=<%= p %>&searchQText=<%=searchQText%>&searchQCtg=<%=searchQCtg%>';"><%= p %></button>
 		                   		<% } %>
 		                    	
 		                	<% } %>
 		                    
 		                	<% if(currentPage != maxPage) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%=currentPage+1%>';">></button>
+		                    	<button onclick="location.href='<%=contextPath%>/searchQ.co?currentPage=<%=currentPage+1%>&searchQText=<%=searchQText%>&searchQCtg=<%=searchQCtg%>';">></button>
 		                	<% } %>
-		                
+		                <% } %>
                 	 	</div>
                 	 
                      	<br><br>
             		
             		
             		 	<div align="center" class="searchArea">
-		                	<form action="<%=contextPath%>/searchFree.co?currentPage=1" method="post">
-			                	<select name="searchFreeCtg">
-			                   		<option name="searchFreeCtg" value="제목">제목</option>
-			                   		<option name="searchFreeCtg" value="내용">내용</option>
+		                	<form action="<%=contextPath%>/searchQ.co?currentPage=1" method="post">
+			                	<select name="searchQCtg">
+			                   		<option name="searchQCtg" value="제목">제목</option>
+			                   		<option name="searchQCtg" value="내용">내용</option>
 			                 	</select>
-	                         	<input type="text" name="searchFreeText">
+	                         	<input type="text" name="searchQText">
 		                   	 	<button type="submit">검색</button>
-		                  	 	<a href="<%=contextPath%>/freeEnroll.co">글쓰기</a>
+		                  	 	<a href="<%=contextPath%>/qEnroll.co">글쓰기</a>
 		              		</form>
 		             	</div><br><br>
    

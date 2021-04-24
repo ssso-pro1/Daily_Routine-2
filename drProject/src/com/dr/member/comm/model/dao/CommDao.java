@@ -364,6 +364,148 @@ public class CommDao {
 		
 	}
 	
+	// 나만의운동팁 검색 
+	
+	public int searchTipCount(Connection conn, String searchTipCtg, String searchTipText) {
+		
+		int listCount = 0; 
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchTipCtg.equals("제목")) { 
+			
+			String sql = prop.getProperty("searchTipTitleCount");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchTipText);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) { 
+					listCount = rset.getInt("LISTCOUNT"); 
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+			
+			return listCount; 
+			
+		}else { 
+			String sql = prop.getProperty("searchTipContentCount"); 
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchTipText);
+				
+				rset = pstmt.executeQuery();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+			
+			return listCount; 
+			
+		}
+		
+	}
+	
+	public ArrayList<Comm> searchTipList(Connection conn, PageInfo pi, String searchTipCtg, String searchTipText) {
+		
+		ArrayList<Comm> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchTipCtg.contentEquals("제목")) { 
+			
+			String sql = prop.getProperty("searchTipTitle");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, searchTipText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1); 
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) { 
+					list.add(new Comm(rset.getInt("comm_post_no"),
+									  rset.getString("user_id"),
+									  rset.getInt("file_no"),
+									  rset.getString("category_name"),
+									  rset.getString("post_content"), 
+							          rset.getString("post_title"),
+							          rset.getDate("enroll_date"),
+							          rset.getDate("update_date"),
+							          rset.getInt("board_view"),
+							          rset.getString("status"),
+							          rset.getString("admin_notice"),
+							          rset.getInt("comm_no")));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rset);
+					close(pstmt); 
+				} return list; 
+			
+		} else {
+			
+			String sql = prop.getProperty("searchTipContent");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, searchTipText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) { 
+					list.add(new Comm(rset.getInt("comm_post_no"),
+							  rset.getString("user_id"),
+							  rset.getInt("file_no"),
+							  rset.getString("category_name"),
+							  rset.getString("post_content"), 
+					          rset.getString("post_title"),
+					          rset.getDate("enroll_date"),
+					          rset.getDate("update_Date"),
+					          rset.getInt("board_view"),
+					          rset.getString("status"),
+					          rset.getString("admin_notice"),
+					          rset.getInt("comm_no")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			} return list; 
+			
+		}
+	
+	}
+		
+			
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	// 자유게시판 
@@ -648,6 +790,154 @@ public class CommDao {
 	}
 	
 	
+	// 자유게시판 검색 
+	
+	public int searchFreeCount(Connection conn, String searchFreeCtg, String searchFreeText) {
+			
+		int listCount = 0; 
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+			
+		if(searchFreeCtg.equals("제목")) { 
+				
+			String sql = prop.getProperty("searchFreeTitleCount");
+				
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchFreeText);
+					
+				rset = pstmt.executeQuery();
+					
+				if(rset.next()) { 
+					listCount = rset.getInt("LISTCOUNT"); 
+				}
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+				
+			return listCount; 
+				
+		}else { 
+			String sql = prop.getProperty("searchFreeContentCount"); 
+				
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchFreeText);
+					
+				rset = pstmt.executeQuery();
+					
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+				
+			return listCount; 
+				
+		}
+			
+	}
+		
+	public ArrayList<Comm> searchFreeList(Connection conn, PageInfo pi, String searchFreeCtg, String searchFreeText) {
+			
+		ArrayList<Comm> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+			
+		if(searchFreeCtg.contentEquals("제목")) { 
+				
+			String sql = prop.getProperty("searchFreeTitle");
+				
+			try {
+				pstmt = conn.prepareStatement(sql);
+					
+				pstmt.setString(1, searchFreeText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1); 
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+					
+				rset = pstmt.executeQuery();
+					
+				while(rset.next()) { 
+					list.add(new Comm(rset.getInt("comm_post_no"),
+									  rset.getString("user_id"),
+									  rset.getInt("file_no"),
+									  rset.getString("category_name"),
+									  rset.getString("post_content"), 
+							          rset.getString("post_title"),
+							          rset.getDate("enroll_date"),
+							          rset.getDate("update_date"),
+							          rset.getInt("board_view"),
+							          rset.getString("status"),
+							          rset.getString("admin_notice"),
+							          rset.getInt("comm_no")));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rset);
+					close(pstmt); 
+				} return list; 
+				
+		} else {
+				
+			String sql = prop.getProperty("searchFreeContent");
+				
+			try {
+				pstmt = conn.prepareStatement(sql);
+					
+				pstmt.setString(1, searchFreeText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+					
+				rset = pstmt.executeQuery();
+					
+				while(rset.next()) { 
+					list.add(new Comm(rset.getInt("comm_post_no"),
+									  rset.getString("user_id"),
+								      rset.getInt("file_no"),
+								      rset.getString("category_name"),
+								      rset.getString("post_content"), 
+								      rset.getString("post_title"),
+								      rset.getDate("enroll_date"),
+								      rset.getDate("update_Date"),
+								      rset.getInt("board_view"),
+								      rset.getString("status"),
+								      rset.getString("admin_notice"),
+								      rset.getInt("comm_no")));
+				}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			} return list; 
+				
+		}
+		
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	// 질문게시판 
 	
@@ -929,6 +1219,151 @@ public class CommDao {
 		return result; 
 		
 	}
+	
+	
+	
+	// 질문게시판 검색 
+	
+	public int searchQCount(Connection conn, String searchQCtg, String searchQText) {
+				
+		int listCount = 0; 
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+				
+		if(searchQCtg.equals("제목")) { 
+					
+			String sql = prop.getProperty("searchQTitleCount");
+					
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchQText);
+						
+				rset = pstmt.executeQuery();
+						
+				if(rset.next()) { 
+					listCount = rset.getInt("LISTCOUNT"); 
+				}
+						
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+					
+			return listCount; 
+					
+		}else { 
+			String sql = prop.getProperty("searchQContentCount"); 
+					
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchQText);
+						
+				rset = pstmt.executeQuery();
+						
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+					
+			return listCount; 
+					
+		}
+				
+	}
+			
+	public ArrayList<Comm> searchQList(Connection conn, PageInfo pi, String searchQCtg, String searchQText) {
+				
+		ArrayList<Comm> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+				
+		if(searchQCtg.contentEquals("제목")) { 
+					
+			String sql = prop.getProperty("searchQTitle");
+					
+			try {
+				pstmt = conn.prepareStatement(sql);
+						
+				pstmt.setString(1, searchQText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1); 
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+						
+				rset = pstmt.executeQuery();
+						
+				while(rset.next()) { 
+					list.add(new Comm(rset.getInt("comm_post_no"),
+									  rset.getString("user_id"),
+									  rset.getInt("file_no"),
+									  rset.getString("category_name"),
+									  rset.getString("post_content"), 
+							          rset.getString("post_title"),
+							          rset.getDate("enroll_date"),
+							          rset.getDate("update_date"),
+							          rset.getInt("board_view"),
+							          rset.getString("status"),
+							          rset.getString("admin_notice"),
+							          rset.getInt("comm_no")));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rset);
+					close(pstmt); 
+				} return list; 
+					
+		} else {
+					
+			String sql = prop.getProperty("searchQContent");
+					
+			try {
+				pstmt = conn.prepareStatement(sql);
+						
+				pstmt.setString(1, searchQText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+						
+				rset = pstmt.executeQuery();
+						
+				while(rset.next()) { 
+					list.add(new Comm(rset.getInt("comm_post_no"),
+									  rset.getString("user_id"),
+								      rset.getInt("file_no"),
+								 	  rset.getString("category_name"),
+									  rset.getString("post_content"), 
+									  rset.getString("post_title"),
+									  rset.getDate("enroll_date"),
+									  rset.getDate("update_Date"),
+								      rset.getInt("board_view"),
+									  rset.getString("status"),
+								      rset.getString("admin_notice"),
+								      rset.getInt("comm_no")));
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			} return list; 
+					
+		}
+			
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 }

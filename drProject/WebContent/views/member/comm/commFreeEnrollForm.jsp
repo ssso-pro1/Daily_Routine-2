@@ -256,7 +256,7 @@
                                 <div align="right" class="enrollButton">
 		                        <button type="submit" onclick="return validate();">등록</button>
 		                        <button type="reset" onclick="return back();"><a href="<%=contextPath%>/free.co?currentPage=1">취소</a></button>
-                 		    </div>
+                 		   		</div>
                             </table><br><br>
                             <input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
                             <br><br>
@@ -298,79 +298,78 @@
 	                                      fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
 									
 								});	
-                                </script>
+                            </script>
                                 
                                 
-                 		   	    <script>
+                 		   	<script>
                  		    
-	                 		    	// 게시글 작성 취소 
-	                                function back(){
-	                        			var result = confirm("게시글 작성을 취소하시겠습니까?");
-	                                   	if(result){
+	                 		    // 게시글 작성 취소 
+	                            function back(){
+	                       			var result = confirm("게시글 작성을 취소하시겠습니까?");
+	                                if(result){
 	                                    		
-	                                   		return true;
+	                              		return true;
 	                                   		
-	                                   	} else {
+	                               	} else {
 	                                    		
-	                                   		return false;
-	                                   	}
-	                        		}
+	                               		return false;
+	                               	}
+	                      		}
 	                                	
 	                 		    	
-	                              	// 유효성 검사 
-	                               	function validate() {
+	                            // 유효성 검사 
+	                           	function validate() {
 	                                		
-	                               		var title = document.getElementById("title");
-	                               		var fContent = document.getElementById("fContent"); 
+	                           		var title = document.getElementById("title");
+	                           		var fContent = document.getElementById("fContent"); 
 	                                		
-	                               		var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+	                           		var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
 	                                		
 	                               		
-	                               		if(!regExp.test(title.value)){
-	                                   		alert("제목을 입력해주세요");
+	                           		if(!regExp.test(title.value)){
+	                                	alert("제목을 입력해주세요");
 	                                    	
-	                                   		title.value="";
-	                                   		title.focus();
+	                                   	title.value="";
+	                               		title.focus();
 	                                    		
-	                                   		return false;
-	                                   	}
+	                               		return false;
+	                               	}
 	                                			
-	                               		if(!regExp.test(fContent.value)){ 
-	                                   		alert("내용을 입력해주세요");
+	                           		if(!regExp.test(fContent.value)){ 
+	                               		alert("내용을 입력해주세요");
 	                                    	
-	                                   		fContent.value="";
-	                                   		fContent.focus();
+	                               		fContent.value="";
+	                               		fContent.focus();
 	                                    		
-	                                   		return false;
-	                                   	}	
+	                               		return false;
+	                                }	
 	                                		
-	                               		var result = confirm("글을 등록하시겠습니까?");
-	                                   	if(result){
+	                                var result = confirm("글을 등록하시겠습니까?");
+	                               	if(result){
 	                                    		
 	                                    		
-	                                   	} else {
-	                                   		alert("게시글 등록이 취소되었습니다");
-	                                   		return false;
-	                                   	}
-	                                		
-	                                }
+	                               	} else {
+	                               		alert("게시글 등록이 취소되었습니다");
+	                               		return false;
+	                               	}
+	                           		
+	                            }
 	                                
 	                              	
-	                               	// 버튼 클릭 시 파일 삭제 
+	                       		// 버튼 클릭 시 파일 삭제 
 	                                	
          
 	                               		
 	                               		
 	                               		
 	                               		
-                 		       	</script>
-                 		    
-                 		    
+                 		    </script>
                  		    
                  		    
                  		    
                  		    
                         </form>
+                        
             		</div>
        			</div> 
     		</div>

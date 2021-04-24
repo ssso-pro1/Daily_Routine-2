@@ -1,17 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.dr.member.comm.model.vo.Comm, com.dr.common.model.vo.PageInfo" %>
+<%@ page import="java.util.ArrayList, com.dr.member.comm.model.vo.Comm, com.dr.common.model.vo.PageInfo"%>
 <%
 
-	PageInfo pi = (PageInfo)request.getAttribute("pi"); 
-	ArrayList<Comm> list = (ArrayList<Comm>)request.getAttribute("list"); 
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
+	ArrayList<Comm> list =(ArrayList<Comm>)request.getAttribute("list");
 	
+	String searchTipText = (String)request.getAttribute("searchTipText");
+	String searchTipCtg = (String)request.getAttribute("searchTipCtg");
+		
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
-	int maxPage = pi.getMaxPage(); 
+	int maxPage = pi.getMaxPage();		
 	
-%>
+%> 
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +22,8 @@
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
-    div{
-        box-sizing:border-box;
+	div{
+    	box-sizing:border-box;
     }
     .wrap{
         width:1000px;
@@ -92,13 +95,13 @@
 </style>
 </head>
 <body>
-    
-   <%@ include file="../../common/menubar.jsp"%>
 	
+	<%@ include file="../../common/menubar.jsp"%>
+	
+	
+	 <div class="wrap">
 
-    <div class="wrap">
-
-        <div id="content">
+          <div id="content">
 
             <!--왼쪽 공통메뉴-->
             <div id="content_1">
@@ -175,9 +178,13 @@
 		                <!-- 페이징 처리 -->
 		                <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
 		                <div align="center" class="pagingArea">
-		                	
+		                
+		                <%if (list.isEmpty()) { %>
+						<p></p>
+						<% } else { %>	
+						
 		                	<% if(currentPage != 1) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage-1%>';"><</button>
+		                    	<button onclick="location.href='<%=contextPath%>/searchTip.co?currentPage=<%=currentPage-1%>&searchTipText=<%=searchTipText%>&searchTipCtg=<%=searchTipCtg%>';"><</button>
 		                    <% } %>
 		                    
 		                    <% for(int p=startPage; p<=endPage; p++) { %>
@@ -185,15 +192,15 @@
 		                    	<% if(currentPage == p) { %>
 		                    		<button disabled><%= p %></button>
 		                    	<% }else { %>
-		                    		<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%= p %>';"><%= p %></button>
+		                    		<button onclick="location.href='<%=contextPath%>/searchTip.co?currentPage=<%= p %>&searchTipText=<%=searchTipText%>&searchTipCtg=<%=searchTipCtg%>';"><%= p %></button>
 		                    	<% } %>
 		                    	
 		                  	<% } %>
 		                    
 		                    <% if(currentPage != maxPage) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage+1%>';">></button>
+		                    	<button onclick="location.href='<%=contextPath%>/searchTip.co?currentPage=<%=currentPage+1%>&searchTipText=<%=searchTipText%>&searchTipCtg=<%=searchTipCtg%>';">></button>
 		                    <% } %>
-		                        
+		                <% } %>        
 		                </div>
 		                
 		                <br><br>
@@ -219,6 +226,12 @@
         </div>
     </div>
 </div>
-
+	
+	
+	
+	
+	
+	
+	
 </body>
 </html>

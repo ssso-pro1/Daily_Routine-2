@@ -21,11 +21,11 @@
     <title>ht게시글 리스트 조회</title>
     <style>
         /*  */
-        /* #content_2{
+        #content_2{
             background:rgb(33, 33, 34);
-        } */
+        }
     #content2_2{
-            /* width:1000px; */
+            width:1000px;
             height:800px;
             background:rgb(33, 33, 34);
             margin:auto;

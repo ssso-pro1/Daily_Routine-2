@@ -204,8 +204,8 @@
 			                   		<option name="searchFreeCtg" value="내용">내용</option>
 			                 	</select>
 	                         	<input type="text" name="searchFreeText">
-		                   	 	<button type="submit">검색</button>
-		                  	 	<a href="<%=contextPath%>/freeEnroll.co">글쓰기</a>
+		                   	 	<button type="submit" class="fas fa-search"></button>
+		                  	 	<a href="<%=contextPath%>/freeEnroll.co" class="fas fa-pencil-alt"> 글쓰기</a>
 		              		</form>
 		             	</div><br><br>
    

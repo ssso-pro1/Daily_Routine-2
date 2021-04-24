@@ -1,10 +1,26 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.Comm"%>
+    pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.Comm, com.dr.member.user.model.vo.User" %>
+<%
+	User loginUser = (User)session.getAttribute("loginUser");
+	
+	String contextPath = request.getContextPath();
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
+
+  <!-- include libraries(jQuery, bootstrap) -->
+  <link href="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.js"></script> 
+  <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.js"></script> 
+  
+  <!-- include summernote css/js-->
+  <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
+  
 <title>Insert title here</title>
+  
 <style>
     div{
         box-sizing:border-box
@@ -65,11 +81,115 @@
     .leftMenu>#menu2>a{
     	color:rgb(250, 214, 9);
     }
+    
+    
+    <!-- 메뉴바 --> 
+    .outerWrap>p{
+        background:rgb(250, 214, 9);
+        font-size: 15px;
+    }
+
+    .outerWrap a{
+        text-decoration:none;
+        color: black;
+        font-size:12px;
+        line-height:50px;
+        font-weight:bold;
+        display:block;
+        
+    }
+    .menu{
+        display: table-cell;
+        height: 50px;
+        width: 150px;
+    }
+    .menu a{
+        text-decoration:none;
+        color:black;
+        font-size:20px;
+        line-height:50px;
+        font-weight:bold;
+        display:block;
+        width:100%;
+        height:100%;
+    }
+    .outerWrap a:hover{
+        color:darkorchid
+	}
+
+    .line1{
+        border-left:1px solid gray;
+    }
+    
+    
 </style>
 </head>
 <body>
 
-    <%@ include file="../../common/menubar.jsp"%>
+	<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+		
+		 <div class="outerWrap">
+       	  <p align="center">Reading is to the mind what exercise is to the body</p>
+        
+
+          <div class="loginArea">
+          <!-- 로그인 전에 보여지는 로그인 버튼 -->
+        
+	      	<% if(loginUser == null){ %>
+	
+	        <table id="topMenu1" align="right">
+	            <tr>
+	                <th><a href="<%=contextPath%>/loginForm.us">로그인</a></th>
+	                <th>|</th>
+	                <th><a href="<%=contextPath%>/enrollForm1.us">회원가입</a></th>
+	                <th>|</th>
+	                <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
+	            </tr>
+	            <tr>
+	                <th colspan="3">Welcome DR님</th>
+	                <th colspan="2"><i class="fas fa-user-circle" fa="lg"></i></th>
+	            </tr>
+	        </table>
+	        
+	        
+	        <% }else { %>
+        
+        	<!-- 로그인 후 -->
+        	
+        	<table id="topMenu2" align="right">
+	            <tr>
+	                <th><a href="<%=contextPath%>/logout.us">로그아웃</a></th>
+	                <th>|</th>
+	                <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
+	            </tr>
+	            <tr>
+	                <th colspan="3"><b><%= loginUser.getUserName() %>님</b> 환영합니다.</th>
+	                <th><i class="fas fa-user-circle" fa="lg"></i></th>
+	            </tr>
+	        </table>
+	        
+	        <% } %>
+        	
+    </div>
+
+    <br><br>
+    <span class="navWrap" align="center">
+        <div class="menu"><a href="<%=contextPath%>">메인페이지</a></div>
+        <div class="menu"><a href="<%=contextPath%>/allList.ht">HomeTraining</a></div>
+        <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
+        <div class="menu"><a href="<%=contextPath%>/infoMain.in?currentPage=1">Info&Tip</a></div>
+        <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
+
+        <span class="line1"></span>
+
+    <hr>
+    </span>
+    
+	</div> 
+  	
+
+
+
 
 
     <div class="wrap">
@@ -121,14 +241,14 @@
                                                         <input type="file" name="upfile" id="upfile" style="cursor:pointer;">
                                                     </td>
                                                     <td>
-                                                        <button onclick="delete();" value="deleteBtn" id="deleteBtn" style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
+                                                        <button onclick="deleteFile();" value="deleteFile" id="deleteFile" style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
                                                     </td>
                                                 </tr>
                                             </table><br>
                                         </tr>
                                         <tr>
                                             <td colspan="2" height="500">
-                                                <textarea name="fContent" id="fContent" rows="20" style="resize:none" placeholder="내용을 입력해주세요." required></textarea>   
+                                                <textarea class="summernote" name="fContent" id="fContent" rows="20" style="resize:none" placeholder="내용을 입력해주세요." required></textarea>   
                                             </td>
                                         </tr>
                                     </table>
@@ -143,67 +263,107 @@
                             
                            
                  		    
-                 		    <script>
                  		    
-                 		    	// 게시글 작성 취소 
-                                	function back(){
-                        				var result = confirm("게시글 작성을 취소하시겠습니까?");
-                                    	if(result){
-                                    		
-                                    		return true;
-                                    	} else {
-                                    		
-                                    		return false;
-                                    	}
-                        			}
-                                	
-                                // 유효성 검사 
-                               	 	function validate() {
-                                		
-                                		var title = document.getElementById("title");
-                                		var fContent = document.getElementById("fContent"); 
-                                		
-                                		var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
-                                		
-                                		
-                                		if(!regExp.test(title.value)){
-                                    		alert("제목을 입력해주세요");
-                                    	
-                                    		title.value="";
-                                    		title.focus();
-                                    		
-                                    		return false;
-                                    	}
-                                			
-                                		if(!regExp.test(fContent.value)){ 
-                                    		alert("내용을 입력해주세요");
-                                    	
-                                    		fContent.value="";
-                                    		fContent.focus();
-                                    		
-                                    		return false;
-                                    	}	
-                                		
-                                		var result = confirm("글을 등록하시겠습니까?");
-                                    	if(result){
-                                    		
-                                    		
-                                    	} else {
-                                    		alert("게시글 등록이 취소되었습니다");
-                                    		return false;
-                                    	}
-                                		
-                                	}
+                 		    <script>      
+								$('.summernote').summernote({
+									// 에디터 높이
+	                                   height: 300,
+	                                // 에디터 한글 설정
+	                                    lang: "ko-KR",
+	                                // 에디터에 커서 이동 (input창의 autofocus라고 생각하시면 됩니다.)
+	                                    focus : true,
+	                                    toolbar: [
+	                                          // 글꼴 설정
+	                                          ['fontname', ['fontname']],
+	                                          // 글자 크기 설정
+	                                          ['fontsize', ['fontsize']],
+	                                          // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+	                                          ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+	                                          // 글자색
+	                                          ['color', ['forecolor','color']],
+	                                          // 표만들기
+	                                          ['table', ['table']],
+	                                          // 글머리 기호, 번호매기기, 문단정렬
+	                                          ['para', ['ul', 'ol', 'paragraph']],
+	                                          // 줄간격
+	                                          ['height', ['height']],
+	                                          // 그림첨부, 링크만들기, 동영상첨부
+	                                          ['insert',['picture','link','video']],
+	                                          // 코드보기, 확대해서보기, 도움말
+	                                          ['view', ['codeview','fullscreen', 'help']]
+	                                        ],
+	                                        // 추가한 글꼴
+	                                      fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋음체','바탕체'],
+	                                       // 추가한 폰트사이즈
+	                                      fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+									
+								});	
+                                </script>
                                 
-                                // 버튼 클릭 시 파일 삭제 
-                                	
                                 
-                                    
-                                   
-                                    
-                                    
-                 		    	
-                 		    </script>
+                 		   	    <script>
+                 		    
+	                 		    	// 게시글 작성 취소 
+	                                function back(){
+	                        			var result = confirm("게시글 작성을 취소하시겠습니까?");
+	                                   	if(result){
+	                                    		
+	                                   		return true;
+	                                   		
+	                                   	} else {
+	                                    		
+	                                   		return false;
+	                                   	}
+	                        		}
+	                                	
+	                 		    	
+	                              	// 유효성 검사 
+	                               	function validate() {
+	                                		
+	                               		var title = document.getElementById("title");
+	                               		var fContent = document.getElementById("fContent"); 
+	                                		
+	                               		var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+	                                		
+	                               		
+	                               		if(!regExp.test(title.value)){
+	                                   		alert("제목을 입력해주세요");
+	                                    	
+	                                   		title.value="";
+	                                   		title.focus();
+	                                    		
+	                                   		return false;
+	                                   	}
+	                                			
+	                               		if(!regExp.test(fContent.value)){ 
+	                                   		alert("내용을 입력해주세요");
+	                                    	
+	                                   		fContent.value="";
+	                                   		fContent.focus();
+	                                    		
+	                                   		return false;
+	                                   	}	
+	                                		
+	                               		var result = confirm("글을 등록하시겠습니까?");
+	                                   	if(result){
+	                                    		
+	                                    		
+	                                   	} else {
+	                                   		alert("게시글 등록이 취소되었습니다");
+	                                   		return false;
+	                                   	}
+	                                		
+	                                }
+	                                
+	                              	
+	                               	// 버튼 클릭 시 파일 삭제 
+	                                	
+         
+	                               		
+	                               		
+	                               		
+	                               		
+                 		       	</script>
                  		    
                  		    
                  		    

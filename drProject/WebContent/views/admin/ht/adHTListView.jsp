@@ -1,16 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.dr.admin.user.model.vo.AdUser"%>
     
 <%@ page import = "java.util.ArrayList, com.dr.admin.ht.model.vo.AdHT, com.dr.common.model.vo.PageInfo" %>
 <%
-	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<AdHT> list = (ArrayList<AdHT>)request.getAttribute("list");
-	
-	int currentPage = pi.getCurrentPage();
-	int startPage = pi.getStartPage();
-	int endPage = pi.getEndPage();
-	int maxPage = pi.getMaxPage();
+
+   PageInfo pi = (PageInfo)request.getAttribute("pi");
+   ArrayList<AdHT> list = (ArrayList<AdHT>)request.getAttribute("list");
+   
+   int currentPage = pi.getCurrentPage();
+   int startPage = pi.getStartPage();
+   int endPage = pi.getEndPage();
+   int maxPage = pi.getMaxPage();
 %>
+
+<%
+	AdUser loginUser = (AdUser)session.getAttribute("loginUser");
+	
+	String contextPath = request.getContextPath();
+%>  
 
 <!DOCTYPE html>
 <html lang="en">
@@ -20,17 +27,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ht게시글 리스트 조회</title>
     <style>
+  div{
+            box-sizing:border-box;
+        }
+        .wrap{
+            width:1000px;
+            height:1200px;
+            margin:auto;
+            margin-top:15px;
+            background-color: rgb(33, 33, 34);
+        }
+        .wrap>div{
+            width:100%;
+        }
+        
+        #content{height:100%; width:100%;}
+        #content>div{
+            height:100%;
+            float:left;
+        }
+        #content_1{width:15%;}
+        #content_2{width:80%;}
+        #line{width:1%;}
+        #line{
+            border:1px solid gray;
+            width:0.1px;
+            height:150px;
+        }
+        #welcome{
+            text-decoration: none;
+            color:white;
+        }
+        #welcome:hover{
+            color: rgb(33, 33, 34);
+        }
+        /* #content_2_1{height:10%;}
+        #content_2_2{height:35%;}
+        #content_2_3{height:35%;} */
+        #nav{
+            width:100%;
+            height:40px;
+            background-color: gray;
+            padding:5px;
+            
+            display:flex;
+            justify-content:space-between;
+            color:white;
+            font-weight:bold;
+            font-size:20px;
+        }
+
+        #content_1 *{
+            color:gray;
+            margin: 10px 3px;
+        }
+        #content_1>div{
+            font-size:13px;
+            margin-top:20px;
+            margin-left:10px;
+        }
+        #content_1 a{
+            font-size:12px;
+            text-decoration:none;
+            font-weight:bold;
+            margin-left:10px;
+        }
+        #content a:hover{color:white;}
+        #content_2_1 {
+            color:white;
+            font-size:10px;
+            padding:10px;
+        }
+        
+
+
+
+
+
+
+
+
         /*  */
         #content_2{
             background:rgb(33, 33, 34);
         }
-    #content2_2{
-            width:1000px;
-            height:800px;
+        #content2_2{
+            height:800px; 
             background:rgb(33, 33, 34);
             margin:auto;
-            margin-top:10px;
-            /* padding-top:70px; */
         }
 
         .listArea{
@@ -54,25 +138,102 @@
         }
         .thumbnail:hover{
             cursor:pointer;
-            opacity:0.7;
+            color:rgb(250, 214, 9);
         }
+
+    #cNavi>a{
+        text-decoration: none;
+        color:white;
+       
+
+    }
+    #cNavi>a:hover{
+        cursor:pointer;
+        color:rgb(250, 214, 9);
+    }
+
+   
 
     </style>
 </head>
 <body>
-    <%@ include file="../adminPageLeftMenuBar.jsp" %>
+    <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+
+    <div class="wrap">
+
+        <div id="nav">
+            <span align="left">Admin Center</span>
+
+            <span>
+                <!-- 로그인 전 -->
+                
+                   <i class="fas fa-user-circle"></i>
+                   
+                   <!-- 로그인 && 로그인한 아이디가 admin -->
+                        
+                            <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
+                        
+               
+                        <div>
+                          <br><br>
+                         
+                         <!-- <i class="fas fa-bars"></i> -->
+                         <a href="<%=contextPath%>"><i class="fas fa-home"></i></a>
+                        </div>
+                  
+                        
+            </span>
+        </div>
+
+
+        <div id="content">
+
+             <!--왼쪽 공통메뉴-->
+             <div id="content_1">
+                
+                <div class="content_1_1">
+                    <h2>회원관리</h2>
+                    <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
+                    <br>
+                </div>
+
+                <div class="content_1_2">
+                    <h2>게시물관리</h2>
+                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1" style="color:white;">HomeTraining</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
+                    <br>
+                </div>
+
+                <div class="content_1_3">
+                    <h2>고객센터</h2>
+                    <div><a href="<%=contextPath%>/userManage.aus">공지사항</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">FAQ</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">1:1문의</a></div> 
+                    <br>
+                </div>
+
+                <div class="content_1_4">
+                    <h2>신고관리</h2>
+                    <div><a href="<%=contextPath%>/userManage.aus">전체신고보기</a></div> 
+                    <div><a href="<%=contextPath%>/userManage.aus">블랙리스트</a></div> 
+                </div>
+            </div>
+
+            <div id="line"></div>
 
      <!-- content -->
      <div id="content_2">
 
         <!-- 상단 타이틀 -->
         <div id="content2_1">
-            <h2>게시물 관리 > HomeTraining</h2>
-            <p>홈트레이닝 전체 조회입니다.</p>
+            <h2 style="color:gray; color:white;">게시물 관리 > HomeTraining</h2>
+            <hr style="border: 1px solid gray">
+
+            <p style="color: white;">홈트레이닝 전체 조회입니다.</p>
 
         </div>
 
-        <hr style="border:1px solid gray">
         <br><br>
 
      
@@ -83,11 +244,22 @@
         
         <div align="right" style="width:750px">
             <br><br>
-            <button>글작성</button>
-            <a href="<%=contextPath%>/enrollForm.aus" class="btn btn-warning"></a>
+            <!-- <button>글작성</button> -->
+            <a href="<%=contextPath%>/enrollForm.aus" class="btn btn-warning">글작성</a>
         </div>
 
+        
+        <div id="cNavi" align="center" >
+            <a href="">전체 | </a> 
+            <a href="">전신운동  | </a>
+            <a href="">코어운동  |</a>
+            <a href="">상체운동  |</a>
+            <a href="">하체운동  |</a>
+            <a href="">스트레칭</a>
+            
+        </div>
 		
+        <br><br>
 
         <div class="listArea" align="center">
             <div class="thumbnail" align="center">
@@ -97,27 +269,8 @@
                     작성일. 조회수 <br>
                 </p>
             </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="200" height="150">
-                <p>
-                    글번호. 카테고리. 제목  <br>
-                    작성일. 조회수 <br>
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="200" height="150">
-                <p>
-                    글번호. 카테고리. 제목  <br>
-                    작성일. 조회수 <br>
-                </p>
-            </div>
-            <div class="thumbnail" align="center">
-                <img src="" width="200" height="150">
-                <p>
-                    글번호. 카테고리. 제목  <br>
-                    작성일. 조회수 <br>
-                </p>
-            </div>
+            
+        </div>
                
                 
                 <!-- 조회된 결과가 없을 경우 -->
@@ -131,14 +284,11 @@
                 
                     <% for(AdHT a : list){ %>
                 
-                
                         <tr>
                             <td><%= a.getHtPostNo() %></td>
                             <td><%= a.getCategoryName() %></td>
                             <td><%= a.getHtPostTitle() %></td>
-                            <!-- <td><%= a.getUserNo() %></td> -->
                             <td><%= a.getHtEnrollDate() %></td>
-                            <!-- <td><%= a.getHtUpdateDate() %></td> -->
                             <td><%= a.getHtBoardView() %></td>
                         </tr>
                     <% } %>

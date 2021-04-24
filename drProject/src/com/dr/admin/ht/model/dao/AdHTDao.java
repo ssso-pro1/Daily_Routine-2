@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.dr.admin.ht.model.vo.AdHT;
+import com.dr.admin.ht.model.vo.HTFile;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.user.model.dao.UserDao;
 
@@ -103,10 +104,61 @@ public class AdHTDao {
 		}
 		return list;
 		
+	}
+	
+	
+	// insert1
+	public int insertAdHT(Connection conn, AdHT a) {
+		//insert => 처리된 행수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertAdHT");
 		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, a.getHtPostTitle());
+			pstmt.setString(2, a.getHtPostContent());
+			pstmt.setString(3, a.getCategoryName());
+			pstmt.setDate(4, a.getHtEnrollDate());
+			pstmt.setString(5, a.getVideoLink());
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 		
 	}
 	
+	// insert2
+	public int insertHTFile(Connection conn, HTFile h) {
+		// insert 문 => 처리된 행수
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertHTFile");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, h.getOriginName());
+			pstmt.setString(2, h.getChangeName());
+			pstmt.setString(3, h.getFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+		
+		
+	}
 	
 	
 	

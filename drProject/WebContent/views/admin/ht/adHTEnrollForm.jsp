@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.dr.admin.user.model.vo.AdUser"%>
 <%
 	AdUser loginUser = (AdUser)session.getAttribute("loginUser");
 	
@@ -97,7 +97,7 @@
     #htEnroll>table>tbody>tr{
         border:1px solid white;
     }
-    #htEnroll td, th{
+    #htEnroll th{
         color:white;
     }
     
@@ -198,85 +198,131 @@
         
         
                 <div id="content3">
-                <form action="<%= request.getContextPath()%>/htPostForm.aht" class="enrollForm" method="post" enctype="multipart/form-data">
-                    <!-- 글번호, 카테고리, 제목, 작성자, 작성일, 수정일, 조회수 -->
-                    <div id="htEnroll">
+                    <form action="<%= request.getContextPath()%>/htInsert.aht" class="enrollForm" method="post" enctype="multipart/form-data">
+                        <div id="htEnroll">
 
-                        <table  align="center">
-                            <thead>
-                                <tr>
-                                    <select name="categoryName" id="categoryName" required>
-                                        <option name="categoryName" value="all" selected >전체</option>
-                                        <option name="categoryName" value="whole">전신운동</option>
-                                        <option name="categoryName" value="core">코어운동</option>
-                                        <option name="categoryName" value="upper">상체운동</option>
-                                        <option name="categoryName" value="lower">하체운동</option>
-                                        <option name="categoryName" value="stretch">스트레칭</option>
-                                    </select>
-                                </tr>
-                            </thead>
-
-                            <tbody>
-                                <!-- <tr>
-                                    <th>카테고리명</th>
-                                    <td>
-                                        <select name="categoryName" id="categoryName" required style="color:black;">
-                                            <option name="categoryName" value="all" selected >전체</option>
-                                            <option name="categoryName" value="whole">전신운동</option>
-                                            <option name="categoryName" value="core">코어운동</option>
-                                            <option name="categoryName" value="upper">상체운동</option>
-                                            <option name="categoryName" value="lower">하체운동</option>
-                                            <option name="categoryName" value="stretch">스트레칭</option>
+                            <table align="center">
+                                <thead>
+                                    <tr>
+                                        <select name="categoryName" id="categoryName" required>
+                                            <option name="categoryName" value="전체" selected >전체</option>
+                                            <option name="categoryName" value="전신운동">전신운동</option>
+                                            <option name="categoryName" value="코어운동">코어운동</option>
+                                            <option name="categoryName" value="상체운동">상체운동</option>
+                                            <option name="categoryName" value="하체운동">하체운동</option>
+                                            <option name="categoryName" value="스트레칭">스트레칭</option>
                                         </select>
-                                    </td>
-                                </tr> -->
-                                <tr>
-                                    <th>제목</th>
-                                    <td><input type="text" name="htPostTitle" style="width: 100%;" id="title" required></td>
-                                    <!-- 초보자도 쉽게하는 어깨 이완 -->
-                                </tr>
+                                    </tr>
+                                </thead>
+    <!-- 카테고리명, 제목, 내용, 첨부파일, URL, 작성자회원번호 -->
+                                <tbody>
+                                    <tr>
+                                        <th>제목</th>
+                                        <td><input type="text" name="htPostTitle" style="width: 100%;" id="title" required></td>
+                                        <!-- 초보자도 쉽게하는 어깨 이완 -->
+                                    </tr>
+                            
+                                    <tr>
+                                        <th>영상 첨부</th>
+                                        <td><input type="url" name="videoLink" style="width: 100%;" required></td>
+                                    </tr>
                                 
-                                <tr>
-                                    <th>영상 첨부</th>
-                                    <td><input type="text" name="videoLink" style="width: 100%;"></td>
-                                </tr>
-                                <!-- <tr>
                                     
-                                    <th>카테고리명</th>
-                                    <td ><textarea type="text" name="categoryName" style="width: 100%;" placeholder="HT 게시글 내용">하루라도 더 젊을 때 운동을 시작해야 겠다는 생각이 들었을 때 하기 좋은 운동입니다. </textarea></td>
-                                </tr> -->
+                                    <tr> 
+                                        <th>썸네일이미지(첨부파일)</th>
+                                        <td>
+                                            <!-- <img type="file" name="fileNo" id="titleImg" width="250" height="250" src=""> -->
+                                            <input type="file" name="fileNo" style="width: 100%;">
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <!--간략설명, 권장사항, 운동방법, 운동주의사항 + thumbnail?? + 영상첨부??-->
+                                        <th>게시글내용</th>
+                                        <td>
+                                            <textarea name="htPostContent" class="summernote" cols="10" rows="" style="resize: none;"></textarea>
+                                        </td>     
 
-                                
-                            <!--간략설명, 권장사항, 운동방법, 운동주의사항-->
-                                <tr>
-                                    <th>첨부파일</th>
-                                    <td><input type="file" name="upfile" style="width: 100%;"></td>
-                                </tr>
-                                <tr>
-                                    <th>게시글내용</th>
-                                    <td><textarea name="htPostContent" class="summernote" cols="10" rows="" style="resize: none;"></textarea></td>    
+                                    </tr>
 
-                                </tr>
+                                    <tr>
+                                        <th> 게시여부선택</th>
+                                        <td>
+                                            <button type="submit" onclick="return validate();"><a href="<%= request.getContextPath()%>/htListView.aht"></a>등록</button>
+                                            <button onclick="return back();"><a href="<%=contextPath %>/htList.aht?currentPage=1">취소</button>
+                                        </td>
+                                    </tr>
+                                </tbody>
 
-                                <tr>
-                                    <th> 게시여부선택</th>
-                                    <td>
-                                        <button type="submit" onclick="return validate();"><a href="<%= request.getContextPath()%>/htListView.aht"></a>등록</button>
-                                        <button onclick="return back();"><a href="<%=contextPath %>/htList.aht?currentPage=1">취소</button>
-                                    </td>
-                                </tr>
-                            </tbody>
-
-                        </table>
-                    </div>
-                <br>
+                            </table>
+                            
+                        </div>
+                    </form>
+                    <br>
                 </div>
-
-
         </div>
-    </form>
-</div> 
-    <script>
+    </div>
+ </div> 
+
+        <script>
+                                
+            // 게시글 작성 취소 
+            function back(){
+                var result = confirm("게시글 작성을 취소하시겠습니까?");
+                if(result){
+                    
+                    return true;
+                } else {
+                    
+                    return false;
+                }
+            }
+            
+            // 유효성 검사 
+            function validate() {
+                
+                var category = $("#category").val();
+                var title = document.getElementById("title");
+                var tContent = document.getElementById("tContent"); 
+                
+                var regExp = /[\S+$]/; // 공백을 제외한 모든 문자로 1글자이상 등록
+                
+                if(category=="0"){
+                    alert("카테고리를 선택해주세요"); 
+                    
+                    return false;
+                    
+                }
+                
+                if(!regExp.test(title.value)){
+                    alert("제목을 입력해주세요");
+                
+                    title.value="";
+                    title.focus();
+                    
+                    return false;
+                }
+                    
+                if(!regExp.test(tContent.value)){ 
+                    alert("내용을 입력해주세요");
+                
+                    tContent.value="";
+                    tContent.focus();
+                    
+                    return false;
+                }	
+                
+                var result = confirm("글을 등록하시겠습니까?");
+                if(result){
+                    
+                    
+                } else {
+                    alert("게시글 등록이 취소되었습니다");
+                    return false;
+                }
+                
+            }
+            
+     
         $('.summernote').summernote({
               // 에디터 높이
               height: 350,

@@ -1,13 +1,17 @@
 package com.dr.admin.ht.model.service;
 
-import static com.dr.common.JDBCTemplate.close;
+import static com.dr.common.JDBCTemplate.*;
+import static com.dr.common.JDBCTemplate.commit;
 import static com.dr.common.JDBCTemplate.getConnection;
+import static com.dr.common.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 
 import com.dr.admin.ht.model.dao.AdHTDao;
 import com.dr.admin.ht.model.vo.AdHT;
+import com.dr.admin.ht.model.vo.HTFile;
 import com.dr.common.model.vo.PageInfo;
 
 public class AdHTService {
@@ -37,4 +41,37 @@ public class AdHTService {
 		return list;
 		
 	}
+	
+	
+	//insert1
+	public int insertAdHT(AdHT a, HTFile h) {
+		
+		Connection conn = getConnection();
+		
+		// AdHT에 insert먼저
+		int result1 = new AdHTDao().insertAdHT(conn, a); //홈트테이블에 insert하는 dao메소드
+		
+		int result2 = 1;
+		if(a != null) {
+			result2 =  new AdHTDao().insertHTFile(conn, h);
+		}
+		
+		if(result1 > 0 && result2 > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		close(conn);
+		
+		return result1 * result2;
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }

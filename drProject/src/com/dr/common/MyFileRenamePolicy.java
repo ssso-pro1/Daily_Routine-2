@@ -9,6 +9,7 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 public class MyFileRenamePolicy implements FileRenamePolicy {
 
 	// 기존의 파일(원본 파일)을 전달받아서 수정명 작업을 마친 수정된 파일을 반환해주는 메소드 
+	// 나만의 파일명 수정해주는 객체
 	@Override
 	public File rename(File originFile) {
 		

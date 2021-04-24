@@ -111,7 +111,6 @@
                
                         <div>
                           <br><br>
-                           <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> 
                          
                          <!-- <i class="fas fa-bars"></i> -->
                          <a href="<%=contextPath%>"><i class="fas fa-home"></i></a>

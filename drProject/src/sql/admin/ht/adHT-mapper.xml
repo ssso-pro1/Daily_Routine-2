@@ -37,6 +37,52 @@
 	
 	
 	
+	
+	<entry key="insertAdHT">
+		INSERT 
+		  INTO TB_HOMETRAINING
+		  (
+		    HT_POST_NO
+		  , HT_POST_TITLE
+		  , HT_POST_CONTENT
+		  , CATEGORY_NAME
+		  , HT_ENROLL_DATE
+		  , VIDEO_LINK
+		  )
+		VALUES
+		  (
+		    SEQ_HTPNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  , ?
+  )
+	
+	</entry>
+	
+	<entry key="insertHTFile">
+		INSERT
+		  INTO TB_HT_FILE
+		  (
+		    FILE_NO
+		  , HT_POST_NO
+		  , ORIGIN_NAME
+		  , CHANGE_NAME
+		  , FILE_PATH
+		  )
+		  VALUES 
+		  (
+		    SEQ_HTFNO.NEXTVAL 
+		  , SEQ_HTPNO.CURRVAL 
+		  , ?
+		  , ?
+		  , ?
+		  )
+	
+	</entry>
+	
+	
 </properties>
 
 

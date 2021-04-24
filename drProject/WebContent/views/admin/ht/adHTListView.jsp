@@ -139,6 +139,7 @@
         .thumbnail:hover{
             cursor:pointer;
             color:rgb(250, 214, 9);
+            /* color:gray; */
         }
 
     #cNavi>a{
@@ -150,9 +151,12 @@
     #cNavi>a:hover{
         cursor:pointer;
         color:rgb(250, 214, 9);
+        /* color:gray; */
     }
 
-   
+    #content2_2>#button{
+        text-decoration: none;
+    }
 
     </style>
 </head>
@@ -242,12 +246,13 @@
      <div id="content2_2">
         <!-- 관리자 로그인시 보여짐 (로그인 && 로그인한 사용자가 admin일 경우) : 어차피 관리자 로그인해야 들어갈 수잇어서 필요없음-->
         
-        <div align="right" style="width:750px">
+        <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")) { %>
+        <div id="button" align="right" style="width:750px">
             <br><br>
             <!-- <button>글작성</button> -->
-            <a href="<%=contextPath%>/enrollForm.aus" class="btn btn-warning">글작성</a>
+            <a href="<%=contextPath%>/enrollForm.aus" class="btn btn-warning" style="text-decoration: none; color:white">글작성</a>
         </div>
-
+		<% } %>
         
         <div id="cNavi" align="center" >
             <a href="">전체 | </a> 
@@ -263,10 +268,11 @@
 
         <div class="listArea" align="center">
             <div class="thumbnail" align="center">
-                <img src="" width="200" height="150">
+                <img src="http://img.youtube.com/vi/xpzMr3nSOIE/maxresdefault.jpg" width="200" height="150">
                 <p>
-                    글번호. 카테고리. 제목  <br>
-                    작성일. 조회수 <br>
+                    No.글번호. [카테고리].<br>
+                    제목~~  <br>
+                    작성일. 조회수:xx <br>
                 </p>
             </div>
             

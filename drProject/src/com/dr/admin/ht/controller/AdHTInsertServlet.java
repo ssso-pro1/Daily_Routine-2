@@ -1,6 +1,7 @@
 package com.dr.admin.ht.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,6 +16,7 @@ import com.dr.admin.ht.model.vo.AdHT;
 import com.dr.admin.ht.model.vo.HTFile;
 import com.dr.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
+import com.sun.xml.internal.ws.api.message.Attachment;
 
 /**
  * Servlet implementation class AdHTInsertServlet
@@ -44,6 +46,7 @@ public class AdHTInsertServlet extends HttpServlet {
 		*/
 		
 		//enctype 이 multipart/form-data로 잘 전송되었을 경우
+		
 		if(ServletFileUpload.isMultipartContent(request)) {
 			//System.out.println("잘 실행되나?"); //글등록시 출력 (흰페이지)
 			//resources-upfiles 사진담아둘 폴더 (사용자가 다운 간으)
@@ -57,7 +60,7 @@ public class AdHTInsertServlet extends HttpServlet {
 			
 			// 1-2. 전달된 파일을 저장할 서버의 폴더 경로 알아내기 (String savePath)
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/admin/adminHT_upfiles/"); 
+			String savePath = request.getSession().getServletContext().getRealPath("resources/file/ht/ht_upfiles/"); 
 			//이폴더 내에 넣을거기 때문에 경로 마지막에 / 까지.
 			//System.out.println(savePath); //경로확인
 			
@@ -69,20 +72,25 @@ public class AdHTInsertServlet extends HttpServlet {
 			
 			
 			// 3. 요청시 전달된 값들 뽑아서 vo에 주섬주섬 담기 (DB에 기록할 데이터들 뽑기)
-			// 3-1. Board테이블 insert할 카테고리번호, 게시판제목, 게시판내용, 작성자회원번호를 Board객체에 담기
+			// 3-1.  insert할 카테고리번호, 게시판제목, 게시판내용, 작성자회원번호를 Board객체에 담기
 			// 카테고리명, 제목, 영상, 썸네일, 게시글내용, 로그인회원번호
+			/*
 			String categoryName = multiRequest.getParameter("categoryName");
 			String htPostTitle = multiRequest.getParameter("htPostTitle");
 			String videoLink = multiRequest.getParameter("videoLink");
 
 			String htPostContent = multiRequest.getParameter("htPostContent");
-
+			*/
+			
+			
 			AdHT a = new AdHT();
-			a.setCategoryName(categoryName);
-			a.setHtPostTitle(htPostTitle);
-			a.setVideoLink(videoLink);
+			//a.setAdHTUserName...?
+//			a.setUserName(multiRequest.getParameter("userNo")); // enrollForm.jsp 
+			a.setCategoryName(multiRequest.getParameter("categoryName"));
+			a.setHtPostTitle(multiRequest.getParameter("htPostTitle"));
+			a.setVideoLink(multiRequest.getParameter("videoLink"));
 
-			a.setHtPostContent(htPostContent);
+			a.setHtPostContent(multiRequest.getParameter("htPostContent"));
 			
 			// 3-2. 첨부파일이 있다면, Attachment테이블에 Insert할 원본명, 수정명, 저장폴더경로를 Attachment 객체에 담기
 			// System.out.println(multiRequest.getOriginalFileName("upfile"));
@@ -90,8 +98,36 @@ public class AdHTInsertServlet extends HttpServlet {
 			// 있게 해서 출력 테스트 해봄 (첨부파일의 원본명 출력)
 			
 			
+			ArrayList<HTFile> list = new ArrayList<>();
 			
+			for(int i=1; i<=4; i++) {
+				
+				String key = "file" + i;
+				
+				if(multiRequest.getOriginalFileName(key) != null) {
+					
+					HTFile ht = new HTFile();
+					ht.setOriginName(multiRequest.getOriginalFileName(key)); //이 조건이 트루일 때만 실행(파일있을때)
+					ht.setChangeName(multiRequest.getFilesystemName(key)); 
+					ht.setFilePath("resources/file/ht/ht_upfiles/");
+					
+					if(i == 1) {
+						ht.setFileLevel(0);
+					}else {
+						ht.setFileLevel(1);
+					}
+					
+					// list에 추가
+					list.add(ht);
+				}
+			}
+			
+			
+			// 4. 작성용 서비스 호출 및 결과받기
+			
+			/*
 			HTFile h = null; // 처음엔  null로 초기화, 넘어온 첨부파일이 있다면 그 때 생성
+			
 			
 			if(multiRequest.getOriginalFileName("fileNo") != null) { // 넘어온 첨부파일이 존재할 경우
 				
@@ -100,13 +136,11 @@ public class AdHTInsertServlet extends HttpServlet {
 				h.setOriginName(multiRequest.getOriginalFileName("fileNo")); 
 				h.setChangeName(multiRequest.getFilesystemName("fileNo")); 
 				h.setFilePath("resources/file/admin/adminHT_upfiles/");
-			}
+			}*/
 			
 			
 			// 4. 게시판 작성용 서비스 요청 및 결과 받기 / 하나의 서비스에서 두개의 INSERT
-			int result = new AdHTService().insertAdHT(a, h);
-			// case1 : 첨부파일이 있었을 경우 => insertBoard(생성된 Board객체, 생성된 Attachment객체)
-			// case2 : 첨부파일이 없었을 경우 => insertBoard(생성된 Board객체, null);
+			int result = new AdHTService().insertAdHT(a, list);
 			
 			if(result > 0) { // 성공 => (게시판리스트의 첫번째페이지)/ url재요청 => 게시판리스트페이지
 				
@@ -116,8 +150,10 @@ public class AdHTInsertServlet extends HttpServlet {
 			}else { // 실패
 				
 				request.setAttribute("errorMsg", "게시글등록실패");
-				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response); //(어떤뷰보여지게).포워딩(전달)
 				
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response); 
+
+			
 			}
 			
 		}

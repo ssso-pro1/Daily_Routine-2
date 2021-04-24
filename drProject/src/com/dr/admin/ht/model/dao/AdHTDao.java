@@ -1,6 +1,6 @@
 package com.dr.admin.ht.model.dao;
 
-import static com.dr.common.JDBCTemplate.*;
+import static com.dr.common.JDBCTemplate.close;
 
 import java.io.FileInputStream;
 import java.io.IOException;
@@ -107,6 +107,8 @@ public class AdHTDao {
 	}
 	
 	
+	
+	
 	// insert1
 	public int insertAdHT(Connection conn, AdHT a) {
 		//insert => 처리된 행수
@@ -119,8 +121,9 @@ public class AdHTDao {
 			pstmt.setString(1, a.getHtPostTitle());
 			pstmt.setString(2, a.getHtPostContent());
 			pstmt.setString(3, a.getCategoryName());
-			pstmt.setDate(4, a.getHtEnrollDate());
 			pstmt.setString(5, a.getVideoLink());
+			
+			result = pstmt.executeUpdate();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -133,17 +136,24 @@ public class AdHTDao {
 	}
 	
 	// insert2
-	public int insertHTFile(Connection conn, HTFile h) {
-		// insert 문 => 처리된 행수
+	public int insertHTFileList(Connection conn, ArrayList<HTFile> list) {
+		// insert 문 다수 => 처리된 행수
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertHTFile");
+		String sql = prop.getProperty("insertHTFileList");
 		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, h.getOriginName());
-			pstmt.setString(2, h.getChangeName());
-			pstmt.setString(3, h.getFilePath());
+			
+			for(HTFile ht : list) {
+				
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, ht.getOriginName());
+				pstmt.setString(2, ht.getChangeName());
+				pstmt.setString(3, ht.getFilePath());
+				pstmt.setInt(3, ht.getFileLevel());
+				
+			}
 			
 			result = pstmt.executeUpdate();
 			
@@ -154,9 +164,6 @@ public class AdHTDao {
 		}
 		
 		return result;
-		
-		
-		
 		
 	}
 	

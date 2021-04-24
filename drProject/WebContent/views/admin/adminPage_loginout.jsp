@@ -123,13 +123,15 @@
 	                <!-- 로그인 && 로그인한 아이디가 관리자 (admin01/ admincheck y) -->
                     <!-- <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %> -->
 	                <!-- <% if(loginUser != null && loginUser.getUserId().equals("admin01")){ %> -->
-                    <% if(loginUser != null){ %>
+                   
+                   <!-- 로그인 안했을 때 -->
+                    <% if(loginUser == null){ %>
 	                   <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
                 </div>
 	            
 	            	<%} else {%>
 		            	<div>
-		              
+		              <!-- 로그인했을 떄 -->
 		               <!-- <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> -->
 		               <b><%=loginUser.getUserName() %>님</b> DR에 오신 것을 환영합니다. 
 		                   

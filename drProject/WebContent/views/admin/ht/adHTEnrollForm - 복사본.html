@@ -200,8 +200,7 @@
                 <div id="content3">
                     <form action="<%= request.getContextPath()%>/htInsert.aht" class="enrollForm" method="post" enctype="multipart/form-data">
                         <div id="htEnroll">
-							
-							
+
                             <table align="center">
                                 <thead>
                                     <tr>
@@ -233,9 +232,7 @@
                                         <th>썸네일이미지(첨부파일)</th>
                                         <td>
 
-                                            <!-- <img type="file" name="fileNo" id="titleImg" width="250" height="250" src="http://img.youtube.com/vi/xpzMr3nSOIE/maxresdefault.jpg"> -->
-                                            <img type="file" id="titleImg" width="250" height="250" src="">
-
+                                            <img type="file" name="fileNo" id="titleImg" width="250" height="250" src="http://img.youtube.com/vi/xpzMr3nSOIE/maxresdefault.jpg">
                                             <!-- <input type="file" name="fileNo" style="width: 100%;"> -->
                                         </td>
                                     </tr>
@@ -244,11 +241,8 @@
                                         <th>게시글내용</th>
                                         <td>
                                             <textarea name="htPostContent" class="summernote" cols="10" rows="" style="resize: none;">  
-                                                <!-- <td><img id="contentImg1" width="150" height="150" src=""></td> -->
+                                                <td><img id="contentImg1" width="150" height="150" src=""></td>
                                                 <!-- <img type="file" name="fileNo" id="titleImg" width="250" height="250" src="http://img.youtube.com/vi/xpzMr3nSOIE/maxresdefault.jpg"> -->
-                                                <td><img id="contentImg1" width="150" height="120"></td>
-                                                <td><img id="contentImg2" width="150" height="120"></td>
-                                                <td><img id="contentImg3" width="150" height="120"></td>
                                             </textarea>
                                         </td>     
                                     </tr>
@@ -257,70 +251,18 @@
                             </table>
 
                             <div id="fileArea">
-                                <input type="file" name="file1" name="file1" id="file1" onchange="loadImg(this, 1);" required>
+                                <input type="file" name="file1" name="file1" id="file1" onchange="loadImg(this, 1);">
                                 <input type="file" name="file2" name="file2" id="file2" onchange="loadImg(this, 2);">
                                 <input type="file" name="file3" name="file3" id="file3" onchange="loadImg(this, 3);">
-                                <input type="file" name="file4" name="file4" id="file4" onchange="loadImg(this, 4);"> 
                             </div>
 
                             <script>
-                                /*
-                                 $(function(){
-                                    $("#fileArea").hide();
-                                    
-                                    $("#titleImg").click(function(){
-                                        $("#file1").click();
-                                    });
-
-                                    $("#contentImg1").click(function(){
-                                        $("#file2").click();
-                                    });
-
-                                    $("#contentImg2").click(function(){
-                                        $("#file3").click();
-                                    });
-
-                                    $("#contentImg3").click(function(){
-                                        $("#file4").click();
-                                    });
-                                    
-                                })*/
-
-                                function loadImg(inputFile, num){
+                                function loadImg(inputFile, num) {
                                     // inputFile : 현재 변화가 생긴 input type="file" 요소객체
-                                    // num : 몇 번째 input요소인지 확인 후 해당 그 영역에 미리보기하기 위해
-                                    
-                                    // 파일을 선택하는 순간 inputFile.files라는 속성배열에 0번 인덱스에 파일 담김
+                                    // num : 몇번째 input 요소인지 확인 후 해당 그 영역에 미리보기
+
+                                    //파일을 선택하는 순간 inputFile.files라는 속성배열에 0번 인덱스에 파일 담김
                                     console.log(inputFile.files);
-                                    if(inputFile.files.length == 1){ // 선택된 파일이 있을 경우
-
-                                        // 파일을 읽어들일 FileReader 객체 생성
-                                        var reader = new FileReader();
-
-                                        // 선택된 파일을 읽어들이기
-                                        // => 읽어들이는 순간 해당 그 파일만의 고유한 url부여됨
-                                        reader.readAsDataURL(inputFile.files[0]);
-
-                                        // 파일 읽어들이기가 완료된 순간 실행할 함수 정의
-                                        reader.onload = function(e){
-                                            // 각 영역에 맞춰서 이미지 미리보기
-                                            switch(num){
-                                                case 1: $("#titleImg").attr("src", e.target.result); break;
-                                                case 2: $("#contentImg1").attr("src", e.target.result); break;
-                                                case 3: $("#contentImg2").attr("src", e.target.result); break;
-                                                case 4: $("#contentImg3").attr("src", e.target.result); break;
-                                            }
-                                        }
-
-                                    }else{ // 선택된 파일이 사라졌을 경우
-
-                                        switch(num){
-                                            case 1: $("#titleImg").attr("src", null); break;
-                                            case 2: $("#contentImg1").attr("src", null); break;
-                                            case 3: $("#contentImg2").attr("src", null); break;
-                                            case 4: $("#contentImg3").attr("src", null); break;
-                                        }
-                                    }
                                 }
                             </script>
                             <br>

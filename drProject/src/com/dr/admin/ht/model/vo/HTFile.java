@@ -10,10 +10,12 @@ public class HTFile {
 	private String changeName;	//파일수정명
 	private String filePath;	//파일경로
 	private Date uploadDate;	//파일업로드일
+	private int fileLevel;
 	
 	public HTFile() {}
 
-	public HTFile(int fileNo, int htPostNo, String originName, String changeName, String filePath, Date uploadDate) {
+	public HTFile(int fileNo, int htPostNo, String originName, String changeName, String filePath, Date uploadDate,
+			int fileLevel) {
 		super();
 		this.fileNo = fileNo;
 		this.htPostNo = htPostNo;
@@ -21,6 +23,7 @@ public class HTFile {
 		this.changeName = changeName;
 		this.filePath = filePath;
 		this.uploadDate = uploadDate;
+		this.fileLevel = fileLevel;
 	}
 
 	public int getFileNo() {
@@ -71,11 +74,24 @@ public class HTFile {
 		this.uploadDate = uploadDate;
 	}
 
+	public int getFileLevel() {
+		return fileLevel;
+	}
+
+	public void setFileLevel(int fileLevel) {
+		this.fileLevel = fileLevel;
+	}
+
 	@Override
 	public String toString() {
 		return "HTFile [fileNo=" + fileNo + ", htPostNo=" + htPostNo + ", originName=" + originName + ", changeName="
-				+ changeName + ", filePath=" + filePath + ", uploadDate=" + uploadDate + "]";
+				+ changeName + ", filePath=" + filePath + ", uploadDate=" + uploadDate + ", fileLevel=" + fileLevel
+				+ "]";
 	}
+
+	
+	
+
 	
 	
 }

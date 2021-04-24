@@ -43,19 +43,18 @@ public class AdHTService {
 	}
 	
 	
+	
+	
 	//insert1
-	public int insertAdHT(AdHT a, HTFile h) {
+	public int insertAdHT(AdHT a, ArrayList<HTFile> list) {
 		
 		Connection conn = getConnection();
 		
 		// AdHT에 insert먼저
 		int result1 = new AdHTDao().insertAdHT(conn, a); //홈트테이블에 insert하는 dao메소드
+		int result2 = new AdHTDao().insertHTFileList(conn, list);
 		
-		int result2 = 1;
-		if(a != null) {
-			result2 =  new AdHTDao().insertHTFile(conn, h);
-		}
-		
+			
 		if(result1 > 0 && result2 > 0) {
 			commit(conn);
 		} else {

@@ -44,7 +44,7 @@
 		  INTO TB_HOMETRAINING
 		  (
 		    HT_POST_NO
-		  <!-- , USER_NO -->
+		  , USER_NO
 		  , HT_POST_TITLE
 		  , HT_POST_CONTENT
 		  , CATEGORY_NAME
@@ -55,6 +55,7 @@
 		  VALUES
 		  (
 		    SEQ_HTPNO.NEXTVAL
+		   , ?
 		   , ?
 		   , ?
 		   , ?

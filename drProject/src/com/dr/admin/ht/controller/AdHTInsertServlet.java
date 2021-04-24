@@ -84,8 +84,9 @@ public class AdHTInsertServlet extends HttpServlet {
 			
 			
 			AdHT a = new AdHT();
-			//a.setAdHTUserName...?
-//			a.setUserName(multiRequest.getParameter("userNo")); // enrollForm.jsp 
+			//a.setUserName...?
+			a.setUserNo(multiRequest.getParameter("userNo"));
+	//		a.setUserNo(multiRequest.getParameter("userNo")); // enrollForm.jsp 
 			a.setCategoryName(multiRequest.getParameter("categoryName"));
 			a.setHtPostTitle(multiRequest.getParameter("htPostTitle"));
 			a.setVideoLink(multiRequest.getParameter("videoLink"));
@@ -148,10 +149,10 @@ public class AdHTInsertServlet extends HttpServlet {
 				response.sendRedirect(request.getContextPath() + "/htList.aht?currentPage=1"); //url재요청
 				
 			}else { // 실패
+				// 여기서 왜 이 오류가.. 154, 174java.lang.ClassCastException: com.dr.admin.user.model.vo.AdUser cannot be cast to com.dr.member.user.model.vo.User
+				//request.setAttribute("errorMsg", "게시글등록실패");
 				
-				request.setAttribute("errorMsg", "게시글등록실패");
-				
-				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response); 
+				//request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response); 
 
 			
 			}

@@ -201,7 +201,7 @@
                     <form action="<%= request.getContextPath()%>/htInsert.aht" class="enrollForm" method="post" enctype="multipart/form-data">
                         <div id="htEnroll">
 							
-							
+							<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
                             <table align="center">
                                 <thead>
                                     <tr>
@@ -255,7 +255,7 @@
 
                                 </tbody>
                             </table>
-
+						
                             <div id="fileArea">
                                 <input type="file" name="file1" name="file1" id="file1" onchange="loadImg(this, 1);" required>
                                 <input type="file" name="file2" name="file2" id="file2" onchange="loadImg(this, 2);">

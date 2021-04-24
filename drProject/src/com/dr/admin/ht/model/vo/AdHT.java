@@ -36,19 +36,6 @@ public class AdHT {
 		this.fileNo = fileNo;
 		this.videoLink = videoLink;
 	}
-	
-	
-
-	public AdHT(int htPostNo, String htPostTitle, String categoryName, Date htEnrollDate, Date htUpdateDate,
-			int htBoardView) {
-		super();
-		this.htPostNo = htPostNo;
-		this.htPostTitle = htPostTitle;
-		this.categoryName = categoryName;
-		this.htEnrollDate = htEnrollDate;
-		this.htUpdateDate = htUpdateDate;
-		this.htBoardView = htBoardView;
-	}
 
 	public int getHtPostNo() {
 		return htPostNo;
@@ -153,6 +140,9 @@ public class AdHT {
 				+ ", htUpdateDate=" + htUpdateDate + ", htBoardView=" + htBoardView + ", htLikeCount=" + htLikeCount
 				+ ", status=" + status + ", fileNo=" + fileNo + ", videoLink=" + videoLink + "]";
 	}
+
+	
+	
 
 	
 	

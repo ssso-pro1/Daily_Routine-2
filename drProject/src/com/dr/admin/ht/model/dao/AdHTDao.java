@@ -119,8 +119,9 @@ public class AdHTDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, a.getHtPostTitle());
-			pstmt.setString(2, a.getHtPostContent());
-			pstmt.setString(3, a.getCategoryName());
+			pstmt.setInt(2, a.getUserNo());
+			pstmt.setString(3, a.getHtPostContent());
+			pstmt.setString(4, a.getCategoryName());
 			pstmt.setString(5, a.getVideoLink());
 			
 			result = pstmt.executeUpdate();

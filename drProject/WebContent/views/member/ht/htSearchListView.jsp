@@ -4,7 +4,7 @@
 <%
 
 	ArrayList<Ht> list = (ArrayList<Ht>)request.getAttribute("list");
-
+	String searchTitle = (String)session.getAttribute("searchTitle");
 %>
 <!DOCTYPE html>
 <html>
@@ -34,19 +34,21 @@
 			<div id="content_1">
                 <h1>Home<br>Training</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/allList.ht?currentPage=1" >전체</a></div>
+                    <div><a href="<%=contextPath%>/allList.ht?currentPage=1" style="color:rgb(250, 214, 9);">전체</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/bodyList.ht?currentPage=1">전신 운동</a></div>
                     <br>
 					<div><a href="<%=contextPath%>/absList.ht?currentPage=1">복부 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/upperList.ht?currentPage=1"  style="color:rgb(250, 214, 9);">상체 운동</a></div>
+                    <div><a href="<%=contextPath%>/upperList.ht?currentPage=1">상체 운동</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/lowerList.ht?currentPage=1">하체 운동</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/strechingList.ht?currentPage=1">스트레칭</a></div>
                 </div>
             </div>
+            
+            
 
             <div id="line"></div>
 
@@ -55,9 +57,9 @@
 
                 <!-- 상단 타이틀-->
                 <div id="content2_1">
-                    <h2>HomeTraining > 상체 운동</h2>
+                    <h2>HomeTraining > 전체</h2>
                     <hr>
-                    <p>홈트레이닝 상체 운동 조회입니다.</p>
+                    <p>홈트레이닝 전체 조회입니다.</p>
                 </div>
                 <br><br><br>
 				<div id="content_2_2">
@@ -73,7 +75,7 @@
 					<script>
 						// 기본 상태 = 업로드순
 						$(function(){
-							$(".listArea").load("upperListArea.ht?currentPage=1");
+							$(".listArea").load("searchListArea.ht?currentPage=1");
 						})
 					
 						
@@ -82,13 +84,13 @@
 							
 							$.ajax({
 								type:"post",
-								url: "upperListArea.ht?currentPage=1",
+								url: "searchListArea.ht?currentPage=1",
 								dataType : "html",
 								data:{
-									value:value
+									value:value,
+									searchTitle:searchTitle
 								},success:function(){
-									$(".listArea").load("upperListArea.ht?currentPage=1");
-									console.log(value);
+									$(".listArea").load("searchListArea.ht?currentPage=1");
 								},error:function(){
 									cosole.log("실패");
 								}

@@ -1,14 +1,97 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
-
-	<entry key="">
-		
 	
-	
+	<entry key="selectListCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_HOMETRAINING
+		 WHERE STATUS = 'N'
+		   AND CATEGORY_NAME = ? 
 	</entry>
 	
+	<entry key="selectSearchListCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_HOMETRAINING
+		 WHERE STATUS = 'N'
+		   AND HT_POST_TITLE LIKE '%' || ? || '%'
+	</entry>
 	
+	<entry key="selectAllListCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_HOMETRAINING
+		 WHERE STATUS = 'N'
+	</entry>
+	
+	<entry key="selectSearchHtList">
+		  SELECT
+			     HT_POST_NO
+			   , HT_POST_TITLE
+			   , HT_ENROLL_DATE
+			   , HT_UPDATE_DATE
+			   , HT_BOARD_VIEW
+			   , HT_LIKE_COUNT
+	                           , FILE_PATH || CHANGE_NAME "TITLEIMG"
+			 FROM TB_HOMETRAINING H
+			 LEFT JOIN TB_HT_FILE USING(HT_POST_NO)
+			WHERE H.STATUS = 'N'
+			  AND HT_POST_TITLE LIKE '%' || ? || '%'
+	</entry>
+
+	<entry key="selectAllHtList">
+		  SELECT
+			     HT_POST_NO
+			   , HT_POST_TITLE
+			   , HT_ENROLL_DATE
+			   , HT_UPDATE_DATE
+			   , HT_BOARD_VIEW
+			   , HT_LIKE_COUNT
+	                           , FILE_PATH || CHANGE_NAME "TITLEIMG"
+			 FROM TB_HOMETRAINING H
+			 LEFT JOIN TB_HT_FILE USING(HT_POST_NO)
+			WHERE H.STATUS = 'N'
+	</entry>
+	
+		<entry key="selectHtList">
+		  SELECT
+			     HT_POST_NO
+			   , HT_POST_TITLE
+			   , HT_ENROLL_DATE
+			   , HT_UPDATE_DATE
+			   , HT_BOARD_VIEW
+			   , HT_LIKE_COUNT
+	                           , FILE_PATH || CHANGE_NAME "TITLEIMG"
+			 FROM TB_HOMETRAINING H
+			 LEFT JOIN TB_HT_FILE USING(HT_POST_NO)
+			WHERE H.STATUS = 'N'
+			  AND CATEGORY_NAME = ?
+	</entry>
+	
+	<entry key="increaseCount">
+    		UPDATE
+			   TB_HOMETRAINING H
+		   SET HT_BOARD_VIEW = HT_BOARD_VIEW+1
+		 WHERE HT_POST_NO = ?
+		   AND STATUS = 'N'
+	</entry>
+	
+	<entry key="selectPost">
+		   SELECT
+                  HT_POST_NO
+                , USER_NO
+                , HT_POST_CONTENT
+                , HT_POST_TITLE
+                , HT_COMMENT
+                , HT_RECOMMEND
+                , HT_HOWTOWORK
+                , HT_SUGGESTION
+                , CATEGORY_NAME
+                , HT_ENROLL_DATE
+                , HT_UPDATE_DATE
+                , VIDEO_LINK
+             FROM TB_HOMETRAINING H
+            WHERE HT_POST_NO = ?
+              AND H.STATUS = 'N'
+	</entry>
 </properties>
 
 

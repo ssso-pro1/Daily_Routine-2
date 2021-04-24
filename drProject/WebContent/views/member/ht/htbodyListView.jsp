@@ -1,11 +1,27 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="java.util.ArrayList, com.dr.member.ht.model.vo.Ht, com.dr.common.model.vo.PageInfo" %>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/htView.css">
+<style>
+	.listArea{
+		display: inline-block;
+	}
+	.pagingArea{
+		text-align: right;
+        width: 500px;
+        display: inline-block;
+        margin-right: 300px
+    }	
+    .thumbnail{
+    	cursor:pointer;
+    }
+</style>
 </head>
 <body>
     <%@ include file="../../common/menubar.jsp" %>
@@ -14,17 +30,17 @@
 			<div id="content_1">
                 <h1>Home<br>Training</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/workoutTip.co" >전체</a></div>
+                    <div><a href="<%=contextPath%>/allList.ht?currentPage=1">전체</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/free.co">코어 운동</a></div>
+                    <div><a href="<%=contextPath%>/bodyList.ht?currentPage=1" style="color:rgb(250, 214, 9);">전신 운동</a></div>
                     <br>
-					<div><a href="<%=contextPath%>/free.co" style="color:rgb(250, 214, 9);">전신 운동</a></div>
+					<div><a href="<%=contextPath%>/absList.ht?currentPage=1">복부 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">상체 운동</a></div>
+                    <div><a href="<%=contextPath%>/upperList.ht?currentPage=1">상체 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">하체 운동</a></div>
+                    <div><a href="<%=contextPath%>/lowerList.ht?currentPage=1">하체 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">스트레칭</a></div>
+                    <div><a href="<%=contextPath%>/strechingList.ht?currentPage=1">스트레칭</a></div>
                 </div>
             </div>
 
@@ -41,6 +57,7 @@
                 </div>
                 <br><br><br>
 				<div id="content_2_2">
+
 					<div class="tipcategory" style="margin-left:10px">
 						<select name="category">
 							<option value="upload">업로드순</option>
@@ -48,78 +65,48 @@
 							<option value="view">조회수순</option>
 						</select>
 					</div>
+					
+					<script>
+						// 기본 상태 = 업로드순
+						$(function(){
+							$(".listArea").load("bodyListArea.ht?currentPage=1");
+						})
+					
+						
+						$("select[name=category]").change(function(){
+							var value = ($(this).val());
+							
+							$.ajax({
+								type:"post",
+								url: "bodyListArea.ht?currentPage=1",
+								dataType : "html",
+								data:{
+									value:value
+								},success:function(){
+									$(".listArea").load("bodyListArea.ht?currentPage=1");
+									console.log(value);
+								},error:function(){
+									cosole.log("실패");
+								}
+							})
+						})
+						
+						
+					</script>
+					
+					
 					<div align="center" class="searchArea">
-						<input type="text">
-						<button>검색</button> 
+						<form action="<%= contextPath %>/searchList.ht" method="post">
+							<!-- 제목검색? -->
+							<input type="text" name="searchTitle">
+							<button type="submit">검색</button> 
+						</form>
 					</div>
+
+					
 					<br><br>
-			
-					<div class="listArea">
-						<div class="thumbnail" align="center">
-							<img src="" width="230" height="150">
-							<p>
-								초보자를 위한 트레이닝<br>
-								조회수 : 20 좋아요 : 150 <br>
-								2020-04-20
-							</p>
-						</div>
-						<div class="thumbnail" align="center">
-							<img src="" width="230" height="150">
-							<p>
-								30분 복부 운동 <br>
-								조회수 : 20 좋아요 : 150 <br>
-								2020-04-20
-							</p>
-						</div>
-						<div class="thumbnail" align="center">
-							<img src="" width="230" height="150">
-							<p>
-								7분 스트레칭 <br>
-								조회수 : 20 좋아요 : 150 <br>
-								2020-04-20
-							</p>
-						</div>
-						<div class="thumbnail" align="center">
-							<img src="" width="230" height="150">
-							<p>
-								15분 힙업 운동 <br>
-								조회수 : 20 좋아요 : 150 <br>
-								2020-04-20
-							</p>
-						</div>
-						<div class="thumbnail" align="center">
-							<img src="" width="230" height="150">
-							<p>
-								복부 지방 태우기<br>
-								조회수 : 20 좋아요 : 150 <br>
-								2020-04-20
-							</p>
-						</div>
-						<div class="thumbnail" align="center">
-							<img src="" width="230" height="150">
-							<p>
-							10분 몸풀기<br>
-								조회수 : 20 좋아요 : 150 <br>
-								2020-04-20
-							</p>
-						</div>
-						<br><br>
-						<!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
-						<!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
-						<div align="center" class="pagingArea">
-							<button><</button>
-							<button>1</button>
-							<button>2</button>
-							<button>3</button>
-							<button>4</button>
-							<button>5</button>
-							<button>></button>
-						</div>
-						<div class="btn">
-						<!-- 관리자만 사용할 수 있는 버튼 -->
-							<button>글쓰기</button>
-						</div>
-					</div>
+					<!-- 여기에 listArea페이징이랑, 조회한거랑 디테일뷰 스크립트가 들어옴 -->
+					<div class="listArea"></div>
 					<br>
 				</div>
 			</div>

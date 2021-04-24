@@ -38,9 +38,9 @@
                     <br>
                     <div><a href="<%=contextPath%>/bodyList.ht?currentPage=1">전신 운동</a></div>
                     <br>
-					<div><a href="<%=contextPath%>/absList.ht?currentPage=1">복부 운동</a></div>
+					<div><a href="<%=contextPath%>/absList.ht?currentPage=1"  style="color:rgb(250, 214, 9);">복부 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/upperList.ht?currentPage=1"  style="color:rgb(250, 214, 9);">상체 운동</a></div>
+                    <div><a href="<%=contextPath%>/upperList.ht?currentPage=1">상체 운동</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/lowerList.ht?currentPage=1">하체 운동</a></div>
                     <br>
@@ -55,9 +55,9 @@
 
                 <!-- 상단 타이틀-->
                 <div id="content2_1">
-                    <h2>HomeTraining > 상체 운동</h2>
+                    <h2>HomeTraining > 복부 운동</h2>
                     <hr>
-                    <p>홈트레이닝 상체 운동 조회입니다.</p>
+                    <p>홈트레이닝 복부 운동 조회입니다.</p>
                 </div>
                 <br><br><br>
 				<div id="content_2_2">
@@ -73,7 +73,7 @@
 					<script>
 						// 기본 상태 = 업로드순
 						$(function(){
-							$(".listArea").load("upperListArea.ht?currentPage=1");
+							$(".listArea").load("absListArea.ht?currentPage=1");
 						})
 					
 						
@@ -82,12 +82,12 @@
 							
 							$.ajax({
 								type:"post",
-								url: "upperListArea.ht?currentPage=1",
+								url: "absListArea.ht?currentPage=1",
 								dataType : "html",
 								data:{
 									value:value
 								},success:function(){
-									$(".listArea").load("upperListArea.ht?currentPage=1");
+									$(".listArea").load("absListArea.ht?currentPage=1");
 									console.log(value);
 								},error:function(){
 									cosole.log("실패");
@@ -98,7 +98,6 @@
 						
 					</script>
 					
-					
 					<div align="center" class="searchArea">
 						<form action="<%= contextPath %>/searchList.ht" method="post">
 							<!-- 제목검색? -->
@@ -106,7 +105,6 @@
 							<button type="submit">검색</button> 
 						</form>
 					</div>
-
 					
 					<br><br>
 					<!-- 여기에 listArea페이징이랑, 조회한거랑 디테일뷰 스크립트가 들어옴 -->

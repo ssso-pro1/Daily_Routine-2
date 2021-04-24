@@ -1,11 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8" import="com.dr.member.ht.model.vo.Ht"%>
+<%
+	Ht h = (Ht)request.getAttribute("h");
+%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/htView.css">
+<link rel="stylesheet" href="../../../resources/css/htView.css">
+<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+<style>
+	.mark{
+        width: 500px;
+        text-align: right;
+        cursor: pointer;
+    }
+</style>
 </head>
 <body>
     <%@ include file="../../common/menubar.jsp" %>
@@ -35,34 +47,73 @@
 
                 <!-- 상단 타이틀-->
                 <div id="content2_1">
-                    <h2>HomeTraining > 코어 운동</h2>
+                    <h2>HomeTraining > <%= h.getHtCategory() %></h2>
                     <hr>
                 </div>
                 <br>
 				<div id="content_2_2">
-					<h2>title 매일 9분 복근 만들기</h2>
-					<p>간략설명</p>
+					<h2><%= h.getHtPostTitle() %></h2>
+					<p><%= h.getHtComment() %></p>
 					<p>이 운동은 이런 분들에게 좋아요</p>
 					<p>
-						<ul>
-							<li>복근을 만들고 싶으신 분</li>
-							<li>코어 힘을 키우고 싶으신 분</li>
-						</ul>
+						<%= h.getHtRecommend() %>
 					</p>
 					<br>
-					<video src="https://youtu.be/zcQ16cfJN9Q"  controls autoplay loop width="500px" height="300px"></video>
+					<iframe src="<%= h.getVideoLink() %>?autoplay=1"width="500px" height="300px"></iframe>
 					<br>
+					<div class="mark">
+						북마크 <i id="bookmark" class="far fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
+						좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
+					</div>
+
+					<script>
+						function bookmark(){
+							var bkClass = document.getElementById('bookmark').className;
+							if(bkClass == 'fas fa-bookmark'){ // 꽉찬 북마크 -> 빈 북마크로 => 취소할때
+								document.getElementById('bookmark').className = 'far fa-bookmark';
+							}else{ // 빈 북마크 -> 꽉찬 북마크로 => 북마크 할 때
+								document.getElementById('bookmark').className = 'fas fa-bookmark';
+							}
+						}
+						function like(){
+							var lkClass = document.getElementById('like').className;
+							if(lkClass == 'fas fa-heart'){ // 꽉찬 하트 -> 빈 하트로 => 취소할 때
+								document.getElementById('like').className = 'far fa-heart';
+								$.ajax({
+									type:"post",
+									url: "북마크 할 서블릿",
+									data:{
+										userId:유저아이디,
+										postNo:게시판 번호
+									}
+									success:function({
+										
+										
+									})
+									
+								
+								})
+							}else{ // 빈 하트 -> 꽉찬 하트로 => 좋아요 할 때
+								document.getElementById('like').className = 'fas fa-heart';
+							}
+						}
+						
+					</script>
+
 					<p>
 						운동방법<br>
-						<ul>
-							<li>배아픈거 : 코어힘으로 버텨야해요</li>
-							<li>배아픈거 : 그래서 싫어요</li>
-						</ul>
+						<p>
+							<%= h.getHtHowToWork() %>
+						</p>
+					</p>
+					<p>
+						주의사항<br>
+						<p>
+							<%= h.getHtSuggestion() %>
+						</p>
 					</p>
 					<pre style="text-align: left;">  
-이 운동루틴은 영국에서 최초로 시작되어 매일매일 일년 운동한 사람에게 행운을 주었고 지금은 당신이 알게 된 이 운동 루틴은 오늘 당장부터 시작해서 4일 이상 쉬면 안됩니다. 
-운동을 하시면서 7명의 사람에게 이 루틴을 알려주셔야합니다. 치팅을 해도 좋습니다. 혹시 운동효과를 못볼것 같지만 꾸준히 하면 효과가 있습니다.
-영국에서 Amyear Mulzomdao이라는 사람은 1930년에 이 운동 루틴을 시작했습니다. 그녀는 매일 같이 운동하여 1년뒤에 그녀가 얻고자하는 몸과 건강을 얻으며 영생을 얻게 되었습니다. 어떤이는 이 운동을 하였으나 95시간 이내 운동을 재개해야 하는 사실을 잊었습니다. 그에게는 다시 요요가 찾아왔습니다. 미국의 케네디 대통령은 이 운동을 시작했지만 곧 포기 하였습니다. 9일 후 그는 암살당했습니다. 기억해주세요. 이 운동을 마치면,  체중감량, 자세교정, 핏, 건강과  행운이 7년동안 있을 것이고, 그렇지 않으면 3년의 불행이 있을것입니다. 운동을 RM이나, 세트를 생략하는것은 절대 안됩니다. 1년입니다. 이 운동 루틴을 마친 사람은 행운이 깃들것입니다. 힘들겠지만 좋은게 좋다고 생각해주세요. 7년의 행운을 빌며..
+<%= h.getHtPostContent() %>
 					  </pre>
 				</div>
 			</div>

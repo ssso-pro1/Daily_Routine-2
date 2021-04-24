@@ -104,6 +104,10 @@
     #htEnroll td{
         border:1px solid white;
     }
+
+    #category{
+        color:black;
+    }
 </style>
 
 
@@ -199,11 +203,33 @@
                     <div id="htEnroll">
 
                         <table  align="center">
-                            <!-- <thead>
-                            
-                            </thead> -->
+                            <thead>
+                                <tr>
+                                    <select name="categoryName" id="categoryName" required>
+                                        <option name="categoryName" value="all" selected >전체</option>
+                                        <option name="categoryName" value="whole">전신운동</option>
+                                        <option name="categoryName" value="core">코어운동</option>
+                                        <option name="categoryName" value="upper">상체운동</option>
+                                        <option name="categoryName" value="lower">하체운동</option>
+                                        <option name="categoryName" value="stretch">스트레칭</option>
+                                    </select>
+                                </tr>
+                            </thead>
+
                             <tbody>
-                                
+                                <!-- <tr>
+                                    <th>카테고리명</th>
+                                    <td>
+                                        <select name="categoryName" id="categoryName" required style="color:black;">
+                                            <option name="categoryName" value="all" selected >전체</option>
+                                            <option name="categoryName" value="whole">전신운동</option>
+                                            <option name="categoryName" value="core">코어운동</option>
+                                            <option name="categoryName" value="upper">상체운동</option>
+                                            <option name="categoryName" value="lower">하체운동</option>
+                                            <option name="categoryName" value="stretch">스트레칭</option>
+                                        </select>
+                                    </td>
+                                </tr> -->
                                 <tr>
                                     <th>제목</th>
                                     <td><input type="text" name="htPostTitle" style="width: 100%;" id="title" required></td>
@@ -214,11 +240,12 @@
                                     <th>영상 첨부</th>
                                     <td><input type="text" name="videoLink" style="width: 100%;"></td>
                                 </tr>
-                                <tr>
+                                <!-- <tr>
                                     
                                     <th>카테고리명</th>
                                     <td ><textarea type="text" name="categoryName" style="width: 100%;" placeholder="HT 게시글 내용">하루라도 더 젊을 때 운동을 시작해야 겠다는 생각이 들었을 때 하기 좋은 운동입니다. </textarea></td>
-                                </tr>
+                                </tr> -->
+
                                 
                             <!--간략설명, 권장사항, 운동방법, 운동주의사항-->
                                 <tr>

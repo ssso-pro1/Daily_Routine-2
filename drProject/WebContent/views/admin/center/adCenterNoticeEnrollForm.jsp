@@ -235,7 +235,10 @@
                             
                                 <tr>
                                     <th>첨부파일</th>
-                                    <td><input type="file" name="upfile" value=""></td>
+                                    <td>
+                                        <input type="file" name="upfile" id="upfile" value="">
+                                        <button type="button" id="deleteFile">선택취소</button>
+                                    </td>
                                 </tr>
                                 <tr>
                                     <th>내용</th>
@@ -271,7 +274,20 @@
                   </form>
                   
                   			<script>
-                        			function back(){
+                  			
+                  				//파일 첨부했다가 삭제할때 파일삭제 이벤트
+                           		$(function(){
+
+                  			        $("#deleteFile").click(function(){ 
+
+                  			           
+                  			            $("#upfile").val("");
+                  			        });
+
+                  			    })
+                  			
+                  				//취소버튼 눌렀을 때
+                  			    function back(){
                         				var result = confirm("게시글 작성을 취소하시겠습니까?");
                                     	if(result){
                                     		

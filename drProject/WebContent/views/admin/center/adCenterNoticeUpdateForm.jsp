@@ -246,13 +246,21 @@
                                 <tr>
                                     <th>첨부파일</th>
                                     <td> <!-- 기존의 첨부파일이 있었다면 -->
-				                        <% if(fi != null) { %>
-				                        	<%= fi.getFileName() %>
+				                        	<% if(fi != null) { %>
+				                        	기존 첨부파일 : <label id="originFile"><%= fi.getFileName() %></label>
+				                        	<p>수정할 파일 : </p>
+				                        	
 				                        	<input type="hidden" name="originFileNo" value="<%= fi.getFileNo() %>">
 				                        	<input type="hidden" name="originFileName" value="<%=fi.getFileUpdate() %>">
-				                        <% } %>
-                        			
-                        					<input type="file" name="reUpfile">
+				                        	
+				                        	<% } %>
+                        				
+                        					<!-- 첨부파일이 없었다면 -->
+                        					
+                        					<input type="file" name="reUpfile" id="reUpfile">
+                        					<button type="button" id="deleteFile">선택취소</button>
+                                            
+                                            
                         			</td>
                         
                         				
@@ -292,7 +300,21 @@
 
                   </form>
                   <script>
-					$(function(){
+                  
+                  
+                  // 수정파일 첨부했다가 취소할때 이벤트
+                  $(function(){
+
+    			        $("#deleteFile").click(function(){ 
+
+    			           
+    			            $("#reUpfile").val("");
+    			        });
+
+    			    })
+
+                 	// 게시여부 선택되는 펑션
+    			    $(function(){
 						var status = "<%= n.getStatus()%>";
 						// "Y" / "N"
 								

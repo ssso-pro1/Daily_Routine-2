@@ -169,20 +169,6 @@
 		   AND COMM_NO = 1    	   
 	</entry>
 	
-	<entry key="selectTipReplyList">
-		SELECT 
-			   REPLY_NO
-			 , USER_ID
-			 , REPLY_CONTENT
-			 , R.ENROLL_DATE
-		  FROM TB_REPLY R 
-		  JOIN TB_USER U ON (R.USER_NO = U.USER_NO)	
-		 WHERE COMM_POST_NO = ?
-		   AND COMM_NO = 1 
-		   AND STATUS = 'N' 
-		 ORDER BY ENROLL_DATE DESC
-	</entry>
-	
 	
 	<!-- 나만의운동팁 검색 / 상태값을 다 뽑을 것! -->
 	
@@ -263,6 +249,20 @@
 	</entry>
 	
 	
+	<!-- 나만의운동팁 댓글 -->
+	<entry key="selectTipReplyList">
+		SELECT 
+			   REPLY_NO
+			 , USER_ID
+			 , REPLY_CONTENT
+			 , R.ENROLL_DATE
+		  FROM TB_REPLY R 
+		  JOIN TB_USER U ON (R.USER_NO = U.USER_NO)	
+		 WHERE COMM_POST_NO = ?
+		   AND COMM_NO = 1 
+		   AND STATUS = 'N' 
+		 ORDER BY ENROLL_DATE DESC
+	</entry>
 	
 	
 	
@@ -438,9 +438,6 @@
 		 WHERE COMM_POST_NO = ? 
 		   AND COMM_NO = 2    			      
 	</entry>
-	
-	
-	
 	
 	
 	<!-- 자유게시판 검색 / 상태값을 다 뽑을 것! -->

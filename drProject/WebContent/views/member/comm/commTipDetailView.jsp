@@ -12,6 +12,7 @@
 <html>
 <head>
 <meta charset="UTF-8">	
+<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 <title>커뮤니티 > 나만의운동팁 게시글 상세조회</title>
 <style>
     div{
@@ -123,8 +124,8 @@
 				<!-- 로그인되어있고, 로그인한 사용자가 게시글일 경우 보이는 버튼 -->
 				<% if(loginUser != null && loginUser.getUserId().equals(c.getUserNo()))  { %>
                	<div class="buttonArea1" align="right">
-	                <a href="<%=contextPath%>/tipUpdateForm.co?cno=<%=c.getCommPostNo()%>">수정</a>
-	                <a href="<%=contextPath%>/tipDelete.co?cno=<%=c.getCommPostNo()%>">삭제</a>
+	                <a href="<%=contextPath%>/tipUpdateForm.co?cno=<%=c.getCommPostNo()%>" class="fas fa-edit">수정</a>
+	                <a href="<%=contextPath%>/tipDelete.co?cno=<%=c.getCommPostNo()%>" class="fas fa-trash-alt">삭제</a>
                 </div><br><br>
                 <% } %>
               
@@ -161,16 +162,41 @@
 
                 <!-- 게시글 버튼 영역-->
                 <div class="buttonArea2" align="right">
-                    <button>좋아요</button> 30
-                    <button>신고</button> 0
-                </div><br>
-
-                <div class="buttonArea3" align="right">
-	                <a href="<%=contextPath%>/tipEnroll.co">글쓰기</a>
-	                <a href="<%=contextPath%>/commMain.co?currentPage=1">목록</a>
+                    좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
+                    신고 <i id="report" class="fas fa-bullhorn" onclick="report();"></i>
                 </div><br><br>
 
+                <div class="buttonArea3" align="right"> 
+	                <a href="<%=contextPath%>/tipEnroll.co" class="fas fa-pencil-alt"> 글쓰기</a>
+	                <a href="<%=contextPath%>/commMain.co?currentPage=1" class="fas fa-list"> 목록</a>
+                </div><br><br>
 
+				<script>
+					function like(){
+						var like = document.getElementById('like').className;
+						if(like == 'fas fa-heart'){ // 좋아요 취소 (까만 하트 => 빈 하트)
+							document.getElementById('like').className = 'far fa-heart';
+							$.ajax({
+								type:"post",
+								url: "좋아요 서블릿",
+								data:{
+									userId:유저아이디,
+									postNo:게시판 번호
+								}
+								success:function({		
+								})	
+							})
+							
+						}else{ // 좋아요 (빈 하트 => 까만 하트)
+							document.getElementById('like').className = 'fas fa-heart';
+						}
+					}
+				</script>
+				
+				
+				
+				
+				
             <!-- 댓글 영역 -->
             <div id="content_3">
                 <div class="replyArea">

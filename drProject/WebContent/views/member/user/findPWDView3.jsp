@@ -9,37 +9,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>03. 비밀번호 재설정</title>
     <style>
-        .outer{
-            width:800px;
-            height:auto;
-            margin:auto;
-            margin-top:30px;
-        }
-        .wrap{border:1px solid gray;}
-
         .menuWrap{
-            background:lightgray;
-            color:#F5DA01;
-            width:1200px;
-            height:50px;
+    background: lightgrey;
+    /* color:rgb(100, 77, 1);; */
+    width:100%;
+    /* height:50px; */
 
-            display:flex;
-            justify-content:center;
-            }
+    display:flex;
+    justify-content:center;
+    }
 
-        .menu a{
-            text-decoration:none;
-            color:white;
-            font-size:15px;
-            line-height:50px;
-            font-weight:bold;
+.menuWrap>.menu1{
+    text-decoration:none;
+    color:white;
+    font-size:15px;
+    line-height:50px;
+    font-weight:bold;
 
-            display:block;
-            width:100%;
-            height:100%;
-            margin:0px 50px;
-        }
-        .menu a:hover{color:#F5DA01;}
+    /* display:block; */
+    width:15%;
+    height:100%;
+    margin:0px 50px;
+}
+
+.menuWrap>.menu2{
+    text-decoration:none;
+    color:gray;
+    font-size:15px;
+    line-height:50px;
+    font-weight:bold;
+
+    /* display:block; */
+    width:15%;
+    height:100%;
+    margin:0px 50px;
+}
+
+
+.outer{
+    width:800px;
+    height:auto;
+    margin:auto;
+    margin-top:30px;
+}
+
 
         .wrap>table{
             margin:auto; 
@@ -52,9 +65,10 @@
 <body>
     
     <%@ include file="../../common/menubar.jsp" %>    
+   
     <div class="menuWrap" align="center">
-        <div class="menu"><a href=""> 아이디 찾기</a> </div>
-        <div class="menu"><a href="">비밀번호 찾기</a></div>
+        <div class="menu1"> 아이디 찾기</a> </div>
+        <div class="menu2">비밀번호 찾기</a></div>
     </div>
     
     <div class="outer">

@@ -59,11 +59,9 @@
         border-left:1px solid gray;
     }
 
-    /* .loginArea{
+    .loginArea{
         display:inline;
-        position:relative;
-        top:-10px;
-    } */
+    }
 
     #dr{
         position:relative;

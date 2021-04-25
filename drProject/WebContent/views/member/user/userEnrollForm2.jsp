@@ -170,7 +170,7 @@
                 </tr>
                 <tr>
                     <th>휴대전화</th>
-                    <th><input type="text" name="phone" placeholder="(-포함해서 입력)"></th>
+                    <th><input type="tel" name="phone" placeholder="(-포함해서 입력)"></th>
                     <th><button type="button">인증하기</button></th>
                 </tr>
                 <tr>
@@ -194,7 +194,7 @@
  
     </div>
 
-    <script> 
+    <script language="javascript">
         // 아이디 유효성 먼저 -> 다음 중복확인
         function idValidate(){
             var userId = document.getElementById("userId");

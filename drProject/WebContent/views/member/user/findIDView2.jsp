@@ -3,43 +3,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <!-- 인코딩 확인 -->
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>findID_1</title>
+
+    <link rel="stylesheet" type="text/css" href="../../../resources/css/findIdPwdNavi.css">
+
+
     <style>
-        .outer{
-            width:800px;
-            height:auto;
-            margin:auto;
-            margin-top:30px;
-        }
+       .menuWrap{
+    background: lightgrey;
+    /* color:rgb(100, 77, 1);; */
+    width:100%;
+    /* height:50px; */
+
+    display:flex;
+    justify-content:center;
+    }
+
+.menuWrap>.menu1{
+    text-decoration:none;
+    color:white;
+    font-size:15px;
+    line-height:50px;
+    font-weight:bold;
+
+    /* display:block; */
+    width:15%;
+    height:100%;
+    margin:0px 50px;
+}
+
+.menuWrap>.menu2{
+    text-decoration:none;
+    color:gray;
+    font-size:15px;
+    line-height:50px;
+    font-weight:bold;
+
+    /* display:block; */
+    width:15%;
+    height:100%;
+    margin:0px 50px;
+}
+
+
+.outer{
+    width:800px;
+    height:auto;
+    margin:auto;
+    margin-top:30px;
+}
+
         #content_2{border:1px solid gray;}
-
-        .menuWrap{
-            background:lightgray;
-            color:yellow;
-            width:1200px;
-            height:50px;
-
-            display:flex;
-            justify-content:center;
-            }
-
-        .menu a{
-            text-decoration:none;
-            color:white;
-            font-size:15px;
-            line-height:50px;
-            font-weight:bold;
-
-            display:block;
-            width:100%;
-            height:100%;
-            margin:0px 50px;
-        }
-        .menu a:hover{color:yellow;}
+      
 
         #content_2>table{
             margin:auto; 
@@ -58,9 +76,10 @@
     <%@ include file="../../common/menubar.jsp" %>
     
     <div class="menuWrap" align="center">
-        <div class="menu"><a href=""> 아이디 찾기</a> </div>
-        <div class="menu"><a href="">비밀번호 찾기</a></div>
+        <div class="menu1"> 아이디 찾기</a> </div>
+        <div class="menu2">비밀번호 찾기</a></div>
     </div>
+    
     
     <div class="outer">
         <div id="content_1">
@@ -71,9 +90,6 @@
         
         <br>
 
-        <!-- radio 하나만 설정가능하게 -->
-        <!-- 1 휴대전화로 인증/ 2. 이메일로 인증
-             1 선택시 1보이고 2는 hidden -->
         
         <div id="content_2" >
         <form action="" id="idList"></form>
@@ -81,11 +97,11 @@
 
             <table id="idList_1">
                 <tr>
-                    <th colspan="3"><input type="radio">user_01 <br>
+                    <th colspan="3">user_01 <br>
                     
                 </tr>
                 <tr>
-                    <th colspan="3"><input type="radio">user_02 <br>
+                    <th colspan="3">user_02 <br>
                 </tr>
             </table>
             

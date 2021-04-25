@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+     
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,14 +9,26 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>findID_1</title>
     
+     <!-- Latest compiled and minified CSS -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+      <!-- jQuery library -->
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  
+      <!-- Popper JS -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  
+      <!-- Latest compiled JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
     <link rel="stylesheet" type="text/css" href="../../../resources/css/findIdPwdNavi.css">
+
+<!-- 제일 위의 부트스트랩 넣으면 크기나 여백이 다 바뀜. 근데 버튼하려면 저거 써야함.. 질문 -->
 
     <style>
         .menuWrap{
-            background: lightgrey;
-            /* color:rgb(100, 77, 1);; */
-            width:100%;
-            /* height:50px; */
+            width:1000px;
+            margin:auto;
 
             display:flex;
             justify-content:center;
@@ -24,7 +36,7 @@
 
         .menuWrap>.menu1{
             text-decoration:none;
-            color:white;
+            color:rgb(250, 214, 9);
             font-size:15px;
             line-height:50px;
             font-weight:bold;
@@ -54,6 +66,7 @@
             height:auto;
             margin:auto;
             margin-top:30px;
+            text-align:center;
         }
 
         .way{
@@ -79,11 +92,24 @@
             box-sizing: border-box;
             border-radius: 10px;
             display: none;
+            
             }
 
+        #content_1{
+            margin-top:50px;
+            
+        }
         #content_2{
             display:block;
             align-items: center;
+        }
+
+        #content_2>table{
+            margin:0 auto;
+        }
+        /*  include의 css가 적용돼서 이게 안먹힘.. 질문 */
+        .menu2:hover{
+            color:rgb(250, 214, 9);
         }
     </style>
 </head>
@@ -93,8 +119,8 @@
     
     <!-- navi -->
     <div class="menuWrap" align="center">
-        <div class="menu1"> 아이디 찾기</a> </div>
-        <div class="menu2">비밀번호 찾기</a></div>
+        <div class="menu1"> <a href="<%=contextPath%>/findID1.us" style="color:rgb(250, 214, 9);"><i class="fas fa-user"> 아이디 찾기</i></a> </div>
+        <div class="menu2"> <a href="<%=contextPath%>/findPwd1.us" style="color:gray; "><i class="fas fa-key">비밀번호 찾기</i></a></div>
     </div>
     
 
@@ -103,7 +129,7 @@
     <div class="outer">
         <div id="content_1">
             <h3>아이디 찾기</h3>
-            <hr>
+            <!-- <hr style="width:300px;"> -->
             <p>아이디 찾는 방법을 선택해주세요.</p>
         </div>
         
@@ -174,7 +200,7 @@
 
         <br>
         <div align="center">
-            <input type="submit" onclick="ID1();" value="다음" return="false;">
+            <input type="submit" onclick="ID1();" class="btn btn-warning" value="다음" return="false;">
         </div>
         </div>
         
@@ -182,7 +208,7 @@
 
 
 
-
+        <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
         

@@ -15,7 +15,7 @@
 <style>
     .outer{
         width:1000px;
-        height:800px;
+        height:170px;
         margin: auto;
     }
    
@@ -55,12 +55,14 @@
         color:darkorchid
 	}
 
-    .line1{
-        border-left:1px solid gray;
+    .header{
+        position:relative;
+        top:-20px;
     }
 
-    .loginArea{
-        display:inline;
+    .sideLine{
+        border-left:2px solid gray;
+        
     }
 
     #dr{
@@ -70,7 +72,11 @@
     #mainLine{
         position:relative;
         top:-20px;
+        border-bottom:1px solid gray;
+        color:gray;
     }
+    
+    
 </style>
 </head>
 <body>
@@ -92,65 +98,64 @@
         <div class="outerWrap">
             <p align="center">Reading is to the mind what exercise is to the body</p>
             
-
-            <div class="loginArea">
-            <!--  로그인 전에 보여지는 로그인 버튼 -->
+            <div class="header">
+                <div class="loginArea">
+                <!--  로그인 전에 보여지는 로그인 버튼 -->
+                
+                    <% if(loginUser == null){ %>
             
-                <% if(loginUser == null){ %>
-        
-                <table id="topMenu1" align="right">
-                    <tr>
-                        <th><a href="<%=contextPath%>/loginForm.us">로그인</a></th>
-                        <th>|</th>
-                        <th><a href="<%=contextPath%>/enrollForm1.us">회원가입</a></th>
-                        <th>|</th>
-                        <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
-                    </tr>
-                    <tr>
-                        <th colspan="3">Welcome DR님</th>
-                        <th colspan="2"><i class="fas fa-user-circle" fa="lg"></i></th>
-                    </tr>
-                </table>
+                    <table id="topMenu1" align="right">
+                        <tr>
+                            <th><a href="<%=contextPath%>/loginForm.us">로그인</a></th>
+                            <th>|</th>
+                            <th><a href="<%=contextPath%>/enrollForm1.us">회원가입</a></th>
+                            <th>|</th>
+                            <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
+                        </tr>
+                        <tr>
+                            <th colspan="3">Welcome DR님</th>
+                            <th colspan="2"><i class="fas fa-user-circle" fa="lg"></i></th>
+                        </tr>
+                    </table>
+                    
+                    
+                    <% }else { %>
                 
-                
-                <% }else { %>
-            
-            <!--  로그인 후 -->
-                
-                <table id="topMenu2" align="right">
-                    <tr>
-                        <th><a href="<%=contextPath%>/logout.us">로그아웃</a></th>
-                        <th>|</th>
-                        <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
-                    </tr>
-                    <tr>
-                        <th colspan="3"><b><%= loginUser.getUserName() %>님</b> 환영합니다.</th>
-                        <th><i class="fas fa-user-circle" fa="lg"></i></th>
-                    </tr>
-                </table>
-                
-                <% } %>
-                
-        </div>
+                <!--  로그인 후 -->
+                    
+                    <table id="topMenu2" align="right">
+                        <tr>
+                            <th><a href="<%=contextPath%>/logout.us">로그아웃</a></th>
+                            <th>|</th>
+                            <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
+                        </tr>
+                        <tr>
+                            <th colspan="3"><b><%= loginUser.getUserName() %>님</b> 환영합니다.</th>
+                            <th><i class="fas fa-user-circle" fa="lg"></i></th>
+                        </tr>
+                    </table>
+                    
+                    <% } %>
+                    
+                </div>
 
-        <br><br>
+            <br><br>
 
 
-        <span class="navWrap" align="center">
-            
-            <div class="menu" id="dr"><a href="<%=contextPath%>">Daily<br>Routine</a></div>
-            <div class="menu"><a href="<%=contextPath%>/allList.ht">HomeTraining</a></div>
-            <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
-            <div class="menu"><a href="<%=contextPath%>/infoMain.in?currentPage=1">Info&Tip</a></div>
-            <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
+            <span class="navWrap" align="center">
+                
+                <div class="menu" id="dr"><a href="<%=contextPath%>">Daily<br>Routine</a></div>
+                <div class="menu"><a href="<%=contextPath%>/allList.ht">HomeTraining</a></div>
+                <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
+                <div class="menu"><a href="<%=contextPath%>/infoMain.in?currentPage=1">Info&Tip</a></div>
+                <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
 
-            <span class="line1" id="sideLine"></span>
-
-            <hr id="mainLine">
-        </span>
+                <div class="sideLine" ></div>
+                <hr id="mainLine">
+            </span>
         
         </div>
     </div>
-
+    </div>
 </body>
 </html>

@@ -6,6 +6,7 @@ public class Reply {
 	
 	private int replyNo;     		// 댓글 번호 
 	private String userNo; 	 		// 작성자 회원번호 
+	private int commPostNo; 		// 게시글번호 
 	private int replyCount;  		// 댓글 수 
 	private String replyContent;	// 댓글 내용 
 	private Date enrollDate;   		// 댓글 등록일 
@@ -14,11 +15,12 @@ public class Reply {
 	
 	public Reply() {}
 
-	public Reply(int replyNo, String userNo, int replyCount, String replyContent, Date enrollDate, Date updateDate,
+	public Reply(int replyNo, String userNo, int commPostNo, int replyCount, String replyContent, Date enrollDate, Date updateDate,
 			String status) {
 		super();
 		this.replyNo = replyNo;
 		this.userNo = userNo;
+		this.commPostNo = commPostNo;
 		this.replyCount = replyCount;
 		this.replyContent = replyContent;
 		this.enrollDate = enrollDate;
@@ -48,6 +50,14 @@ public class Reply {
 
 	public void setUserNo(String userNo) {
 		this.userNo = userNo;
+	}
+
+	public int getCommPostNo() {
+		return commPostNo;
+	}
+
+	public void setCommPostNo(int commPostNo) {
+		this.commPostNo = commPostNo;
 	}
 
 	public int getReplyCount() {
@@ -92,9 +102,9 @@ public class Reply {
 
 	@Override
 	public String toString() {
-		return "Reply [replyNo=" + replyNo + ", userNo=" + userNo + ", replyCount=" + replyCount + ", replyContent="
-				+ replyContent + ", enrollDate=" + enrollDate + ", updateDate=" + updateDate + ", status=" + status
-				+ "]";
+		return "Reply [replyNo=" + replyNo + ", userNo=" + userNo + ", commPostNo=" + commPostNo + ", replyCount="
+				+ replyCount + ", replyContent=" + replyContent + ", enrollDate=" + enrollDate + ", updateDate="
+				+ updateDate + ", status=" + status + "]";
 	}
-	
+
 }

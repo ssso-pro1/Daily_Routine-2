@@ -369,13 +369,13 @@
 	                                	}	
 	                            		
 	                            		var result = confirm("게시글 수정을 완료하시겠습니까?");
-	                                	if(result){
-	                                		
-	                                		
+	                                	if(result) {
+	                                			
 	                                	} else {
 	                                		alert("게시글 수정이 취소되었습니다");
 	                                		return false;
 	                                	}
+	                                	
 				               		}
 				               	
 			               	

@@ -333,36 +333,6 @@ public class CommDao {
 		
 	}
 	
-	public ArrayList<Reply> selectTipReplyList(Connection conn, int commPostNo) { 
-		
-		ArrayList<Reply> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null; 
-		String sql = prop.getProperty("selectTipReplyList"); 
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, commPostNo);
-			
-			rset = pstmt.executeQuery(); 
-			
-			while(rset.next()) {
-				list.add(new Reply(rset.getInt("reply_no"), 
-								   rset.getString("user_id"),
-								   rset.getString("reply_content"), 
-								   rset.getDate("enroll_date"))); 
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list;
-		
-	}
 	
 	// 나만의운동팁 검색 
 	
@@ -448,7 +418,8 @@ public class CommDao {
 							          rset.getInt("board_view"),
 							          rset.getString("status"),
 							          rset.getString("admin_notice"),
-							          rset.getInt("comm_no")));
+							          rset.getInt("comm_no"),
+							          rset.getInt("like_count")));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -482,7 +453,8 @@ public class CommDao {
 					          rset.getInt("board_view"),
 					          rset.getString("status"),
 					          rset.getString("admin_notice"),
-					          rset.getInt("comm_no")));
+					          rset.getInt("comm_no"),
+					          rset.getInt("like_count")));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -496,7 +468,164 @@ public class CommDao {
 	}
 		
 			
+	// 나만의운동팁 좋아요 
+	public boolean likeCheck(Connection conn, int commPostNo, int userNo) {
+		
+		int likeCount = 0; 
+		
+		PreparedStatement pstmt = null; 
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("likeCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, commPostNo);
+			
+			rset = pstmt.executeQuery(); 
+			
+			if(rset.next()) { 
+				likeCount = rset.getInt("likecount"); 
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return likeCount > 0 ? true : false; 
+		//	0보다 크다면 check => true   (좋아요 o)
+		//  0보다 작다면 check => false  (좋아요 x)
+		
+	}
+	
+	public int deleteLike(Connection conn, int commPostNo, int userNo) {
+		
+		int result = 0; 
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteLike"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, commPostNo);
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt); 
+		}
+		
+		return result; 
+		
+	}
+	
+	public int insertLike(Connection conn, int commPostNo, int userNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, commPostNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 
+	}
+	
+	public int subLikeCount(Connection conn, int commPostNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("subLikeCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	
+	}
+	
+	public int sumLikeCount(Connection conn, int commPostNo) {
+		
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("sumLikeCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;			
+		
+	}
+	
+	// 나만의운동팁 댓글 
+	public ArrayList<Reply> selectReplyList(Connection conn, int commPostNo) { 
+		// select문 => ResultSet (여러 행) 
+		ArrayList<Reply> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null; 
+		String sql = prop.getProperty("selectReplyList"); 
+			
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, commPostNo);
+				
+			rset = pstmt.executeQuery(); 
+				
+			while(rset.next()) {
+				list.add(new Reply(rset.getInt("reply_no"), 
+								   rset.getString("user_id"),
+								   rset.getString("reply_content"), 
+								   rset.getDate("enroll_date"))); 
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+			
+		return list;
+			
+	}
+	
 	
 	
 	
@@ -646,7 +775,8 @@ public class CommDao {
 						     rset.getInt("board_view"),
 						     rset.getString("status"),
 						     rset.getString("admin_notice"),
-						     rset.getInt("comm_no"));
+						     rset.getInt("comm_no"),
+						     rset.getInt("like_count"));
 			}
 			
 		} catch (SQLException e) {
@@ -874,7 +1004,8 @@ public class CommDao {
 							          rset.getInt("board_view"),
 							          rset.getString("status"),
 							          rset.getString("admin_notice"),
-							          rset.getInt("comm_no")));
+							          rset.getInt("comm_no"),
+							          rset.getInt("like_count")));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -908,7 +1039,8 @@ public class CommDao {
 								      rset.getInt("board_view"),
 								      rset.getString("status"),
 								      rset.getString("admin_notice"),
-								      rset.getInt("comm_no")));
+								      rset.getInt("comm_no"),
+								      rset.getInt("like_count")));
 				}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -1077,7 +1209,8 @@ public class CommDao {
 						     rset.getInt("board_view"),
 						     rset.getString("status"),
 						     rset.getString("admin_notice"),
-						     rset.getInt("comm_no"));
+						     rset.getInt("comm_no"),
+						     rset.getInt("like_count"));
 			}
 			
 		} catch (SQLException e) {
@@ -1306,7 +1439,8 @@ public class CommDao {
 							          rset.getInt("board_view"),
 							          rset.getString("status"),
 							          rset.getString("admin_notice"),
-							          rset.getInt("comm_no")));
+							          rset.getInt("comm_no"),
+							          rset.getInt("like_count")));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -1340,7 +1474,8 @@ public class CommDao {
 								      rset.getInt("board_view"),
 									  rset.getString("status"),
 								      rset.getString("admin_notice"),
-								      rset.getInt("comm_no")));
+								      rset.getInt("comm_no"),
+								      rset.getInt("like_count")));
 				}
 				
 			} catch (SQLException e) {

@@ -206,6 +206,7 @@
 			                      , STATUS 
 			                      , ADMIN_NOTICE
 			                      , COMM_NO
+			                      , LIKE_COUNT
 			                   FROM TB_COMMUNITY C 
 			                   JOIN TB_USER USING(USER_NO)
 			                  WHERE C.POST_TITLE LIKE '%'||?||'%'
@@ -237,6 +238,7 @@
 			                      , STATUS 
 			                      , ADMIN_NOTICE
 			                      , COMM_NO
+			                      , LIKE_COUNT
 			                   FROM TB_COMMUNITY C
 			                   JOIN TB_USER USING(USER_NO)
 			                  WHERE C.POST_CONTENT LIKE '%'||?||'%'
@@ -248,9 +250,59 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
+	<!-- 좋아요 -->
+	<entry key="likeCheck">
+		SELECT COUNT(*) LIKECOUNT
+		  FROM TB_LIKE
+		 WHERE USER_NO = ?
+		   AND LIKE_POST_TYPE = 1
+		   AND LIKE_POST_NO = ?
+	</entry>
 	
+	<entry key="deleteLike">
+		DELETE 
+		  FROM TB_LIKE
+		 WHERE USER_NO = ?
+		   AND LIKE_POST_TYPE = 1
+		   AND LIKE_POST_NO = ?
+	</entry>
+	
+	<entry key="insertLike">
+		INSERT
+		  INTO TB_LIKE
+		       (
+		         USER_NO
+		       , LIKE_POST_TYPE
+		       , LIKE_POST_NO
+		       )
+		VALUES 
+		       (
+		         ?
+		       , 1
+		       , ?
+		       )
+	</entry>
+	
+	<entry key="subLikeCount">
+		UPDATE
+		       TB_COMMUNITY
+		   SET LIKE_COUNT = LIKE_COUNT - 1
+		 WHERE COMM_POST_NO = ?
+		   AND STATUS = 'N'
+	</entry>
+	
+	<entry key="sumLikeCount">
+		UPDATE
+		       TB_COMMUNITY
+		   SET LIKE_COUNT = LIKE_COUNT + 1
+		 WHERE COMM_POST_NO = ?
+		   AND STATUS = 'N'
+	</entry>
+	
+	
+
 	<!-- 나만의운동팁 댓글 -->
-	<entry key="selectTipReplyList">
+	<entry key="selectReplyList">
 		SELECT 
 			   REPLY_NO
 			 , USER_ID
@@ -259,7 +311,6 @@
 		  FROM TB_REPLY R 
 		  JOIN TB_USER U ON (R.USER_NO = U.USER_NO)	
 		 WHERE COMM_POST_NO = ?
-		   AND COMM_NO = 1 
 		   AND STATUS = 'N' 
 		 ORDER BY ENROLL_DATE DESC
 	</entry>
@@ -369,6 +420,7 @@
 			 , STATUS 
 			 , ADMIN_NOTICE
 			 , COMM_NO
+			 , LIKE_COUNT
 	      FROM TB_COMMUNITY C
 	      JOIN TB_USER U ON (C.USER_NO = U.USER_NO)
 	     WHERE COMM_POST_NO = ?
@@ -476,6 +528,7 @@
 			                      , STATUS 
 			                      , ADMIN_NOTICE
 			                      , COMM_NO
+			                      , LIKE_COUNT
 			                   FROM TB_COMMUNITY C 
 			                   JOIN TB_USER USING(USER_NO)
 			                  WHERE C.POST_TITLE LIKE '%'||?||'%'
@@ -507,6 +560,7 @@
 			                      , STATUS 
 			                      , ADMIN_NOTICE
 			                      , COMM_NO
+			                      , LIKE_COUNT
 			                   FROM TB_COMMUNITY C
 			                   JOIN TB_USER USING(USER_NO)
 			                  WHERE C.POST_CONTENT LIKE '%'||?||'%'
@@ -624,6 +678,7 @@
 			 , STATUS 
 			 , ADMIN_NOTICE
 			 , COMM_NO
+			 , LIKE_COUNT
 	      FROM TB_COMMUNITY C
 	      JOIN TB_USER U ON (C.USER_NO = U.USER_NO)
 	     WHERE COMM_POST_NO = ?
@@ -731,6 +786,7 @@
 			                      , STATUS 
 			                      , ADMIN_NOTICE
 			                      , COMM_NO
+			                      , LIKE_COUNT
 			                   FROM TB_COMMUNITY C 
 			                   JOIN TB_USER USING(USER_NO)
 			                  WHERE C.POST_TITLE LIKE '%'||?||'%'
@@ -762,6 +818,7 @@
 			                      , STATUS 
 			                      , ADMIN_NOTICE
 			                      , COMM_NO
+			                      , LIKE_COUNT
 			                   FROM TB_COMMUNITY C
 			                   JOIN TB_USER USING(USER_NO)
 			                  WHERE C.POST_CONTENT LIKE '%'||?||'%'

@@ -29,7 +29,7 @@ public class CommTipDeleteServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-			int commPostNo = Integer.parseInt(request.getParameter("cno")); // 문자열로 뽑히기 때문에 파싱 필요 
+			int commPostNo = Integer.parseInt(request.getParameter("cno")); // 값이 문자열로 뽑히기 때문에 파싱 필요 
 			
 			int result = new CommService().deleteCommTip(commPostNo);
 			

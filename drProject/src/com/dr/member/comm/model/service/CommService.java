@@ -8,6 +8,7 @@ import com.dr.member.comm.model.dao.CommDao;
 import com.dr.member.comm.model.vo.Comm;
 import com.dr.member.comm.model.vo.CommFile;
 import com.dr.member.comm.model.vo.Reply;
+import com.dr.member.ht.model.dao.HtDao;
 
 import static com.dr.common.JDBCTemplate.*; 
 
@@ -144,16 +145,6 @@ public class CommService {
 		
 	}
 	
-	public ArrayList<Reply> selectTipReplyList(int commPostNo) { 
-		
-		Connection conn = getConnection();
-		ArrayList<Reply> list = new CommDao().selectTipReplyList(conn, commPostNo); 
-		
-		close(conn);
-		
-		return list; 
-		
-	}
 	
 	// 나만의운동팁 검색 
 	public int searchTipCount(String searchTipCtg, String searchTipText) {
@@ -178,7 +169,91 @@ public class CommService {
 		
 	}
 	
+	// 나만의운동팁 좋아요 
+	public boolean likeCheck(int commPostNo, int userNo) {
+		
+		Connection conn = getConnection();
+		boolean check = new CommDao().likeCheck(conn, commPostNo, userNo); 
+		
+		close(conn);
+		
+		return check; 
+		
+	}
 	
+	public int deleteLike(int commPostNo, int userNo) {
+		
+		Connection conn = getConnection();
+		int result = new CommDao().deleteLike(conn, commPostNo, userNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else { 
+			rollback(conn); 
+		}
+		
+		return result; 
+			
+	}
+	
+	public int insertLike(int commPostNo, int userNo) { 
+		
+		Connection conn = getConnection();
+		int result = new CommDao().insertLike(conn, commPostNo, userNo); 
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return result; 
+		
+	}
+	
+	public int subLikeCount(int commPostNo) {
+		
+		Connection conn = getConnection();
+		int result = new CommDao().subLikeCount(conn, commPostNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		
+		return result; 
+		
+	}
+	
+	public int sumLikeCount(int commPostNo) { 
+		
+		Connection conn = getConnection();
+		int result = new CommDao().sumLikeCount(conn, commPostNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		
+		return result;
+		
+	}
+	
+	// 나만의운동팁 댓글 
+	public ArrayList<Reply> selectReplyList(int commPostNo) { 
+			
+		Connection conn = getConnection();
+		ArrayList<Reply> list = new CommDao().selectReplyList(conn, commPostNo); 
+			
+		close(conn);
+			
+		return list; 
+			
+	}
 	
 	
 	

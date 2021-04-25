@@ -14,7 +14,7 @@ import com.dr.member.center.model.vo.CenterQuery;
 public class CenterService {
 
 	
-	
+	//--------------공지사항-----------------------
 	public ArrayList<CenterNotice> noticeList() {
 		
 		Connection conn = getConnection();
@@ -55,39 +55,9 @@ public class CenterService {
 		
 	}
 	
-	public CenterNotice selectNoticePre(int noticeNo) {
-		
-		Connection conn = getConnection();
-		
-		CenterNotice nPre = new CenterDao().selectNoticePre(conn, noticeNo);
-		close(conn);
-		return nPre;
-		
-	}
-
-	public CenterNotice selectNoticeNext(int noticeNo) {
-	
-		Connection conn = getConnection();
-		
-		CenterNotice nNext = new CenterDao().selectNoticeNext(conn, noticeNo);
-		close(conn);
-		return nNext;
-	
-	}
-
 	
 
-	/*
-	public ArrayList<CenterFaq> faqList(String category) {
-		
-		Connection conn = getConnection();
-		ArrayList<CenterFaq> faqList = new CenterDao().faqList(conn, category);
-		
-		close(conn);
-		return faqList;
-		
-	}
-	*/
+	
 
 	public ArrayList<CenterNotice> shortNoticeList() {
 		Connection conn = getConnection();
@@ -98,18 +68,8 @@ public class CenterService {
 		return shortNoticeList;
 	}
 
-	/* 단순히 문의내역 가져오는거 => 필요없음 나중에 지우자
-	public ArrayList<CenterQuery> queryList(int userNo) {
-		
-		Connection conn = getConnection();
-		
-		ArrayList<CenterQuery> queryList = new CenterDao().queryList(conn, userNo);
-		close(conn);
-		return queryList;
-		
-	}
-	*/
-
+	
+	
 	public int noticeSelectListCount() {
 		Connection conn = getConnection();
 		
@@ -130,6 +90,29 @@ public class CenterService {
 	}
 
 
+	public int searchNoticeCount(String searchNoticeCtg, String searchNoticeText) { // Notice검색결과 카운트
+		Connection conn = getConnection();
+		
+		int listCount = new CenterDao().searchNoticeCount(conn, searchNoticeCtg, searchNoticeText);
+		
+		close(conn);
+		return listCount;
+	}
+
+
+
+
+	public ArrayList<CenterNotice> searchNoticeList(PageInfo pi, String searchNoticeCtg, String searchNoticeText) { //  Notice검색결과 리스트
+		Connection conn = getConnection();
+		ArrayList<CenterNotice> list = new CenterDao().searchNoticeList(conn, pi, searchNoticeCtg, searchNoticeText);
+		close(conn);
+		return list;
+	}
+
+
+	
+	
+	//------------------faq-----------------
 
 
 	public int faqSelectListCount(String category) {
@@ -152,7 +135,28 @@ public class CenterService {
 	}
 
 
+	public int searchFaqListCount(String searchFaq) { // FAQ검색결과 카운트
+		Connection conn = getConnection();
+		
+		int listCount = new CenterDao().searchFaqListCount(conn, searchFaq);
+		
+		close(conn);
+		return listCount;
+		}
 
+	
+	
+	public ArrayList<CenterFaq> searchFaqList(PageInfo pi, String searchFaq) { // FAQ검색결과 리스트
+		Connection conn = getConnection();
+		ArrayList<CenterFaq> list = new CenterDao().searchFaqList(conn, pi, searchFaq);
+		close(conn);
+		return list;
+	}
+
+
+
+
+	//----------------1:1--------------------------
 
 	public int insertQuery(CenterQuery q) { // 문의 등록
 		Connection conn = getConnection();
@@ -186,47 +190,9 @@ public class CenterService {
 	}
 
 
-	public int searchFaqListCount(String searchFaq) { // FAQ검색결과 카운트
-		Connection conn = getConnection();
-		
-		int listCount = new CenterDao().searchFaqListCount(conn, searchFaq);
-		
-		close(conn);
-		return listCount;
-		}
+
 
 	
-	
-	public ArrayList<CenterFaq> searchFaqList(PageInfo pi, String searchFaq) { // FAQ검색결과 리스트
-		Connection conn = getConnection();
-		ArrayList<CenterFaq> list = new CenterDao().searchFaqList(conn, pi, searchFaq);
-		close(conn);
-		return list;
-	}
-
-
-
-
-	public int searchNoticeCount(String searchNoticeCtg, String searchNoticeText) { // Notice검색결과 카운트
-		Connection conn = getConnection();
-		
-		int listCount = new CenterDao().searchNoticeCount(conn, searchNoticeCtg, searchNoticeText);
-		
-		close(conn);
-		return listCount;
-	}
-
-
-
-
-	public ArrayList<CenterNotice> searchNoticeList(PageInfo pi, String searchNoticeCtg, String searchNoticeText) { //  Notice검색결과 리스트
-		Connection conn = getConnection();
-		ArrayList<CenterNotice> list = new CenterDao().searchNoticeList(conn, pi, searchNoticeCtg, searchNoticeText);
-		close(conn);
-		return list;
-	}
-
-
 
 
 	public int deleteQuery(int queryNo) { // 문의내역 삭제 메소드
@@ -240,19 +206,5 @@ public class CenterService {
 		} return result;
 	}
 
-
-
-
-	
-
-
-
-
-	
-
-
-
-	
-	
 
 }

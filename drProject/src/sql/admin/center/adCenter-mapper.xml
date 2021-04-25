@@ -482,38 +482,17 @@
 	</entry>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
-	
 	<entry key="noticeIncreaseCount">
 		UPDATE TB_NOTICE
 		   SET NOTICE_COUNT = NOTICE_COUNT +1
 	     WHERE NOTICE_NO = ?
-	       AND STATUS = 'Y'
+	       
 	
 	
 	</entry>
 	
 	
 	
-	<entry key="selectNotice2">
-	SELECT 
-		   NOTICE_NO
-		 , NOTICE_TITLE
-	  FROM TB_NOTICE
-	 WHERE NOTICE_NO= ?
-	   AND STATUS = 'Y'
-	
-	</entry>
 	
 	
 	

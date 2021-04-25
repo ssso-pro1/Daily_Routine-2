@@ -1,14 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page  import="com.dr.member.user.model.vo.User, com.dr.member.center.model.vo.CenterNotice, com.dr.admin.center.model.vo.centerNoticeFile" %>
+<%@ page  import="com.dr.member.user.model.vo.User, com.dr.admin.center.model.vo.adCenterNotice, com.dr.admin.center.model.vo.centerNoticeFile" %>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
 	
-	CenterNotice n = (CenterNotice)request.getAttribute("n");
+	adCenterNotice n = (adCenterNotice)request.getAttribute("n");
 	
 	centerNoticeFile fi = (centerNoticeFile)request.getAttribute("fi");
 %>   

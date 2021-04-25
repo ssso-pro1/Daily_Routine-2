@@ -70,11 +70,9 @@ public class CenterQueryInsertServlet extends HttpServlet {
 				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			}
 			
-		} else {
-			
-			request.getSession().setAttribute("alertMsg", "로그인이 필요한 페이지입니다");
-			response.sendRedirect(request.getContextPath()+"/loginForm.us");
 		}
+			
+		
 		
 	}
 

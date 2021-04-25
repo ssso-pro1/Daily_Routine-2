@@ -14,6 +14,10 @@ public class CenterNotice {
 	private String status;	
 	
 	private String userId;
+	private int nextNo;
+	private String nextTitle;
+	private int preNo;
+	private String preTitle;
 	
 	public CenterNotice() {}
 
@@ -42,6 +46,23 @@ public class CenterNotice {
 	
 
 
+
+	public CenterNotice(int noticeNo, String noticeTitle, String noticeContent, int noticeCount, Date createDate,
+			Date updateDate, String status, String userId, int nextNo, String nextTitle, int preNo, String preTitle) {
+		super();
+		this.noticeNo = noticeNo;
+		this.noticeTitle = noticeTitle;
+		this.noticeContent = noticeContent;
+		this.noticeCount = noticeCount;
+		this.createDate = createDate;
+		this.updateDate = updateDate;
+		this.status = status;
+		this.userId = userId;
+		this.nextNo = nextNo;
+		this.nextTitle = nextTitle;
+		this.preNo = preNo;
+		this.preTitle = preTitle;
+	}
 
 	public CenterNotice(int noticeNo, String noticeTitle, Date createDate, int noticeCount) {
 		super();
@@ -203,6 +224,41 @@ public class CenterNotice {
 
 	public void setUserId(String userId) {
 		this.userId = userId;
+	}
+
+	
+	
+	
+	public int getNextNo() {
+		return nextNo;
+	}
+
+	public void setNextNo(int nextNo) {
+		this.nextNo = nextNo;
+	}
+
+	public String getNextTitle() {
+		return nextTitle;
+	}
+
+	public void setNextTitle(String nextTitle) {
+		this.nextTitle = nextTitle;
+	}
+
+	public int getPreNo() {
+		return preNo;
+	}
+
+	public void setPreNo(int preNo) {
+		this.preNo = preNo;
+	}
+
+	public String getPreTitle() {
+		return preTitle;
+	}
+
+	public void setPreTitle(String preTitle) {
+		this.preTitle = preTitle;
 	}
 
 	@Override

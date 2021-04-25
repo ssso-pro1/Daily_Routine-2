@@ -43,12 +43,10 @@ public class CenterNoticeDetailServlet extends HttpServlet {
 			
 			
 			CenterNotice n = new CenterService().selectNotice(noticeNo); // 현재글
-			CenterNotice nPre = new CenterService().selectNoticePre(noticeNo); // 이전글 (제목, 글번호)
-			CenterNotice nNext = new CenterService().selectNoticeNext(noticeNo); // 다음글 (제목, 글번호)
+			
 			
 			request.setAttribute("n", n);
-			request.setAttribute("nPre", nPre);
-			request.setAttribute("nNext", nNext);
+			
 			
 			centerNoticeFile fi = new adCenterService().selectAttachment(noticeNo);
 			
@@ -58,6 +56,9 @@ public class CenterNoticeDetailServlet extends HttpServlet {
 			
 			
 		} else {
+			
+			request.setAttribute("errorMsg", "오류가 발생했습니다");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 			
 			
 		}

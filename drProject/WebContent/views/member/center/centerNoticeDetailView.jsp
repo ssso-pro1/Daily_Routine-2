@@ -2,9 +2,7 @@
     pageEncoding="UTF-8" import="com.dr.member.center.model.vo.CenterNotice, com.dr.admin.center.model.vo.centerNoticeFile" %>
 <%
 
-	CenterNotice n = (CenterNotice)request.getAttribute("n");		  // 현재글 (글번호, 제목, 내용, 작성일)
-	CenterNotice nPre = (CenterNotice)request.getAttribute("nPre");   // 이전글 (글번호, 제목)
-	CenterNotice nNext = (CenterNotice)request.getAttribute("nNext"); // 다음글 (글번호, 제목)
+	CenterNotice n = (CenterNotice)request.getAttribute("n");		
 	
 	centerNoticeFile fi = (centerNoticeFile)request.getAttribute("fi");
 
@@ -180,47 +178,45 @@
                         </tr>
                         
                         
-                        <%if(nNext==null){ %>
                         <tr>
                             <td colspan="4">
-                                <button disabled>다음글</button>
-                                <label>다음글이 없습니다</label>
-                            </td>
-                        </tr>
-                        
-                        <% } else { %>
-                        
-                        <tr>
-                            <td colspan="4">
-                                <button>
-                                
-                                <a href="<%= contextPath %>/noticeDetail.ct?nno=<%= nNext.getNoticeNo() %>">다음글</a>
-                                
-                                
+                                <% if(n.getNextTitle()==null) { %>
+                                <button disabled>
+                                	다음글
                                 </button>
-                                <label><%= nNext.getNoticeTitle() %></label>
+                                <label>다음글이 없습니다</label>
+                                
+                                <% } else { %>
+                                <button>
+                                	<a href="<%= contextPath %>/noticeDetail.ct?nno=<%= n.getNextNo() %>">다음글</a>
+                                </button>
+                                <label><%= n.getNextTitle() %></label>
+                                
+                                <% } %>
+                                
                             </td>
                         </tr>
-                        <% } %>
                         
                         
-                        <%if(nPre==null){ %>
                         <tr>
                             <td colspan="4">
-                                <button disabled>이전글</button>
+                                <% if(n.getPreTitle()==null) { %>
+                                <button disabled>
+                                	이전글
+                                </button>
                                 <label>이전글이 없습니다</label>
+                                
+                                <% } else { %>
+                                <button>
+                                	<a href="<%= contextPath %>/noticeDetail.ct?nno=<%= n.getPreNo() %>">이전글</a>
+                                </button>
+                                <label><%= n.getPreTitle() %></label>
+                                
+                                <% } %>
+                                
                             </td>
                         </tr>
                         
-                        <% } else { %>
-                        
-                        <tr>
-                            <td colspan="4">
-                                <button><a href="<%= contextPath %>/noticeDetail.ct?nno=<%= nPre.getNoticeNo() %>">이전글</a></button>
-                                <label><%= nPre.getNoticeTitle() %></label>
-                            </td>
-                        </tr>
-                        <% } %>
                         
                     </table>
 

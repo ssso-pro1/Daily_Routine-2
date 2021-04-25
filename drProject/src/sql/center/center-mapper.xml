@@ -2,94 +2,6 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-	<!-- faq 게시판 -->
-	
-	<entry key="faqList">
-	
-	SELECT 
-            FAQ_NO
-          , USER_NO
-          , FAQ_CATEGORY
-		  , FAQ_TITLE
-          , FAQ_CONTENT
-	   FROM TB_FAQ
-	  WHERE FAQ_CATEGORY = ?
-	    AND STATUS = 'Y'
-	
-	
-	</entry>
-	
-	<entry key="faqSelectListCount">
-	SELECT COUNT(*) LISTCOUNT
-	FROM TB_FAQ
-	WHERE STATUS ='Y'
-  	AND FAQ_CATEGORY =?
-	
-	
-	</entry>
-	
-	<entry key="faqSelectList">
-	SELECT *
-		  FROM (
-		        SELECT
-		               ROWNUM RNUM
-		             , A.*
-		          FROM (
-		                SELECT
-		                       FAQ_NO
-		                     , FAQ_CATEGORY
-		                     , FAQ_TITLE
-		                     , FAQ_CONTENT
-		                 FROM TB_FAQ F
-		                 WHERE F.STATUS = 'Y'
-                         AND F.FAQ_CATEGORY=?
-		                 
-		               ) A
-		       )
-		 WHERE RNUM BETWEEN ? AND ?
-	
-	
-	
-	</entry>
-	
-	<entry key="searchFaqListCount">
-	
-	SELECT COUNT(*) LISTCOUNT
-	FROM TB_FAQ F
-	WHERE F.status ='Y'
-  	AND F.FAQ_CONTENT LIKE '%'||?||'%'
-	
-	
-	</entry>
-	
-	
-	<entry key="searchFaqList">
-	SELECT *
-		  FROM (
-		        SELECT
-		               ROWNUM RNUM
-		             , A.*
-		          FROM (
-		                SELECT 
-					            FAQ_NO
-					          , USER_NO
-					          , FAQ_CATEGORY
-							  , FAQ_TITLE
-					          , FAQ_CONTENT
-						   FROM TB_FAQ F
-						  WHERE F.FAQ_CONTENT LIKE '%'||?||'%'
-						    AND F.STATUS = 'Y'
-		                 ORDER BY
-		                    FAQ_CATEGORY
-		               ) A
-		       )
-		 WHERE RNUM BETWEEN ? AND ?
-	
-	</entry>
-	
-	
-	
-	
 	
 	
 	<!-- 공지사항게시판 -->
@@ -119,35 +31,34 @@
 	</entry>
 	
 	
-	<!-- 어드민이랑 같이쓸거임 -->
+	
 	<entry key="selectNotice">
-	SELECT 
-		   NOTICE_NO
-		 , NOTICE_TITLE
-		 , NOTICE_CONTENT
-		 , NOTICE_COUNT
-		 , CREATE_DATE
-		 , UPDATE_DATE
-		 , STATUS
-		 , USER_ID
-	  FROM TB_NOTICE
-	  JOIN TB_USER USING (USER_NO)
-	 WHERE NOTICE_NO= ?
+	SELECT A.*
+	FROM (
+	    SELECT
+	           NOTICE_NO
+			 , NOTICE_TITLE
+			 , NOTICE_CONTENT
+			 , NOTICE_COUNT
+			 , CREATE_DATE
+			 , UPDATE_DATE
+			 , STATUS
+			 , USER_ID
+			 ,
+	        LEAD(NOTICE_NO, 1) OVER (ORDER BY NOTICE_NO ASC) AS NEXT_NO,
+	        LEAD(NOTICE_TITLE, 1) OVER (ORDER BY NOTICE_NO ASC) AS NEXT_TITLE,
+	        LAG(NOTICE_NO, 1) OVER (ORDER BY NOTICE_NO ASC) AS PRE_NO,
+	        LAG(NOTICE_TITLE, 1) OVER (ORDER BY NOTICE_NO ASC) AS PRE_TITLE
+	    FROM TB_NOTICE
+	    JOIN TB_USER USING (USER_NO)
+	    WHERE STATUS = 'Y'
+	) A
+	WHERE A.NOTICE_NO = ?
 	   
 	
 	</entry>
 	
-	<!-- 이전글, 다음글 -->
-	<entry key="selectNotice2">
-	SELECT 
-		   NOTICE_NO
-		 , NOTICE_TITLE
-		 , STATUS
-	  FROM TB_NOTICE
-	 WHERE NOTICE_NO= ?
-	   AND STATUS ='Y'
 	
-	</entry>
 	
 	
 	<!-- 공지사항게시판 리스트 -->
@@ -259,6 +170,96 @@
 	
 	
 	</entry>
+	
+	<!-- faq 게시판 -->
+	
+	<entry key="faqList">
+	
+	SELECT 
+            FAQ_NO
+          , USER_NO
+          , FAQ_CATEGORY
+		  , FAQ_TITLE
+          , FAQ_CONTENT
+	   FROM TB_FAQ
+	  WHERE FAQ_CATEGORY = ?
+	    AND STATUS = 'Y'
+	
+	
+	</entry>
+	
+	<entry key="faqSelectListCount">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_FAQ
+	WHERE STATUS ='Y'
+  	AND FAQ_CATEGORY =?
+	
+	
+	</entry>
+	
+	<entry key="faqSelectList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       FAQ_NO
+		                     , FAQ_CATEGORY
+		                     , FAQ_TITLE
+		                     , FAQ_CONTENT
+		                 FROM TB_FAQ F
+		                 WHERE F.STATUS = 'Y'
+                         AND F.FAQ_CATEGORY=?
+		                 
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	
+	</entry>
+	
+	<entry key="searchFaqListCount">
+	
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_FAQ F
+	WHERE F.status ='Y'
+  	AND F.FAQ_CONTENT LIKE '%'||?||'%'
+	
+	
+	</entry>
+	
+	
+	<entry key="searchFaqList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT 
+					            FAQ_NO
+					          , USER_NO
+					          , FAQ_CATEGORY
+							  , FAQ_TITLE
+					          , FAQ_CONTENT
+						   FROM TB_FAQ F
+						  WHERE F.FAQ_CONTENT LIKE '%'||?||'%'
+						    AND F.STATUS = 'Y'
+		                 ORDER BY
+		                    FAQ_CATEGORY
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	
+	
+	
+	
 	
 	
 	

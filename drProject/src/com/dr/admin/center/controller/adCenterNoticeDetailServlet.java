@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dr.admin.center.model.service.adCenterService;
+import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.member.center.model.service.CenterService;
 import com.dr.member.center.model.vo.CenterNotice;
@@ -35,12 +36,8 @@ public class adCenterNoticeDetailServlet extends HttpServlet {
 		
 		int noticeNo = Integer.parseInt(request.getParameter("nno"));
 		
-		int result = new CenterService().noticeIncreaseCount(noticeNo);
+		int result = new adCenterService().noticeIncreaseCount(noticeNo);
 		
-		
-		
-		
-		// 사용자거랑 같이쓸것임
 		
 		if(result > 0) { // 조회수증가 조회성공
 			
@@ -49,20 +46,19 @@ public class adCenterNoticeDetailServlet extends HttpServlet {
 			request.setAttribute("fi", fi);
 			
 			
-			CenterNotice n = new CenterService().selectNotice(noticeNo); // 현재글
-			CenterNotice nPre = new CenterService().selectNoticePre(noticeNo); // 이전글 (제목, 글번호)
-			CenterNotice nNext = new CenterService().selectNoticeNext(noticeNo); // 다음글 (제목, 글번호)
+			adCenterNotice n = new adCenterService().selectNotice(noticeNo); // 현재글
+			
 			
 			request.setAttribute("n", n);
-			request.setAttribute("nPre", nPre);
-			request.setAttribute("nNext", nNext);
+			
 			
 			request.getRequestDispatcher("views/admin/center/adCenterNoticeDetail.jsp").forward(request, response);
 			//글번호, 글제목, 글내용물, 등록일
 			
 		} else {
 			
-			
+			request.setAttribute("errorMsg", "오류가 발생했습니다");
+			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		}
 		
 		

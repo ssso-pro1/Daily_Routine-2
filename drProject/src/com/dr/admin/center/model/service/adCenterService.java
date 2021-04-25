@@ -334,7 +334,24 @@ public class adCenterService {
 	}
 
 
-
+	public int noticeIncreaseCount(int noticeNo) {
+		
+		Connection conn = getConnection();
+		
+		int result = new adCenterDao().noticeIncreaseCount(conn, noticeNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+		
+	}
+	
+	
 
 	public adCenterNotice selectNotice(int noticeNo) {
 		Connection conn = getConnection();
@@ -374,6 +391,8 @@ public class adCenterService {
 			
 		} return result1 * result2;
 	}
+
+	
 
 	
 

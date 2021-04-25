@@ -49,6 +49,26 @@ public class UserService {
 		close(conn);
 		return count;
 	}
+
+	/**
+	 * email update
+	 */
+	public User updateEmailUser(String userId, String updateEmail) {
+		Connection conn = getConnection();
+		int result = new UserDao().updateEmailUser(conn, userId, updateEmail);
+		
+		User updateUser = null;
+		if(result > 0) {
+			commit(conn);
+			
+			updateUser = new UserDao().selectUser(conn, userId);
+			// 바뀐거 새로 조회해주기
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return updateUser;
+	}
 	
 	
 	

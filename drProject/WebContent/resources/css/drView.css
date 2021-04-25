@@ -1,0 +1,159 @@
+	div{
+		box-sizing: border-box;
+	}
+	.wrap{
+        width:1000px;
+        height:800px;
+        margin:auto;
+        margin-top:15px;
+	}
+	.wrap>div{
+        width:100%;
+    }
+
+    a{
+        text-decoration:none;
+        color:black;
+        font-size:18px;
+        font-weight:bold;
+    }
+    a:hover{color:rgb(250, 214, 9);}
+
+    #content{height:100%; width:100%;}
+
+    #content>div{
+        height:100%;
+        float:left;
+    }
+
+	#line{
+        border:1px solid gray;
+        width:0.1px;
+        height:150px;
+		float: left;
+    }
+    #line2{
+        border:1px solid gray;
+        width:0.1px;
+        height:90px;
+		float: left;
+    }
+
+    #content_1{width:15%; float: left;}
+    #content_2{width:80%; margin-left:25px;}
+
+	#content_2_1{height:15%;}
+    #content_2_2{height:80%; margin-left:20px;}
+
+    .tipcategory{
+        width: 200px;
+    }
+    .searchArea{
+        float: right;
+        margin-right: 5px;
+    }
+    .searchArea>button{
+        background:hsl(46, 77%, 50%);
+        color:white;
+        border:hsl(46, 77%, 50%);
+    }
+    .mark{
+        width: 500px;
+        text-align: right;
+        cursor: pointer;
+    }
+
+    .btn{
+        width: 100px;
+        text-align: right;
+        float: right;
+        margin-right:55px;
+    }
+    .outer{
+        width:1000px;
+        height:800px;
+        margin: auto;
+    }
+    .form{
+    	width:800px;
+    	height:100%;
+    	margin:auto;
+    }
+    #updateForm th{
+        width:130px;
+        text-align: left;
+        padding: 12px;
+    }
+    fieldset{
+		border: 1px solid black;
+		padding: 10px;      
+		position: relative;
+		border-radius:4px;
+	}
+    #btn1{
+        border: 1px solid #4375DB;
+        background-color: #4375DB;
+        color: white;
+    }
+    #btn2{
+        border: 1px solid #4375DB;
+        background-color: #4375DB;
+        color: white;
+        cursor: pointer;
+    }
+    #btn3{
+        border: 1px solid gainsboro;
+        background-color: gainsboro;
+        cursor: pointer;
+    }
+    #updateBtn{
+        border: 1px solid gold;
+        background-color: gold;
+        color: white;
+		border-radius:4px;
+        font-size: 13px;
+        margin-left: -3px;
+    }
+    #submitBtn{
+        border: 1px solid gold;
+        background-color: gold;
+		border-radius:4px;
+        color: white;
+
+    }
+    #resetBtn{
+        border: 1px solid gainsboro;
+        background-color:gainsboro;
+		border-radius:4px;
+
+    }
+    #outBtn{
+        border: 1px solid orangered;
+        background-color:orangered;
+        color: white;
+		border-radius:4px;
+        font-size: 16px;
+    }
+    .outBtn{
+        float: right;
+    }
+
+    .postCount{
+        text-align: center;
+        width:300px;
+        float: left;
+        margin: auto;
+    }
+
+    .replyCount{
+        text-align: center;
+        width:300px;
+        float: left;
+        margin: auto;
+    }
+    .postListArea{
+ 
+        width: 600px;
+        margin: auto;
+        margin-left: 10px;
+    }

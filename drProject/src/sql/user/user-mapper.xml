@@ -60,7 +60,34 @@
 		 WHERE USER_ID = ?
 	
 	</entry>
-	
+
+<!-- update시 새로 조회할 sql문 -->
+	<entry key="selectUser">
+		 SELECT 
+                USER_NO
+              , USER_ID
+              , USER_PWD
+              , USER_NAME
+              , BIRTH
+              , GENDER
+              , EMAIL
+              , PHONE
+              , ENROLL_DATE
+              , LEAVE_CHECK
+              , SUSPENDED
+              , REPORT_CHECK
+              , ADMIN_CHECK
+           FROM TB_USER
+          WHERE SUSPENDED = 'N'
+            AND USER_ID = ?
+	</entry>
+<!-- email update -->
+	<entry key="updateEmailUser">
+  		UPDATE
+			   TB_USER
+		   SET EMAIL = ?
+         WHERE USER_ID = ?
+	</entry>
 	
 	
 </properties>

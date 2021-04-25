@@ -2,7 +2,6 @@ package com.dr.member.myDR.controller;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,17 +9,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.dr.member.user.model.service.UserService;
+import com.dr.member.user.model.vo.User;
+
 /**
- * Servlet implementation class MyPageServlet
+ * Servlet implementation class EmailUpdateServlet
  */
-@WebServlet("/myPage.md")
-public class MyPageServlet extends HttpServlet {
+@WebServlet("/emailUpdate.md")
+public class EmailUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public MyPageServlet() {
+    public EmailUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,16 +32,25 @@ public class MyPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		
+		String userId = request.getParameter("userId");
+		String updateEmail = request.getParameter("updateEmail") + request.getParameter("emailCategory");
+		
+		
+//		System.out.println(userId);
+//		System.out.println(updateEmail);
+		
+		User updateUser = new UserService().updateEmailUser(userId, updateEmail);
+		
+		// 조건검사 전 세션
 		HttpSession session = request.getSession();
-		
-		if(session.getAttribute("loginUser") == null) {
-			session.setAttribute("alertMsg", "로그인 후 이용가능한 서비스입니다.");
-			response.sendRedirect(request.getContextPath());
-			
-		}else {
-			request.getRequestDispatcher("views/member/myDR/userUpdate.jsp").forward(request, response);
+		if(updateUser == null) { // 변경 실패
+			session.setAttribute("alertMsg", "이메일 변경 실패");
+		}else { // 성공
+			session.setAttribute("alertMsg", "성공적으로 이메일이 변경됐습니다.");
+			session.setAttribute("loginUser", updateUser); // 새로 조회한거 담아주기
 		}
-		
+		response.sendRedirect(request.getContextPath() + "/myPage.md");
 	}
 
 	/**

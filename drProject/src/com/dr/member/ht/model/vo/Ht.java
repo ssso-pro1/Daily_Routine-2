@@ -2,15 +2,15 @@ package com.dr.member.ht.model.vo;
 
 import java.sql.Date;
 
+/**
+ * @author wjdgn
+ *
+ */
 public class Ht {
 	private int htPostNo;			// 게시글 번호
 	private int userNo;				// 회원번호
 	private String htPostContent;	// 게시글 내용
 	private String htPostTitle;		// 게시글 제목
-	private String htComment;		// 간략 설명
-	private String htRecommend;		// 권장사항
-	private String htHowToWork;		// 운동 방법
-	private String htSuggestion;	// 운동 주의사항
 	private String htCategory;		// 카테고리명
 	private Date htEnrollDate;		// 게시글 등록일
 	private Date htUpdateDate;		// 게시글 수정일
@@ -23,18 +23,14 @@ public class Ht {
 	
 	public Ht() {}
 	
-	public Ht(int htPostNo, int userNo, String htPostContent, String htPostTitle, String htComment, String htRecommend,
-			String htHowToWork, String htSuggestion, String htCategory, Date htEnrollDate, Date htUpdateDate,
-			int htViewCount, int htLikeCount, String status, String videoLink, String titleImg) {
+
+	public Ht(int htPostNo, int userNo, String htPostContent, String htPostTitle, String htCategory, Date htEnrollDate,
+			Date htUpdateDate, int htViewCount, int htLikeCount, String status, String videoLink, String titleImg) {
 		super();
 		this.htPostNo = htPostNo;
 		this.userNo = userNo;
 		this.htPostContent = htPostContent;
 		this.htPostTitle = htPostTitle;
-		this.htComment = htComment;
-		this.htRecommend = htRecommend;
-		this.htHowToWork = htHowToWork;
-		this.htSuggestion = htSuggestion;
 		this.htCategory = htCategory;
 		this.htEnrollDate = htEnrollDate;
 		this.htUpdateDate = htUpdateDate;
@@ -44,6 +40,7 @@ public class Ht {
 		this.videoLink = videoLink;
 		this.titleImg = titleImg;
 	}
+
 
 	public Ht(int htPostNo, String htPostTitle, Date htEnrollDate, Date htUpdateDate,
 			int htViewCount, int htLikeCount, String status) {
@@ -58,23 +55,19 @@ public class Ht {
 
 	}
 
-	public Ht(int htPostNo, int userNo, String htPostContent, String htPostTitle, String htComment, String htRecommend,
-			String htHowToWork, String htSuggestion, String htCategory, Date htEnrollDate, Date htUpdateDate,
-			String videoLink) {
+	public Ht(int htPostNo, int userNo, String htPostContent, String htPostTitle, String htCategory, Date htEnrollDate,
+			Date htUpdateDate, String videoLink) {
 		super();
 		this.htPostNo = htPostNo;
 		this.userNo = userNo;
 		this.htPostContent = htPostContent;
 		this.htPostTitle = htPostTitle;
-		this.htComment = htComment;
-		this.htRecommend = htRecommend;
-		this.htHowToWork = htHowToWork;
-		this.htSuggestion = htSuggestion;
 		this.htCategory = htCategory;
 		this.htEnrollDate = htEnrollDate;
 		this.htUpdateDate = htUpdateDate;
 		this.videoLink = videoLink;
 	}
+
 
 	public int getHtPostNo() {
 		return htPostNo;
@@ -108,37 +101,6 @@ public class Ht {
 		this.htPostTitle = htPostTitle;
 	}
 
-	public String getHtComment() {
-		return htComment;
-	}
-
-	public void setHtComment(String htComment) {
-		this.htComment = htComment;
-	}
-
-	public String getHtRecommend() {
-		return htRecommend;
-	}
-
-	public void setHtRecommend(String hrRecommend) {
-		this.htRecommend = htRecommend;
-	}
-
-	public String getHtHowToWork() {
-		return htHowToWork;
-	}
-
-	public void setHtHowToWork(String htHowToWork) {
-		this.htHowToWork = htHowToWork;
-	}
-
-	public String getHtSuggestion() {
-		return htSuggestion;
-	}
-
-	public void setHtSuggestion(String htSuggestion) {
-		this.htSuggestion = htSuggestion;
-	}
 
 	public String getHtCategory() {
 		return htCategory;
@@ -207,8 +169,7 @@ public class Ht {
 	@Override
 	public String toString() {
 		return "Ht [htPostNo=" + htPostNo + ", userNo=" + userNo + ", htPostContent=" + htPostContent + ", htPostTitle="
-				+ htPostTitle + ", htComment=" + htComment + ", htRecommend=" + htRecommend + ", htHowToWork="
-				+ htHowToWork + ", htSuggestion=" + htSuggestion + ", htCategory=" + htCategory + ", htEnrollDate="
+				+ htPostTitle +  ", htCategory=" + htCategory + ", htEnrollDate="
 				+ htEnrollDate + ", htUpdateDate=" + htUpdateDate + ", htViewCount=" + htViewCount + ", htLikeCount="
 				+ htLikeCount + ", status=" + status + ", videoLink=" + videoLink + ", titleImg=" + titleImg + "]";
 	}

@@ -138,6 +138,68 @@ public class UserDao {
 		
 		
 	}
+
+	public int updateEmailUser(Connection conn, String userId, String updateEmail) {
+		// update문 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateEmailUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, updateEmail);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public User selectUser(Connection conn, String userId) {
+		// select
+		User u = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, userId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				u = new User(rset.getInt("user_no"),
+						     rset.getString("user_id"),
+						     rset.getString("user_pwd"),
+						     rset.getString("user_name"),
+						     rset.getString("birth"),
+						     rset.getString("gender"),
+						     rset.getString("email"),
+						     rset.getString("phone"),
+						     rset.getDate("enroll_date"),
+						     rset.getString("level_check"),
+						     rset.getString("suspended"),
+						     rset.getString("report_check"),
+						     rset.getString("admin_check")
+						    );
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		return u;
+		
+	}
 	
 
 	

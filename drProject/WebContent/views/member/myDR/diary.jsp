@@ -5,16 +5,18 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<link rel="stylesheet" href="../../../resources/css/drView.css">
 <style>
     .outer{
         width:1000px;
         height: 800px;
         margin: auto;
     }
-    .wrap{
-    	width:700px;
-    	height:700px;
+    .outer2{
+    	width:704px;
+    	height:500px;
     	margin:auto;
+        margin-left: 50px;
     }
     table
     {
@@ -121,38 +123,64 @@
   -->
 <body onload="build();">
     <%@ include file="../../common/menubar.jsp" %>
-    <div class="outer">
-	    	<div class="wrap">
-	        <br>
-	        <div class="date">
-	            <font size=1%; color="#B3B6B3"><label onclick="beforem()" id="before"></label></font>&nbsp;
-	            <p id="yearmonth" style="display: inline-block;"></p>&nbsp;
-	            <font size=1%; color="#B3B6B3"><label onclick="nextm()" id="next"></label></font>
-	        </div>
-	        <table align="center" id="calendar">
-	
-	            <tr id="days">
-	                <td align="center"> <font color="#FF9090">일</font></td>
-	                <td align="center"> 월 </td>
-	                <td align="center"> 화 </td>
-	                <td align="center"> 수 </td>
-	                <td align="center"> 목 </td>
-	                <td align="center"> 금 </td>
-	                <td align="center"><font color=#7ED5E4>토</font></td>
-	            </tr>
-	        </table> 
-	        <div class="text">
-	            <form action="">
-	                <textarea name="schedule" cols="97" rows="15" style="resize: none;"></textarea>
-	                <div class="buttons" align="right">
-	                    <button>저장</button>
-	                    <button>삭제</button>
-	                </div>
-	            </form>
-	
-	        </div>   
-        </div>
+    <div class="wrap">
+        <div id="content">
+            <div id="content_1">
+                <h1>마이페이지</h1><br>
+                <div class="leftMenu">
+                    <div><a href="<%=contextPath%>/myPage.md" >회원수정</a></div>
+                    <br>
+                    <div><a href="">내 글 보관함</a></div>
+                    <br>
+                    <div><a href="" >북마크 보관함</a></div>
+                    <br>
+                    <div><a href="" style="color:rgb(250, 214, 9);">다이어리</a></div>
+                </div>
+            </div>
+
+            <div id="line"></div>
+
+            <!-- 게시판 목록 -->
+            <div id="content_2">
+                <br><br><br>
+                <div id="content_2_2">
+                    <div class="outer">
+                        <div class="outer2">
+                        <br>
+                        <div class="date">
+                            <font size=2%; color="#B3B6B3"><label onclick="beforem()" id="before"></label></font>&nbsp;
+                            <p id="yearmonth" style="display: inline-block; font-size: 15px;"></p>&nbsp;
+                            <font size=2%; color="#B3B6B3"><label onclick="nextm()" id="next"></label></font>
+                        </div>
+                        <table align="center" id="calendar">
+                
+                            <tr id="days">
+                                <td align="center"> <font color="#FF9090">일</font></td>
+                                <td align="center"> 월 </td>
+                                <td align="center"> 화 </td>
+                                <td align="center"> 수 </td>
+                                <td align="center"> 목 </td>
+                                <td align="center"> 금 </td>
+                                <td align="center"><font color=#7ED5E4>토</font></td>
+                            </tr>
+                        </table> 
+                        <div class="text">
+                            <form action="">
+                                <textarea name="schedule" cols="97" rows="10" style="resize: none;"></textarea>
+                                <div class="buttons" align="right">
+                                    <button type="submit" id="submitBtn">저장</button>
+                                    <button type="reset" id="resetBtn">삭제</button>
+                                </div>
+                            </form>
+                
+                        </div>   
+                    </div>
+               	 </div>
+                </div>
+            </div>
+         </div>
     </div>
+    
    
 </body>
  

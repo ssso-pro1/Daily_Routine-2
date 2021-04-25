@@ -305,6 +305,12 @@ public class HtDao {
 
 
 
+	/**
+	 * 조회수 증가
+	 * @param conn
+	 * @param hno
+	 * @return
+	 */
 	public int increaseCount(Connection conn, int hno) {
 		// update문 => 처리된 행수
 		int result = 0;
@@ -329,6 +335,12 @@ public class HtDao {
 
 
 
+	/**
+	 * 게시물 디테일뷰에서 쓸 게시물 내용 전체 조회
+	 * @param conn
+	 * @param hno
+	 * @return
+	 */
 	public Ht selectPost(Connection conn, int hno) {
 		// select문
 		Ht h = null;
@@ -347,10 +359,6 @@ public class HtDao {
 						   rset.getInt("user_no"),
 						   rset.getString("ht_post_content"),
 						   rset.getString("ht_post_title"),
-						   rset.getString("ht_comment"),
-						   rset.getString("ht_recommend"),
-						   rset.getString("ht_howtowork"),
-						   rset.getString("ht_suggestion"),
 						   rset.getString("category_name"),
 						   rset.getDate("ht_enroll_date"),
 						   rset.getDate("ht_update_date"),
@@ -371,6 +379,13 @@ public class HtDao {
 
 
 
+	/**
+	 * 좋아요 여부 확인
+	 * @param conn
+	 * @param htPostNo
+	 * @param userNo
+	 * @return
+	 */
 	public boolean likeCheck(Connection conn, int htPostNo, int userNo) {
 		// select 결과 받아서 true false 반환
 		int likeCount = 0; // 개수 저장
@@ -408,6 +423,13 @@ public class HtDao {
 
 
 
+	/**
+	 * 좋아요 삭제
+	 * @param conn
+	 * @param htPostNo
+	 * @param userNo
+	 * @return
+	 */
 	public int deleteLike(Connection conn, int htPostNo, int userNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -431,6 +453,13 @@ public class HtDao {
 
 
 
+	/**
+	 * 좋아요 추가
+	 * @param conn
+	 * @param htPostNo
+	 * @param userNo
+	 * @return
+	 */
 	public int insertLike(Connection conn, int htPostNo, int userNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -455,6 +484,11 @@ public class HtDao {
 
 
 
+	/** 게시물 좋아요 수 증가
+	 * @param conn
+	 * @param htPostNo
+	 * @return
+	 */
 	public int sumLikeCount(Connection conn, int htPostNo) {
 		// update문
 		int result = 0;
@@ -480,6 +514,12 @@ public class HtDao {
 
 
 
+	/**
+	 * 게시물 전체 좋아요수 감소
+	 * @param conn
+	 * @param htPostNo
+	 * @return
+	 */
 	public int subLikeCount(Connection conn, int htPostNo) {
 		// update문
 		int result = 0;
@@ -502,6 +542,13 @@ public class HtDao {
 
 
 
+	/**
+	 * 북마크 여부 확인
+	 * @param conn
+	 * @param htPostNo
+	 * @param userNo
+	 * @return
+	 */
 	public boolean bookmarkCheck(Connection conn, int htPostNo, int userNo) {
 		// select 결과 받아서 true false 반환
 		int bookmarkCount = 0; // 개수 저장
@@ -538,6 +585,13 @@ public class HtDao {
 
 
 
+	/**
+	 * 북마크 삭제
+	 * @param conn
+	 * @param htPostNo
+	 * @param userNo
+	 * @return
+	 */
 	public int deleteBookmark(Connection conn, int htPostNo, int userNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
@@ -560,6 +614,13 @@ public class HtDao {
 
 
 
+	/**
+	 * 북마크 추가
+	 * @param conn
+	 * @param htPostNo
+	 * @param userNo
+	 * @return
+	 */
 	public int insertBookmark(Connection conn, int htPostNo, int userNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;

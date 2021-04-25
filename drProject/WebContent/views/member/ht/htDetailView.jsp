@@ -56,13 +56,13 @@
 					<h2><%= h.getHtPostTitle() %></h2>
 					<iframe src="<%= h.getVideoLink() %>?autoplay=1"width="500px" height="300px"></iframe>
 					<br>
-					<!-- 로그인 안되있는 유저는 안보이도록 할 것 -->
+					<!-- 로그인 안되있는 유저는 안보이도록 할 것 / 스크립트까지 감싸야함 => 500에러 -->
 					<% if(loginUser != null){ %>
 					<div class="mark">
 						북마크 <i id="bookmark" class="far fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
 						좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
 					</div>
-					<% } %>
+					
 					
 
 					<script>
@@ -102,7 +102,7 @@
 								type:"post",
 								url: "like.ht",
 								data:{
-									userNo:<%= loginUser.getUserNo() %>,
+									userNo:<%= loginUser.getUserNo() %>, // 에러
 									postNo:<%= h.getHtPostNo() %>
 								},success:function(check){
 									// console.log(check); -> true, false 출력 확인
@@ -129,7 +129,7 @@
 						}
 						
 					</script>
-
+					<% } %>
 					<pre style="text-align: left;">  
 <%= h.getHtPostContent() %>
 					  </pre>

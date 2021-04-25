@@ -4,96 +4,187 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+<!-- Popper JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<link rel="stylesheet" href="../../../resources/css/drView.css">
 <title>Insert title here</title>
 <style>
     .outer{
-        width:1000px;
-        height:800px;
-        margin: auto;
+        margin-left: -50px;
     }
-    .form{
-    	width:800px;
-    	height:100%;
-    	margin:auto;
+    #btn1{
+        margin-left: -3px;
     }
-    #updateForm th{
-        width:130px;
-        text-align: left;
-        padding: 12px;
+    #submitBtn{
+        font-size: 17px;
+    }
+    #resetBtn{
+        font-size: 17px;
     }
 </style>
 </head>
 <body>
-    <div class="outer">
-    	<%@ include file="../../common/menubar.jsp" %>
-        <form action="" name="updateEnrollForm">
-            <div class="form">
-            	&nbsp<button>회원 정보 수정</button>
-                <fieldset>
-                    <table id="updateForm">
-                        <br>
-                        <tr>
-                            <th>아이디</th>
-                            <td colspan="2">corin2</td>
-                        </tr>
-                        <tr>
-                            <th>이름</th>
-                            <td colspan="2">이코린</td>
-                        </tr>
-                        <tr>
-                            <th>새 비밀번호</th>
-                            <td><input type="password" size="27" maxlength="15" placeholder="새 비밀번호를 입력하세요" required></td>
-                            <td><p style="color: gray; font-size: 11px;">영어,숫자,특수문자 포함 8~15자리</p></td>
-                        </tr>
-                        <tr>
-                            <th>비밀번호 확인</th>
-                            <td><input type="password" size="27" maxlength="15" placeholder="비밀번호 확인"required></td>
-                            <td><p style="color:gray; font-size: 11px;">비밀번호가 틀렸습니다.</p></td>
-                        </tr>
-                        <tr>
-                            <th>생년월일</th>
-                            <td>
-                                <input type="text" size="4" maxlength="4"> 년 &nbsp;
-                                <select name="month">
-                                    <option value="1" selected>1</option>
-                                    <option value="2">2</option>
-                                    <option value="3">3</option>
-                                    <option value="4">4</option>
-                                    <option value="5">5</option>
-                                    <option value="6">6</option>
-                                    <option value="7">7</option>
-                                    <option value="8">8</option>
-                                    <option value="9">9</option>
-                                    <option value="10">10</option>
-                                    <option value="11">11</option>
-                                    <option value="12">12</option>
-                                </select> 월 &nbsp;
-                                <input type="text" size="2" maxlength="2"> 일 &nbsp;
-                            </td>
-                        </tr>
-                        <tr>
-                            <th>이메일</th>
-                            <td colspan="2">corin2@naevr.com&nbsp;&nbsp;<button>수정하기</button></td>
-                        </tr>
-                        <tr>
-                            <th>전화번호</th>
-                            <td colspan="2">010-2123-3232&nbsp;&nbsp;<button>수정하기</button></td>
-                        </tr>
-                    </table>
+    <%@ include file="../../common/menubar.jsp" %>
+    <%
+    	String userId = loginUser.getUserId(); // 필수
+    	String userName = loginUser.getUserName(); // 필수
+    	String birth = (loginUser.getBirth() == null) ? "" : loginUser.getBirth();
+    	String email = (loginUser.getEmail() == null) ? "" : loginUser.getEmail();
+    	String phone = (loginUser.getPhone() == null) ? "" : loginUser.getPhone();
+		String gender = (loginUser.getGender() == null) ? "" : (loginUser.getGender() == "F") ? "여성" : "남성";
+    %>
+    <script>
+	    $(function(){
+	    	var birth = <%= birth %>;
+	    	var year = birth.substring(0,3);
+	    	var month = birth.substring(4,5);
+	    	var day = brith.substring(6,7);
+	    	console.log(year);
+	    	console.log(month);
+	    	console.log(day);
+	    })
+    	
+    </script>
+    <div class="wrap">
+        <div id="content">
+            <div id="content_1">
+                <h1>마이페이지</h1><br>
+                <div class="leftMenu">
+                    <div><a href="<%=contextPath%>/myPage.md" style="color:rgb(250, 214, 9);">회원수정</a></div>
                     <br>
-                </fieldset>
-
-                <br>
-                <div class="buttons" align="center">
-                    <button>확인</button>
-                    <button>취소</button>
-                    <button>탈퇴하기</button>
+                    <div><a href="">내 글 보관함</a></div>
+                    <br>
+                    <div><a href="" >북마크 보관함</a></div>
+                    <br>
+                    <div><a href="">다이어리</a></div>
                 </div>
-                
             </div>
-            
-        </form>
+
+            <div id="line"></div>
+
+            <!-- 게시판 목록 -->
+            <div id="content_2">
+                <br><br><br>
+                <div id="content_2_2">
+                    <div class="outer">
+                        <form action="" name="updateEnrollForm">
+                            <div class="form">
+                                &nbsp<button id="btn1" disabled>회원 정보 수정</button>
+                                <fieldset>
+                                    <table id="updateForm">
+                                        <br>
+                                        <tr>
+                                            <th>아이디</th>
+                                            <td colspan="2"><%= userId %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>이름</th>
+                                            <td colspan="2"><%= userName %></td>
+                                        </tr>
+                                        <tr>
+                                            <th>새 비밀번호</th>
+                                            <td><input type="password" size="27" maxlength="16" placeholder="새 비밀번호를 입력하세요" required></td>
+                                            <!-- hover넣을까 말까 -->
+                                            <td><p style="color: gray; font-size: 11px;">영어,숫자,특수문자 포함 8~16자리</p></td>
+                                        </tr>
+                                        <tr>
+                                            <th>비밀번호 확인</th>
+                                            <td><input type="password" size="27" maxlength="15" placeholder="비밀번호 확인"required></td>
+                                            <!-- 비밀번호 틀린경우 -->
+                                            <td><p style="color:gray; font-size: 11px;">비밀번호가 틀렸습니다.</p></td>
+                                        </tr>
+                                        <tr>
+                                            <th>생년월일</th>
+                                            <td>
+                                            <!-- 나눠서 하려면 어떻게해야하지 substring is not function거린다 -->
+                                               <%= birth %>
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <th>성별</th>
+                                            <td><%= gender %></td>
+                                        </tr>
+                                        <tr>
+                                            <!-- 모달 넣을것 -->
+                                            <th>이메일</th>
+                                            <td colspan="2"><%= email %>  &nbsp;&nbsp;&nbsp; <button  type="button" data-toggle="modal" data-target="#emailUpdateModal" id="updateBtn">수정하기</button></td>
+                                        </tr>
+                                        <tr>
+                                            <th>전화번호</th>
+                                            <td colspan="2"><%= phone %> &nbsp;&nbsp;&nbsp; <button id="updateBtn">수정하기</button></td>
+                                        </tr>
+                                    </table>
+                                    <br>
+                                </fieldset>
+                
+                                <br>
+                                <div class="buttons" align="center">
+                                    <button type="submit" id="submitBtn">확인</button>
+                                    <button type="reset" id="resetBtn">취소</button>
+                                    <div class="outBtn">
+                                        <button id="outBtn">탈퇴하기</button>
+                                    </div>
+                                    
+                                    <!-- 탈퇴 링크하기 -->
+                                </div>
+                                
+                            </div>
+                            
+                        </form>
+                    </div>
+
+                </div>
+            </div>
+        </div>
     </div>
+    
+    <!-- 이메일 수정 모달 -->
+    <div class="modal" id="emailUpdateModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">이메일 변경</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<form action="<%= contextPath %>/emailUpdate.md" method="post" id="form1">
+	      		<input type="hidden" name="userId" value="<%= userId %>">
+	      		<input type="text" name="updateEmail" style="font-size: 13px;" required> &nbsp;
+	      		<select id="emailCategory" name="emailCategory">
+                    <option value="x">선택해주세요</option>
+	      			<option value="@naver.com">@naver.com</option>
+                    <option value="@daum.com">@daum.net</option>
+                    <option value="@gmail.com">@gmail.com</option>
+	      		</select>
+                <button type="submit">확인</button>
+                <button type="reset">취소</button>
+	      		
+	      	</form>
+            
+	        	
+	      </div>
+	
+	      <!-- Modal footer -->
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	      </div>
+	
+	    </div>
+	  </div>
+	</div>
     
     
 </body>

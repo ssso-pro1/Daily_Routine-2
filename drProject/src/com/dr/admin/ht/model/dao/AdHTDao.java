@@ -68,6 +68,7 @@ public class AdHTDao {
 	/**
 	 * 1. 홈트 게시글 전체 조회 
 	 */
+	
 	public ArrayList<AdHT> selectList(Connection conn, PageInfo pi) {
 		// select문 => resultset객체 (여러행)
 		
@@ -109,6 +110,7 @@ public class AdHTDao {
 	
 	
 	
+	
 	// insert1
 	public int insertAdHT(Connection conn, AdHT a) {
 		//insert => 처리된 행수
@@ -122,9 +124,7 @@ public class AdHTDao {
 			pstmt.setInt(1, Integer.parseInt(a.getUserNo()));
 			pstmt.setString(2, a.getCategoryName());
 			pstmt.setString(3, a.getHtPostTitle());
-			
 			pstmt.setString(4, a.getHtPostContent());
-			
 			pstmt.setString(5, a.getVideoLink());
 			
 			result = pstmt.executeUpdate();
@@ -171,6 +171,41 @@ public class AdHTDao {
 		
 	}
 	
+	public ArrayList<AdHT> selectThumbnailList(Connection conn) {
+		//select문 => ResultSet 객체 (여러행)
+		ArrayList<AdHT> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectThumbnailList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				AdHT a = new AdHT();
+				a.setHtPostNo(rset.getInt("ht_post_no"));
+				a.setCategoryName(rset.getString("category_name"));
+				a.setHtPostTitle(rset.getString("ht_post_title"));
+				a.setHtEnrollDate(rset.getDate("ht_enroll_date"));
+				a.setTitleImg(rset.getString("titleimg"));
+				
+				list.add(a);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+		
+		
+	}
 	
 	
 }

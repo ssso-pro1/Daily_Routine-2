@@ -92,6 +92,39 @@
 	</entry>
 	
 	
+	<entry key="selectThumbnailList">
+		SELECT
+		       HT_POST_NO       --1번테이블
+		     , CATEGORY_NAME
+		     , HT_POST_TITLE
+		     , HT_ENROLL_DATE
+		     , FILE_PATH || CHANGE_NAME "TITLEIMG"  
+		FROM TB_HOMETRAINING H
+		JOIN TB_USER USING(USER_NO)
+		JOIN TB_HT_FILE USING(HT_POST_NO)
+		WHERE STATUS = 'N'
+		  AND FILE_LEVEL = 0
+		ORDER
+		   BY HT_ENROLL_DATE DESC
+	</entry>
+	
+	<entry key="">
+	
+	</entry>
+	
+	<entry key="">
+	
+	</entry>
+	
+	<entry key="">
+	
+	</entry>
+	
+	<entry key="">
+	
+	</entry>
+	
+	
 </properties>
 
 

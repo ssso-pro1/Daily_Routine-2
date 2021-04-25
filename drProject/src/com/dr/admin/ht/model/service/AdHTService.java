@@ -66,6 +66,16 @@ public class AdHTService {
 	}
 	
 	
+	//썸네일 리스트 조회
+		public ArrayList<AdHT> selectThumbnailList(){
+			Connection conn = getConnection();
+			ArrayList<AdHT> list = new AdHTDao().selectThumbnailList(conn);
+			close(conn);
+			return list;
+			
+		}
+		
+	
 	
 	
 	

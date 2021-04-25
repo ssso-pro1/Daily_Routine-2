@@ -17,6 +17,10 @@ public class AdHT {
 	private int fileNo;
 	private String videoLink;
 	
+	private String titleImg; //해당 게시글의 대표이미지경로 (두개 더한 새로운 거) => 만들고 setter getter
+	
+	
+	
 	public AdHT() {}
 
 	public AdHT(int htPostNo, String userNo, String htPostTitle, String htPostContent, String categoryName,
@@ -66,6 +70,18 @@ public class AdHT {
 		this.categoryName = categoryName;
 		this.htEnrollDate = htEnrollDate;
 		this.videoLink = videoLink;
+	}
+
+	
+	
+	
+	
+	public String getTitleImg() {
+		return titleImg;
+	}
+
+	public void setTitleImg(String titleImg) {
+		this.titleImg = titleImg;
 	}
 
 	public int getHtPostNo() {

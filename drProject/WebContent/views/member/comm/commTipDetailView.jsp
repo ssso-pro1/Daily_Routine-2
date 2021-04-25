@@ -163,7 +163,7 @@
 
                 <!-- 게시글 버튼 영역-->
                 <div class="buttonArea2" align="right">
-                    좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>&nbsp;<%=c.getLikeCount()%> &nbsp;&nbsp;
+                    좋아요 <i id="like" class="far fa-heart"></i>&nbsp;<%=c.getLikeCount()%> &nbsp;&nbsp;
                 </div><br><br>
 
                 <div class="buttonArea3" align="right"> 

@@ -160,7 +160,6 @@
                 <!-- 게시글 버튼 영역-->
                 <div class="buttonArea2" align="right">
                     좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
-                    신고 <i id="report" class="fas fa-bullhorn" onclick="report();"></i>
                 </div><br><br>
 
                 <div class="buttonArea3" align="right">
@@ -169,25 +168,7 @@
                 </div><br><br>
 
                 <script>
-					function like(){
-						var like = document.getElementById('like').className;
-						if(like == 'fas fa-heart'){ // 좋아요 취소 (까만 하트 => 빈 하트)
-							document.getElementById('like').className = 'far fa-heart';
-							$.ajax({
-								type:"post",
-								url: "좋아요 서블릿",
-								data:{
-									userId:유저아이디,
-									postNo:게시판 번호
-								}
-								success:function({		
-								})	
-							})
-							
-						}else{ // 좋아요 (빈 하트 => 까만 하트)
-							document.getElementById('like').className = 'fas fa-heart';
-						}
-					}
+					
 				</script>
 
 

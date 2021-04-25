@@ -206,6 +206,41 @@ public class HtService {
 	}
 
 
+	public boolean bookmarkCheck(int htPostNo, int userNo) {
+		Connection conn = getConnection();
+		boolean check = new HtDao().bookmarkCheck(conn, htPostNo, userNo);
+		close(conn);
+		return check;
+	}
+
+
+	public int deleteBookmark(int htPostNo, int userNo) {
+		Connection conn = getConnection();
+		int result = new HtDao().deleteBookmark(conn, htPostNo, userNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+
+
+	public int insertBookmark(int htPostNo, int userNo) {
+		Connection conn = getConnection();
+		int result = new HtDao().insertBookmark(conn, htPostNo, userNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+
 
 
 	

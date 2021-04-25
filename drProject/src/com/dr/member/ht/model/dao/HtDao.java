@@ -502,6 +502,87 @@ public class HtDao {
 
 
 
+	public boolean bookmarkCheck(Connection conn, int htPostNo, int userNo) {
+		// select 결과 받아서 true false 반환
+		int bookmarkCount = 0; // 개수 저장
+			
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+				
+		String sql = prop.getProperty("bookmarkCheck");
+		System.out.println(sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, htPostNo);
+					
+			rset = pstmt.executeQuery();
+					
+			// 한번만 수행될 것 + count값 받기
+			if(rset.next()) {
+				bookmarkCount = rset.getInt("BOOKMARKCOUNT");
+			}
+							
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return bookmarkCount > 0 ? true : false;
+		// 0보다 크면 check = true, 아니면 false
+		//                 누름  , 인누름
+				
+	}
+
+
+
+	public int deleteBookmark(Connection conn, int htPostNo, int userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteBookmark");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, htPostNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+
+	public int insertBookmark(Connection conn, int htPostNo, int userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertBookmark");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, htPostNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+
 
 
 

@@ -70,12 +70,34 @@
 
 					<script>
 						function bookmark(){
-							var bkClass = document.getElementById('bookmark').className;
-							if(bkClass == 'fas fa-bookmark'){ // 꽉찬 북마크 -> 빈 북마크로 => 취소할때
-								document.getElementById('bookmark').className = 'far fa-bookmark';
-							}else{ // 빈 북마크 -> 꽉찬 북마크로 => 북마크 할 때
-								document.getElementById('bookmark').className = 'fas fa-bookmark';
-							}
+
+							$.ajax({
+								type:"post",
+								url: "bookmark.ht",
+								data:{
+									userNo:1, // loginUser로 바꿔야함
+									postNo:<%= h.getHtPostNo() %>
+								},success:function(check){
+									// console.log(check); -> true, false 출력 확인
+									console.log(check);
+									if(check == true){ // check 되어있는거 취소
+										$("#bookmark").removeClass("fas fa-bookmark").addClass("far fa-bookmark"); 
+										//  $("#like").attr("far fa-heart");
+										// document.getElementById('like').className = 'far fa-heart';
+										 console.log(document.getElementById('bookmark').className);
+									}else{ // check 안되어있는거 입력
+										$("#bookmark").removeClass("far fa-bookmark").addClass("fas fa-bookmark"); 
+										 //$("#like").attr("fas fa-heart");
+										 // document.getElementById('like').className = 'fas fa-heart';
+										 console.log(document.getElementById('bookmark').className);
+									}
+									
+								},error:function(){
+									console.log("실패");
+								}
+									
+								
+							})
 						}
 						function like(){
 
@@ -92,12 +114,12 @@
 										$("#like").removeClass("fas fa-heart").addClass("far fa-heart"); 
 										//  $("#like").attr("far fa-heart");
 										// document.getElementById('like').className = 'far fa-heart';
-										 console.log(document.getElementById('like').className);
+										// console.log(document.getElementById('like').className);
 									}else{ // check 안되어있는거 입력
 										$("#like").removeClass("far fa-heart").addClass("fas fa-heart"); 
 										 //$("#like").attr("fas fa-heart");
 										 // document.getElementById('like').className = 'fas fa-heart';
-										 console.log(document.getElementById('like').className);
+										 // console.log(document.getElementById('like').className);
 									}
 									
 								},error:function(){

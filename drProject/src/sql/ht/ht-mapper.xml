@@ -140,6 +140,40 @@
 		 WHERE HT_POST_NO = ?
 		   AND STATUS = 'N'
 	</entry>
+	
+	<entry key="bookmarkCheck">
+        SELECT COUNT(*) BOOKMARKCOUNT
+		  FROM TB_BOOKMARK
+		 WHERE USER_NO = ?
+		   AND BK_POST_TYPE = 1
+		   AND BK_POST_NO = ?
+	</entry>
+	
+		<entry key="deleteBookmark">
+        DELETE 
+		  FROM TB_BOOKMARK
+		 WHERE USER_NO = ?
+		   AND BK_POST_TYPE = 1
+		   AND BK_POST_NO = ?
+	</entry>
+	
+	<entry key="insertBookmark">
+		INSERT
+		  INTO TB_BOOKMARK
+		       (
+                 BK_NO
+		       , USER_NO
+		       , BK_POST_TYPE
+		       , BK_POST_NO
+		       )
+		VALUES 
+		       (
+                 SEQ_BKNO.NEXTVAL
+		       , ?
+		       , 1
+		       , ?
+		       )
+	</entry>
 </properties>
 
 

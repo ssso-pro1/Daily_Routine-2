@@ -21,7 +21,7 @@
     }
     .wrap{
         width:1000px;
-        height:800px;
+        height:1000px;
         margin:auto;
         margin-top:15px;
     }
@@ -58,7 +58,7 @@
 
     #content_2_1{height:10%;}
     #content_2_2{height:40%; margin-left:48px;}
-    #content_2_3{height:35%;}
+    #content_2_3{height:100%;}
 
     .detailArea{
         height:100%;
@@ -73,7 +73,11 @@
         border-top:1px solid black;
         border-collapse:collapse;
     }   
-   
+   	.replyArea>table>tbody>tr{
+   		colspan="3";	
+   	}
+  
+   	
     .buttonArea1>button, .buttonArea3>button{
         background:rgb(250, 214, 9);
         color:white;
@@ -158,13 +162,13 @@
                             </tr>
                         </table><br>
                     </div>
-                </div><br><br>
+                </div><br>
 
 
                 <!-- 게시글 버튼 영역-->
                 <div class="buttonArea2" align="right">
                     좋아요 <i id="like" class="far fa-heart"></i>&nbsp;<%=c.getLikeCount()%> &nbsp;&nbsp;
-                </div><br><br>
+                </div><br>
 
                 <div class="buttonArea3" align="right"> 
 	                <a href="<%=contextPath%>/tipEnroll.co" class="fas fa-pencil-alt"> 글쓰기</a> &nbsp;&nbsp;
@@ -173,65 +177,26 @@
 
 
 
-
-				 
-				<script>
-				
-					// 게시글 삭제 (a href에서 function 함수 이용)
-					function deleteTip(){
-						
-						var result = confirm("게시글을 삭제하시겠습니까?");
-                    	if(result) {
-                    		
-                    	} else {
-                    		alert("게시글 삭제가 취소되었습니다");
-                    		return false;
-                    	}
-					}
-				
-				
-					
-					
-					
-					
-					
-					
-					
-					
-					
-				</script>
-				
-				
-				
-				
 				
             <!-- 댓글 영역 -->
             <div id="content_3">
                 <div class="replyArea">
-                    <table border="0" height="100" width="100%" align="center">
+                    <table border="1" height="100" width="100%" align="center">
                         <h3>> 댓글 쓰기 <i class="far fa-comment-dots"></i></h3>
                         <thead>
                             <tr>                     
                                 <td colspan="6">
                                     <textarea id="replyContent" cols="80" rows="3" style="resize:none" placeholder="댓글 등록 시 상대에 대한 비방이나 욕설은 삼가주세요 ^^."></textarea>
                                 </td>
-                                <td width="50"> 
+                                <td width="50" align="center"> 
                                     <button onclick="addReply();" style="color:white; background:rgb(250, 214, 9); border:rgb(250, 214, 9); cursor:pointer;">댓글<br>등록</button>
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="6" height="30"><b>댓글 </b>1</td>
+                                <td colspan="7" height="30"><b>댓글 </b>1</td>
                             </tr> 
                         </thead>
                         <tbody>
-                            <tr>
-                                <th width="50">헬스맨</th>
-                                <td width="200">댓글내용</td>
-                                <td width="50">20-02-02</td>
-                                <td width="25"><button style="cursor:pointer";>수정</button></td>
-                                <td width="25"><button style="cursor:pointer";>삭제</button></td>
-                                <td width="50"><button style="cursor:pointer";>좋아요</button> 20</td>
-                            </tr>
                            
                         </tbody>
                     </table>
@@ -241,18 +206,55 @@
                 	$(function() {
                 		
                 		selectReplyList(); 
-                		
-                		
+                			
                 	})
+                	
+                	// 해당 게시글 댓글 작성용 ajax 
+                	function addReply() {
+                		
+                		console.log("실행되나"); 
+                		
+                		$.ajax({
+                			url:"<%=contextPath%>/replyInsert.co", 
+                			type:"post",
+                			data:{
+                				content:$("#replyContent").val(),
+                				cno:<%=c.getCommPostNo()%>
+                			},success:function(result){
+                				
+                				if(result > 0){ // 댓글 성공 
+                					// 갱신된 리스트 다시 조회해서 뿌려줘야 함 
+                					selectReplyList(); 
+                					$("#replyContent").val("");
+                				}
+                				
+                				
+                			},error:function(){
+                				console.log("댓글 작성용 ajax 통신 실패"); 
+                			}
+                		});
+                		
+                	}
                 	
                 	// 해당 게시글에 달린 댓글 리스트 조회용 ajax
                 	function selectReplyList() {
                 		
                 		$.ajax({
-                			url:"<%=contextPath%>/replyTipList.co", 
+                			url:"<%=contextPath%>/replyList.co", 
                 			data:{cno:<%=c.getCommPostNo()%>},
                 			success:function(list){
                 				console.log(list); 
+                				
+                				var result = "";
+                				for(var i in list) {
+                					result += "<tr>"
+                						    +    "<th>"  + list[i].userNo + "</th>"
+                                            +    "<td>"  + list[i].replyContent + "</td>"
+                                            +    "<td>"  + list[i].enrollDate + "</td>"
+                                            + "</tr>";        
+                				}
+                				
+                				$(".replyArea tbody").html(result); 
                 				
                 			},error:function(){
                 				console.log("댓글 리스트 조회용 ajax 통신 실패"); 

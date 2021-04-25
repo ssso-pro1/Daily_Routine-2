@@ -260,12 +260,13 @@
 	</entry>
 	
 	<entry key="deleteLike">
-		DELETE 
-		  FROM TB_LIKE
+		UPDATE
+		       TB_LIKE
+		   SET STATUS = 'N' 
 		 WHERE USER_NO = ?
 		   AND LIKE_POST_TYPE = 1
 		   AND LIKE_POST_NO = ?
-	</entry>
+	</entry>   
 	
 	<entry key="insertLike">
 		INSERT
@@ -315,11 +316,42 @@
 		 ORDER BY ENROLL_DATE DESC
 	</entry>
 	
+	<entry key="insertReply">
+		INSERT
+		  INTO TB_REPLY
+		  (
+		    REPLY_NO
+		  , REPLY_CONTENT
+		  , COMM_POST_NO
+		  , USER_NO
+		  , ENROLL_DATE 
+		  )
+		  VALUES 
+		  (
+		    SEQ_RNO.NEXTVAL
+		  , ?
+		  , ?
+		  , ?
+		  , SYSDATE
+		  )
+	</entry>
 	
+	<entry key="updateReply">
+		UPDATE
+		       TB_REPLY
+		   SET REPLY_CONTENT = ? 
+		     , UPDATE_DATE = SYSDATE
+		 WHERE COMM_POST_NO = ? 
+		   AND STATUS = 'N'  
+	</entry>
 	
-	
-	
-	
+	<entry key="deleteReply">
+		UPDATE 
+		       TB_REPLY
+		   SET STATUS = 'Y' 
+		 WHERE COMM_POST_NO = ?   
+	</entry>
+
 	
 	
 	

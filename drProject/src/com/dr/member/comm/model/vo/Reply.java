@@ -27,7 +27,7 @@ public class Reply {
 		this.updateDate = updateDate;
 		this.status = status;
 	}
-	
+
 	public Reply(int replyNo, String userNo, String replyContent, Date enrollDate) {
 		super();
 		this.replyNo = replyNo;

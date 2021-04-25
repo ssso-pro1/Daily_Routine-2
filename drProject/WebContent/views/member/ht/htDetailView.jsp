@@ -2,6 +2,7 @@
     pageEncoding="UTF-8" import="com.dr.member.ht.model.vo.Ht"%>
 <%
 	Ht h = (Ht)request.getAttribute("h");
+
 %>
 <!DOCTYPE html>
 <html>
@@ -65,6 +66,7 @@
 						북마크 <i id="bookmark" class="far fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
 						좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
 					</div>
+					
 
 					<script>
 						function bookmark(){
@@ -76,26 +78,35 @@
 							}
 						}
 						function like(){
-							var lkClass = document.getElementById('like').className;
-							if(lkClass == 'fas fa-heart'){ // 꽉찬 하트 -> 빈 하트로 => 취소할 때
-								document.getElementById('like').className = 'far fa-heart';
-								$.ajax({
-									type:"post",
-									url: "북마크 할 서블릿",
-									data:{
-										userId:유저아이디,
-										postNo:게시판 번호
+
+							$.ajax({
+								type:"post",
+								url: "like.ht",
+								data:{
+									userNo:1,
+									postNo:<%= h.getHtPostNo() %>
+								},success:function(check){
+									// console.log(check); -> true, false 출력 확인
+									console.log(check);
+									if(check == true){ // check 되어있는거 취소
+										$("#like").removeClass("fas fa-heart").addClass("far fa-heart"); 
+										//  $("#like").attr("far fa-heart");
+										// document.getElementById('like').className = 'far fa-heart';
+										 console.log(document.getElementById('like').className);
+									}else{ // check 안되어있는거 입력
+										$("#like").removeClass("far fa-heart").addClass("fas fa-heart"); 
+										 //$("#like").attr("fas fa-heart");
+										 // document.getElementById('like').className = 'fas fa-heart';
+										 console.log(document.getElementById('like').className);
 									}
-									success:function({
-										
-										
-									})
+									
+								},error:function(){
+									console.log("실패");
+								}
 									
 								
-								})
-							}else{ // 빈 하트 -> 꽉찬 하트로 => 좋아요 할 때
-								document.getElementById('like').className = 'fas fa-heart';
-							}
+							})
+							
 						}
 						
 					</script>

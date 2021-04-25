@@ -92,6 +92,54 @@
             WHERE HT_POST_NO = ?
               AND H.STATUS = 'N'
 	</entry>
+	
+	<entry key="likeCheck">
+		SELECT COUNT(*) LIKECOUNT
+		  FROM TB_POST_LIKE
+		 WHERE USER_NO = ?
+		   AND LIKE_POST_TYPE = 1
+		   AND LIKE_POST_NO = ?
+	</entry>
+	
+	<entry key="deleteLike">
+		DELETE 
+		  FROM TB_POST_LIKE
+		 WHERE USER_NO = ?
+		   AND LIKE_POST_TYPE = 1
+		   AND LIKE_POST_NO = ?
+	</entry>
+	
+	<entry key="insertLike">
+		INSERT
+		  INTO TB_POST_LIKE
+		       (
+		         USER_NO
+		       , LIKE_POST_TYPE
+		       , LIKE_POST_NO
+		       )
+		VALUES 
+		       (
+		         ?
+		       , 1
+		       , ?
+		       )
+	</entry>
+	
+	<entry key="sumLikeCount">
+		UPDATE
+		       TB_HOMETRAINING
+		   SET HT_LIKE_COUNT = HT_LIKE_COUNT+1
+		 WHERE HT_POST_NO = ?
+		   AND STATUS = 'N'
+	</entry>
+	
+		<entry key="subLikeCount">
+		UPDATE
+		       TB_HOMETRAINING
+		   SET HT_LIKE_COUNT = HT_LIKE_COUNT-1
+		 WHERE HT_POST_NO = ?
+		   AND STATUS = 'N'
+	</entry>
 </properties>
 
 

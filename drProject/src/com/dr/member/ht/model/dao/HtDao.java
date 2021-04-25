@@ -371,6 +371,137 @@ public class HtDao {
 
 
 
+	public boolean likeCheck(Connection conn, int htPostNo, int userNo) {
+		// select 결과 받아서 true false 반환
+		int likeCount = 0; // 개수 저장
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("likeCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, htPostNo);
+			
+			rset = pstmt.executeQuery();
+			
+			// 한번만 수행될 것 + count값 받기
+			if(rset.next()) {
+				likeCount = rset.getInt("likecount");
+			}
+					
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return likeCount > 0 ? true : false;
+		// 0보다 크면 check = true, 아니면 false
+		//                 누름  , 인누름
+		
+		
+	}
+
+
+
+	public int deleteLike(Connection conn, int htPostNo, int userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, htPostNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	
+	}
+
+
+
+	public int insertLike(Connection conn, int htPostNo, int userNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("insertLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, userNo);
+			pstmt.setInt(2, htPostNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+	}
+
+
+
+	public int sumLikeCount(Connection conn, int htPostNo) {
+		// update문
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("sumLikeCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htPostNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+		
+				
+		
+	}
+
+
+
+	public int subLikeCount(Connection conn, int htPostNo) {
+		// update문
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("subLikeCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htPostNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
+
 
 
 

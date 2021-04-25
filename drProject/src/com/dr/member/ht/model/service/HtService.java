@@ -142,6 +142,70 @@ public class HtService {
 //		
 
 
+	public boolean likeCheck(int htPostNo, int userNo) {
+		Connection conn = getConnection();
+		boolean check = new HtDao().likeCheck(conn, htPostNo, userNo);
+		close(conn);
+		return check;
+		
+	}
+
+
+	public int deleteLike(int htPostNo, int userNo) {
+		Connection conn = getConnection();
+		int result = new HtDao().deleteLike(conn, htPostNo, userNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		return result;
+	}
+
+
+	public int insertLike(int htPostNo, int userNo) {
+		Connection conn = getConnection();
+		int result = new HtDao().insertLike(conn, htPostNo, userNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+
+	public int sumLikeCount(int htPostNo) {
+		Connection conn = getConnection();
+		int result = new HtDao().sumLikeCount(conn, htPostNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		return result;
+		
+		
+	}
+
+
+	public int subLikeCount(int htPostNo) {
+		Connection conn = getConnection();
+		int result = new HtDao().subLikeCount(conn, htPostNo);
+		
+		if(result > 0) {
+			commit(conn);
+		}else{
+			rollback(conn);
+		}
+		return result;
+	}
+
+
 
 
 	

@@ -5,7 +5,7 @@ import java.sql.Date;
 public class AdHT {
 	
 	private int htPostNo;
-	private int userNo;
+	private String userNo;
 	private String htPostTitle;
 	private String htPostContent;
 	private String categoryName;
@@ -19,7 +19,7 @@ public class AdHT {
 	
 	public AdHT() {}
 
-	public AdHT(int htPostNo, int userNo, String htPostTitle, String htPostContent, String categoryName,
+	public AdHT(int htPostNo, String userNo, String htPostTitle, String htPostContent, String categoryName,
 			Date htEnrollDate, Date htUpdateDate, int htBoardView, int htLikeCount, String status, int fileNo,
 			String videoLink) {
 		super();
@@ -36,6 +36,37 @@ public class AdHT {
 		this.fileNo = fileNo;
 		this.videoLink = videoLink;
 	}
+	
+	
+	
+	
+	
+
+	public AdHT(int htPostNo, String htPostTitle, String categoryName, Date htEnrollDate, Date htUpdateDate,
+			int htBoardView) {
+		super();
+		this.htPostNo = htPostNo;
+		this.htPostTitle = htPostTitle;
+		this.categoryName = categoryName;
+		this.htEnrollDate = htEnrollDate;
+		this.htUpdateDate = htUpdateDate;
+		this.htBoardView = htBoardView;
+	}
+
+	
+	
+	
+	public AdHT(int htPostNo, String userNo, String htPostTitle, String htPostContent, String categoryName,
+			Date htEnrollDate, String videoLink) {
+		super();
+		this.htPostNo = htPostNo;
+		this.userNo = userNo;
+		this.htPostTitle = htPostTitle;
+		this.htPostContent = htPostContent;
+		this.categoryName = categoryName;
+		this.htEnrollDate = htEnrollDate;
+		this.videoLink = videoLink;
+	}
 
 	public int getHtPostNo() {
 		return htPostNo;
@@ -45,11 +76,11 @@ public class AdHT {
 		this.htPostNo = htPostNo;
 	}
 
-	public int getUserNo() {
+	public String getUserNo() {
 		return userNo;
 	}
 
-	public void setUserNo(int userNo) {
+	public void setUserNo(String userNo) {
 		this.userNo = userNo;
 	}
 
@@ -140,6 +171,8 @@ public class AdHT {
 				+ ", htUpdateDate=" + htUpdateDate + ", htBoardView=" + htBoardView + ", htLikeCount=" + htLikeCount
 				+ ", status=" + status + ", fileNo=" + fileNo + ", videoLink=" + videoLink + "]";
 	}
+
+	
 
 	
 	

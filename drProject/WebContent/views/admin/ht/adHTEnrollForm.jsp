@@ -225,7 +225,7 @@
                             
                                     <tr>
                                         <th>영상 첨부</th>
-                                        <td><input type="text" name="videoLink" style="width: 100%;" required></td>
+                                        <td><input type="url" name="videoLink" style="width: 100%;" required></td>
                                     </tr>
                                 
                                     

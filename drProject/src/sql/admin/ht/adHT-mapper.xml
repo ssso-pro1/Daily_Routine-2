@@ -44,12 +44,14 @@
 		  INTO TB_HOMETRAINING
 		  (
 		    HT_POST_NO
+		    
 		  , USER_NO
+		  , CATEGORY_NAME
 		  , HT_POST_TITLE
 		  , HT_POST_CONTENT
-		  , CATEGORY_NAME
+		  
 		  , HT_ENROLL_DATE
-		<!--, FILE_NO-->
+		  , FILE_NO 
 		  , VIDEO_LINK
 		  )
 		  VALUES
@@ -58,9 +60,9 @@
 		   , ?
 		   , ?
 		   , ?
-		   , ?
-		 <!-- , ?  --> 
+		   , ?   
 		   , SYSDATE
+		   , SEQ_HTFNO.NEXTVAL
 		   , ?
 		  )
 	
@@ -79,7 +81,7 @@
 		)
 		  VALUES 
 		  (
-		    SEQ_HTFNO.NEXTVAL
+		    SEQ_HTFNO.CURRVAL
 		  , SEQ_HTPNO.CURRVAL
 		  , ?
 		  , ?

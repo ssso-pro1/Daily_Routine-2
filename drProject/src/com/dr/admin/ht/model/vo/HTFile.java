@@ -25,6 +25,19 @@ public class HTFile {
 		this.uploadDate = uploadDate;
 		this.fileLevel = fileLevel;
 	}
+	
+	
+	
+
+	public HTFile(int fileNo, int htPostNo, String originName, String changeName, String filePath, int fileLevel) {
+		super();
+		this.fileNo = fileNo;
+		this.htPostNo = htPostNo;
+		this.originName = originName;
+		this.changeName = changeName;
+		this.filePath = filePath;
+		this.fileLevel = fileLevel;
+	}
 
 	public int getFileNo() {
 		return fileNo;

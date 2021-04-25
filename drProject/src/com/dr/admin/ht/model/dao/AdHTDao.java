@@ -118,10 +118,13 @@ public class AdHTDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, a.getHtPostTitle());
-			pstmt.setInt(2, a.getUserNo());
-			pstmt.setString(3, a.getHtPostContent());
-			pstmt.setString(4, a.getCategoryName());
+			
+			pstmt.setInt(1, Integer.parseInt(a.getUserNo()));
+			pstmt.setString(2, a.getCategoryName());
+			pstmt.setString(3, a.getHtPostTitle());
+			
+			pstmt.setString(4, a.getHtPostContent());
+			
 			pstmt.setString(5, a.getVideoLink());
 			
 			result = pstmt.executeUpdate();
@@ -152,7 +155,7 @@ public class AdHTDao {
 				pstmt.setString(1, ht.getOriginName());
 				pstmt.setString(2, ht.getChangeName());
 				pstmt.setString(3, ht.getFilePath());
-				pstmt.setInt(3, ht.getFileLevel());
+				pstmt.setInt(4, ht.getFileLevel());
 				
 			}
 			

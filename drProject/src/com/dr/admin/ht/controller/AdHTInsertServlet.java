@@ -17,6 +17,7 @@ import com.dr.admin.ht.model.vo.HTFile;
 import com.dr.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
 import com.sun.xml.internal.ws.api.message.Attachment;
+import com.dr.admin.user.model.vo.AdUser;
 
 /**
  * Servlet implementation class AdHTInsertServlet
@@ -60,7 +61,7 @@ public class AdHTInsertServlet extends HttpServlet {
 			
 			// 1-2. 전달된 파일을 저장할 서버의 폴더 경로 알아내기 (String savePath)
 			
-			String savePath = request.getSession().getServletContext().getRealPath("resources/file/ht/ht_upfiles/"); 
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/ht/ht_upfiles/"); 
 			//이폴더 내에 넣을거기 때문에 경로 마지막에 / 까지.
 			//System.out.println(savePath); //경로확인
 			
@@ -75,23 +76,22 @@ public class AdHTInsertServlet extends HttpServlet {
 			// 3-1.  insert할 카테고리번호, 게시판제목, 게시판내용, 작성자회원번호를 Board객체에 담기
 			// 카테고리명, 제목, 영상, 썸네일, 게시글내용, 로그인회원번호
 			/*
+			String userNo = multiRequest.getParameter("userNo");
 			String categoryName = multiRequest.getParameter("categoryName");
 			String htPostTitle = multiRequest.getParameter("htPostTitle");
 			String videoLink = multiRequest.getParameter("videoLink");
-
 			String htPostContent = multiRequest.getParameter("htPostContent");
 			*/
 			
-			
 			AdHT a = new AdHT();
-			//a.setUserName...?
 			a.setUserNo(multiRequest.getParameter("userNo"));
-	//		a.setUserNo(multiRequest.getParameter("userNo")); // enrollForm.jsp 
 			a.setCategoryName(multiRequest.getParameter("categoryName"));
 			a.setHtPostTitle(multiRequest.getParameter("htPostTitle"));
 			a.setVideoLink(multiRequest.getParameter("videoLink"));
-
 			a.setHtPostContent(multiRequest.getParameter("htPostContent"));
+
+
+			
 			
 			// 3-2. 첨부파일이 있다면, Attachment테이블에 Insert할 원본명, 수정명, 저장폴더경로를 Attachment 객체에 담기
 			// System.out.println(multiRequest.getOriginalFileName("upfile"));

@@ -228,7 +228,7 @@
                     <div class="helpImg" align="center">
                         <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=content"><img src="https://t3.ftcdn.net/jpg/03/00/17/00/240_F_300170007_EeUnk2vDMLQJDQh0sStL46tH0rTUy1j3.jpg" width="120" height="120"></a>
                         <p class="ff" style="font-weight: 700; font-size: 18px;">
-                            	게시글
+                            	게시글/댓글
                         </p>
                     </div>
                     <div class="helpImg" align="center">

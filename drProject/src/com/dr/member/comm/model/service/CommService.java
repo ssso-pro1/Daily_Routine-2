@@ -266,20 +266,27 @@ public class CommService {
 	
 	}
 	
-	public int updateReply(Reply r) {
+	public int insertReplyFree(Reply r) {
 		
 		Connection conn = getConnection();
-		int result = new CommDao().updateReply(conn, r); 
+		int result = new CommDao().insertReply(conn, r); 
 		
 		close(conn);
 		
 		return result; 
-		
+	
 	}
 	
+	public int insertReplyQ(Reply r) {
+		
+		Connection conn = getConnection();
+		int result = new CommDao().insertReply(conn, r); 
+		
+		close(conn);
+		
+		return result; 
 	
-	
-	
+	}
 	
 	
 	

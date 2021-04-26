@@ -41,7 +41,7 @@ public class ReplyQInsertServlet extends HttpServlet {
 		r.setCommPostNo(commPostNo);
 		r.setUserNo(String.valueOf(userNo));
 		
-		int result = new CommService().insertReply(r);
+		int result = new CommService().insertReplyQ(r);
 		response.getWriter().print(result);
 		
 	}

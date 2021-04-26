@@ -320,6 +320,7 @@
 		  (
 		    REPLY_NO
 		  , REPLY_CONTENT
+		  , REPLY_CATEGORY
 		  , COMM_POST_NO
 		  , USER_NO
 		  , ENROLL_DATE 
@@ -328,6 +329,7 @@
 		  (
 		    SEQ_RNO.NEXTVAL
 		  , ?
+		  , 1
 		  , ?
 		  , ?
 		  , SYSDATE
@@ -599,8 +601,28 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
-	
-	
+	<!-- 자유게시판 댓글  -->
+	<entry key="insertReplyFree">
+		INSERT
+		  INTO TB_REPLY
+		  (
+		    REPLY_NO
+		  , REPLY_CONTENT
+		  , REPLY_CATEGORY
+		  , COMM_POST_NO
+		  , USER_NO
+		  , ENROLL_DATE 
+		  )
+		  VALUES 
+		  (
+		    SEQ_RNO.NEXTVAL
+		  , ?
+		  , 2
+		  , ?
+		  , ?
+		  , SYSDATE
+		  )
+	</entry>
 	
 	
 	
@@ -853,6 +875,31 @@
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
+	
+	<!-- 질문게시판 댓글  -->
+	<entry key="insertReplyQ">
+		INSERT
+		  INTO TB_REPLY
+		  (
+		    REPLY_NO
+		  , REPLY_CONTENT
+		  , REPLY_CATEGORY
+		  , COMM_POST_NO
+		  , USER_NO
+		  , ENROLL_DATE 
+		  )
+		  VALUES 
+		  (
+		    SEQ_RNO.NEXTVAL
+		  , ?
+		  , 3
+		  , ?
+		  , ?
+		  , SYSDATE
+		  )
+	</entry>
+	
+	
 	
 	<entry key="">
 		

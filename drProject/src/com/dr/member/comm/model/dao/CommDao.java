@@ -653,14 +653,14 @@ public class CommDao {
 		
 	}
 	
-	public int updateReply(Connection conn, Reply r) {
-		// update문 
+	public int insertReplyFree(Connection conn, Reply r) { 
+		// insert문 
 		int result = 0;
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("updateReply");
+		String sql = prop.getProperty("insertReplyFree");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -677,7 +677,36 @@ public class CommDao {
 			close(pstmt);
 		}
 		
-		return result; 	
+		return result;
+			
+	}
+	
+	public int insertReplyQ(Connection conn, Reply r) { 
+		// insert문 
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("insertReplyQ");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getReplyContent());
+			pstmt.setInt(2, r.getCommPostNo());
+			pstmt.setInt(3, Integer.parseInt(r.getUserNo()));
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+		
 		
 	}
 	

@@ -233,26 +233,33 @@
                     <% for(CenterFaq f:searchList){ %>	
                     
                     <div class="faqList">
-                        <label>[
-                        <% if(f.getFaqCategory().equals("top")) { %>
-                                		TOP10
-                        <% } else if (f.getFaqCategory().equals("userInfo")) { %>
-                                		회원정보
-                        <% } else if (f.getFaqCategory().equals("content")) { %>
-                                		게시글/댓글
-                        <% } else if (f.getFaqCategory().equals("report")) { %>
-                                		신고
-                        <% } else if (f.getFaqCategory().equals("etc")) { %>
-                                		기타
-                        <% } %>
-                        
-                        ]</label>
-                        <label id="faqTitle"><%= f.getFaqTitle() %></label>
+                        <table>
+                            <tr>
+                                <th style="width: 100px; font-size: 18px;">
+                                    <label >[
+                                        <% if(f.getFaqCategory().equals("top")) { %>
+                                                        TOP10
+                                        <% } else if (f.getFaqCategory().equals("userInfo")) { %>
+                                                       	 회원정보
+                                        <% } else if (f.getFaqCategory().equals("content")) { %>
+                                                       	 게시글/댓글
+                                        <% } else if (f.getFaqCategory().equals("report")) { %>
+                                                        	신고
+                               	        <% } else if (f.getFaqCategory().equals("etc")) { %>
+                                                        	기타
+                                        <% } %>
+                                        
+                                        ]</label>
+
+                                </th>
+                                <td style="width: 500px; font-size: 15px;"><label id="faqTitle"  align="center"><%= f.getFaqTitle() %></label></td>
+                            </tr>
+                        </table>
                     </div>
                      <div class="faqContent">
                         <p><%= f.getFaqContent() %></p>
                     </div>
-    				<% } %>
+    				 <% } %>
                     <% } %>
     
                     <!--  

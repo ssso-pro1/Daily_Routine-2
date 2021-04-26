@@ -33,8 +33,8 @@ public class ReplyTipInsertServlet extends HttpServlet {
 		
 		String replyContent = request.getParameter("content");
 		int commPostNo = Integer.parseInt(request.getParameter("cno")); 
-		
 		int userNo = ((User)request.getSession().getAttribute("loginUser")).getUserNo();
+		
 		
 		Reply r = new Reply();
 		r.setReplyContent(replyContent);
@@ -43,7 +43,8 @@ public class ReplyTipInsertServlet extends HttpServlet {
 		
 		int result = new CommService().insertReply(r);
 		response.getWriter().print(result);
-	
+		
+		
 	}
 
 	/**

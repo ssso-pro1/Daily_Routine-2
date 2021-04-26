@@ -7,6 +7,8 @@
 	CommFile cf = (CommFile)request.getAttribute("cf"); 
 	// null
 	// 파일번호, 원본명, 수정명(실제 서버에 업로드된 이름), 저장폴더경로
+	
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -200,6 +202,7 @@
                            
                         </tbody>
                     </table>
+                  
                 </div>
                 
                 <script>

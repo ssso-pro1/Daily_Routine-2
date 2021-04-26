@@ -1,47 +1,78 @@
-package com.dr.member.info.model.vo;
+package com.dr.admin.info.model.vo;
 
 import java.sql.Date;
 
-public class Info {
+public class adInfo {
 
 	private int intPostNo;			// 인포앤팁 게시글번호 
-	private String userNo; 			// 회원번호(작성자 회원번호) 
+	private int userNo; 			// 회원번호(작성자 회원번호) 
+	private int fileNo;				// 파일번호 
 	private String categoryName;	// 카테고리명(1:운동/2:식단)
 	private String postContent; 	// 게시글내용 
 	private String postTitle; 		// 게시글제목 
-	private Date enrollDate; 		// 게시글작성일 
+	private Date enrollDate; 		// 게시글등록일 
+	private Date updateDate;		// 게시글수정일 
 	private int boardView;			// 게시글조회수 
 	private int likeCount; 			// 게시글좋아요수 
-	private String status; 			// 게시여부(Y/N) 기본값 Y 
+	private String status; 			// 삭제유무(Y/N)
 	
+	private String userId;			//회원아이디
 	private String titleImg;		// 해당 게시글 대표이미지경로
 	
-	public Info(){}
+	public adInfo(){}
 
-	public Info(int intPostNo, String userNo, String categoryName, String postContent, String postTitle,
-			Date enrollDate, int boardView, int likeCount, String status, String titleImg) {
+	public adInfo(int intPostNo, int userNo, int fileNo, String categoryName, String postContent, String postTitle,
+			Date enrollDate, Date updateDate, int boardView, int likeCount, String status, String userId,
+			String titleImg) {
 		super();
 		this.intPostNo = intPostNo;
 		this.userNo = userNo;
+		this.fileNo = fileNo;
 		this.categoryName = categoryName;
 		this.postContent = postContent;
 		this.postTitle = postTitle;
 		this.enrollDate = enrollDate;
+		this.updateDate = updateDate;
 		this.boardView = boardView;
 		this.likeCount = likeCount;
 		this.status = status;
+		this.userId = userId;
 		this.titleImg = titleImg;
-	}	
+	}
+	
+	
 
-	public Info(int intPostNo, String postContent, String postTitle, Date enrollDate, int boardView, int likeCount) {
+	public adInfo(int intPostNo, String categoryName, String postTitle, Date enrollDate, Date updateDate, String status,
+			String userId) {
 		super();
 		this.intPostNo = intPostNo;
-		this.postContent = postContent;
+		this.categoryName = categoryName;
 		this.postTitle = postTitle;
 		this.enrollDate = enrollDate;
-		this.boardView = boardView;
-		this.likeCount = likeCount;
+		this.updateDate = updateDate;
+		this.status = status;
+		this.userId = userId;
 	}
+	
+	
+	
+	
+	
+
+	public adInfo(int intPostNo, String categoryName, String postTitle, String postContent,  Date enrollDate,
+			Date updateDate, String status, String userId) {
+		super();
+		this.intPostNo = intPostNo;
+		this.categoryName = categoryName;
+		this.postTitle = postTitle;
+		this.postContent = postContent;
+		this.enrollDate = enrollDate;
+		this.updateDate = updateDate;
+		this.status = status;
+		this.userId = userId;
+	}
+
+	
 
 	public int getIntPostNo() {
 		return intPostNo;
@@ -51,12 +82,20 @@ public class Info {
 		this.intPostNo = intPostNo;
 	}
 
-	public String getUserNo() {
+	public int getUserNo() {
 		return userNo;
 	}
 
-	public void setUserNo(String userNo) {
+	public void setUserNo(int userNo) {
 		this.userNo = userNo;
+	}
+
+	public int getFileNo() {
+		return fileNo;
+	}
+
+	public void setFileNo(int fileNo) {
+		this.fileNo = fileNo;
 	}
 
 	public String getCategoryName() {
@@ -91,6 +130,14 @@ public class Info {
 		this.enrollDate = enrollDate;
 	}
 
+	public Date getUpdateDate() {
+		return updateDate;
+	}
+
+	public void setUpdateDate(Date updateDate) {
+		this.updateDate = updateDate;
+	}
+
 	public int getBoardView() {
 		return boardView;
 	}
@@ -115,6 +162,14 @@ public class Info {
 		this.status = status;
 	}
 
+	public String getUserId() {
+		return userId;
+	}
+
+	public void setUserId(String userId) {
+		this.userId = userId;
+	}
+
 	public String getTitleImg() {
 		return titleImg;
 	}
@@ -125,10 +180,15 @@ public class Info {
 
 	@Override
 	public String toString() {
-		return "Info [intPostNo=" + intPostNo + ", userNo=" + userNo + ", categoryName="
+		return "adInfo [intPostNo=" + intPostNo + ", userNo=" + userNo + ", fileNo=" + fileNo + ", categoryName="
 				+ categoryName + ", postContent=" + postContent + ", postTitle=" + postTitle + ", enrollDate="
-				+ enrollDate + ", boardView=" + boardView + ", likeCount=" + likeCount
-				+ ", status=" + status + ", titleImg=" + titleImg + "]";
+				+ enrollDate + ", updateDate=" + updateDate + ", boardView=" + boardView + ", likeCount=" + likeCount
+				+ ", status=" + status + ", userId=" + userId + ", titleImg=" + titleImg + "]";
 	}
+
+	
+
+
+
 
 }

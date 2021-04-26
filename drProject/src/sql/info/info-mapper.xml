@@ -6,8 +6,8 @@
 	<entry key="selectWorkoutListCount">
 		SELECT COUNT(*) LISTCOUNT 
 		  FROM TB_INFO_N_TIP
-		 WHERE INT_NO = 1
-		   AND STATUS = 'N'
+		 WHERE STATUS = 'Y'
+		   AND CATEGORY_NAME = '1'
 	</entry>
 	
 	<entry key="selectWorkoutThumbnailList">
@@ -26,9 +26,8 @@
 		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
 		                  FROM TB_INFO_N_TIP I 
 		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
-		                 WHERE I.INT_NO = 1
-		                   AND I.STATUS = 'N'
-		                   AND FILE_LEVEL = 1 
+		                 WHERE I.STATUS = 'Y'
+		                   AND CATEGORY_NAME = '1'
 		                 ORDER 
 		                     BY I.ENROLL_DATE DESC, 
 		                        I.INT_POST_NO DESC
@@ -42,7 +41,7 @@
 			   TB_INFO_N_TIP
 		   SET BOARD_VIEW = BOARD_VIEW + 1 
 		 WHERE INT_POST_NO = ?
-		   AND STATUS = 'N' 
+		   AND STATUS = 'Y' 
 	</entry>
 	
 	<entry key="selectWorkout">
@@ -55,8 +54,8 @@
 			 , LIKE_COUNT
 	      FROM TB_INFO_N_TIP 
 	     WHERE INT_POST_NO = ? 
-	       AND INT_NO = 1 
-		   AND STATUS = 'N' 	
+	       AND CATEGORY_NAME = '1' 
+		   AND STATUS = 'Y' 	
 	</entry>
 	
 	<entry key="selectWorkoutFileList">
@@ -66,8 +65,7 @@
 			 , FILE_UPDATE
 			 , FILE_PATH
 		  FROM TB_INT_FILE
-		 WHERE INT_POST_NO = ?  
-		   AND INT_NO = 1 	 
+		 WHERE INT_POST_NO = ?  	 
 	</entry>
 	
 	
@@ -81,8 +79,8 @@
 	<entry key="selectMenuListCount">
 		SELECT COUNT(*) LISTCOUNT 
 		  FROM TB_INFO_N_TIP
-		 WHERE INT_NO = 2
-		   AND STATUS = 'N'
+		 WHERE STATUS = 'Y'
+		   AND CATEGORY_NAME = '2'
 	</entry>
 	
 	<entry key="selectMenuThumbnailList">
@@ -101,9 +99,8 @@
 		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
 		                  FROM TB_INFO_N_TIP I 
 		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
-		                 WHERE I.INT_NO = 2
-		                   AND I.STATUS = 'N'
-		                   AND FILE_LEVEL = 1 
+		                 WHERE I.STATUS = 'Y'
+		                   AND CATEGORY_NAME = '2'
 		                 ORDER 
 		                     BY I.ENROLL_DATE DESC, 
 		                        I.INT_POST_NO DESC
@@ -122,8 +119,8 @@
 			 , LIKE_COUNT
 	      FROM TB_INFO_N_TIP
 	     WHERE INT_POST_NO = ? 
-	       AND INT_NO = 2
-		   AND STATUS = 'N' 	
+		   AND STATUS = 'Y' 	
+		   AND CATEGORY_NAME = '2'
 	</entry>
 	
 	<entry key="selectMenuFileList">
@@ -133,8 +130,7 @@
 			 , FILE_UPDATE
 			 , FILE_PATH
 		  FROM TB_INT_FILE
-		 WHERE INT_POST_NO = ?  
-		   AND INT_NO = 2 	 
+		 WHERE INT_POST_NO = ?  	 
 	</entry>
 	
 	
@@ -148,67 +144,7 @@
 	
 	
 	
-	<!-- 전체게시판 -->
-	<entry key="selectMainListCount">
-		SELECT COUNT(*) LISTCOUNT 
-		  FROM TB_INFO_N_TIP
-		 WHERE INT_NO = 3
-		   AND STATUS = 'N'
-	</entry>
 	
-	<!-- 나중에 수정하거나 삭제할 것 -->
-	<entry key="selectMainThumbnailList">
-		SELECT * 
-		  FROM (
-		        SELECT 
-		               ROWNUM RNUM 
-		             , A.*
-		          FROM (
-		                SELECT
-		                       I.INT_POST_NO
-		                     , CATEGORY_NAME  
-		                     , POST_TITLE
-		                     , I.ENROLL_DATE 
-		                     , BOARD_VIEW 
-		                     , LIKE_COUNT
-		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
-		                  FROM TB_INFO_N_TIP I 
-		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
-		                 WHERE I.STATUS = 'N'
-		                   AND FILE_LEVEL = 1 
-		                 ORDER 
-		                     BY I.ENROLL_DATE DESC, 
-		                        I.INT_POST_NO DESC
-		               ) A
-		       )
-		 WHERE RNUM BETWEEN ? AND ?
-	</entry>
-	
-	<entry key="selectInfoMain">
-		SELECT
-			   INT_POST_NO
-			 , CATEGORY_NAME
-			 , POST_CONTENT 
-			 , POST_TITLE
-			 , ENROLL_DATE
-			 , BOARD_VIEW
-			 , LIKE_COUNT
-	      FROM TB_INFO_N_TIP
-	     WHERE INT_POST_NO = ? 
-	       AND INT_NO = 3 
-		   AND STATUS = 'N' 	
-	</entry>
-	
-	<entry key="selectInfoMainFileList">
-		SELECT 
-			   FILE_NO
-			 , FILE_NAME
-			 , FILE_UPDATE
-			 , FILE_PATH
-		  FROM TB_INT_FILE
-		 WHERE INT_POST_NO = ?  
-		   AND INT_NO = 3 	 
-	</entry>
 	
 	<entry key="">
 

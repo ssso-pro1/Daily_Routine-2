@@ -76,9 +76,11 @@
     .updateArea{
         right:500px;
     }
-    .updateArea>button{
-        background:rgb(250, 214, 9);
-        color:white;
+    .updateButton>button{
+     	background:rgb(250, 214, 9);
+        color:black;
+        font-size:18px;
+        font-weight:bolder;
         border:rgb(250, 214, 9);
     }
     div>button{
@@ -90,9 +92,17 @@
     
     
     <!-- 메뉴바 --> 
+   	.outer{
+        width:1000px;
+        height:170px;
+        margin: auto;
+    }
+   
+    
     .outerWrap>p{
         background:rgb(250, 214, 9);
         font-size: 15px;
+        padding:10px;
     }
 
     .outerWrap a{
@@ -119,12 +129,35 @@
         width:100%;
         height:100%;
     }
+
     .outerWrap a:hover{
         color:darkorchid
 	}
 
-    .line1{
-        border-left:1px solid gray;
+    .header{
+        position:relative;
+        top:-20px;
+    }
+
+    .sideLine{
+        border-left:2px solid gray;
+        
+    }
+
+    #dr{
+        position:relative;
+        top:-30px;
+    }
+    #mainLine{
+        position:relative;
+        top:-20px;
+        border-bottom:1px solid gray;
+        color:gray;
+    }
+  
+    .navWrap{
+    	margin-left:300px;
+        margin:auto;
     }
     
     
@@ -237,7 +270,7 @@
                                 <tr>
                                     <table>
                                         <tr>
-                                            <td width="700" height="30">
+                                            <td width="800" height="30">
                                                 <input type="text" name="title" id="title" value="<%=c.getPostTitle()%>" required>
                                             </td> 
                                         </tr>
@@ -253,14 +286,11 @@
                                                             <input type="hidden" name="originFileName" value="<%=cf.getFileUpdate()%>">
                                                         <% } %>   
                                                     </td>
-                                                    <td>
-                                                        <button onclick="deleteFile();" value="deleteFile" id="deleteFile" style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>     
-                                                    </td>
                                                 </tr>
                                             </table><br>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" height="500">
+                                            <td height="500">
                                                 <textarea class="summernote" name="fContent" id="fContent" rows="20" style="resize:none" required><%=c.getPostContent()%></textarea>   
                                             </td>
                                         </tr>

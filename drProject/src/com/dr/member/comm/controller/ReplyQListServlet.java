@@ -15,16 +15,16 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * Servlet implementation class ReplyListServlet
+ * Servlet implementation class ReplyQListServlet
  */
-@WebServlet("/replyList.co")
-public class ReplyTipListServlet extends HttpServlet {
+@WebServlet("/replyQList.co")
+public class ReplyQListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReplyTipListServlet() {
+    public ReplyQListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,7 +33,7 @@ public class ReplyTipListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 		int commPostNo = Integer.parseInt(request.getParameter("cno"));
 		
 		ArrayList<Reply> list = new CommService().selectReplyList(commPostNo);

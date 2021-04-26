@@ -626,9 +626,62 @@ public class CommDao {
 			
 	}
 	
+	public int insertReply(Connection conn, Reply r) { 
+		// insert문 
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("insertReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getReplyContent());
+			pstmt.setInt(2, r.getCommPostNo());
+			pstmt.setInt(3, Integer.parseInt(r.getUserNo()));
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+		
+		
+	}
 	
-	
-	
+	public int updateReply(Connection conn, Reply r) {
+		// update문 
+		int result = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("updateReply");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, r.getReplyContent());
+			pstmt.setInt(2, r.getCommPostNo());
+			pstmt.setInt(3, Integer.parseInt(r.getUserNo()));
+			
+			result = pstmt.executeUpdate(); 
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result; 	
+		
+	}
 	
 	
 	

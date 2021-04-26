@@ -78,7 +78,9 @@
     }
     .updateArea>button{
         background:rgb(250, 214, 9);
-        color:white;
+        color:black;
+        font-size:18px;
+        font-weight:bolder;
         border:rgb(250, 214, 9);
     }
     div>button{
@@ -90,9 +92,17 @@
     
     
     <!-- 메뉴바 --> 
+ 	.outer{
+        width:1000px;
+        height:170px;
+        margin: auto;
+    }
+   
+    
     .outerWrap>p{
         background:rgb(250, 214, 9);
         font-size: 15px;
+        padding:10px;
     }
 
     .outerWrap a{
@@ -119,14 +129,36 @@
         width:100%;
         height:100%;
     }
+
     .outerWrap a:hover{
         color:darkorchid
 	}
 
-    .line1{
-        border-left:1px solid gray;
+    .header{
+        position:relative;
+        top:-20px;
     }
-    
+
+    .sideLine{
+        border-left:2px solid gray;
+        
+    }
+
+    #dr{
+        position:relative;
+        top:-30px;
+    }
+    #mainLine{
+        position:relative;
+        top:-20px;
+        border-bottom:1px solid gray;
+        color:gray;
+    }
+  
+    .navWrap{
+    	margin-left:300px;
+        margin:auto;
+    }
     
 </style>
 </head>
@@ -134,64 +166,70 @@
 
 	 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 
-      <div class="outerWrap">
-        <p align="center">Reading is to the mind what exercise is to the body</p>
-        
+      <div class="outer">
 
-        <div class="loginArea">
-        <!-- 로그인 전에 보여지는 로그인 버튼 -->
+        <div class="outerWrap">
+            <p align="center">Reading is to the mind what exercise is to the body</p>
+            
+            <div class="header">
+                <div class="loginArea">
+                <!--  로그인 전에 보여지는 로그인 버튼 -->
+                
+                    <% if(loginUser == null){ %>
+            
+                    <table id="topMenu1" align="right">
+                        <tr>
+                            <th><a href="<%=contextPath%>/loginForm.us">로그인</a></th>
+                            <th>|</th>
+                            <th><a href="<%=contextPath%>/enrollForm1.us">회원가입</a></th>
+                            <th>|</th>
+                            <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
+                        </tr>
+                        <tr>
+                            <th colspan="3">Welcome DR님</th>
+                            <th colspan="2"><i class="fas fa-user-circle" fa="lg"></i></th>
+                        </tr>
+                    </table>
+                    
+                    
+                    <% }else { %>
+                
+                <!--  로그인 후 -->
+                    
+                    <table id="topMenu2" align="right">
+                        <tr>
+                            <th><a href="<%=contextPath%>/logout.us">로그아웃</a></th>
+                            <th>|</th>
+                            <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
+                        </tr>
+                        <tr>
+                            <th colspan="3"><b><%= loginUser.getUserName() %>님</b> 환영합니다</th>
+                            <th><i class="fas fa-user-circle" fa="lg"></i></th>
+                        </tr>
+                    </table>
+                    
+                    <% } %>
+                    
+                </div>
+
+            <br><br>
+
+
+            <span class="navWrap" align="center">
+                
+                <div class="menu" id="dr"><a href="<%=contextPath%>">Daily<br>Routine</a></div>
+                <div class="menu"><a href="<%=contextPath%>/allList.ht">HomeTraining</a></div>
+                <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
+                <div class="menu"><a href="<%=contextPath%>/workout.in?currentPage=1">Info&Tip</a></div>
+                <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
+
+                <div class="sideLine" ></div>
+                <hr id="mainLine">
+            </span>
         
-	        <% if(loginUser == null){ %>
-	
-	        <table id="topMenu1" align="right">
-	            <tr>
-	                <th><a href="<%=contextPath%>/loginForm.us">로그인</a></th>
-	                <th>|</th>
-	                <th><a href="<%=contextPath%>/enrollForm1.us">회원가입</a></th>
-	                <th>|</th>
-	                <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
-	            </tr>
-	            <tr>
-	                <th colspan="3">Welcome DR님</th>
-	                <th colspan="2"><i class="fas fa-user-circle" fa="lg"></i></th>
-	            </tr>
-	        </table>
-	        
-	        
-	        <% }else { %>
-        
-       		<!-- 로그인 후 -->
-        	
-        	<table id="topMenu2" align="right">
-	            <tr>
-	                <th><a href="<%=contextPath%>/logout.us">로그아웃</a></th>
-	                <th>|</th>
-	                <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
-	            </tr>
-	            <tr>
-	                <th colspan="3"><b><%= loginUser.getUserName() %>님</b> 환영합니다.</th>
-	                <th><i class="fas fa-user-circle" fa="lg"></i></th>
-	            </tr>
-	        </table>
-	        
-	        <% } %>
-        	
+        </div>
     </div>
-
-    <br><br>
-    <span class="navWrap" align="center">
-        <div class="menu"><a href="<%=contextPath%>">메인페이지</a></div>
-        <div class="menu"><a href="<%=contextPath%>/allList.ht">HomeTraining</a></div>
-        <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
-        <div class="menu"><a href="<%=contextPath%>/infoMain.in?currentPage=1">Info&Tip</a></div>
-        <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
-
-        <span class="line1"></span>
-
-    <hr>
-    </span>
-    
-	</div> 
+    </div>
   
     
     
@@ -268,15 +306,11 @@
                                                             <input type="hidden" name="originFileName" value="<%=cf.getFileUpdate()%>">
                                                         <% } %>   
                                                     </td>
-                                                    <td>
-                                                        <!-- 버튼 클릭 시 파일 삭제 -->
-                                                        <button style="cursor:pointer; background-color:rgb(250, 214, 9);">-</button>
-                                                    </td>
                                                 </tr>
                                             </table><br>
                                         </tr>
                                         <tr>
-                                            <td colspan="2" height="500">
+                                            <td height="500">
                                                 <textarea class="summernote" name="tContent" id="tContent" rows="20" style="resize:none" required><%=c.getPostContent()%></textarea>   
                                             </td>
                                         </tr>

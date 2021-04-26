@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+
+	<!-- Info 게시판 -->
+	
+	<!-- Info글번호 조회 (전체) -->
+	<entry key="InfoSelectListCountAll">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_INFO_N_TIP
+	</entry>
+	
+	<entry key="InfoSelectListAll">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       INT_POST_NO
+		                     , CATEGORY_NAME
+		                     , POST_TITLE
+		                     , T.ENROLL_DATE
+		                     , UPDATE_DATE
+                             , STATUS
+                             , USER_ID
+		                 FROM TB_INFO_N_TIP T
+                         JOIN TB_USER USING(USER_NO)
+		                ORDER BY T.INT_POST_NO DESC
+		                 
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	
+	<!-- 카테고리별로 카운트 -->
+	<entry key="InfoSelectListCount">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_INFO_N_TIP
+	WHERE CATEGORY_NAME =?
+	
+	
+	</entry>
+	
+	
+	
+	<entry key="InfoSelectList">
+	SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                SELECT
+		                       INT_POST_NO
+		                     , CATEGORY_NAME
+		                     , POST_TITLE
+		                     , T.ENROLL_DATE
+		                     , UPDATE_DATE
+                             , STATUS
+                             , USER_ID
+		                 FROM TB_INFO_N_TIP T
+                         JOIN TB_USER USING(USER_NO)
+		                 WHERE T.CATEGORY_NAME=?
+		                 ORDER BY T.INT_POST_NO DESC
+		                 
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	
+	</entry>
+	
+	<!-- 삭제 -->
+	<entry key="deleteInfo">
+	
+	DELETE FROM TB_INFO_N_TIP
+	WHERE INT_POST_NO = ?
+	
+	
+	</entry>
+	
+	<!-- 글등록 -->
+	<entry key="insertInfo">
+		INSERT
+		    INTO TB_INFO_N_TIP
+		    (
+		       INT_POST_NO
+		     , USER_NO
+		     , CATEGORY_NAME
+		     , POST_TITLE
+		     , POST_CONTENT
+		     , ENROLL_DATE
+		     , STATUS
+		    )
+		    VALUES
+		    (
+		      SEQ_ITPNO.NEXTVAL
+		    , ?
+		    , ?
+		    , ?
+		    , ?
+		    , SYSDATE
+		    , ?
+		    )
+	
+	</entry>
+	
+	<entry key="insertAttachment">
+		
+		INSERT
+		    INTO TB_INT_FILE
+		    (
+		      FILE_NO
+		    , INT_POST_NO
+		    , FILE_NAME
+		    , FILE_UPDATE
+		    , FILE_PATH
+		    )
+		    VALUES
+		   (
+		     SEQ_FILE_INT.NEXTVAL
+		   , SEQ_ITPNO.CURRVAL
+		   , ?
+		   , ?
+		   , ?
+		   )
+	
+	
+	
+	</entry>
+	
+	<!-- 글번호조회 -->
+	<entry key="infoIncreaseCount">
+		UPDATE TB_INFO_N_TIP
+		   SET BOARD_VIEW = BOARD_VIEW +1
+	     WHERE INT_POST_NO = ?
+	       
+	</entry>
+	
+	<entry key="selectInfo">
+	SELECT 
+		    INT_POST_NO
+		  , CATEGORY_NAME
+		  , POST_TITLE
+		  , POST_CONTENT
+		  , T.ENROLL_DATE
+		  , T.UPDATE_DATE
+		  , STATUS
+		  , USER_ID
+	  FROM TB_INFO_N_TIP T
+	  JOIN TB_USER USING (USER_NO)
+	 WHERE INT_POST_NO = ?
+	   
+	
+	</entry>
+	
+	
+	<entry key="selectAttachment">
+		SELECT
+		        INT_POST_NO
+		      , FILE_NO
+		      , FILE_NAME
+		   	  , FILE_UPDATE
+		      , FILE_PATH
+		   FROM TB_INT_FILE
+		  WHERE INT_POST_NO = ?
+		
+	</entry>
+	
+	<entry key="updateInfo">
+	   	UPDATE
+				TB_INFO_N_TIP
+		    SET POST_TITLE = ?
+		      , POST_CONTENT = ?
+		      , CATEGORY_NAME =?
+		      , STATUS = ?
+		      , UPDATE_DATE = SYSDATE
+		  WHERE INT_POST_NO = ?     
+			
+	</entry>
+	
+	
+	<entry key="updateAttachment">
+		UPDATE
+				TB_INT_FILE
+		    SET FILE_NAME = ?
+		      , FILE_UPDATE = ?
+			  , FILE_PATH = ?
+		  WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="insertNewAttachment">
+		INSERT
+			INTO TB_INT_FILE
+			(
+			  FILE_NO
+		    , INT_POST_NO
+		    , FILE_NAME
+		    , FILE_UPDATE
+		    , FILE_PATH
+			)
+			VALUES
+			(
+			  SEQ_FILE_INT.NEXTVAL
+		   	, ?
+		    , ?
+		    , ?
+		    , ?
+		   )
+		
+	</entry>
+	
+	
+	
+	
+</properties>	

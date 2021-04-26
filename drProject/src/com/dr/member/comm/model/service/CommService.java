@@ -255,6 +255,27 @@ public class CommService {
 			
 	}
 	
+	public int insertReply(Reply r) {
+		
+		Connection conn = getConnection();
+		int result = new CommDao().insertReply(conn, r); 
+		
+		close(conn);
+		
+		return result; 
+	
+	}
+	
+	public int updateReply(Reply r) {
+		
+		Connection conn = getConnection();
+		int result = new CommDao().updateReply(conn, r); 
+		
+		close(conn);
+		
+		return result; 
+		
+	}
 	
 	
 	

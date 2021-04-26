@@ -1,8 +1,6 @@
 package com.dr.member.comm.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,20 +9,19 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dr.member.comm.model.service.CommService;
 import com.dr.member.comm.model.vo.Reply;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.dr.member.user.model.vo.User;
 
 /**
- * Servlet implementation class ReplyListServlet
+ * Servlet implementation class ReplyFreeUpdateServlet
  */
-@WebServlet("/replyList.co")
-public class ReplyTipListServlet extends HttpServlet {
+@WebServlet("/replyFreeUpdate.co")
+public class ReplyFreeUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReplyTipListServlet() {
+    public ReplyFreeUpdateServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +30,19 @@ public class ReplyTipListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		int commPostNo = Integer.parseInt(request.getParameter("cno"));
 		
-		ArrayList<Reply> list = new CommService().selectReplyList(commPostNo);
+		String replyContent = request.getParameter("content");
+		int commPostNo = Integer.parseInt(request.getParameter("cno")); 
 		
-		response.setContentType("application/json; charset=UTF-8"); 
+		int userNo = ((User)request.getSession().getAttribute("loginUser")).getUserNo();
 		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create(); 
-		gson.toJson(list, response.getWriter()); 
+		Reply r = new Reply();
+		r.setReplyContent(replyContent);
+		r.setCommPostNo(commPostNo);
+		r.setUserNo(String.valueOf(userNo));
+		
+		int result = new CommService().updateReply(r);
+		response.getWriter().print(result);
 		
 	}
 

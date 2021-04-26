@@ -7,10 +7,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dr.member.comm.model.service.CommService;
+import com.dr.member.comm.model.vo.Reply;
+import com.dr.member.user.model.vo.User;
+
 /**
  * Servlet implementation class ReplyTipInsertServlet
  */
-@WebServlet("/replyTipInsert.co")
+@WebServlet("/replyInsert.co")
 public class ReplyTipInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -29,6 +33,16 @@ public class ReplyTipInsertServlet extends HttpServlet {
 		
 		String replyContent = request.getParameter("content");
 		int commPostNo = Integer.parseInt(request.getParameter("cno")); 
+		
+		int userNo = ((User)request.getSession().getAttribute("loginUser")).getUserNo();
+		
+		Reply r = new Reply();
+		r.setReplyContent(replyContent);
+		r.setCommPostNo(commPostNo);
+		r.setUserNo(String.valueOf(userNo));
+		
+		int result = new CommService().insertReply(r);
+		response.getWriter().print(result);
 	
 	}
 

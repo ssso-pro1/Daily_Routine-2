@@ -1,30 +1,23 @@
-package com.dr.member.comm.controller;
+package com.dr.admin.info.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.member.comm.model.service.CommService;
-import com.dr.member.comm.model.vo.Reply;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
-
 /**
- * Servlet implementation class ReplyListServlet
+ * Servlet implementation class adInfoEnrollFormServlet
  */
-@WebServlet("/replyList.co")
-public class ReplyTipListServlet extends HttpServlet {
+@WebServlet("/infoEnroll.ad")
+public class adInfoEnrollFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReplyTipListServlet() {
+    public adInfoEnrollFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +26,10 @@ public class ReplyTipListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		int commPostNo = Integer.parseInt(request.getParameter("cno"));
 		
-		ArrayList<Reply> list = new CommService().selectReplyList(commPostNo);
 		
-		response.setContentType("application/json; charset=UTF-8"); 
+		request.getRequestDispatcher("views/admin/info/adInfoEnrollForm.jsp").forward(request, response);
 		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create(); 
-		gson.toJson(list, response.getWriter()); 
 		
 	}
 

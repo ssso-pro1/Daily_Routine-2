@@ -1,7 +1,6 @@
-package com.dr.member.comm.controller;
+package com.dr.admin.info.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,22 +8,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.member.comm.model.service.CommService;
-import com.dr.member.comm.model.vo.Reply;
-import com.google.gson.Gson;
-import com.google.gson.GsonBuilder;
+import com.dr.admin.center.model.service.adCenterService;
+import com.dr.admin.center.model.vo.centerNoticeFile;
+import com.dr.admin.info.model.service.adInfoService;
+import com.dr.admin.info.model.vo.adInfo;
+import com.dr.admin.info.model.vo.adInfoFile;
 
 /**
- * Servlet implementation class ReplyListServlet
+ * Servlet implementation class adInfoUpdateServlet
  */
-@WebServlet("/replyList.co")
-public class ReplyTipListServlet extends HttpServlet {
+@WebServlet("/infoUpadteForm.ad")
+public class adInfoUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public ReplyTipListServlet() {
+    public adInfoUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -33,15 +33,22 @@ public class ReplyTipListServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		int commPostNo = Integer.parseInt(request.getParameter("cno"));
 		
-		ArrayList<Reply> list = new CommService().selectReplyList(commPostNo);
+		request.setCharacterEncoding("utf-8");
+		int infoNo = Integer.parseInt(request.getParameter("ino"));
 		
-		response.setContentType("application/json; charset=UTF-8"); 
+
+		adInfo i = new adInfoService().selectInfo(infoNo);
+		adInfoFile fi = new adInfoService().selectAttachment(infoNo);
 		
-		Gson gson = new GsonBuilder().setDateFormat("yyyy-MM-dd").create(); 
-		gson.toJson(list, response.getWriter()); 
+		request.setAttribute("i", i);
+		request.setAttribute("fi", fi);
+
+		request.getRequestDispatcher("views/admin/info/adInfoUpdateForm.jsp").forward(request, response);
+		
+		
+		
+		
 		
 	}
 

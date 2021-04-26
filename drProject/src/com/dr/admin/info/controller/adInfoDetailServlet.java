@@ -1,4 +1,4 @@
-package com.dr.member.info.controller;
+package com.dr.admin.info.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,21 +9,28 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dr.admin.center.model.service.adCenterService;
+import com.dr.admin.center.model.vo.centerNoticeFile;
+import com.dr.admin.info.model.service.adInfoService;
+import com.dr.admin.info.model.vo.adInfo;
+import com.dr.admin.info.model.vo.adInfoFile;
+import com.dr.member.center.model.service.CenterService;
+import com.dr.member.center.model.vo.CenterNotice;
 import com.dr.member.info.model.service.InfoService;
 import com.dr.member.info.model.vo.Info;
 import com.dr.member.info.model.vo.InfoFile;
 
 /**
- * Servlet implementation class InfoMainDetailServlet
+ * Servlet implementation class adInfoDetailServlet
  */
-@WebServlet("/mainDetail.in")
-public class InfoMainDetailServlet extends HttpServlet {
+@WebServlet("/infoDetail.ad")
+public class adInfoDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public InfoMainDetailServlet() {
+    public adInfoDetailServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,29 +39,33 @@ public class InfoMainDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
-		int intPostNo = Integer.parseInt(request.getParameter("ino")); 
 		
-		int result = new InfoService().increaseCount(intPostNo);
+		int infoNo = Integer.parseInt(request.getParameter("ino"));
 		
-		if(result > 0) { // 유효한 게시글 => 게시글 정보 조회, 게시글 썸네일 조회  => 상세조회 페이지 
+		int result = new adInfoService().infoIncreaseCount(infoNo);
+		
+		if(result > 0) { // 조회수증가 조회성공
 			
-			Info i = new InfoService().selectInfoMain(intPostNo); 
-			ArrayList<InfoFile> list = new InfoService().selectInfoMainFileList(intPostNo); 
+			
+			adInfo i = new adInfoService().selectInfo(infoNo); // 현재글
+			
 			
 			request.setAttribute("i", i);
-			request.setAttribute("list", list);
 			
-			request.getRequestDispatcher("views/member/info/infoMainDetailView.jsp").forward(request, response);
 			
-			System.out.println(i); 
+			adInfoFile fi = new adInfoService().selectAttachment(infoNo);
 			
-		}else { // 유효한 게시글 x => 에러 페이지 포워딩 
-				
-			request.setAttribute("errorMsg", "유효한 게시글이 아닙니다. 다른 게시글을 선택해주세요.");
+			request.setAttribute("fi", fi);
+			
+			request.getRequestDispatcher("views/admin/info/adInfoDetailView.jsp").forward(request, response);
+			
+			
+		} else {
+			
+			request.setAttribute("errorMsg", "오류가 발생했습니다");
 			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			
 		}
-		
 	}
 
 	/**

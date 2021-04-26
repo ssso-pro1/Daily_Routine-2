@@ -240,6 +240,7 @@ public class InfoDao {
 			 
 			while(rset.next()) {
 				
+				
 				Info i = new Info();
 				i.setIntPostNo(rset.getInt("int_post_no"));
 				i.setPostTitle(rset.getString("post_title"));
@@ -347,149 +348,7 @@ public class InfoDao {
 	
 	
 	
-	
-	// 전체 게시판 
-	public int selectMainListCount(Connection conn) { 
-		// select문 
-		int listCount = 0; 
-		
-		PreparedStatement pstmt = null; 
-		ResultSet rset = null; 
-		
-		String sql = prop.getProperty("selectMainListCount");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery(); 
-			
-			if(rset.next()) { 
-				listCount = rset.getInt("LISTCOUNT"); 
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset); 
-			close(pstmt); 
-		}
-		
-		return listCount; 
-		
-	}
-	
-	// 나중에 수정하거나 삭제할 것
-	public ArrayList<Info> selectMainThumbnailList(Connection conn, PageInfo pi) {
-		// select문 
-		ArrayList<Info> list = new ArrayList<>(); 
-		PreparedStatement pstmt = null; 
-		ResultSet rset = null; 
-		
-		String sql = prop.getProperty("selectMainThumbnailList"); 
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
-			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
-			
-			rset = pstmt.executeQuery(); 
-			 
-			while(rset.next()) {
-				
-				Info i = new Info();
-				i.setIntPostNo(rset.getInt("int_post_no"));
-				i.setPostTitle(rset.getString("category_name"));
-				i.setPostTitle(rset.getString("post_title"));
-				i.setEnrollDate(rset.getDate("enroll_date"));
-				i.setBoardView(rset.getInt("board_view"));
-				i.setLikeCount(rset.getInt("like_count"));
-				i.setTitleImg(rset.getString("titleimg"));
-				
-				list.add(i); 
-				
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset); 
-			close(pstmt); 
-		}
-		
-		return list; 
-			
-	}
-	
-	public Info selectInfoMain(Connection conn, int intPostNo) {
-		// select문 
-		Info i = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectInfoMain");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, intPostNo);
-			
-			rset = pstmt.executeQuery();
-			
-			if(rset.next()) {
-				i = new Info(rset.getInt("int_post_no"),
-							 rset.getString("category_name"),
-							 rset.getString("post_content"),
-							 rset.getString("post_title"),
-							 rset.getDate("enroll_date"),
-							 rset.getInt("board_view"),
-							 rset.getInt("like_count"));
-						
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return i; 
-				
-	}
-	
-	public ArrayList<InfoFile> selectInfoMainFileList(Connection conn, int intPostNo) {
-		// select문 
-		ArrayList<InfoFile> list = new ArrayList<>();
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		String sql = prop.getProperty("selectInfoMainFileList");
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			pstmt.setInt(1, intPostNo);
-			
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) { 
-				
-				InfoFile inf = new InfoFile();
-				inf.setFileNo(rset.getInt("file_no"));
-				inf.setFileUpdate(rset.getString("file_update"));
-				inf.setFilePath(rset.getString("file_path"));
-				
-				list.add(inf); 
-				
-			}
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		
-		return list; 
-		
-		
-		 
-	}
-	
+
 	
 	
 	

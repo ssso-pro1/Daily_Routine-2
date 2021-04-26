@@ -1,10 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+    pageEncoding="UTF-8" %>
+<%@ page  import="com.dr.member.user.model.vo.User, com.dr.admin.info.model.vo.adInfo, com.dr.admin.info.model.vo.adInfoFile" %>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
+	
+	adInfo i = (adInfo)request.getAttribute("i");
+	
+	adInfoFile fi = (adInfoFile)request.getAttribute("fi");
 %>   
 
 <!DOCTYPE html>
@@ -215,7 +220,7 @@
                   
                     
                     
-                <form action="<%= contextPath %>/infoInsert.ad" id="enrollForm" method="post" enctype="multipart/form-data">
+                <form action="<%= contextPath %>/infoUpdate.ad" id="enrollForm" method="post" enctype="multipart/form-data">
                 
                 	<div id="infoEnroll">
                     
@@ -223,7 +228,7 @@
                             <tbody>
                                 <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="infoTitle" id="title" style="width: 80%;" required></td>
+                                    <td><input type="text" name="infoTitle" id="infoTitle" style="width: 80%;" required value="<%= i.getPostTitle() %>"></td>
                                 </tr>
                                 
                                 <!--  
@@ -236,13 +241,25 @@
                                 <tr>
                                     <th>내용</th>
                                     <td>
-	                                    <textarea name="infoContent" id="summernote" cols="10" rows="" style="resize: none;"></textarea>    
+	                                    <textarea name="infoContent" id="summernote" cols="10" rows="" style="resize: none;"><%= i.getPostContent() %></textarea>    
 				                    </td>
                                 </tr>
                                 <tr>
                                     <th>썸네일 선택</th>
                                     <td colspan="3">
-                                        <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);" required>
+                                    	<!-- 기존의 첨부파일이 있었다면 -->
+				                        <% if(fi != null) { %>
+				                        	기존 썸네일 : <label id="originFile"><%= fi.getFileName() %></label>
+				                        	<p>수정할 썸네일 : </p>
+				                        	
+				                        	<input type="hidden" name="originFileNo" value="<%= fi.getFileNo() %>">
+				                        	<input type="hidden" name="originFileName" value="<%=fi.getFileUpdate() %>">
+				                        	
+				                        	<% } %>
+                        				
+                        					<!-- 첨부파일이 없었다면 -->
+                                    
+                                    		<input type="file" name="reUpfile" id="reUpfile" onchange="loadImg(this, 1);">
                                         
                                     </td>
                                 </tr>
@@ -250,7 +267,7 @@
                                     <th>썸네일</th>
                                     <td colspan="3" align="center">
                                         <!--대표이미지 미리보기할 img-->
-                                        <img id="titleImg" width="250" height="170">
+                                        <img src="<%=contextPath %><%= fi.getFilePath() + fi.getFileUpdate() %>" id="titleImg" width="250" height="170">
                                     </td>
                                 </tr>
 
@@ -274,8 +291,9 @@
                                         <label style="float: right;">
                                         
                                         <input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
+                                        <input type="hidden" name="ino" value="<%= i.getIntPostNo() %>">
                                         
-                                        <button type="submit" onclick="return validate();">등록</button>
+                                        <button type="submit" onclick="return validate();">수정</button>
                                         <button onclick="return back();"><a href="<%=contextPath %>/info.ad?currentPage=1">취소</button>
                                         </label>
                                     </td>
@@ -290,6 +308,39 @@
                   </form>
                   
                   <script>
+                  $(function(){
+						var status = "<%= i.getStatus()%>";
+						
+						
+						// 체크박스인 input요소들에 순차적으로 접근하면서
+						// 해당 그 input요소의 value값이 포함되어있을 경우 => 해당 input요소에 checked속성 부여
+						$("input[type=radio]").each(function(){
+							if(status.search($(this).val()) != -1){
+								$(this).attr("checked", true);
+							} 
+						})
+						
+						
+					})
+					
+					$(function(){
+						var category = "<%= i.getCategoryName() %>";
+						
+						$("input[type=radio]").each(function(){
+							if(category.search($(this).val()) != -1){
+								$(this).attr("checked", true);
+							} 
+						})
+						
+						
+					})
+                  
+                  
+                  
+                  
+                  
+                  
+                  
                   
                   //취소버튼 눌렀을 때
                   function back(){
@@ -366,11 +417,11 @@
                                         
 
                                     	
-                       var result = confirm("글을 등록하시겠습니까?");
+                       var result = confirm("게시글을 수정하시겠습니까?");
                            if(result){
                                     		
                        } else {
-                            alert("게시글 등록이 취소되었습니다");
+                            alert("게시글 수정이 취소되었습니다");
                              return false;
                        }
 
@@ -381,8 +432,12 @@
                
                
 	               <script>
-	
+					
 	               
+	
+	
+	
+	
 	
 	                function loadImg(inputFile, num){
 	                    // inputFile : 현재 변화가 생긴 input type="file"요소 객체

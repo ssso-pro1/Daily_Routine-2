@@ -172,45 +172,22 @@
 		
 	</entry>
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	<entry key="updateInfo">
+	   	UPDATE
+				TB_INFO_N_TIP
+		    SET POST_TITLE = ?
+		      , POST_CONTENT = ?
+		      , CATEGORY_NAME =?
+		      , STATUS = ?
+		      , UPDATE_DATE = SYSDATE
+		  WHERE INT_POST_NO = ?     
+			
+	</entry>
 	
 	
 	<entry key="updateAttachment">
 		UPDATE
-				TB_NOTICE_FILE
+				TB_INT_FILE
 		    SET FILE_NAME = ?
 		      , FILE_UPDATE = ?
 			  , FILE_PATH = ?
@@ -219,24 +196,26 @@
 	
 	<entry key="insertNewAttachment">
 		INSERT
-			INTO TB_NOTICE_FILE
+			INTO TB_INT_FILE
 			(
 			  FILE_NO
-		    , NOTICE_NO
+		    , INT_POST_NO
 		    , FILE_NAME
 		    , FILE_UPDATE
 		    , FILE_PATH
 			)
 			VALUES
 			(
-			  SEQ_NOTICE_FNO.NEXTVAL
-		    , ?
+			  SEQ_FILE_INT.NEXTVAL
+		   	, ?
 		    , ?
 		    , ?
 		    , ?
 		   )
 		
 	</entry>
+	
+	
 	
 	
 </properties>	

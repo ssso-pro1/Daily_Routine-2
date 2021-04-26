@@ -343,10 +343,72 @@ private Properties prop = new Properties();
 	}
 
 
+	public int updateInfo(Connection conn, adInfo i) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateInfo");
 		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, i.getPostTitle());
+			pstmt.setString(2, i.getPostContent());
+			pstmt.setString(3, i.getCategoryName());
+			pstmt.setString(4, i.getStatus());
+			pstmt.setInt(5, i.getIntPostNo());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
 		
-		
-		
-	
+	}
 
+
+	public int updateAttachment(Connection conn, adInfoFile fi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updateAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fi.getFileName());
+			pstmt.setString(2, fi.getFileUpdate());
+			pstmt.setString(3, fi.getFilePath());
+			pstmt.setInt(4, fi.getFileNo());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+
+
+	public int insertNewAttachment(Connection conn, adInfoFile fi) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("insertNewAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, fi.getIntPostNo());
+			pstmt.setString(2, fi.getFileName());
+			pstmt.setString(3, fi.getFileUpdate());
+			pstmt.setString(4, fi.getFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
 }

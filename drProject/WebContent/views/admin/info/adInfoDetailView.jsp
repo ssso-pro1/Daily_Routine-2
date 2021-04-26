@@ -207,6 +207,20 @@
                 </div>
 
                 <hr style="border:1px solid rgb(145, 144, 144)">
+                
+             <!-- 알러트 전달했을때 뜨게하기/ 메뉴바에 포함되어있으면 지워버리기! -->
+			<script>
+			
+			var msg = "<%=session.getAttribute("alertMsg")%>";
+
+		    if(msg != "null"){
+		        alert(msg);
+		        <% session.removeAttribute("alertMsg"); %>
+		    }
+			
+			
+			</script>        
+                
 
 
 
@@ -291,9 +305,9 @@
                                <tr>
                                    <td colspan="4">
                                     <label style="float: right;">
-                                            <button type="submit">수정</button>
+                                            <button><a href="<%= contextPath%>/infoUpadteForm.ad?ino=<%= i.getIntPostNo() %>">수정</a></button>
                                             <button onclick ="return check();"><a href="<%= contextPath%>/infoDelete.ad?ino=<%= i.getIntPostNo() %>">삭제</a></button>
-                                            <button type="reset">취소</button>
+                                            <button><a href="<%= contextPath %>/info.ad?currentPage=1">목록으로</a></button>
                                         </label>
                                     </td>
                                 </tr>

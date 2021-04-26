@@ -128,6 +128,30 @@ public class adInfoService {
 		return fi;
 	}
 
-}	
+	public int updateInfo(adInfo i, adInfoFile fi) {
+		Connection conn = getConnection();
 		
-	
+		int result1 = new adInfoDao().updateInfo(conn, i);
+		
+		int result2 = 1;
+		if(fi !=null) { // 새로운 첨부파일이 있을경우
+			if(fi.getFileNo() !=0) { 
+				// 기존dml 첨부파일이 있었을 경우 => Attachment Update
+				result2 = new adInfoDao().updateAttachment(conn, fi);
+				
+			} else {
+				// 기존의 첨부파일이 없었을 경우 => Attachment Insert
+				result2 = new adInfoDao().insertNewAttachment(conn, fi);
+					
+			}
+			
+			if(result1 > 0 && result2 > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			close(conn);
+			
+		} return result1 * result2;
+	}
+}	

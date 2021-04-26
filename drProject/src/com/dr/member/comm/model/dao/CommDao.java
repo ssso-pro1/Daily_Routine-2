@@ -417,7 +417,6 @@ public class CommDao {
 							          rset.getDate("update_date"),
 							          rset.getInt("board_view"),
 							          rset.getString("status"),
-							          rset.getString("admin_notice"),
 							          rset.getInt("comm_no"),
 							          rset.getInt("like_count")));
 					}
@@ -452,7 +451,6 @@ public class CommDao {
 					          rset.getDate("update_Date"),
 					          rset.getInt("board_view"),
 					          rset.getString("status"),
-					          rset.getString("admin_notice"),
 					          rset.getInt("comm_no"),
 					          rset.getInt("like_count")));
 				}
@@ -827,7 +825,6 @@ public class CommDao {
 						     rset.getDate("update_date"),
 						     rset.getInt("board_view"),
 						     rset.getString("status"),
-						     rset.getString("admin_notice"),
 						     rset.getInt("comm_no"),
 						     rset.getInt("like_count"));
 			}
@@ -1056,7 +1053,6 @@ public class CommDao {
 							          rset.getDate("update_date"),
 							          rset.getInt("board_view"),
 							          rset.getString("status"),
-							          rset.getString("admin_notice"),
 							          rset.getInt("comm_no"),
 							          rset.getInt("like_count")));
 					}
@@ -1091,7 +1087,6 @@ public class CommDao {
 								      rset.getDate("update_Date"),
 								      rset.getInt("board_view"),
 								      rset.getString("status"),
-								      rset.getString("admin_notice"),
 								      rset.getInt("comm_no"),
 								      rset.getInt("like_count")));
 				}
@@ -1261,7 +1256,6 @@ public class CommDao {
 						     rset.getDate("update_date"),
 						     rset.getInt("board_view"),
 						     rset.getString("status"),
-						     rset.getString("admin_notice"),
 						     rset.getInt("comm_no"),
 						     rset.getInt("like_count"));
 			}
@@ -1491,7 +1485,6 @@ public class CommDao {
 							          rset.getDate("update_date"),
 							          rset.getInt("board_view"),
 							          rset.getString("status"),
-							          rset.getString("admin_notice"),
 							          rset.getInt("comm_no"),
 							          rset.getInt("like_count")));
 					}
@@ -1526,7 +1519,6 @@ public class CommDao {
 									  rset.getDate("update_Date"),
 								      rset.getInt("board_view"),
 									  rset.getString("status"),
-								      rset.getString("admin_notice"),
 								      rset.getInt("comm_no"),
 								      rset.getInt("like_count")));
 				}

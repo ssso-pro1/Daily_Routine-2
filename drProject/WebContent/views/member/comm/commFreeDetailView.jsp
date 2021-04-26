@@ -123,9 +123,9 @@
 				<!-- 로그인되어있고, 로그인한 사용자가 게시글일 경우 보이는 버튼 -->
 				<% if(loginUser != null && loginUser.getUserId().equals(c.getUserNo()))  { %>
                 <div class="buttonArea1" align="right">
-                    <a href="<%=contextPath%>/freeUpdateForm.co?cno=<%=c.getCommPostNo()%>" class="fas fa-edit"> 수정</a>
+                    <a href="<%=contextPath%>/freeUpdateForm.co?cno=<%=c.getCommPostNo()%>" class="fas fa-edit"> 수정</a>&nbsp;
 	                <a href="<%=contextPath%>/freeDelete.co?cno=<%=c.getCommPostNo()%>" class="fas fa-trash-alt"> 삭제</a>
-                </div><br><br>
+                </div><br>
                 <% } %>
 
 
@@ -135,7 +135,7 @@
                         <table border="1" height="100%">
                             <tr align="center" height="40px;">
                                 <th width="55%"><%=c.getPostTitle()%></th>
-                                <th width="15%"><%=c.getUserNo()%>님</th>
+                                <th width="15%"> <i class="far fa-user-circle"></i>&nbsp; <%=c.getUserNo()%>님</th>
                                 <th width="15%"><%=c.getEnrollDate()%></th>
                                 <th width="15%">조회수 : <%=c.getBoardView()%></th>
                             </tr>
@@ -147,9 +147,9 @@
                             <tr>
                                 <td colspan="5">
                                 	<% if(cf == null) { %>
-	                            		첨부파일이 없습니다. 
+	                            		&nbsp; <i class="far fa-file-image"></i>&nbsp; 첨부파일이 없습니다. 
 	                            	<% }else { %>
-	                                	첨부파일 > <a download ="<%=cf.getFileName() %>" href="<%=contextPath%>/<%=cf.getFilePath() + cf.getFileUpdate()%>"><%=cf.getFileName()%></a>
+	                                	&nbsp; <i class="far fa-file-image"></i>&nbsp; 첨부파일 > <a download ="<%=cf.getFileName() %>" href="<%=contextPath%>/<%=cf.getFilePath() + cf.getFileUpdate()%>"><%=cf.getFileName()%></a>
 	                                <% } %>	
                                 </td>        
                             </tr>
@@ -163,7 +163,7 @@
                 </div><br>
 
                 <div class="buttonArea3" align="right">
-                    <a href="<%=contextPath%>/freeEnroll.co" class="fas fa-pencil-alt"> 글쓰기</a>
+                    <a href="<%=contextPath%>/freeEnroll.co" class="fas fa-pencil-alt"> 글쓰기</a>&nbsp;
 	                <a href="<%=contextPath%>/free.co?currentPage=1" class="fas fa-list"> 목록</a>
                 </div><br><br>
 

@@ -52,7 +52,7 @@
 
     
 
-    #content_2_1{height: 3%;}
+    #content_2_1{height: 7%;}
     #content_2_2{height: 10%;}
     #content_2_3{height: 10%;}
     #content_2_4{height: 72%;}
@@ -176,7 +176,10 @@
         
         <!--버튼-->
         <div id="content_2">
-            <div id="content_2_1">고객센터 HOME > 나의 문의내역</div>
+            <div id="content_2_1">
+                <h3>고객센터 > 나의 문의 내역 </h3>
+                <hr>
+            </div>
 
            <div id="content_2_2">
                 <div class="iconArea">

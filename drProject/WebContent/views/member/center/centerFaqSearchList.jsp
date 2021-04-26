@@ -55,7 +55,7 @@
 
 
 
-    #content_2_1{height: 3%;}
+    #content_2_1{height: 7%;}
     #content_2_2{height: 10%;}
     #content_2_3{height: 10%;}
     #content_2_4{height: 5%;}
@@ -165,7 +165,11 @@
         
         <!--버튼-->
         <div id="content_2">
-            <div id="content_2_1">고객센터 HOME > FAQ 자주찾는 질문</div>
+            <div id="content_2_1">
+                <h3>고객센터 > FAQ</h3>
+                <hr>
+            </div>
+
 
            <div id="content_2_2">
                 <div class="iconArea">

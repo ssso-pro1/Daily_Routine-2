@@ -56,7 +56,7 @@
 
     
 
-    #content_2_1{height: 3%;}
+    #content_2_1{height: 7%;}
     #content_2_2{height: 10%;}
     #content_2_3{height: 10%;}
     #content_2_4{height: 77%;}
@@ -169,7 +169,10 @@
         
         <!--버튼-->
         <div id="content_2">
-            <div id="content_2_1">고객센터 HOME > 공지사항</div>
+            <div id="content_2_1">
+                <h3>고객센터 > 공지사항 </h3>
+                <hr>
+            </div>
 
             <div id="content_2_2">
                 <div class="iconArea">

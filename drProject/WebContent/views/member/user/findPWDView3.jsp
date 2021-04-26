@@ -125,7 +125,7 @@
         
         <br>
         
-        <form action="" id="findPWD"></form>
+        <form action="<%=request.getContextPath() %>/loginForm.us" id="findPWD"></form>
         <div class="wrap" >
             <div style="margin-top:20px; margin-left:20px;">
                 <p><small>
@@ -139,7 +139,7 @@
             
             <table>
                 <tr>
-                    <th colspan="2" align="left">DR아이디 : xxx</th>
+                    <th colspan="2" align="left">DR아이디 : running01</th>
                 </tr>
                 <tr>
                     <th align="left">이름</th>
@@ -151,7 +151,7 @@
                 </tr>
                 <tr>
                     <th></th>
-                    <td><button type="submit" onclick="findPwd3()">다음</button></td>
+                    <td><button type="submit" >다음</button></td>
                 </tr>
                 <!-- 다음 클릭시 로그인 창 -->
             </table>
@@ -159,9 +159,9 @@
         </div>
         <script>
           
-            function findPwd3(){
-                location.href="<%=request.getContextPath() %>/login.us";
-            }
+            // function findPwd3(){
+            //     location.href="<%=request.getContextPath() %>/login.us";
+            // }
         </script>
         
     </div>

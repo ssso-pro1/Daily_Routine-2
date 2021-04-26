@@ -30,14 +30,14 @@ public class IdCheckAjax extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		String checkId = request.getParameter("checkId");
-		System.out.println(checkId);
+		String checkId = request.getParameter("checkId"); //checkId 로 넘어온 사용자 입력값
+		//System.out.println(checkId);
 		
 		int count = new UserService().idCheck(checkId); //중복체크할 아이디 넘어감
 		
-		if(count > 0) { 
+		if(count > 0) { // 사용 불가능
 			response.getWriter().print("NNNNN");
-		}else { 
+		}else {  // 사용 가능
 			response.getWriter().print("NNNNY");
 		} //중복확인 클릭, 개발자 도구 - 콘솔창 확인
 		

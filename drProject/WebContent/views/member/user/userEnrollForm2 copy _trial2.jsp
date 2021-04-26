@@ -23,7 +23,8 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
-      .formOuter{
+     
+        .formOuter{
             border:1px solid gray;
             padding-top:80px;
             width:50%;
@@ -49,6 +50,8 @@
             height:100%;
             margin:0px 50px;
         }
+
+        
 
         .step_2, .arrow2 {color:rgb(250, 214, 9);}
         .step_1, .step_3{color:rgb(116, 116, 116);}
@@ -103,34 +106,34 @@
                     <th >아이디</th>
                     <th><input type="text" name="userId" id="userId" minlength="5" maxlength="30" required placeholder="아이디를 입력하세요">
                     </th>
-                    <th><button type="button" onclick="idValidate(); idCheck();  ">중복확인</button></th>
+                    <th><button type="button" onclick="idValidate(); idCheck();">중복확인</button></th>
                 </tr>
-                <tr>
+                <tr> <!--5~20자의 영문,소문자,숫자만 사용가능합니다.-->
                     <td colspan="3" id="msg1">5~20자의 영문,소문자,숫자만 사용가능합니다.</td>
                 </tr>
                 
-                <tr>
+                <tr> <!---->
                     <th>비밀번호</th>
-                    <th><input type="password" name="userPwd" minlength="8" maxlength="15" placeholder="비밀번호" required></th>
+                    <th><input type="password" class="form-control" name="userPwd" minlength="8" maxlength="15" placeholder="비밀번호" required></th>
                 </tr>
-                <tr>
-                    <td colspan="3" id="msg2">8~16자 영문 대소문자, 숫자, 특수문자를 사용하세요.</td>
+                <tr> <!--8~16자 영문 대소문자, 숫자, 특수문자를 사용하세요.-->
+                    <td colspan="3" id="msg2"><div class="check_font" id="pwd_check"></div></td>
                 </tr>
-                <tr>
+                <tr><!--비밀번호가 일치하지 않습니다.-->
                     <th>비밀번호 재확인</th>
-                    <th><input type="password"  name="userPwd2" minlength="8" maxlength="15" placeholder="비밀번호 재확인" required ></th> 
+                    <th><input type="password"  class="form-control" name="userPwd2" minlength="8" maxlength="15" placeholder="비밀번호 재확인" required ></th> 
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="3" id="msg4">비밀번호가 일치하지 않습니다.</td>
+                    <td colspan="3" id="msg4"><div class="check_font" id="pwd2_check"></div></td>
                 </tr>
                 <tr>
                     <th>이름</th>
-                    <th><input type="text" name="userName" maxlength="5" placeholder="이름" required></th>
+                    <th><input type="text" class="form-control" name="userName" maxlength="5" placeholder="이름" required></th>
                     <td></td>
                 </tr>
-                <tr>
-                    <td colspan="3" id="msg5">한글과 영문 대소문자를 사용하세요. (특수기호, 공백 사용 불가)</td>
+                <tr> <!--한글과 영문 대소문자를 사용하세요. (특수기호, 공백 사용 불가)-->
+                    <td colspan="3" id="msg5"><div class="check_font" id="name_check"></div></td>
                 </tr>
                 <tr>
                     <th>생년월일</th>
@@ -168,9 +171,15 @@
                     <td></td>
                 </tr>
                 <tr>
+                    <td colspan="3" id="msg4"><div class="check_font" id="email_check"></div></td>
+                </tr>
+                <tr>
                     <th>휴대전화</th>
                     <th><input type="tel" name="phone" placeholder="(-포함해서 입력)"></th>
                     <th><button type="button">인증번호</button></th>
+                </tr>
+                <tr>
+                    <td colspan="3" id="msg4"><div class="check_font" id="tel_check"></div></td>
                 </tr>
                 <tr>
                     <th></th>
@@ -182,8 +191,8 @@
                     <th colspan="3">
                         <div class="btn">
                             <!-- 유효성검사 -->
-                            <button type="submit" class="btn btn-warning" disabled onclick="return validate();">회원가입</button>
-                            <button type="reset" class="btn btn-secondary">취소</button>
+                            <input type="submit" value="회원가입" class="btn btn-warning"  onclick="return validate();" > 
+                            <input type="reset"  value="취소" class="btn btn-secondary">
                         </div>
                     </th>
                 </tr>
@@ -195,27 +204,64 @@
     </div>
 
     <script>
-        // 아이디 유효성 먼저하고, 맞으면 중복확인/ 틀리면 안함 (유효성체크-> 다음 중복확인)
-        function idValidate(){
-            var userId = document.getElementById("userId");
-
-            // 1) 아이디 검사 (영문자,숫자로만 총 5~20글자로 이뤄져야만 + 첫글자는 영문자(소문자 한글자)로.)
-            var regExp = /^[a-z][a-z\d]{4,19}$/;
-                if(!regExp.test(userId.value)) { //userId는 요소객체이기 때문에 value붙여야함
-                    alert("유효한 아이디를 입력하세요");
-            
-                    userId.value = "";
-                    userId.focus();   //입력칸에 깜빡깜빡 focus감(입력유도)
-            
-                    return false; //틀리면 넘어가지 않게.
-
-
-
-
-
-                }
+        function validate(){
 
         }
+
+
+
+
+
+        /*
+        //모든 공백 체크 정규식
+        var empJ = /\s/g;
+        //아이디 정규식
+        var idJ = /^[a-z0-9]{4,19}$/;
+        // 비밀번호 정규식
+        var pwJ = /^[a-z\d!@#$%^&*]{8,15}$/i;
+        // 이름 정규식
+        var nameJ = /^[가-힣]{2,}$/;
+        // 이메일 검사 정규식
+        var mailJ = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+        // 휴대폰 번호 정규식
+        var phoneJ = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
+
+
+        // 이름에 특수문자 들어가지 않도록 설정
+        $("#userName").blur(function() {
+            if (nameJ.test($(this).val())) {
+                    console.log(nameJ.test($(this).val()));
+                    $("#name_check").text('');
+            } else {
+                $('#name_check').text('이름을 확인해주세요');
+                $('#name_check').css('color', 'red');
+            }
+        });
+        
+        
+        // 휴대전화
+        $('#tel').blur(function(){
+            if(phoneJ.test($(this).val())){
+                console.log(nameJ.test($(this).val()));
+                $("#phone_check").text('');
+            } else {
+                $('#phone_check').text('휴대폰번호를 확인해주세요 :)');
+                $('#phone_check').css('color', 'red');
+            }
+        });
+
+        regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
+                if(!regExp.test(userPwd1.value)){
+                    alert("유효한 비번 입력하세요.");
+            
+                    userPwd1.value = ""; 
+                    userPwd1.focus();
+            
+                    return false;
+                }
+*/
+
+
     
         /*중복확인 펑션*/
         function idCheck(){
@@ -255,6 +301,20 @@
     }
 
 /*
+    $("#userName").blur(function() {
+            if (nameJ.test($(this).val())) {
+                    console.log(nameJ.test($(this).val()));
+                    $("#name_check").text('');
+            } else {
+                $('#name_check').text('이름을 확인해주세요');
+                $('#name_check').css('color', 'red');
+            }
+        });
+*/
+
+
+
+
         //유효성 검사
         function validate(){
                 
@@ -266,7 +326,8 @@
                 var userPwd2 = document.getElementById("userPwd2");
                 var userName = document.getElementById("userName");
             
-                // 1) 아이디 검사 (영문자,숫자로만 총 5~20글자로 이뤄져야만 하고 단, 첫글자는 영문자(소문자 한글자)로.)
+                
+                // 1) 아이디 검사 (영문자,숫자로만 총 5~20글자로, 첫글자는 영문자(소문자 한글자)로.)
                 var regExp = /^[a-z][a-z\d]{4,19}$/;
                 if(!regExp.test(userId.value)) { //userId는 요소객체이기 때문에 value붙여야함
                     alert("유효한 아이디를 입력하세요");
@@ -275,6 +336,8 @@
                     userId.focus();   
             
                     return false; //틀리면 넘어가지 않게.
+                }else{
+
                 }
             
                 // 2) 비밀번호 검사 (영문자,숫자,특수문자(!@#$%^&*) 포함 총 8자~15자 입력되게)
@@ -317,7 +380,7 @@
             
     
 
-*/
+
     
     
     </script>

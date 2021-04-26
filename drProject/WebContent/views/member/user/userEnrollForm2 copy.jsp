@@ -23,21 +23,22 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
-      .formOuter{
-            border:1px solid gray;
-            padding-top:80px;
-            width:50%;
+        .outer{
+            padding:35px;
+            width:80%;
+            height:auto;
             margin:auto;
+            margin-top:30px;
+            border:1px solid gray;
         }
+
         .menuWrap{
             width:100%;
             height:50px;
-            margin-top:30px;
             margin-bottom:60px;
 
             display:flex;
             justify-content:center;
-
         }
         
         .menuWrap>span{
@@ -93,7 +94,7 @@
         <span class="step_3">회원가입완료</span>
     </div>
 
-    <div class="formOuter">
+    <div class="outer">
 
         <form action="<%= request.getContextPath() %>/insert.us" method="post" id="enrollForm">
             
@@ -103,7 +104,7 @@
                     <th >아이디</th>
                     <th><input type="text" name="userId" id="userId" minlength="5" maxlength="30" required placeholder="아이디를 입력하세요">
                     </th>
-                    <th><button type="button" onclick="idValidate(); idCheck();  ">중복확인</button></th>
+                    <th><button type="button" onclick="idValidate(); idCheck();">중복확인</button></th>
                 </tr>
                 <tr>
                     <td colspan="3" id="msg1">5~20자의 영문,소문자,숫자만 사용가능합니다.</td>
@@ -254,7 +255,7 @@
             
     }
 
-/*
+
         //유효성 검사
         function validate(){
                 
@@ -317,7 +318,7 @@
             
     
 
-*/
+
     
     
     </script>

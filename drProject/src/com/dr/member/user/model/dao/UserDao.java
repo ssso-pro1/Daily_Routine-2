@@ -115,7 +115,7 @@ public class UserDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("idCheck");
+		String sql = prop.getProperty("idCheck"); //받아온 값
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

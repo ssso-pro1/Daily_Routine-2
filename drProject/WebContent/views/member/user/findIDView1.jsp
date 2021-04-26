@@ -232,7 +232,7 @@
                     $("#next").click(function(){
             
             /////1. radio 둘 중에 하나 체크 됐을 떄
-                        if($("#phoneRa").prop("checked") || $("#phoneRa").prop("checked")){
+                        if($("#phoneRa").prop("checked") || $("#emailRa").prop("checked")){
     
                             /// 1) 휴대폰 인증
                             if($("#phoneRa").prop("checked")){
@@ -331,7 +331,7 @@
                         }
 
                        // 2) 휴대폰 전화 길이 검사 
-                       regExp = /^[0-9]{3}-[0-9]{4}-[0-9]{4}/;
+                       regExp = /^01([0|1|6|7|8|9]?)?([0-9]{3,4})?([0-9]{4})$/;
 
                        if(!regExp.test(tel.value)){
                            alert("휴대전화 번호를 형식에 맞게 입력해주세요.");

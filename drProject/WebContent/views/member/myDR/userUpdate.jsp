@@ -91,16 +91,8 @@
                                             <td colspan="2"><%= userName %></td>
                                         </tr>
                                         <tr>
-                                            <th>새 비밀번호</th>
-                                            <td><input type="password" size="27" maxlength="16" placeholder="새 비밀번호를 입력하세요" required></td>
-                                            <!-- hover넣을까 말까 -->
-                                            <td><p style="color: gray; font-size: 11px;">영어,숫자,특수문자 포함 8~16자리</p></td>
-                                        </tr>
-                                        <tr>
-                                            <th>비밀번호 확인</th>
-                                            <td><input type="password" size="27" maxlength="15" placeholder="비밀번호 확인"required></td>
-                                            <!-- 비밀번호 틀린경우 -->
-                                            <td><p style="color:gray; font-size: 11px;">비밀번호가 틀렸습니다.</p></td>
+                                        	<th>비밀번호 변경</th>
+                                        	<td><button type="button" data-toggle="modal" data-target="#pwdUpdateModal "id="updateBtn">비밀번호 변경</button></td>
                                         </tr>
                                         <tr>
                                             <th>생년월일</th>
@@ -120,7 +112,7 @@
                                         </tr>
                                         <tr>
                                             <th>전화번호</th>
-                                            <td colspan="2"><%= phone %> &nbsp;&nbsp;&nbsp; <button id="updateBtn">수정하기</button></td>
+                                            <td colspan="2"><%= phone %> &nbsp;&nbsp;&nbsp; <button  type="button" data-toggle="modal" data-target="#phoneUpdateModal"id="updateBtn">수정하기</button></td>
                                         </tr>
                                     </table>
                                     <br>
@@ -128,7 +120,7 @@
                 
                                 <br>
                                 <div class="buttons" align="center">
-                                    <button type="submit" id="submitBtn">확인</button>
+                                    <button type="submit" id="submitBtn" disabled onclick="return validate();">확인</button>
                                     <button type="reset" id="resetBtn">취소</button>
                                     <div class="outBtn">
                                         <button id="outBtn">탈퇴하기</button>
@@ -160,31 +152,121 @@
 	
 	      <!-- Modal body -->
 	      <div class="modal-body">
-	      	<form action="<%= contextPath %>/emailUpdate.md" method="post" id="form1">
-	      		<input type="hidden" name="userId" value="<%= userId %>">
-	      		<input type="text" name="updateEmail" style="font-size: 13px;" required> &nbsp;
-	      		<select id="emailCategory" name="emailCategory">
-                    <option value="x">선택해주세요</option>
-	      			<option value="@naver.com">@naver.com</option>
-                    <option value="@daum.com">@daum.net</option>
-                    <option value="@gmail.com">@gmail.com</option>
-	      		</select>
-                <button type="submit">확인</button>
-                <button type="reset">취소</button>
-	      		
-	      	</form>
-            
-	        	
+	      	<form action="<%= contextPath %>/emailUpdate.md" method="post">
+	      		<div align="center">
+	      			<input type="hidden" name="userId" value="<%= userId %>">
+		      		<input type="text" name="updateEmail" style="font-size: 13px;" required> &nbsp;
+		      		<select id="emailCategory" name="emailCategory">
+	                    <option value="x">선택해주세요</option>
+		      			<option value="@naver.com">@naver.com</option>
+	                    <option value="@daum.com">@daum.net</option>
+	                    <option value="@gmail.com">@gmail.com</option>
+		      		</select>		
+	      		</div>
+	      		<br>
+	      		<div align="center">
+		      		<button type="submit" id="submitBtn">확인</button>
+	                <button type="reset" id="resetBtn">취소</button>
+	      		</div>
+                
+	      	</form>        	
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- 전화번호 수정 모달 -->
+     <div class="modal" id="phoneUpdateModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">전화번호 변경</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
 	      </div>
 	
-	      <!-- Modal footer -->
-	      <div class="modal-footer">
-	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	      <!-- Modal body -->
+	      <div class="modal-body">
+	      	<form action="<%= contextPath %>/phoneUpdate.md" method="post">
+	      		<div align="center">
+	      			<input type="hidden" name="userId" value="<%= userId %>">	      		
+		      		<input type="text" name="updatePhone" size="30" maxlength="13" style="font-size:15px;" placeholder=" - 포함하여 입력하세요" required>
+	      		</div>
+	      		<br>
+	      		<div align="center">
+		      		<button type="submit" id="submitBtn">확인</button>
+	                <button type="reset" id="resetBtn">취소</button>
+	      		</div>
+                
+	      	</form>        	
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	
+	<!-- 비밀번호 변경 버튼 클릭시 뜨는 Modal -->
+	<div class="modal" id="pwdUpdateModal">
+	  <div class="modal-dialog">
+	    <div class="modal-content">
+	
+	      <!-- Modal Header -->
+	      <div class="modal-header">
+	        <h4 class="modal-title">비밀번호 변경</h4>
+	        <button type="button" class="close" data-dismiss="modal">&times;</button>
+	      </div>
+	
+	      <!-- Modal body -->
+	      <div class="modal-body" align="center">
+	        
+	        <form action="<%= request.getContextPath() %>/pwdUpdate.md" method="POST">
+	        	<input type="hidden" name="userId" value="<%= userId %>">
+	        	<table>
+	        		<tr>
+	        			<th>현재 비밀번호</th>
+	        			<td><input type="password" name="userPwd" required></td>
+	        		</tr>
+	        		<tr>
+	        			<th>변경할 비밀번호</th>
+	        			<td><input type="password" name="updatePwd" required></td>
+	        		</tr>
+	        		<tr>
+	        			<th>변경할 비밀번호 재입력</th>
+	        			<td><input type="password" name="checkPwd" required></td>
+	        		</tr>
+	        	</table>
+	        	<br>
+	        	
+	        	<button type="submit" id="submitBtn" onclick="return validatePwd();">비밀번호 변경</button>
+	        	<script>
+	        		function validatePwd(){
+	        	        var regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
+	        	        var updatePwd = $("input[name=updatePwd]");
+	        	        
+	        	        
+	        	        if(!regExp.test(updatePwd.value)){
+	        	            alert("유효한 비번 입력하세요.");
+	        	    
+	        	            updatePwd.value = ""; //기존값 초기화시키고, 포커스 가게
+	        	            updatePwd.focus();
+	        	    
+	        	            return false;
+	        	        }
+	        			
+	        			if($("input[name=updatePwd]").val() != $("input[name=checkPwd]").val()){
+	        				alert("변경할 비밀번호가 일치하지 않습니다.")
+	        				return false;
+	        			}
+	        		}
+	        	</script>
+	        </form>
+	        
 	      </div>
 	
 	    </div>
 	  </div>
 	</div>
+	
     
     
 </body>

@@ -184,7 +184,7 @@ public class UserDao {
 						     rset.getString("email"),
 						     rset.getString("phone"),
 						     rset.getDate("enroll_date"),
-						     rset.getString("level_check"),
+						     rset.getString("leave_check"),
 						     rset.getString("suspended"),
 						     rset.getString("report_check"),
 						     rset.getString("admin_check")
@@ -199,6 +199,49 @@ public class UserDao {
 		}
 		return u;
 		
+	}
+
+	public int updatePhoneUser(Connection conn, String userId, String updatePhone) {
+		// update문 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updatePhoneUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, updatePhone);
+			pstmt.setString(2, userId);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int updatePwdUser(Connection conn, String userId, String userPwd, String updatePwd) {
+		// update문 
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String sql = prop.getProperty("updatePwdUser");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, updatePwd);
+			pstmt.setString(2, userId);
+			pstmt.setString(3, userPwd);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
 	
 

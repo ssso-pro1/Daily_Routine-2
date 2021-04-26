@@ -89,6 +89,22 @@
          WHERE USER_ID = ?
 	</entry>
 	
+<!-- email update -->
+	<entry key="updatePhoneUser">
+  		UPDATE
+			   TB_USER
+		   SET PHONE = ?
+         WHERE USER_ID = ?
+	</entry>
+
+<!-- pwd update -->	
+	<entry key="updatePwdUser">
+	  	UPDATE
+			   TB_USER
+		   SET USER_PWD = ?
+		 WHERE USER_ID = ?
+		   AND USER_PWD = ?
+	</entry>
 	
 </properties>
 

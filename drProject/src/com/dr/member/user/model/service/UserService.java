@@ -69,6 +69,41 @@ public class UserService {
 		close(conn);
 		return updateUser;
 	}
+
+	public User updatePhoneUser(String userId, String updatePhone) {
+		Connection conn = getConnection();
+		int result = new UserDao().updatePhoneUser(conn, userId, updatePhone);
+		
+		User updateUser = null;
+		if(result > 0) {
+			commit(conn);
+			
+			updateUser = new UserDao().selectUser(conn, userId);
+			// 바뀐거 새로 조회해주기
+		}else {
+			rollback(conn);
+		}
+		close(conn);
+		return updateUser;
+	}
+
+	public User updatePwdUser(String userId, String userPwd, String updatePwd) {
+		Connection conn = getConnection();
+		int result = new UserDao().updatePwdUser(conn, userId, userPwd, updatePwd);
+	
+		User updateUser = null;
+		if(result > 0) { // 성공 => 갱신된 회원 객체 다시 조회
+			commit(conn);
+			
+			updateUser = new UserDao().selectUser(conn, userId);
+		}else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		
+		return updateUser;
+	}
 	
 	
 	

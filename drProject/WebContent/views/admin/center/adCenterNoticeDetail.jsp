@@ -232,7 +232,7 @@
 
 
             <!--공지사항 디테일뷰-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 500px;">
+            <div id="content_2_4" style="background: white; ">
                 <br>
                 <div id="noticeDetail">
                     <form action="">
@@ -287,7 +287,7 @@
                                 </tr>
                                 <tr>
                                     <th>내용</th>
-                                    <td colspan="3"><div><%= n.getNoticeContent() %></div></td>
+                                    <td colspan="3"><div style="height: 500px; width: 700px;"><%= n.getNoticeContent() %></div></td>
                                 </tr>
                                 
 

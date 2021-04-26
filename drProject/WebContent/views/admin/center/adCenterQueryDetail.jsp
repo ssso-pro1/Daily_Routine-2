@@ -127,7 +127,11 @@
         }
         
         .queryArea th{
-            background: rgb(219, 214, 206);
+            background: rgb(221, 220, 213);
+        }
+
+        .queryReplyArea th{
+            background: rgb(247, 220, 22);
         }
         
 
@@ -233,34 +237,34 @@
             <!--1:1문의 디테일/ 답변하기폼-->
             <div id="content_2_4" style="background: white;">
                 <div class="queryDetailArea" align="center">
-                     <table border="1" class="queryArea">
+                     <table border="1" style="border-collapse: collapse; width: 100%;" class="queryArea">
                          <tr>
-                             <th>아이디</th>
+                             <th style="width: 80px;">아이디</th>
                              <td><%=q.getUserId() %></td>
-                             <th>문의 상태</th>
+                             <th style="width: 80px;">문의 상태</th>
                              <td>
                              	<%if(q.getQueryStatus().equals("Y")) { %>
-                            	 <label>정상</label>
+                            	 <label style="font-weight: bold;">정상</label>
                             	<% } else {%>
-                             	 <label style="color:red;">삭제된 문의글</label>
+                             	 <label style="color:green; font-weight: bold;">삭제된 문의글</label>
                              	<% } %>
                              </td>
                          </tr>
                          
                          <tr>
-                             <th>문의유형</th>
+                             <th style="width: 80px;">문의유형</th>
                              <td><%=q.getQueryCategory() %></td>
-                             <th>문의작성일</th>
+                             <th style="width: 80px;">문의작성일</th>
                              <td><%=q.getQueryCreateDate() %></td>
                          </tr>
                          <tr>
-                             <th>문의제목</th>
+                             <th style="width: 80px;">문의제목</th>
                              <td colspan="3"><%=q.getQueryTitle() %></td>
                          </tr>
                          <tr>
-                             <th>문의내용</th>
+                             <th style="width: 80px;">문의내용</th>
                              <td colspan="3">
-                                 <textarea name="" id="" cols="30" rows="10" readonly><%=q.getQueryContent() %></textarea>
+                                 <textarea name="" id="" cols="100" rows="10" readonly><%=q.getQueryContent() %></textarea>
                              </td>
                          </tr>
                      </table>
@@ -273,24 +277,27 @@
                      <form action="<%= contextPath %>/ctQueryReplyUpdate.ad" method="post" >
                      <input type="hidden" name="qno" value="<%= q.getQueryNo() %>">
                      
-                     <table border="1" class="replyArea">
+                     <table border="1" style="border-collapse: collapse;  width: 100%" class="replyArea">
                      
                      <!-- 답변 완료시 -->
                         <% if(q.getReplyStatus().equals("Y")) { %>
                         
 	                       <tr>
-	                            <th>처리상태</th>
-	                            <td>답변완료</td>
-	                            <th>답변등록일</th>
+	                            <th style="width: 80px;">처리상태</th>
+	                            <td style="color: blue; font-weight: bold;">답변완료</td>
+	                            <th style="width: 80px;">답변등록일</th>
 	                            <td><%= q.getReplyDate() %></td>
 	                        </tr>
 	                        <tr>
-	                            <th>답변내용</th>
+	                            <th >답변내용</th>
 	                            <td colspan="3">
-	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="30" rows="10"><%= q.getReplyContent() %></textarea>
-	                            	<label style="float: right;"><span id="count" name="count" >0</span> / 450</label>
+	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="100" rows="10"><%= q.getReplyContent() %></textarea>
+	                            	
 	                            </td>
 	                        </tr>
+                            <tr>
+                                <td colspan="4"><label  style="float: right;"><span id="count" name="count" >0</span> / 450</label></td>
+                            </tr>
 	                        <tr>
 	                            <td colspan="4" align="right">
 	                                <button type="submit" onclick="return validate()">수정</button>
@@ -302,18 +309,21 @@
                        	<!-- 답변 처리중일때 -->
                         <% } else if (q.getReplyStatus().equals("N")){ %>
 	                        <tr>
-	                            <th>처리상태</th>
+	                            <th style="width: 80px;">처리상태</th>
+	                            <td style="color: red; font-weight: bold;">답변대기</td>
+	                            <th style="width: 80px;">답변등록일</th>
 	                            <td>답변대기</td>
-	                            <th>답변등록일</th>
-	                            <td>처리중</td>
 	                        </tr>
 	                        <tr>
 	                            <th>답변내용</th>
 	                            <td colspan="3">
-	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="30" rows="10"></textarea>
-	                            	<label style="float: right;"><span id="count" name="count" >0</span> / 450</label>
+	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="100" rows="10"></textarea>
+	                            	
 	                            </td>
 	                        </tr>
+                            <tr>
+                                <td colspan="4"><label  style="float: right;"><span id="count" name="count" >0</span> / 450</label></td>
+                            </tr>
 	                        <tr>
 	                            <td colspan="4" align="right">
 	                                <button type="submit" onclick="return validate()">답변등록</a></button>
@@ -325,7 +335,7 @@
 	                   <!-- 회원이 삭제한 게시글일때 -->
 	                   <% } else { %>
 	                   		<tr>
-	                            <th>처리상태</th>
+	                            <th style="width: 80px;">처리상태</th>
 	                            <td>
 	                            <%if(q.getReplyContent() != null){ %>
 	                           	<label>답변완료</label>
@@ -333,10 +343,10 @@
 	                            <label>답변대기</label>
 	                            <% } %>
 	                            </td>
-	                            <th>답변등록일</th>
+	                            <th style="width: 80px;">답변등록일</th>
 	                            <td>
 	                            <%if(q.getReplyDate()==null) {%>
-	                            	처리중
+	                            	답변대기
 	                            <% } else { %>
 	                            	<%= q.getReplyDate() %>
 	                            <% } %>
@@ -345,10 +355,13 @@
 	                        <tr>
 	                            <th>답변내용</th>
 	                            <td colspan="3">
-	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="30" rows="10" readonly><%if(q.getReplyContent()==null) {%><% } else { %><%=q.getReplyContent() %><% } %>
+	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="100" rows="10" readonly><%if(q.getReplyContent()==null) {%><% } else { %><%=q.getReplyContent() %><% } %>
 	                                </textarea>
 	                            </td>
 	                        </tr>
+                            <tr>
+                                <td colspan="4"><label  style="float: right;"><span id="count" name="count" >0</span> / 450</label></td>
+                            </tr>
 	                        <tr>
 	                            <td colspan="4" align="right">
 	                                <button onclick="return confirmDelete();"><a href="<%=contextPath %>/ctQueryDelete.ad?qno=<%= q.getQueryNo() %>">삭제</a></button>

@@ -174,7 +174,7 @@
             <div id="content_2_2" style="margin-left: 20px; width: 900px;">
                 <div class="iconArea">
                     <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
-                        <div id="upperIcon" class="faqf" align="center">FAQ</div>
+                        <div id="upperIcon" class="faq" align="center">FAQ</div>
                     </a>
                     <a href="<%=contextPath%>/enrollQuery.ct">
                         <div id="upperIcon" class="query" align="center">1:1문의</div>
@@ -237,13 +237,13 @@
                                         <% if(f.getFaqCategory().equals("top")) { %>
                                                         TOP10
                                         <% } else if (f.getFaqCategory().equals("userInfo")) { %>
-                                                        회원정보
+                                                       	 회원정보
                                         <% } else if (f.getFaqCategory().equals("content")) { %>
-                                                        게시글/댓글
+                                                       	 게시글/댓글
                                         <% } else if (f.getFaqCategory().equals("report")) { %>
-                                                        신고
-                                        <% } else if (f.getFaqCategory().equals("etc")) { %>
-                                                        기타
+                                                        	신고
+                               	        <% } else if (f.getFaqCategory().equals("etc")) { %>
+                                                        	기타
                                         <% } %>
                                         
                                         ]</label>

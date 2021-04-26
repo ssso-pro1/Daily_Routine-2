@@ -213,7 +213,7 @@
                 
                 <div class="helpArea">
                     <div class="helpImg" align="center">
-                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top"><img src="https://t3.ftcdn.net/jpg/04/28/16/86/240_F_428168682_Hbozsl5o8rjLlgOZfSw23ddknim4ZdGg.jpg" width="120" height="120"></a>
+                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top"><img src="https://t3.ftcdn.net/jpg/04/28/16/86/240_F_428168682_Hbozsl5o8rjLlgOZfSw23ddknim4ZdGg.jpg" width="120" height="118"></a>
                         <p class="ff" style="font-weight: 700; font-size: 18px;">
                            	 질문 TOP10
                         </p>

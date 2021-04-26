@@ -297,13 +297,13 @@
                     	<br><br>
                     	<% if(list.isEmpty() ) { %>
                     	
-                        	<button><a href="">새 글 등록</a></button>
+                        	<button><a href="<%= contextPath %>/ctNoticeEnroll.ad">새 글 등록</a></button>
                             
 
                         
                         
                         <% } else { %>
-                        	<button><a href="">새 글 등록</a></button>
+                        	<button type="button"><a href="<%= contextPath %>/ctNoticeEnroll.ad">새 글 등록</a></button>
                        		<button type="submit"  onclick="return check();">선택 삭제</button> 
                        	    <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
                        	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 

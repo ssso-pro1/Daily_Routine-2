@@ -103,7 +103,7 @@
     
     
     .queryList{
-        background :rgb(241, 236, 229);
+        background :rgb(235, 233, 232);
         width: 100%;
         height: 40px;
         line-height: 30px;
@@ -135,9 +135,7 @@
         border-radius: 5px;
        
         }
-    .q{
-        background: wheat;
-    }
+    
     .a{ background-color: rgb(245, 239, 239);}    
     
     a#leftMenu{
@@ -254,13 +252,19 @@
                                             
                                             </tr>
                                         </tbody>
-                                        <% if(q.getReplyStatus().equals("Y")) { %>
+                                       
                                         <tfoot class="a">
+                                         <% if(q.getReplyStatus().equals("Y")) { %>    
                                             <tr>
-                                                <td style="height: 130px; width: 350px;"><%=q.getReplyContent() %></td>
+                                                <td style="height: 130px; width: 350px; color: rgb(102, 73, 161);"><%=q.getReplyContent() %></td>
                                             </tr>
+                                        <% } else {%>
+                                        	<tr>
+                                                <td style="height: 130px; width: 350px; color: rgb(102, 73, 161);">문의 확인중입니다</td>
+                                            </tr>
+                                        <% } %>    
                                         </tfoot>
-                                        <% } %>
+                                        
                                     </table>
                                 </div>
 		                     </div>    

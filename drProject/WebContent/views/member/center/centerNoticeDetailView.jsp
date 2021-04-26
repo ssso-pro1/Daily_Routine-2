@@ -181,13 +181,13 @@
                 <div class="detailArea" >
                     <table border="1" height="600px;" width="800px">
                         <tr align="center" height="40px;">
-                            <th width="55%"><%= n.getNoticeTitle() %></th>
-                            <th width="20%">등록일 : <%=n.getCreateDate() %></th>
+                            <th width="70%"><%= n.getNoticeTitle() %></th>
+                            <th width="15%"><%=n.getCreateDate() %></th>
                             <th width="15%">조회수 : <%=n.getNoticeCount() %></th>
                         </tr>
                         <tr align="left">
                             <td colspan="5" height="100%">
-                                <div style="margin-bottom:400px;"><%=n.getNoticeContent() %></div>
+                                <div><%=n.getNoticeContent() %></div>
                             </td>
                         </tr>
                         <tr>

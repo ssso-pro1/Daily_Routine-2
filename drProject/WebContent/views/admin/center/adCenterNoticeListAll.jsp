@@ -312,7 +312,7 @@
                     	<br><br>
                     	<% if(list.isEmpty() ) { %>
                     	
-                        	<button><a href="">새 글 등록</a></button>
+                        	<button><a href="<%= contextPath %>/ctNoticeEnroll.ad">새 글 등록</a></button>
                             
 
                         

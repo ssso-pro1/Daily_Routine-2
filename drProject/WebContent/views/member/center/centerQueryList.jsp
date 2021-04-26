@@ -79,10 +79,12 @@
         background-color: rgb(48, 42, 100);
         color: white;
     }
-
+    
+   
     #upperIcon.queryList{
         background-color: rgb(250, 234, 16);
         color: black;
+        cursor: pointer; 
         
     }
 
@@ -146,6 +148,10 @@
         font-weight:bold;
     }
     a#leftMenu:hover{color:rgb(250, 214, 9);}
+    
+    .ff{font-family: 'Do Hyeon', sans-serif;}
+
+    a{text-decoration: none;}
 
 </style>
 </head>
@@ -183,18 +189,18 @@
 
            <div id="content_2_2">
                 <div class="iconArea">
-                    <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top"><div id="upperIcon" class="faq" align="center">
-                        FAQ
-                    </div></a>
-                    <a href="<%=contextPath%>/enrollQuery.ct"><div id="upperIcon" class="query" align="center">
-                        1:1문의
-                    </div></a>
-                    <a href="<%=contextPath%>/queryList.ct?currentPage=1"><div id="upperIcon" class="queryList" align="center">
-                     	   나의 문의내역
-                    </div></a>
-                    <a href="<%=contextPath%>/notice.ct?currentPage=1"><div id="upperIcon" class="notice" align="center">
-                        	공지사항
-                    </div></a>
+                    <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
+                        <div id="upperIcon" class="faq ff" align="center">FAQ</div>
+                    </a>
+                    <a href="<%=contextPath%>/enrollQuery.ct">
+                        <div id="upperIcon" class="query ff" align="center">1:1문의</div>
+                    </a>
+                    <a href="<%=contextPath%>/queryList.ct?currentPage=1">
+                        <div id="upperIcon" class="queryList ff" align="center">나의 문의내역</div>
+                    </a>
+                    <a href="<%=contextPath%>/notice.ct?currentPage=1">
+                        <div id="upperIcon" class="notice ff" align="center">공지사항</div>
+                    </a>
                 </div>
             </div>
                 

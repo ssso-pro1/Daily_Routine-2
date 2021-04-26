@@ -81,6 +81,10 @@
 </head>
 <body>
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+    
+    <!-- 폰트 -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 	<script>
     // 회원가입 성공 시 뜨는 알림창 메시지. 확인 누르면 메뉴바로 (메인페이지)

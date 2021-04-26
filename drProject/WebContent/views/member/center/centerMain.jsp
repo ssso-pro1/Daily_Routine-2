@@ -60,7 +60,7 @@
     #content_2_5{height: 35%;}
 
 
-     #upperIcon{
+    #upperIcon{
         
         width:170px;
         height: 40px;
@@ -78,6 +78,10 @@
         border-bottom-left-radius: 20px;
         background-color: rgb(48, 42, 100);
         color: white;
+    }
+    
+    #upperIcon:hover{
+        cursor: pointer; opacity: 0.9; 
     }
 
 
@@ -98,6 +102,10 @@
         margin:12px;
         cursor: pointer;
     }
+
+    .helpImg:hover{color: indigo; cursor: pointer; opacity: 0.9;}
+
+
     .noticeList{
         background: lightgray;
         width: 100%;
@@ -132,7 +140,7 @@
 
     .ff{font-family: 'Do Hyeon', sans-serif;}
     
-    #noticeTitle{cursor: pointer;}
+    #noticeTitle:hover{color: indigo; cursor: pointer;}
 
 </style>
 </head>
@@ -146,15 +154,15 @@
     <div id="content">
         <div id="content_1">
             
-            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1>고객센터</h1></a>
+            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu" class="ff">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" class="ff">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu" class="ff">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" class="ff">공지사항</a></div>
                 
             </div>
 
@@ -167,7 +175,7 @@
         <!--버튼-->
         <div id="content_2">
             <div id="content_2_1">
-                <h3>고객센터 HOME </h3>
+                <h3 class="ff" style="font-weight: 100; font-size: 20px;">고객센터 HOME </h3>
                 <hr>
             </div>
 
@@ -202,37 +210,37 @@
 
             <!--무엇을 도와드릴까요-->
             <div id="content_2_4">
-                <p><h2>무엇을 도와드릴까요? <button><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">전체보기</a></button></h2></p>
+                <p><h2 class="ff" style="font-weight: 700; font-size: 25px;">무엇을 도와드릴까요? <button><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">전체보기</a></button></h2></p>
                 
                 <div class="helpArea">
                     <div class="helpImg" align="center">
                         <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top"><img src="https://t3.ftcdn.net/jpg/04/28/16/86/240_F_428168682_Hbozsl5o8rjLlgOZfSw23ddknim4ZdGg.jpg" width="120" height="120"></a>
-                        <p>
+                        <p class="ff" style="font-weight: 700; font-size: 18px;">
                            	 질문 TOP10
                         </p>
                         
                     </div>
                     <div class="helpImg" align="center">
                         <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=userInfo"><img src="https://t3.ftcdn.net/jpg/02/73/37/20/240_F_273372018_avUsN7C4K9RDVPDQuCkeyAbyOvS58apZ.jpg" width="120" height="120"></a>
-                        <p>
+                        <p class="ff" style="font-weight: 700; font-size: 18px;">
                            	 회원정보
                         </p>
                     </div>
                     <div class="helpImg" align="center">
                         <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=content"><img src="https://t3.ftcdn.net/jpg/03/00/17/00/240_F_300170007_EeUnk2vDMLQJDQh0sStL46tH0rTUy1j3.jpg" width="120" height="120"></a>
-                        <p>
+                        <p class="ff" style="font-weight: 700; font-size: 18px;">
                             	게시글
                         </p>
                     </div>
                     <div class="helpImg" align="center">
                         <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=report"><img src="https://t3.ftcdn.net/jpg/00/91/70/80/240_F_91708092_BJJtouZ0WymGgV1x3matkZsHibuyUOTV.jpg" width="120" height="120"></a>
-                        <p>
+                        <p class="ff" style="font-weight: 700; font-size: 18px;">
                           	  신고
                         </p>
                     </div>
                     <div class="helpImg" align="center">
                         <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=etc"><img src="https://t4.ftcdn.net/jpg/03/08/43/19/240_F_308431972_g5fuiXwgOZpDCMFQougq13hgSaQVHVro.jpg" width="120" height="120"></a>
-                        <p>
+                        <p class="ff" style="font-weight: 700; font-size: 18px;">
                            	 기타
                         </p>
                     </div>
@@ -243,20 +251,20 @@
 
             <!--공지사항 3개만 보여주기-->
             <div id="content_2_5"> 
-                <p><h2>공지사항 <button><a href="<%=contextPath%>/notice.ct?currentPage=1">전체보기</a></button></h2></p>
+                <p><h2  class="ff" style="font-weight: 700; font-size: 25px;">공지사항 <button><a href="<%=contextPath%>/notice.ct?currentPage=1">전체보기</a></button></h2></p>
 
                 <div class="noticeArea">
                 
                 	<%if(list.isEmpty()) { %>
                 	
-                	<p>공지사항이 없습니다</p>
+                	<p class="ff" style="font-weight: 100; font-size: 15px;">공지사항이 없습니다</p>
                 	
                 	<% } else { %>
                 		<% for(int i=0; i<2; i++) { %> <!-- 글이 3개 이상 있어야지만 나온다...흠.. / 눌렀을때 슬라이드로 아니고 그냥 공지사항 디테일뷰로 이동하도록 수정!-->
 		                    <div class="noticeList">
 		                    <a href="<%= contextPath%>/noticeDetail.ct?nno=<%=list.get(i).getNoticeNo() %>">
-		                        <label id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>
-		                        <label style="float: right;" id="noticeDate"><%=list.get(i).getCreateDate() %></label>
+		                        <label class="ff" style="font-weight: 100; font-size: 15px;" id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>
+		                        <label class="ff" style="font-weight: 100; font-size: 15px; float: right;" id="noticeDate"><%=list.get(i).getCreateDate() %></label>
 		                        <!--  <p class="noticeContent"><%= list.get(i).getNoticeContent() %></p>-->
 		                   	</a>
 		                   </div>

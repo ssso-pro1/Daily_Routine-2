@@ -97,7 +97,7 @@
     </script>
 
     
-    <div class="outer">
+    <div class="outer ff">
 
         <div class="outerWrap">
             <p align="center">Reading is to the mind what exercise is to the body</p>

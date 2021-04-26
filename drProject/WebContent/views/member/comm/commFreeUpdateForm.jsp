@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.*, com.dr.member.user.model.vo.User" %>
 <%
+
     Comm c = (Comm)request.getAttribute("c"); 
     // 게시글번호, 카테고리명, 제목, 내용, 작성자아이디, 작성일, 조회수
 
@@ -11,6 +12,7 @@
     User loginUser = (User)session.getAttribute("loginUser");	
 
 	String contextPath = request.getContextPath();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -31,6 +33,7 @@
     div{
         box-sizing:border-box
     }
+    
     .wrap{
         width:1000px;
         height:800px;
@@ -77,18 +80,25 @@
         right:500px;
     }
     .updateButton>button{
-     	background:rgb(250, 214, 9);
         color:black;
+        text-decoration:none;
         font-size:18px;
         font-weight:bolder;
         border:rgb(250, 214, 9);
     }
+    .updateButton>#updateBtn:hover{
+    	color:rgb(250, 214, 9);	
+    }
+    
     div>button{
         cursor:pointer;
     }
+    
     .leftMenu>#menu2>a{
     	color:rgb(250, 214, 9);
     }
+    
+    .ff{font-family: 'Do Hyeon', sans-serif;}
     
     
     <!-- 메뉴바 --> 
@@ -188,7 +198,7 @@
 		    }
    		</script>
     
-        	<div class="outer">
+        	<div class="outer ff">
 
             	<div class="outerWrap">
            			<p align="center">Reading is to the mind what exercise is to the body</p>
@@ -257,13 +267,13 @@
 
 
 
-    <div class="wrap">
+    <div class="wrap ff">
         
         <div id="content">
 
             <!-- 왼쪽 공통메뉴 -->
             <div id="content_1">
-                <h1>커뮤니티</h1><br>
+                <a href="<%=contextPath%>/commMain.co" id="leftMenu"><h1 class="ff">커뮤니티</h1></a><br>
                 <div class="leftMenu">
                     <div><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
@@ -323,7 +333,7 @@
                                     </table>
                                 </tr>
                                 <div align="right" class="updateButton">
-                        		<button type="submit" onclick="return validate();">등록</button>
+                        		<button type="submit" id="updateBtn" onclick="return validate();">등록</button>
                     			</div>
                             </table><br><br>
                             

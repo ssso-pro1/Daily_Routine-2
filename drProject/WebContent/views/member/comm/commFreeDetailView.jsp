@@ -1,22 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.dr.member.comm.model.vo.*" %>
 <%
+
 	Comm c = (Comm)request.getAttribute("c");
 	// 게시글번호, 카테고리명, 제목, 내용, 작성자아이디, 작성일 
 	
 	CommFile cf = (CommFile)request.getAttribute("cf"); 
 	// null
 	// 파일번호, 원본명, 수정명(실제 서버에 업로드된 이름), 저장폴더경로
+	
 %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<title>커뮤니티 > 자유게시판 게시글 상세조회</title>
 <style>
     div{
         box-sizing:border-box;
     }
+    
+    i:hover{color:rgb(250, 214, 9);}
+    
     .wrap{
         width:1000px;
         height:1000px;
@@ -77,12 +84,17 @@
         color:white;
         border:rgb(250, 214, 9);
     }
+    
     div>button{
         cursor:pointer;
     }
+    
     .leftMenu>#menu2>a{
     	color:rgb(250, 214, 9);
     }
+    
+    .ff{font-family: 'Do Hyeon', sans-serif;}
+     
 </style>
 </head>
 <body>
@@ -90,13 +102,13 @@
 	<%@ include file="../../common/menubar.jsp"%>
 	
 
-    <div class="wrap">
+    <div class="wrap ff">
 
         <div id="content">
 
             <!--왼쪽 공통메뉴-->
             <div id="content_1">
-                <h1>커뮤니티</h1><br>
+                <a href="<%=contextPath%>/commMain.co" id="leftMenu"><h1 class="ff">커뮤니티</h1></a>
                 <div class="leftMenu">
                     <div><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>
@@ -191,7 +203,12 @@
                                     <textarea id="replyContent" cols="80" rows="3" style="resize:none" placeholder="댓글 등록 시 상대에 대한 비방이나 욕설은 삼가주세요 ^^."></textarea>
                                 </td>
                                 <td width="50" align="center"> 
-                                    <button onclick="addReply();" style="color:white; background:rgb(250, 214, 9); border:rgb(250, 214, 9); cursor:pointer;">댓글<br>등록</button>
+                                
+                                    <button onclick="addReply();" id="addReply"
+                                    		style="color:black; font-size:30px; border:rgb(250, 214, 9); cursor:pointer;"
+                                    	    > <i class="fas fa-reply-all"></i>
+                                    </button>
+                                    
                                 </td>
                             </tr>
                             <tr>

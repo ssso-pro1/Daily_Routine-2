@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.dr.member.info.model.vo.Info, com.dr.common.model.vo.PageInfo" %>
 <%
+
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Info> list = (ArrayList<Info>)request.getAttribute("list"); 
 	
@@ -9,6 +10,7 @@
 	int startPage = pi.getStartPage(); 
 	int endPage = pi.getEndPage(); 
 	int maxPage = pi.getMaxPage(); 
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -19,6 +21,7 @@
      div{
         box-sizing:border-box;
     }
+    
     .wrap{
         width:1000px;
         height:800px;
@@ -46,6 +49,7 @@
 
     #content_1{width:15%;}
     #content_2{width:80%; margin-left:25px;}
+    
     #line{width:1%;}
 
     #line{
@@ -63,6 +67,7 @@
         width:200px;
         height:1px;
     }
+    
     .thumbnail{
         border:1px solid black;
         width:200px;
@@ -74,23 +79,31 @@
         float: right;
         margin-right: 95px;
     }
+    
     .pagingArea{
         width: 300px;
         display: inline-block;
         margin-left: 250px;
     }
+    
     .btn{
         width: 100px;
         text-align: right;
         float: right;
         margin-right:100px;
     }
+    
     div>button{
         cursor:pointer;
     }
+    
     .leftMenu>#menu1>a{
     	color:rgb(250, 214, 9);
     }
+    #leftMenu{font-size:16px;}
+    
+    .ff{font-family: 'Do Hyeon', sans-serif;}
+    
 </style>
 </head>
 <body>
@@ -98,13 +111,13 @@
     <%@ include file="../../common/menubar.jsp"%>
 
 
-    <div class="wrap">
+    <div class="wrap ff">
         
         <div id="content">
 
             <!-- 왼쪽 공통메뉴 -->
             <div id="content_1">
-                <h1>Info & Tip</h1><br>
+            	<a href="<%=contextPath%>/workout.in" id="leftMenu"><h1 class="ff">Info & Tip</h1></a><br>
                 <div class="leftMenu">
                     <div id="menu1"><a href="<%=contextPath%>/workout.in?currentPage=1">운동 정보</a></div>
                     <br>

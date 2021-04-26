@@ -23,6 +23,7 @@
     div{
         box-sizing:border-box;
     }
+    
     .wrap{
         width:1000px;
         height:800px;
@@ -50,6 +51,7 @@
 
     #content_1{width:15%;}
     #content_2{width:80%; margin-left:25px;}
+    
     .line{width:1%;}
 
     #line{
@@ -76,33 +78,40 @@
     .listArea>tr,th,td{
         height:30px;
     }
+    
     .searchArea>button{
         background:rgb(250, 214, 9);
         color:white;
         border:rgb(250, 214, 9);
     }
+    
     div>button{
         cursor:pointer;
     }
+    
     .pagingArea, .searchArea{
         margin-left:120px;
     }
+    
     .leftMenu>#menu2>a{
     	color:rgb(250, 214, 9);
     } 
+    
+    .ff{font-family: 'Do Hyeon', sans-serif;}
+    
 </style>
 <body>
     
     <%@ include file="../../common/menubar.jsp"%>
 	
 
-    <div class="wrap">
+    <div class="wrap ff">
 
         <div id="content">
 
             <!--왼쪽 공통메뉴-->
             <div id="content_1">
-                <h1>커뮤니티</h1><br>
+                <a href="<%=contextPath%>/commMain.co" id="leftMenu"><h1 class="ff">커뮤니티</h1></a>
                 <div class="leftMenu">
                     <div><a href="<%=contextPath%>/commMain.co?currentPage=1">나만의 운동 Tip!</a></div>
                     <br>

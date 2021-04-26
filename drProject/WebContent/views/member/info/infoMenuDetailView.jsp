@@ -1,12 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="java.util.ArrayList, com.dr.member.info.model.vo.*, com.dr.member.user.model.vo.User" %>
 <%
+
 	Info i = (Info)request.getAttribute("i"); 
 	ArrayList<InfoFile> list = (ArrayList<InfoFile>)request.getAttribute("list"); 
 
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	String contextPath = request.getContextPath();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -91,6 +93,10 @@
     .leftMenu>#menu2>a{
     	color:rgb(250, 214, 9);
     }
+    #leftMenu{font-size:16px;}
+    
+    .ff{font-family: 'Do Hyeon', sans-serif;}
+    
     
     <!-- 메뉴바 --> 
     .outer{
@@ -191,7 +197,7 @@
 	    }
 	    </script>
 	    
-		  <div class="outer">
+		  <div class="outer ff">
 
        	    <div class="outerWrap">
            	 	<p align="center">Reading is to the mind what exercise is to the body</p>
@@ -259,13 +265,13 @@
     
     
 
-    <div class="wrap">
+    <div class="wrap ff">
         
         <div id="content">
 
             <!-- 왼쪽 공통메뉴 -->
             <div id="content_1">
-                <h1>Info & Tip</h1><br>
+                <a href="<%=contextPath%>/workout.in" id="leftMenu"><h1 class="ff">Info & Tip</h1></a><br>
                 <div class="leftMenu">
                     <div><a href="<%=contextPath%>/workout.in?currentPage=1">운동 정보</a></div>
                     <br>

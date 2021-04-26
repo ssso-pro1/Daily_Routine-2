@@ -119,7 +119,7 @@
                 </tr>
                 <tr>
                     <th>비밀번호 재확인</th>
-                    <th><input type="password"  name="userPwd2" maxlength="15" placeholder="비밀번호 재확인" required ></th> 
+                    <th><input type="password"  name="userPwd2" minlength="8" maxlength="15" placeholder="비밀번호 재확인" required ></th> 
                     <td></td>
                 </tr>
                 <tr>

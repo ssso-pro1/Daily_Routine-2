@@ -267,39 +267,50 @@
         <br><br>
 
         <div class="listArea" align="center">
+        
+        
+        <!-- 조회된 결과가 없을 경우 -->
+            <% if(list.isEmpty()){ %>
+                <tr>
+                    <td colspan="7"> 조회된 리스트가 없습니다. </td>
+                </tr>
+            <% } else { %>
+                 
+         <!-- 조회된 결과가 있을 경우 -->
+         
+        	<% for(AdHT a : list){ %>
+        	
             <div class="thumbnail" align="center">
-                <img src="http://img.youtube.com/vi/xpzMr3nSOIE/maxresdefault.jpg" width="200" height="150">
-                <p>
-                    No.글번호. [카테고리].<br>
-                    제목~~  <br>
-                    작성일. 조회수:xx <br>
-                </p>
+                <input type="hidden" value="<%=a.getHtPostNo()">
+                <video src=""></video>
+                <img src="<%=contextPath %>/<%= a.getTitleImg() %>" width="200" height="150">
+             
+                <tr>
+                    <td><%= a.getHtPostNo() %></td>
+                    <td><%= a.getCategoryName() %></td>
+                    <td><%= a.getHtPostTitle() %></td>
+                    <td><%= a.getHtEnrollDate() %></td>
+                </tr>
+                  
+                  <% } %>
+                    
+                <% } %>
             </div>
             
         </div>
-               
+        
+        <script>
+			$(function() {
+       	     	 $(".thumbnail").click(function() {
+                  	 location.href= '<%=contextPath%>/detail.ht?hno=' + $(this).children().eq(0).val();
+      	     	   })
+   	    	 })
+		</script>
                 
-                <!-- 조회된 결과가 없을 경우 -->
-                <% if(list.isEmpty()){ %>
-                    <tr>
-                        <td colspan="7"> 조회된 리스트가 없습니다. </td>
-                    </tr>
-                <% } else { %>
                 
-                <!-- 조회된 결과가 있을 경우 -->
                 
-                    <% for(AdHT a : list){ %>
-                
-                        <tr>
-                            <td><%= a.getHtPostNo() %></td>
-                            <td><%= a.getCategoryName() %></td>
-                            <td><%= a.getHtPostTitle() %></td>
-                            <td><%= a.getHtEnrollDate() %></td>
-                            <td><%= a.getHtBoardView() %></td>
-                        </tr>
-                    <% } %>
-                    
-                <% } %>
+              
+                  
               
             </div>
          <br>

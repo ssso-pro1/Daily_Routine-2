@@ -26,10 +26,6 @@
 
 <!-- 제일 위의 부트스트랩 넣으면 크기나 여백이 다 바뀜. 근데 버튼하려면 저거 써야함.. 질문 -->
 
-<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
-
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
-
     <style>
         .menuWrap{
             width:1000px;
@@ -139,11 +135,11 @@
         </div>
         
         <br>
-
         
           
         <div id="content_2" >
             <form action="<%= request.getContextPath()%>/findID2.us" class="way1" method="post" id="test">
+
                 <div class="way">휴대전화로 인증</div>
 
                 <div class="content">
@@ -154,8 +150,7 @@
                         </tr>
                         <tr>
                             <th align="left">이름</th>
-                            <td ><input id="name" type="text" placeholder="이름을 입력하세요" required></td>
-                            <td></td>
+                            <td colspan="2"><input id="name" type="text" placeholder="이름을 입력하세요" required></td>
                         </tr>
 
                         <tr>
@@ -166,7 +161,7 @@
 
                         <tr>
                             <td></td>
-                            <td><input type="text" id="num1" placeholder="인증번호 6자리 숫자 입력" required></td>
+                            <td colspan="2"><input type="text" id="num1" placeholder="인증번호 6자리 숫자 입력" required></td>
                             <td><input type="button" id="btn1" value="인증하기" onclick="send()"></td>
 
                         </tr>
@@ -186,8 +181,7 @@
 
                             <tr>
                                 <th align="left">이름</th>
-                                <td><input id="name" type="text" placeholder="이름을 입력하세요" required></td>
-                                <td></td>
+                                <td colspan="2"><input id="name" type="text" placeholder="이름을 입력하세요" required></td>
                             </tr>
 
                             <tr>
@@ -198,146 +192,77 @@
 
                             <tr>
                                 <th></th>
-                                <td><input type="text" id="num2" placeholder="인증번호 6자리 숫자 입력" required></td>
-                                <td><input type="button" id="btn2" value="인증하기" onclick="send()"></td>
+                                <td colspan="2"><input type="text" id="num2" placeholder="인증번호 6자리 숫자 입력" required></td>
+                                <td><input type="button" id="btn1" value="인증하기" onclick="send()"></td>
 
                             </tr>
                     </table>
                 </div>
             </form>
         </div> 
-
-
+        
+        
         <br>
         <div align="center">
-            <input type="button" id="btn" class="btn btn-warning" value="다음" onclick="return validate();">
+            <input type="button" id="btn" class="btn btn-warning" value="다음">
         </div>
+        
+        
+     
 
+        </div>
         <br><br><br><br><br><br><br><br><br>
         
 
 
 
 
+        <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
         
-        <!-- input입력안하고 다음 클릭 시 경고창 -->
+        <!-- input입력안하고 다음 클릭 시 경고창, input에 focus -->
         <script>
-           
-        //다음 버튼 클릭시 각 경우에 따른 input들에 값이 입력되어있지 않을경우 못넘어가게 
+            /*
+            $(function() {
+                $("input[type=submit]").click(function() {
+                    var result = $("input[type=text]").val();
+                    if (!result) {
+                    alert("빈칸을 입력해주세요.");
+                    return false;
+                    }
+                })
+            })*/
 
-           $(function(){ //id="btn" 클릭시
-
-                // radio 체크 o
+   
+            $(function(){ //id="btn" 클릭시
+        
                 $("#btn").click(function(){
-
-                    /////휴대폰 인증
+        
                     if($("#phoneRa").prop("checked")){
-
-                        // 셋중에 한곳이라도 입력이 안되어있을 경우
                         if($("#phoneTable #name").val() == "" || $("#phoneTable input[type=tel]").val() == "" || $("#phoneTable #num1").val() == "") {
-                        
+                            // 셋중에 한곳이라도 입력이 안되어있을 경우
                         } else{
-                        // 모두 다 기술이 잘 되었을 경우
-                        $("#test").submit();
+                            // 모두 다 기술이 잘 되었을 경우
+                            $("#test").submit();
+                        } 
+                    }else{
 
-
-                } 
-                }else{ /////이메일 인증
-
-                    // 셋중에 한곳이라도 입력이 안되어있을 경우
-                    if($("#emailTable #name").val() == "" || $("#emailTable #email").val() == "" || $("#emailTable #num2").val() == "") {
-                    
-                    } else{
-                    // 모두 다 기술이 잘 되었을 경우
-
-                    $("#test").submit();
-                    } 
-                }
-
-            });
-            });
-            }
+                        if($("#emailTable #name").val() == "" || $("#emailTable #email").val() == "" || $("#emailTable #num2").val() == "") {
+                            // 셋중에 한곳이라도 입력이 안되어있을 경우
+                        } else{
+                            // 모두 다 기술이 잘 되었을 경우
+                            $("#test").submit();
+                        } 
+                    }
+            
+                    });
+                });
+ 
         </script>
 
 
-        <script>
-             function validate(){
-                        // 유효성 검사: 이름, 휴대전화, 인증번호
 
-                        var name = documnet.getElementById("name");
-                        var tel = documnet.getElementById("tel");
-                        var email = documnet.getElementById("email");
-                        var num1 = documnet.getElementById("num1");
-                        var num2 = documnet.getElementById("num2");
-
-                        // 1) 이름 검사 (한글로만, 2글자 이상)
-                        regExp = /^[가-힣]{2,}$/; //{2} : 그냥 2글자
-
-                        if(!regExp.test(name.value)){
-                            alert("이름을 확인해주세요");
-
-                            name.value = "";
-                            name.focus();
-
-                            return false;
-                        }
-
-                        // 2) 휴대폰 전화 길이 검사 
-                        regExp = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
-
-                        if(!regExp.test(tel.value)){
-                            alert("전화번호를 확인해주세요");
-
-                            tel.value = "";
-                            tel.focus();
-
-                            return false;
-                        }
-
-
-                        //3) 이메일
-                        regExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
-
-                        if(!regExp.test(email.value)){
-                            alert("전화번호를 확인해주세요");
-
-                            email.value = "";
-                            email.focus();
-
-                            return false;
-                        }
-
-                    
-
-                        // 4) num1 인증번호 길이 검사 
-                        regExp = /^[0-9]{4}/;
-
-                            if(!regExp.test(num1.value)){
-                                alert("전화번호를 확인해주세요");
-
-                                num1.value = "";
-                                num1.focus();
-
-                                return false;
-                            }
-                    
-                        
-                         // 4) num2 인증번호 길이 검사 
-                         regExp = /^[0-9]{4}/;
-
-                            if(!regExp.test(num2.value)){
-                                alert("전화번호를 확인해주세요");
-
-                                num2.value = "";
-                                num2.focus();
-
-                                return false;
-                            }
-
-                        }
-          
-        </script>
 
 
 
@@ -349,7 +274,7 @@
         </script>
 
 
-        <!-- 아코디언 효과 -->
+        <!-- 다음 클릭시 다음단계로 이동 -->
         <script>
 
             $(function(){

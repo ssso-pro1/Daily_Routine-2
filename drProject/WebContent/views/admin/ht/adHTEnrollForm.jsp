@@ -234,7 +234,8 @@
                                         <td>
 
                                             <!-- <img type="file" name="fileNo" id="titleImg" width="250" height="250" src="http://img.youtube.com/vi/xpzMr3nSOIE/maxresdefault.jpg"> -->
-                                            <img type="file" id="titleImg" width="250" height="250" src="">
+                                            <!-- <img type="file" id="titleImg" width="250" height="250" src=""> -->
+                                            <img id="titleImg" width="250" height="250" >
 
                                             <!-- <input type="file" name="fileNo" style="width: 100%;"> -->
                                         </td>
@@ -291,7 +292,7 @@
                                     // num : 몇 번째 input요소인지 확인 후 해당 그 영역에 미리보기하기 위해
                                     
                                     // 파일을 선택하는 순간 inputFile.files라는 속성배열에 0번 인덱스에 파일 담김
-                                    console.log(inputFile.files);
+                                    //console.log(inputFile.files);
                                     if(inputFile.files.length == 1){ // 선택된 파일이 있을 경우
 
                                         // 파일을 읽어들일 FileReader 객체 생성

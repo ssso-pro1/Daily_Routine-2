@@ -88,4 +88,4 @@ public class adInfoFile {
 				+ fileUpdate + ", filePath=" + filePath + ", uploadDate=" + uploadDate + ", status=" + status + "]";
 	}
 
-}	
+}

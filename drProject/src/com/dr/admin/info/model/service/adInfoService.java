@@ -9,10 +9,13 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.dr.admin.center.model.dao.adCenterDao;
+import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.admin.info.model.dao.adInfoDao;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.admin.info.model.vo.adInfoFile;
 import com.dr.common.model.vo.PageInfo;
+import com.dr.member.center.model.dao.CenterDao;
+import com.dr.member.center.model.vo.CenterNotice;
 
 
 public class adInfoService {
@@ -91,6 +94,40 @@ public class adInfoService {
 		
 		return result1 * result2;
 	}
+
+	//게시글 조회
+	public int infoIncreaseCount(int infoNo) {
+		Connection conn = getConnection();
+		
+		int result = new adInfoDao().infoIncreaseCount(conn, infoNo);
+		
+		if(result > 0) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+		return result;
+		
+	}
+
+	public adInfo selectInfo(int infoNo) {
+		Connection conn = getConnection();
+		
+		adInfo i = new adInfoDao().selectInfo(conn, infoNo);
+		close(conn);
+		return i;
+		
+	}
+
+	public adInfoFile selectAttachment(int infoNo) {
+		Connection conn = getConnection();
+		adInfoFile fi = new adInfoDao().selectAttachment(conn, infoNo);
+		close(conn);
+		return fi;
+	}
+
 }	
 		
 	

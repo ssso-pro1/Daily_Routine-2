@@ -53,6 +53,26 @@ public class adInfo {
 		this.status = status;
 		this.userId = userId;
 	}
+	
+	
+	
+	
+	
+
+	public adInfo(int intPostNo, String categoryName, String postTitle, String postContent,  Date enrollDate,
+			Date updateDate, String status, String userId) {
+		super();
+		this.intPostNo = intPostNo;
+		this.categoryName = categoryName;
+		this.postTitle = postTitle;
+		this.postContent = postContent;
+		this.enrollDate = enrollDate;
+		this.updateDate = updateDate;
+		this.status = status;
+		this.userId = userId;
+	}
+
+	
 
 	public int getIntPostNo() {
 		return intPostNo;

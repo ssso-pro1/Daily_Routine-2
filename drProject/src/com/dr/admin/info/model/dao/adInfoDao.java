@@ -13,6 +13,8 @@ import java.util.Properties;
 
 import com.dr.admin.center.model.dao.adCenterDao;
 import com.dr.admin.center.model.vo.adCenterFaq;
+import com.dr.admin.center.model.vo.adCenterNotice;
+import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.admin.info.model.vo.adInfoFile;
 import com.dr.common.model.vo.PageInfo;
@@ -250,6 +252,96 @@ private Properties prop = new Properties();
 		
 		return result;
 	}
+
+
+	public int infoIncreaseCount(Connection conn, int infoNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("infoIncreaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, infoNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+		
+	}
+
+
+	public adInfo selectInfo(Connection conn, int infoNo) {
+		adInfo i = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectInfo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, infoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				i = new adInfo(rset.getInt("INT_POST_NO"),
+							  rset.getString("CATEGORY_NAME"),
+							  rset.getString("POST_TITLE"),
+							  rset.getString("POST_CONTENT"),
+							  rset.getDate("ENROLL_DATE"),
+							  rset.getDate("UPDATE_DATE"),
+							  rset.getString("status"),
+							  rset.getString("user_id"));
+					}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} return i;
+
+
+	}
+
+
+	public adInfoFile selectAttachment(Connection conn, int infoNo) {
+		adInfoFile fi = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, infoNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				fi = new adInfoFile();
+				fi.setIntPostNo(rset.getInt("INT_POST_NO"));
+				fi.setFileNo(rset.getInt("file_no"));
+				fi.setFileName(rset.getString("file_name"));
+				fi.setFileUpdate(rset.getString("file_update"));
+				fi.setFilePath(rset.getString("file_path"));
+				
+				
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return fi;
+	}
+
 
 		
 		

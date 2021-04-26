@@ -134,49 +134,78 @@
 	
 	</entry>
 	
+	<!-- 글번호조회 -->
+	<entry key="infoIncreaseCount">
+		UPDATE TB_INFO_N_TIP
+		   SET BOARD_VIEW = BOARD_VIEW +1
+	     WHERE INT_POST_NO = ?
+	       
+	</entry>
 	
+	<entry key="selectInfo">
+	SELECT 
+		    INT_POST_NO
+		  , CATEGORY_NAME
+		  , POST_TITLE
+		  , POST_CONTENT
+		  , T.ENROLL_DATE
+		  , T.UPDATE_DATE
+		  , STATUS
+		  , USER_ID
+	  FROM TB_INFO_N_TIP T
+	  JOIN TB_USER USING (USER_NO)
+	 WHERE INT_POST_NO = ?
+	   
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	</entry>
 	
 	
 	<entry key="selectAttachment">
 		SELECT
-		        FILE_NO
+		        INT_POST_NO
+		      , FILE_NO
 		      , FILE_NAME
 		   	  , FILE_UPDATE
 		      , FILE_PATH
-		   FROM TB_NOTICE_FILE
-		  WHERE NOTICE_NO = ?
+		   FROM TB_INT_FILE
+		  WHERE INT_POST_NO = ?
 		
 	</entry>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<entry key="updateAttachment">
@@ -210,4 +239,4 @@
 	</entry>
 	
 	
-	
+</properties>	

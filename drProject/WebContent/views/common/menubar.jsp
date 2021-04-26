@@ -130,7 +130,7 @@
                             <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
                         </tr>
                         <tr>
-                            <th colspan="3"><b><%= loginUser.getUserName() %>님</b> 환영합니다.</th>
+                            <th colspan="3"><b><%= loginUser.getUserName() %>님</b> 환영합니다</th>
                             <th><i class="fas fa-user-circle" fa="lg"></i></th>
                         </tr>
                     </table>

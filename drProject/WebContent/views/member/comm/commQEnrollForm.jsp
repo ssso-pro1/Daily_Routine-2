@@ -25,6 +25,7 @@
     div{
         box-sizing:border-box
     }
+    
     .wrap{
         width:1000px;
         height:800px;
@@ -52,6 +53,7 @@
 
     #content_1{width:15%;}
     #content_2{width:80%; margin-left:25px;}
+    
     .line{width:1%;}
 
     #line{
@@ -81,6 +83,7 @@
     div>button{
         cursor:pointer;
     }
+    
     .leftMenu>#menu3>a{
     	color:rgb(250, 214, 9);
     }
@@ -105,9 +108,9 @@
         font-size:12px;
         line-height:50px;
         font-weight:bold;
-        display:block;
-        
+        display:block;   
     }
+    
     .menu{
         display: table-cell;
         height: 50px;
@@ -123,6 +126,7 @@
         width:100%;
         height:100%;
     }
+    
     .outerWrap a:hover{
         color:darkorchid
 	}
@@ -141,6 +145,7 @@
         position:relative;
         top:-30px;
     }
+    
     #mainLine{
         position:relative;
         top:-20px;
@@ -149,23 +154,45 @@
     }
   
     .navWrap{
-    	margin-left:300px;
+    	margin-left:230px;
         margin:auto;
     }
+       
+    #topMenu2{
+    	margin-right:130px;
+    	margin-top:20px;
+    }
+    
+    .ff{font-family: 'Do Hyeon', sans-serif;}
+    
 </style>
 </head>
 <body>
 	
 	<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+		
+		<!-- 폰트 -->
+		<link rel="preconnect" href="https://fonts.gstatic.com">
+		<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 	
+		<script>
+	    // 회원가입 성공 시 뜨는 알림창 메시지. 확인 누르면 메뉴바로 (메인페이지)
+	    var msg = "<%=session.getAttribute("alertMsg")%>";
+	
+	    if(msg != "null"){
+	        alert(msg);
+	        <% session.removeAttribute("alertMsg"); %>
+	    }
+	    </script>
+	    
 		  <div class="outer">
 
-        <div class="outerWrap">
-            <p align="center">Reading is to the mind what exercise is to the body</p>
+       	    <div class="outerWrap">
+           	 	<p align="center">Reading is to the mind what exercise is to the body</p>
             
-            <div class="header">
-                <div class="loginArea">
-                <!--  로그인 전에 보여지는 로그인 버튼 -->
+            	<div class="header">
+               		<div class="loginArea">
+               		<!--  로그인 전에 보여지는 로그인 버튼 -->
                 
                     <% if(loginUser == null){ %>
             

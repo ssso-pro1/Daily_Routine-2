@@ -1,5 +1,7 @@
 package com.dr.member.comm.model.dao;
 
+import static com.dr.common.JDBCTemplate.close;
+
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.sql.Connection;
@@ -12,9 +14,7 @@ import java.util.Properties;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.comm.model.vo.Comm;
 import com.dr.member.comm.model.vo.CommFile;
-import com.dr.member.comm.model.vo.Reply;
-
-import static com.dr.common.JDBCTemplate.*; 
+import com.dr.member.comm.model.vo.Reply; 
 
 public class CommDao {
 	
@@ -1563,7 +1563,44 @@ public class CommDao {
 			
 	}
 	
-	
+	//mainPage comm list
+	public ArrayList<Comm> mainList(Connection conn){
+		//select문
+		ArrayList<Comm> list = new ArrayList<>();
+		
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("mainList");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) { 
+	            list.add(new Comm(rset.getInt("comm_post_no"),
+	                          rset.getString("user_id"),
+	                             rset.getString("post_title"),
+	                             rset.getDate("enroll_date"),
+	                             rset.getInt("board_view"))); 
+	         }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally { 
+	         close(rset); 
+	         close(pstmt);   
+	      }
+	      
+	      return list;
+			
+		
+		
+		
+		
+		
+	}
 	
 	
 	

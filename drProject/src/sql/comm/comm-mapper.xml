@@ -901,8 +901,26 @@
 	
 	
 	
-	<entry key="">
-		
+	<entry key="mainList">
+		SELECT 
+		        ROWNUM RNUM
+		        , A.*
+		       
+		    FROM (
+		        SELECT 
+		                COMM_POST_NO
+		             , USER_ID
+		             , POST_TITLE
+		             , ENROLL_DATE
+		             , BOARD_VIEW
+		          FROM TB_COMMUNITY
+		          JOIN TB_USER U ON (U.USER_NO = C.USER_NO)
+		                 WHERE COMM_NO = 1
+		                   AND STATUS = 'N'
+		                 ORDER 
+		                     BY ENROLL_DATE DESC, 
+		                        BOARD_VIEW DESC
+				    )A
 	</entry>
 	
 	<entry key="">

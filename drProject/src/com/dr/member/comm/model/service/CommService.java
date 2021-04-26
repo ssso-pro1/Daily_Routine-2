@@ -1,5 +1,10 @@
 package com.dr.member.comm.model.service;
 
+import static com.dr.common.JDBCTemplate.close;
+import static com.dr.common.JDBCTemplate.commit;
+import static com.dr.common.JDBCTemplate.getConnection;
+import static com.dr.common.JDBCTemplate.rollback;
+
 import java.sql.Connection;
 import java.util.ArrayList;
 
@@ -7,10 +12,7 @@ import com.dr.common.model.vo.PageInfo;
 import com.dr.member.comm.model.dao.CommDao;
 import com.dr.member.comm.model.vo.Comm;
 import com.dr.member.comm.model.vo.CommFile;
-import com.dr.member.comm.model.vo.Reply;
-import com.dr.member.ht.model.dao.HtDao;
-
-import static com.dr.common.JDBCTemplate.*; 
+import com.dr.member.comm.model.vo.Reply; 
 
 public class CommService {
 	
@@ -578,6 +580,18 @@ public class CommService {
 		return list; 
 			
 	}	
+	
+	//mainPage Comm list
+	public ArrayList<Comm> mainList(){
+		Connection conn = getConnection();
+		
+		ArrayList<Comm> list = new CommDao().mainList(conn);
+		
+		close(conn);
+		
+		return list;
+	}
+	
 	
 	
 	

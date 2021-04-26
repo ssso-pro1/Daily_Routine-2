@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
-
+<%@ page import="java.util.ArrayList, com.dr.member.comm.model.vo.Comm" %>
+<%
+	ArrayList<Comm> list = (ArrayList<Comm>)request.getAttribute("list"); 
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,7 +13,7 @@
 
 <style>
     /* menubar */
-    /* #header>p{
+    #header>p{
         background:rgb(250, 214, 9);
         font-size: 15px;
     }
@@ -39,18 +42,20 @@
         line-height:50px;
         font-weight:bold;
         display:block;
-        width:100%;
+         width:100%;
         height:100%;
     }
     .outerWrap a:hover{
         color:darkorchid
 	}
-    */
-   /* content */
+    
     #content1{
+        margin:auto;
+        display:flex;
+        justify-content: center;
         width:100%;
         height:20%;
-        background-color: gray;
+        /* background-color: gray; */
     }
     
     .line{
@@ -73,109 +78,61 @@
         
     }
 
+    #todayV{
+        margin:auto;
+        display:flex;
+        align-content: center;
+        margin:30px 50px;
+    }
 </style>
 </head>
 <body>
     <!-- 메뉴바에로그인 기능 등 메뉴바에 넣고, 메인페이지: 메뉴바, 푸터바 include시키기 -->
     <%@ include file = "menubar.jsp"%>
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
-<!-- 
-	<script>
-    // 회원가입 성공 시 뜨는 알림창 메시지. 확인 누르면 메뉴바로 (메인페이지)
-    var msg = "<%=session.getAttribute("alertMsg")%>";
 
-    if(msg != "null"){
-        alert(msg);
-        <% session.removeAttribute("alertMsg"); %>
-    }
-    </script>
-    
-<div id="outer">
-
-
-    <div class="outerWrap">
-        <div id="header">
-            <p align="center">Reading is to the mind what exercise is to the body</p>
-            
-            <table id="topMenu" align="right">
-                <tr>
-                    <th><a href="<%=contextPath%>/loginForm.us">로그인</a></th>
-                    <th>|</th>
-                    <th><a href="<%=contextPath%>/enrollForm1.us">회원가입</a></th>
-                    <th>|</th>
-                    <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
-                </tr>
-            </table>
-        </div>
-    </div>
-
-    <br><br>
-    <div id="navWrap1" >
-        <div class="nav1" align="center">
-            <div class="menu"><a href="<%=contextPath%>/mainPage.co">메인페이지</a></div>
-            <div class="menu"><a href="">HomeTraining</a></div>
-            <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
-            <div class="menu"><a href="<%=contextPath%>/intMain.in">Info&Tip</a></div>
-            <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
-            <div></div>
-        </div>
-        
-        
-        <hr>
-    </div> -->
 
     <div id="content1" style="margin-top:20px; margin-bottom:50px;">
-        <video src="https://youtube.com" autoplay width="100%" height="150px" controls></video>
-        <!-- <iframe width="420" height="315"
-            src="https://www.youtube.com/embed/tgbNymZ7vqY?controls=0">
-        </iframe> -->
-    
+        <img src="../../resources/images/main/Jogging.jpg" alt="" width="70%" height="20%" >
     </div>
     
 
     <div id="content2">
         <div class="content2_1">
-            <table border="1" style="text-align:center;">
+            <table border="1" style="text-align:center;" >
+
+                <!-- 조회해오기 -->
                 <caption><b>Info&Tip 최신글</b></caption>
-                
-                <tr>
-                    <th width="50px" height="40px">글번호</th>
-                    <th width="200px">제목</th>
-                    <th width="130px">등록 날짜</th>
-                    <th width="50px">조회수</th>
-                </tr>
-                <tr>
-                    <td height="25px">1</td>
-                    <td>유산소 운동 시 주의할 점</td>
-                    <td>2019-03-04</td>
-                    <td>123</td>
-                </tr>
-                <tr>
-                    <td height="25px">2</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td height="25px">3</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td height="25px">4</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-                <tr>
-                    <td height="25px">5</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
+                <thead>
+	                <tr>
+	                    <th width="50px" height="40px">글번호</th>
+	                    <th width="200px">제목</th>
+	                    <th width="130px">등록 날짜</th>
+	                    <th width="50px">조회수</th>
+	                </tr>
+                </thead>
+                <tbody>
+	                <% if(list.isEmpty()){ %>
+	                	<tr>
+	                		<td colspan="4"> 조회된 리스트가 없습니다. </td>
+	                	</tr>
+	                	
+	            	<% } else { %>
+	            	
+	            		<% for(Comm c : list) { %>
+	                <tr>
+		                <input type="hidden" value="<%= c.getCommPostNo() %>">
+		                <td><%= c.getPostTitle() %></td>
+		                <td><%= c.getUserNo() %></td>
+						<td><%= c.getEnrollDate() %></td>
+						<td><%= c.getBoardView() %></td>
+	                </tr>
+	                	<% } %>
+		            <% } %>
+               </tbody>
             </table>
         </div>
+      
 
         <div class="line"></div>
 
@@ -267,7 +224,7 @@
 
 
     <!-- footer -->
-    <%@ include file="footerbar.jsp"%>
+   
 </div>
 </body>
 </html>

@@ -65,12 +65,30 @@
     
 
 
-    #upperIcon{
-        border:1px solid black;
-        width:150px;
+   #upperIcon{
+        
+        width:170px;
+        height: 40px;
         display:inline-block;
         margin:10px;
         cursor: pointer;
+        font-size: 20px;
+        font-weight: 500;
+        border: rgb(250, 249, 247);
+        border-width: 5px;
+        border-style: inset;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background-color: rgb(48, 42, 100);
+        color: white;
+    }
+
+    #upperIcon.faq{
+        background-color: rgb(250, 234, 16);
+        color: black;
+        
     }
 
     .searchArea{
@@ -108,9 +126,15 @@
         display: none;
     }
 
-    a{text-decoration: none; color: black;}
+    a#leftMenu{
+        text-decoration:none;
+        color:black;
+        font-size:18px;
+        font-weight:bold;
+    }
+    a#leftMenu:hover{color:rgb(250, 214, 9);}
     
-    #content_2_4>table a:hover{color:orange;}
+    #content_2_4>table a:hover{color: green;}
     
 
 </style>
@@ -124,15 +148,15 @@
     
     <!--왼쪽 공통메뉴-->
         <div id="content_1">
-            <h1><a href="<%=contextPath%>/main.ct">고객센터</a></h1>
+            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1>고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">FAQ 자주찾는 질문</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
             
             </div>
         </div>
@@ -143,29 +167,29 @@
         <div id="content_2">
             <div id="content_2_1">고객센터 HOME > FAQ 자주찾는 질문</div>
 
-            <div id="content_2_2">
+           <div id="content_2_2">
                 <div class="iconArea">
-                    <div id="upperIcon">
-                        <img src="../../resources/images/faq.JPG" width="180">
-                    </div>
-                    <div id="upperIcon">
-                        <img src="../../resources/images/11.JPG" width="180">
-                    </div>
-                    <div id="upperIcon">
-                        <img src="../../resources/images/my.JPG" width="180">
-                    </div>
-                    <div id="upperIcon">
-                        <img src="../../resources/images/notice.JPG" width="180">
-                    </div>
+                    <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top"><div id="upperIcon" class="faq" align="center">
+                        FAQ
+                    </div></a>
+                    <a href="<%=contextPath%>/enrollQuery.ct"><div id="upperIcon" class="query" align="center">
+                        1:1문의
+                    </div></a>
+                    <a href="<%=contextPath%>/queryList.ct?currentPage=1"><div id="upperIcon" class="queryList" align="center">
+                     	   나의 문의내역
+                    </div></a>
+                    <a href="<%=contextPath%>/notice.ct?currentPage=1"><div id="upperIcon" class="notice" align="center">
+                        	공지사항
+                    </div></a>
                 </div>
             </div>
                 
 
-            <!--검색-->
+             <!--검색-->
             <div id="content_2_3">    
                 <div class="searchArea" align="center">
                     <form action="<%=contextPath %>/searchFaq.ct?currentPage=1" method="post">
-                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
+                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요" style="margin-top: 13px; width: 300px;">
                         <button type="submit">검색</button>
                     </form>
                 </div>

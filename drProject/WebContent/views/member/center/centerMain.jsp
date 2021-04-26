@@ -15,6 +15,12 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+
+<!-- 폰트 -->
+<link rel="preconnect" href="https://fonts.gstatic.com">
+<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+
 <style>
     div{
         box-sizing:border-box
@@ -54,13 +60,26 @@
     #content_2_5{height: 35%;}
 
 
-    #upperIcon{
-        border:1px solid black;
-        width:150px;
+     #upperIcon{
+        
+        width:170px;
+        height: 40px;
         display:inline-block;
         margin:10px;
         cursor: pointer;
+        font-size: 20px;
+        font-weight: 500;
+        border: rgb(250, 249, 247);
+        border-width: 5px;
+        border-style: inset;
+        border-top-right-radius: 20px;
+        border-bottom-right-radius: 20px;
+        border-top-left-radius: 20px;
+        border-bottom-left-radius: 20px;
+        background-color: rgb(48, 42, 100);
+        color: white;
     }
+
 
     .searchArea{
         margin: auto;
@@ -74,9 +93,9 @@
     }
     .helpImg{
         border:1px solid black;
-        width:120px;
+        width:130px;
         display:inline-block;
-        margin:10px;
+        margin:12px;
         cursor: pointer;
     }
     .noticeList{
@@ -101,8 +120,17 @@
         display: none;
         }
 
-   
+   a#leftMenu{
+        text-decoration:none;
+        color:black;
+        font-size:18px;
+        font-weight:bold;
+    }
+    a#leftMenu:hover{color:rgb(250, 214, 9);}
     
+    a{text-decoration: none; color: black;}
+
+    .ff{font-family: 'Do Hyeon', sans-serif;}
 
 </style>
 </head>
@@ -116,15 +144,15 @@
     <div id="content">
         <div id="content_1">
             
-            <h1><a href="<%=contextPath%>/main.ct">고객센터</a></h1>
+            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1>고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">FAQ 자주찾는 질문</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
                 
             </div>
 
@@ -138,20 +166,20 @@
         <div id="content_2">
             <div id="content_2_1">고객센터 HOME</div>
 
-            <div id="content_2_2">
+             <div id="content_2_2">
                 <div class="iconArea">
-                    <div id="upperIcon">
-                        <img src="../../resources/images/faq.JPG" width="180">
-                    </div>
-                    <div id="upperIcon">
-                        <img src="../../resources/images/11.JPG" width="180">
-                    </div>
-                    <div id="upperIcon">
-                        <img src="../../resources/images/my.JPG" width="180">
-                    </div>
-                    <div id="upperIcon">
-                        <img src="../../resources/images/notice.JPG" width="180">
-                    </div>
+                    <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
+                        <div id="upperIcon" class="ff" class="faq" align="center">FAQ</div>
+                    </a>
+                    <a href="<%=contextPath%>/enrollQuery.ct">
+                        <div id="upperIcon" class="ff" class="query" align="center">1:1문의</div>
+                    </a>
+                    <a href="<%=contextPath%>/queryList.ct?currentPage=1">
+                        <div id="upperIcon" class="ff" class="queryList" align="center">나의 문의내역</div>
+                    </a>
+                    <a href="<%=contextPath%>/notice.ct?currentPage=1">
+                        <div id="upperIcon" class="ff" class="notice" align="center">공지사항</div>
+                    </a>
                 </div>
             </div>
                 
@@ -160,7 +188,7 @@
             <div id="content_2_3">    
                 <div class="searchArea" align="center">
                     <form action="<%=contextPath %>/searchFaq.ct?currentPage=1" method="post">
-                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
+                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요" style="margin-top: 13px; width: 300px;">
                         <button type="submit">검색</button>
                     </form>
                 </div>
@@ -173,31 +201,32 @@
                 
                 <div class="helpArea">
                     <div class="helpImg" align="center">
-                        <img src="../../resources/images/fq.JPG" width="120" height="120">
+                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top"><img src="https://t3.ftcdn.net/jpg/04/28/16/86/240_F_428168682_Hbozsl5o8rjLlgOZfSw23ddknim4ZdGg.jpg" width="120" height="120"></a>
                         <p>
-                            faq
+                           	 질문 TOP10
                         </p>
+                        
                     </div>
                     <div class="helpImg" align="center">
-                        <img src="../../resources/images/member.JPG" width="120" height="120">
+                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=userInfo"><img src="https://t3.ftcdn.net/jpg/02/73/37/20/240_F_273372018_avUsN7C4K9RDVPDQuCkeyAbyOvS58apZ.jpg" width="120" height="120"></a>
                         <p>
                            	 회원정보
                         </p>
                     </div>
                     <div class="helpImg" align="center">
-                        <img src="../../resources/images/contents.JPG" width="120" height="120">
+                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=content"><img src="https://t3.ftcdn.net/jpg/03/00/17/00/240_F_300170007_EeUnk2vDMLQJDQh0sStL46tH0rTUy1j3.jpg" width="120" height="120"></a>
                         <p>
                             	게시글
                         </p>
                     </div>
                     <div class="helpImg" align="center">
-                        <img src="../../resources/images/report.JPG" width="120" height="120">
+                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=report"><img src="https://t3.ftcdn.net/jpg/00/91/70/80/240_F_91708092_BJJtouZ0WymGgV1x3matkZsHibuyUOTV.jpg" width="120" height="120"></a>
                         <p>
                           	  신고
                         </p>
                     </div>
                     <div class="helpImg" align="center">
-                        <img src="../../resources/images/etc.JPG" width="120" height="120">
+                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=etc"><img src="https://t4.ftcdn.net/jpg/03/08/43/19/240_F_308431972_g5fuiXwgOZpDCMFQougq13hgSaQVHVro.jpg" width="120" height="120"></a>
                         <p>
                            	 기타
                         </p>
@@ -218,7 +247,7 @@
                 	<p>공지사항이 없습니다</p>
                 	
                 	<% } else { %>
-                		<% for(int i=0; i<2; i++) { %> <!-- 글이 2개 이상 존재해야지만 나온다...흠.. / 눌렀을때 슬라이드로 아니고 그냥 공지사항 디테일뷰로 이동하도록 수정!-->
+                		<% for(int i=0; i<2; i++) { %> <!-- 글이 3개 이상 있어야지만 나온다...흠.. / 눌렀을때 슬라이드로 아니고 그냥 공지사항 디테일뷰로 이동하도록 수정!-->
 		                    <div class="noticeList">
 		                    <a href="<%= contextPath%>/noticeDetail.ct?nno=<%=list.get(i).getNoticeNo() %>">
 		                        <label id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>

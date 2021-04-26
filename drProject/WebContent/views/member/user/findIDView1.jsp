@@ -167,7 +167,7 @@
                         <tr>
                             <td></td>
                             <td><input type="text" id="num1" placeholder="인증번호 6자리 숫자 입력" required></td>
-                            <td><input type="button" id="btn1" value="인증하기" onclick="send()"></td>
+                            <td><input type="button" id="btn11" value="인증하기" onclick="enter()"></td>
 
                         </tr>
                     </table>
@@ -199,7 +199,7 @@
                             <tr>
                                 <th></th>
                                 <td><input type="text" id="num2" placeholder="인증번호 6자리 숫자 입력" required></td>
-                                <td><input type="button" id="btn2" value="인증하기" onclick="send()"></td>
+                                <td><input type="button" id="btn22" value="인증하기" onclick="enter()"></td>
 
                             </tr>
                     </table>
@@ -210,7 +210,7 @@
 
         <br>
         <div align="center">
-            <input type="button" id="btn" class="btn btn-warning" value="다음" onclick="return validate();">
+            <input type="button" id="next" class="btn btn-warning" value="다음" onclick="return validate();">
         </div>
 
         <br><br><br><br><br><br><br><br><br>
@@ -221,47 +221,120 @@
 
 
 
+         <!-- input입력안하고 다음 클릭 시 경고창 -->
+         <script>
+           
+            //다음 버튼 클릭시 각 경우에 따른 input들에 값이 입력되어있지 않을경우 못넘어가게 
+    
+               $(function(){ //id="next" 다음으로 가기 버튼 클릭시
+    
+                    
+                    $("#next").click(function(){
+            
+            /////1. radio 둘 중에 하나 체크 됐을 떄
+                        if($("#phoneRa").prop("checked") || $("#phoneRa").prop("checked")){
+    
+                            /// 1) 휴대폰 인증
+                            if($("#phoneRa").prop("checked")){
+    
+                                // A. 셋중에 한곳이라도 입력이 안되어있을 경우 => 빈칸 입력 alert, focus가게
+                                
+                                if($("#phoneTable #name1").val() == "" || $("#phoneTable input[type=tel]").val() == "" || $("#phoneTable #num1").val() == "") {
+                                
+                                    // alert("빈 칸을 입력해주세요."); 세부적으로 요구할지
+                                    
+                                    if($("#phoneTable #name1").val() == ""){
+                                        alert("이름을 입력해주세요.");
+                                        $("#phoneTable #name1").focus();
+    
+                                    } else if ($("#phoneTable input[type=tel]").val() == "" ) {
+                                        alert("휴대전화 번호를 형식에 맞게 입력해주세요.");
+                                        $("#phoneTable input[type=tel]").focus(); 
+                                        //유효성 검사는 (길이/ 숫자, - 포함)
+    
+                                    }else{
+                                        alert("인증번호를 입력해주세요.");
+                                        $("#phoneTable #num1").focus();
+                                        //유효성 검사 (6자리 아니면 :"휴대전화 인증을 받고 다시 시도해주세요." )
+                                    }
+    
+    
+                                } else{
+                                
+                                    // b. 모두 다 기술이 잘 되었을 경우
+                                $("#test").submit();
+    
+                            } 
+    
+                            }else{ /// 2) 이메일 인증
+    
+                                // a. 셋중에 한곳이라도 입력이 안되어있을 경우
+                                if($("#emailTable #name2").val() == "" || $("#emailTable #email").val() == "" || $("#emailTable #num2").val() == "") {
+                                    
+                                    //alert("빈 칸을 입력해주세요.");
+                                   
+                                    if($("#emailTable #name2").val() == ""){
+                                        alert("이름을 입력해주세요.");
+                                        $("#emailTable #name2").focus();
+    
+                                    } else if ($("#emailTable #email").val() == "" ) {
+                                        alert("이메일을 형식에 맞게 입력해주세요.");
+                                        $("#emailTable #email").focus();
+    
+                                    }else{
+                                        alert("인증번호를 입력해주세요.");
+                                        $("#emailTable #num2").focus();
+                                    }
+    
+                                } else{
+                                
+                                // b. 모두 다 기술이 잘 되었을 경우
+                                $("#test").submit();
+                                } 
+                            }
+    
+    
+                        }else{
+            /////2. radio 체크 안됐을 때
+            
+                    alert("인증 방법을 체크해주세요.");
+                        }
+    
+                })
+            })
+            </script>
 
 
+
+
+
+<!-- 다음 버튼이나 인증번호 받기 클릭시 빈칸 검사 후, 채워지고 나서 유효성 검사 -->
         <script>
             function validate(){
-                       // 유효성 검사: 이름, 휴대전화, 인증번호
+                       // 인증번호 받기 버튼을 눌렀을 때 유효성 검사: 이름(빈칸만 아니면됨), 휴대전화, 이메일, 인증번호
+                       var name = document.getElement("name");
+                       var tel = document.getElementById("tel");
+                       var email = document.getElementById("email");
+                       var num1 = document.getElementById("num1");
+                       var num2 = document.getElementById("num2");
+                    
+                    // 1) 이름 검사 (한글로만, 2글자 이상)
+                        regExp = /^[가-힣]{2,}$/; //{2} : 그냥 2글자
 
-                       var name1 = documnet.getElementById("name1");
-                       var tel = documnet.getElementById("tel");
-                       var email = documnet.getElementById("email");
-                       var num1 = documnet.getElementById("num1");
-                       var num2 = documnet.getElementById("num2");
+                        if(!regExp.test(name2.value) || !regExp.test(name2.value)==""){
+                            alert("이름을 확인해주세요");
 
-                       // 1) 이름 검사 (한글로만, 2글자 이상)
-                       regExp = /^[가-힣]{2,}$/; //{2} : 그냥 2글자
+                            name2.value = "";
+                            name2.focus();
 
-                       if(!regExp.test(name1.value)){
-                           alert("이름을 확인해주세요");
-
-                           name1.value = "";
-                           name1.focus();
-
-                           return false;
-                       }
-
-                       // 1) 이름 검사 (한글로만, 2글자 이상)
-                       regExp = /^[가-힣]{2,}$/; //{2} : 그냥 2글자
-
-                       if(!regExp.test(name2.value)){
-                           alert("이름을 확인해주세요");
-
-                           name2.value = "";
-                           name2.focus();
-
-                           return false;
-                       }
+                            return false;
+                        }
 
                        // 2) 휴대폰 전화 길이 검사 
-                       regExp = /^[0-9]{2,3}-[0-9]{3,4}-[0-9]{4}/;
+                       regExp = /^[0-9]{3}-[0-9]{4}-[0-9]{4}/;
 
                        if(!regExp.test(tel.value)){
-                           alert("전화번호를 확인해주세요");
+                           alert("휴대전화 번호를 형식에 맞게 입력해주세요.");
 
                            tel.value = "";
                            tel.focus();
@@ -271,10 +344,10 @@
 
 
                        //3) 이메일
-                       regExp = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
+                       regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
 
                        if(!regExp.test(email.value)){
-                           alert("이메일 주소를 확인해주세요");
+                           alert("이메일을 형식에 맞게 입력해주세요.");
 
                            email.value = "";
                            email.focus();
@@ -285,10 +358,10 @@
                    
 
                        // 4) num1 인증번호 길이 검사 
-                       regExp = /^[0-9]{4}/;
+                       regExp = /^[0-9]{6}/;
 
                            if(!regExp.test(num1.value)){
-                               alert("전화번호를 확인해주세요");
+                               alert("휴대전화 인증을 받고 다시 시도해주세요.");
 
                                num1.value = "";
                                num1.focus();
@@ -298,10 +371,10 @@
                    
                        
                         // 4) num2 인증번호 길이 검사 
-                        regExp = /^[0-9]{4}/;
+                        regExp = /^[0-9]{6}/;
 
                            if(!regExp.test(num2.value)){
-                               alert("전화번호를 확인해주세요");
+                               alert("휴대전화 인증을 받고 다시 시도해주세요.");
 
                                num2.value = "";
                                num2.focus();
@@ -315,75 +388,7 @@
 
 
         
-        <!-- input입력안하고 다음 클릭 시 경고창 -->
-        <script>
-           
-        //다음 버튼 클릭시 각 경우에 따른 input들에 값이 입력되어있지 않을경우 못넘어가게 
-
-           $(function(){ //id="btn" 클릭시
-
-                
-                $("#btn").click(function(){
-        
-        /////1. radio 둘 중에 하나 체크 됐을 떄
-                    if($("#phoneRa").prop("checked") || $("#phoneRa").prop("checked")){
-
-                        /// 1) 휴대폰 인증
-                        if($("#phoneRa").prop("checked")){
-
-                            // a. 셋중에 한곳이라도 입력이 안되어있을 경우 => 빈칸 입력 alert, focus가게
-                            if($("#phoneTable #name1").val() == "" || $("#phoneTable input[type=tel]").val() == "" || $("#phoneTable #num1").val() == "") {
-                            
-                                alert("빈 칸을 입력해주세요.");
- 
-                                if($("#phoneTable #name1").val() == ""){
-                                    $("#phoneTable #name1").focus();
-                                } else if ($("#phoneTable input[type=tel]").val() == "" ) {
-                                    $("#phoneTable input[type=tel]").focus();
-                                }else{
-                                    $("#phoneTable #num1").focus();
-                                }
-
-
-                            } else{
-                            
-                                // b. 모두 다 기술이 잘 되었을 경우
-                            $("#test").submit();
-
-                        } 
-
-                        }else{ /// 2) 이메일 인증
-
-                            // a. 셋중에 한곳이라도 입력이 안되어있을 경우
-                            if($("#emailTable #name2").val() == "" || $("#emailTable #email").val() == "" || $("#emailTable #num2").val() == "") {
-                                
-                                alert("빈 칸을 입력해주세요.");
-                               
-                                if($("#emailTable #name2").val() == ""){
-                                    $("#emailTable #name2").focus();
-                                } else if ($("#emailTable #email").val() == "" ) {
-                                    $("#emailTable #email").focus();
-                                }else{
-                                    $("#emailTable #num2").focus();
-                                }
-
-                            } else{
-                            
-                            // b. 모두 다 기술이 잘 되었을 경우
-                            $("#test").submit();
-                            } 
-                        }
-
-
-                    }else{
-        /////2. radio 체크 안됐을 때
-        
-                alert("인증 방법을 체크해주세요.");
-                    }
-
-            })
-        })
-        </script>
+       
 
 
         
@@ -392,7 +397,7 @@
         <!--인증번호 받기 클릭시 알림창-->
         <script>
             function send(){
-                alert('인증번호가 발송되었습니다');
+                alert('인증번호가 발송되었습니다. 인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해주세요.');
             }
         </script>
 
@@ -426,3 +431,31 @@
 </body>
 </html>
 
+<!-- 
+    
+11. 인증하기 버튼 클릭 안했을 떄 {
+
+	
+1. 인증방법 radio check한 경우 
+   1) 휴대폰 인증에 check
+	*셋 중 하나라도 입력 안 된 경우
+		-빈칸입력해주세요 alert, 
+		-빈칸에 focus
+	* 모두 기술된 경우
+		-유효성검사????
+
+   2) 이메일 인증에 check
+	*셋 중 하나라도 입력 안 된 경우
+		-alert,
+		-빈칸에 focus
+	* 모두 기술된 경우
+
+2. 인증방법 check 안 한 경우
+   체크 alert
+
+
+
+} else {
+
+}
+ -->

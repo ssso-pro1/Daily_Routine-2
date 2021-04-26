@@ -92,7 +92,7 @@
     div>button{
         cursor:pointer;
     }
-    .leftMenu>#menu3>a{
+    .leftMenu>#menu2>a{
     	color:rgb(250, 214, 9);
     }
 </style>
@@ -110,11 +110,9 @@
             <div id="content_1">
                 <h1>Info & Tip</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/infoMain.in?currentPage=1">전체</a></div>
-                    <br>
                     <div><a href="<%=contextPath%>/workout.in?currentPage=1">운동 정보</a></div>
                     <br>
-                    <div id="menu3"><a href="<%=contextPath%>/menu.in?currentPage=1">식단 정보</a></div>
+                    <div id="menu2"><a href="<%=contextPath%>/menu.in?currentPage=1">식단 정보</a></div>
                 </div>
             </div>
 

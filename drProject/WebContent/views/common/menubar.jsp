@@ -147,7 +147,7 @@
                 <div class="menu" id="dr"><a href="<%=contextPath%>">Daily<br>Routine</a></div>
                 <div class="menu"><a href="<%=contextPath%>/allList.ht">HomeTraining</a></div>
                 <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
-                <div class="menu"><a href="<%=contextPath%>/infoMain.in?currentPage=1">Info&Tip</a></div>
+                <div class="menu"><a href="<%=contextPath%>/workout.in?currentPage=1">Info&Tip</a></div>
                 <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
 
                 <div class="sideLine" ></div>

@@ -133,52 +133,6 @@ public class InfoService {
 	
 	
 	
-	// 전체 게시판 
-	public int selectMainListCount() {
-		
-		Connection conn = getConnection();
-		int listCount = new InfoDao().selectMainListCount(conn); 
-		
-		close(conn); 
-		
-		return listCount; 
-		
-	}
-	
-	public ArrayList<Info> selectMainThumbnailList(PageInfo pi) {
-		
-		Connection conn = getConnection(); 
-		ArrayList<Info> list = new InfoDao().selectMainThumbnailList(conn, pi); 
-		
-		close(conn);
-		
-		return list; 
-		
-	}
-	
-	public Info selectInfoMain(int intPostNo) {
-		
-		Connection conn = getConnection();
-		Info i = new InfoDao().selectInfoMain(conn, intPostNo); 
-		
-		close(conn);
-		
-		return i; 
-		
-	}
-	
-	public ArrayList<InfoFile> selectInfoMainFileList(int intPostNo) {
-		
-		Connection conn = getConnection();
-		ArrayList<InfoFile> list = new InfoDao().selectInfoMainFileList(conn, intPostNo); 
-		
-		close(conn);
-		
-		return list; 
-		
-	}
-	
-	
 	
 	
 	

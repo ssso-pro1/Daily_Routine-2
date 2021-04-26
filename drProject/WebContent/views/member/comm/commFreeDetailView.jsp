@@ -163,7 +163,7 @@
                 </div><br>
 
                 <div class="buttonArea3" align="right">
-                    <a href="<%=contextPath%>/freeEnroll.co" class="fas fa-pencil-alt"> 글쓰기</a>&nbsp;
+                    <a href="<%=contextPath%>/freeEnroll.co" class="fas fa-pencil-alt"> 글쓰기</a> &nbsp;
 	                <a href="<%=contextPath%>/free.co?currentPage=1" class="fas fa-list"> 목록</a>
                 </div><br><br>
 
@@ -175,6 +175,16 @@
                 <div class="replyArea">
                     <table border="0" height="100" width="100%" align="center">
                         <h3>> 댓글 쓰기 <i class="far fa-comment-dots"></i></h3>
+                        
+                        <!-- 로그인되어있고, 로그인한 사용자가 게시글일 경우 보이는 버튼 -->
+						<% if(loginUser != null && loginUser.getUserId().equals(c.getUserNo()))  { %>
+		                <div class="buttonArea4">
+		                	<button onclick="updateReply()"; class="fas fa-edit"> 댓글 수정 </button> 
+		                    <button onclick="deleteReply()"; class="fas fa-trash-alt"> 댓글 삭제 </button> 
+		                </div><br>
+		                <% } %>
+                        
+    
                         <thead>
                             <tr>
                                 <td colspan="6">
@@ -185,7 +195,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" height="30"><b>댓글 </b>1</td>
+                                <td colspan="7" height="30"><b>댓글 </b></td>
                             </tr> 
                         </thead>
                         <tbody>
@@ -204,7 +214,7 @@
                 	 // 해당 게시글 댓글 작성용 ajax 
                 	 function addReply() {
                 		
-                	     console.log("실행되나"); 
+                	     //console.log("실행되나"); 
                 		
                 		 $.ajax({
                 		     url:"<%=contextPath%>/replyFreeInsert.co", 
@@ -227,6 +237,36 @@
                 		 });
                 		
                 	 }
+                     
+                     
+                     // 해당 게시글 댓글 수정용 ajax 
+                     <%-- function updateReply() {
+                    	 
+                    	 console.log("실행되나"); 
+                    	 
+                    	 $.ajax({
+                    		url:"<%=contextPath%>/replyFreeUpdate.co", 
+                    		type:"post",
+                    		data:{
+                    			content:$("#replyContent").val(),
+                    			cno:<%=c.getCommPostNo()%>
+                    		}, success:function(result){
+                    			
+                    			if(result > 0){
+                    				selectReplyList();
+                    				$("#replyContent").val(""); 
+                    			}
+                    			
+                    			
+                    		},error:function(){
+                    			console.log("댓글 수정용 ajax 통신 실패"); 
+                    		}
+                    	 });
+                    	 
+                     }
+                     --%>
+                     
+                     
                 	
                 	 // 해당 게시글에 달린 댓글 리스트 조회용 ajax
                 	 function selectReplyList() {

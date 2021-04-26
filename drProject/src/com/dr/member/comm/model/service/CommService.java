@@ -266,6 +266,17 @@ public class CommService {
 	
 	}
 	
+	public int updateReply(Reply r) {
+		
+		Connection conn = getConnection();
+		int result = new CommDao().updateReply(conn, r); 
+		
+		close(conn);
+		
+		return result; 
+		
+	}
+	
 	
 	
 	

@@ -193,7 +193,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td colspan="7" height="30"><b>댓글 </b>1</td>
+                                <td colspan="7" height="30"><b>댓글 </b></td>
                             </tr> 
                         </thead>
                         <tbody>

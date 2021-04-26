@@ -39,16 +39,16 @@
 
     
 
-    #content_2_1{height: 7;}
-    #content_2_2{height: 10%;}
-    #content_2_3{height: 10%;}
-    #content_2_4{height: 77%;}
+    #content_2_1{height: 8;}
+    #content_2_2{height: 12%;}
+    #content_2_3{height: 80%;}
+    
     
 
 
     #upperIcon{
         
-        width:170px;
+        width:180px;
         height: 40px;
         display:inline-block;
         margin:10px;
@@ -93,8 +93,8 @@
 
     .queryArea>form>table{
         margin: auto;
-        width: 500px;
-        height: 400px;
+        border: 1px solid
+       
     }
     
     a#leftMenu{
@@ -109,6 +109,8 @@
     
     a{text-decoration: none; color: black;}
 
+    th{font-size: 20px;}
+
 </style>
 </head>
 
@@ -120,15 +122,15 @@
     
         <!--왼쪽 공통메뉴-->
         <div id="content_1">
-            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1>고객센터</h1></a>
+            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu" class="ff">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" class="ff">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu" class="ff">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" class="ff">공지사항</a></div>
             
             </div>
         </div>
@@ -138,11 +140,11 @@
         <!--버튼-->
         <div id="content_2">
             <div id="content_2_1">
-                <h3>고객센터 > 1:1 문의 </h3>
+                <h3 class="ff" style="font-weight: 100; font-size: 20px;">고객센터 > 1:1 문의 </h3>
                 <hr>
             </div>
 
-            <div id="content_2_2">
+            <div id="content_2_2" style="margin-left: 20px; width: 900px;">
                 <div class="iconArea">
                     <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
                         <div id="upperIcon" class="faq ff" align="center">FAQ</div>
@@ -162,21 +164,19 @@
 
             <!--관리자에게 문의하기-->
             <!--로그인한 사용자만 볼수있도록 만들어야지-->
-            <div id="content_2_3">    
-                <p><h3>1:1 문의하기</h3></p>
-                <div class="underLine"></div>
-            </div>
+            
 
 
             <!--문의입력-->
-            <div id="content_2_4">
+            <div id="content_2_3">
                 
                 <div class="queryArea">
                     <form id="enrollQueryFrorm" action="<%= contextPath %>/insertQuery.ct" method="post">
                     	<input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
-                        <table border="1">
+                        <table class="ff" style="width: 600px;">
+                            <tr><td style="height: 20px;"></td></tr>
                             <tr>
-                                <th>문의유형</th>
+                                <th style="height: 30px;">문의유형</th>
                                 <td>
                                 	
                                     <select name="qCategory" id="qCategory" required style="width: 100%;">
@@ -189,27 +189,31 @@
                                     
                                     
                                  </td>
+                                 <td style="width: 30px;"></td>
                             </tr>
                             <tr>
-                                <th>제목</th>
+                                <th style="height: 30px;">제목</th>
                                 <td><input type="text" name="qTitle" id="qTitle" placeholder="제목을 입력해주세요" style="width: 100%;" required maxlength="50"></td>
                             </tr>
                             <tr>
-                                <th>내용</th>
+                                <th style="height: 200px">내용</th>
                                 <td>
                                     <div>
-                                        <textarea id="qContent" name="qContent" style="width: 100%;" rows="10" style="resize: none;" placeholder="궁금하신 내용을 입력하세요 (300자 이내)" required></textarea>
-                                        <br>
+                                        <textarea id="qContent" name="qContent" style="width: 100%;" rows="15" style="resize: none;" placeholder="궁금하신 내용을 입력하세요 (300자 이내)" required></textarea>
+                                        <label style="float: right;"><span id="count" name="count">0</span> / 300</label>
                                     </div>
-                                    <span id="count" name="count">0</span> / 300
+                                    
                             </td>
+                            <td></td>
                             </tr>
                             <tr>
-                                <td colspan="2" align="right">
+                                <td colspan="2" align="right" style="height: 10px">
                                     <button type="submit" onclick="return validate();">등록</button>
                                     <button type="reset">취소</button>
                                 </td>
+                                
                             </tr>
+                            <tr><td style="height: 20px;"></td></tr>
 
 
                         </table>

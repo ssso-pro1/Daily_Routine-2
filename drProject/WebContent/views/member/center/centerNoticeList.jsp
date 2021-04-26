@@ -51,16 +51,15 @@
 
     
 
-    #content_2_1{height: 7%;}
-    #content_2_2{height: 10%;}
-    #content_2_3{height: 10%;}
-    #content_2_4{height: 77%;}
+    #content_2_1{height: 8%;}
+    #content_2_2{height: 12%;}
+    #content_2_3{height: 80%; margin-left:50px;}
     
 
 
    #upperIcon{
         
-        width:170px;
+        width:180px;
         height: 40px;
         display:inline-block;
         margin:10px;
@@ -86,7 +85,7 @@
 
     .searchArea{
         margin: auto;
-        background: lightgray;
+        background: rgb(221, 221, 221);
         height: 50px;
         width: 600px;
     }
@@ -112,11 +111,11 @@
         margin: auto;
     }
     .listArea>tbody>tr:hover{
-        background:lightgray;
+        background:rgb(241, 243, 235);
         cursor:pointer;
     }
     .listArea>thead>tr{
-        background:lightgray;
+        background: rgb(221, 221, 221);
     }
     .listArea>tr,th,td{
         height:30px;
@@ -150,15 +149,15 @@
         
         <!--왼쪽 공통메뉴-->
         <div id="content_1">
-            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1>고객센터</h1></a>
+            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu" class="ff">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" class="ff">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu" class="ff">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" class="ff">공지사항</a></div>
             
             </div>
         </div>
@@ -167,44 +166,39 @@
         
         
         <!--버튼-->
-        <div id="content_2">
+        <div id="content_2" class="ff">
            <div id="content_2_1">
-                <h3>고객센터 > 공지사항 </h3>
+                <h3 style="font-weight: 100; font-size: 20px;">고객센터 > 공지사항 </h3>
                 <hr>
             </div>
 
-            <div id="content_2_2">
+            <div id="content_2_2" style="margin-left: 20px; width: 900px;">
                 <div class="iconArea">
                     <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
-                        <div id="upperIcon" class="faq ff" align="center">FAQ</div>
+                        <div id="upperIcon" class="faqf" align="center">FAQ</div>
                     </a>
                     <a href="<%=contextPath%>/enrollQuery.ct">
-                        <div id="upperIcon" class="query ff" align="center">1:1문의</div>
+                        <div id="upperIcon" class="query" align="center">1:1문의</div>
                     </a>
                     <a href="<%=contextPath%>/queryList.ct?currentPage=1">
-                        <div id="upperIcon" class="queryList ff" align="center">나의 문의내역</div>
+                        <div id="upperIcon" class="queryList" align="center">나의 문의내역</div>
                     </a>
                     <a href="<%=contextPath%>/notice.ct?currentPage=1">
-                        <div id="upperIcon" class="notice ff" align="center">공지사항</div>
+                        <div id="upperIcon" class="notice" align="center">공지사항</div>
                     </a>
                 </div>
             </div>
                 
 
             <!--공지사항-->
-            <div id="content_2_3">    
-                <p><h3>공지사항</h3></p>
-                <div class="underLine"></div>
-            </div>
-
-
+            
             <!--공지사항게시판-->
-            <div id="content_2_4">
+            <div id="content_2_3">
 
                 <div class="noticeArea">
                     <table align="center" class="listArea">
                          <thead>
-                             <tr>
+                             <tr style="font-size: 17px;">
                                  <th width="100" style="color:black">글번호</th>
                                  <th width="400" style="color:black">제목</th>
                                  <th width="150">게시일</th>
@@ -261,7 +255,7 @@
 						<% for(int p=startPage; p<=endPage; p++) { %>
 							
 							<% if(currentPage == p){ %>
-			            		<button disabled><%= p %></button>
+			            		<button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
 			            	<% }else{ %>
 			            		<button onclick="location.href='<%=contextPath%>/notice.ct?currentPage=<%= p %>';"><%= p %></button>
 			            	<% } %>

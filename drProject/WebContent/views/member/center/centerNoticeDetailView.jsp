@@ -45,16 +45,16 @@
 
     
 
-    #content_2_1{height: 7%;}
-    #content_2_2{height: 10%;}
-    #content_2_3{height: 10%;}
-    #content_2_4{height: 77%;}
+    #content_2_1{height: 8%;}
+    #content_2_2{height: 12%;}
+    #content_2_3{height: 80%; margin-left:50px;}
+    
     
 
 
     #upperIcon{
         
-        width:170px;
+        width:180px;
         height: 40px;
         display:inline-block;
         margin:10px;
@@ -114,6 +114,13 @@
     .ff{font-family: 'Do Hyeon', sans-serif;}
     
     a{text-decoration: none; color: black;}
+
+    .detailArea>table{
+        width:100%;
+        border:1px solid black;
+        border-top:1px solid black;
+        border-collapse:collapse;
+    } 
     
 
 </style>
@@ -127,15 +134,15 @@
     
         <!--왼쪽 공통메뉴-->
         <div id="content_1">
-           <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1>고객센터</h1></a>
+           <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu" class="ff">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" class="ff">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu" class="ff">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" class="ff">공지사항</a></div>
             
             </div>
         </div>
@@ -145,72 +152,54 @@
         <!--버튼-->
         <div id="content_2">
             <div id="content_2_1">
-                <h3>고객센터 > 1:1 문의 </h3>
+               <h3 class="ff" style="font-weight: 100; font-size: 20px;">고객센터 > 공지사항 </h3>
                 <hr>
             </div>
 
-            <div id="content_2_2">
+            <div id="content_2_2" style="margin-left: 20px; width: 900px;">
                 <div class="iconArea">
                     <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
-                        <div id="upperIcon" class="ff" class="faq" align="center">FAQ</div>
+                        <div id="upperIcon" class="faq ff" align="center">FAQ</div>
                     </a>
                     <a href="<%=contextPath%>/enrollQuery.ct">
-                        <div id="upperIcon" class="ff" class="query" align="center">1:1문의</div>
+                        <div id="upperIcon" class="query ff" align="center">1:1문의</div>
                     </a>
                     <a href="<%=contextPath%>/queryList.ct?currentPage=1">
-                        <div id="upperIcon" class="ff" class="queryList" align="center">나의 문의내역</div>
+                        <div id="upperIcon" class="queryList ff" align="center">나의 문의내역</div>
                     </a>
                     <a href="<%=contextPath%>/notice.ct?currentPage=1">
-                        <div id="upperIcon" class="ff" class="notice" align="center">공지사항</div>
+                        <div id="upperIcon" class="notice ff" align="center">공지사항</div>
                     </a>
                 </div>
             </div>
                 
 
-            <!--공지사항-->
-            <div id="content_2_3">    
-                <p><h3>공지사항</h3></p>
-                <div class="underLine"></div>
-            </div>
+            
 
-
-            <!--공지사항 내용 뷰-->
-            <div id="content_2_4">
-                <div class="noticeDetailArea" align="center">
-                    <table border="1">
-                        <tr>
-                            <th>글제목</th>
-                            <td colspan="3"><%= n.getNoticeTitle() %></td>
+            <!-- 게시글 세부 영역 -->
+            <div id="content_2_3">
+                <div class="detailArea" >
+                    <table border="1" height="600px;" width="800px">
+                        <tr align="center" height="40px;">
+                            <th width="55%"><%= n.getNoticeTitle() %></th>
+                            <th width="20%">등록일 : <%=n.getCreateDate() %></th>
+                            <th width="15%">조회수 : <%=n.getNoticeCount() %></th>
+                        </tr>
+                        <tr align="left">
+                            <td colspan="5" height="100%">
+                                <div style="margin-bottom:400px;"><%=n.getNoticeContent() %></div>
+                            </td>
                         </tr>
                         <tr>
-                            <th>등록일</th>
-                            <td><%=n.getCreateDate() %></td>
-                            <th>조회수</th>
-                            <td><%=n.getNoticeCount() %></td>
+                            <td colspan="5">
+                                <!-- 첨부파일이 없을경우-->
+                                <%if(fi == null) { %>
+                                    &nbsp; <i class="far fa-file-image"></i>&nbsp; 첨부파일이 없습니다. 
+                                <% }else { %>
+                                    &nbsp; <i class="far fa-file-image"></i>&nbsp; 첨부파일 > <a download="<%= fi.getFileName() %>" href= "<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>"><%= fi.getFileName() %></a>
+                                <% } %>	
+                            </td>        
                         </tr>
-                        <tr>
-                            <th>첨부파일</th>
-                            <td colspan="3">
-                            
-                            <!-- 첨부파일이 없을경우-->
-					        <%if(fi == null) { %>
-					                    
-					            첨부파일이 없습니다
-					                    
-							<% } else { %>
-										
-					       <!--첨부파일이 있을경우-->
-					       <a download="<%= fi.getFileName() %>" href= "<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>"><%= fi.getFileName() %></a>
-					                	
-					       <% } %>  
-					       </td>
-                        </tr>
-                        <tr>
-                            <th>글내용</th>
-                            <td colspan="3"><div><%=n.getNoticeContent() %></div></td>
-                        </tr>
-                        
-                        
                         <tr>
                             <td colspan="4">
                                 <% if(n.getNextTitle()==null) { %>
@@ -249,21 +238,9 @@
                                 
                             </td>
                         </tr>
-                        
-                        
-                    </table>
-
-                    <br>
-                    <button><a href="<%=contextPath%>/notice.ct?currentPage=1">목록으로</a></button>
-
-
+                    </table><br>
                 </div>
-                
-
-                   
-            </div>
-
-            
+            </div><br>
 
         </div>
     </div>

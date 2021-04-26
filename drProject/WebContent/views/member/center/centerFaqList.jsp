@@ -53,19 +53,19 @@
 
 
 
-    #content_2_1{height: 7%;}
+    #content_2_1{height: 8%;}
     #content_2_2{height: 10%;}
     #content_2_3{height: 10%;}
     #content_2_4{height: 5%;}
-    #content_2_5{height: 67%;}
-    #content_2_6{height: 5%;}
+    #content_2_5{height: 50%;}
+    
     
     
 
 
    #upperIcon{
         
-        width:170px;
+        width:180px;
         height: 40px;
         display:inline-block;
         margin:10px;
@@ -89,9 +89,9 @@
         
     }
 
-    .searchArea{
+     .searchArea{
         margin: auto;
-        background: lightgray;
+        background: rgb(221, 221, 221);
         height: 50px;
         width: 600px;
     }
@@ -103,7 +103,7 @@
     }
     
     .faqList{
-        background :rgb(241, 236, 229);
+        background :rgb(252, 252, 238);
         width: 100%;
         height: 40px;
         line-height: 30px;
@@ -150,41 +150,40 @@
     
     <!--왼쪽 공통메뉴-->
         <div id="content_1">
-            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1>고객센터</h1></a>
+            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu" class="ff">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" class="ff">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu" class="ff">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" class="ff">공지사항</a></div>
             </div>
         </div>
 
         <div id="line"></div>
         
         <!--버튼-->
-        <div id="content_2">
-            <div id="content_2_1">
-                <h3>고객센터 > FAQ </h3>
+        <div id="content_2" class="ff">
+           <div id="content_2_1">
+                <h3 style="font-weight: 100; font-size: 20px;">고객센터 > FAQ </h3>
                 <hr>
             </div>
 
-
-           <div id="content_2_2">
+            <div id="content_2_2" style="margin-left: 20px; width: 900px;">
                 <div class="iconArea">
-                   <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
-                        <div id="upperIcon" class="faq ff" align="center">FAQ</div>
+                    <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
+                        <div id="upperIcon" class="faqf" align="center">FAQ</div>
                     </a>
                     <a href="<%=contextPath%>/enrollQuery.ct">
-                        <div id="upperIcon" class="query ff" align="center">1:1문의</div>
+                        <div id="upperIcon" class="query" align="center">1:1문의</div>
                     </a>
                     <a href="<%=contextPath%>/queryList.ct?currentPage=1">
-                        <div id="upperIcon" class="queryList ff" align="center">나의 문의내역</div>
+                        <div id="upperIcon" class="queryList" align="center">나의 문의내역</div>
                     </a>
                     <a href="<%=contextPath%>/notice.ct?currentPage=1">
-                        <div id="upperIcon" class="notice ff" align="center">공지사항</div>
+                        <div id="upperIcon" class="notice" align="center">공지사항</div>
                     </a>
                 </div>
             </div>
@@ -202,9 +201,9 @@
 
 
             <!--faq -->
-            <div id="content_2_4">
+            <div id="content_2_4" align="center">
                 
-                <table>
+                <table style="font-size: 18px;" class="ff">
                     <tr>
                         <th></th>
                         <th><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">자주찾는 질문 TOP10 </a>|</th>
@@ -215,37 +214,44 @@
                     </tr>
                 </table>
                 <div class="underLine"></div>
-            </div>
+            </div><br>
             
             
 
 
             <!--faq 리스트 -->
-            <div id="content_2_5">
+            <div id="content_2_5" class="ff">
                 <div class="faqListArea" style="width: 95%; margin: auto;">
                     
                     <% if(list.isEmpty()) { %>    
-                    <p>존재하는 게시글이 없습니다 </p>
+                    <p align="center" style="color: red; font-size: 20px;">존재하는 게시글이 없습니다 </p>
                     
                     <% } else { %>
                      <% for(CenterFaq f:list){ %>	
                     
                     <div class="faqList">
-                        <label>[
-                        <% if(f.getFaqCategory().equals("top")) { %>
-                                		TOP10
-                        <% } else if (f.getFaqCategory().equals("userInfo")) { %>
-                                		회원정보
-                        <% } else if (f.getFaqCategory().equals("content")) { %>
-                                		게시글/댓글
-                        <% } else if (f.getFaqCategory().equals("report")) { %>
-                                		신고
-                        <% } else if (f.getFaqCategory().equals("etc")) { %>
-                                		기타
-                        <% } %>
-                        
-                        ]</label>
-                        <label id="faqTitle"><%= f.getFaqTitle() %></label>
+                        <table>
+                            <tr>
+                                <th style="width: 100px; font-size: 18px;">
+                                    <label >[
+                                        <% if(f.getFaqCategory().equals("top")) { %>
+                                                        TOP10
+                                        <% } else if (f.getFaqCategory().equals("userInfo")) { %>
+                                                        회원정보
+                                        <% } else if (f.getFaqCategory().equals("content")) { %>
+                                                        게시글/댓글
+                                        <% } else if (f.getFaqCategory().equals("report")) { %>
+                                                        신고
+                                        <% } else if (f.getFaqCategory().equals("etc")) { %>
+                                                        기타
+                                        <% } %>
+                                        
+                                        ]</label>
+
+                                </th>
+                                <td style="width: 500px; font-size: 15px;"><label id="faqTitle"  align="center"><%= f.getFaqTitle() %></label></td>
+                            </tr>
+                        </table>
                     </div>
                      <div class="faqContent">
                         <p><%= f.getFaqContent() %></p>
@@ -302,7 +308,7 @@
 						<% for(int p=startPage; p<=endPage; p++) { %>
 							
 							<% if(currentPage == p){ %>
-			            		<button disabled><%= p %></button>
+			            		<button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
 			            	<% }else{ %>
 			            		<button onclick="location.href='<%=contextPath%>/faqList.ct?currentPage=<%= p %>&ctg=<%= list.get(0).getFaqCategory() %>';"><%= p %></button>
 			            	<% } %>

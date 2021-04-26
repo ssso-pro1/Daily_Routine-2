@@ -52,17 +52,16 @@
 
     
 
-    #content_2_1{height: 7%;}
-    #content_2_2{height: 10%;}
-    #content_2_3{height: 10%;}
-    #content_2_4{height: 72%;}
-    #content_2_5{height: 5%;}
+    #content_2_1{height: 8%;}
+    #content_2_2{height: 12%;}
+    #content_2_3{height: 73%;}
+    #content_2_4{height: 10%;}
     
 
 
     #upperIcon{
         
-        width:170px;
+        width:180px;
         height: 40px;
         display:inline-block;
         margin:10px;
@@ -164,56 +163,50 @@
         
         <!--왼쪽 공통메뉴-->
         <div id="content_1">
-           <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1>고객센터</h1></a>
+           <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu" class="ff">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" class="ff">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu" class="ff">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
-            
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" class="ff">공지사항</a></div>
             </div>
         </div>
 
         <div id="line"></div>
         
         
-        <!--버튼-->
-        <div id="content_2">
-            <div id="content_2_1">
-                <h3>고객센터 > 나의 문의 내역 </h3>
+       <div id="content_2" class="ff">
+           <div id="content_2_1">
+                <h3 style="font-weight: 100; font-size: 20px;">고객센터 > 공지사항 </h3>
                 <hr>
             </div>
 
-           <div id="content_2_2">
+            <div id="content_2_2" style="margin-left: 20px; width: 900px;">
                 <div class="iconArea">
                     <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
-                        <div id="upperIcon" class="faq ff" align="center">FAQ</div>
+                        <div id="upperIcon" class="faqf" align="center">FAQ</div>
                     </a>
                     <a href="<%=contextPath%>/enrollQuery.ct">
-                        <div id="upperIcon" class="query ff" align="center">1:1문의</div>
+                        <div id="upperIcon" class="query" align="center">1:1문의</div>
                     </a>
                     <a href="<%=contextPath%>/queryList.ct?currentPage=1">
-                        <div id="upperIcon" class="queryList ff" align="center">나의 문의내역</div>
+                        <div id="upperIcon" class="queryList" align="center">나의 문의내역</div>
                     </a>
                     <a href="<%=contextPath%>/notice.ct?currentPage=1">
-                        <div id="upperIcon" class="notice ff" align="center">공지사항</div>
+                        <div id="upperIcon" class="notice" align="center">공지사항</div>
                     </a>
                 </div>
             </div>
                 
 
             <!--나의 문의내역-->
-            <div id="content_2_3">    
-                <p><h3>나의 문의 내역</h3></p>
-                <div class="underLine"></div>
-            </div>
-
+            
             <!--나의 문의내역 리스트-->
-            <div id="content_2_4">    
-                <div class="queryListArea" style="width: 95%; margin: auto;">
+            <div id="content_2_3" style="margin-left: 50px;" >    
+                <div class="queryListArea ff" style="width: 95%; margin: auto;">
                     
                     <!-- 문의내역이 없을경우-->
                     
@@ -232,16 +225,16 @@
 		                        
 		                        <table >
 		                            <tr>
-		                                <th style="width: 90px;">[<%= q.getQueryCategory() %>]</th>
-		                                <th style="width: 500px;" align="left"><%=q.getQueryTitle() %></th>
+		                                <th style="width: 90px; font-size: 18px;">[<%= q.getQueryCategory() %>]</th>
+		                                <td style="width: 500px; font-size: 15px;" align="left"><%=q.getQueryTitle() %></td>
                                         
                                         <% if(q.getReplyStatus().equals("Y")) { %>
-                                        <th style="width: 90px;">답변완료</th>
+                                        <td style="width: 90px; color: rgb(119, 31, 235); font-weight: 800;">답변완료</td>
 		                                <% } else { %>
-		                                <th style="width: 90px;">처리중</th>
+		                                <td style="width: 90px; color: grey; font-weight: 800;">처리중</td>
 		                                <% } %>
 		                                
-		                                <th style="width: 90px;"><%=q.getQueryCreateDate() %></th>
+		                                <th style="width: 90px; float: right;"><%=q.getQueryCreateDate() %></th>
 		                            </tr>
 		                            
 		                        </table>
@@ -313,7 +306,7 @@
                 </script>
 
             </div> 
-            
+                <div id="content_2_4"> 
             		<!-- 페이징처리 10개씩 -->
                     <div align="center" class="pagingArea">
 
@@ -324,7 +317,7 @@
 						<% for(int p=startPage; p<=endPage; p++) { %>
 							
 							<% if(currentPage == p){ %>
-			            		<button disabled><%= p %></button>
+			            		<button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
 			            	<% }else{ %>
 			            		<button onclick="location.href='<%=contextPath%>/queryList.ct?currentPage=<%= p %>';"><%= p %></button>
 			            	<% } %>
@@ -336,8 +329,8 @@
 						<% } %>
 						
 			        </div>
-
-           
-
+                </div>            
+     </div>      
+</div>
 </body>
 </html>

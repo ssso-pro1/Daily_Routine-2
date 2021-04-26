@@ -55,19 +55,19 @@
 
 
 
-    #content_2_1{height: 7%;}
+    #content_2_1{height: 8%;}
     #content_2_2{height: 10%;}
     #content_2_3{height: 10%;}
     #content_2_4{height: 5%;}
-    #content_2_5{height: 67%;}
-    #content_2_6{height: 5%;}
+    #content_2_5{height: 50%;}
+    
     
     
 
 
    #upperIcon{
         
-        width:170px;
+        width:180px;
         height: 40px;
         display:inline-block;
         margin:10px;
@@ -93,7 +93,7 @@
 
     .searchArea{
         margin: auto;
-        background: lightgray;
+        background: rgb(221, 221, 221);
         height: 50px;
         width: 600px;
     }
@@ -105,7 +105,7 @@
     }
     
     .faqList{
-        background :rgb(241, 236, 229);
+        background :rgb(252, 252, 238);
         width: 100%;
         height: 40px;
         line-height: 30px;
@@ -147,20 +147,20 @@
 <%@include file="../../common/menubar.jsp" %>
 
 <body>
-<div class="wrap">
+<div class="wrap" class="ff">
     <div id="content">
     
     <!--왼쪽 공통메뉴-->
         <div id="content_1">
-            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1>고객센터</h1></a>
+            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu" class="ff">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" class="ff">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu" class="ff">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" class="ff">공지사항</a></div>
             
             </div>
         </div>
@@ -170,12 +170,12 @@
         <!--버튼-->
         <div id="content_2">
             <div id="content_2_1">
-                <h3>고객센터 > FAQ</h3>
+                <h3 class="ff" style="font-weight: 100; font-size: 20px;">고객센터 > FAQ</h3>
                 <hr>
             </div>
 
 
-           <div id="content_2_2">
+            <div id="content_2_2" style="margin-left: 20px; width: 900px;">
                 <div class="iconArea">
                     <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
                         <div id="upperIcon" class="faq ff" align="center">FAQ</div>
@@ -205,7 +205,7 @@
 
 
             <!--faq -->
-            <div id="content_2_4">
+            <div id="content_2_4"  align="center" class="ff">
                 
                 <table>
                     <tr>
@@ -217,17 +217,17 @@
                     </tr>
                 </table>
                 <div class="underLine"></div>
-            </div>
+            </div><br>
             
             
 
 
             <!--faq 리스트 -->
-            <div id="content_2_5">
+            <div id="content_2_5" class="ff">
                 <div class="faqListArea" style="width: 95%; margin: auto;">
                     
                     <% if(searchList.isEmpty()) { %>    
-                    <p>존재하는 게시글이 없습니다 </p>
+                    <p align="center" style="font-size: 20; color: red;">존재하는 게시글이 없습니다 </p>
                     
                     <% } else { %>
                     <% for(CenterFaq f:searchList){ %>	
@@ -304,7 +304,7 @@
 						<% for(int p=startPage; p<=endPage; p++) { %>
 							
 							<% if(currentPage == p){ %>
-			            		<button disabled><%= p %></button>
+			            		<button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
 			            	<% }else{ %>
 			            		<button onclick="location.href='<%=contextPath%>/searchFaq.ct?currentPage=<%= p %>&searchFaq=<%=searchFaq%>';"><%= p %></button>
 			            	<% } %>

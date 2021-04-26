@@ -85,9 +85,9 @@
     }
 
 
-    .searchArea{
+     .searchArea{
         margin: auto;
-        background: lightgray;
+        background: rgb(221, 221, 221);
         height: 50px;
         width: 600px;
     }
@@ -107,7 +107,7 @@
 
 
     .noticeList{
-        background: lightgray;
+        background: rgb(221, 221, 221);
         width: 100%;
         height: 40px;
         line-height: 30px;
@@ -120,7 +120,7 @@
     .noticeContent{
         width: 100%;
         height: 100px;
-        border:1px solid lightgray;
+        border:1px solid rgb(221, 221, 221);
         margin-top: 5px;
         padding: 10px;
         box-sizing: border-box;
@@ -172,26 +172,25 @@
     
         
         
-        <!--버튼-->
-        <div id="content_2">
-            <div id="content_2_1">
-                <h3 class="ff" style="font-weight: 100; font-size: 20px;">고객센터 HOME </h3>
+       <div id="content_2" class="ff">
+           <div id="content_2_1">
+                <h3 style="font-weight: 100; font-size: 20px;">고객센터 > 공지사항 </h3>
                 <hr>
             </div>
 
-             <div id="content_2_2">
+            <div id="content_2_2" style="margin-left: 20px; width: 900px;">
                 <div class="iconArea">
                     <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
-                        <div id="upperIcon" class="ff" class="faq" align="center">FAQ</div>
+                        <div id="upperIcon" class="faqf" align="center">FAQ</div>
                     </a>
                     <a href="<%=contextPath%>/enrollQuery.ct">
-                        <div id="upperIcon" class="ff" class="query" align="center">1:1문의</div>
+                        <div id="upperIcon" class="query" align="center">1:1문의</div>
                     </a>
                     <a href="<%=contextPath%>/queryList.ct?currentPage=1">
-                        <div id="upperIcon" class="ff" class="queryList" align="center">나의 문의내역</div>
+                        <div id="upperIcon" class="queryList" align="center">나의 문의내역</div>
                     </a>
                     <a href="<%=contextPath%>/notice.ct?currentPage=1">
-                        <div id="upperIcon" class="ff" class="notice" align="center">공지사항</div>
+                        <div id="upperIcon" class="notice" align="center">공지사항</div>
                     </a>
                 </div>
             </div>
@@ -250,21 +249,25 @@
             </div>
 
             <!--공지사항 3개만 보여주기-->
-            <div id="content_2_5"> 
-                <p><h2  class="ff" style="font-weight: 700; font-size: 25px;">공지사항 <button><a href="<%=contextPath%>/notice.ct?currentPage=1">전체보기</a></button></h2></p>
+            <div id="content_2_5" class="ff"> 
+                <p><h2 style="font-weight: 700; font-size: 25px;">공지사항 <button><a href="<%=contextPath%>/notice.ct?currentPage=1">전체보기</a></button></h2></p>
 
                 <div class="noticeArea">
                 
                 	<%if(list.isEmpty()) { %>
                 	
-                	<p class="ff" style="font-weight: 100; font-size: 15px;">공지사항이 없습니다</p>
+                	<p style="font-weight: 100; font-size: 18px;">공지사항이 없습니다</p>
                 	
                 	<% } else { %>
                 		<% for(int i=0; i<2; i++) { %> <!-- 글이 3개 이상 있어야지만 나온다...흠.. / 눌렀을때 슬라이드로 아니고 그냥 공지사항 디테일뷰로 이동하도록 수정!-->
 		                    <div class="noticeList">
 		                    <a href="<%= contextPath%>/noticeDetail.ct?nno=<%=list.get(i).getNoticeNo() %>">
-		                        <label class="ff" style="font-weight: 100; font-size: 15px;" id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>
-		                        <label class="ff" style="font-weight: 100; font-size: 15px; float: right;" id="noticeDate"><%=list.get(i).getCreateDate() %></label>
+
+                                <label style="font-weight: 100; font-size: 18px; margin-left: 10px;" id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>
+                                <label style="font-weight: 100; font-size: 15px; float: right; margin-right: 10px;" id="noticeDate"><%=list.get(i).getCreateDate() %></label>
+                                    
+		                        
+		                        
 		                        <!--  <p class="noticeContent"><%= list.get(i).getNoticeContent() %></p>-->
 		                   	</a>
 		                   </div>

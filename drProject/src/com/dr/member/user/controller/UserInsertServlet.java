@@ -33,7 +33,6 @@ public class UserInsertServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		request.setCharacterEncoding("utf-8");
 	      
-	      //int userNo = request.getParameter("userNo");
 	      String userId = request.getParameter("userId");
 	      String userPwd = request.getParameter("userPwd");
 	      String userName = request.getParameter("userName");
@@ -48,11 +47,7 @@ public class UserInsertServlet extends HttpServlet {
 	      String gender = request.getParameter("gender");
 	      String email = request.getParameter("email");
 	      String phone = request.getParameter("phone");
-	      //Date enrollDate = request.getParameter("enrollDate");
-	      //String leaveCheck = request.getParameter("leaveCheck");
-	      //String suspended = request.getParameter("suspended");
-	      //String reportCheck = request.getParameter("reportCheck");
-	      //String adminCheck = request.getParameter("adminCheck");
+	      
 	      
 	      User u = new User(userId, userPwd, userName, birth, gender, email, phone);
 	      

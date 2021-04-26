@@ -103,6 +103,10 @@
             text-decoration: none;
             color:white;
         }
+        #welcome>a, small{
+            position:relative;
+            left:320px;
+        }
     </style>
 </head>
 <body>
@@ -120,13 +124,10 @@
                    <!-- 로그인 && 로그인한 아이디가 관리자유무가 n 이 아님 : admin01 -->
                         <span align="left">Admin Center</span>
 
-                        <span>
-                            <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
-                       
-               
-                    <span align="left">Admin Center &nbsp;&nbsp;
-                        <small><a href="<%=contextPath%>/logout.us">로그아웃</a></small> 
-                        </span>
+                        <div id="welcome">
+                            <a id="welcome" href="<%=contextPath%>/loginForm.aus" >Welcome님</a>
+                            <small><a href="<%=contextPath%>/logout.us">로그아웃</a></small> 
+                        </div>
 
                      <span>
                            <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> 

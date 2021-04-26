@@ -95,7 +95,7 @@
 
     <div class="formOuter">
 
-        <form action="<%= request.getContextPath() %>/insert.us" method="post" id="enrollForm">
+        <form action="<%= request.getContextPath()%>/insert.us" method="post" id="enrollForm">
             
             <table>
                 <!-- AJAX -->
@@ -118,7 +118,7 @@
                 </tr>
                 <tr>
                     <th>비밀번호 재확인</th>
-                    <th><input type="password"  name="userPwd2" minlength="8" maxlength="15" placeholder="비밀번호 재확인" required ></th> 
+                    <th><input type="password"   minlength="8" maxlength="15" placeholder="비밀번호 재확인" required ></th> 
                     <td></td>
                 </tr>
                 <tr>
@@ -137,18 +137,18 @@
                     <!--  -->
                     <th><input name="birth" id="year" type="text" size="3" maxlength="4"> 년 &nbsp;
                         <select name="birth">
-                            <option value="1" selected>01</option>
-                            <option value="2">02</option>
-                            <option value="3">03</option>
-                            <option value="4">04</option>
-                            <option value="5">05</option>
-                            <option value="6">06</option>
-                            <option value="7">07</option>
-                            <option value="8">08</option>
-                            <option value="9">09</option>
-                            <option value="10">10</option>
-                            <option value="11">11</option>
-                            <option value="12">12</option>
+                            <option value="1" selected name="birth">01</option>
+                            <option value="2" name="birth">02</option>
+                            <option value="3" name="birth">03</option>
+                            <option value="4" name="birth">04</option>
+                            <option value="5" name="birth">05</option>
+                            <option value="6" name="birth">06</option>
+                            <option value="7" name="birth">07</option>
+                            <option value="8" name="birth">08</option>
+                            <option value="9" name="birth">09</option>
+                            <option value="10" name="birth">10</option>
+                            <option value="11" name="birth">11</option>
+                            <option value="12" name="birth">12</option>
                         </select> 월 
                         <input name="birth" type="text" size="3" maxlength="2"> 일 &nbsp;</th>
                 </tr>
@@ -157,8 +157,8 @@
                     <th colspan="2">
                         <select name="gender" id="" >
                             <option value="" selected>선택안함</option>
-                            <option value="F">여성</option>
-                            <option value="M">남성</option>
+                            <option value="F" name="gender">여</option>
+                            <option value="M" name="gender">남</option>
                         </select>
                     </th>
                 </tr>
@@ -182,7 +182,7 @@
                     <th colspan="3">
                         <div class="btn">
                             <!-- 유효성검사 -->
-                            <button type="submit" class="btn btn-warning" disabled onclick="return validate();">회원가입</button>
+                            <button type="submit" class="btn btn-warning" disabled onclick="return validate();" >회원가입</button>
                             <button type="reset" class="btn btn-secondary">취소</button>
                         </div>
                     </th>
@@ -201,16 +201,18 @@
 
             // 1) 아이디 검사 (영문자,숫자로만 총 5~20글자로 이뤄져야만 + 첫글자는 영문자(소문자 한글자)로.)
             var regExp = /^[a-z][a-z\d]{4,19}$/;
-                if(!regExp.test(userId.value)) { //userId는 요소객체이기 때문에 value붙여야함
+
+
+                if(!regExp.test(userId.value)) { 
                     alert("유효한 아이디를 입력하세요");
             
                     userId.value = "";
-                    userId.focus();   //입력칸에 깜빡깜빡 focus감(입력유도)
+                    userId.focus();   
             
-                    return false; //틀리면 넘어가지 않게.
+                    return false; 
 
 
-
+                    //유효한 아이디 입력하세요 => 바로 중복확인해서 사용가능한 아이디입니다. 출력됨.
 
 
                 }
@@ -254,7 +256,7 @@
             
     }
 
-/*
+/* 이걸 주석을 안 하면 중복확인 function 이 안먹힘! 질문하기!
         //유효성 검사
         function validate(){
                 
@@ -315,11 +317,15 @@
                 
             }
             
-    
+    */
 
-*/
+
     
     
+    </script>
+
+    <script>
+
     </script>
 
 </body>

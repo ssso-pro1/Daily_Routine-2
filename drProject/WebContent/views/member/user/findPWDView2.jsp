@@ -199,7 +199,7 @@
 
         <br>
         <div align="center">
-            <input type="submit" onclick="PWD2();" class="btn btn-warning" value="다음" return="false;">
+            <input type="submit" onclick="PWD2();" class="btn btn-warning" value="확인" return="false;">
         </div>
         </div>
         
@@ -264,7 +264,7 @@
 
 
             function PWD2(){
-                location.href = "<%= request.getContextPath()%>/findPwd3.us ";
+                location.href = "<%= request.getContextPath()%>/loginForm.us ";
             }
         </script>
         </div>

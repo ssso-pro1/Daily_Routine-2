@@ -126,12 +126,9 @@
         
         <br>
 
-        <!-- radio 하나만 설정가능하게 -->
-        <!-- 1 휴대전화로 인증/ 2. 이메일로 인증
-             1 선택시 1보이고 2는 hidden -->
         <div id="content_2">
 
-        <form action="" id="findPWD"></form>
+        <form action="<%=request.getContextPath() %>/findPwd2.us" id="findPWD"></form>
        
             <table>
                 <tr>
@@ -145,19 +142,26 @@
               
                 
             </table>
-    </div>
+           
+        </form>
+        
+    </div> 
+    <br><br>
+    <!-- <button onclick="findPwd1()">다음</button> -->
+    <button >다음</button>
     <br>
-    <button onclick="findPwd1()";>다음</button>
+   
 
     <br><br><br>
 
-    <!-- input입력안됐을 때 안 넘어가게 -->
-        <script>
+    <!-- required 속성 부여가 안됨
+     -->
+        <!-- <script>
             
             function findPwd1(){
                 location.href="<%=request.getContextPath() %>/findPwd2.us";
             }
-        </script>
+        </script> -->
         
     </div>
 

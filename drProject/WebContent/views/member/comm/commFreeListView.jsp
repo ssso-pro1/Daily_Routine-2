@@ -71,15 +71,15 @@
         cursor:pointer;
     }
     .listArea>thead>tr{
-        background:lightgray;
+        background:rgb(250, 214, 9);
     }
     .listArea>tr,th,td{
         height:30px;
     }
     .searchArea>button{
-        background:hsl(46, 77%, 50%);
+        background:rgb(250, 214, 9);
         color:white;
-        border:hsl(46, 77%, 50%);
+        border:rgb(250, 214, 9);
     }
     div>button{
         cursor:pointer;
@@ -180,8 +180,8 @@
 		                    
 		                	<% for(int p=startPage; p<=endPage; p++) { %>
 		                    	
-		                    	<% if(currentPage == p) { %>
-		                    		<button disabled><%= p %></button>
+		                    	<% if(currentPage == p) { %> <button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
+                                   
 		                    	<% }else { %>
 		                    		<button onclick="location.href='<%=contextPath%>/free.co?currentPage=<%= p %>';"><%= p %></button>
 		                   		<% } %>

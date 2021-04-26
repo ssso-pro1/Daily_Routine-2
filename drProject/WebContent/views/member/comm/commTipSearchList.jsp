@@ -73,7 +73,7 @@
         cursor:pointer;
     }
     .listArea>thead>tr{
-        background:lightgray;
+        background:rgb(250, 214, 9);
     }
     .listArea>tr,th,td{
         height:30px;
@@ -190,7 +190,7 @@
 		                    <% for(int p=startPage; p<=endPage; p++) { %>
 		                    	
 		                    	<% if(currentPage == p) { %>
-		                    		<button disabled><%= p %></button>
+                                    <button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
 		                    	<% }else { %>
 		                    		<button onclick="location.href='<%=contextPath%>/searchTip.co?currentPage=<%= p %>&searchTipText=<%=searchTipText%>&searchTipCtg=<%=searchTipCtg%>';"><%= p %></button>
 		                    	<% } %>

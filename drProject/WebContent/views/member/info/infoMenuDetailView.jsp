@@ -125,14 +125,14 @@
                                 <th width="800"><%=i.getPostTitle()%></th>
                             </tr>
                             <tr>
-                                <td height="200" width="100%">
+                                <td height="150" width="100%">
                                     <div align="center">
                                     	<img src="<%=contextPath%>/<%=list.get(0).getFilePath() + list.get(0).getFileUpdate()%>">
                                     </div>
                                 </td>
                             </tr>
                             <tr>
-                                <td height="180">
+                                <td height="150">
                                     <div align="center">
                                         <% for(int j=1; j<list.size(); j++) { %>
                                         <img src="<%=contextPath%>/<%=list.get(j).getFilePath() + list.get(j).getFileUpdate()%>">
@@ -147,13 +147,15 @@
                             </tr>
                         </table>
                         <br>
+                        
+                        <!-- 게시글 버튼 영역 -->
+		                <div id="buttonArea" align="right">
+		                    <a href="<%=contextPath%>/menu.in?currentPage=1" class="fas fa-list"> 목록</a>
+		                </div>
+		                
                     </div>
                 </div>
 
-                <!-- 게시글 버튼 영역 -->
-                <div id="buttonArea" align="right">
-                    <button>글 목록</button>
-                </div>
 
             </div>
         </div>

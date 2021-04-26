@@ -21,7 +21,7 @@
     }
     .wrap{
         width:1000px;
-        height:8000px;
+        height:800px;
         margin:auto;
         margin-top:15px;
     }
@@ -69,11 +69,7 @@
         display:inline-block;
         margin:10px;
     }
-    .searchArea>button{
-        background:rgb(250, 214, 9);
-        color:white;
-        border:rgb(250, 214, 9);
-    }
+    
     .searchArea{
         float: right;
         margin-right: 95px;
@@ -135,13 +131,12 @@
                     <div class="tipcategory" style="margin-left:60px">
                         <select name="category">
                             <option value="upload">업로드순</option>
-                            <option value="like">좋아요순</option>
                             <option value="view">조회수순</option>
                         </select>
                     </div>
                     <div align="center" class="searchArea">
                         <input type="text">
-                        <button>검색</button> 
+                        <button type="submit" class="fas fa-search"></button> 
                     </div>
                 </div><br><br><br><br>
 
@@ -189,7 +184,7 @@
 		            <% for(int p=startPage; p<=endPage; p++) { %>
 		                    	
 		            	<% if(currentPage == p) { %>
-		                    <button disabled><%= p %></button>
+		                    <button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
 		                <% }else { %>
 		                    <button onclick="location.href='<%=contextPath%>/workout.in?currentPage=<%= p %>';"><%= p %></button>
 		                <% } %>

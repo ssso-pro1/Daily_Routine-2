@@ -70,7 +70,7 @@
         cursor:pointer;
     }
     .listArea>thead>tr{
-        background:lightgray;
+        background:rgb(250, 214, 9);
     }
     .listArea>tr,th,td{
         height:30px;
@@ -86,6 +86,7 @@
     .pagingArea, .searchArea{
         margin-left:120px;
     }
+  
     .leftMenu>#menu1>a{
     	color:rgb(250, 214, 9);
     }  
@@ -177,13 +178,13 @@
 		                <div align="center" class="pagingArea">
 		                	
 		                	<% if(currentPage != 1) { %>
-		                    	<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage-1%>';"><</button>
+                                <button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%=currentPage-1%>';"><</button>
 		                    <% } %>
 		                    
 		                    <% for(int p=startPage; p<=endPage; p++) { %>
 		                    	
 		                    	<% if(currentPage == p) { %>
-		                    		<button disabled><%= p %></button>
+		                    		<button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
 		                    	<% }else { %>
 		                    		<button onclick="location.href='<%=contextPath%>/commMain.co?currentPage=<%= p %>';"><%= p %></button>
 		                    	<% } %>

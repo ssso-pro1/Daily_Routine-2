@@ -235,7 +235,7 @@
             <div id="content_2_4" style="background: white; ">
                 <br>
                 <div id="noticeDetail">
-                    <form action="">
+                    
                         
                         <table border="1" align="center">
                             <tbody>
@@ -280,6 +280,7 @@
 										
 					                    <!--첨부파일이 있을경우-->
 					                    <a download="<%= fi.getFileName() %>" href= "<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>"><%= fi.getFileName() %></a>
+					                	
 					                	
 					                	<% } %>
                                     

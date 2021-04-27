@@ -212,12 +212,12 @@
             <div id="content_2_4" style="background: white; width: 800px; height: 6000px;">
 
                 
-                  
+            <div id="noticeEnroll">  
                     
                     
                 <form action="<%= contextPath %>/ctNoticeInsert.ad" id="enrollForm" method="post" enctype="multipart/form-data">
                 
-                	<div id="noticeEnroll">
+                	
                     
                         <table border="1" align="center" >
                             <tbody>
@@ -236,7 +236,7 @@
                                 <tr>
                                     <th>첨부파일</th>
                                     <td>
-                                        <input type="file" name="upfile" id="upfile" value="">
+                                        <input type="file" name="upfile" id="upfile">
                                         <button type="button" id="deleteFile">선택취소</button>
                                     </td>
                                 </tr>
@@ -268,10 +268,10 @@
                             
                         </table>
 
+					</form>
+			</div>
 
-					</div>
-
-                  </form>
+                  
                   
                   			<script>
                   			

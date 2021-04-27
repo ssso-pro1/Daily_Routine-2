@@ -234,7 +234,7 @@
 
 
             <!--FAQ 게시판-->
-            <div id="content_2_4" style="background: white;">
+            <div id="content_2_4" style="background: white; width: 820px;">
                 <div class="faqCategoryArea">
                     <table>
                         <tr>
@@ -250,7 +250,7 @@
                 </div>
                  
              
-                <div class="faqListArea" style="background: white; width: 800px; height: 550px;">
+                <div class="faqListArea" style="background: white; width: 820px; height: 500px;">
                 	<form action="<%= contextPath %>/ctFaqDelete.ad" method="post" > <!-- 삭제하기서블릿 -->
                    <br><br>
                     <table align="center" class="listArea" border="1">
@@ -258,10 +258,10 @@
                              <tr>
                                 <th width="30">선택</th>
                                 <th width="40" style="color:black">글번호</th>
-                                <th width="40" style="color:black">문의유형</th>
+                                <th width="50" style="color:black">문의유형</th>
                                 <th width="200" style="color:black">제목</th>
                                 <th width="50">글쓴이</th>
-                                <th width="60">게시상태</th>
+                                <th width="30">게시상태</th>
                                 <th width="60">등록일</th>
                              </tr>
                          </thead>
@@ -411,27 +411,6 @@
 	                 		}
 
 						</script>   
-
-
-
-
-
-
-
-
-
-    
-                    
-                    
-                    
-                    
-                    
-                    
-                 
-                 		
-           	    
-			
-            
 
         </div>
 

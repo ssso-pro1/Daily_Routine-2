@@ -41,16 +41,12 @@ public class adCenterNoticeDetailServlet extends HttpServlet {
 		
 		if(result > 0) { // 조회수증가 조회성공
 			
-			centerNoticeFile fi = new adCenterService().selectAttachment(noticeNo);
-			
-			request.setAttribute("fi", fi);
-			
 			
 			adCenterNotice n = new adCenterService().selectNotice(noticeNo); // 현재글
-			
+			centerNoticeFile fi = new adCenterService().selectAttachment(noticeNo);
 			
 			request.setAttribute("n", n);
-			
+			request.setAttribute("fi", fi);
 			
 			request.getRequestDispatcher("views/admin/center/adCenterNoticeDetail.jsp").forward(request, response);
 			//글번호, 글제목, 글내용물, 등록일

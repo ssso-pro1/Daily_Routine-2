@@ -75,10 +75,11 @@ public class adCenterNoticeInsertServlet extends HttpServlet {
 			n.setNoticeTitle(noticeTitle);
 			n.setUserNo(userNo);
 			n.setNoticeContent(noticeContent);
-			n.setStatus(status);
+			n.setStatus(status); 
 			
 			// 3_2. 첨부파일이 있다면 centerNoticeFile테이블에 Insert할 원본명, 수정명, 저장폴더경로를 Attachment객체에 담기
-			//System.out.println(multiRequest.getOriginalFileName("upfile"));
+			//System.out.println(multiRequest.getOriginalFileName("upfile")); 
+			
 			
 			centerNoticeFile fi = null; // 처음엔 null로 초기화, 넘어온 첨부파일이 있다면 그 때 생성
 			

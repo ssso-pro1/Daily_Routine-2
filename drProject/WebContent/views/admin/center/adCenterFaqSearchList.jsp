@@ -50,6 +50,12 @@
 
         #content_1{width:15%;}
         #content_2{width:80%; margin-left:30px;}
+
+        #content_2_1{height:5%;}
+        #content_2_2{height:5%;}
+        
+        
+
         #line{width:1%;}
 
         #line{
@@ -67,9 +73,7 @@
         #welcome:hover{
             color: rgb(33, 33, 34);
         }
-        /* #content_2_1{height:10%;}
-        #content_2_2{height:35%;}
-        #content_2_3{height:35%;} */
+        
 
         #nav{
             width:100%;
@@ -216,13 +220,13 @@
 
 
             <!--FAQ관리-->
-            <div id="content_2_3">    
+            <div id="content_2_2">    
                 <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리</p>
             </div>
 
 
             <!--FAQ 게시판-->
-            <div id="content_2_4" style="background: white;">
+            <div id="content_2_3" style="background: white; width: 820px;">
                 <div class="faqCategoryArea">
                     <table>
                         <tr>
@@ -249,8 +253,8 @@
 	                </table>
                 </div>
                 
-                
-                <div class="faqListArea" style="background: white; width: 800px; height: 500px;">
+            <div id="content_2_4" style="background: white; width: 820px;">    
+                <div class="faqListArea" style="background: white; width: 820px; height: 500px;">
                 <form action="<%= contextPath %>/ctFaqDelete.ad" method="post" >
                     <br><br>
                     <table align="center" class="listArea" border="1">
@@ -258,10 +262,10 @@
                              <tr>
                                 <th width="30">선택</th>
                                 <th width="40" style="color:black">글번호</th>
-                                <th width="40" style="color:black">문의유형</th>
+                                <th width="50" style="color:black">문의유형</th>
                                 <th width="200" style="color:black">제목</th>
                                 <th width="50">글쓴이</th>
-                                <th width="60">게시상태</th>
+                                <th width="30">게시상태</th>
                                 <th width="60">등록일</th>
                              </tr>
                          </thead>
@@ -303,19 +307,8 @@
                             	
                          </tbody>
                     </table>
-             
-             		<script>
-             		<% if(searchList.isEmpty()) { %>
-         			//클릭x
-             		<% } else { %>
-				    	$(function(){
-							$(".listArea>tbody>tr>td").click(function(){
-								location.href = '<%=contextPath%>/ctFaqDetail.ad?fno=' + $(this).siblings().eq(1).text();			
-								
-							})
-				    	})
-				    <% } %>	
-				    </script>
+                    
+                	
              
                     <br><br>
                     
@@ -340,9 +333,11 @@
 
 					</form> 
 				</div>
+			</div>
+            
+            <div id="content_2_5" style="width: 820px;">
 				
-				
-                    <!-- 페이징처리 10개씩 -->
+                <!-- 페이징처리 10개씩 -->
                 <div align="center" class="pagingArea">
 
 					<%if (searchList.isEmpty()) { %>
@@ -376,17 +371,31 @@
 
 
                 <!-- 검색부분-->
-                    <br><br>
-                    	<div class="searchArea" align="center">
-		                    <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
-		                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
-		                        <button type="submit">검색</button>
-		                    </form>
-		                </div>
+                 <br><br>
+                <div class="searchArea" align="center">
+		            <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
+		                <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
+		                <button type="submit">검색</button>
+		            </form>
+		        </div>
 					 	
                     	
                     	
-            	</div>         
+            </div>  
+                
+                
+                        <script>
+                            <% if(searchList.isEmpty()) { %>
+                            //클릭x
+                            <% } else { %>
+                            $(function(){
+                                $(".listArea>tbody>tr>td").click(function(){
+                                    location.href = '<%=contextPath%>/ctFaqDetail.ad?fno=' + $(this).siblings().eq(1).text();			
+                                    
+                                })
+                            })
+                        <% } %>	
+                        </script>
                     
                     	<script>
                     	//체크박스 선택안하고 삭제누르면 알람띄우기

@@ -175,15 +175,15 @@
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
                     <div><a href="<%=contextPath%>/userManage.aus">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
+                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div> 
                     <br>
                 </div>
 
                 <div class="content_1_3">
                     <h2>고객센터</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">공지사항</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">FAQ</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">1:1문의</a></div> 
+                    <div><a href="<%=contextPath%>/ctNotice.ad?currentPage=1">공지사항</a></div> 
+                    <div><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">FAQ</a></div> 
+                    <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div> 
                     <br>
                 </div>
 
@@ -272,7 +272,7 @@
                                     <th>썸네일</th>
                                     <%if (fi !=null)   { %>
                                     <td colspan="3" align="center">
-                                    	<img src="<%=contextPath %><%= fi.getFilePath() + fi.getFileUpdate() %>" width="500" height="300">
+                                    	<div><img src="<%= request.getContextPath() %>/<%= fi.getFilePath() %><%= fi.getFileUpdate() %>" width="500" height="300"></div>
                                     	
                                     </td>
                                     <% } else { %>

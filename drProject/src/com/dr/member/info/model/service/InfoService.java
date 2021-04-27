@@ -111,14 +111,14 @@ public class InfoService {
 		
 	}
 	
-	public ArrayList<InfoFile> selectMenuFileList(int intPostNo) {
+	public InfoFile selectMenuFile(int intPostNo) {
 		
 		Connection conn = getConnection();
-		ArrayList<InfoFile> list = new InfoDao().selectMenuFileList(conn, intPostNo); 
+		InfoFile inf = new InfoDao().selectMenuFile(conn, intPostNo); 
 		
 		close(conn);
 		
-		return list; 
+		return inf; 
 		
 	}
 	

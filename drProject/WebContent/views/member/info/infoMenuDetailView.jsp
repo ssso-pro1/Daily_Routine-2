@@ -3,7 +3,7 @@
 <%
 
 	Info i = (Info)request.getAttribute("i"); 
-	ArrayList<InfoFile> list = (ArrayList<InfoFile>)request.getAttribute("list"); 
+	InfoFile inf = (InfoFile)request.getAttribute("inf"); 
 
 	User loginUser = (User)session.getAttribute("loginUser");
 	
@@ -175,8 +175,6 @@
     	border:none;
     }
     
-    .ff{font-family: 'Do Hyeon', sans-serif;}
-    
 </style>
 </head>
 <body>
@@ -301,18 +299,9 @@
                                 <th width="800"><%=i.getPostTitle()%></th>
                             </tr>
                             <tr>
-                                <td height="150" width="100%">
+                                <td height="300" width="100%">
                                     <div align="center">
-                                    	<img src="<%=contextPath%>/<%=list.get(0).getFilePath() + list.get(0).getFileUpdate()%>">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td height="150">
-                                    <div align="center">
-                                        <% for(int j=1; j<list.size(); j++) { %>
-                                        <img src="<%=contextPath%>/<%=list.get(j).getFilePath() + list.get(j).getFileUpdate()%>">
-                                        <% } %>
+                                    	<img src="<%=contextPath%>/<%=inf.getFilePath() + inf.getFileUpdate()%>">
                                     </div>
                                 </td>
                             </tr>

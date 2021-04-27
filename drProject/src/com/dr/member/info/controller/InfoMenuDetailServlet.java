@@ -40,10 +40,10 @@ public class InfoMenuDetailServlet extends HttpServlet {
 		if(result > 0) { // 유효한 게시글 => 게시글 정보 조회, 게시글 썸네일 조회  => 상세조회 페이지 
 			
 			Info i = new InfoService().selectMenu(intPostNo); 
-			ArrayList<InfoFile> list = new InfoService().selectMenuFileList(intPostNo); 
+			InfoFile inf = new InfoService().selectMenuFile(intPostNo); 
 			
 			request.setAttribute("i", i);
-			request.setAttribute("list", list);
+			request.setAttribute("inf", inf);
 			
 			request.getRequestDispatcher("views/member/info/infoMenuDetailView.jsp").forward(request, response);
 			

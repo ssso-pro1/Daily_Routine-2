@@ -3,7 +3,7 @@
 <%
 
 	Info i = (Info)request.getAttribute("i"); 
-	ArrayList<InfoFile> list = (ArrayList<InfoFile>)request.getAttribute("list"); 
+	InfoFile inf = (InfoFile)request.getAttribute("inf"); 
 
 	User loginUser = (User)session.getAttribute("loginUser");
 	
@@ -24,7 +24,7 @@
         width:1000px;
         height:800px;
         margin:auto;
-        margin-top:37px;
+        margin-top:15px;
     }
     .wrap>div{
         width:100%;
@@ -250,7 +250,7 @@
                 <div class="menu"><a href="<%=contextPath%>/allList.ht">HomeTraining</a></div>
                 <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
                 <div class="menu"><a href="<%=contextPath%>/workout.in?currentPage=1">Info&Tip</a></div>
-                <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
+                <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>    
 
                 <div class="sideLine" ></div>
                 <hr id="mainLine">
@@ -299,18 +299,9 @@
                                 <th width="800"><%=i.getPostTitle()%></th>
                             </tr>
                             <tr>
-                                <td height="150" width="100%">
+                                <td height="300" width="100%">
                                     <div align="center">
-                                    	<img src="<%=contextPath%>/<%=list.get(0).getFilePath() + list.get(0).getFileUpdate()%>">
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td height="150">
-                                    <div align="center">
-                                        <% for(int j=1; j<list.size(); j++) { %>
-                                        <img src="<%=contextPath%>/<%=list.get(j).getFilePath() + list.get(j).getFileUpdate()%>">
-                                        <% } %>
+                                    	<img src="<%=contextPath%>/<%=inf.getFilePath() + inf.getFileUpdate()%>">
                                     </div>
                                 </td>
                             </tr>

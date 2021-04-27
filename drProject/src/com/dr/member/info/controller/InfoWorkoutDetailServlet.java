@@ -47,7 +47,6 @@ public class InfoWorkoutDetailServlet extends HttpServlet {
 			
 			request.getRequestDispatcher("views/member/info/infoWorkoutDetailView.jsp").forward(request, response);
 			
-			// ArrayList에서 InfoFile inf로 변경 !!! 
 			
 		}else { // 유효한 게시글 x => 에러 페이지 포워딩 
 				

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.dr.member.info.model.vo.Info, com.dr.common.model.vo.PageInfo" %>
+<%@ page import="java.util.ArrayList, com.dr.member.info.model.vo.*, com.dr.common.model.vo.PageInfo" %>
 <%
 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
@@ -104,6 +104,10 @@
     
     .ff{font-family: 'Do Hyeon', sans-serif;}
     
+    .wrap ff{
+    	margin-top:150px;
+    }
+    
 </style>
 </head>
 <body>
@@ -162,7 +166,6 @@
                         <div class="thumbnail" align="center">
                         	
                         	<input type="hidden" value="<%=i.getIntPostNo()%>">
-                        	
                             <img src="<%=contextPath%>/<%=i.getTitleImg()%>" width="200" height="150">
                             <p>
                                 <%=i.getPostTitle()%> <br>

@@ -9,7 +9,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>03. 비밀번호 재설정</title>
       <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+      <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
 
       <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -127,44 +128,44 @@
         
         
         <div class="wrap" >
-        <form action="<%=request.getContextPath() %>/loginForm.us" id="findPWD"></form>
-            <div style="margin-top:20px; margin-left:20px;">
-                <p><small>
-                   -영문, 숫자, 특수문자를 함께 사용하면 (8자 이상 16자 이하)보다 안전합니다. <br>
-                   -다른 사이트와 다른 DR만의 비밀번호를 만들어 주세요.
-                </small>
-                </p>
-                <br>
-                <hr style="width:80%;">
-            </div>
-            
-            <table>
-                <tr>
-                    <th colspan="2" align="left">DR아이디 : running01</th>
-                </tr>
-                <tr>
-                    <th align="left">이름</th>
-                    <td><input type="text" placeholder="이름을 입력하세요" required="required"></td>
-                </tr>
-                <tr>
-                    <th align="left">아이디</th>
-                    <td><input type="text" placeholder="아이디를 입력하세요" required="required"></td>
-                </tr>
-                <tr>
-                    <th></th>
-                    <td><button type="submit" >다음</button></td>
-                </tr>
-                <!-- 다음 클릭시 로그인 창 -->
-            </table>
-        </form>
+
+        <div style="margin-top:20px; margin-left:20px;">
+
+            <form action="<%=request.getContextPath() %>/loginForm.us" id="findPWD" method="post">
+                
+                    <p><small>
+                    -영문, 숫자, 특수문자를 함께 사용하면 (8자 이상 16자 이하)보다 안전합니다. <br>
+                    -다른 사이트와 다른 DR만의 비밀번호를 만들어 주세요.
+                    </small>
+                    </p>
+                    <br>
+                    <hr style="width:80%;">
+                </div>
+                
+                <table>
+                    <tr>
+                        <th colspan="2" align="left">DR아이디 : running01</th>
+                    </tr>
+                    <tr>
+                        <th align="left">이름</th>
+                        <td><input type="text" placeholder="이름을 입력하세요" required name="userName"></td>
+                    </tr>
+                    <tr>
+                        <th align="left">아이디</th>
+                        <td><input type="text" placeholder="아이디를 입력하세요" required name="userId"></td>
+                    </tr>
+                    <tr>
+                        <th></th>
+                        <td><button type="submit" class="btn btn-warning">다음</button></td>
+                    </tr>
+                    <!-- 다음 클릭시 로그인 창 -->
+                </table>
+            </form>
+
+
             <br><br>
         </div>
-        <script>
-          
-            // function findPwd3(){
-            //     location.href="<%=request.getContextPath() %>/login.us";
-            // }
-        </script>
+        
         
     </div>
 

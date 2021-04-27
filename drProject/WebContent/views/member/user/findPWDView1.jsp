@@ -84,7 +84,13 @@
 
         #content_2>table{
             margin:0 auto;
+            
         }
+
+        #content_2 *{
+            margin:auto;
+        }
+
         /*  include의 css가 적용돼서 이게 안먹힘.. 질문 */
         .menu2:hover{
             color:rgb(250, 214, 9);
@@ -126,21 +132,21 @@
         
         <br>
 
-        <div id="content_2">
+        <div id="content_2" >
 
-        <form action="<%=request.getContextPath() %>/findPwd2.us" method="post" id="findPWD"></form>
+        <form action="<%=request.getContextPath() %>/findPwd2.us" method="post" id="findPWD">
        
             <table>
                 <tr>
                     <th align="left">이름</th>
-                    <td><input type="text" name="userName" placeholder="이름을 입력하세요" required></td>
+                    <td><input type="text" name="userName" id="userName" placeholder="이름을 입력하세요" required></td>
                 </tr>
                 <tr>
                     <th align="left">아이디</th>
-                    <td><input type="text" name="userPwd" placeholder="아이디를 입력하세요" required></td>
+                    <td><input type="text" name="userPwd" id="userPwd" placeholder="아이디를 입력하세요" required></td>
                 </tr>
                 <tr>
-                    <th colspan="2"><input type="submit" value="다음" id="nextbtn" onclick="findPwd1();"></th>
+                    <th colspan="2"><input type="submit" value="다음" id="next" onclick="validate();"></th>
                 </tr>
                 
             </table>
@@ -149,6 +155,7 @@
         </form>
         
     </div> 
+    </div>
     <br><br>
     
     <br>
@@ -156,17 +163,46 @@
 
     <br><br><br>
 
-    <!-- required 속성 부여가 안됨-->
+
+    
+    <script>
+   
+   function validate(){
+
+   
+   
+    var userName = document.getElementById("userName");
+    var userId = document.getElementById("userId");
+
+    regExp = /^[가-힣]{2,}$/; //{2} : 그냥 2글자
+    if(!regExp.test(userName.value)){
+        alert("유효한 이름을 입력하세요.");
+
+        userName.value = "";
+        userName.focus();
+
+        return false;
+    }
+    
+    var regExp = /^[a-z][a-z\d]{5,20}$/;
+    if(!regExp.test(userId.value)) { //userId는 요소객체이기 때문에 value붙여야함
+        alert("유효한 아이디를 입력하세요");
+
+        userId.value = "";
+        userId.focus();   
+
+        return false; //틀리면 넘어가지 않게.
+    }
+}
+    </script>
+             
+    //<!-- required 속성 부여가 안됨-->
     <script>
             
-            function findPwd1(){
-                location.href="<%=request.getContextPath() %>/findPwd2.us";
-            }
-        </script>
+            //  function findPwd1(){
+            //      location.href="<%=request.getContextPath() %>/findPwd2.us";
+            //  }
+    </script>
         
-    </div>
-
-
 </body>
 </html>
-

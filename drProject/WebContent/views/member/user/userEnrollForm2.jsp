@@ -263,7 +263,7 @@
             
                 // input요소 객체들 가져다두기 (작성되어있는값 아님! input요소객체임!)
                 var userId = document.getElementById("userId");
-                var userPwd1 = document.getElementById("userPwd1");
+                var userPwd = document.getElementById("userPwd");
                 var userPwd2 = document.getElementById("userPwd2");
                 var userName = document.getElementById("userName");
                 var year = document.getElementById("year");
@@ -374,7 +374,7 @@
                     }
 
                 if(!regExp.test(idNum.value)){
-                        alert("인증번호를 입력하세요.");
+                        alert("인증번호 6자리를 입력하세요.");
                     
                         idNum.value="";
                         idNum.focus();

@@ -105,8 +105,8 @@
             
         }
         #content_2{
-            display:block;
-            align-items: center;
+            margin:auto;
+            margin-left:200px;
         }
 
         #content_2>table{
@@ -128,7 +128,9 @@
         <div class="menu2"> <a href="<%=contextPath%>/findPwd1.us" style="color:gray; "><i class="fas fa-key">비밀번호 찾기</i></a></div>
     </div>
     
-
+    <style>
+        
+    </style>
 
 
     <div class="outer">
@@ -214,10 +216,28 @@
         </div>
 
         <br><br><br><br><br><br><br><br><br>
+
+
+
+
         
+        <script>
+        function enter(){
+                
+                if($("#idNum").val() == ""){
+                    alert("인증번호를 입력하세요.")
+                    idNum.value = "";
+                    idNum.focus();
 
+                    return false;
+                }else{
+                    alert("확인되었습니다.");
+            }
+                
+                
+            }
 
-
+        </script>
 
 
 
@@ -312,7 +332,7 @@
         <script>
             function validate(){
                        // 인증번호 받기 버튼을 눌렀을 때 유효성 검사: 이름(빈칸만 아니면됨), 휴대전화, 이메일, 인증번호
-                       var name = document.getElement("name");
+                       var userName = document.getElement("userName");
                        var tel = document.getElementById("tel");
                        var email = document.getElementById("email");
                        var num1 = document.getElementById("num1");
@@ -430,32 +450,3 @@
 
 </body>
 </html>
-
-<!-- 
-    
-11. 인증하기 버튼 클릭 안했을 떄 {
-
-	
-1. 인증방법 radio check한 경우 
-   1) 휴대폰 인증에 check
-	*셋 중 하나라도 입력 안 된 경우
-		-빈칸입력해주세요 alert, 
-		-빈칸에 focus
-	* 모두 기술된 경우
-		-유효성검사????
-
-   2) 이메일 인증에 check
-	*셋 중 하나라도 입력 안 된 경우
-		-alert,
-		-빈칸에 focus
-	* 모두 기술된 경우
-
-2. 인증방법 check 안 한 경우
-   체크 alert
-
-
-
-} else {
-
-}
- -->

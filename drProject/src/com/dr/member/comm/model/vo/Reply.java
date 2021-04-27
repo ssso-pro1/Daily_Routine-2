@@ -12,6 +12,7 @@ public class Reply {
 	private Date enrollDate;   		// 댓글 등록일 
 	private Date updateDate; 		// 댓글 수정일 
 	private String status;			// 댓글삭제유무(Y/N)
+	private String postTitle;       // 게시글 제목
 	
 	public Reply() {}
 
@@ -37,6 +38,20 @@ public class Reply {
 		this.replyContent = replyContent;
 		this.enrollDate = enrollDate;
 	}
+
+	public Reply(int replyNo, String userNo, int commPostNo, String replyContent, int replyCategory, Date updateDate,
+			String postTitle) {
+		super();
+		this.replyNo = replyNo;
+		this.userNo = userNo;
+		this.commPostNo = commPostNo;
+		this.replyContent = replyContent;
+		this.replyCategory = replyCategory;
+		this.updateDate = updateDate;
+		this.postTitle = postTitle;
+	}
+
+
 
 	public int getReplyNo() {
 		return replyNo;
@@ -100,6 +115,14 @@ public class Reply {
 
 	public void setStatus(String status) {
 		this.status = status;
+	}
+
+	public String getPostTitle() {
+		return postTitle;
+	}
+
+	public void setPostTitle(String postTitle) {
+		this.postTitle = postTitle;
 	}
 
 	@Override

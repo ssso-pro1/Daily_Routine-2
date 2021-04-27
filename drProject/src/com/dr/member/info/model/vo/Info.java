@@ -14,6 +14,7 @@ public class Info {
 	private int likeCount; 			// 게시글좋아요수 
 	private String status; 			// 게시여부(Y/N) 기본값 Y 
 	
+	private Date updateDate;		// 게시글 수정일
 	private String titleImg;		// 해당 게시글 대표이미지경로
 	
 	public Info(){}
@@ -50,6 +51,16 @@ public class Info {
 		this.postTitle = postTitle;
 		this.enrollDate = enrollDate;
 		this.boardView = boardView;
+	}
+
+	public Info(int intPostNo, String categoryName, String postTitle, int likeCount, Date updateDate, String titleImg) {
+		super();
+		this.intPostNo = intPostNo;
+		this.categoryName = categoryName;
+		this.postTitle = postTitle;
+		this.likeCount = likeCount;
+		this.updateDate = updateDate;
+		this.titleImg = titleImg;
 	}
 
 	public int getIntPostNo() {

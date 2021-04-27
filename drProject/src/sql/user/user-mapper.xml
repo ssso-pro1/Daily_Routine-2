@@ -106,6 +106,14 @@
 		   AND USER_PWD = ?
 	</entry>
 	
+<!-- user Delete -->
+	<entry key="deleteUser">
+        UPDATE 
+			   TB_USER
+		   SET LEAVE_CHECK = 'Y'
+		 WHERE USER_ID = ?
+		   AND USER_PWD = ?
+	</entry>
 </properties>
 
 

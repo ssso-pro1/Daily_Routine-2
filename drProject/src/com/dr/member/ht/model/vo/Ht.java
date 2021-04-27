@@ -69,6 +69,18 @@ public class Ht {
 	}
 
 
+	public Ht(int htPostNo, String htPostTitle, String htCategory, Date htUpdateDate, int htLikeCount,
+			String titleImg) {
+		super();
+		this.htPostNo = htPostNo;
+		this.htPostTitle = htPostTitle;
+		this.htCategory = htCategory;
+		this.htUpdateDate = htUpdateDate;
+		this.htLikeCount = htLikeCount;
+		this.titleImg = titleImg;
+	}
+
+
 	public int getHtPostNo() {
 		return htPostNo;
 	}

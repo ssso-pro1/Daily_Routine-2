@@ -1,1 +1,140 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<entry key="selectbkListCount">
+	    SELECT COUNT(*) LISTCOUNT
+		  FROM TB_BOOKMARK
+		 WHERE USER_NO = ?
+	</entry>
+	
+	<entry key="selectMyPostListCount">
+	    SELECT COUNT(*) LISTCOUNT
+		  FROM TB_COMMUNITY
+		 WHERE USER_NO = ?
+	</entry>
+	
+	<entry key="selectMyPostList">
+	    SELECT * 
+		  FROM (
+		        SELECT 
+		       ROWNUM RNUM 
+		     , A.*
+		          FROM (
+		                SELECT
+		                       COMM_POST_NO
+		                     , USER_NO
+		                     , POST_TITLE
+		                     , UPDATE_DATE
+		                     , BOARD_VIEW 
+		                     , COMM_NO
+                             , LIKE_COUNT
+		                  FROM TB_COMMUNITY
+		                 WHERE USER_NO = ?
+		                   AND STATUS = 'N'
+		                 ORDER 
+		                     BY ENROLL_DATE DESC
+		               ) A
+		       )
+	     WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectMyReplyListCount">
+        SELECT COUNT(*) LISTCOUNT
+		  FROM TB_REPLY
+		 WHERE USER_NO = ?
+	</entry>
+	
+	<entry key="selectMyReplyList">
+		SELECT * 
+		  FROM (
+		        SELECT
+		       ROWNUM RNUM 
+		     , A.*
+		          FROM (
+		                SELECT 
+                                REPLY_NO
+                              , R.USER_NO
+                              , C.COMM_POST_NO
+                              , REPLY_CONTENT
+                              , REPLY_CATEGORY
+                              , R.UPDATE_DATE
+                              , C.POST_TITLE
+		                  FROM TB_COMMUNITY C 
+		                  JOIN TB_REPLY R ON(R.COMM_POST_NO = C.COMM_POST_NO)
+		                 WHERE R.USER_NO = ?
+		                   AND C.STATUS = 'N'
+		                 ORDER 
+		                     BY R.UPDATE_DATE DESC
+		               ) A
+		       )
+	   	WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectHtBookmarkListCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_BOOKMARK
+		 WHERE USER_NO = ?
+		   AND BK_POST_TYPE = 1
+	</entry>
+	
+	<entry key="selectHtBookmarkList">
+		SELECT * 
+		  FROM (
+		        SELECT
+		       ROWNUM RNUM 
+		     , A.*
+		          FROM (
+                  SELECT
+                         H.HT_POST_NO "HT_POST_NO"
+                       , HT_POST_TITLE
+                       , CATEGORY_NAME
+                       , HT_UPDATE_DATE
+                       , HT_LIKE_COUNT
+                       , FILE_PATH || CHANGE_NAME "TITLEIMG"
+                     FROM TB_HOMETRAINING H
+                     LEFT JOIN TB_HT_FILE F ON(H.HT_POST_NO = F.HT_POST_NO)
+                     JOIN TB_BOOKMARK B ON(H.HT_POST_NO = B.BK_POST_NO)
+                     WHERE STATUS = 'N'
+                       AND B.USER_NO = ?
+                       AND BK_POST_TYPE = 1
+                     ORDER 
+                        BY BK_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="selectItBookmarkListCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_BOOKMARK
+		 WHERE USER_NO = ?
+           AND BK_POST_TYPE = 1
+	</entry>
+	
+	<entry key="selectItBookmarkList">
+		SELECT * 
+		  FROM (
+		        SELECT
+		       ROWNUM RNUM 
+		     , A.*
+		          FROM (
+			            SELECT
+			                   I.INT_POST_NO "INT_POST_NO"
+			                  , POST_TITLE
+                              , CATEGORY_NAME
+			                  , I.UPDATE_DATE "UPDATE_DATE"
+			                  , LIKE_COUNT
+			                  , FILE_PATH || FILE_UPDATE "TITLEIMG"
+			               FROM TB_INFO_N_TIP I 
+			               JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
+                           JOIN TB_BOOKMARK B ON(I.INT_POST_NO = B.B_POST_NO)
+			              WHERE I.STATUS = 'Y'
+                            AND B.USER_NO = ?
+                            AND BK_POST_TYPE = 2
+                          ORDER 
+                             BY BK_NO DESC
+		               ) A
+		       )
+	     WHERE RNUM BETWEEN ? AND ?
+	</entry>
+</properties>

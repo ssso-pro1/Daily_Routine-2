@@ -61,9 +61,9 @@
                 <div class="leftMenu">
                     <div><a href="<%=contextPath%>/myPage.md" style="color:rgb(250, 214, 9);">회원수정</a></div>
                     <br>
-                    <div><a href="">내 글 보관함</a></div>
+                    <div><a href="<%=contextPath%>/myPostList.md?currentPage=1">내 글 보관함</a></div>
                     <br>
-                    <div><a href="" >북마크 보관함</a></div>
+                    <div><a href="<%= contextPath %>/htBookmark.md?currentPage=1" >북마크 보관함</a></div>
                     <br>
                     <div><a href="">다이어리</a></div>
                 </div>
@@ -120,10 +120,10 @@
                 
                                 <br>
                                 <div class="buttons" align="center">
-                                    <button type="submit" id="submitBtn" disabled onclick="return validate();">확인</button>
-                                    <button type="reset" id="resetBtn">취소</button>
+                                <!--    <button type="submit" id="submitBtn" disabled onclick="return validate();">확인</button>    -->
+                                <!--    <button type="reset" id="resetBtn">취소</button> -->
                                     <div class="outBtn">
-                                        <button id="outBtn">탈퇴하기</button>
+                                        <button type="button" id="outBtn" onclick="location.href='<%= contextPath %>/deleteUserView.md'">탈퇴하기</button>
                                     </div>
                                     
                                     <!-- 탈퇴 링크하기 -->

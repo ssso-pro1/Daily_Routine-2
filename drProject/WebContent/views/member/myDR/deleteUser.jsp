@@ -1,10 +1,12 @@
-%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+</head>
+<body>
 <!-- <link rel="stylesheet" href="../../../resources/css/drView.css"> -->
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/drView.css">
 <style>
@@ -62,41 +64,43 @@
 
             <div id="line"></div>
 
-            <!-- ê²ìí ëª©ë¡ -->
             <div id="content_2">
                 <br><br><br>
                 <div id="content_2_2">
 					<div class="outer">
-						<form action="" name="updateEnrollForm">
+						<form action="<%= contextPath %>/deleteUser.md" get="post">
 							<div class="form">
-								&nbsp<button id="btn1" disabled>íì íí´</button>
+								&nbsp<button id="btn1" disabled>회원 탈퇴</button>
 								<fieldset>
 									<p>
 										<br>
-										<h2><b>ê·¸ëì ë°ì¼ë¦¬ ë£¨í´ì ì´ì©í´ì£¼ìì ê°ì¬í©ëë¤</b></h2> <br>
-													íì íí´ íì¤ ê²½ì° íìëì ëª¨ë  ì ë³´ê° ì­ì ë©ëë¤. <br>
-													íì¬ íìëê»ì ì¬ ì¤ì¸ ìë¹ì¤ë¥¼ íì¸íì  í ì ì¤í íí´í´ì£¼ìê¸° ë°ëëë¤. <br><br><br>
+										<h2><b>그동안 데일리루틴을 이용해 주셔서 감사합니다</b></h2> <br>
+													회원 탈퇴 하실 경우 회원님의 모든 정보가 삭제됩니다.<br>
+													현재 회원님꼐서 사용 중인 서비스를 확인하신 후 신중히 탈퇴해주시기 바랍니다.<br><br><br>
 													<hr><br>
-													íì íí´ë¥¼ ìí´ ë¹ë°ë²í¸ë¥¼ ìë ¥í´ ì£¼ì¸ì. <br><br>
+													회원 탈퇴를 위해 비밀번호를 입력해주세요<br><br>
 										<hr>
 									</p>
-									<table id="passwordInput">
-										<tr>
-											<th>ìì´ë</th>
-											<td>corin2</td>
-										</tr>
-										<tr>
-											<th>ë¹ë°ë²í¸</th>
-											<td><input type="password" size="25" maxlength="15" placeholder="ë¹ë°ë²í¸ë¥¼ ìë ¥í´ì£¼ì¸ì" required></td>
-										</tr>
-									</table>
-									<br>
-									<hr>
-									<br>
-									<div class="buttons" align="center">
-										<button type="submit" id="submitBtn">íí´ ì ì²­</button> &nbsp;
-										<button id="resetBtn" onclick="location='<%= contextPath %>/update.md'">ì·¨ì</button>
-									</div>
+									
+										<table id="passwordInput">
+											<tr>
+												<th>아이디</th>
+												<td><%= loginUser.getUserId() %></td>
+												<input type="hidden" name="userId" value="<%= loginUser.getUserId() %>">
+											</tr>
+											<tr>
+												<th>비밀번호</th>
+												<td><input type="password" name="userPwd" size="25" maxlength="15" placeholder="현재 비밀번호를 입력해주세요." required></td>
+											</tr>
+										</table>
+										<br>
+										<hr>
+										<br>
+									
+										<div class="buttons" align="center">
+											<button type="submit" id="submitBtn">탈퇴 신청</button> &nbsp;
+											<button id="resetBtn" onclick="location='<%= contextPath %>/update.md'">취소</button>
+										</div>
 									<br>
 								</fieldset>
 							</div>

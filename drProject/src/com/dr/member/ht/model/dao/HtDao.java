@@ -97,6 +97,14 @@ public class HtDao {
 		
 	}
 	
+	/**
+	 * 홈트 제목 검색 전체 조회
+	 * @param conn
+	 * @param value
+	 * @param searchTitle
+	 * @param pi
+	 * @return
+	 */
 	public ArrayList<Ht> selectSearchHtList(Connection conn, String value, String searchTitle, PageInfo pi) {// select -> 여러행
 		ArrayList<Ht> list = new ArrayList<>();
 		PreparedStatement pstmt = null;

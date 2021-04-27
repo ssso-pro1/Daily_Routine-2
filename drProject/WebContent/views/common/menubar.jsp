@@ -75,11 +75,12 @@
         border-bottom:1px solid gray;
         color:gray;
     }
-    
+   
     
 </style>
 </head>
 <body>
+    
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
     
     <!-- 폰트 -->

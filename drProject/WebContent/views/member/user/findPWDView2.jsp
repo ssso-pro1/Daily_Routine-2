@@ -111,10 +111,14 @@
         .menu2:hover{
             color:rgb(250, 214, 9);
         }
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        .f{
+            font-family: 'Do Hyeon', sans-serif;
+        }
     </style>
 </head>
 <body>
-    
+    <div class="f">
      <%@ include file="../../common/menubar.jsp" %> 
     
     <!-- navi -->
@@ -465,7 +469,7 @@
                 
             </script>
             </div>
-
+        </div>
 </body>
 </html>
 

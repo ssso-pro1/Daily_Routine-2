@@ -8,6 +8,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>01. 아이디입력</title>
+    <link rel="stylesheet" href="../../../resources/css/fontcommon.css" >
+
     <!-- Latest compiled and minified CSS -->
     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
@@ -20,11 +22,15 @@
       <!-- Latest compiled JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/findIdPwdNavi.css">
+    <!-- <link rel="stylesheet" type="text/css" href="../../../resources/css/findIdPwdNavi.css"> -->
 
 <!-- 제일 위의 부트스트랩 넣으면 크기나 여백이 다 바뀜. 근데 버튼하려면 저거 써야함.. 질문 -->
 
     <style>
+         @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        .f{
+            font-family: 'Do Hyeon', sans-serif;
+        }
         .menuWrap{
             width:1000px;
             margin:auto;
@@ -107,7 +113,7 @@
     </style>
 </head>
 <body>
-    
+    <div class="f">
     <%@ include file="../../common/menubar.jsp" %>    
     
     
@@ -202,6 +208,6 @@
             //      location.href="<%=request.getContextPath() %>/findPwd2.us";
             //  }
     </script>
-        
+    </div> 
 </body>
 </html>

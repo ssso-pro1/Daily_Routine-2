@@ -55,10 +55,14 @@
             justify-content:center;
             margin:10px;
         }
-        
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        .f{
+            font-family: 'Do Hyeon', sans-serif;
+        }
     </style>
 </head>
 <body>
+    <div class="f">
     <%@ include file="../../common/menubar.jsp" %>  
     
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
@@ -87,4 +91,5 @@
         }
     </script>
 </body>
+</div>
 </html>

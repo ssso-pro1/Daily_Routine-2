@@ -9,7 +9,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3.회원가입_1.회원약관동의</title>
-        
+    <link rel="stylesheet" href="../../../resources/css/fontcommon.css" type="text/css">
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <!-- jQuery library -->
@@ -20,6 +21,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
+         @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        .f{
+            font-family: 'Do Hyeon', sans-serif;
+        }
          .formOuter{
             border:1px solid gray;
             padding:60px 30px;
@@ -110,6 +115,7 @@
     </style>
 </head>
 <body>
+    <div class="f">
     <%@ include file="../../common/menubar.jsp" %>
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
     
@@ -340,6 +346,6 @@
     
  
 
-
+    </div>
 </body>
 </html>

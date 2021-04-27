@@ -7,6 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>로그인</title>
+
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../../../resources/css/fontcommon.css" type="text/css">
+    
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
@@ -20,9 +26,11 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <style>
+        .ff{font-family: 'Do Hyeon', sans-serif;}
         /* 페이지 길이  & 로그인창 들어오면 메뉴바 높이가 길어짐.. */
       .outer{
           height:1600px;
+          font-family: 'Do Hyeon', sans-serif;
       }
 
        fieldset{

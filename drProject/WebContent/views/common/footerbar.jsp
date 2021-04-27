@@ -8,9 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <style>
-     
-         /* footer */
-         .footerOuter{
+     @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+    .f{
+        font-family: 'Do Hyeon', sans-serif;
+    }
+        /* footer */
+    .footerOuter{
         width:1000px;
         margin:auto;
         align-items: center;
@@ -23,7 +26,7 @@
     .footer1_1{
         height:30px;
         background-color:rgb(250, 214, 9);
-       padding-top:10px;
+        padding-top:10px;
 
     }
 
@@ -52,6 +55,7 @@
     </style>
 </head>
 <body>
+    <div class="f">
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
     
      <!-- footer -->
@@ -85,6 +89,6 @@
     </div>
 
 
-    
+</div>
 </body>
 </html>

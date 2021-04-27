@@ -8,7 +8,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>findID_1</title>
 
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/findIdPwdNavi.css">
 
 
     <!-- Latest compiled and minified CSS -->
@@ -28,6 +27,10 @@
 <!-- 제일 위의 부트스트랩 넣으면 크기나 여백이 다 바뀜. 근데 버튼하려면 저거 써야함.. 질문 -->
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        .f{
+            font-family: 'Do Hyeon', sans-serif;
+        }
         .menuWrap{
             width:1000px;
             margin:auto;
@@ -102,7 +105,7 @@
     </style>
 </head>
 <body>
-    
+    <div class="f">
     <%@ include file="../../common/menubar.jsp" %>
     
     
@@ -162,7 +165,7 @@
             }
         </script>
     </div>
-
+</div>
 </body>
 </html>
 

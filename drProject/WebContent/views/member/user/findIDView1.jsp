@@ -8,9 +8,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>findID_1</title>
-    
-     <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="../../../resources/css/fontcommon.css">
 
       <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -21,16 +19,21 @@
       <!-- Latest compiled JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/findIdPwdNavi.css">
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 <!-- 제일 위의 부트스트랩 넣으면 크기나 여백이 다 바뀜. 근데 버튼하려면 저거 써야함.. 질문 -->
 
-<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script> 
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        .f{
+            font-family: 'Do Hyeon', sans-serif;
+        }
         .menuWrap{
             width:1000px;
             margin:auto;
@@ -119,7 +122,7 @@
     </style>
 </head>
 <body>
-    
+    <div class="f">
      <%@ include file="../../common/menubar.jsp" %> 
     
     <!-- navi -->
@@ -447,6 +450,6 @@
         </script>
         </div>
 
-
+    </div>
 </body>
 </html>

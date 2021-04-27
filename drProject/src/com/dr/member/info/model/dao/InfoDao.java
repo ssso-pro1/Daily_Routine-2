@@ -155,12 +155,12 @@ public class InfoDao {
 				
 	}
 	
-	public ArrayList<InfoFile> selectWorkoutFileList(Connection conn, int intPostNo) {
+	public InfoFile selectWorkoutFile(Connection conn, int intPostNo) {
 		// select문 
-		ArrayList<InfoFile> list = new ArrayList<>();
+		InfoFile inf = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		String sql = prop.getProperty("selectWorkoutFileList");
+		String sql = prop.getProperty("selectWorkoutFile");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -168,15 +168,12 @@ public class InfoDao {
 			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) { 
-				
-				InfoFile inf = new InfoFile();
+			if(rset.next()) { 
+				inf = new InfoFile();
 				inf.setFileNo(rset.getInt("file_no"));
+				inf.setFileName(rset.getString("file_name"));
 				inf.setFileUpdate(rset.getString("file_update"));
-				inf.setFilePath(rset.getString("file_path"));
-				
-				list.add(inf); 
-				
+				inf.setFilePath(rset.getString("file_path"));	
 			}
 			
 		} catch (SQLException e) {
@@ -186,7 +183,7 @@ public class InfoDao {
 			close(pstmt);
 		}
 		
-		return list; 		
+		return inf; 		
 		 
 	}
 	

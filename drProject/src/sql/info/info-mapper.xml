@@ -16,22 +16,22 @@
 		        SELECT 
 		               ROWNUM RNUM 
 		             , A.*
-		          FROM (
-		                SELECT
-		                       I.INT_POST_NO
-		                     , POST_TITLE
-		                     , I.ENROLL_DATE 
-		                     , BOARD_VIEW 
-		                     , LIKE_COUNT
-		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
-		                  FROM TB_INFO_N_TIP I 
-		                  JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
-		                 WHERE I.STATUS = 'Y'
-		                   AND CATEGORY_NAME = '1'
-		                 ORDER 
-		                     BY I.ENROLL_DATE DESC, 
-		                        I.INT_POST_NO DESC
-		               ) A
+		             FROM (
+			               SELECT
+			                      I.INT_POST_NO
+			                    , POST_TITLE
+			                    , I.ENROLL_DATE 
+			                    , BOARD_VIEW 
+			                    , LIKE_COUNT
+			                    , FILE_PATH || FILE_UPDATE "TITLEIMG"
+			                 FROM TB_INFO_N_TIP I 
+			                 JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
+			                WHERE I.STATUS = 'Y'
+			                  AND CATEGORY_NAME = '1'
+			                ORDER 
+			                    BY I.ENROLL_DATE DESC, 
+			                       I.INT_POST_NO DESC
+			              ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
@@ -58,7 +58,7 @@
 		   AND STATUS = 'Y' 	
 	</entry>
 	
-	<entry key="selectWorkoutFileList">
+	<entry key="selectWorkoutFile">
 		SELECT 
 			   FILE_NO
 			 , FILE_NAME

@@ -40,13 +40,14 @@ public class InfoWorkoutDetailServlet extends HttpServlet {
 		if(result > 0) { // 유효한 게시글 => 게시글 정보 조회, 게시글 썸네일 조회  => 상세조회 페이지 
 			
 			Info i = new InfoService().selectWorkout(intPostNo); 
-			ArrayList<InfoFile> list = new InfoService().selectWorkoutFileList(intPostNo); 
+			InfoFile inf = new InfoService().selectWorkoutFile(intPostNo); 
 			
 			request.setAttribute("i", i);
-			request.setAttribute("list", list);
+			request.setAttribute("inf", inf);
 			
 			request.getRequestDispatcher("views/member/info/infoWorkoutDetailView.jsp").forward(request, response);
 			
+			// ArrayList에서 InfoFile inf로 변경 !!! 
 			
 		}else { // 유효한 게시글 x => 에러 페이지 포워딩 
 				

@@ -63,14 +63,14 @@ public class InfoService {
 		
 	}
 	
-	public ArrayList<InfoFile> selectWorkoutFileList(int intPostNo) {
+	public InfoFile selectWorkoutFile(int intPostNo) {
 		
 		Connection conn = getConnection();
-		ArrayList<InfoFile> list = new InfoDao().selectWorkoutFileList(conn, intPostNo); 
+		InfoFile inf = new InfoDao().selectWorkoutFile(conn, intPostNo); 
 		
 		close(conn);
 		
-		return list; 
+		return inf; 
 		
 	}
 	

@@ -9,11 +9,11 @@
     <title>Document</title>
     <style>
      
-     .footerOuter{
+         /* footer */
+         .footerOuter{
         width:1000px;
         margin:auto;
         align-items: center;
-        margin-top:100px;
 
     }
     .footerOuter>.footer1_1, .footer2{
@@ -23,10 +23,10 @@
     .footer1_1{
         height:30px;
         background-color:rgb(250, 214, 9);
-        padding-top:10px;
+       padding-top:10px;
 
     }
-    
+
     .footer2{
         height:80%;
         padding-left:25px;
@@ -42,12 +42,11 @@
         text-align:center;
     }
     .footer1_2{
-        margin-top:-10px;
+        margin-top:-30px;
+        padding: 0px 30px;
     }
     .footer1_2>i{
         padding: 10px 5px;
-        margin-top:-40px;
-
     }
         
     </style>

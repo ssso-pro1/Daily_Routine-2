@@ -81,8 +81,6 @@
     .footer1_1{
         height:30px;
         background-color:rgb(250, 214, 9);
-        /* display:flex;
-       justify-content: space-between; */
        padding-top:10px;
 
     }

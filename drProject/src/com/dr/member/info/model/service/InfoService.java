@@ -123,7 +123,17 @@ public class InfoService {
 	}
 	
 	
-	
+	//mainPage 최신인기글 list
+	public ArrayList<Info> mainList() {
+		
+		Connection conn = getConnection(); 
+		ArrayList<Info> list = new InfoDao().mainList(conn); 
+		
+		close(conn);
+		
+		return list; 
+		
+	}
 	
 	
 	

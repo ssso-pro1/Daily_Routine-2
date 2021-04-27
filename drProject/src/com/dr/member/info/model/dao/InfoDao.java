@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import com.dr.common.model.vo.PageInfo;
+import com.dr.member.comm.model.vo.Comm;
 import com.dr.member.info.model.vo.Info;
 import com.dr.member.info.model.vo.InfoFile;
 
@@ -329,6 +330,38 @@ public class InfoDao {
 	
 	
 	
+	
+	//mainPage 최신인기글 list
+	public ArrayList<Info> mainList(Connection conn) {
+		// select문 => 여러행 
+		ArrayList<Info> list = new ArrayList<>(); 
+		PreparedStatement pstmt = null; 
+		ResultSet rset = null; 
+		
+		String sql = prop.getProperty("mainList"); 
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) { 
+	            list.add(new Info(rset.getInt("int_post_no"),
+	                          	  rset.getString("category_name"),
+	                              rset.getString("post_title"),
+	                              rset.getDate("enroll_date"),
+	                              rset.getInt("board_view"))); 
+	         }
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+		
+	}
+		
 	
 	
 	

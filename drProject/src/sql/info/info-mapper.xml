@@ -143,6 +143,30 @@
 	
 	
 	
+	<!-- mainpage 최신인기글 -->
+	<entry key="mainList">
+		SELECT 
+		        ROWNUM RNUM
+		        , A.*
+		       
+		    FROM (
+		        SELECT 
+		                INT_POST_NO
+		             , CATEGORY_NAME
+		             , POST_TITLE
+		             , ENROLL_DATE
+		             , BOARD_VIEW
+		          FROM TB_INFO_N_TIP
+		      
+                 WHERE STATUS = 'Y'
+                 ORDER 
+                     BY ENROLL_DATE DESC, 
+                        BOARD_VIEW DESC
+		    )A
+	</entry>
+	
+	
+	
 	
 	
 	

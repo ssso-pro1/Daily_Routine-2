@@ -162,7 +162,7 @@
                         <tr>
                             <td></td>
                             <td><input type="text" id="num1" placeholder="인증번호 6자리 숫자 입력" required></td>
-                            <td><input type="button" id="btn11" value="인증하기" onclick="enter()"></td>
+                            <td><input type="button" id="btn11" value="인증하기" onclick="enter1()"></td>
 
                         </tr>
                     </table>
@@ -194,7 +194,7 @@
                             <tr>
                                 <th></th>
                                 <td><input type="text" id="num2" placeholder="인증번호 6자리 숫자 입력" required></td>
-                                <td><input type="button" id="btn22" value="인증하기" onclick="enter()"></td>
+                                <td><input type="button" id="btn22" value="인증하기" onclick="enter2()"></td>
 
                             </tr>
                     </table>
@@ -226,7 +226,7 @@
 
         
         <script>
-            function enter(){
+            function enter1(){
                     
                     if($("#idNum").val() == ""){
                         alert("인증번호를 입력하세요.")
@@ -235,11 +235,26 @@
     
                         return false;
                     }else{
-                        alert("확인되었습니다.");
+                        alert("회원정보에 등록된 휴대전화로 임시 비밀번호가 발송되었습니다.");
                 }
                     
                     
                 }
+            
+            function enter2(){
+                
+                if($("#idNum").val() == ""){
+                    alert("인증번호를 입력하세요.")
+                    idNum.value = "";
+                    idNum.focus();
+
+                    return false;
+                }else{
+                    alert("회원정보에 등록된 이메일 주소로 임시 비밀번호가 발송되었습니다.");
+            }
+                
+                
+            }
     
             </script>
     

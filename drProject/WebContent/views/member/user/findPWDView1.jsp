@@ -143,7 +143,7 @@
                 </tr>
                 <tr>
                     <th align="left">아이디</th>
-                    <td><input type="text" name="userPwd" id="userPwd" placeholder="아이디를 입력하세요" required></td>
+                    <td><input type="text" name="userPwd" id="userId" placeholder="아이디를 입력하세요" required></td>
                 </tr>
                 <tr>
                     <th colspan="2"><input type="submit" value="다음" id="next" onclick="validate();"></th>
@@ -185,18 +185,17 @@
     }
     
     var regExp = /^[a-z][a-z\d]{5,20}$/;
-    if(!regExp.test(userId.value)) { //userId는 요소객체이기 때문에 value붙여야함
+    if(!regExp.test(userId.value)) { 
         alert("유효한 아이디를 입력하세요");
 
         userId.value = "";
         userId.focus();   
 
-        return false; //틀리면 넘어가지 않게.
+        return false;
     }
 }
     </script>
              
-    //<!-- required 속성 부여가 안됨-->
     <script>
             
             //  function findPwd1(){

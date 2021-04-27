@@ -40,8 +40,6 @@
             font-size:15px;
             line-height:50px;
             font-weight:bold;
-
-            /* display:block; */
             width:15%;
             height:100%;
             margin:0px 50px;
@@ -53,14 +51,11 @@
             font-size:15px;
             line-height:50px;
             font-weight:bold;
-
-            /* display:block; */
             width:15%;
             height:100%;
             margin:0px 50px;
         }
         
-
         .outer{
             width:800px;
             height:auto;
@@ -98,9 +93,12 @@
             width:70%;
             margin:auto;
         }
-      
 
-
+        
+        /* button:hover{
+            
+            color:rgb(250, 214, 9);
+        } */
     </style>
 </head>
 <body>
@@ -113,58 +111,28 @@
         <div class="menu2"> <a href="<%=contextPath%>/findPwd1.us" style="color:rgb(250, 214, 9); "><i class="fas fa-key">비밀번호 찾기</i></a></div>
     </div>
     
-    
-
-
-
     <div class="outer">
         <div id="content_1">
-            <h3>비밀번호 재설정</h3>
+            <h3>비밀번호 찾기완료</h3>
             <!-- <hr> -->
-            <p>비밀번호를 변경해주세요. </p>
+            <p>비밀번호 찾기가 완료되었습니다. <br>
+                로그인 페이지로 이동하여 로그인 후 이용해주세요. </p>
+        </div>
+        <br><br>
+        
+        <div id="btns" align="center"> 
+            <button type="submit" onclick="login();">로그인하기</button>
+            <button type="" onclick="home();">홈으로이동</button>
         </div>
         
-        <br>
-        
-        
-        <div class="wrap" >
-
-        <div style="margin-top:20px; margin-left:20px;">
-
-            <form action="<%=request.getContextPath() %>/loginForm.us" id="findPWD" method="post">
-                
-                    <p><small>
-                    -영문, 숫자, 특수문자를 함께 사용하면 (8자 이상 16자 이하)보다 안전합니다. <br>
-                    -다른 사이트와 다른 DR만의 비밀번호를 만들어 주세요.
-                    </small>
-                    </p>
-                    <br>
-                    <hr style="width:80%;">
-                </div>
-                
-                <table>
-                    <tr>
-                        <th colspan="2" align="left">DR아이디 : running01</th>
-                    </tr>
-                    <tr>
-                        <th align="left">이름</th>
-                        <td><input type="text" placeholder="이름을 입력하세요" required name="userName"></td>
-                    </tr>
-                    <tr>
-                        <th align="left">아이디</th>
-                        <td><input type="text" placeholder="아이디를 입력하세요" required name="userId"></td>
-                    </tr>
-                    <tr>
-                        <th></th>
-                        <td><button type="submit" class="btn btn-warning">다음</button></td>
-                    </tr>
-                    <!-- 다음 클릭시 로그인 창 -->
-                </table>
-            </form>
-
-
-            <br><br>
-        </div>
+        <script>
+            function login(){
+                location.href="<%=request.getContextPath() %>/loginForm.us";
+            }
+            function home(){
+                location.href="<%=request.getContextPath() %>";
+            }
+        </script>
         
         
     </div>

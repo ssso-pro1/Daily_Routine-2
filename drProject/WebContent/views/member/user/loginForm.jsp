@@ -21,15 +21,17 @@
 
     <style>
         /* 페이지 길이  & 로그인창 들어오면 메뉴바 높이가 길어짐.. */
-      /* .outer{
+      .outer{
           height:1600px;
-      } */
+      }
+
        fieldset{
            width:68%;
            margin:auto;
            position:relative;
             margin-top:60px;
             margin-bottom:80px;
+
        }
     
         .header{
@@ -156,6 +158,8 @@
             </fieldset>
     </div>
 </div>
+
+<br><br><br>
 
 </body>
 </html>

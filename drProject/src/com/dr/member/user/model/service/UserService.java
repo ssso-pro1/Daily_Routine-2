@@ -17,7 +17,7 @@ public class UserService {
 		Connection conn = getConnection();
 		
 		User loginUser = new UserDao().loginUser(conn, userId, userPwd);
-		
+		//System.out.println(loginUser);
 		return loginUser;
 	}
 	

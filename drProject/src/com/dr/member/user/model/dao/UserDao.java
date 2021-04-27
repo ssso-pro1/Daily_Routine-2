@@ -36,18 +36,24 @@ public class UserDao {
 	public User loginUser(Connection conn, String userId, String userPwd) {
 		// select 문 => resultSet 객체 (한행) => User객체
 		
+		System.out.println(userId);
+		System.out.println(userPwd);
+		
 		User u = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("loginUser");
 		
+		System.out.println(sql);
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, userId);
 			pstmt.setString(2, userPwd);
 			
 			rset = pstmt.executeQuery();
+			
+			
 			
 			if(rset.next()) {
 				u = new User(rset.getInt("user_no"),

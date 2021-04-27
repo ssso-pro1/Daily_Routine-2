@@ -90,14 +90,14 @@
          3. 전체 선택 후 하나만 해제했을 때, 전체선택도 해제
          4. 개별 선택으로 전체 다 선택 시, 전체 선택에도 체크-->
     <div class="formOuter">
-        <form action="" id="check_outer">
+        <form action="<%=request.getContextPath()%>/enrollForm2.us" id="check_outer" >
             <input type="checkbox" id="check_all" >
-            <strong><label for="check_all">DailyRoutine 이용약관, 개인정보 수집 및 이용에 모두 동의합니다.(전체 동의)</label></strong>
+            <strong><label for="check_all">DailyRoutine 이용약관, 개인정보 수집 및 이용에 모두 동의합니다. (전체동의)</label></strong>
             
             <hr style="border:1px solid gray" width="100%">
 
-            <input type="checkbox" id="check_1" class="normal" required/>
-            <strong><label for="check_1">DailyRoutine 이용약관 (필수)</label> </strong> <br>
+            <input type="checkbox" id="check_1" class="normal" required>
+            <strong><label for="check_1">DailyRoutine 이용약관 <span style=color:red>(필수)</span></label> </strong> <br>
             <div class="scroller">
                 여러분을 환영합니다.
                 DailyRoutine 서비스 및 제품(이하 ‘서비스’)을 이용해 주셔서 감사합니다. 본 약관은 다양한  DailyRoutine 서비스의 이용과 관련하여  DailyRoutine 서비스를 제공하는  DailyRoutine 주식회사(이하  DailyRoutine)와 이를 이용하는  DailyRoutine 서비스 회원(이하 ‘회원’) 또는 비회원과의 관계를 설명하며, 아울러 여러분의 네이버 서비스 이용에 도움이 될 수 있는 유익한 정보를 포함하고 있습니다.
@@ -140,8 +140,8 @@
             </div>
             <br><br>
             
-            <input type="checkbox" id="check_2" class="normal" required/>
-            <strong><label for="check_2">개인정보 수집 및 이용 동의 (필수)</label></strong> <br>
+            <input type="checkbox" id="check_2" class="normal" required>
+            <strong><label for="check_2">개인정보 수집 및 이용 동의 <span style=color:red>(필수)</span></label></strong> <br>
             <div class="scroller">
                 개인정보보호법에 따라 DailyRoutine에 회원가입 신청하시는 분께 수집하는 개인정보의 항목, 개인정보의 수집 및 이용목적, 개인정보의 보유 및 이용기간, 동의 거부권 및 동의 거부 시 불이익에 관한 사항을 안내 드리오니 자세히 읽은 후 동의하여 주시기 바랍니다.
 
@@ -179,21 +179,34 @@
             <div class="scroller">
                 DailyRoutine에서 제공하는 이벤트/혜택 등 다양한 정보를 휴대전화( DailyRoutine앱 알림 또는 문자), 이메일로 받아보실 수 있습니다. 일부 서비스(별도 회원 체계로 운영하거나  DailyRoutine가입 이후 추가 가입하여 이용하는 서비스 등)의 경우, 개별 서비스에 대해 별도 수신 동의를 받을 수 있으며, 이때에도 수신 동의에 대해 별도로 안내하고 동의를 받습니다.
             </div>
+
+            <div class="btn">
+                <!-- 취소 : 메인페이지로 이동/ 확인 : 회원가입2단계 (/enrollForm2.us) -->
+                <a href="<%=request.getContextPath()%>" type="reset" class="btn btn-secondary ">취소 </a>
+                <button type="submit" class="btn btn-warning">확인</button>
+            </div>
         </form>
     </div>
     
 
     </div>
     
-    <div class="btn">
-        <!-- 취소 : 메인페이지로 이동/ 확인 : 회원가입2단계 (/enrollForm2.us) -->
-        <button type="button" class="btn btn-secondary " onclick="mainPage();">취소</button>
-        <button type="submit" class="btn btn-warning" onclick="enrollForm2();">확인</button>
-    </div>
-    
-
-
     <script>
+    //필수항목 미체크 시 알림창
+    /*
+    if($("#check_1").prop("checked", false) || $("#check_2").prop("checked", false)){
+                  
+        alert("필수항목에 동의해주세요."); 
+    }else if($("#check_1").prop("checked", false) && $("#check_2").prop("checked", false)){
+                  
+                  alert("필수항목에 동의해주세요."); 
+    }*/
+
+    
+        
+ 
+
+
         // document.getElementById($("check_1")).required=true ;
         // document.getElementById($("check_2")).required =true;
 
@@ -224,17 +237,17 @@
 
 
         // 취소 : 메인페이지로 이동
-        function mainPage(){
-            location.href="<%=request.getContextPath()%>";
-        }
+        // function mainPage(){
+        //     location.href="<%=request.getContextPath()%>";
+        // }
 
-        // 확인 : 회원가입2단계 servlet 으로 이동 (사용자 정보입력폼)
-        function enrollForm2(){
+        // // 확인 : 회원가입2단계 servlet 으로 이동 (사용자 정보입력폼)
+        // function enrollForm2(){
 
-            //var check = document.getElementById("checkbox").required; //==> 전체동의 체크하고 확인누르면 넘어가는데, 체크안하고 확인 다시 체크해도 화면 안 넘어감
+        //     //var check = document.getElementById("checkbox").required; //==> 전체동의 체크하고 확인누르면 넘어가는데, 체크안하고 확인 다시 체크해도 화면 안 넘어감
 
-            location.href = "<%=request.getContextPath()%>/enrollForm2.us";
-        }
+        //     location.href = "<%=request.getContextPath()%>/enrollForm2.us";
+        // }
 
 
     </script>

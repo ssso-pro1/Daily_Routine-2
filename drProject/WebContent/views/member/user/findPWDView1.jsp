@@ -128,7 +128,7 @@
 
         <div id="content_2">
 
-        <form action="<%=request.getContextPath() %>/findPwd2.us" id="findPWD"></form>
+        <form action="<%=request.getContextPath() %>/findPwd2.us" method="post" id="findPWD"></form>
        
             <table>
                 <tr>
@@ -139,29 +139,30 @@
                     <th align="left">아이디</th>
                     <td><input type="text" name="userPwd" placeholder="아이디를 입력하세요" required></td>
                 </tr>
-              
+                <tr>
+                    <th colspan="2"><input type="submit" value="다음" id="nextbtn" onclick="findPwd1();"></th>
+                </tr>
                 
             </table>
-           
+            
+
         </form>
         
     </div> 
     <br><br>
-    <!-- <button onclick="findPwd1()">다음</button> -->
-    <button >다음</button>
+    
     <br>
    
 
     <br><br><br>
 
-    <!-- required 속성 부여가 안됨
-     -->
-        <!-- <script>
+    <!-- required 속성 부여가 안됨-->
+    <script>
             
             function findPwd1(){
                 location.href="<%=request.getContextPath() %>/findPwd2.us";
             }
-        </script> -->
+        </script>
         
     </div>
 

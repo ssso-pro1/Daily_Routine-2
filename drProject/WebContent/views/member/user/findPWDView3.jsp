@@ -125,8 +125,9 @@
         
         <br>
         
-        <form action="<%=request.getContextPath() %>/loginForm.us" id="findPWD"></form>
+        
         <div class="wrap" >
+        <form action="<%=request.getContextPath() %>/loginForm.us" id="findPWD"></form>
             <div style="margin-top:20px; margin-left:20px;">
                 <p><small>
                    -영문, 숫자, 특수문자를 함께 사용하면 (8자 이상 16자 이하)보다 안전합니다. <br>
@@ -155,6 +156,7 @@
                 </tr>
                 <!-- 다음 클릭시 로그인 창 -->
             </table>
+        </form>
             <br><br>
         </div>
         <script>

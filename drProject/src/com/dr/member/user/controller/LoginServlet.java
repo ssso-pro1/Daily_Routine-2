@@ -39,7 +39,7 @@ public class LoginServlet extends HttpServlet {
 		
 		//System.out.println(userId);
 		//System.out.println(userPwd);
-		//제대로 출력됨!
+		
 		
 		User u = new UserService().loginUser(userId, userPwd);
 		

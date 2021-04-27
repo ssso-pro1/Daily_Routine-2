@@ -98,12 +98,11 @@
         <form action="<%= request.getContextPath()%>/insert.us" method="post" id="enrollForm">
             
             <table>
-                <!-- AJAX -->
                 <tr>
                     <th >아이디</th>
-                    <th><input type="text" name="userId" id="userId" minlength="5" maxlength="30" required placeholder="아이디를 입력하세요">
+                    <th><input type="text" name="userId" id="userId" minlength="5" maxlength="30" placeholder="아이디를 입력하세요">
                     </th>
-                    <th><button type="button" onclick="idValidate(); idCheck();  ">중복확인</button></th>
+                    <th><button type="button" class="btn-outline-warning" onclick="idCheck();" style="background:white;">중복확인</button></th>
                 </tr>
                 <tr>
                     <td colspan="3" id="msg1">5~20자의 영문,소문자,숫자만 사용가능합니다.</td>
@@ -111,22 +110,22 @@
                 
                 <tr>
                     <th>비밀번호</th>
-                    <th><input type="password" name="userPwd" minlength="8" maxlength="15" placeholder="비밀번호" required></th>
+                    <th><input type="password" name="userPwd" id="userPwd" minlength="8" maxlength="15" placeholder="비밀번호" ></th>
                 </tr>
                 <tr>
-                    <td colspan="3" id="msg2">8~16자 영문 대소문자, 숫자, 특수문자를 사용하세요.</td>
+                    <td colspan="3" id="msg2">8~15자 영문 대소문자, 숫자, 특수문자를 사용하세요.</td>
                 </tr>
                 <tr>
                     <th>비밀번호 재확인</th>
-                    <th><input type="password"   minlength="8" maxlength="15" placeholder="비밀번호 재확인" required ></th> 
+                    <th><input type="password" name="userPwd2" id="userPwd2" minlength="8" maxlength="15" placeholder="비밀번호 재확인" ></th> 
                     <td></td>
                 </tr>
                 <tr>
-                    <td colspan="3" id="msg4">비밀번호가 일치하지 않습니다.</td>
+                    <td colspan="3" id="msg4"></td>
                 </tr>
                 <tr>
                     <th>이름</th>
-                    <th><input type="text" name="userName" maxlength="5" placeholder="이름" required></th>
+                    <th><input type="text" name="userName" id="userName" maxlength="5" placeholder="이름" ></th>
                     <td></td>
                 </tr>
                 <tr>
@@ -135,9 +134,10 @@
                 <tr>
                     <th>생년월일</th>
                     <!--  -->
-                    <th><input name="birth" id="year" type="text" size="3" maxlength="4"> 년 &nbsp;
+                    <th><input name="birth" id="yeear" type="text" size="3" maxlength="4"> 년 &nbsp;
                         <select name="birth">
-                            <option value="1" selected name="birth">01</option>
+                            <option value="" selected name="birth">선택안함</option>
+                            <option value="1" name="birth">01</option>
                             <option value="2" name="birth">02</option>
                             <option value="3" name="birth">03</option>
                             <option value="4" name="birth">04</option>
@@ -155,10 +155,10 @@
                 <tr>
                     <th>성별</th>
                     <th colspan="2">
-                        <select name="gender" id="" >
+                        <select name="gender" id="gender" >
                             <option value="" selected>선택안함</option>
-                            <option value="F" name="gender">여</option>
-                            <option value="M" name="gender">남</option>
+                            <option value="여" name="gender">여</option>
+                            <option value="남" name="gender">남</option>
                         </select>
                     </th>
                 </tr>
@@ -169,20 +169,19 @@
                 </tr>
                 <tr>
                     <th>휴대전화</th>
-                    <th><input type="tel" name="phone" placeholder="(-포함해서 입력)"></th>
-                    <th><button type="button">인증번호</button></th>
+                    <th><input type="tel" name="phone" id="tel" placeholder="(-포함해서 입력)" required></th>
+                    <th><button type="button" class="btn-outline-warning" style="background:white" onclick="send()">인증번호</button></th>
                 </tr>
                 <tr>
                     <th></th>
-                    <!-- 인증번호 required 임의로 없앰 -->
-                    <th><input size="20" type="text" placeholder="인증번호를 입력하세요" ></th>
-                    <th><button>인증하기</button></th>
+                    <th><input size="20" type="text" id="idNum" placeholder="인증번호를 입력하세요" required></th>
+                    <th><button type="button" class="btn-outline-warning" style="background:white" onclick="enter()">인증하기</button></th>
                 </tr>
                 <tr>
                     <th colspan="3">
                         <div class="btn">
                             <!-- 유효성검사 -->
-                            <button type="submit" class="btn btn-warning" disabled onclick="return validate();" >회원가입</button>
+                            <button type="submit" class="btn btn-warning"  onclick="return validate();" disabled>회원가입</button>
                             <button type="reset" class="btn btn-secondary">취소</button>
                         </div>
                     </th>
@@ -195,29 +194,27 @@
     </div>
 
     <script>
-        // 아이디 유효성 먼저하고, 맞으면 중복확인/ 틀리면 안함 (유효성체크-> 다음 중복확인)
-        function idValidate(){
-            var userId = document.getElementById("userId");
+       
 
-            // 1) 아이디 검사 (영문자,숫자로만 총 5~20글자로 이뤄져야만 + 첫글자는 영문자(소문자 한글자)로.)
-            var regExp = /^[a-z][a-z\d]{4,19}$/;
-
-
-                if(!regExp.test(userId.value)) { 
-                    alert("유효한 아이디를 입력하세요");
+            function send(){
+                alert('인증번호가 발송되었습니다. 인증번호가 오지 않으면 입력하신 정보가 회원정보와 일치하는지 확인해주세요.');
+            }
+    
             
-                    userId.value = "";
-                    userId.focus();   
-            
-                    return false; 
+            function enter(){
+                
+                if($("#idNum").val() == ""){
+                    alert("인증번호를 입력하세요.")
+                    idNum.value = "";
+                    idNum.focus();
 
-
-                    //유효한 아이디 입력하세요 => 바로 중복확인해서 사용가능한 아이디입니다. 출력됨.
-
-
-                }
-
-        }
+                    return false;
+                }else{
+                    alert("확인되었습니다.");
+               }
+                
+                   
+            }
     
         /*중복확인 펑션*/
         function idCheck(){
@@ -228,7 +225,7 @@
                 url:"idCheck.us",
                 type:"get",
                 data:{checkId:$userId.val()}, //사용자가 입력한 id값
-                success:function(result){		//ajax통신 성공시 실행할function
+                success:function(result){		
                     
                 
                 	if(result == 'NNNNN'){ //사용 불가
@@ -248,16 +245,18 @@
                 		}
                 	}
                 	
-                },error:function(){ //사용가능
+                },error:function(){ 
                 	
                     console.log("아이디 중복체크용 ajax 통신 실패");
                 }
             })
             
     }
+</script>
 
-/* 이걸 주석을 안 하면 중복확인 function 이 안먹힘! 질문하기!
+<script>
         //유효성 검사
+       
         function validate(){
                 
                 // 유효성 검사 : 아이디, 비밀번호, 비밀번호 일치, 이름
@@ -267,9 +266,13 @@
                 var userPwd1 = document.getElementById("userPwd1");
                 var userPwd2 = document.getElementById("userPwd2");
                 var userName = document.getElementById("userName");
-            
+                var year = document.getElementById("year");
+                var email = document.getElementById("email");
+                var tel = document.getElementById("tel");
+                var idNum = document.getElementById("idNum");
+                
                 // 1) 아이디 검사 (영문자,숫자로만 총 5~20글자로 이뤄져야만 하고 단, 첫글자는 영문자(소문자 한글자)로.)
-                var regExp = /^[a-z][a-z\d]{4,19}$/;
+                var regExp = /^[a-z][a-z\d]{5,20}$/;
                 if(!regExp.test(userId.value)) { //userId는 요소객체이기 때문에 value붙여야함
                     alert("유효한 아이디를 입력하세요");
             
@@ -279,20 +282,22 @@
                     return false; //틀리면 넘어가지 않게.
                 }
             
+
+            
                 // 2) 비밀번호 검사 (영문자,숫자,특수문자(!@#$%^&*) 포함 총 8자~15자 입력되게)
                 regExp = /^[a-z\d!@#$%^&*]{8,15}$/i;
-                if(!regExp.test(userPwd1.value)){
-                    alert("유효한 비번 입력하세요.");
+                if(!regExp.test(userPwd.value)){
+                    alert("유효한 비밀번호를 입력하세요.");
             
-                    userPwd1.value = ""; 
-                    userPwd1.focus();
+                    userPwd.value = ""; 
+                    userPwd.focus();
             
                     return false;
                 }
             
                 // 3) 비밀번호 일치 검사
                 if(userPwd.value != userPwd2.value){
-                    alert("동일한 비밀번호를 입력하세요");
+                    alert("동일한 비밀번호를 입력하세요.");
             
                     userPwd2.select(); //입력한 비번내용이 파랗게 선택됨.
                     return false;
@@ -301,7 +306,7 @@
                 // 4) 이름 검사 (한글(결합)로만, 2글자 이상)
                 regExp = /^[가-힣]{2,}$/; //{2} : 그냥 2글자
                 if(!regExp.test(userName.value)){
-                    alert("유효한 이름을 입력하세요");
+                    alert("유효한 이름을 입력하세요.");
             
                     userName.value = "";
                     userName.focus();
@@ -309,24 +314,83 @@
                     return false;
                 }
             
-                // 5) 생년 
+                // 5) 생일 : 년도
                 reqExp = /^(19[0-9][0-9])$/;
 
-                if(!regExp.test())
+                if(!regExp.test(year.value)){
+                    alert("년도를 4자리로 입력해주세요.");
+
+                    year.value = "";
+                    year.focus();
+
+                    return false;
+                }
             
+                // 6) 이메일
+                regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+                    if(!regExp.test(email.value)){
+                        alert("유효한 이메일을 입력하세요.");
+
+                        email.value = "";
+                        email.focus();
+
+                        return false;
+                    }
+
+            
+            
+                 // 7) 휴대폰 번호 정규식
+                regExp = /^01([0|1|6|7|8|9]?)-([0-9]{3,4})-([0-9]{4})$/;
+                    if(!regExp.test(tel.value)){
+                    alert("유효한 이메일을 입력하세요.");
+
+                    tel.value = "";
+                    tel.focus();
+
+                    return false;
+                }
+
+                //8) 인증번호 6자리
+                regExp =  /^[0-9]{6}$/;
+                if(!regExp.test(idNum.value)){
+                    alert("인증번호를 확인하세요.");
+
+                    idNum.value = "";
+                    idNum.focus();
+
+                    return false;
+                }
+      
+
                 
-            }
-            
-    */
+                //빈칸방지
+                if(!regExp.test(tel.value)){
+                        alert("휴대폰 번호를 입력하세요.");
+                    
+                        tel.value="";
+                        tel.focus();
+                        
+                        return false;
+                    }
 
+                if(!regExp.test(idNum.value)){
+                        alert("인증번호를 입력하세요.");
+                    
+                        idNum.value="";
+                        idNum.focus();
+                        
+                        return false;
+                    }
+                    
+                    
+                    
+                   
 
-    
+        }
     
     </script>
 
-    <script>
-
-    </script>
+    
 
 </body>
 </html>

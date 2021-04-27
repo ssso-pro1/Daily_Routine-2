@@ -7,6 +7,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
         fieldset{
             width:80%;
@@ -77,7 +78,7 @@
         </div>
     </fieldset>
 
-    <button id="btn" align="center" type="submit" onclick="main();">홈 바로가기</button>
+    <button id="btn"  class="btn btn-warning" align="center" type="submit"  onclick="main();">홈 바로가기</button>
 
     <script>
         function main(){

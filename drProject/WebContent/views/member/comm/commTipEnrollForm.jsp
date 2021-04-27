@@ -247,7 +247,6 @@
                 <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
                 <div class="menu"><a href="<%=contextPath%>/workout.in?currentPage=1">Info&Tip</a></div>
                 <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
-
                 <div class="sideLine" ></div>
                 <hr id="mainLine">
             </span>

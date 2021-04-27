@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.dr.member.comm.model.vo.Comm, com.dr.common.model.vo.PageInfo" %>
+<%@ page import="java.util.ArrayList, com.dr.member.comm.model.vo.Comm, com.dr.common.model.vo.PageInfo, com.dr.admin.user.model.vo.AdUser" %>
 <%
 
 	PageInfo pi = (PageInfo)request.getAttribute("pi"); 
@@ -98,6 +98,11 @@
     
     .ff{font-family: 'Do Hyeon', sans-serif;}
     
+    
+    <!-- 푸터바 --> 
+  
+   
+        
 </style>
 </head>
 <body>
@@ -218,16 +223,25 @@
 			                   	<button type="submit" class="fas fa-search"></button> &nbsp;
 			                  	<a href="<%=contextPath%>/tipEnroll.co" class="fas fa-pencil-alt">&nbsp;글쓰기</a>
 		              		</form>
-		                </div><br><br>
-                		
-                		
-                		
+		                </div><br><br>         		
                 
            		 </div>
+ 
 
-        </div>
+
+    	</div>
     </div>
+    
+ 
+    
+    
+    
+    
+    
+    
+    
 </div>
+
 
 </body>
 </html>

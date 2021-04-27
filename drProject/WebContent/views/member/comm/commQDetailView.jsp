@@ -145,7 +145,7 @@
                 <div id="content_2_2">
                     <div class="detailArea">
                         <table border="1" height="100%">
-                            <tr align="center" height="40px;">
+                            <tr align="center" height="40px;" style="font-family: 'Noto Sans KR', sans-serif;">
                                 <th width="55%"><%=c.getPostTitle()%></th>
                                 <th width="15%"> <i class="far fa-user-circle"></i>&nbsp; <%=c.getUserNo()%>님</th>
                                 <th width="15%"><%=c.getEnrollDate()%></th>

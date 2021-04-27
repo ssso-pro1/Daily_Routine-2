@@ -108,6 +108,7 @@
     	margin-top:150px;
     }
     
+
 </style>
 </head>
 <body>
@@ -125,7 +126,7 @@
                 <div class="leftMenu">
                     <div id="menu1"><a href="<%=contextPath%>/workout.in?currentPage=1">운동 정보</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/menu.in?currentPage=1">식단 정보</a></div>
+                    <div><a href="<%=contextPath%>/menu.in?currentPage=1">식단 정보</a></div> 
                 </div>
             </div>
 
@@ -143,20 +144,19 @@
                 </div><br>
 
 
-                <!-- 게시글 목록 카테고리 & 검색 버튼 -->
+                <!-- 게시글 목록 카테고리 & 검색 버튼 -->  
                 <div id="content_2_2">
-                    <div class="tipcategory" style="margin-left:60px">
-                        <select name="category">
-                            <option value="upload">업로드순</option>
-                            <option value="view">조회수순</option>
-                        </select>
-                    </div>
-                    <div align="center" class="searchArea">
-                        <input type="text">
-                        <button type="submit" class="fas fa-search"></button> 
-                    </div>
-                </div><br><br><br><br>
-
+                	  <div class="searchArea">
+		                	<form action="<%=contextPath%>/searchWorkout.in?currentPage=1" method="post">
+			                    <select name="searchWorkoutCtg">
+			                    	<option name="searchWorkoutCtg" value="제목">제목</option>
+			                    	<option name="searchWorkoutCtg" value="내용">내용</option>
+			                    </select>  
+			                    <input type="text" name="searchWorkoutText">
+			                   	<button type="submit" class="fas fa-search"></button>
+		              		</form>
+		                </div><br><br>         		
+                </div>
 
                 <!-- 게시글 목록 -->
                 <div id="content_2_3">

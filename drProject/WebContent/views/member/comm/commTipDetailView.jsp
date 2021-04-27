@@ -77,6 +77,7 @@
         border-top:1px solid black;
         border-collapse:collapse;
     }   
+    table>tr>th{font-family: 'Noto Sans KR', sans-serif;}
     
    	.replyArea>table>tbody>tr{
    		colspan="3";	
@@ -148,7 +149,7 @@
                 <div id="content_2_2">
                     <div class="detailArea">
                         <table border="1" height="100%">
-                            <tr align="center" height="40px;">
+                            <tr align="center" height="40px;" style="font-family: 'Noto Sans KR', sans-serif;">
                                 <th width="10%"><%=c.getCategoryName()%></th>
                                 <th width="45%"><%=c.getPostTitle()%></th>
                                 <th width="15%"> <i class="far fa-user-circle"></i>&nbsp; <%=c.getUserNo()%>님</th>

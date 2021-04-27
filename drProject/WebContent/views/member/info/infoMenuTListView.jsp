@@ -141,17 +141,17 @@
 
                 <!-- 게시글 목록 카테고리 & 검색 버튼 -->
                 <div id="content_2_2">
-                    <div class="tipcategory" style="margin-left:60px">
-                        <select name="category">
-                            <option value="upload">업로드순</option>
-                            <option value="view">조회수순</option>
-                        </select>
-                    </div>
-                    <div align="center" class="searchArea">
-                        <input type="text">
-                        <button type="submit" class="fas fa-search"></button> 
-                    </div>
-                </div><br><br><br><br>
+                	  <div class="searchArea">
+		                	<form action="<%=contextPath%>/searhMenu.in?currentPage=1" method="post">
+			                    <select name="searchMenuCtg">
+			                    	<option name="searchMenuCtg" value="제목">제목</option>
+			                    	<option name="searchMenuCtg" value="내용">내용</option>
+			                    </select>  
+			                    <input type="text" name="searchMenuText">
+			                   	<button type="submit" class="fas fa-search"></button>
+		              		</form>
+		                </div><br><br>         		
+                </div>
 
 
                 <!-- 게시글 목록 -->

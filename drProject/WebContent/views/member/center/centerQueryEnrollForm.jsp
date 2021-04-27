@@ -15,6 +15,7 @@
         width: 1000px;
         height: 800px;
         margin: auto;
+        margin-top:15px;
     }
     .wrap>div{
         width: 100%;
@@ -28,7 +29,7 @@
     }
 
     #content_1{width: 15%;}
-    #content_2{width: 80%; margin-left: 15px;}
+    #content_2{width: 80%; margin-left: 25px;}
     #line{width: 1%;}
 
     #line {
@@ -120,27 +121,26 @@
 <div class="wrap">
     <div id="content">
     
-        <!--왼쪽 공통메뉴-->
-        <div id="content_1">
+       <!--왼쪽 공통메뉴-->
+        <div id="content_1"  class="ff" >
             <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu" class="ff">FAQ</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" class="ff">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" style="color:rgb(250, 214, 9);">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu" class="ff">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" class="ff">공지사항</a></div>
-            
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu">공지사항</a></div>
             </div>
         </div>
         
         <div id="line"></div>
         
         <!--버튼-->
-        <div id="content_2">
+        <div id="content_2" class="ff">
             <div id="content_2_1">
-                <h3 class="ff" style="font-weight: 100; font-size: 20px;">고객센터 > 1:1 문의 </h3>
+                <h2>고객센터 > 1:1 문의 </h2>
                 <hr>
             </div>
 
@@ -179,7 +179,7 @@
                                 <th style="height: 30px;">문의유형</th>
                                 <td>
                                 	
-                                    <select name="qCategory" id="qCategory" required style="width: 100%;">
+                                    <select name="qCategory" id="qCategory" class="ff" required style="width: 101%; font-size: 17px;">
                                         <option id="qCategory" value="0">선택해주세요</option>
                                         <option name="qCategory" id="qCategory" value="회원정보" >회원정보</option>
                                         <option name="qCategory" id="qCategory" value="게시글">게시글/댓글</option>
@@ -193,13 +193,13 @@
                             </tr>
                             <tr>
                                 <th style="height: 30px;">제목</th>
-                                <td><input type="text" name="qTitle" id="qTitle" placeholder="제목을 입력해주세요" style="width: 100%;" required maxlength="50"></td>
+                                <td><input type="text" name="qTitle" id="qTitle"  class="ff" placeholder="제목을 입력해주세요" style="width: 99%; font-size: 15px;" required maxlength="50"></td>
                             </tr>
                             <tr>
                                 <th style="height: 200px">내용</th>
                                 <td>
                                     <div>
-                                        <textarea id="qContent" name="qContent" style="width: 100%;" rows="15" style="resize: none;" placeholder="궁금하신 내용을 입력하세요 (300자 이내)" required></textarea>
+                                        <textarea id="qContent" name="qContent"  class="ff" style="width: 100%; font-size: 15px; resize: none;" rows="15" placeholder="궁금하신 내용을 입력하세요 (300자 이내)" required></textarea>
                                         <label style="float: right;"><span id="count" name="count">0</span> / 300</label>
                                     </div>
                                     

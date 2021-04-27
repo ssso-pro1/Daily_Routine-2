@@ -21,6 +21,7 @@
         width: 1000px;
         height: 800px;
         margin: auto;
+        margin-top:15px;
     }
     .wrap>div{
         width: 100%;
@@ -34,7 +35,7 @@
     }
 
     #content_1{width: 15%;}
-    #content_2{width: 80%; margin-left: 15px;}
+    #content_2{width: 80%; margin-left: 25px;}
     #line{width: 1%;}
 
     #line {
@@ -133,26 +134,25 @@
     <div id="content">
     
         <!--왼쪽 공통메뉴-->
-        <div id="content_1">
-           <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
+        <div id="content_1"  class="ff" >
+            <a href="<%=contextPath%>/main.ct" id="leftMenu"><h1 class="ff">고객센터</h1></a>
             <div class="leftMenu">
-                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu" class="ff">FAQ</a></div>
+                <div><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top" id="leftMenu">FAQ</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu" class="ff">1:1 문의</a></div>
+                <div><a href="<%=contextPath%>/enrollQuery.ct" id="leftMenu">1:1 문의</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu" class="ff">나의 문의 내역</a></div>
+                <div><a href="<%=contextPath%>/queryList.ct?currentPage=1" id="leftMenu">나의 문의 내역</a></div>
                 <br>
-                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" class="ff">공지사항</a></div>
-            
+                <div><a href="<%=contextPath%>/notice.ct?currentPage=1" id="leftMenu" style="color:rgb(250, 214, 9);">공지사항</a></div>
             </div>
         </div>
         
         <div id="line"></div>
         
         <!--버튼-->
-        <div id="content_2">
+        <div id="content_2" class="ff">
             <div id="content_2_1">
-               <h3 class="ff" style="font-weight: 100; font-size: 20px;">고객센터 > 공지사항 </h3>
+               <h2>고객센터 > 공지사항 </h2>
                 <hr>
             </div>
 
@@ -180,7 +180,7 @@
             <div id="content_2_3">
                 <div class="detailArea" >
                     <table border="1" height="600px;" width="800px">
-                        <tr align="center" height="40px;">
+                        <tr align="center" height="40px;" class="ff">
                             <th width="70%"><%= n.getNoticeTitle() %></th>
                             <th width="15%"><%=n.getCreateDate() %></th>
                             <th width="15%">조회수 : <%=n.getNoticeCount() %></th>
@@ -190,8 +190,8 @@
                                 <div><%=n.getNoticeContent() %></div>
                             </td>
                         </tr>
-                        <tr>
-                            <td colspan="5">
+                        <tr class="ff">
+                            <td colspan="5" >
                                 <!-- 첨부파일이 없을경우-->
                                 <%if(fi == null) { %>
                                     &nbsp; <i class="far fa-file-image"></i>&nbsp; 첨부파일이 없습니다. 
@@ -200,7 +200,7 @@
                                 <% } %>	
                             </td>        
                         </tr>
-                        <tr>
+                        <tr class="ff">
                             <td colspan="4">
                                 <% if(n.getNextTitle()==null) { %>
                                 <button disabled>
@@ -220,7 +220,7 @@
                         </tr>
                         
                         
-                        <tr>
+                        <tr class="ff">
                             <td colspan="4">
                                 <% if(n.getPreTitle()==null) { %>
                                 <button disabled>

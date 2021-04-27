@@ -29,6 +29,7 @@
         width: 1000px;
         height: 800px;
         margin: auto;
+        margin-top:15px;
     }
     .wrap>div{
         width: 100%;
@@ -42,7 +43,7 @@
     }
 
     #content_1{width: 15%;}
-    #content_2{width: 80%; margin-left: 15px;}
+    #content_2{width: 80%; margin-left: 25px;}
     #line{width: 1%;}
 
     #line {
@@ -174,7 +175,7 @@
         
        <div id="content_2" class="ff">
            <div id="content_2_1">
-                <h3 style="font-weight: 100; font-size: 20px;">고객센터 > 공지사항 </h3>
+                <h2>고객센터 HOME </h2>
                 <hr>
             </div>
 

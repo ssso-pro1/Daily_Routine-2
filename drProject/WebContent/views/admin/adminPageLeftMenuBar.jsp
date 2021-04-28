@@ -156,11 +156,6 @@
                     <br>
                 </div>
 
-                <div class="content_1_4">
-                    <h2>신고관리</h2>
-                    <div><a href="">전체신고보기</a></div> 
-                    <div><a href="">블랙리스트</a></div> 
-                </div>
             </div>
 
             <div id="line"></div>

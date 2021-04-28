@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.admin.center.model.service.adCenterService;
-import com.dr.admin.center.model.vo.adCenterFaq;
 import com.dr.admin.info.model.service.adInfoService;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.common.model.vo.PageInfo;

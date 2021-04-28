@@ -14,8 +14,7 @@ import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.admin.center.model.vo.adCenterQuery;
 import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.common.model.vo.PageInfo;
-import com.dr.member.center.model.dao.CenterDao;
-import com.dr.member.center.model.vo.CenterNotice;
+
 
 public class adCenterService {
 

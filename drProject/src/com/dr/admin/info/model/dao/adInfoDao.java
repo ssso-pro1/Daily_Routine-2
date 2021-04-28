@@ -11,10 +11,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.dr.admin.center.model.dao.adCenterDao;
-import com.dr.admin.center.model.vo.adCenterFaq;
-import com.dr.admin.center.model.vo.adCenterNotice;
-import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.admin.info.model.vo.adInfoFile;
 import com.dr.common.model.vo.PageInfo;
@@ -25,7 +21,7 @@ private Properties prop = new Properties();
 	
 	public adInfoDao() {
 		
-		String fileName = adCenterDao.class.getResource("/sql/admin/info/adInfo-mapper.xml").getPath();
+		String fileName = adInfo.class.getResource("/sql/admin/info/adInfo-mapper.xml").getPath();
 		
 		try {
 			prop.loadFromXML(new FileInputStream(fileName));

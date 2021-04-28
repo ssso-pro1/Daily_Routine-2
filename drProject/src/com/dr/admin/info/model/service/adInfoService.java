@@ -8,14 +8,11 @@ import static com.dr.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.dr.admin.center.model.dao.adCenterDao;
-import com.dr.admin.center.model.vo.centerNoticeFile;
 import com.dr.admin.info.model.dao.adInfoDao;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.admin.info.model.vo.adInfoFile;
 import com.dr.common.model.vo.PageInfo;
-import com.dr.member.center.model.dao.CenterDao;
-import com.dr.member.center.model.vo.CenterNotice;
+
 
 
 public class adInfoService {

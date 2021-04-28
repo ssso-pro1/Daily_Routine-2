@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import com.dr.admin.user.model.service.AdUserService;
-import com.dr.admin.user.model.vo.AdUser;
+import com.dr.member.user.model.service.UserService;
+import com.dr.member.user.model.vo.User;
 
 /**
  * Servlet implementation class AdLoginServlet
@@ -41,7 +41,7 @@ public class AdLoginServlet extends HttpServlet {
 		//System.out.println(userPwd);
 		
 		
-		AdUser u = new AdUserService().loginUser(userId, userPwd);
+		User u = new UserService().loginUser(userId, userPwd);
 		
 		if(u == null) {
 			request.setAttribute("errorMsg", "로그인에 실패했습니다.");
@@ -56,7 +56,7 @@ public class AdLoginServlet extends HttpServlet {
 			
 			//response.sendRedirect(request.getContextPath());
 			
-			request.getRequestDispatcher("views/admin/adMainPageView.jsp").forward(request, response);
+			request.getRequestDispatcher("views/admin/adminPageLeftMenuBar.jsp").forward(request, response);
 
 			
 		}

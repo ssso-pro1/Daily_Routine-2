@@ -27,7 +27,7 @@ public class AdMainPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
-		request.getRequestDispatcher("views/admin/adMainPageView.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin/adminPageLeftMenuBar.jsp").forward(request, response);
 		
 	}
 

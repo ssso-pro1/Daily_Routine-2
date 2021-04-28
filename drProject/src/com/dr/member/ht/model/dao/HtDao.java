@@ -651,6 +651,42 @@ public class HtDao {
 	}
 
 
+	
+	
+	
+	
+	//mainPage Ht List
+	public ArrayList<Ht> mainList(Connection conn){
+		
+		ArrayList<Ht> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("mainList");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				list.add(new Ht(rset.getInt("ht_post_no"),
+								rset.getString("ht_post_title"),
+								rset.getInt("ht_board_view"),
+								rset.getInt("ht_like_count"),
+								rset.getString("title_img")));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		} 
+		return list;
+		
+		
+		
+	}
 
 
 

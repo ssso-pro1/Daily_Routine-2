@@ -241,7 +241,20 @@ public class HtService {
 	}
 
 
-
+	
+	
+	
+	
+	
+	//mainPage Ht list
+	public ArrayList<Ht> mainList(){
+		Connection conn = getConnection();
+		
+		ArrayList<Ht> list = new HtDao().mainList(conn);
+		
+		close(conn);
+		return list;
+	}
 
 	
 		

@@ -1,4 +1,4 @@
-package com.dr.member.user.controller;
+package com.dr.member.ht.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,20 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.member.comm.model.service.CommService;
-import com.dr.member.comm.model.vo.Comm;
+import com.dr.member.ht.model.service.HtService;
+import com.dr.member.ht.model.vo.Ht;
 
 /**
- * Servlet implementation class CommListMainPageServlet
+ * Servlet implementation class HtMainPageListServlet
  */
-@WebServlet("/commMainPage.us")
-public class CommListMainPageServlet extends HttpServlet {
+@WebServlet("/htMainPage.us")
+public class HtMainPageListServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommListMainPageServlet() {
+    public HtMainPageListServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -32,14 +32,15 @@ public class CommListMainPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Comm> list1 = new CommService().mainList();
 		
+		ArrayList<Ht> list = new HtService().mainList();
+		
+		request.setAttribute("list", list);
 		/*
-		for(int i=0; i<list1.size(); i++) {
-			System.out.println(list1.get(i));
+		for(int i=0; i<list.size(); i++) {
+			System.out.println(list.get(i));
 		}
 		*/
-		request.setAttribute("list1", list1);
 		request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
 
 	}

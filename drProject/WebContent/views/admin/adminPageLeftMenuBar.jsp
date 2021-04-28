@@ -17,6 +17,15 @@
     <script src="https://ajax.googleeapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+        /* @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap'); */
+        .f{
+            font-family: 'Do Hyeon', sans-serif;
+            /* font-family: 'Do Hyeon', sans-serif;
+            font-family: 'Nanum Gothic', sans-serif; */
+
+
+        }
         div{
             box-sizing:border-box;
         }
@@ -49,9 +58,6 @@
             color:white;
         }
         
-        /* #content_2_1{height:10%;}
-        #content_2_2{height:35%;}
-        #content_2_3{height:35%;} */
         #nav{
             width:100%;
             height:40px;
@@ -92,10 +98,66 @@
         #ac:hover, #log:hover, .hov:hover{
             color:black;
         }
+
+        #content_2_2{
+            margin-left:30px;
+        }
+
+        /* content_3 */
+        #content_3{
+            display:flex;
+            border: 1px solid rgb(255, 250, 201);
+            height:500px;
+            width:700px;
+            margin:30px;
+            padding-left:50px;
+            text-align: center;
+
+        }
+        #user:hover{
+            color: skyblue
+        }
+        #center:hover{
+            color:salmon;
+        }
+        #post:hover{
+            color:lightgoldenrodyellow
+        }
+        #user, #center{
+            /* border:3px solid salmon; */
+            width:250px;
+            height:200px;
+            /* position:relative; */
+            margin:30px 30px;
+            padding:10px 0px;
+            color:white;
+            background-color: rgb(46, 46, 46);
+            
+        }
+
+        #center{
+            /* border:3px solid #C694C6; */
+            margin:20px 
+            margin-left:30px;
+        }
+        #post{
+            /* border:3px solid #57B8B9; */
+            width:250px;
+            height:430px;
+            margin-top:30px;
+            padding:10px ;
+            color:white;
+            background-color:rgb(46, 46, 46);
+            
+        }
+        #user{
+            color:white;
+
+        }
     </style>
 </head>
 <body>
-	
+    <div class="f">
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 
     <div class="wrap">
@@ -175,10 +237,53 @@
             <!-- content -->
                 <div id="content_2_2">
                     <p style="color:white">Daily Routine 관리자 페이지에 오신 것을 환영합니다. <br>
-                        페이지 관리를 위해 로그인 후 좌측 메뉴를 선택하세요.</p>
+                    </p>
                 </div>
+           
+
+
+            <div id="content_3">
+
+                <div class="content_3_1">
+                    <a href="<%=contextPath%>/userListView.aus"><div id="user" ></a>
+                        <h2>회원</h2>
+                        <div>
+                            <h3>전체회원조회</h3></a>
+                            <h3>회원 탈퇴처리</h3>
+                        </div>
+                    </div>
+                    <div id="center">
+                        <h2>고객센터</h2>
+                        <h3>공지사항</h3>
+                        <h3>FAQ</h3>
+                        <h3>1:1문의</h3>
+                    </div>
+                </div>
+
+                <div class="content_3_2">
+                    <div id="post">
+                        <h2>게시물 관리</h2>
+
+                        <div id="ht">
+                            <h3>HomeTraining</h3>
+
+                        </div>
+
+                        <div id="it">
+                            <h3>Info&Tip</h3>
+                        </div>
+                        
+                       
+                        
+                    </div>
+                </div>
+                
             </div>
+
         </div>
+
+    </div>
+</div>
 
 </body>
 </html>

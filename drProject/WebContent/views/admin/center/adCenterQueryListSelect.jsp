@@ -87,6 +87,7 @@
         }
 
 
+        
         #content_1 *{
             color:gray;
             margin: 10px 3px;
@@ -167,18 +168,18 @@
         <div id="content">
 
              <!--왼쪽 공통메뉴-->
-             <div id="content_1">
+            <div id="content_1">
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
                     <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">HomeTraining</a></div> 
+                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
                     <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div> 
                     <br>
                 </div>
@@ -191,11 +192,6 @@
                     <br>
                 </div>
 
-                <div class="content_1_4">
-                    <h2>신고관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체신고보기</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">블랙리스트</a></div> 
-                </div>
             </div>
 
             <div id="line"></div>
@@ -223,7 +219,7 @@
 
 
             <!--FAQ 게시판-->
-            <div id="content_2_4" style="background: white;">
+            <div id="content_2_4" style="background: rgb(33, 33, 34);">
                 <div class="replyStatusArea">
                     <table>
                         <tr>
@@ -237,7 +233,7 @@
 
                 </div>
                 
-                <div class="queryListArea" style="background: white; width: 800px; height: 500px;">
+                <div class="queryListArea" style="background: rgb(33, 33, 34);; width: 800px; height: 500px;">
                 <form action="<%= contextPath %>/ctQueryDelete.ad" method="post" > <!-- 삭제하기서블릿으로 -->
                     <br><br>
                     <table align="center" class="listArea" border="1">

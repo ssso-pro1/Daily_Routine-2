@@ -112,6 +112,7 @@
     }
     .footerOuter>.footer1_1, .footer2{
         width:1050px;
+        
     }
 
     .footer1_1{
@@ -120,7 +121,6 @@
         width:1100px;
         background-color:rgb(250, 214, 9);
         padding-top:10px;
-
     }
 
     .footer2{

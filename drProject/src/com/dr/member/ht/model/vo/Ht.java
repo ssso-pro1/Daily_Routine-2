@@ -80,6 +80,16 @@ public class Ht {
 		this.titleImg = titleImg;
 	}
 
+	//mainPage
+	public Ht(int htPostNo, String htPostTitle, int htViewCount, int htLikeCount, String titleImg) {
+		super();
+		this.htPostNo = htPostNo;
+		this.htPostTitle = htPostTitle;
+		this.htViewCount = htViewCount;
+		this.htLikeCount = htLikeCount;
+		this.titleImg = titleImg;
+	}
+
 
 	public int getHtPostNo() {
 		return htPostNo;

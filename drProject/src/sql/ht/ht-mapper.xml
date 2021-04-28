@@ -170,6 +170,41 @@
 		       , ?
 		       )
 	</entry>
+	
+	
+	
+	
+	<!-- mainpage list -->
+	<entry key="mainList">
+	<![CDATA[  
+		SELECT *
+			      FROM (
+			            SELECT 
+			                    ROWNUM RNUM
+			                    , A.*
+			                   
+			             FROM (
+			                     SELECT 
+			                            HT_POST_NO
+			                          , HT_POST_TITLE 
+			                          , HT_BOARD_VIEW
+		                              , HT_LIKE_COUNT
+		                              , TITLE_IMG
+			                       FROM TB_HOMETRAINING 
+			                      WHERE STATUS = 'N'	
+			                      ORDER 
+			                         BY HT_BOARD_VIEW DESC, 
+			                            HT_LIKE_COUNT DESC
+			                      )A  
+			               )
+			            WHERE RNUM <= 5
+			        ]]>
+	
+	
+	</entry>
+	
+	
+	
 </properties>
 
 

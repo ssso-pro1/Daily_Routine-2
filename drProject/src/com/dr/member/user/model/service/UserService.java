@@ -6,8 +6,6 @@ import static com.dr.common.JDBCTemplate.*;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.dr.admin.user.model.dao.AdUserDao;
-import com.dr.admin.user.model.vo.AdUser;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.user.model.dao.UserDao;
 import com.dr.member.user.model.vo.User;

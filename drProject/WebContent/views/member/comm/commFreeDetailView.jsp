@@ -188,6 +188,7 @@
                     <table border="0" height="100" width="100%" align="center">
                         <h3>> 댓글 쓰기 <i class="far fa-comment-dots"></i></h3>
                         
+                        <%-- 
                         <!-- 로그인되어있고, 로그인한 사용자가 게시글일 경우 보이는 버튼 -->
 						<% if(loginUser != null && loginUser.getUserId().equals(c.getUserNo()))  { %>
 		                <div class="buttonArea4">
@@ -195,7 +196,7 @@
 		                    <button onclick="deleteReply()"; class="fas fa-trash-alt"> 댓글 삭제 </button> 
 		                </div><br>
 		                <% } %>
-                        
+                        --%>
     
                         <thead>
                             <tr>

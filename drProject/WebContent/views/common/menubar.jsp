@@ -126,13 +126,24 @@
                     
                     <% }else { %>
                 
-                <!--  로그인 후 -->
+                 <!--  로그인 후 -->
                     
                     <table id="topMenu2" align="right">
                         <tr>
+                            
+                            <% if(loginUser.getAdminCheck().equals("Y")) { %>
                             <th><a href="<%=contextPath%>/logout.us">로그아웃</a></th>
                             <th>|</th>
                             <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
+                            <th>|</th>
+                            <th><a href="<%=contextPath%>/mainPage.ad">관리자</a></th>
+                            
+                            <% } else { %>
+                            <th><a href="<%=contextPath%>/logout.us">로그아웃</a></th>
+                            <th>|</th>
+                            <th><a href="<%=contextPath%>/main.ct">고객센터</a></th>
+                            
+                            <% } %>
                         </tr>
                         <tr>
                             <th colspan="3"><b><%= loginUser.getUserName() %>님</b> 환영합니다</th>
@@ -154,7 +165,7 @@
                 <div class="menu"><a href="<%=contextPath%>/commMain.co?currentPage=1">Community</a></div>
                 <div class="menu"><a href="<%=contextPath%>/workout.in?currentPage=1">Info&Tip</a></div>
                 <div class="menu"><a href="<%=contextPath%>/myPage.md">My D.R.</a></div>
-                <div class="menu"><a href="<%=contextPath%>/mainPage.ad">관리자</a></div>
+                
 				
                 <div class="sideLine" ></div>
                 <hr id="mainLine">

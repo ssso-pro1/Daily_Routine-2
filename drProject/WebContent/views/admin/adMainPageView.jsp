@@ -1,8 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.admin.user.model.vo.AdUser"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
 <%
-	AdUser loginUser = (AdUser)session.getAttribute("loginUser");
+	User loginUser = (User)session.getAttribute("loginUser");
 	
+	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
 %>   
 

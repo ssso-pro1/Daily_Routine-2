@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.admin.user.model.vo.AdUser"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
 <%
-	AdUser loginUser = (AdUser)session.getAttribute("loginUser");
+	User loginUser = (User)session.getAttribute("loginUser");
 	
 	String contextPath = request.getContextPath();
 %>   
@@ -121,26 +121,22 @@
 	                <i class="fas fa-user-circle"></i>
                     <br><br>
 	                <!-- 로그인 && 로그인한 아이디가 관리자 (admin01/ admincheck y) -->
-                    <!-- <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %> -->
-	                <!-- <% if(loginUser != null && loginUser.getUserId().equals("admin01")){ %> -->
                    
-                   <!-- 로그인 안했을 때 -->
+                   <!-- 로그인 전 -->
                     <% if(loginUser == null){ %>
 	                   <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
                 </div>
 	            
 	            	<%} else {%>
+
 		            	<div>
-		              <!-- 로그인했을 떄 -->
-		               <!-- <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> -->
-		               <b><%=loginUser.getUserName() %>님</b> DR에 오신 것을 환영합니다. 
+                            <!-- 로그인 후 -->
+                            <b><%=loginUser.getUserName() %>님</b> DR에 오신 것을 환영합니다. 
 		                   
-		                   <!-- <i class="fas fa-bars"></i> -->
-		                  
-		                   </div>
+		                </div>
 		               <% } %>
 	               
-	               	   <a href="<%=contextPath%>/"><i class="fas fa-home"></i></a>
+	               	   <a href="<%=contextPath%>"><i class="fas fa-home"></i></a>
             </span>
         </div>
 

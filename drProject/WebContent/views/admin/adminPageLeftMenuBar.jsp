@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.admin.user.model.vo.AdUser"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
 <%
-	AdUser loginUser = (AdUser)session.getAttribute("loginUser");
+	User loginUser = (User)session.getAttribute("loginUser");
 	
 	String contextPath = request.getContextPath();
 %>   
@@ -99,26 +99,35 @@
         <div id="nav">
             <span align="left">Admin Center</span>
 
-            <span>
+             <span>
                 <!-- 로그인 전 -->
-                
+                <div id="userInfo">
                    <i class="fas fa-user-circle"></i>
+                    <br><br>
+                   <!-- 로그인 && 로그인한 아이디가 관리자 (admin01/ admincheck y) -->
                    
-                   <!-- 로그인 && 로그인한 아이디가 admin -->
-                        
-                            <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
-                        
+                   <!-- 로그인  후 -->
+                    <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
+
+                        <b><%=loginUser.getUserName() %>님</b> 환영합니다. 
+                       <small><a href="<%=contextPath%>/logout.us">로그아웃</a></small> 
+                    </div>
                
-                        <div>
-                          <br><br>
+                  <%} else {%>
+                     <div>
+                    <!-- 로그인 전 -->
+                        <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
                          
-                         <!-- <i class="fas fa-bars"></i> -->
-                         <a href="<%=contextPath%>"><i class="fas fa-home"></i></a>
-                        </div>
-                  
-                        
+                         </div>
+                     <% } %>
+
+                   <!-- 메인페이지로 돌아감 -->
+                    <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a>
             </span>
         </div>
+
+    </div>
+
 
 
         <div id="content">
@@ -159,19 +168,23 @@
 
 
 
-            <!-- content -->
             <div id="content_2">
 
                 <!-- 상단 타이틀 -->
                 <div id="content_2_1">
-                    <h2>회원관리 > 전체 회원 조회</h2>
+                    <h2>Daily Routine</h2>
                 </div>
 
                 <hr style="border:1px solid gray">
-                
-            </div>
-            </div>
 
+
+            <!-- content -->
+                <div id="content_2_2">
+                    <p style="color:white">Daily Routine 관리자 페이지에 오신 것을 환영합니다. <br>
+                        페이지 관리를 위해 로그인 후 좌측 메뉴를 선택하세요.</p>
+                </div>
+            </div>
+        </div>
 
 </body>
 </html>

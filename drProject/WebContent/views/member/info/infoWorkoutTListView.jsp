@@ -17,6 +17,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
      div{
         box-sizing:border-box;
@@ -169,7 +170,7 @@
                             <img src="<%=contextPath%>/<%=i.getTitleImg()%>" width="200" height="150">
                             <p>
                                 <%=i.getPostTitle()%> <br>
-                                조회수 : <%=i.getBoardView()%> 좋아요 : <%=i.getLikeCount()%> <br>
+                                조회수 : <%=i.getBoardView()%> <br>
                                 <%=i.getEnrollDate()%>
                             </p>
                         </div>

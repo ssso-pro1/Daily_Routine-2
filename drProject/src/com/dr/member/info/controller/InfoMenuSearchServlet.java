@@ -1,4 +1,4 @@
-package com.dr.member.comm.controller;
+package com.dr.member.info.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,23 +9,21 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.admin.center.model.service.adCenterService;
-import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.common.model.vo.PageInfo;
-import com.dr.member.comm.model.service.CommService;
-import com.dr.member.comm.model.vo.Comm;
+import com.dr.member.info.model.service.InfoService;
+import com.dr.member.info.model.vo.Info;
 
 /**
- * Servlet implementation class CommTipSearchServlet
+ * Servlet implementation class InfoMenuSearchServlet
  */
-@WebServlet("/searchTip.co")
-public class CommTipSearchServlet extends HttpServlet {
+@WebServlet("/searchMenu.in")
+public class InfoMenuSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommTipSearchServlet() {
+    public InfoMenuSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,64 +32,64 @@ public class CommTipSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 		// 페이징
 		
 		int listCount;		// 제목에서 검색 게시글 수
-		
+				
 		int currentPage;	// 현재 페이지 (즉, 요청한 페이지)
 		int pageLimit;		// 한 페이지 하단에 보여질 페이징바의 페이지 최대갯수 (몇개단위)
 		int boardLimit;		// 한 페이지 내에 보여질 게시글 최대 갯수 (몇개단위)
-						
+								
 		int maxPage; 		// 전체페이지들 중에서의 가장 마지막페이지 (listCount, boardLimit를 가지고 구할꺼임)
 		int startPage;		// 현재 페이지에 하단에 보여질 페이징 바의 시작수 (currentPage, pageLimit를 가지고 구할꺼임)
 		int endPage;		// 현재 페이지에 하단에 보여질 페이징 바의 끝 수 (startPage, pageLimit, maxPage를 가지고 구할꺼임)
-						
-		
-		
+								
+				
+				
 		request.setCharacterEncoding("utf-8");
-		
-		String searchTipCtg = request.getParameter("searchTipCtg"); // 카테고리
-		String searchTipText = request.getParameter("searchTipText"); // 검색어
-		
-		listCount = new CommService().searchTipCount(searchTipCtg, searchTipText);	
-		
+				
+		String searchMenuCtg = request.getParameter("searchMenuCtg"); // 카테고리
+		String searchMenuText = request.getParameter("searchMenuText"); // 검색어
+				
+		listCount = new InfoService().searchMenuCount(searchMenuCtg, searchMenuText);	
+				
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		
+				
 		pageLimit = 10;
-		
+				
 		boardLimit = 10;
-		
-		
+				
+				
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);
-		
+				
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
-			
-		endPage = startPage + pageLimit - 1;
 					
-			
+		endPage = startPage + pageLimit - 1;
+							
+					
 		if(endPage > maxPage) {
 			endPage = maxPage;
 		}
-		
-		
-			
-		
+				
+				
+					
+				
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
-		
-		ArrayList<Comm> list = new CommService().searchTipList(pi, searchTipCtg, searchTipText);
-		
-		
+				
+		ArrayList<Info> list = new InfoService().searchMenuList(pi, searchMenuCtg, searchMenuText);
+				
+				
 		request.setAttribute("list", list);
-		
-			
+				
+					
 		request.setAttribute("pi", pi);
-		
-		request.setAttribute("searchTipText", searchTipText);
-		request.setAttribute("searchTipCtg", searchTipCtg);
-		
-		request.getRequestDispatcher("views/member/comm/commTipSearchList.jsp").forward(request, response);
-		
+				
+		request.setAttribute("searchMenuText", searchMenuText);
+		request.setAttribute("searchMenuCtg", searchMenuCtg);
+				
+		request.getRequestDispatcher("views/member/info/infoMenuSearchList.jsp").forward(request, response);
+				
 	}
 
 	/**

@@ -4,6 +4,8 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import com.dr.common.model.vo.PageInfo;
+import com.dr.member.comm.model.dao.CommDao;
+import com.dr.member.comm.model.vo.Comm;
 import com.dr.member.info.model.dao.InfoDao;
 import com.dr.member.info.model.vo.Info;
 import com.dr.member.info.model.vo.InfoFile;
@@ -123,7 +125,55 @@ public class InfoService {
 	}
 	
 	
-	//mainPage 최신인기글 list
+	// workout 검색	
+	public int searchWorkoutCount(String searchWorkoutCtg, String searchWorkoutText) {
+		
+		Connection conn = getConnection();	
+		int listCount = new InfoDao().searchWorkoutCount(conn, searchWorkoutCtg, searchWorkoutText);
+		
+		close(conn);
+		
+		return listCount; 
+		
+	}
+	
+	public ArrayList<Info> searchWorkoutList(PageInfo pi, String searchWorkoutCtg, String searchWorkoutText) {
+		
+		Connection conn = getConnection();
+		ArrayList<Info> list = new InfoDao().searchWorkoutList(conn, pi, searchWorkoutCtg, searchWorkoutText);
+		
+		close(conn);
+		
+		return list; 
+		
+	}
+	
+	
+	// menu 검색 	
+	public int searchMenuCount(String searchMenuCtg, String searchMenuText) {
+		
+		Connection conn = getConnection();	
+		int listCount = new InfoDao().searchMenuCount(conn, searchMenuCtg, searchMenuText);
+		
+		close(conn);
+		
+		return listCount; 
+		
+	}
+	
+	public ArrayList<Info> searchMenuList(PageInfo pi, String searchMenuCtg, String searchMenuText) {
+		
+		Connection conn = getConnection();
+		ArrayList<Info> list = new InfoDao().searchMenuList(conn, pi, searchMenuCtg, searchMenuText);
+		
+		close(conn);
+		
+		return list; 
+		
+	}
+	
+	
+	// mainPage 최신인기글 list
 	public ArrayList<Info> mainList() {
 		
 		Connection conn = getConnection(); 

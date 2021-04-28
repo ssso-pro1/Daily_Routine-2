@@ -134,6 +134,147 @@
 	</entry>
 	
 	
+	<!-- workout 검색 / 상태값을 다 뽑을 것! -->
+	<entry key="searchWorkoutTitleCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_INFO_N_TIP 
+		 WHERE POST_TITLE LIKE '%'||?||'%'
+		   AND CATEGORY_NAME = '1' 
+		   AND STATUS = 'Y' 
+	</entry>
+	
+	<entry key="searchWorkoutContentCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_INFO_N_TIP  
+		 WHERE POST_CONTENT LIKE '%'||?||'%'
+		   AND CATEGORY_NAME = '1' 
+		   AND STATUS = 'Y'
+	</entry>
+	
+	<entry key="searchWorkoutTitle">
+		SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+			             SELECT
+			                    INT_POST_NO
+			                  , POST_CONTENT
+			                  , POST_TITLE
+			                  , ENROLL_DATE
+			                  , BOARD_VIEW 
+			                  , LIKE_COUNT
+			               FROM TB_INFO_N_TIP  
+			              WHERE POST_TITLE LIKE '%'||?||'%'
+			                AND CATEGORY_NAME = '1' 
+			                AND STATUS = 'Y' 
+			              ORDER
+			                 BY ENROLL_DATE DESC
+			            ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="searchWorkoutContent">
+		SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                 SELECT
+		                        INT_POST_NO
+		                      , POST_CONTENT
+		                      , POST_TITLE
+		                      , ENROLL_DATE
+		                      , BOARD_VIEW
+		                      , LIKE_COUNT
+		                   FROM TB_INFO_N_TIP 		                  
+		                  WHERE POST_CONTENT LIKE '%'||?||'%'
+		                    AND CATEGORY_NAME = '1' 
+		                    AND STATUS = 'Y'
+		                  ORDER
+		                     BY ENROLL_DATE DESC
+		                ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	
+	
+	
+	<!-- menu 검색 / 상태값을 다 뽑을 것! -->
+	<entry key="searchMenuTitleCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_INFO_N_TIP 
+		 WHERE POST_TITLE LIKE '%'||?||'%'
+		   AND CATEGORY_NAME = '2' 
+		   AND STATUS = 'Y' 
+	</entry>
+	
+	<entry key="searchMenuContentCount">
+		SELECT COUNT(*) LISTCOUNT
+		  FROM TB_INFO_N_TIP  
+		 WHERE POST_CONTENT LIKE '%'||?||'%'
+		   AND CATEGORY_NAME = '2' 
+		   AND STATUS = 'Y'
+	</entry>
+	
+	<entry key="searchMenuTitle">
+		SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+			             SELECT
+			                    INT_POST_NO
+			                  , POST_CONTENT
+			                  , POST_TITLE
+			                  , ENROLL_DATE
+			                  , BOARD_VIEW 
+			                  , LIKE_COUNT
+			               FROM TB_INFO_N_TIP  
+			              WHERE POST_TITLE LIKE '%'||?||'%'
+			                AND CATEGORY_NAME = '2' 
+			                AND STATUS = 'Y' 
+			              ORDER
+			                 BY ENROLL_DATE DESC
+			              ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	<entry key="searchMenuContent">
+		SELECT *
+		  FROM (
+		        SELECT
+		               ROWNUM RNUM
+		             , A.*
+		          FROM (
+		                 SELECT
+		                        INT_POST_NO
+		                      , POST_CONTENT
+		                      , POST_TITLE
+		                      , ENROLL_DATE
+		                      , BOARD_VIEW
+		                      , LIKE_COUNT
+		                   FROM TB_INFO_N_TIP 		                  
+		                  WHERE POST_CONTENT LIKE '%'||?||'%'
+		                    AND CATEGORY_NAME = '2' 
+		                    AND STATUS = 'Y'
+		                  ORDER
+		                     BY ENROLL_DATE DESC
+		                ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	</entry>
+	
+	
+	
+	
 	
 	
 	

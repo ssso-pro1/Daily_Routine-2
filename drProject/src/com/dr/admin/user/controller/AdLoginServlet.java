@@ -43,11 +43,15 @@ public class AdLoginServlet extends HttpServlet {
 		
 		User u = new UserService().loginUser(userId, userPwd);
 		
-		if(u == null) {
-			request.setAttribute("errorMsg", "로그인에 실패했습니다.");
-			
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 		
+		if(u.getAdminCheck().equals("N")) {
+			
+			request.setAttribute("errorMsg", "관리자 아이디로 로그인해주세요.");
+			
+			request.getRequestDispatcher("views/common/adErrorPage.jsp").forward(request, response);
+		
+			
+			
 		} else {
 			
 			HttpSession session = request.getSession();

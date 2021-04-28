@@ -33,10 +33,7 @@
             color:white;
 
         }
-        #welcome:hover{
-            color: rgb(33, 33, 34);
-        }
-        
+              
 
         #content{height:100%; width:100%;}
 
@@ -135,6 +132,10 @@
         #btn {
             cursor:pointer;
         }
+        .loginNavi *, #nav *{
+            color:white;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -144,27 +145,24 @@
     <div class="wrap">
 
         <div id="nav">
-            <span align="left">Admin Center</span>
+            <span align="left"><a href="<%=contextPath%>/mainPage.ad">Admin Center</a></span>
 
-            <span class="loginNavi">
+             <span class="loginNavi">
                 <!-- 로그인 전 -->
-                   <i class="fas fa-user-circle"></i>
                    
+                    
                    <!-- 로그인  후 -->
                     <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
-
                         <b><%=loginUser.getUserName() %>님</b> 환영합니다. 
-                       <small><a href="<%=contextPath%>/logout.us">로그아웃</a></small>
-                       <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a> 
-                    <!-- </div> -->
+                       <small><a href="<%=contextPath%>/adLogout.aus">로그아웃</a></small>
+                       <a href="<%=contextPath%>"><i class="fas fa-home"></i></a>  <!--사용자 메인페이지-->
                
                   <%} else {%>
                     <div>
                     <!-- 로그인 전 -->
                         <a id="welcome" >Welcome</a>
                         <small><a href="<%=contextPath%>/loginForm.aus">로그인</a></small>
-                        <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a>
-                    </div>
+                        <a href="<%=contextPath%>"><i class="fas fa-home"></i></a>  <!--사용자 메인페이지-->                    </div>
                   <% } %>
 
                    <!-- 사용자 메인페이지로 돌아감 -->

@@ -69,27 +69,30 @@
 					<script>
 						// 기본 상태 업로드 순
 						$(function(){
-							$(".listArea").load("allListArea.ht?currentPage=1");
-						})
-					
-						
-						$("select[name=category]").change(function(){
+							//$(".listArea").load("allListArea.ht?currentPage=1");
+							
+							$("select[name=category]").change(function(){
 							var value = ($(this).val());
 							
 							$.ajax({
 								type:"post",
 								url: "allListArea.ht?currentPage=1",
-								dataType : "html",
 								data:{
 									value:value
-								},success:function(){
-									$(".listArea").load("allListArea.ht?currentPage=1");
-									console.log(value);
+								},success:function(map){
+									//$(".listArea").load("allListArea.ht?currentPage=1");
+									//console.log(map);
+									console.log(map.pi);
+									console.log(map.list);
 								},error:function(){
 									cosole.log("실패");
 								}
 							})
 						})
+						})
+					
+						
+						
 						
 						
 					</script>

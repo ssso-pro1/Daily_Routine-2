@@ -87,7 +87,7 @@
 					<div class="outer">
 						<div class="outer2">
 							<button id="btn3" onclick="location.href='<%= contextPath %>/htBookmark.md?currentPage=1'">홈트레이닝 북마크 보관함</button>
-							<button id="btn1" onclick="loaction.href='<%= contextPath %>/itBookmark.md?currentPage=1'">Info&Tip 북마크 보관함</button>
+							<button id="btn1" onclick="location.href='<%= contextPath %>/itBookmark.md?currentPage=1'">Info&Tip 북마크 보관함</button>
 							<div class="listArea">							
 								<% if(list.isEmpty()){ %>
 									<h1>조회된 리스트가 없습니다</h1>
@@ -96,7 +96,7 @@
 									<% for(Info i : list){ %>
 										<div class="thumbnail" align="center">
 											<input type="hidden" value="<%= i.getIntPostNo() %>">
-											<input type="hiddn" value="<%= i.getCategoryName()  %>">
+											<input type="hidden" value="<%= i.getCategoryName()  %>">
 											<img src="<%= i.getTitleImg() %>" width="230" height="150">
 											<p align="left"><%= i.getPostTitle() %></p>
 											<p algin="left"><%= i.getCategoryName() %> | ♡ 좋아요 <%= i.getLikeCount() %></p>
@@ -137,7 +137,7 @@
 									<% } %>
 								</div>
 						   <div class="Btns">
-							   <button type="button" id="submitBtn" onclick="loaction.href='<%= contextPath %>/updateItBookmark.md?currentPage=1'">수정</button>
+							   <button type="button" id="submitBtn" onclick="location.href='<%= contextPath %>/updateItBookmark.md?currentPage=1'">수정</button>
 						   </div>
 						</div>
 					</div>

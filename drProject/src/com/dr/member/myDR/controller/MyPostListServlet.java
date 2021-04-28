@@ -63,7 +63,7 @@ public class MyPostListServlet extends HttpServlet {
 		pageLimit = 10;
 		
 		// boardLimit : 한 페이지 내에 보여질 게시글 최대 개수
-		boardLimit = 6;
+		boardLimit = 5;
 		
 		// 총 페이지 수
 		maxPage = (int)Math.ceil((double)postListCount / boardLimit);
@@ -82,8 +82,6 @@ public class MyPostListServlet extends HttpServlet {
 		
 		// 현재 요청한 페이지에 보여질 게시글리스트 조회 
 		ArrayList<Comm> list = new MyDrService().selectMyPostList(pi, userNo);
-	
-		System.out.println(list);
 		
 		session.setAttribute("postListCount", postListCount);
 		request.setAttribute("pi", pi);

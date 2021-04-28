@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.dr.member.info.model.vo.Info, com.dr.common.model.vo.PageInfo" %>
+<%@ page import="java.util.ArrayList, com.dr.member.info.model.vo.*, com.dr.common.model.vo.PageInfo" %>
 <%
 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Info> list = (ArrayList<Info>)request.getAttribute("list"); 
+	
+	String searchMenuText = (String)request.getAttribute("searchMenuText");
+	String searchMenuCtg = (String)request.getAttribute("searchMenuCtg");
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage(); 
@@ -17,8 +20,9 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
-     div{
+	div{
         box-sizing:border-box;
     }
     
@@ -107,7 +111,7 @@
 </style>
 </head>
 <body>
-    
+		    
     <%@ include file="../../common/menubar.jsp"%>
 
 
@@ -157,12 +161,14 @@
                 <!-- 게시글 목록 -->
                 <div id="content_2_3">
                     <div class="listArea">
-                    	
-                    	<% for(Info i : list) { %>
+                    	<% if(list.isEmpty()) { %> 
+                        <div align="center">
+                        <p style="color: crimson; font-weight: bolder; font-size:20px; ">조회된 리스트가 없습니다.</p>
+                        </div>
+                        <% } else { int count=1; %>
+                    		<% for(Info i : list) { %>
                         <div class="thumbnail" align="center">
-                        	
                         	<input type="hidden" value="<%=i.getIntPostNo()%>">
-                        	
                             <img src="<%=contextPath%>/<%=i.getTitleImg()%>" width="200" height="150">
                             <p>
                                 <%=i.getPostTitle()%> <br>
@@ -170,8 +176,9 @@
                                 <%=i.getEnrollDate()%>
                             </p>
                         </div>
-                        <% } %>
-                        
+                        	<% } %>
+                   		<% } %>   
+                    
                     </div><br>
                 </div>
 
@@ -189,28 +196,32 @@
 				<!-- 페이징 처리 -->
 		        <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
 		        <div align="center" class="pagingArea">
-		                	
-		        	<% if(currentPage != 1) { %>
-		            	<button onclick="location.href='<%=contextPath%>/menu.in?currentPage=<%=currentPage-1%>';"><</button>
+		        
+		        <%if (list.isEmpty()) { %>
+				<p></p>
+				<% } else { %>  
+				   	
+				   	<% if(currentPage != 1) { %>
+		            	   <button onclick="location.href='<%=contextPath%>/searchMenu.co?currentPage=<%=currentPage-1%>&searchMenuText=<%=searchMenuText%>&searchMenuCtg=<%=searchMenuCtg%>';"><</button>
 		            <% } %>
 		        	
 		            <% for(int p=startPage; p<=endPage; p++) { %>
 		                    	
 		            	<% if(currentPage == p) { %>
-		                    <button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button> 
+		                    <button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
 		                <% }else { %>
-		                    <button onclick="location.href='<%=contextPath%>/menu.in?currentPage=<%= p %>';"><%= p %></button>
+		                    <button onclick="location.href='<%=contextPath%>/searchMenu.co?currentPage=<%= p %>&searchMenuText=<%=searchMenuText%>&searchMenuCtg=<%=searchMenuCtg%>';"><%= p %></button>
 		                <% } %>
 		                    	
 		            <% } %>
 		                    
 		            <% if(currentPage != maxPage) { %>
-		                <button onclick="location.href='<%=contextPath%>/menu.in?currentPage=<%=currentPage+1%>';">></button>
+		                <button onclick="location.href='<%=contextPath%>/searchMenu.co?currentPage=<%=currentPage+1%>&searchMenuText=<%=searchMenuText%>&searchMenuCtg=<%=searchMenuCtg%>';">></button>
 		            <% } %>
-		                        
-		         </div>
+		        <% } %>                     
+		        </div>
 				
-               	 <br><br>
+               	<br><br>
                
 
             </div>   
@@ -218,5 +229,8 @@
             
         </div>      
     </div>
+	
+	
+	
 </body>
 </html>

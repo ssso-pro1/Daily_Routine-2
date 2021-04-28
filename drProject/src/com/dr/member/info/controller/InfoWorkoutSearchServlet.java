@@ -1,4 +1,4 @@
-package com.dr.member.comm.controller;
+package com.dr.member.info.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,23 +9,23 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.admin.center.model.service.adCenterService;
-import com.dr.admin.center.model.vo.adCenterNotice;
 import com.dr.common.model.vo.PageInfo;
 import com.dr.member.comm.model.service.CommService;
 import com.dr.member.comm.model.vo.Comm;
+import com.dr.member.info.model.service.InfoService;
+import com.dr.member.info.model.vo.Info;
 
 /**
- * Servlet implementation class CommTipSearchServlet
+ * Servlet implementation class InfoWorkoutSearchServlet
  */
-@WebServlet("/searchTip.co")
-public class CommTipSearchServlet extends HttpServlet {
+@WebServlet("/searchWorkout.in")
+public class InfoWorkoutSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public CommTipSearchServlet() {
+    public InfoWorkoutSearchServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -34,7 +34,7 @@ public class CommTipSearchServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		
 		// 페이징
 		
 		int listCount;		// 제목에서 검색 게시글 수
@@ -51,10 +51,10 @@ public class CommTipSearchServlet extends HttpServlet {
 		
 		request.setCharacterEncoding("utf-8");
 		
-		String searchTipCtg = request.getParameter("searchTipCtg"); // 카테고리
-		String searchTipText = request.getParameter("searchTipText"); // 검색어
+		String searchWorkoutCtg = request.getParameter("searchWorkoutCtg"); // 카테고리
+		String searchWorkoutText = request.getParameter("searchWorkoutText"); // 검색어
 		
-		listCount = new CommService().searchTipCount(searchTipCtg, searchTipText);	
+		listCount = new InfoService().searchWorkoutCount(searchWorkoutCtg, searchWorkoutText);	
 		
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 		
@@ -79,7 +79,7 @@ public class CommTipSearchServlet extends HttpServlet {
 		
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
-		ArrayList<Comm> list = new CommService().searchTipList(pi, searchTipCtg, searchTipText);
+		ArrayList<Info> list = new InfoService().searchWorkoutList(pi, searchWorkoutCtg, searchWorkoutText);
 		
 		
 		request.setAttribute("list", list);
@@ -87,11 +87,11 @@ public class CommTipSearchServlet extends HttpServlet {
 			
 		request.setAttribute("pi", pi);
 		
-		request.setAttribute("searchTipText", searchTipText);
-		request.setAttribute("searchTipCtg", searchTipCtg);
+		request.setAttribute("searchWorkoutText", searchWorkoutText);
+		request.setAttribute("searchWorkoutCtg", searchWorkoutCtg);
 		
-		request.getRequestDispatcher("views/member/comm/commTipSearchList.jsp").forward(request, response);
-		
+		request.getRequestDispatcher("views/member/info/infoWorkoutSearchList.jsp").forward(request, response);
+			
 	}
 
 	/**

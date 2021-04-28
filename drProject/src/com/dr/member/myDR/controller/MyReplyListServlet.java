@@ -59,8 +59,8 @@ public class MyReplyListServlet extends HttpServlet {
 		// pageLimit : 한 페이지 하단에 보여질 페이지 최대 개수
 		pageLimit = 10;
 				
-		// boardLimit : 한 페이지 내에 보여질 게시글 최대 개수
-		boardLimit = 6;
+		// boardLimit : 한 페이지 내에 보여질 댓글 최대 개수
+		boardLimit = 5;
 				
 		// 총 페이지 수
 		maxPage = (int)Math.ceil((double)replyListCount / boardLimit);
@@ -79,8 +79,6 @@ public class MyReplyListServlet extends HttpServlet {
 				
 		// 현재 요청한 페이지에 보여질 게시글리스트 조회 
 		ArrayList<Reply> list = new MyDrService().selectMyReplyList(pi, userNo);
-			
-		System.out.println(list);
 				
 		session.setAttribute("replyListCount", replyListCount);
 		request.setAttribute("pi", pi);

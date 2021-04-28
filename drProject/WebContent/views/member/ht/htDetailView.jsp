@@ -77,15 +77,17 @@
 								},success:function(check){
 									// console.log(check); -> true, false 출력 확인
 									console.log(check);
-									if(check == true){ // check 되어있는거 취소
-										$("#bookmark").removeClass("fas fa-bookmark").addClass("far fa-bookmark"); 
+									if(check == "true"){ // check 되어있는거 취소
+										$("#bookmark").removeClass("fas");
+										$("#bookmark").addClass("far"); 
 										//  $("#like").attr("far fa-heart");
-										// document.getElementById('like').className = 'far fa-heart';
+										 //document.getElementById('bookmark').className = 'far fa-bookmark';
 										 console.log(document.getElementById('bookmark').className);
 									}else{ // check 안되어있는거 입력
-										$("#bookmark").removeClass("far fa-bookmark").addClass("fas fa-bookmark"); 
+										$("#bookmark").removeClass("far");
+										$("#bookmark").addClass("fas"); 
 										 //$("#like").attr("fas fa-heart");
-										 // document.getElementById('like').className = 'fas fa-heart';
+										 // document.getElementById('bookmark').className = 'fas fa-bookmark';
 										 console.log(document.getElementById('bookmark').className);
 									}
 									

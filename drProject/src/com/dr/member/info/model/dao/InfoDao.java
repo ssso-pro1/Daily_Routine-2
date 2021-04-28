@@ -329,9 +329,251 @@ public class InfoDao {
 	}
 	
 	
+	// workout 검색	
+	public int searchWorkoutCount(Connection conn, String searchWorkoutCtg, String searchWorkoutText) {
+		
+		int listCount = 0; 
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchWorkoutCtg.equals("제목")) { 
+			
+			String sql = prop.getProperty("searchWorkoutTitleCount");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchWorkoutText);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) { 
+					listCount = rset.getInt("LISTCOUNT"); 
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+			
+			return listCount; 
+			
+		}else { 
+			String sql = prop.getProperty("searchWorkoutContentCount"); 
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchWorkoutText);
+				
+				rset = pstmt.executeQuery();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+			
+			return listCount; 
+			
+		}
+		
+	}
+	
+	public ArrayList<Info> searchWorkoutList(Connection conn, PageInfo pi, String searchWorkoutCtg, String searchWorkoutText) {
+		
+		ArrayList<Info> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchWorkoutCtg.contentEquals("제목")) { 
+			
+			String sql = prop.getProperty("searchWorkoutTitle");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, searchWorkoutText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1); 
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) { 
+					list.add(new Info(rset.getInt("int_post_no"),
+									  rset.getString("post_content"), 
+							          rset.getString("post_title"),
+							          rset.getDate("enroll_date"),
+							          rset.getInt("board_view"),
+							          rset.getInt("like_count")));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rset);
+					close(pstmt); 
+				} return list; 
+			
+		} else {
+			
+			String sql = prop.getProperty("searchWorkoutContent");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, searchWorkoutText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) { 
+					list.add(new Info(rset.getInt("int_post_no"),
+									  rset.getString("post_content"), 
+							          rset.getString("post_title"),
+							          rset.getDate("enroll_date"),
+							          rset.getInt("board_view"),
+							          rset.getInt("like_count")));
+					}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			} return list; 
+			
+		}
+	
+	}
 	
 	
-	//mainPage 최신인기글 list
+	// menu 검색 
+	public int searchMenuCount(Connection conn, String searchMenuCtg, String searchMenuText) {
+		
+		int listCount = 0; 
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchMenuCtg.equals("제목")) { 
+			
+			String sql = prop.getProperty("searchMenuTitleCount");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchMenuText);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) { 
+					listCount = rset.getInt("LISTCOUNT"); 
+				}
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+			
+			return listCount; 
+			
+		}else { 
+			String sql = prop.getProperty("searchMenuContentCount"); 
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, searchMenuText);
+				
+				rset = pstmt.executeQuery();
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt); 
+			}
+			
+			return listCount; 
+			
+		}
+		
+	}
+	
+	public ArrayList<Info> searchMenuList(Connection conn, PageInfo pi, String searchMenuCtg, String searchMenuText) {
+		
+		ArrayList<Info> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		if(searchMenuCtg.contentEquals("제목")) { 
+			
+			String sql = prop.getProperty("searchMenuTitle");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, searchMenuText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1); 
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) { 
+					list.add(new Info(rset.getInt("int_post_no"),
+									  rset.getString("post_content"), 
+							          rset.getString("post_title"),
+							          rset.getDate("enroll_date"),
+							          rset.getInt("board_view"),
+							          rset.getInt("like_count")));
+					}
+				} catch (SQLException e) {
+					e.printStackTrace();
+				} finally {
+					close(rset);
+					close(pstmt); 
+				} return list; 
+			
+		} else {
+			
+			String sql = prop.getProperty("searchMenuContent");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				
+				pstmt.setString(1, searchMenuText);
+				pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+				pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+				
+				rset = pstmt.executeQuery();
+				
+				while(rset.next()) { 
+					list.add(new Info(rset.getInt("int_post_no"),
+									  rset.getString("post_content"), 
+							          rset.getString("post_title"),
+							          rset.getDate("enroll_date"),
+							          rset.getInt("board_view"),
+							          rset.getInt("like_count")));
+					}
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(rset);
+				close(pstmt);
+			} return list; 
+			
+		}
+	
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	// mainPage 최신인기글 list
 	public ArrayList<Info> mainList(Connection conn) {
 		// select문 => 여러행 
 		ArrayList<Info> list = new ArrayList<>(); 

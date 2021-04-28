@@ -4,7 +4,7 @@
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Comm> list = (ArrayList<Comm>)request.getAttribute("list");
-	int postListCount = ((Integer)request.getAttribute("postListCount")).intValue();
+	int postListCount = ((Integer)session.getAttribute("postListCount")).intValue();
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -110,11 +110,12 @@
 										<div class="postList" align="center">
 											<input type="hidden" value="<%= c.getCommPostNo() %>">
 											<input type="hidden" value="<%= c.getCommNo() %>">
-											<p>
-												<%= c.getPostTitle() %><br>
+											<p align="left">
+												<b><%= c.getPostTitle() %></b><br>
 												조회수 : <%= c.getBoardView() %> 좋아요 : <%= c.getLikeCount() %> <br>
 												<%= c.getUpdateDate() %>
 											</p>
+											<hr>
 										</div>
 									<% } %>
 								<% } %>
@@ -136,7 +137,7 @@
 									 })
 								</script>
 								
-								<br><br>
+								<br>
 								<!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
 								<!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
 								<div align="center" class="pagingArea">

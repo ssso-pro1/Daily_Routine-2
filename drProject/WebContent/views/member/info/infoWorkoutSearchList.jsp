@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.util.ArrayList, com.dr.member.info.model.vo.Info, com.dr.common.model.vo.PageInfo" %>
+<%@ page import="java.util.ArrayList, com.dr.member.info.model.vo.*, com.dr.common.model.vo.PageInfo" %>
 <%
 
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Info> list = (ArrayList<Info>)request.getAttribute("list"); 
+	
+	String searchWorkoutText = (String)request.getAttribute("searchWorkoutText");
+	String searchWorkoutCtg = (String)request.getAttribute("searchWorkoutCtg");
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage(); 
@@ -17,14 +20,15 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <style>
-     div{
+	div{
         box-sizing:border-box;
     }
     
     .wrap{
         width:1000px;
-        height:1000px;
+        height:800px;
         margin:auto;
         margin-top:15px;
     }
@@ -68,14 +72,13 @@
         height:1px;
     }
     
-    
     .thumbnail{
         border:1px solid black;
         width:200px;
         display:inline-block;
         margin:10px;
     }
-   
+    
     .searchArea{
         float: right;
         margin-right: 95px;
@@ -98,16 +101,23 @@
         cursor:pointer;
     }
     
-    .leftMenu>#menu2>a{
+    .leftMenu>#menu1>a{
     	color:rgb(250, 214, 9);
     }
+    #leftMenu{font-size:16px;}
     
     .ff{font-family: 'Do Hyeon', sans-serif;}
     
+    .wrap ff{
+    	margin-top:150px;
+    }
+    
+	
 </style>
 </head>
 <body>
-    
+	
+	   
     <%@ include file="../../common/menubar.jsp"%>
 
 
@@ -117,11 +127,11 @@
 
             <!-- 왼쪽 공통메뉴 -->
             <div id="content_1">
-                <a href="<%=contextPath%>/workout.in" id="leftMenu"><h1 class="ff">Info & Tip</h1></a><br>
+            	<a href="<%=contextPath%>/workout.in" id="leftMenu"><h1 class="ff">Info & Tip</h1></a><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/workout.in?currentPage=1">운동 정보</a></div>
+                    <div id="menu1"><a href="<%=contextPath%>/workout.in?currentPage=1">운동 정보</a></div>
                     <br>
-                    <div id="menu2"><a href="<%=contextPath%>/menu.in?currentPage=1">식단 정보</a></div>
+                    <div><a href="<%=contextPath%>/menu.in?currentPage=1">식단 정보</a></div> 
                 </div>
             </div>
 
@@ -133,43 +143,45 @@
 
                 <!-- 상단 타이틀 -->
                 <div id="content_2_1">
-                    <h2>Info & Tip > 식단 정보 </h2>
+                    <h2>Info & Tip > 운동 정보 </h2>
                     <hr>
-                    <p>Daily Routine에서 제공하는 다양한 식단 정보를 참고해보세요!</p>
+                    <p>Daily Routine에서 제공하는 다양한 운동 정보를 참고해보세요!</p>
                 </div><br>
 
 
-                <!-- 게시글 목록 카테고리 & 검색 버튼 -->
+                <!-- 게시글 목록 카테고리 & 검색 버튼 -->  
                 <div id="content_2_2">
                 	  <div class="searchArea">
-		                	<form action="<%=contextPath%>/searchMenu.in?currentPage=1" method="post">
-			                    <select name="searchMenuCtg">
-			                    	<option name="searchMenuCtg" value="제목">제목</option>
-			                    	<option name="searchMenuCtg" value="내용">내용</option>
+		                	<form action="<%=contextPath%>/searchWorkout.in?currentPage=1" method="post">
+			                    <select name="searchWorkoutCtg">
+			                    	<option name="searchWorkoutCtg" value="제목">제목</option>
+			                    	<option name="searchWorkoutCtg" value="내용">내용</option>
 			                    </select>  
-			                    <input type="text" name="searchMenuText">
+			                    <input type="text" name="searchWorkoutText">
 			                   	<button type="submit" class="fas fa-search"></button>
 		              		</form>
 		                </div><br><br>         		
                 </div>
 
-
                 <!-- 게시글 목록 -->
                 <div id="content_2_3">
                     <div class="listArea">
-                    	
-                    	<% for(Info i : list) { %>
+                    	<% if(list.isEmpty()) { %> 
+                        <div align="center">
+                        <p style="color: crimson; font-weight: bolder; font-size:20px; ">조회된 리스트가 없습니다.</p>
+                        </div>
+                        <% } else { int count=1; %>
+                    		<% for(Info i : list) { %>
                         <div class="thumbnail" align="center">
-                        	
                         	<input type="hidden" value="<%=i.getIntPostNo()%>">
-                        	
                             <img src="<%=contextPath%>/<%=i.getTitleImg()%>" width="200" height="150">
                             <p>
                                 <%=i.getPostTitle()%> <br>
                                 조회수 : <%=i.getBoardView()%> <br>
                                 <%=i.getEnrollDate()%>
-                            </p>
+                            </p> 
                         </div>
+                        	<% } %>
                         <% } %>
                         
                     </div><br>
@@ -179,7 +191,7 @@
 				<script>
 			        $(function() {
 	                	$(".thumbnail").click(function() {
-	                    	location.href= '<%=contextPath%>/menuDetail.in?ino=' + $(this).children().eq(0).val();
+	                    	location.href= '<%=contextPath%>/workoutDetail.in?ino=' + $(this).children().eq(0).val();
 	                    })
 	                })
 		        </script>
@@ -189,29 +201,33 @@
 				<!-- 페이징 처리 -->
 		        <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
 		        <div align="center" class="pagingArea">
-		                	
+		        
+		        <%if (list.isEmpty()) { %>
+				<p></p>
+				<% } else { %>  
+					
 		        	<% if(currentPage != 1) { %>
-		            	<button onclick="location.href='<%=contextPath%>/menu.in?currentPage=<%=currentPage-1%>';"><</button>
+		            	   <button onclick="location.href='<%=contextPath%>/searchWorkout.co?currentPage=<%=currentPage-1%>&searchWorkoutText=<%=searchWorkoutText%>&searchWorkoutCtg=<%=searchWorkoutCtg%>';"><</button>
 		            <% } %>
 		        	
 		            <% for(int p=startPage; p<=endPage; p++) { %>
 		                    	
 		            	<% if(currentPage == p) { %>
-		                    <button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button> 
+		                    <button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
 		                <% }else { %>
-		                    <button onclick="location.href='<%=contextPath%>/menu.in?currentPage=<%= p %>';"><%= p %></button>
+		                    <button onclick="location.href='<%=contextPath%>/searchWorkout.co?currentPage=<%= p %>&searchWorkoutText=<%=searchWorkoutText%>&searchWorkoutCtg=<%=searchWorkoutCtg%>';"><%= p %></button>
 		                <% } %>
 		                    	
 		            <% } %>
 		                    
 		            <% if(currentPage != maxPage) { %>
-		                <button onclick="location.href='<%=contextPath%>/menu.in?currentPage=<%=currentPage+1%>';">></button>
+		                <button onclick="location.href='<%=contextPath%>/searchWorkout.co?currentPage=<%=currentPage+1%>&searchWorkoutText=<%=searchWorkoutText%>&searchWorkoutCtg=<%=searchWorkoutCtg%>';">></button>
 		            <% } %>
-		                        
-		         </div>
+		        <% } %>                  
+		        </div>
 				
-               	 <br><br>
-               
+              	<br><br>
+               	 
 
             </div>   
             

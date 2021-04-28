@@ -585,11 +585,11 @@ public class CommService {
 	public ArrayList<Comm> mainList(){
 		Connection conn = getConnection();
 		
-		ArrayList<Comm> list = new CommDao().mainList(conn);
+		ArrayList<Comm> list1 = new CommDao().mainList(conn);
 		
 		close(conn);
 		
-		return list;
+		return list1;
 	}
 	
 	

@@ -1566,7 +1566,7 @@ public class CommDao {
 	//mainPage comm list
 	public ArrayList<Comm> mainList(Connection conn){
 		//select문
-		ArrayList<Comm> list = new ArrayList<>();
+		ArrayList<Comm> list1 = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -1579,7 +1579,7 @@ public class CommDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) { 
-	            list.add(new Comm(rset.getInt("comm_post_no"),
+	            list1.add(new Comm(rset.getInt("comm_post_no"),
 	                          rset.getString("user_id"),
 	                             rset.getString("post_title"),
 	                             rset.getDate("enroll_date"),
@@ -1593,7 +1593,7 @@ public class CommDao {
 	         close(pstmt);   
 	      }
 	      
-	      return list;
+	      return list1;
 			
 		
 		

@@ -40,7 +40,7 @@ public class AdUserDeleteServlet extends HttpServlet {
 			
 			HttpSession session = request.getSession();
 			session.removeAttribute("loginUser"); 
-			session.setAttribute("alertMsg", "탈퇴되었습니다. 그동안 이용해주셔서 감사합니다.");
+			session.setAttribute("alertMsg", "탈퇴처리되었습니다.");
 			
 			response.sendRedirect(request.getContextPath());
 			
@@ -48,7 +48,7 @@ public class AdUserDeleteServlet extends HttpServlet {
 			
 			request.setAttribute("errorMsg", "회원 탈퇴 실패");
 			
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response); 
+			request.getRequestDispatcher("views/common/adErrorPage.jsp").forward(request, response); 
 
 		}
 		

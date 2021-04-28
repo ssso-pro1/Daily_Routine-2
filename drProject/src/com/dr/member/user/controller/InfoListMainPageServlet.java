@@ -31,7 +31,9 @@ public class InfoListMainPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ArrayList<Info> list = new InfoService().mainList();
+		ArrayList<Info> list2 = new InfoService().mainList();
+		
+		request.setAttribute("list2", list2);
 		request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
 
 	}

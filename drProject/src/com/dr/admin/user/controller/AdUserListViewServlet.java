@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dr.admin.user.model.service.AdUserService;
 import com.dr.common.model.vo.PageInfo;
@@ -33,6 +34,13 @@ public class AdUserListViewServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
+		
+		HttpSession session = request.getSession();
+		User loginUser = (User)session.getAttribute("loginUser");
+		
+		if(loginUser != null) {
+			
+		
 		int listCount;
 		int currentPage;
 		int pageLimit;
@@ -85,7 +93,18 @@ public class AdUserListViewServlet extends HttpServlet {
 		request.setAttribute("list", list);
 		
 		request.getRequestDispatcher("views/admin/user/adUserListView.jsp").forward(request,response);
-	}
+	
+		
+		}else {
+			request.getSession().setAttribute("alertMsg", "관리자만 이용 가능한 서비스입니다. 로그인 후 이용 부탁드립니다.");
+			response.sendRedirect(request.getContextPath()+"/loginForm.aus");
+		}
+		
+		
+		
+		
+		
+		}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

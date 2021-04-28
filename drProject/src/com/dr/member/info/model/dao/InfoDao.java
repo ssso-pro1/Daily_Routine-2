@@ -576,7 +576,7 @@ public class InfoDao {
 	// mainPage 최신인기글 list
 	public ArrayList<Info> mainList(Connection conn) {
 		// select문 => 여러행 
-		ArrayList<Info> list = new ArrayList<>(); 
+		ArrayList<Info> list2 = new ArrayList<>(); 
 		PreparedStatement pstmt = null; 
 		ResultSet rset = null; 
 		
@@ -587,8 +587,8 @@ public class InfoDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) { 
-	            list.add(new Info(rset.getInt("int_post_no"),
-	                          	  rset.getString("category_name"),
+	            list2.add(new Info(rset.getInt("int_post_no"),
+	            				  rset.getString("user_id"),
 	                              rset.getString("post_title"),
 	                              rset.getDate("enroll_date"),
 	                              rset.getInt("board_view"))); 
@@ -600,7 +600,7 @@ public class InfoDao {
 			close(rset);
 			close(pstmt);
 		}
-		return list;
+		return list2;
 		
 	}
 		

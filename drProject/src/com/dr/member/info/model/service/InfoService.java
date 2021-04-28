@@ -177,11 +177,11 @@ public class InfoService {
 	public ArrayList<Info> mainList() {
 		
 		Connection conn = getConnection(); 
-		ArrayList<Info> list = new InfoDao().mainList(conn); 
+		ArrayList<Info> list2 = new InfoDao().mainList(conn); 
 		
 		close(conn);
 		
-		return list; 
+		return list2; 
 		
 	}
 	

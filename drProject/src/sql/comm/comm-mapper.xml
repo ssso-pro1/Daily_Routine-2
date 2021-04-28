@@ -902,25 +902,32 @@
 	
 	
 	<entry key="mainList">
-		SELECT 
-		        ROWNUM RNUM
-		        , A.*
-		       
-		    FROM (
-		        SELECT 
-		                COMM_POST_NO
-		             , USER_ID
-		             , POST_TITLE
-		             , ENROLL_DATE
-		             , BOARD_VIEW
-		          FROM TB_COMMUNITY
-		          JOIN TB_USER USING (USER_NO = USER_NO)
-		                 WHERE COMM_NO = 1
-		                   AND STATUS = 'N'
-		                 ORDER 
-		                     BY ENROLL_DATE DESC, 
-		                        BOARD_VIEW DESC
-				    )A
+	<![CDATA[  
+		SELECT *
+	      FROM (
+	            SELECT 
+	                    ROWNUM RNUM
+	                    , A.*
+	                   
+	             FROM (
+	                     SELECT 
+	                            COMM_POST_NO
+	                          , USER_ID
+	                          , POST_TITLE
+	                          , C.ENROLL_DATE 
+	                          , BOARD_VIEW
+	                       FROM TB_COMMUNITY C
+	                       JOIN TB_USER U ON (C.USER_NO = U.USER_NO)
+	                      WHERE COMM_NO = 2	                      
+	                        AND STATUS = 'N'
+	                      ORDER 
+	                         BY ENROLL_DATE DESC, 
+	                            BOARD_VIEW DESC
+	                      )A  
+	               )
+	            WHERE RNUM <= 5
+	        ]]>
+				
 	</entry>
 	
 	<entry key="">

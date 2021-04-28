@@ -32,8 +32,15 @@ public class CommListMainPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		ArrayList<Comm> list = new CommService().mainList();
-		request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
+		ArrayList<Comm> list1 = new CommService().mainList();
+		
+		
+		for(int i=0; i<list1.size(); i++) {
+			System.out.println(list1.get(i));
+		}
+		
+		//request.setAttribute("list1", list1);
+		//request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
 
 	}
 

@@ -286,24 +286,31 @@
 	
 	<!-- mainpage 최신인기글 -->
 	<entry key="mainList">
-		SELECT 
-		        ROWNUM RNUM
-		        , A.*
-		       
-		    FROM (
+	<![CDATA[ 
+		SELECT *
+		  FROM (
 		        SELECT 
-		                INT_POST_NO
-		             , CATEGORY_NAME
-		             , POST_TITLE
-		             , ENROLL_DATE
-		             , BOARD_VIEW
-		          FROM TB_INFO_N_TIP
-		      
-                 WHERE STATUS = 'Y'
-                 ORDER 
-                     BY ENROLL_DATE DESC, 
-                        BOARD_VIEW DESC
-		    )A
+		                ROWNUM RNUM
+		                , A.*
+		               
+		            FROM (
+		                    SELECT 
+		      	                   INT_POST_NO
+		                         , USER_ID
+		                         , POST_TITLE
+		                         , I.ENROLL_DATE
+		                         , BOARD_VIEW
+		                      FROM TB_INFO_N_TIP I
+		                  	  JOIN TB_USER U ON (I.USER_NO = U.USER_NO)
+		                     WHERE STATUS = 'Y'
+		                       AND CATEGORY_NAME = '2'
+		                     ORDER 
+		                         BY ENROLL_DATE DESC, 
+		                            BOARD_VIEW DESC
+		                    )A
+		                )
+		            WHERE RNUM <= 5
+		  ]]>
 	</entry>
 	
 	

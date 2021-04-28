@@ -44,14 +44,7 @@ public class Info {
 		this.likeCount = likeCount;
 	}	
 
-	public Info(int intPostNo, String categoryName, String postTitle, Date enrollDate, int boardView) {
-		super();
-		this.intPostNo = intPostNo;
-		this.categoryName = categoryName;
-		this.postTitle = postTitle;
-		this.enrollDate = enrollDate;
-		this.boardView = boardView;
-	}
+	
 
 	public Info(int intPostNo, String categoryName, String postTitle, int likeCount, Date updateDate, String titleImg) {
 		super();
@@ -61,6 +54,15 @@ public class Info {
 		this.likeCount = likeCount;
 		this.updateDate = updateDate;
 		this.titleImg = titleImg;
+	}
+	
+	public Info(int intPostNo, String userNo, String postTitle, Date enrollDate, int boardView) {
+		super();
+		this.intPostNo = intPostNo;
+		this.userNo = userNo;
+		this.postTitle = postTitle;
+		this.enrollDate = enrollDate;
+		this.boardView = boardView;
 	}
 
 	public int getIntPostNo() {

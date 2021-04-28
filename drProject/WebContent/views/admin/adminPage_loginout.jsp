@@ -115,28 +115,28 @@
         <div id="nav">
             <span align="left">Admin Center</span>
 
-            <span>
+             <span class="loginNavi">
                 <!-- 로그인 전 -->
-                <div id="userInfo">
-	                <i class="fas fa-user-circle"></i>
-                    <br><br>
-	                <!-- 로그인 && 로그인한 아이디가 관리자 (admin01/ admincheck y) -->
-                   
-                   <!-- 로그인 전 -->
-                    <% if(loginUser == null){ %>
-	                   <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
-                </div>
-	            
-	            	<%} else {%>
+                   <i class="fas fa-user-circle"></i>
+                    
+                   <!-- 로그인  후 -->
+                    <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
 
-		            	<div>
-                            <!-- 로그인 후 -->
-                            <b><%=loginUser.getUserName() %>님</b> DR에 오신 것을 환영합니다. 
-		                   
-		                </div>
-		               <% } %>
-	               
-	               	   <a href="<%=contextPath%>"><i class="fas fa-home"></i></a>
+                        <b><%=loginUser.getUserName() %>님</b> 환영합니다. 
+                       <small><a href="<%=contextPath%>/adLogout.aus">로그아웃</a></small>
+                       <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a> 
+               
+                  <%} else {%>
+                    <div>
+                    <!-- 로그인 전 -->
+                        <a id="welcome" >Welcome</a>
+                        <small><a href="<%=contextPath%>/loginForm.aus">로그인</a></small>
+                        <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a>
+                    </div>
+                  <% } %>
+
+                   <!-- 사용자 메인페이지로 돌아감 -->
+                    
             </span>
         </div>
 

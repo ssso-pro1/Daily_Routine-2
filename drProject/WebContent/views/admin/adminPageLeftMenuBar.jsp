@@ -87,7 +87,10 @@
             font-size:10px;
             padding:10px;
         }
-        
+        .loginNavi *{
+            color:white;
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -99,34 +102,31 @@
         <div id="nav">
             <span align="left">Admin Center</span>
 
-             <span>
+             <span class="loginNavi">
                 <!-- 로그인 전 -->
-                <div id="userInfo">
                    <i class="fas fa-user-circle"></i>
-                    <br><br>
-                   <!-- 로그인 && 로그인한 아이디가 관리자 (admin01/ admincheck y) -->
-                   
+                    
                    <!-- 로그인  후 -->
                     <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
 
                         <b><%=loginUser.getUserName() %>님</b> 환영합니다. 
-                       <small><a href="<%=contextPath%>/logout.us">로그아웃</a></small> 
-                    </div>
+                       <small><a href="<%=contextPath%>/adLogout.aus">로그아웃</a></small>
+                       <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a> 
                
                   <%} else {%>
-                     <div>
+                    <div>
                     <!-- 로그인 전 -->
-                        <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
-                         
-                         </div>
-                     <% } %>
+                        <a id="welcome" >Welcome</a>
+                        <small><a href="<%=contextPath%>/loginForm.aus">로그인</a></small>
+                        <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a>
+                    </div>
+                  <% } %>
 
-                   <!-- 메인페이지로 돌아감 -->
-                    <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a>
+                   <!-- 사용자 메인페이지로 돌아감 -->
+                    
             </span>
         </div>
-
-    </div>
+    
 
 
 

@@ -12,9 +12,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.dr.admin.user.model.vo.AdUser;
 import com.dr.common.model.vo.PageInfo;
-import com.dr.member.user.model.dao.UserDao;
 import com.dr.member.user.model.vo.User;
 
 public class AdUserDao {
@@ -23,7 +21,7 @@ private Properties prop = new Properties();
 	
 	public AdUserDao() {
 		
-		String fileName = UserDao.class.getResource("/sql/admin/user/adUser-mapper.xml").getPath();
+		String fileName = AdUserDao.class.getResource("/sql/admin/user/adUser-mapper.xml").getPath();
 
 		try {
 			prop.loadFromXML(new FileInputStream(fileName));
@@ -36,10 +34,10 @@ private Properties prop = new Properties();
 	/**
 	 * 1. 로그인
 	 */
-	public AdUser loginUser(Connection conn, String userId, String userPwd) {
+	public User loginUser(Connection conn, String userId, String userPwd) {
 		// select 문 => resultSet 객체 (한행) => User객체
 		
-		AdUser u = null;
+		User u = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -53,7 +51,7 @@ private Properties prop = new Properties();
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				u = new AdUser(rset.getInt("user_no"),
+				u = new User(rset.getInt("user_no"),
 						     rset.getString("user_id"),
 						     rset.getString("user_pwd"),
 						     rset.getString("user_name"),
@@ -116,10 +114,10 @@ private Properties prop = new Properties();
 	/**
 	 * 1. 회원 전체 조회
 	 */
-	public ArrayList<AdUser> selectList(Connection conn, PageInfo pi){
+	public ArrayList<User> selectList(Connection conn, PageInfo pi){
 		//select 문 여러행 resultSet
 		
-		ArrayList<AdUser> list = new ArrayList<>();
+		ArrayList<User> list = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -135,7 +133,7 @@ private Properties prop = new Properties();
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new AdUser(rset.getInt("user_no"),
+				list.add(new User(rset.getInt("user_no"),
 						  		  rset.getString("user_id"),
 						  		  rset.getString("user_name"),
 						  		  rset.getString("gender"),

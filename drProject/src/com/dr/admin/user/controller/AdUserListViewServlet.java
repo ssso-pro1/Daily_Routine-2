@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.dr.admin.user.model.service.AdUserService;
-import com.dr.admin.user.model.vo.AdUser;
 import com.dr.common.model.vo.PageInfo;
+import com.dr.member.user.model.vo.User;
 
 /**
  * Servlet implementation class AdUserListViewServlet
@@ -67,7 +67,7 @@ public class AdUserListViewServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		System.out.println(pi);
 		
-		ArrayList<AdUser> list = new AdUserService().selectList(pi);
+		ArrayList<User> list = new AdUserService().selectList(pi);
 		/*
 		for(int i=0; i<list.size(); i++) {
 			System.out.println(list.get(i));

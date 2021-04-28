@@ -27,12 +27,11 @@
                     <table id="passwordInput">
                         <tr>
                             <th>아이디</th>
-                            <td>admin</td>
+                            <td><input type="hidden" name="userId" value="<%=userId%>"></td>
                         </tr>
                         <tr>
                             <th>비밀번호</th>
                             <td><input type="password" name="userPwd" size="25" maxlength="15" placeholder="비밀번호를 입력해주세요" required></td>
-                            <input type="hidden" name="userId" value="<%=userId%>">
                         </tr>
                     </table>
                     <br>
@@ -40,7 +39,7 @@
                     <br>
                     <div class="buttons" align="center">
                         <button type="submit">탈퇴</button> &nbsp;
-                        <button onclick="location='<%= contextPath %>/mainPage.aus'">취소</button>
+                        <button onclick="location='<%= contextPath %>/mainPage.ad'">취소</button>
                     </div>
                     <br>
                 </fieldset>

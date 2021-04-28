@@ -199,11 +199,6 @@
                     <br>
                 </div>
 
-                <div class="content_1_4">
-                    <h2>신고관리</h2>
-                    <div><a href="<%=request.getContextPath()%>/userManage.aus">전체신고보기</a></div> 
-                    <div><a href="<%=request.getContextPath()%>/userManage.aus">블랙리스트</a></div> 
-                </div>
             </div>
 
             <div id="line"></div>

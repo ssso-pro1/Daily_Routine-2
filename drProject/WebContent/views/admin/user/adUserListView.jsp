@@ -1,32 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
-<%@ page import= "java.util.ArrayList, com.dr.admin.user.model.vo.AdUser, com.dr.common.model.vo.PageInfo" %>
+<%@ page import= "java.util.ArrayList, com.dr.member.user.model.vo.User, com.dr.common.model.vo.PageInfo" %>
 
 <%
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
-	ArrayList<AdUser> list = (ArrayList<AdUser>)request.getAttribute("list");
+	ArrayList<User> list = (ArrayList<User>)request.getAttribute("list");
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
 	int endPage = pi.getEndPage();
 	int maxPage = pi.getMaxPage();
-	
-	String contextPath = request.getContextPath();
-	
 %>
+<%
+	User loginUser = (User)session.getAttribute("loginUser");
+	String contextPath = request.getContextPath();
+%>
+
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>전체 회원 조회</title>
 <style>
-.listArea {
-    text-align: center;
-}
-.listOuter{
-	/* float:inline-start */
-}
+
 </style>
 </head>
 <body>
@@ -108,31 +105,66 @@
 		.listArea>table>tr>th{
 			color:white;
 		}
+        .loginNavi *, #nav *{
+            color:white;
+            text-decoration: none;
+        }
+        #ac:hover, #log:hover, .hov:hover{
+            color:black;
+        }
+
+        .listOuter{
+            margin-left:20px;
+            height:600px;
+            margin-left:20px;
+            padding-left:20px;
+        }
+       
+        .listArea{
+            /* border:1px solid gray; */
+            text-align:center;
+            margin-left:70px;
+        }
+        .listArea>thead, tbody{
+            color:white;
+            margin-left:20px;
+        }
+        .listArea>tbody>tr:hover{
+            background:gray;
+            color:rgb(250, 214, 9);
+            cursor:pointer;
+        }
+        .listArea>thead>tr{
+            background:rgb(250, 214, 9);
+        }
 	</style>
+    <body>
     <div class="wrap">
 
         <div id="nav">
-            <span align="left">Admin Center</span>
+            <span align="left"><a href="<%=contextPath%>/mainPage.ad" id="ac">Admin Center</a></span>
 
-            <div>
+             <span class="loginNavi">
                 <!-- 로그인 전 -->
-                
-                   <i class="fas fa-user-circle"></i>
                    
-                   <!-- 로그인 && 로그인한 아이디가 admin -->
-                        
-                            <a id="welcome" href="<%=contextPath%>/loginForm.aus">Welcome님</a>
-                        
+                    
+                   <!-- 로그인  후 -->
+                    <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
+                        <b><%=loginUser.getUserName() %>님</b> 환영합니다. 
+                       <small><a href="<%=contextPath%>/adLogout.aus" id="log">로그아웃</a></small>
+                       <a href="<%=contextPath%>" ><i class="fas fa-home" class="hov"></i></a>  <!--사용자 메인페이지-->
                
-                        <div>
-                          <br><br>
-                         
-                         <!-- <i class="fas fa-bars"></i> -->
-                         <a href="<%=contextPath%>"><i class="fas fa-home"></i></a>
-                        </div>
-                  
-                        
-            </div>
+                  <%} else {%>
+                    <div>
+                    <!-- 로그인 전 -->
+                        <a id="welcome" >Welcome</a>
+                        <small><a href="<%=contextPath%>/loginForm.aus" id="log">로그인</a></small>
+                        <a href="<%=contextPath%>" ><i class="fas fa-home" class="hov"></i></a>  <!--사용자 메인페이지--></div>
+                  <% } %>
+
+                   <!-- 사용자 메인페이지로 돌아감 -->
+                    
+            </span>
         </div>
 
 
@@ -142,32 +174,27 @@
              <div id="content_1">
                 
                 <div class="content_1_1">
-                    <h2>회원관리</h2>
-                    <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
-                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
+                    <h2  style="color:white;">회원관리</h2>
+                    <div><a href="<%=contextPath%>/userListView.aus?currentPage=1"  style="color:white;">전체 회원 조회 </a></div>
+                    <div><a href="">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
                     <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
+                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div> 
                     <br>
                 </div>
 
                 <div class="content_1_3">
                     <h2>고객센터</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">공지사항</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">FAQ</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">1:1문의</a></div> 
+                    <div><a href="<%=contextPath%>/ctNotice.ad?currentPage=1">공지사항</a></div> 
+                    <div><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">FAQ</a></div> 
+                    <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div> 
                     <br>
                 </div>
 
-                <div class="content_1_4">
-                    <h2>신고관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체신고보기</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">블랙리스트</a></div> 
-                </div>
             </div>
 
             <div id="line"></div>
@@ -183,53 +210,57 @@
                 </div>
 
                 <hr style="border:1px solid gray">
-                
+                <div>
+                    <p style="color:white;">전체 회원 조회 리스트입니다.</p>
+                </div>
             </div>
             </div>
         
-    <div class="listOuter">
-        <table class="listArea">
-                <thead>
-                    <tr>
-                        <th width="30">번호</th>
-                        <th width="90">아이디</th>
-                        <th width="90">이름</th>
-                        <th width="200">휴대폰 번호</th>
-                        <th width="70">성별</th>
+            <br><br>
+            <div class="listOuter">
+                <table class="listArea" style="padding:30px 40px;">
+                        <thead>
+                            <tr>
+                                <th width="30">번호</th>
+                                <th width="90">아이디</th>
+                                <th width="90">이름</th>
+                                <th width="200">휴대폰 번호</th>
+                                <th width="70">성별</th>
+                                <th width="120">가입일</th>
+                                <th width="70">탈퇴여부</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
                         
-                        <th width="120">가입일</th>
-                        <th width="70">탈퇴여부</th>
+                        <!-- 조회된 결과 없을 경우 -->
                         
-                    </tr>
-                </thead>
-                <tbody>
+                            <% if(list.isEmpty()){ %>
+                                <tr>
+                                    <td colspan = "6"> 조회된 리스트가 없습니다. </td>
+                                </tr>
+                            
+                            <% }else{ %>
+                            
+                                
+                                <% for(User u : list) { %>
+                                <tr>
+                                    <td><%=u.getUserNo() %></td>
+                                    <td><%=u.getUserId() %></td>
+                                    <td><%=u.getUserName() %></td>
+                                    <td><%=u.getPhone() %></td>
+                                    <td><%=u.getGender() %></td>
+                                    <td><%=u.getEnrollDate() %></td>
+                                    <td><%=u.getLeaveCheck() %></td>
+                                </tr>
+                                
+                                <% } %>
+                            <% } %> 
+                    </tbody>
+                </table>
+
                 
-                <!-- 조회된 결과 없을 경우 -->
-                
-	                <% if(list.isEmpty()){ %>
-	                	<tr>
-	                		<td colspan = "6"> 조회된 리스트가 없습니다. </td>
-	                	</tr>
-	                
-	                <% }else{ %>
-	                
-		                
-		                <% for(AdUser u : list) { %>
-		                <tr>
-		                    <td><%=u.getUserNo() %></td>
-		                    <td><%=u.getUserId() %></td>
-		                    <td><%=u.getUserName() %></td>
-		                    <td><%=u.getPhone() %></td>
-		                    <td><%=u.getGender() %></td>
-		                    <td><%=u.getEnrollDate() %></td>
-		                    <td><%=u.getLeaveCheck() %></td>
-		                </tr>
-		                
-		                <% } %>
-					<% } %> 
-            </tbody>
-        </table>
-	</div>
+            </div>
         <br>
 
     <br>

@@ -8,10 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Properties;
 
-
-
+import com.dr.admin.user.model.dao.AdUser;
+import com.dr.common.model.vo.PageInfo;
 import com.dr.member.user.model.vo.User;
 
 public class UserDao {
@@ -145,6 +146,10 @@ public class UserDao {
 		
 	}
 
+	
+		
+	
+	
 	public int updateEmailUser(Connection conn, String userId, String updateEmail) {
 		// update문 
 		int result = 0;

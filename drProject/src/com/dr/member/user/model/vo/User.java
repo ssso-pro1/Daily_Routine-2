@@ -57,6 +57,23 @@ public class User {
 		this.email = email;
 		this.phone = phone;
 	}
+	
+	//관리자 회원조회
+	public User(int userNo, String userId, String userName, String gender, String phone, Date enrollDate,
+			String leaveCheck) {
+		super();
+		this.userNo = userNo;
+		this.userId = userId;
+		this.userName = userName;
+		this.gender = gender;
+		this.phone = phone;
+		this.enrollDate = enrollDate;
+		this.leaveCheck = leaveCheck;
+	}
+	
+	
+	
+	
 
 	public void setUserNo(int userNo) {
 		this.userNo = userNo;

@@ -27,7 +27,7 @@ public class adCenterNoticeEnrollFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/admin/center/test.jsp").forward(request, response);
+		request.getRequestDispatcher("views/admin/center/adCenterNoticeEnrollForm.jsp").forward(request, response);
 		
 	}
 

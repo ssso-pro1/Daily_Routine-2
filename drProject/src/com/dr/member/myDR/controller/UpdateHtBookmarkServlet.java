@@ -50,7 +50,7 @@ public class UpdateHtBookmarkServlet extends HttpServlet {
 		
 		
 		// listCount : 총 게시글 갯수 조회해서 담기
-		listCount = new MyDrService().selectBookmarkListCount(userNo);
+		listCount = new MyDrService().selectHtBookmarkListCount(userNo);
 		
 		// currentPage : 현재 요청한 페이지
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -77,7 +77,7 @@ public class UpdateHtBookmarkServlet extends HttpServlet {
 		PageInfo pi = new PageInfo(listCount, currentPage, pageLimit, boardLimit, maxPage, startPage, endPage);
 		
 		// 현재 요청한 페이지에 보여질 게시글리스트 조회 
-		ArrayList<Ht> list = new MyDrService().selectBookmarkList(pi, userNo);
+		ArrayList<Ht> list = new MyDrService().selectHtBookmarkList(pi, userNo);
 	
 		
 		session.setAttribute("postListCount", listCount);

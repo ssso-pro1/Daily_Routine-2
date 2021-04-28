@@ -91,7 +91,7 @@
 						<div class="outer2">
 							<!-- 수정창에서 변경가능하도록 링크 수정창으로 바꿔주기 -->
 							<button id="btn1" onclick="location.href='<%= contextPath %>/updateHtBookmark.md?currentPage=1'">북마크 보관함</button>
-							<button id="btn3">Info&Tip 북마크 보관함</button>
+							<button id="btn3" onclick="location.href='<%= contextPath %>/updateItBookmark.md?currentPage=1'">Info&Tip 북마크 보관함</button>
 							<div class="listArea">							
 								<% if(list.isEmpty()){ %>
 									<h1>조회된 리스트가 없습니다</h1>
@@ -102,13 +102,10 @@
 											<div class="check">
 												<input type="checkbox">
 											</div>
-											<div class="check">
-												<input type="checkbox">
-											</div>
 											<input type="hidden" value="<%= h.getHtPostNo() %>">
 											<img src="<%= h.getTitleImg() %>" width="230" height="150">
 											<p align="left"><%= h.getHtPostTitle() %></p>
-											<p algin="left"><%= h.getHtCategory() %> | ♡ 좋아요 <%= h.getHtLikeCount() %></p>
+											<p align="left"><%= h.getHtCategory() %> | ♡ 좋아요 <%= h.getHtLikeCount() %></p>
 										</div>
 									<% } %>
 								<% } %>
@@ -136,7 +133,7 @@
 								</div>
 						    <div class="Btns">
 							   <button type="reset" id="resetBtn">삭제</button>
-							   <button type="submit" id="submitBtn" onclick="location.href='<%= contextPath %>/updateHtBookmark.md?currentPage=1'">수정완료</button>
+							   <button type="submit" id="submitBtn" onclick="location.href='<%= contextPath %>/htBookmark.md?currentPage=1'">수정완료</button>
 						   </div>
 						</div>
 					</div>

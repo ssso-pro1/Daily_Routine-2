@@ -2,6 +2,7 @@ package com.dr.member.ht.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -78,13 +79,19 @@ public class HtAllListAreaServlet extends HttpServlet {
 		ArrayList<Ht> list = new HtService().selectAllHtList(value, pi);
 		// 리스트 담김
 		
-		request.setAttribute("pi", pi);
-		request.setAttribute("list", list);
-		request.getRequestDispatcher("views/member/ht/htAllListArea.jsp").forward(request, response);
-//		response.setContentType("application/json; charset=UTF-8");
-//		Gson gson = new GsonBuilder().setDateFormat("yyyy년 MM월 dd일").create();
-//		gson.toJson(list, response.getWriter());
-//		// 담긴거 json객체로 변환
+		//request.setAttribute("pi", pi);
+		//request.setAttribute("list", list);
+		//request.getRequestDispatcher("views/member/ht/htAllListArea.jsp").forward(request, response);
+		
+		HashMap<String, Object> hmap = new HashMap<>();
+		hmap.put("pi", pi);
+		hmap.put("list", list);
+		
+		
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy년 MM월 dd일").create();
+		gson.toJson(hmap, response.getWriter());
+		// 담긴거 json객체로 변환
 		
 
 	}

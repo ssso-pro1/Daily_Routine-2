@@ -53,12 +53,12 @@
 		          FROM (
 		                SELECT 
                                 REPLY_NO
-                              , R.USER_NO
-                              , C.COMM_POST_NO
+                              , R.USER_NO "USER_NO"
+                              , C.COMM_POST_NO "COMM_POST_NO"
                               , REPLY_CONTENT
                               , REPLY_CATEGORY
-                              , R.UPDATE_DATE
-                              , C.POST_TITLE
+                              , R.UPDATE_DATE "UPDATE_DATE" 
+                              , C.POST_TITLE "POST_TITLE"
 		                  FROM TB_COMMUNITY C 
 		                  JOIN TB_REPLY R ON(R.COMM_POST_NO = C.COMM_POST_NO)
 		                 WHERE R.USER_NO = ?
@@ -120,14 +120,14 @@
 		          FROM (
 			            SELECT
 			                   I.INT_POST_NO "INT_POST_NO"
-			                  , POST_TITLE
-                              , CATEGORY_NAME
-			                  , I.UPDATE_DATE "UPDATE_DATE"
+			                  , CATEGORY_NAME
+                              , POST_TITLE
 			                  , LIKE_COUNT
+			                  , I.UPDATE_DATE "UPDATE_DATE"
 			                  , FILE_PATH || FILE_UPDATE "TITLEIMG"
 			               FROM TB_INFO_N_TIP I 
 			               JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
-                           JOIN TB_BOOKMARK B ON(I.INT_POST_NO = B.B_POST_NO)
+                           JOIN TB_BOOKMARK B ON(I.INT_POST_NO = B.BK_POST_NO)
 			              WHERE I.STATUS = 'Y'
                             AND B.USER_NO = ?
                             AND BK_POST_TYPE = 2

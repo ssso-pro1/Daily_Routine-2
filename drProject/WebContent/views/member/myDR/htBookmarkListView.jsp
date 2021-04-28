@@ -70,7 +70,7 @@
                 <div class="leftMenu">
                     <div><a href="<%=contextPath%>/myPage.md" >회원수정</a></div>
                     <br>
-                    <div><a href="<%= contextPath %>/bookmark.md?currentPage=1" >내 글 보관함</a></div>
+                    <div><a href="<%= contextPath %>/myPostList.md?currentPage=1" >내 글 보관함</a></div>
                     <br>
                     <div><a href="<%= contextPath %>/htBookmark.md?currentPage=1" style="color:rgb(250, 214, 9);">북마크 보관함</a></div>
                     <br>
@@ -87,7 +87,7 @@
 					<div class="outer">
 						<div class="outer2">
 							<button id="btn1" onclick="location.href='<%= contextPath %>/htBookmark.md?currentPage=1'">홈트레이닝 북마크 보관함</button>
-							<button id="btn3">Info&Tip 북마크 보관함</button>
+							<button id="btn3" onclick="location.href='<%= contextPath %>/itBookmark.md?currentPage=1'">Info&Tip 북마크 보관함</button>
 							<div class="listArea">							
 								<% if(list.isEmpty()){ %>
 									<h1>조회된 리스트가 없습니다</h1>

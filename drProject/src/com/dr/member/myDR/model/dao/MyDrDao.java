@@ -184,12 +184,12 @@ public class MyDrDao {
 			
 			while(rset.next()) {
 				Reply r = new Reply(rset.getInt("REPLY_NO"),
-								  rset.getString("R.USER_NO"),
-								  rset.getInt("C.COMM_POST_NO"),
+								  rset.getString("USER_NO"),
+								  rset.getInt("COMM_POST_NO"),
 								  rset.getString("REPLY_CONTENT"),
 								  rset.getInt("REPLY_CATEGORY"),
-								  rset.getDate("R.UPDATE_DATE"),
-								  rset.getString("C.POST_TITLE")		
+								  rset.getDate("UPDATE_DATE"),
+								  rset.getString("POST_TITLE")		
 								  );
 				
 				list.add(r);
@@ -240,7 +240,7 @@ public class MyDrDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectHtBookmarkList");
-
+		System.out.println(userNo);
 		try {
 
 			pstmt = conn.prepareStatement(sql);

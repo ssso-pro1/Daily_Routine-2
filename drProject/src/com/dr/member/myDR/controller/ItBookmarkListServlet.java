@@ -78,7 +78,8 @@ public class ItBookmarkListServlet extends HttpServlet {
 		
 		// 현재 요청한 페이지에 보여질 게시글리스트 조회 
 		ArrayList<Info> list = new MyDrService().selectItBookmarkList(pi, userNo);
-	
+		
+		System.out.println(list);
 		
 		session.setAttribute("postListCount", listCount);
 		request.setAttribute("pi", pi);

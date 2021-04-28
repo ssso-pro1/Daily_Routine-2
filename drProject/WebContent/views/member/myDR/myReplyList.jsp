@@ -112,10 +112,11 @@
 											<input type="hidden" value="<%= r.getReplyNo() %>">
 											<input type="hidden" value="<%= r.getCommPostNo() %>">
 											<input type="hidden" value="<%= r.getReplyCategory() %>">
-											<p>
-												<%= r.getPostTitle() %><br>
-												<br>
-												<%= r.getUpdateDate() %>
+											<p align="left">
+												<b><%= r.getReplyContent() %></b><br>
+												<%= r.getUpdateDate() %><br>
+												<%= r.getPostTitle() %>						
+												<hr>
 											</p>
 										</div>
 									<% } %>

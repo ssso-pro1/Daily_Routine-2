@@ -573,14 +573,14 @@ public class InfoDao {
 	
 	
 	// mainPage 최신인기글 list
-	   public ArrayList<Info> selectInfoList(Connection conn) {
+	   public ArrayList<Info> selectMaInfoList(Connection conn) {
 	      // select문 => 여러행 
 	      ArrayList<Info> list2 = new ArrayList<>(); 
 	      
 	      PreparedStatement pstmt = null; 
 	      ResultSet rset = null; 
 	      
-	      String sql = prop.getProperty("selectInfoList"); 
+	      String sql = prop.getProperty("selectMaInfoList"); 
 	      
 	      try {
 	         pstmt = conn.prepareStatement(sql);
@@ -588,8 +588,8 @@ public class InfoDao {
 	         
 	         while(rset.next()) { 
 	               list2.add(new Info(rset.getInt("int_post_no"),
-	                           rset.getString("post_title"),
-	                             rset.getString("user_id"),
+	            		   			  rset.getString("user_id"),
+	            		   			  rset.getString("post_title"),
 	                                 rset.getDate("enroll_date"),
 	                                 rset.getInt("board_view"))); 
 	            }

@@ -587,10 +587,10 @@ public class CommService {
 	
 	//mainPage Comm list
 	
-	public ArrayList<Comm> selectCommList(){
+	public ArrayList<Comm> selectMaCommList(){
 		Connection conn = getConnection();
 		
-		ArrayList<Comm> list1 = new CommDao().selectCommList(conn);
+		ArrayList<Comm> list1 = new CommDao().selectMaCommList(conn);
 		
 		close(conn);
 		

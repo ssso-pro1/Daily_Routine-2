@@ -174,10 +174,10 @@ public class InfoService {
 	
 	
 	// mainPage 최신인기글 list
-	public ArrayList<Info> selectInfoList() {
+	public ArrayList<Info> selectMaInfoList() {
 		Connection conn = getConnection(); 
 		
-		ArrayList<Info> list2 = new InfoDao().selectInfoList(conn);
+		ArrayList<Info> list2 = new InfoDao().selectMaInfoList(conn);
 		
 		close(conn);
 		

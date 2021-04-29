@@ -284,7 +284,7 @@
 	
 	
 	<!-- mainpage 최신인기글 -->
-   <entry key="selectInfoList">
+   <entry key="selectMaInfoList">
    <![CDATA[  
       SELECT *
          FROM (
@@ -295,8 +295,8 @@
                 FROM (
                        SELECT
                               INT_POST_NO
-                            , POST_TITLE
                             , USER_ID
+                            , POST_TITLE
                             , I.ENROLL_DATE
                             , BOARD_VIEW
                        FROM TB_INFO_N_TIP I

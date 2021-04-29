@@ -656,13 +656,13 @@ public class HtDao {
 	
 	
 	//mainPage Ht List
-	public ArrayList<Ht> selectHtList(Connection conn){
+	public ArrayList<Ht> selectMaHtList(Connection conn){
 		
 		ArrayList<Ht> list3 = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectHtList");
+		String sql = prop.getProperty("selectMaHtList");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

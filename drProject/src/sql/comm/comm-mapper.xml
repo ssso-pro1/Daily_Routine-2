@@ -901,7 +901,7 @@
 	
 	
 	
-	<entry key="selectCommList">
+	<entry key="selectMaCommList">
 	<![CDATA[  
 	SELECT *
 	      FROM (
@@ -912,8 +912,8 @@
 	             FROM (
                         SELECT
                                COMM_POST_NO
+                                , USER_ID
                              , POST_TITLE
-                             , USER_ID
                              , C.ENROLL_DATE
                              , BOARD_VIEW
                         FROM TB_COMMUNITY C

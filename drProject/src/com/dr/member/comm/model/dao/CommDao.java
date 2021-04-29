@@ -1567,14 +1567,14 @@ public class CommDao {
 	
 	
 	//mainPage comm list
-	public ArrayList<Comm> selectCommList(Connection conn){
+	public ArrayList<Comm> selectMaCommList(Connection conn){
 		//select문 
 		ArrayList<Comm> list1 = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("selectCommList");
+		String sql = prop.getProperty("selectMaCommList");
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
@@ -1582,8 +1582,8 @@ public class CommDao {
 			
 			while(rset.next()) { 
 	            list1.add(new Comm(rset.getInt("comm_post_no"),
-	            				 rset.getString("post_title"),
 	            				 rset.getString("user_id"),
+	            				 rset.getString("post_title"),
 	                             rset.getDate("enroll_date"),
 	                             rset.getInt("board_view"))); 
 	         }

@@ -35,20 +35,24 @@ public class MainPageServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		ArrayList<Comm> list1 = new CommService().selectCommList();
-		ArrayList<Info> list2 = new InfoService().selectInfoList();
-		ArrayList<Ht> list3 = new HtService().selectHtList();
+		/*
+		ArrayList<Comm> list1 = new CommService().selectMaCommList();
+		ArrayList<Info> list2 = new InfoService().selectMaInfoList();
+		ArrayList<Ht> list3 = new HtService().selectMaHtList();
 
-		
+		System.out.println(list1);
+		System.out.println(list2);
+		System.out.println(list3);
+		*/
+		/*
 		request.setAttribute("list1", list1);
 		request.setAttribute("list2", list2);
 		request.setAttribute("list3", list3);
 
 		
-		request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
+		//request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
 		
-		
+		*/
 	
 	
 	}

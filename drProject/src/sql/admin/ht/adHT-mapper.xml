@@ -2,134 +2,232 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
 
-<!-- 1. 관리자(홈트) - 게시글 리스트 갯수 -->
-	<entry key="selectListCount">
-		SELECT COUNT(*) LISTCOUNT
-		  FROM TB_HOMETRAINING
-		 <!--WHERE CATEGORY -->
-		 WHERE STATUS='N'
+	<!-- HT 게시판 -->
+	
+	<!-- HT글번호 조회 (전체) -->
+	
+	<entry key="selectListCountAll">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_HOMETRAINING
 	</entry>
 	
-<!-- 1. 게시글리스트 조회시 실행할 sql문 -->
+	<entry key="selectListAll">
+	
+	SELECT * 
+		  FROM (
+		        SELECT 
+		               ROWNUM RNUM 
+		             , A.*
+		          FROM (
+		                SELECT
+		                       HT_POST_NO
+		                     , HT_POST_TITLE
+		                     , CATEGORY_NAME 
+		                     , HT_ENROLL_DATE 
+		                     , T.STATUS
+		                     , USER_ID
+		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
+		                  FROM TB_HOMETRAINING T 
+		                  JOIN TB_USER USING (USER_NO)
+		                 ORDER BY  HT_POST_NO DESC
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	</entry>
+	
+	
+	<!-- 글등록 -->
+	<entry key="insertHT">
+		INSERT
+		    INTO TB_HOMETRAINING
+		    (
+		       HT_POST_NO
+		     , USER_NO
+		     , CATEGORY_NAME
+		     , HT_POST_TITLE
+		     , HT_POST_CONTENT
+		     , HT_ENROLL_DATE
+		     , STATUS
+		     , FILE_NAME
+		     , FILE_UPDATE
+		     , FILE_PATH
+		    )
+		    VALUES
+		    (
+		      SEQ_HTPNO.NEXTVAL
+		    , ?
+		    , ?
+		    , ?
+		    , ?
+		    , SYSDATE
+		    , ?
+		    , ?
+		    , ?
+		   	, ?
+		    )
+	
+	</entry>
+	
+	<!-- 카테고리별로 카운트 -->
+	<entry key="selectListCount">
+	SELECT COUNT(*) LISTCOUNT
+	FROM TB_HOMETRAINING
+	WHERE CATEGORY_NAME =?
+	
+	
+	</entry>
+	
+	
+	
 	<entry key="selectList">
-		SELECT *
+	SELECT *
 		  FROM (
 		        SELECT
 		               ROWNUM RNUM
-		               , A.*  
-				 FROM (
-				        SELECT 
-				               HT_POST_NO
-				             , HT_POST_TITLE
-				             , CATEGORY_NAME
-				             , HT_ENROLL_DATE
-				             , HT_UPDATE_DATE
-				             , HT_BOARD_VIEW
-				             
-				         FROM TB_HOMETRAINING 
-				         ORDER
-				            BY HT_ENROLL_DATE DESC
-				       ) A
-				    )
-				 WHERE RNUM BETWEEN ? AND ?
+		             , A.*
+		          FROM (
+		                SELECT
+		                       HT_POST_NO
+		                     , HT_POST_TITLE
+		                     , CATEGORY_NAME 
+		                     , HT_ENROLL_DATE 
+		                     , T.STATUS
+		                     , USER_ID
+		                     , FILE_PATH || FILE_UPDATE "TITLEIMG"
+		                  FROM TB_HOMETRAINING T 
+		                  JOIN TB_USER USING (USER_NO)
+		                  WHERE CATEGORY_NAME =?
+		                 ORDER BY  HT_POST_NO DESC
+		                 
+		               ) A
+		       )
+		 WHERE RNUM BETWEEN ? AND ?
+	
+	
+	
 	</entry>
 	
 	
+	<!-- 글번호조회 -->
+	<entry key="HTIncreaseCount">
+		UPDATE TB_HOMETRAINING
+		   SET HT_BOARD_VIEW = HT_BOARD_VIEW +1
+	     WHERE HT_POST_NO = ?
+	       
+	</entry>
 	
-	
-	
-	<entry key="insertAdHT">
-		 
-		INSERT 
-		  INTO TB_HOMETRAINING
-		  (
+	<entry key="selectHT">
+	SELECT 
 		    HT_POST_NO
-		    
-		  , USER_NO
 		  , CATEGORY_NAME
 		  , HT_POST_TITLE
 		  , HT_POST_CONTENT
-		  
 		  , HT_ENROLL_DATE
-		  , FILE_NO 
-		  , VIDEO_LINK
-		  )
-		  VALUES
-		  (
-		    SEQ_HTPNO.NEXTVAL
-		   , ?
-		   , ?
-		   , ?
-		   , ?   
-		   , SYSDATE
-		   , SEQ_HTFNO.NEXTVAL
-		   , ?
-		  )
+		  , HT_UPDATE_DATE
+		  , T.STATUS
+		  , USER_ID
+		  , FILE_PATH || FILE_UPDATE "TITLEIMG"
+		  
+	  FROM TB_HOMETRAINING T
+	  JOIN TB_USER USING (USER_NO)
+	WHERE HT_POST_NO = ?
+	   
 	
 	</entry>
 	
-	<entry key="insertHTFileList">
-		INSERT 
-		  INTO TB_HT_FILE
-		  (
-		    FILE_NO
-		   , HT_POST_NO
-		   , ORIGIN_NAME
-		   , CHANGE_NAME
-		   , FILE_PATH
-		   , FILE_LEVEL
-		)
-		  VALUES 
-		  (
-		    SEQ_HTFNO.CURRVAL
-		  , SEQ_HTPNO.CURRVAL
-		  , ?
-		  , ?
-		  , ?
-		  , ?
-		  )
-  
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<!-- 삭제 -->
+	<entry key="deleteInfo">
+	
+	DELETE FROM TB_INFO_N_TIP
+	WHERE INT_POST_NO = ?
+	
+	
 	</entry>
 	
 	
-	<entry key="selectThumbnailList">
+	
+	
+	
+	
+	<entry key="selectAttachment">
 		SELECT
-		       HT_POST_NO       --1번테이블
-		     , CATEGORY_NAME
-		     , HT_POST_TITLE
-		     , HT_ENROLL_DATE
-		     , FILE_PATH || CHANGE_NAME "TITLEIMG"  
-		FROM TB_HOMETRAINING H
-		JOIN TB_USER USING(USER_NO)
-		JOIN TB_HT_FILE USING(HT_POST_NO)
-		WHERE STATUS = 'N'
-		  AND FILE_LEVEL = 0
-		ORDER
-		   BY HT_ENROLL_DATE DESC
-	</entry>
-	
-	<entry key="">
-	
-	</entry>
-	
-	<entry key="">
-	
-	</entry>
-	
-	<entry key="">
-	
-	</entry>
-	
-	<entry key="">
-	
-	</entry>
-	
-	
-</properties>
-
-
-
-
-
+		        INT_POST_NO
+		      , FILE_NO
+		      , FILE_NAME
+		   	  , FILE_UPDATE
+		      , FILE_PATH
+		   FROM TB_INT_FILE
+		  WHERE INT_POST_NO = ?
 		
+	</entry>
 	
+	<entry key="updateInfo">
+	   	UPDATE
+				TB_INFO_N_TIP
+		    SET POST_TITLE = ?
+		      , POST_CONTENT = ?
+		      , CATEGORY_NAME =?
+		      , STATUS = ?
+		      , UPDATE_DATE = SYSDATE
+		  WHERE INT_POST_NO = ?     
+			
+	</entry>
+	
+	
+	<entry key="updateAttachment">
+		UPDATE
+				TB_INT_FILE
+		    SET FILE_NAME = ?
+		      , FILE_UPDATE = ?
+			  , FILE_PATH = ?
+		  WHERE FILE_NO = ?
+	</entry>
+	
+	<entry key="insertNewAttachment">
+		INSERT
+			INTO TB_INT_FILE
+			(
+			  FILE_NO
+		    , INT_POST_NO
+		    , FILE_NAME
+		    , FILE_UPDATE
+		    , FILE_PATH
+			)
+			VALUES
+			(
+			  SEQ_FILE_INT.NEXTVAL
+		   	, ?
+		    , ?
+		    , ?
+		    , ?
+		   )
+		
+	</entry>
+	
+	
+	
+	
+</properties>	

@@ -11,69 +11,157 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Properties;
 
-import com.dr.admin.ht.model.vo.AdHT;
-import com.dr.admin.ht.model.vo.HTFile;
+import com.dr.admin.ht.model.vo.adHT;
+import com.dr.admin.info.model.vo.adInfo;
 import com.dr.common.model.vo.PageInfo;
-import com.dr.member.user.model.dao.UserDao;
 
-public class AdHTDao {
-
+public class adHTDao {
 	
-	private Properties prop = new Properties();
-
+private Properties prop = new Properties();
 	
-	public AdHTDao() {
-			
-			String fileName = UserDao.class.getResource("/sql/admin/ht/adHT-mapper.xml").getPath();
-	
-			try {
-				prop.loadFromXML(new FileInputStream(fileName)); //XMl파일 읽어들일 땐 그냥 load(X)
-			} catch (IOException e) {
-				e.printStackTrace();
-			}  
+	public adHTDao() {
+		
+		String fileName = adHTDao.class.getResource("/sql/admin/ht/adHT-mapper.xml").getPath();
+		
+		try {
+			prop.loadFromXML(new FileInputStream(fileName));
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 	
-	/**
-	 * 1. 홈트 게시글 리스트 갯수
-	 */
-	public int selectListCount(Connection conn) {
-		//select문 => ResultSet (총게시글 갯수==정수)
+	
+	// 전체게시글 카운트
+	public int selectListCountAll(Connection conn) {
 		
 		int listCount = 0;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
 		
+		String sql = prop.getProperty("selectListCountAll");
+		
+		
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				listCount = rset.getInt("LISTCOUNT");
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return listCount;
+	
+		
+	}
+	
+	//전체게시글 리스트
+	public ArrayList<adHT> selectListAll(Connection conn, PageInfo pi) {
+		ArrayList<adHT> list = new ArrayList<>();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectListAll");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setInt(1, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
+							
+			rset = pstmt.executeQuery();
+							
+			while(rset.next()) {
+				list.add(new adHT(rset.getInt("HT_POST_NO"),
+						   rset.getString("HT_POST_TITLE"),
+						   rset.getString("CATEGORY_NAME"),
+						   rset.getDate("HT_ENROLL_DATE"),
+						   rset.getString("STATUS"),
+						   rset.getString("USER_ID"),
+						   rset.getString("TITLEIMG")
+						));
+			}		
+		} catch (SQLException e) {
+					e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		} return list;
+		
+	}
+
+
+	public int insertHT(Connection conn, adHT t) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+	
+		String sql = prop.getProperty("insertHT");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, t.getUserNo());
+			pstmt.setString(2, t.getCategoryName());
+			pstmt.setString(3, t.getHtPostTitle());
+			pstmt.setString(4, t.getHtPostContent());
+			pstmt.setString(5, t.getStatus());
+			pstmt.setString(6, t.getFileName());
+			pstmt.setString(7, t.getFileUpdate());
+			pstmt.setString(8, t.getFilePath());
+			
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	//카테고리별로 카운트
+	public int selectListCount(Connection conn, String ctg) {
+		
+		int listCount = 0;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectListCount");
 		
+		
+		
 		try {
-			pstmt = conn.prepareStatement(sql);
-			
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, ctg);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				listCount = rset.getInt("LISTCOUNT"); //갯수조회값
+				listCount = rset.getInt("LISTCOUNT");
 			}
-			
+				
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		}finally {
 			close(rset);
 			close(pstmt);
-		}
-		return listCount;
+		} return listCount;
+	
+		
 	}
 	
 	
-	/**
-	 * 1. 홈트 게시글 전체 조회 
-	 */
 	
-	public ArrayList<AdHT> selectList(Connection conn, PageInfo pi) {
-		// select문 => resultset객체 (여러행)
-		
-		ArrayList<AdHT> list = new ArrayList<>();
-		
+	
+	//카테고리별 리스트	
+	public ArrayList<adHT> selectList(Connection conn, PageInfo pi, String ctg) {
+		ArrayList<adHT> list = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
@@ -82,50 +170,41 @@ public class AdHTDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
-			pstmt.setInt(1, (pi.getCurrentPage()-1) * pi.getBoardLimit() + 1);
-			pstmt.setInt(2, pi.getCurrentPage() * pi.getBoardLimit());
-			
+			pstmt.setString(1, ctg);
+			pstmt.setInt(2, (pi.getCurrentPage() - 1) * pi.getBoardLimit() + 1);
+			pstmt.setInt(3, pi.getCurrentPage() * pi.getBoardLimit());
+							
 			rset = pstmt.executeQuery();
-			
-			while(rset.next()) { 
-//				순서!!!!!!
-				list.add(new AdHT(rset.getInt("ht_post_no"),
-								  rset.getString("ht_post_title"),
-								  rset.getString("category_name"),
-								  rset.getDate("ht_enroll_date"),
-								  rset.getDate("ht_update_date"),
-								  rset.getInt("ht_board_view")));
-			}
-			
+							
+			while(rset.next()) {
+				list.add(new adHT(rset.getInt("HT_POST_NO"),
+						   rset.getString("HT_POST_TITLE"),
+						   rset.getString("CATEGORY_NAME"),
+						   rset.getDate("HT_ENROLL_DATE"),
+						   rset.getString("STATUS"),
+						   rset.getString("USER_ID"),
+						   rset.getString("TITLEIMG")
+						));
+			}		
 		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
+					e.printStackTrace();
+		}finally {
 			close(rset);
 			close(pstmt);
-		}
-		return list;
+		} return list;
 		
 	}
-	
-	
-	
-	
-	
-	// insert1
-	public int insertAdHT(Connection conn, AdHT a) {
-		//insert => 처리된 행수
+
+
+	public int HTIncreaseCount(Connection conn, int htNo) {
 		int result = 0;
 		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertAdHT");
+		
+		String sql = prop.getProperty("HTIncreaseCount");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setInt(1, Integer.parseInt(a.getUserNo()));
-			pstmt.setString(2, a.getCategoryName());
-			pstmt.setString(3, a.getHtPostTitle());
-			pstmt.setString(4, a.getHtPostContent());
-			pstmt.setString(5, a.getVideoLink());
+			pstmt.setInt(1, htNo);
 			
 			result = pstmt.executeUpdate();
 			
@@ -133,79 +212,45 @@ public class AdHTDao {
 			e.printStackTrace();
 		} finally {
 			close(pstmt);
-		}
-		
-		return result;
+		} return result;
 		
 	}
-	
-	// insert2
-	public int insertHTFileList(Connection conn, ArrayList<HTFile> list) {
-		// insert 문 다수 => 처리된 행수
-		int result = 0;
-		PreparedStatement pstmt = null;
-		String sql = prop.getProperty("insertHTFileList");
-		
-		try {
-			
-			for(HTFile ht : list) {
-				
-				pstmt = conn.prepareStatement(sql);
-				
-				pstmt.setString(1, ht.getOriginName());
-				pstmt.setString(2, ht.getChangeName());
-				pstmt.setString(3, ht.getFilePath());
-				pstmt.setInt(4, ht.getFileLevel());
-				
-			}
-			
-			result = pstmt.executeUpdate();
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(pstmt);
-		}
-		
-		return result;
-		
-	}
-	
-	public ArrayList<AdHT> selectThumbnailList(Connection conn) {
-		//select문 => ResultSet 객체 (여러행)
-		ArrayList<AdHT> list = new ArrayList<>();
+
+
+	public adHT selectHT(Connection conn, int htNo) {
+		adHT t = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		
-		String sql = prop.getProperty("selectThumbnailList");
+		String sql = prop.getProperty("selectHT");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htNo);
+			
 			rset = pstmt.executeQuery();
 			
-			while(rset.next()) {
-				
-				AdHT a = new AdHT();
-				a.setHtPostNo(rset.getInt("ht_post_no"));
-				a.setCategoryName(rset.getString("category_name"));
-				a.setHtPostTitle(rset.getString("ht_post_title"));
-				a.setHtEnrollDate(rset.getDate("ht_enroll_date"));
-				a.setTitleImg(rset.getString("titleimg"));
-				
-				list.add(a);
-			}
+			if(rset.next()) {
+				t = new adHT(rset.getInt("HT_POST_NO"),
+							  rset.getString("CATEGORY_NAME"),
+							  rset.getString("HT_POST_TITLE"),
+							  rset.getString("HT_POST_CONTENT"),
+							  rset.getDate("HT_ENROLL_DATE"),
+							  rset.getDate("HT_UPDATE_DATE"),
+							  rset.getString("status"),
+							  rset.getString("user_id"),
+							  rset.getString("TITLEIMG"));
+							  
+					}
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			close(rset);
 			close(pstmt);
-		}
-		return list;
-		
-		
-		
+		} return t;
+
+
 	}
-	
-	
+
+
 }

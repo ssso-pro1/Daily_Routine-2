@@ -1,8 +1,6 @@
 package com.dr.admin.ht.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -11,25 +9,25 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.apache.tomcat.util.http.fileupload.servlet.ServletFileUpload;
 
-import com.dr.admin.ht.model.service.AdHTService;
-import com.dr.admin.ht.model.vo.AdHT;
-import com.dr.admin.ht.model.vo.HTFile;
+import com.dr.admin.ht.model.service.adHTService;
+import com.dr.admin.ht.model.vo.adHT;
+import com.dr.admin.info.model.service.adInfoService;
+import com.dr.admin.info.model.vo.adInfo;
+import com.dr.admin.info.model.vo.adInfoFile;
 import com.dr.common.MyFileRenamePolicy;
 import com.oreilly.servlet.MultipartRequest;
-import com.sun.xml.internal.ws.api.message.Attachment;
-import com.dr.admin.user.model.vo.AdUser;
 
 /**
- * Servlet implementation class AdHTInsertServlet
+ * Servlet implementation class adHTInsertServlet
  */
 @WebServlet("/htInsert.aht")
-public class AdHTInsertServlet extends HttpServlet {
+public class adHTInsertServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public AdHTInsertServlet() {
+    public adHTInsertServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -38,131 +36,76 @@ public class AdHTInsertServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-
+		
 		request.setCharacterEncoding("utf-8");
 		
-		/* multipart/form-data로 전송할 때 request로 값 뽑을 수 없음!
-		String category = request.getParameter("category");
-		String htPostTitle = request.getParameter("htPostTitle");
-		*/
-		
-		//enctype 이 multipart/form-data로 잘 전송되었을 경우
-		
 		if(ServletFileUpload.isMultipartContent(request)) {
-			//System.out.println("잘 실행되나?"); //글등록시 출력 (흰페이지)
-			//resources-upfiles 사진담아둘 폴더 (사용자가 다운 간으)
-			
-			// 파일업로드를 위한 외부 라이브러리 : cos.jar
-			
-			// 1. 전송되는 파일을 처리할 작업 내용 (전송되는 파일의 용량제한, 전달된 파일을 저장할 폴더 경로)
-			// 1-1. 전달되는 파일의 용량 제한 (int maxSize => byte단위) : 10Mbyte로 제한
 			
 			int maxSize = 10*1024*1024;
 			
-			// 1-2. 전달된 파일을 저장할 서버의 폴더 경로 알아내기 (String savePath)
+			// 1_2. 전달된 파일을 저장할 서버의 폴더 경로 알아내기 (String savePath)
+			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/admin/adHT_upfiles/");
 			
-			String savePath = request.getSession().getServletContext().getRealPath("/resources/file/ht/ht_upfiles/"); 
-			//이폴더 내에 넣을거기 때문에 경로 마지막에 / 까지.
-			//System.out.println(savePath); //경로확인
-			
-			
-			
-			// 2. 전달된 파일명 수정 후 서버에 업로드 작업 (MultipartRequest 객체 생성)
 			
 			MultipartRequest multiRequest = new MultipartRequest(request, savePath, maxSize, "UTF-8", new MyFileRenamePolicy());
 			
-			
-			// 3. 요청시 전달된 값들 뽑아서 vo에 주섬주섬 담기 (DB에 기록할 데이터들 뽑기)
-			// 3-1.  insert할 카테고리번호, 게시판제목, 게시판내용, 작성자회원번호를 Board객체에 담기
-			// 카테고리명, 제목, 영상, 썸네일, 게시글내용, 로그인회원번호
-			/*
-			String userNo = multiRequest.getParameter("userNo");
-			String categoryName = multiRequest.getParameter("categoryName");
-			String htPostTitle = multiRequest.getParameter("htPostTitle");
-			String videoLink = multiRequest.getParameter("videoLink");
-			String htPostContent = multiRequest.getParameter("htPostContent");
-			*/
-			
-			AdHT a = new AdHT();
-			a.setUserNo(multiRequest.getParameter("userNo"));
-			a.setCategoryName(multiRequest.getParameter("categoryName"));
-			a.setHtPostTitle(multiRequest.getParameter("htPostTitle"));
-			a.setVideoLink(multiRequest.getParameter("videoLink"));
-			a.setHtPostContent(multiRequest.getParameter("htPostContent"));
-
-
+			// 3. 요청시 전달된 값들 뽑아서 vo에  담기 (DB에 기록할 데이터들뽑기)
+			String title = multiRequest.getParameter("title"); 
+			int userNo = Integer.parseInt(multiRequest.getParameter("userNo")); 
+			String content = multiRequest.getParameter("content");
+			String catogory = multiRequest.getParameter("category");
+			String status = multiRequest.getParameter("status");
 			
 			
-			// 3-2. 첨부파일이 있다면, Attachment테이블에 Insert할 원본명, 수정명, 저장폴더경로를 Attachment 객체에 담기
-			// System.out.println(multiRequest.getOriginalFileName("upfile"));
-			// 첨부파일 없이(빈페이지, null반환) /
-			// 있게 해서 출력 테스트 해봄 (첨부파일의 원본명 출력)
 			
+			adHT t = new adHT();
+			t.setHtPostTitle(title);
+			t.setUserNo(userNo);
+			t.setHtPostContent(content);
+			t.setCategoryName(catogory);
+			t.setStatus(status);
 			
-			ArrayList<HTFile> list = new ArrayList<>();
+			// 3_2. 첨부파일이 있다면 centerNoticeFile테이블에 Insert할 원본명, 수정명, 저장폴더경로를 Attachment객체에 담기
+			//System.out.println(multiRequest.getOriginalFileName("upfile"));
 			
-			for(int i=1; i<=4; i++) {
+			//adInfoFile fi = null; // 처음엔 null로 초기화, 넘어온 첨부파일이 있다면 그 때 생성
+			
+			if(multiRequest.getOriginalFileName("upfile") != null) { // 넘어온 첨부파일이 존재할 경우
 				
-				String key = "file" + i;
 				
-				if(multiRequest.getOriginalFileName(key) != null) {
-					
-					HTFile ht = new HTFile();
-					ht.setOriginName(multiRequest.getOriginalFileName(key)); //이 조건이 트루일 때만 실행(파일있을때)
-					ht.setChangeName(multiRequest.getFilesystemName(key)); 
-					ht.setFilePath("resources/file/ht/ht_upfiles/");
-					
-					if(i == 1) {
-						ht.setFileLevel(0);
-					}else {
-						ht.setFileLevel(1);
-					}
-					
-					// list에 추가
-					list.add(ht);
-				}
+				t.setFileName(multiRequest.getOriginalFileName("upfile"));
+				t.setFileUpdate(multiRequest.getFilesystemName("upfile"));
+				t.setFilePath("resources/file/admin/adHT_upfiles/");
+				
+				
+				
 			}
 			
 			
-			// 4. 작성용 서비스 호출 및 결과받기
 			
-			/*
-			HTFile h = null; // 처음엔  null로 초기화, 넘어온 첨부파일이 있다면 그 때 생성
+			// 4. 게시판 작성용 서비스 요청 및 결과 받기
+			int result = new adHTService().insertHT(t);
 			
 			
-			if(multiRequest.getOriginalFileName("fileNo") != null) { // 넘어온 첨부파일이 존재할 경우
+			if(result > 0) { //  성공 
 				
-				h = new HTFile();
-				// 원본명, 수정명 (실제서버에 업로드된 파일명), 저장된폴더경로
-				h.setOriginName(multiRequest.getOriginalFileName("fileNo")); 
-				h.setChangeName(multiRequest.getFilesystemName("fileNo")); 
-				h.setFilePath("resources/file/admin/adminHT_upfiles/");
-			}*/
-			
-			
-			// 4. 게시판 작성용 서비스 요청 및 결과 받기 / 하나의 서비스에서 두개의 INSERT
-			int result = new AdHTService().insertAdHT(a, list);
-			
-			if(result > 0) { // 성공 => (게시판리스트의 첫번째페이지)/ url재요청 => 게시판리스트페이지
+				request.getSession().setAttribute("alertMsg", "게시글 등록에 성공했습니다");
+				response.sendRedirect(request.getContextPath()+ "/htList.aht?currentPage=1");
 				
-				request.getSession().setAttribute("alertMsg", "게시글 등록성공!!");
-				response.sendRedirect(request.getContextPath() + "/htList.aht?currentPage=1"); //url재요청
+			} else { // 실패
 				
-			}else { // 실패
-				request.setAttribute("errorMsg", "게시글등록실패");
+				request.setAttribute("errorMsg", "게시글 등록실패!");
+				request.getRequestDispatcher("views/common/errorPage/jsp").forward(request, response);
 				
-				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response); 
-
-			
 			}
 			
 		}
-			
-			
-			
-			
-			
-		}
+		
+		
+	}
+		
+		
+		
 		
 	
 

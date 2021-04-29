@@ -250,7 +250,7 @@ public class HtService {
 	public ArrayList<Ht> selectHtList(){
 		Connection conn = getConnection();
 		
-		ArrayList<Ht> list3 = new HtDao().selectCommList(conn);
+		ArrayList<Ht> list3 = new HtDao().selectHtList(conn);
 		
 		close(conn);
 		return list3;

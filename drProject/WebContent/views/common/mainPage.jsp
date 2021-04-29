@@ -64,7 +64,7 @@
     .line{
         border: 1px solid gray;
         height:250px;
-        margin: 0 20px;
+        margin: 0 40px;
     }
     
     .content2{
@@ -132,28 +132,56 @@
         height:240px;
         background:skyblue url("../../resources/images/main/Jogging.jpg") no-repeat center/cover;
     }
-
-    .content2{
-        display:flex;
-        justify-content: center;
+    #content1>img{
         margin:auto;
+        display:table-cell;
     }
-    .lists>div{
-        display:cell;
+    .content2{
+        margin:auto;
+        padding:100px;
+    }
+    .lists{
+        /* display:cell; */
+        /* margin:auto; */
+    }
+    .content1>img{
+        display:flex;
+        margin:auto;
+
+    }
+
+    .cap{
+        text-decoration: none;
+
+    }
+    .cap:hover{
+        color:skyblue;
+    }
+
+    table, table>tr{
+        border:2px solid rgb(250, 214, 9);
+        border-collapse:collapse;
+        /* border-top:none; */
+        /* border-right:none; */
+    }
+    table>thead{
+        background-color:  rgb(255, 246, 163);
+    }
+    .content3{
+
     }
 </style>
 </head>
 <body>
 <div class="f">
-    <!-- 메뉴바에로그인 기능 등 메뉴바에 넣고, 메인페이지: 메뉴바, 푸터바 include시키기 -->
     <%@ include file = "menubar.jsp"%>
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 
     <div id="content1" style="margin-top:20px; margin-bottom:50px;">
-        <img src="../../resources/images/main/Jogging.jpg" alt="" width="100%" height="10%" > 
-        <a href="<%=contextPath%>/allList.ht" class="item">
+        <img src="<%=contextPath%>/resources/images/main/Jogging.jpg" alt="" width="1000px" height="150px" > 
+
         <!-- <div class="item"> -->
-            <div class="item-bg"></div>
+            <!-- <div class="item-bg"></div> -->
         <!-- </div> -->
         </a>
     </div>
@@ -164,22 +192,22 @@
         <div class="listArea">
             <table border="1" style="text-align:center;" >
 
-                <!-- 조회해오기 -->
-                <caption><b><a href="<%=contextPath%>/free.co?currentPage=1">Community[자유게시판]최신인기글</a></b></caption>
+                <caption ><b><a href="<%=contextPath%>/free.co?currentPage=1" class="cap" style="color:grey;">Community[자유게시판]최신인기글</a></b></caption>
 
                 <thead>
 	                <tr>
-	                   <th width="10px" height="20px" value="cno">글번호</th> 
-	                    <th width="40px" value="title">제목</th>
-                        <th width="10px" value="userId">작성자</th>
-	                    <th width="20px" value="enrollDate">등록 날짜</th>
-	                    <th width="10px" value="view">조회수</th>
+                        <th>글번호</th>  
+	                    <th width="200px" value="title">제목</th>
+                        <th width="60px" value="userId">작성자</th>
+	                    <th width="60px" value="enrollDate">등록 날짜</th>
+	                    <th width="30px" value="view">조회수</th>
 	                </tr>
                 </thead>
                 <tbody>
+                
                 	<% for(Comm c : list1){ %>
 	                <tr>
-	               	 	<input type="hidden" value="<%= c.getCommPostNo() %>">
+                        <td><%= c.getCommPostNo()%></td>
 		                <td><%= c.getPostTitle() %></td>
 		                <td><%= c.getUserNo() %></td>
 						<td><%= c.getEnrollDate() %></td>
@@ -197,15 +225,16 @@
 
        <div class="content2_2">
            <table border="1" style="text-align:center;">
-               <caption><b><div id="menu2"><a href="<%=contextPath%>/menu.in?currentPage=1">Info&Tip [식단] 최신글</a></div></b></caption>
+               <caption><b><a href="<%=contextPath%>/menu.in?currentPage=1" class="cap" style="color:grey;">Info&Tip [식단] 최신글</a></></b></caption>
                
                <thead>
                   <tr>
-                      <th width="10px" height="20px">글번호</th>
-                      <th width="40px">제목</th>
-                       <th width="10px">작성자</th>
-                      <th width="30px">등록 날짜</th>
-                      <th width="10px">조회수</th>
+                      <!-- <th width="10px" height="20px">글번호</th>  -->
+                      <th>글번호</th>
+                      <th width="250px">제목</th>
+                      <th width="60px">작성자</th>
+                      <th width="60px">등록 날짜</th>
+                      <th width="30px">조회수</th>
                   </tr>
                </thead>
                <tbody>
@@ -218,11 +247,11 @@
                  
                     <% for(Info i : list2) { %>
                   <tr>
-                     <input type="hidden" value="<%= i.getIntPostNo() %>">
-                     <td><%= i.getPostTitle() %></td>
-                     <td><%= i.getUserNo() %></td>
-                      <td><%= i.getEnrollDate() %></td>
-                     <td><%= i.getBoardView() %></td>
+                     <td><%= i.getIntPostNo() %></td>
+                     <td width="200px"><%= i.getPostTitle() %></td>
+                     <td width="60px"><%= i.getUserNo() %></td>
+                     <td width="40px"><%= i.getEnrollDate() %></td>
+                     <td width="20px"><%= i.getBoardView() %></td>
                   </tr>                      
                        <% } %>
                  <% } %>
@@ -241,9 +270,8 @@
 
 
 
-    <hr style="margin-top:20px; margin-bottom:30px;">
-
-    <div class="content3" >
+    <!-- <hr style="margin-top:20px; margin-bottom:30px;"> -->
+		<div class="content3" >
 
         <div class="content3_1">
 
@@ -267,7 +295,7 @@
                                 </div>
                             <% } %>
                         <% } %>
-                        <!-- 디테일 뷰 가는 스크립트 -->
+
                         <script>
                             $(function() {
                                  $(".thumbnail").click(function() {
@@ -277,17 +305,16 @@
                         </script>
 
                     </div>
-                    <br><br>
-
 
                 </div>
           </div>
-         <br><br>
-
-
     </div>
+ 
+ 
+ 
+ 
     	
-</div>	
+	</div>	
     	
     	
 	</div>

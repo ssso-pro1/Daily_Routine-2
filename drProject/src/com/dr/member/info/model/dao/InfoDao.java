@@ -557,7 +557,7 @@ public class InfoDao {
 							          rset.getDate("enroll_date"),
 							          rset.getInt("board_view"),
 							          rset.getInt("like_count"),
-							          rset.getString("titleimg")));
+							          rset.getString("title_img")));
 					}
 			} catch (SQLException e) {
 				e.printStackTrace();

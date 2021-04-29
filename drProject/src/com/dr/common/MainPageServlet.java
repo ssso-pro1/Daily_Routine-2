@@ -36,8 +36,6 @@ public class MainPageServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//int commPostNo = Integer.parseInt(request.getParameter("cno"));
-		
 		ArrayList<Comm> list1 = new CommService().selectCommList();
 		ArrayList<Info> list2 = new InfoService().selectInfoList();
 		ArrayList<Ht> list3 = new HtService().selectHtList();

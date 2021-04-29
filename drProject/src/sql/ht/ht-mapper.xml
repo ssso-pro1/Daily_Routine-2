@@ -175,8 +175,10 @@
 	
 	
 	<!-- mainpage list -->
-	<entry key="selectCommList">
-	<![CDATA[  
+	<entry key="selectHtList">
+	
+	<![CDATA[ 
+	
 		SELECT *
 			      FROM (
 			            SELECT 
@@ -189,15 +191,15 @@
 			                          , HT_POST_TITLE 
 			                          , HT_BOARD_VIEW
 		                              , HT_LIKE_COUNT
-		                              , TITLE_IMG
+		                              , FILE_NAME || FILE_UPDATE "TITLEIMG"
 			                       FROM TB_HOMETRAINING 
-			                      WHERE STATUS = 'N'	
+			                      WHERE STATUS = 'Y'	
 			                      ORDER 
 			                         BY HT_BOARD_VIEW DESC, 
 			                            HT_LIKE_COUNT DESC
 			                      )A  
 			               )
-			            WHERE RNUM <= 5
+			            WHERE RNUM <= 4
 			        ]]>
 	
 	

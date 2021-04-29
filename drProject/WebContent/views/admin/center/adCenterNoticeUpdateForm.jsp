@@ -5,7 +5,6 @@
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
-	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
 	
 	
@@ -33,15 +32,17 @@
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	
-	<title>공지사항</title>
+	<title>관리자</title>
 
     <style>
+        body{ background-color: rgb(33, 33, 34);}
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:800px;
+            width:1500px;
+            height:1200px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -82,7 +83,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -122,11 +123,10 @@
             padding:10px;
         }
 
-   
-        #title{
-            margin-left:25px;
-        }
-        
+        th{text-align: center; color: white;}
+
+        a{text-decoration: none; color: black;}
+       
 
         
         
@@ -208,27 +208,27 @@
 
             <!--공지사항-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 600;">공지사항 관리 > 새 공지 등록</p>
+                <p style="font-size: 20px; color: white; font-weight: 600;">공지사항 수정</p>
                 <div class="underLine"></div>
             </div>
 
 
             <!--공지사항 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 6000px;">
+            <div id="content_2_4" style="width: 800px; height: 600px;">
 
                 
                   
                     
                     
                 <form action="<%= contextPath %>/ctNoticeUpdate.ad" id="enrollForm" method="post" enctype="multipart/form-data">
-                <br>
+                
                 	<div id="noticeEnroll">
                     
-                        <table border="1" align="center" >
+                        <table border="1" style="margin-left: 20px;">
                             <tbody>
                                 <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="noticeTitle" id="noticeTitle" style="width: 80%;" required value="<%= n.getNoticeTitle() %>"></td>
+                                    <td><input type="text" name="noticeTitle" id="noticeTitle" style="width: 100%;" required value="<%= n.getNoticeTitle() %>"></td>
                                 </tr>
                                 
                                 <!--  
@@ -240,7 +240,7 @@
                             
                                 <tr>
                                     <th>첨부파일</th>
-                                    <td> <!-- 기존의 첨부파일이 있었다면 -->
+                                    <td style="color:white;"> <!-- 기존의 첨부파일이 있었다면 -->
 				                        	<% if(fi != null) { %>
 				                        	기존 첨부파일 : <label id="originFile"><%= fi.getFileName() %></label>
 				                        	<p>수정할 파일 : </p>
@@ -252,8 +252,8 @@
                         				
                         					<!-- 첨부파일이 없었다면 -->
                         					
-                        					<input type="file" name="reUpfile" id="reUpfile">
-                        					<button type="button" id="deleteFile">선택취소</button>
+                        					<input type="file" name="reUpfile" id="reUpfile" style="color:white;">
+                        					<button type="button" id="deleteFile" style="color:black;">선택취소</button>
                                             
                                             
                         			</td>
@@ -271,20 +271,19 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>게시여부 선택</th>
+                                    <th width="200px">게시여부</th>
                                     <th>
                                         <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
-                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
+                                        <input type="radio" id="statusN" name="status" value="N" style="margin-left: 10px;"> <label for="statusN">보류</label>
                                         
                                         <label style="float: right;">
                                         
-                                        <!-- userNo value=로 나중에 수정하자/ 지금은 1이라고 가정 -->
-                                        <input type="hidden" name="userNo" value="1">
+                                        <input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
                                         <input type="hidden" name="nno" value="<%= n.getNoticeNo() %>">
                                         
                                         
-                                        <button type="submit" onclick="return validate();">수정</button>
-                                        <button type="reset">취소</button>
+                                        <button class="btn btn-warning btn-sm" type="submit" onclick="return validate();">수정</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="return back();"><a href="<%=contextPath %>/ctNotice.ad?currentPage=1">취소</a></button>
                                         </label>
                                     </td>
                                 </tr>
@@ -295,6 +294,18 @@
 
                   </form>
                   <script>
+                	//취소버튼 눌렀을 때
+    			    function back(){
+          				var result = confirm("게시글 수정을 취소하시겠습니까?");
+                      	if(result){
+                      		
+                      		return true;
+                      	} else {
+                      		
+                      		return false;
+                      	}
+          			}
+                  
                   
                   
                   // 수정파일 첨부했다가 취소할때 이벤트

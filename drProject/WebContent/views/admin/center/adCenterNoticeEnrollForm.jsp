@@ -23,15 +23,17 @@
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	
-	<title>공지사항</title>
+	<title>관리자</title>
 
     <style>
+        body{ background-color: rgb(33, 33, 34);}
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:800px;
+            width:1500px;
+            height:1200px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -72,7 +74,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -113,9 +115,13 @@
         }
 
    
-        #title{
-            margin-left:25px;
-        }
+       
+
+        th{text-align: center; color: white;}
+
+        a{text-decoration: none; color: black;}
+        
+        
         
 
         
@@ -198,13 +204,13 @@
 
             <!--공지사항-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 600;">공지사항 관리 > 새 공지 등록</p>
+                <p style="font-size: 20px; color: white; font-weight: 600;">공지사항 등록</p>
                 <div class="underLine"></div>
             </div>
 
 
             <!--공지사항 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 6000px;">
+            <div id="content_2_4" style="width: 800px; height: 600px;">
 
                 
             <div id="noticeEnroll">  
@@ -214,25 +220,21 @@
                 
                 	
                     
-                        <table border="1" align="center" >
+                        <table border="1" style="margin-left: 20px;">
                             <tbody>
                                 <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="noticeTitle" id="title" style="width: 80%;" required></td>
+                                    <td><input type="text" name="noticeTitle" id="title" style="width: 100%;" required></td>
+                                    
                                 </tr>
                                 
-                                <!--  
-                                <tr>
-                                    <th>작성자</th>
-                                    <td><input type="text" name="noticeWriter" required></td>
-                                </tr>
-                                -->
+                               
                             
                                 <tr>
                                     <th>첨부파일</th>
                                     <td>
-                                        <input type="file" name="upfile" id="upfile">
-                                        <button type="button" id="deleteFile">선택취소</button>
+                                        <input type="file" name="upfile" id="upfile" style="color:white;">
+                                        <button type="button" id="deleteFile" style="color:black;">선택취소</button>
                                     </td>
                                 </tr>
                                 <tr>
@@ -245,17 +247,17 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th>게시여부 선택</th>
-                                    <th>
-                                        <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
-                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
+                                    <th width="200px">게시여부</th>
+                                    <td style="color:white;">
+                                        <input type="radio" id="statusY" name="status" value="Y" checked ><label for="statusY" >게시</label>
+                                        <input type="radio" id="statusN" name="status" value="N" style="margin-left: 10px;"><label for="statusN">보류</label>
                                         
                                         <label style="float: right;">
                                         
                                         <input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
                                         
-                                        <button type="submit" onclick="return validate();">등록</button>
-                                        <button onclick="return back();"><a href="<%=contextPath %>/ctNotice.ad?currentPage=1">취소</button>
+                                        <button class="btn btn-warning btn-sm" type="submit" onclick="return validate();">등록</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="return back();"><a href="<%=contextPath %>/ctNotice.ad?currentPage=1">취소</a></button>
                                         </label>
                                     </td>
                                 </tr>

@@ -20,15 +20,17 @@
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
 
-<title>ht게시글 등록</title>
+  <title>관리자</title>
 
-<style>
+  <style>
+    body{ background-color: rgb(33, 33, 34);}
+    
     div{
         box-sizing:border-box;
     }
     .wrap{
-        width:1000px;
-        height:1200px;
+        width:1500px;
+        height:1300px;
         margin:auto;
         margin-top:15px;
         background-color: rgb(33, 33, 34);
@@ -107,6 +109,13 @@
     #category{
         color:black;
     }
+    th{text-align: center; color: white;
+       border: 1px solid rgba(126, 126, 119, 0.76);}
+        
+    td{border: 1px solid rgba(126, 126, 119, 0.76);}   
+
+    a{text-decoration: none; color: black;}
+    
 </style>
 
 
@@ -144,7 +153,7 @@
 
         <div id="content">
 
-               <!--왼쪽 공통메뉴-->
+              <<!--왼쪽 공통메뉴-->
              <div id="content_1">
                 
                 <div class="content_1_1">
@@ -185,19 +194,19 @@
                 </div>
 
                 <hr style="border:1px solid gray">
-                <p style="color:white;">HomeTraining 게시글 작성폼입니다.</p>
+                <p style="color:white;">HomeTraining 게시글 작성</p>
                 
 
                 <br>
         
         
         
-                <div id="content3">
+                <div id="content3" style="width: 800px; height: 600px;">
                     <form action="<%= request.getContextPath()%>/htInsert.aht" class="enrollForm" method="post" enctype="multipart/form-data">
                         <div id="htEnroll">
 							
 							<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
-                            <table align="center">
+                            <table>
                                 <thead>
                                     <tr>
                                         <select name="category" id="category" required>
@@ -220,13 +229,13 @@
                             
                                     <tr>
                                         <th>썸네일 선택</th>
-                                        <td><input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);" required></td>
+                                        <td><input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);" style="color:white;" required></td>
                                     </tr>
                                 
                                     
                                     <tr> 
-                                        <th>썸네일이미지(첨부파일)</th>
-                                        <td>
+                                        <th>미리보기</th>
+                                        <td align="center">
 
                                             <img id="titleImg" width="250" height="250">
 
@@ -240,11 +249,20 @@
                                         </td>     
                                     </tr>
                                     <tr>
-	                                    <th>게시여부 선택</th>
+	                                    <th width="200px">게시여부</th>
 	                                    <th>
 	                                        <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
 	                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
 										</th>
+										
+									</tr>
+									<tr>
+										<td colspan="2" >
+											<label style="float: right;">
+											<button class="btn btn-warning btn-sm" type="submit" onclick="return validate();">등록</button>
+                                			<button class="btn btn-secondary btn-sm" onclick="return back();"><a href="<%=contextPath %>/htList.aht?currentPage=1">취소</button>
+                                			</label>
+										</td>
 									</tr>	
                                 </tbody>
                             </table>
@@ -283,11 +301,7 @@
                             </script>
                             <br>
                                         
-                            <div align="center"> 
-                                <button type="submit" onclick="return validate();">등록</button>
-                                <button onclick="return back();"><a href="<%=contextPath %>/htList.aht?currentPage=1">취소</button>
-                            </div>
-                                    
+                             
                                 
                             
                         </div>

@@ -24,13 +24,17 @@
 
 <title>ht게시글 등록</title>
 
-<style>
+<title>관리자</title>
+
+  <style>
+    body{ background-color: rgb(33, 33, 34);}
+    
     div{
         box-sizing:border-box;
     }
     .wrap{
-        width:1000px;
-        height:1200px;
+        width:1500px;
+        height:1300px;
         margin:auto;
         margin-top:15px;
         background-color: rgb(33, 33, 34);
@@ -109,8 +113,14 @@
     #category{
         color:black;
     }
-</style>
+    th{text-align: center; color: white;
+       border: 1px solid rgba(126, 126, 119, 0.76);}
+        
+    td{border: 1px solid rgba(126, 126, 119, 0.76);}   
 
+    a{text-decoration: none; color: black;}
+    
+</style>
 
 </head>
 <body>
@@ -186,20 +196,20 @@
                 </div>
 
                 <hr style="border:1px solid gray">
-                <p style="color:white;">HomeTraining 게시글 작성폼입니다.</p>
+                <p style="color:white;">HomeTraining 게시글 수정</p>
                 
 
                 <br>
         
         
         
-                <div id="content3">
+                <div id="content3" style="width: 800px; height: 600px;">
                     <form action="<%= request.getContextPath()%>/htUpdate.aht" class="updateForm" method="post" enctype="multipart/form-data">
                         <div id="htEnroll">
 							
 							<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
 							<input type="hidden" name="hno" value="<%= t.getHtPostNo() %>">
-                            <table align="center">
+                            <table>
                                 <thead>
                                     <tr>
                                         <select name="category" id="category" required>
@@ -286,8 +296,8 @@
                             <br>
                                         
                             <div align="center"> 
-                                <button type="submit" onclick="return validate();">수정</button>
-                                <button onclick="return back();"><a href="<%=contextPath %>/htList.aht?currentPage=1">취소</button>
+                                <button class="btn btn-warning btn-sm" type="submit" onclick="return validate();">수정</button>
+                                <button class="btn btn-secondary btn-sm" onclick="return back();"><a href="<%=contextPath %>/htList.aht?currentPage=1">취소</button>
                             </div>
                                     
                                 

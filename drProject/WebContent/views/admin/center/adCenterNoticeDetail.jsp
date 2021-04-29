@@ -19,16 +19,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>관리자</title>
 
     <style>
+        body{ background-color: rgb(33, 33, 34);}
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:800px;
+            width:1500px;
+            height:1300px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -69,7 +74,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -81,6 +86,7 @@
             font-weight:bold;
             font-size:20px;
         }
+
 
 
         #content_1 *{
@@ -116,7 +122,7 @@
         .listArea{
             border:1px solid gray;
             text-align:center;
-            width: 95%;
+            width: 100%;
             margin: auto;
         }
         .listArea>tbody>tr:hover{
@@ -128,8 +134,12 @@
         }
         .listArea>tr,th,td{
             height:30px;
+            color: white;
         }
         
+        th{text-align: center; color: white}
+
+        a{text-decoration: none; color: white;}
         
         
 
@@ -221,21 +231,21 @@
 
             <!--공지사항-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">공지사항 관리 > 공지사항 글 보기</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">공지사항 상세 보기</p>
                 <div class="underLine"></div>
             </div>
 
 
             <!--공지사항 디테일뷰-->
-            <div id="content_2_4" style="background: white; ">
-                <br>
+            <div id="content_2_4" style="width: 1200px; margin-left: 20px;">
+                
                 <div id="noticeDetail">
                     
                         
-                        <table border="1" align="center">
+                        <table border="1">
                             <tbody>
                                 <tr>
-                                    <th>작성자</th>
+                                    <th width="120">작성자</th>
                                     <td colspan="3"><%= n.getUserId() %></td>
                                 </tr>
                                 <tr>
@@ -248,13 +258,13 @@
                                     <th>게시여부</th>
                                     <td colspan="3">
                                         <input type="radio" id="statusY" name="status" value="Y"><label for="statusY" >게시</label>
-                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN" >보류</label>
+                                        <input type="radio" id="statusN" name="status" style="margin-left: 10px"  value="N"><label for="statusN" >보류</label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>글등록일</th>
                                     <td><%= n.getCreateDate() %></td>
-                                    <th>마지막 수정일</th>
+                                    <th width="120">마지막 수정일</th>
                                     <!-- 수정일이 없으면 작성일 나오도록 -->
                                     <%if(n.getUpdateDate() == null) { %>
                                     <td><%=n.getCreateDate() %></td>
@@ -283,7 +293,8 @@
                                 </tr>
                                 <tr>
                                     <th>내용</th>
-                                    <td colspan="3"><div style="height: 500px; width: 700px;"><%= n.getNoticeContent() %></div></td>
+                                    <td colspan="3">
+                                        <div style="height: 600px; width: 850px;"><%= n.getNoticeContent() %></div></td>
                                 </tr>
                                 
 
@@ -292,10 +303,9 @@
                                 <tr>
                                     <td colspan="4">
                                      <label style="float: right;">
-                                             <button><a href="<%=contextPath %>/ctNoticeUpdateForm.ad?nno=<%= n.getNoticeNo() %>">수정</a></button>
-                                             
-                                             <button onclick ="return check();"><a href="<%= contextPath %>/ctNoticeDelete.ad?nno=<%= n.getNoticeNo() %>">삭제</a></button>
-                                             <button><a href="<%= contextPath%>/ctNotice.ad?currentPage=1">목록으로</a></button>                                         
+                                             <button class="btn btn-warning btn-sm" ><a href="<%=contextPath %>/ctNoticeUpdateForm.ad?nno=<%= n.getNoticeNo() %>">수정</a></button>
+                                             <button class="btn btn-secondary btn-sm" onclick ="return check();"><a href="<%= contextPath %>/ctNoticeDelete.ad?nno=<%= n.getNoticeNo() %>">삭제</a></button>
+                                             <button class="btn btn-secondary btn-sm"><a href="<%= contextPath%>/ctNotice.ad?currentPage=1">목록으로</a></button>                                         
                                       </label>
                                      </td>
                                  </tr>

@@ -52,8 +52,8 @@ public class adHTListSelectServlet extends HttpServlet {
 						
 				
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
-		pageLimit = 5;
-		boardLimit = 10;
+		pageLimit = 10;
+		boardLimit = 9;
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);
 		startPage = (currentPage - 1) / pageLimit * pageLimit + 1;
 		endPage = startPage + pageLimit - 1;

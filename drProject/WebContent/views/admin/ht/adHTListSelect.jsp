@@ -24,15 +24,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>ht게시글 리스트 조회</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>관리자</title>
+
     <style>
-  div{
+        body{
+            background-color: rgb(33, 33, 34);
+        }
+
+        div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:1200px;
+            width:1500px;
+            height: 1200px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -47,7 +55,7 @@
             float:left;
         }
         #content_1{width:15%;}
-        #content_2{width:80%;}
+        #content_2{width:80%; margin-left:30px;}
         #line{width:1%;}
         #line{
             border:1px solid gray;
@@ -99,9 +107,8 @@
         }
         
         /*  */
-        #content_2{
-            background:rgb(33, 33, 34);
-        }
+        
+
         #content2_2{
             height:800px; 
             background:rgb(33, 33, 34);
@@ -130,19 +137,19 @@
             color:rgb(250, 214, 9);
             /* color:gray; */
         }
-    #cNavi>a{
-        text-decoration: none;
-        color:white;
-       
-    }
-    #cNavi>a:hover{
-        cursor:pointer;
-        color:rgb(250, 214, 9);
-        /* color:gray; */
-    }
-    #content2_2>#button{
-        text-decoration: none;
-    }
+        #cNavi>a{
+            text-decoration: none;
+            color:white;
+        
+        }
+        #cNavi>a:hover{
+            cursor:pointer;
+            color:rgb(250, 214, 9);
+            /* color:gray; */
+        }
+        #content2_2>#button{
+            text-decoration: none;
+        }
     </style>
 </head>
 <body>
@@ -190,7 +197,7 @@
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
                     <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div> 
+                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
                     <br>
                 </div>
 
@@ -198,22 +205,42 @@
                     <h2>고객센터</h2>
                     <div><a href="<%=contextPath%>/ctNotice.ad?currentPage=1">공지사항</a></div> 
                     <div><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">FAQ</a></div> 
-                    <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div> 
+                    <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div>
                     <br>
                 </div>
+
+                
             </div>
 
             <div id="line"></div>
+            
+     
+     <!-- 알러트 전달했을때 뜨게하기/ 메뉴바에 포함되어있으면 지워버리기! -->
+			<script>
+			
+			var msg = "<%=session.getAttribute("alertMsg")%>";
+		    if(msg != "null"){
+		        alert(msg);
+		        <% session.removeAttribute("alertMsg"); %>
+		    }
+			
+			
+			</script>            
+            
+            
+            
+            
+            
 
      <!-- content -->
      <div id="content_2">
 
         <!-- 상단 타이틀 -->
         <div id="content2_1">
-            <h2 style="color:gray; color:white;">게시물 관리 > HomeTraining</h2>
-            <hr style="border: 1px solid gray">
+            <h2 style="color:gray; color:white; margin-top: 20px;">게시물 관리 > HomeTraining</h2>
+            <hr style="border: 1px solid gray; margin-top: 30px; ">
 
-            <p style="color: white;">홈트레이닝 전체 조회입니다.</p>
+            <p style="color: white;">홈트레이닝</p>
 
         </div>
 
@@ -222,39 +249,58 @@
      
      <br><br>
 
-     <div id="content2_2">
+     <div id="content_2_2" style="width: 850px; margin: auto;">
         <!-- 관리자 로그인시 보여짐 (로그인 && 로그인한 사용자가 admin일 경우) : 어차피 관리자 로그인해야 들어갈 수잇어서 필요없음-->
         
-        <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")) { %>
-        <div id="button" align="right" style="width:750px">
-            <br><br>
-            <!-- <button>글작성</button> -->
-            <a href="<%=contextPath%>/htEnrollForm.aht" class="btn btn-warning" style="text-decoration: none; color:white">글작성</a>
-        </div>
-		<% } %>
-        
-        <div id="cNavi" align="center" >
-            <a href="<%= contextPath %>/htList.aht?currentPage=1">전체 | </a> 
-            <a href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=whole">전신운동  | </a>
-            <a href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=core">코어운동  |</a>
-            <a href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=upper">상체운동  |</a>
-            <a href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=lower">하체운동  |</a>
-            <a href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=stretching">스트레칭</a>
-            
-        </div>
-		
-        <br><br>
+        <div class="categoryArea" style="font-weight: 1000;" >
+            <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center" style="width: 900px;">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link" href="<%= contextPath %>/htList.aht?currentPage=1">전체보기</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=whole">전신운동</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=core">코어운동</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=upper">상체운동</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=lower">하체운동</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="<%= contextPath %>/htListSelect.aht?currentPage=1&ctg=stretching">스트레칭</a>
+                  </li>
+                  <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")) { %>
+                  <li class="nav-item">
+                    <a href="<%=contextPath%>/htEnrollForm.aht" class="btn btn-secondary btn-sm" style="text-decoration: none; color:white">글작성</a>
+                  </li>
+                  <% } %>
+                  
+                  
+                  <li>
+                 &nbsp; &nbsp; &nbsp;
+                  </li>
+                </ul>
+            </nav>   
 
-        <div class="listArea" align="center">
+        </div>
+ 		
+ 		
+ 		
         
+        <div class="listArea" align="center">
         
         <!-- 조회된 결과가 없을 경우 -->
                 
             <% if(list.isEmpty()) { %>
+       
                 
-                <tr>
-                    <td colspan="7"> 조회된 리스트가 없습니다. </td>
-                </tr>
+                
+                    <div> 조회된 리스트가 없습니다. </div>
+               
                 
             <% } else { %>
                  
@@ -265,9 +311,9 @@
             <div class="thumbnail" align="center">
                 <input type="hidden" value="<%= t.getHtPostNo() %>">
                 <img src="<%= contextPath %>/<%= t.getTitleImg() %>" width="200" height="150">
-	             <table>
+	             <table id="a">
 	                <tr>
-	                    <td><%= t.getHtPostNo() %></td>
+	                    <td width="20px"><%= t.getHtPostNo() %></td>
 	                    <td>
 	                    <% if(t.getCategoryName().equals("whole")){ %>
 	                    	전신운동
@@ -282,9 +328,14 @@
 	                    <% } %>
 	                    
 	                    </td>
-	                    <td><%= t.getHtPostTitle() %></td>
-	                    <td><%= t.getHtEnrollDate() %></td>
 	                </tr>
+                    <tr>
+                        <td colspan="2"><%= t.getHtPostTitle() %></td>
+	                    
+                    </tr>
+                    <tr>
+                        <td colspan="2"><%= t.getHtEnrollDate() %></td>
+                    </tr>
 	              </table>   
                   
             </div>
@@ -320,7 +371,7 @@
     
          <!-- 관리자 메뉴바에서 hometraining 클릭시 : AdHTListServlet 에서 views/admin/ht/adHTListView.jsp 로이동 / 이 페이지에서 페이징 눌렀을 떄 : -->
          <% if(currentPage != 1) { %>   
-			<button onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%=currentPage-1%>';"><</button>
+			<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%=currentPage-1%>&ctg=<%=list.get(0).getCategoryName() %>';"><</button>
 		 	
 		 <% } %>
 		 
@@ -328,15 +379,15 @@
 		 <% for(int p=startPage; p<=endPage; p++) { %>
 			
 			<% if(currentPage == p){ %>
-				<button disabled><%= p %></button> <!-- 현재보고있는 페이지는 다시 클릭불가 / bo?currentPage = 현재누른페이지-->
+				<button disabled class="btn btn-warning btn-sm"><%= p %></button> <!-- 현재보고있는 페이지는 다시 클릭불가 / bo?currentPage = 현재누른페이지-->
 			<% }else{ %>
-				<button onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= p %>';"><%= p %></button>
+				<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= p %>&ctg=<%=list.get(0).getCategoryName() %>';"><%= p %></button>
 			<% } %>
             
 		<% } %>
 		
 		<% if(currentPage != maxPage) { %>
-			<button onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= currentPage+1 %>';">></button>
+			<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= currentPage+1 %>&ctg=<%=list.get(0).getCategoryName() %>';">></button>
 			
 		<% } %>
 	        

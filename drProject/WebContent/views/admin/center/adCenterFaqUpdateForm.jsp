@@ -15,16 +15,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>관리자</title>
 
     <style>
+        body{ background-color: rgb(33, 33, 34);}
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:800px;
+            width:1500px;
+            height:1200px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -65,7 +70,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -124,8 +129,12 @@
         }
         .listArea>tr,th,td{
             height:30px;
+            color: white;
         }
 
+        th{text-align: center; color: white}
+
+        a{text-decoration: none; color: white;}
         
         
         
@@ -206,13 +215,13 @@
 
             <!--FAQ-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 수정</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 수정</p>
                 <div class="underLine"></div>
             </div>
 
 
             <!--FAQ 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 600px;">
+            <div id="content_2_4" style="width: 1000px; margin-left: 30px;">
                 <br>
                 <div id="faqUpdate">
                     <form action="<%=contextPath %>/ctFaqUpdate.ad" method="post" id="updateForm">
@@ -241,7 +250,7 @@
                                     <th>내용</th>
                                     <td>
                                         <div>
-                                            <textarea id="fContent" name="fContent" cols="50" rows="20" style="resize: none;" placeholder="내용을 입력하세요 (450자 이내)" required ><%=f.getFaqContent() %></textarea>
+                                            <textarea id="fContent" name="fContent" cols="100" rows="10" style="resize: none;" placeholder="내용을 입력하세요 (450자 이내)" required ><%=f.getFaqContent() %></textarea>
                                             <br>
                                         </div>
                                         <label style="float: right;"><span id="count" name="count" >0</span> / 450</label>
@@ -251,14 +260,14 @@
                             <tfoot>
                             
                                 <tr>
-                                    <th>게시여부 선택</th>
-                                    <th>
+                                    <th width="140px">게시여부 선택</th>
+                                    <td>
                                         <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
-                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
+                                        <input type="radio" id="statusN" name="status" value="N" style="margin-left: 10px;"><label for="statusN">보류</label>
                                         
                                         <label style="float: right;">
-                                        <button type="submit" onclick="return validate();"><a">수정</a></button>
-                                        <button type="reset">초기화</button>
+                                        <button type="submit" class="btn btn-warning btn-sm" onclick="return validate();"><a>수정</a></button>
+                                        <button type="reset" class="btn btn-secondary btn-sm">초기화</button>
                                         </label>
                                     </td>
                                 </tr>
@@ -266,7 +275,7 @@
 
                         </table>
 
-						<p align="center"><button onclick="return back();"><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=top">목록으로</a></button></p>
+						
 					</form>
 					
 					

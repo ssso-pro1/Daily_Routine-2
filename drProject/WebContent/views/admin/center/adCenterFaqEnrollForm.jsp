@@ -10,19 +10,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>관리자</title>
 
     <style>
+        body{ background-color: rgb(33, 33, 34);}
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:800px;
+            width:1500px;
+            height:1200px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -63,7 +65,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -124,6 +126,9 @@
             height:30px;
         }
 
+        th{color: white; text-align: center;}
+
+        a{text-decoration: none; color: white;}
         
         
         
@@ -204,13 +209,13 @@
 
             <!--FAQ-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 등록</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 등록</p>
                 <div class="underLine"></div>
             </div>
 
 
             <!--FAQ 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 550px;">
+            <div id="content_2_4" style="width: 1000px; margin-left: 30px;">
                 <br>
                 <div id="faqEnroll">
                     <form action="<%=contextPath %>/ctFaqInsert.ad" method="post">
@@ -219,7 +224,7 @@
                             <tbody>
                                 <tr>
                                     <th>문의유형</th>
-                                    <td width=300px>
+                                    <td>
                                         <select name="fCategory" id="fCategory" required style="width: 100%;">
                                             <option id="fCategory" value="0">선택해주세요</option>
                                             <option name="fCategory" id="fCategory" value="top" >TOP10</option>
@@ -238,7 +243,7 @@
                                     <th>내용</th>
                                     <td>
                                         <div>
-                                            <textarea id="fContent" name="fContent" cols="50" rows="20" style="resize: none;" placeholder="내용을 입력하세요 (450자 이내)" required></textarea>
+                                            <textarea id="fContent" name="fContent" cols="100" rows="10" style="resize: none;" placeholder="내용을 입력하세요 (450자 이내)" required></textarea>
                                             <br>
                                         </div>
                                         <label style="float: right;"><span id="count" name="count" >0</span> / 450</label>
@@ -248,14 +253,14 @@
                             <tfoot>
                             
                                 <tr>
-                                    <th>게시여부 선택</th>
-                                    <th>
-                                        <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
-                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
+                                    <th width="150px">게시여부 선택</th>
+                                    <td style="color: white;">
+                                        <input type="radio" id="statusY" name="status" value="Y" style="margin-left: 30px;"checked><label for="statusY" >게시</label>
+                                        <input type="radio" id="statusN" name="status" value="N" style="margin-left: 30px;"><label for="statusN">보류</label>
                                         
                                         <label style="float: right;">
-                                        <button type="submit" onclick="return validate();">등록</button>
-                                        <button onclick="return back();"><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=top">취소</a></button>
+                                        <button class="btn btn-warning btn-sm" type="submit" onclick="return validate();">등록</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="return back();"><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=top">취소</a></button>
                                         </label>
                                     </td>
                                 </tr>
@@ -263,7 +268,7 @@
 
                         </table>
 
-                        <p align="center"><button onclick="return back();"><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=top">목록으로</a></button></p>
+                        
                         
                         
                         

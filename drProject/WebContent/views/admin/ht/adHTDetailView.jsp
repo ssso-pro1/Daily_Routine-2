@@ -15,16 +15,19 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-<title>ht게시글</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>관리자</title>
 
-<style>
-    div{
-        box-sizing:border-box;
-    }
+    <style>
+        body{
+            background-color: rgb(33, 33, 34);
+        }
     .wrap{
-        width:1000px;
-        height:1200px;
+        width:1500px;
+        height:1300px;
         margin:auto;
         margin-top:15px;
         background-color: rgb(33, 33, 34);
@@ -57,13 +60,14 @@
     #content_2_2{height:35%;}
     #content_2_3{height:35%;} */
     #nav{
-        width:100%;
+        width:1500px;
         height:40px;
         background-color: gray;
         padding:5px;
-        
+            
         display:flex;
         justify-content:space-between;
+
         color:white;
         font-weight:bold;
         font-size:20px;
@@ -107,14 +111,21 @@
         background: rgb(33, 33, 34);;
         color: white;
         width:100%;
-        height:800px;
-        margin:auto;
-        margin-top:50px;
+        
+       
     }
     #detail td, #detail th{
         border: 1px solid gray;
         text-align:center;
     }
+    
+     th{text-align: center; color: white;
+       border: 1px solid rgba(126, 126, 119, 0.76);}
+        
+    td{border: 1px solid rgba(126, 126, 119, 0.76);}   
+
+    a{text-decoration: none; color: black;}
+    
 </style>
 
 
@@ -153,7 +164,7 @@
         <div id="content">
 
              
-             <div id="content_1">
+            <div id="content_1">
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
@@ -197,11 +208,11 @@
                 
 
                  <div id="content3">
-                    <div class="outer">
-                        <table id="detail" align="center">
+                    <div class="outer" style="width: 1200px; margin-left: 20px;">
+                        <table id="detail" >
                             <tr>
                                 <th width="70">제목</th>
-                                <td width="500"><%=t.getHtPostTitle() %></td>
+                                <td width="400"><%=t.getHtPostTitle() %></td>
                                 <th>카테고리</th>
                                 <td>
                                     <% if(t.getCategoryName().equals("whole")){ %>
@@ -256,15 +267,15 @@
                             <tr>
                                 <th>내용</th>
                                 <td colspan="4">
-                                    <p style="height:300px;"><%= t.getHtPostContent() %></p>
+                                    <p style="width:900px; height:auto;"><%= t.getHtPostContent() %></p>
                                 </td>
                             </tr>
                             
                             <tr>
                                 <td colspan="4">
-                                    <button><a href="<%= contextPath%>/htUpdateForm.aht?hno=<%=t.getHtPostNo() %>">수정</a></button>
-                                    <button onclick ="return check();"><a href="<%= contextPath%>/htDelete.aht?hno=<%=t.getHtPostNo() %>">삭제</a></button>
-                                    <button><a href="<%= contextPath%>/htList.aht?currentPage=1">목록으로</a></button>
+                                    <button class="btn btn-warning btn-sm"><a href="<%= contextPath%>/htUpdateForm.aht?hno=<%=t.getHtPostNo() %>">수정</a></button>
+                                    <button class="btn btn-secondary btn-sm" onclick ="return check();"><a href="<%= contextPath%>/htDelete.aht?hno=<%=t.getHtPostNo() %>">삭제</a></button>
+                                    <button class="btn btn-secondary btn-sm"><a href="<%= contextPath%>/htList.aht?currentPage=1">목록으로</a></button>
                                 </td>
                                 
                             </tr>

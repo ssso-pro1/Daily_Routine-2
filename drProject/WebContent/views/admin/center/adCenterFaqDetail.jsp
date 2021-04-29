@@ -15,16 +15,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>관리자</title>
 
     <style>
+        body{ background-color: rgb(33, 33, 34);}
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:800px;
+            width:1500px;
+            height:1200px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -65,7 +70,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -123,8 +128,12 @@
             background:rgb(247, 209, 86);
         }
         .listArea>tr,th,td{
-            height:30px;
+            height:40px;
         }
+
+        th{text-align: center; color: rgb(158, 157, 152);;}
+
+        a{text-decoration: none; color: white;}
         
         
         
@@ -221,19 +230,19 @@
 
             <!--FAQ-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 관리 > FAQ 상세보기</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">FAQ 상세보기</p>
             </div>
 
 
             <!--FAQ 디테일뷰-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 600px;">
+            <div id="content_2_4" style="width: 1000px; margin-left: 30px;">
                 <br>
                 <div id="faqDetail">
                     
-                        <table border="1" align="center">
+                        <table border="1" align="center" style="color: white;">
                             <tbody>
                                 <tr>
-                                    <th>작성자</th>
+                                    <th width="140px">작성자</th>
                                     <td colspan="3"><%=f.getUserId() %></td>
                                 </tr>
                                 <tr>
@@ -261,13 +270,13 @@
                                     <th>게시여부</th>
                                     <td colspan="3">
                                         <input type="radio" id="statusY" name="status" value="Y"><label for="statusY" readonly>게시</label>
-                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN" readonly>보류</label>
+                                        <input type="radio" id="statusN" name="status" style="margin-left: 10px;" value="N"><label for="statusN" readonly>보류</label>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>글등록일</th>
                                     <td><%= f.getCreateDate() %></td>
-                                    <th>마지막 수정일</th>
+                                    <th width="140px">마지막 수정일</th>
                                     <!-- 수정일이 없으면 작성일 나오도록 -->
                                     <%if(f.getUpdateDate() == null) { %>
                                     <td><%=f.getCreateDate() %></td>
@@ -278,7 +287,7 @@
                                 <tr>
                                     <th>내용</th>
                                     <td colspan="3">
-                                    	<textarea name="noticeContent" cols="50" rows="20" style="resize: none;" readonly><%=f.getFaqContent() %>
+                                    	<textarea name="noticeContent" cols="100" rows="10" style="resize: none;" readonly><%=f.getFaqContent() %>
                                     	</textarea>
                                     </td>
                                 </tr>
@@ -288,10 +297,10 @@
                                <tr>
                                    <td colspan="4">
                                     <label style="float: right;">
-                                            <button><a href="<%= contextPath%>/ctFaqUpdateForm.ad?fno=<%= f.getFaqNo()%>">수정</a></button>
+                                            <button class="btn btn-warning btn-sm"><a href="<%= contextPath%>/ctFaqUpdateForm.ad?fno=<%= f.getFaqNo()%>">수정</a></button>
                                             
-                                            <button onclick ="return check();"><a href="<%= contextPath %>/ctFaqDelete.ad?fno=<%= f.getFaqNo()%>&ctg=<%= f.getFaqCategory() %>">삭제</a></button>
-                                            <button><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=<%= f.getFaqCategory() %>">목록으로</a></button>
+                                            <button class="btn btn-secondary btn-sm" onclick ="return check();"><a href="<%= contextPath %>/ctFaqDelete.ad?fno=<%= f.getFaqNo()%>&ctg=<%= f.getFaqCategory() %>">삭제</a></button>
+                                            <button class="btn btn-secondary btn-sm"><a href="<%=contextPath %>/ctFaqList.ad?currentPage=1&ctg=<%= f.getFaqCategory() %>">목록으로</a></button>
                                         </label>
                                     </td>
                                 </tr>

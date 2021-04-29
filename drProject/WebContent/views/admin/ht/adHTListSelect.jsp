@@ -189,23 +189,17 @@
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1" style="color:white;">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
+                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
+                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div> 
                     <br>
                 </div>
 
                 <div class="content_1_3">
                     <h2>고객센터</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">공지사항</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">FAQ</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">1:1문의</a></div> 
+                    <div><a href="<%=contextPath%>/ctNotice.ad?currentPage=1">공지사항</a></div> 
+                    <div><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">FAQ</a></div> 
+                    <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div> 
                     <br>
-                </div>
-
-                <div class="content_1_4">
-                    <h2>신고관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체신고보기</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">블랙리스트</a></div> 
                 </div>
             </div>
 
@@ -326,7 +320,7 @@
     
          <!-- 관리자 메뉴바에서 hometraining 클릭시 : AdHTListServlet 에서 views/admin/ht/adHTListView.jsp 로이동 / 이 페이지에서 페이징 눌렀을 떄 : -->
          <% if(currentPage != 1) { %>   
-			<button onclick="location.href='<%= contextPath %>/htList.aht?currentPage=<%=currentPage-1%>';"><</button>
+			<button onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%=currentPage-1%>';"><</button>
 		 	
 		 <% } %>
 		 
@@ -336,13 +330,13 @@
 			<% if(currentPage == p){ %>
 				<button disabled><%= p %></button> <!-- 현재보고있는 페이지는 다시 클릭불가 / bo?currentPage = 현재누른페이지-->
 			<% }else{ %>
-				<button onclick="location.href='<%= contextPath %>/htList.aht?currentPage=<%= p %>';"><%= p %></button>
+				<button onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= p %>';"><%= p %></button>
 			<% } %>
             
 		<% } %>
 		
 		<% if(currentPage != maxPage) { %>
-			<button onclick="location.href='<%= contextPath %>/htList.aht?currentPage=<%= currentPage+1 %>';">></button>
+			<button onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= currentPage+1 %>';">></button>
 			
 		<% } %>
 	        

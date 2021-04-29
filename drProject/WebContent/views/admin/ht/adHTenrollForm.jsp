@@ -144,7 +144,7 @@
 
         <div id="content">
 
-             <!--왼쪽 공통메뉴-->
+              <!--왼쪽 공통메뉴-->
              <div id="content_1">
                 
                 <div class="content_1_1">
@@ -156,7 +156,7 @@
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
+                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1" style="color:white;">HomeTraining</a></div> 
                     <div><a href="<%=contextPath%>/userManage.aus">Info&Tip</a></div> 
                     <br>
                 </div>
@@ -169,11 +169,7 @@
                     <br>
                 </div>
 
-                <div class="content_1_4">
-                    <h2>신고관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체신고보기</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">블랙리스트</a></div> 
-                </div>
+                
             </div>
 
             <div id="line"></div>

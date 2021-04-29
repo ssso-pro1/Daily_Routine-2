@@ -57,7 +57,6 @@ public class adInfo {
 	
 	
 	
-	
 
 	public adInfo(int intPostNo, String categoryName, String postTitle, String postContent,  Date enrollDate,
 			Date updateDate, String status, String userId) {

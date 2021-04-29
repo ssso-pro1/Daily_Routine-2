@@ -2,6 +2,10 @@ package com.dr.admin.info.model.vo;
 
 import java.sql.Date;
 
+/**
+ * @author LEESJ
+ *
+ */
 public class adInfoFile {
 	
 	private int fileNo;			// 첨부파일고유번호
@@ -11,8 +15,46 @@ public class adInfoFile {
 	private String filePath;	// 첨부파일이 저장된 폴더 경로
 	private Date uploadDate;	// 첨부파일 업로드일
 	private String status;		// 상태값 (Y/N)
+	private int fileLevel;
 	
 	public adInfoFile() {}
+
+	
+	
+	
+	
+	public int getFileLevel() {
+		return fileLevel;
+	}
+
+
+
+
+
+	public void setFileLevel(int fileLevel) {
+		this.fileLevel = fileLevel;
+	}
+
+
+
+
+
+	public adInfoFile(int fileNo, int intPostNo, String fileName, String fileUpdate, String filePath, Date uploadDate,
+			String status, int fileLevel) {
+		super();
+		this.fileNo = fileNo;
+		this.intPostNo = intPostNo;
+		this.fileName = fileName;
+		this.fileUpdate = fileUpdate;
+		this.filePath = filePath;
+		this.uploadDate = uploadDate;
+		this.status = status;
+		this.fileLevel = fileLevel;
+	}
+
+
+
+
 
 	public adInfoFile(int fileNo, int intPostNo, String fileName, String fileUpdate, String filePath, Date uploadDate,
 			String status) {

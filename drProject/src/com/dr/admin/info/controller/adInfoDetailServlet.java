@@ -12,7 +12,6 @@ import com.dr.admin.info.model.service.adInfoService;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.admin.info.model.vo.adInfoFile;
 
-
 /**
  * Servlet implementation class adInfoDetailServlet
  */

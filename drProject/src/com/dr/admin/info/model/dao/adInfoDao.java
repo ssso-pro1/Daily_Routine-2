@@ -21,7 +21,7 @@ private Properties prop = new Properties();
 	
 	public adInfoDao() {
 		
-		String fileName = adInfo.class.getResource("/sql/admin/info/adInfo-mapper.xml").getPath();
+		String fileName = adInfoDao.class.getResource("/sql/admin/info/adInfo-mapper.xml").getPath();
 		
 		try {
 			prop.loadFromXML(new FileInputStream(fileName));
@@ -292,6 +292,7 @@ private Properties prop = new Properties();
 							  rset.getDate("UPDATE_DATE"),
 							  rset.getString("status"),
 							  rset.getString("user_id"));
+							  
 					}
 			
 		} catch (SQLException e) {
@@ -325,6 +326,7 @@ private Properties prop = new Properties();
 				fi.setFileName(rset.getString("file_name"));
 				fi.setFileUpdate(rset.getString("file_update"));
 				fi.setFilePath(rset.getString("file_path"));
+				
 				
 				
 			}

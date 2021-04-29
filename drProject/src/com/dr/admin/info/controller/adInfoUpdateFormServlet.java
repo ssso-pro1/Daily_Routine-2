@@ -8,6 +8,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dr.admin.ht.model.service.adHTService;
+import com.dr.admin.ht.model.vo.adHT;
 import com.dr.admin.info.model.service.adInfoService;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.admin.info.model.vo.adInfoFile;
@@ -43,12 +45,7 @@ public class adInfoUpdateFormServlet extends HttpServlet {
 		request.setAttribute("fi", fi);
 
 		request.getRequestDispatcher("views/admin/info/adInfoUpdateForm.jsp").forward(request, response);
-		
-		
-		
-		
-		
-	}
+	}	
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)

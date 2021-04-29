@@ -87,7 +87,6 @@
         }
 
 
-        
         #content_1 *{
             color:gray;
             margin: 10px 3px;
@@ -167,8 +166,8 @@
 
         <div id="content">
 
-             <!--왼쪽 공통메뉴-->
-            <div id="content_1">
+              <!--왼쪽 공통메뉴-->
+             <div id="content_1">
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
@@ -180,7 +179,7 @@
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
                     <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div> 
+                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
                     <br>
                 </div>
 
@@ -188,7 +187,7 @@
                     <h2>고객센터</h2>
                     <div><a href="<%=contextPath%>/ctNotice.ad?currentPage=1">공지사항</a></div> 
                     <div><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">FAQ</a></div> 
-                    <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div> 
+                    <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div>
                     <br>
                 </div>
 
@@ -219,7 +218,7 @@
 
 
             <!--FAQ 게시판-->
-            <div id="content_2_4" style="background: rgb(33, 33, 34);">
+            <div id="content_2_4" style="background: white;">
                 <div class="replyStatusArea">
                     <table>
                         <tr>
@@ -233,7 +232,7 @@
 
                 </div>
                 
-                <div class="queryListArea" style="background: rgb(33, 33, 34);; width: 800px; height: 500px;">
+                <div class="queryListArea" style="background: white; width: 800px; height: 500px;">
                 <form action="<%= contextPath %>/ctQueryDelete.ad" method="post" > <!-- 삭제하기서블릿으로 -->
                     <br><br>
                     <table align="center" class="listArea" border="1">

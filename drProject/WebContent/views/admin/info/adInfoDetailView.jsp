@@ -167,15 +167,15 @@
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
                     <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div> 
+                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
+                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
                     <br>
                 </div>
 
@@ -183,15 +183,10 @@
                     <h2>고객센터</h2>
                     <div><a href="<%=contextPath%>/ctNotice.ad?currentPage=1">공지사항</a></div> 
                     <div><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">FAQ</a></div> 
-                    <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div> 
+                    <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div>
                     <br>
                 </div>
 
-                <div class="content_1_4">
-                    <h2>신고관리</h2>
-                    <div><a href="<%=contextPath%>/userManage.aus">전체신고보기</a></div> 
-                    <div><a href="<%=contextPath%>/userManage.aus">블랙리스트</a></div> 
-                </div>
             </div>
 
             <div id="line"></div>
@@ -270,17 +265,20 @@
                                 
                                 <tr>
                                     <th>썸네일</th>
+                                   
+                                    <td colspan="3" align="center"> 
                                     <%if (fi !=null)   { %>
-                                    <td colspan="3" align="center">
-                                    	<div><img src="<%= request.getContextPath() %>/<%= fi.getFilePath() %><%= fi.getFileUpdate() %>" width="500" height="300"></div>
+                                    	<img src="<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>" width="500" height="300">
                                     	
-                                    </td>
+                                    
                                     <% } else { %>
-                                    <td colspan="3" align="center">
+                                    
                                     	썸네일이 없습니다
+                                    <% } %>
+                                    
                                     </td>
                                     
-                                    <% } %>
+                                    
                                 </tr>
 
                             

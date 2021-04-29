@@ -23,16 +23,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>관리자</title>
 
     <style>
+        body{
+            background-color: rgb(33, 33, 34);
+        }
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:800px;
+            width:1500px;
+            height: 1200px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -73,7 +80,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -124,16 +131,19 @@
             margin: auto;
         }
         .listArea>tbody>tr:hover{
-            background:rgb(219, 217, 217);
+            background:rgba(219, 217, 217, 0.295);
             cursor:pointer;
+            opacity: 0.7;
         }
         .listArea>thead>tr{
-            background:rgb(247, 209, 86);
+            background:rgb(248, 202, 49);
         }
         .listArea>tr,th,td{
-            height:30px;
+            height:50px;
         }
         
+        a{
+            text-decoration: none; color: white;}
         
         
 
@@ -223,41 +233,64 @@
 
 
             <!--FAQ관리-->
-            <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000; ">FAQ 관리</p>
-            </div>
+            
 
 
             <!--FAQ 게시판-->
-            <div id="content_2_4" style="background: white; width: 820px;">
-                <div class="faqCategoryArea">
-                    <table>
-                        <tr>
-                            <th></th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">자주찾는 질문 TOP10 </a>|</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=userInfo">회원정보</a>|</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=content">게시글/댓글</a> |</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=report">신고</a> |</th>
-                            <th><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=etc">기타</a></th>
-                        </tr>
-                    </table>
+            <div id="content_2_4" style="width: 850px; margin: auto; margin-top: 30px;">
+                <div class="faqCategoryArea" style="font-weight: 1000;" >
+                    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center" style="width: 900px;">
+                        <ul class="navbar-nav">
+                          <li class="nav-item">
+                            <a class="nav-link" href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">자주찾는 질문 TOP10</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=userInfo">회원정보</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=content">게시글/댓글</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=report">신고</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=etc">기타</a>
+                          </li>
+                          <li>
+                         &nbsp; &nbsp; &nbsp;
+                          </li>
+                        </ul>
+                      
+                      
+                    
+                      <!-- 검색부분-->
+                    
+                    <div class="searchArea" align="center">
+                        <form class="form-inline" action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
+                            <input class="form-control mr-sm-2" type="text" name="searchFaq" id="serchFaq" placeholder="search" size="30px">
+                            <button class="btn btn-secondary" type="submit">검색</button>
+                        </form>
+                    </div>
+                    </nav>
 
                 </div>
                  
-             
-                <div class="faqListArea" style="background: white; width: 820px; height: 500px;">
+             <br>
+                <div class="faqListArea" style="color: white; width: 900px; height: 600px;">
                 	<form action="<%= contextPath %>/ctFaqDelete.ad" method="post" > <!-- 삭제하기서블릿 -->
-                   <br><br>
+                   
+                   
+                   
                     <table align="center" class="listArea" border="1">
                          <thead>
                              <tr>
-                                <th width="30">선택</th>
+                                <th width="40" style="color:black">선택</th>
                                 <th width="40" style="color:black">글번호</th>
                                 <th width="50" style="color:black">문의유형</th>
                                 <th width="200" style="color:black">제목</th>
-                                <th width="50">글쓴이</th>
-                                <th width="30">게시상태</th>
-                                <th width="60">등록일</th>
+                                <th width="50" style="color:black">글쓴이</th>
+                                <th width="50" style="color:black">게시상태</th>
+                                <th width="60" style="color:black">등록일</th>
                              </tr>
                          </thead>
                          <tbody>
@@ -298,6 +331,33 @@
                             	
                          </tbody>
                     </table>
+                    <br>
+                    <div align="left" class="buttonArea">
+                    	
+                    	<% if(list.isEmpty() ) { %>
+                    	
+                        	<button class="btn btn-secondary btn-sm" type="button"><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                            
+
+                        
+                        
+                        <% } else { %>
+                        	<button class="btn btn-secondary btn-sm" type="button"><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
+                       		<button class="btn btn-dark btn-sm" type="submit"  onclick="return check();">선택 삭제</button> 
+                       	    <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
+                       	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
+                        <% } %>
+                        
+                    </div>
+                   
+                    
+                    
+                    
+                    
+             	</form> 
+             
+             
+             
              
              		<script>
              		<% if(list.isEmpty()) { %>
@@ -311,72 +371,55 @@
 				    	})
 				    <% } %>	
 				    </script>
+				    
+				    <br><br>
+				    
+				    
+				    
+
+                    <div align="center" class="pagingArea">
+               		 	
+                        <%if (list.isEmpty()) { %>
+                    <p></p>
+                    <% } else { %>	
+                    
+                            <% if(currentPage != 1) { %>
+                            <button class="btn btn-outline-secondary btn-sm"  onclick="location.href='<%=contextPath%>/ctFaqList.ad?currentPage=<%=currentPage-1%>&ctg=<%= list.get(0).getFaqCategory() %>;"><</button>
+                        <% } %>
+                        
+                        <% for(int p=startPage; p<=endPage; p++) { %>
+                            
+                            <% if(currentPage == p) { %>
+                                <button disabled class="btn btn-warning btn-sm"><%= p %></button>
+                            <% }else { %>
+                                <button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%=contextPath%>/ctFaqList.ad?currentPage=<%= p %>&ctg=<%= list.get(0).getFaqCategory() %>';"><%= p %></button>
+                               <% } %>
+                            
+                        <% } %>
+                        
+                        <% if(currentPage != maxPage) { %>
+                            <button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%=contextPath%>/ctFaqList.ad?currentPage=<%=currentPage+1%>&ctg=<%= list.get(0).getFaqCategory() %>';">></button>
+                        <% } %>
+                    <% } %> 
+                     </div>
+                    
              
-                    <br><br>
+                    
                     
                     
                    
                     
               
-                    <div align="center" class="buttonArea">
-                    	<br><br>
-                    	<% if(list.isEmpty() ) { %>
-                    	
-                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
-                            
+                    
 
-                        
-                        
-                        <% } else { %>
-                        	<button><a href="<%=contextPath%>/ctFaqEnroll.ad">새 글 등록</a></button>
-                       		<button type="submit"  onclick="return check();">선택 삭제</button> 
-                       	    <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
-                       	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
-                        <% } %>
-                        
-                    </div>
-
-					</form> 
+					
 				</div>
 					
-					<div align="center" class="pagingArea">
-
-						<%if (list.isEmpty()) { %>
-					<p></p>
-					<% } else { %>
-						<% if(currentPage != 1) { %>
-			            	<button onclick="location.href='<%=contextPath%>/ctFaqList.ad?currentPage=<%=currentPage-1%>&ctg=<%= list.get(0).getFaqCategory() %>';">이전</button>
-						<% } %>
-						
-						<% for(int p=startPage; p<=endPage; p++) { %>
-							
-							<% if(currentPage == p){ %>
-			            		<button disabled><%= p %></button>
-			            	<% }else{ %>
-			            		<button onclick="location.href='<%=contextPath%>/ctFaqList.ad?currentPage=<%= p %>&ctg=<%= list.get(0).getFaqCategory() %>';"><%= p %></button>
-			            	<% } %>
-			            	
-						<% } %>
-						
-						<% if(currentPage != maxPage){ %>
-			            	<button onclick="location.href='<%=contextPath%>/ctFaqList.ad?currentPage=<%=currentPage+1%>&ctg=<%= list.get(0).getFaqCategory() %>';">다음</button>
-						<% } %>
-					 <% } %>	
-						
-			        </div>
+					
 
 
 
-             		<!-- 검색부분-->
-                    <br><br>
-                    	<div class="searchArea" align="center">
-		                    <form action="<%=contextPath %>/ctFaqSearch.ad?currentPage=1" method="post">
-		                        <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요">
-		                        <button type="submit">검색</button>
-		                    </form>
-		                </div>
-					 	
-                    	
+             		
                     	
             </div>         
                     

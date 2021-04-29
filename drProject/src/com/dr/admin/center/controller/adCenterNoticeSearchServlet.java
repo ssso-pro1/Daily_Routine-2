@@ -58,7 +58,7 @@ public class adCenterNoticeSearchServlet extends HttpServlet {
 		
 		pageLimit = 10;
 		
-		boardLimit = 8;
+		boardLimit = 10;
 		
 		
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);

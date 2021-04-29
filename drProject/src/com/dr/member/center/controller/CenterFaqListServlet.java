@@ -64,7 +64,7 @@ public class CenterFaqListServlet extends HttpServlet {
 		pageLimit = 10;
 						
 				
-		boardLimit = 10;
+		boardLimit = 6;
 						
 		maxPage = (int)Math.ceil((double)listCount / boardLimit);
 						

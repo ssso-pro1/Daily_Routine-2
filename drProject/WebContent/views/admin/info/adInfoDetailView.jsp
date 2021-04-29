@@ -28,7 +28,7 @@
         }
         .wrap{
             width:1000px;
-            height:800px;
+            height:1200px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -228,7 +228,7 @@
 
 
             <!--info 디테일뷰-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 600px;">
+            <div id="content_2_4" style="background: white; width: 800px; height: 1000px;">
                 <br>
                 <div id="infoDetail">
                     <form action="">
@@ -257,7 +257,7 @@
                                 <tr>
                                     <th>내용</th>
                                     <td colspan="3">
-	                                    <div style="width: 300px; height: 300px;"><%= i.getPostContent() %></div>
+	                                    <div style="width: 700px; height: 500px;"><%= i.getPostContent() %></div>
                                     </td>
 
                                 </tr>
@@ -268,7 +268,7 @@
                                    
                                     <td colspan="3" align="center"> 
                                     <%if (fi !=null)   { %>
-                                    	<img src="<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>" width="500" height="300">
+                                    	<img src="<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>" width="200" height="200">
                                     	
                                     
                                     <% } else { %>

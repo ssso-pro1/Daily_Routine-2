@@ -236,11 +236,11 @@
                             <tbody>
                                 <tr>
                                     <th>작성자</th>
-                                    <td colspan="3"><input type="text" name="noticeWriter" value="<%= n.getUserId() %>"></td>
+                                    <td colspan="3"><%= n.getUserId() %></td>
                                 </tr>
                                 <tr>
                                     <th>제목</th>
-                                    <td colspan="3"><input type="text" name="noticeTitle" value="<%= n.getNoticeTitle() %>"></td>
+                                    <td colspan="3"><%= n.getNoticeTitle() %></td>
                                 </tr>
                                 
                                 

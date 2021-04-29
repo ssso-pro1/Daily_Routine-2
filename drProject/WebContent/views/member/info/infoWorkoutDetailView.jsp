@@ -20,6 +20,9 @@
         box-sizing:border-box;
     }
     
+    i{cursor:pointer;}
+    i:hover{color:rgb(250, 214, 9); }
+    
     .wrap{
         width:1000px;
         height:800px;
@@ -290,7 +293,11 @@
                     <p style="text-align:left;">Daily Routine에서 제공하는 다양한 운동 정보를 참고해보세요!</p>
                 </div>
                 <br>
-
+				
+				<div class="buttonArea2" align="right">
+                    북마크 <i id="bookmark" class="far fa-bookmark"></i>
+                </div><br>
+                
                 <!-- 게시글 세부 영역 -->
                 <div id="content_2_2">
                     <div class="detailArea">

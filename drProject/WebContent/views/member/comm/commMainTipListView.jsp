@@ -105,22 +105,28 @@
     }
         /* footer */
     .footerOuter{
-        width:1050px;
+        width:1100px;
         margin:auto;
         align-items: center;
+        bottom:100;
+        margin-left:-50px;
+        position:absolute;
 
     }
     .footerOuter>.footer1_1, .footer2{
-        width:1050px;
+        width:1100px;
         
     }
 
     .footer1_1{
         height:30px;
         right:500px;
-        width:1100px;
+        width:1150px;
         background-color:rgb(250, 214, 9);
         padding-top:10px;
+    }
+    .footer1_2{
+    	margin-right:250px;
     }
 
     .footer2{
@@ -275,11 +281,14 @@
     	</div>
     </div>
     
- 	  <!-- footer -->
+</div>
+
+
+  <!-- footer -->
     <div class="footerOuter">
     
 
-            <div class="footer1" >
+            <div class="footer1">
                 <div class="footer1_1">
                     <a href="">이용약관</a> | 
                     <a href="">개인정보보호정책</a>
@@ -304,10 +313,6 @@
                 </p>
             </div>
     </div>
-
-    
-</div>
-
 
 </body>
 </html>

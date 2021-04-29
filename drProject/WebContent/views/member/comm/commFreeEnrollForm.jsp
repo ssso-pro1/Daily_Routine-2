@@ -172,7 +172,7 @@
     .ff{font-family: 'Do Hyeon', sans-serif;}
     
     
-      <!-- 푸터바 --> 
+    <!-- 푸터바 --> 
     .f{
         font-family: 'Do Hyeon', sans-serif;
     }

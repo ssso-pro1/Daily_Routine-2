@@ -149,7 +149,9 @@
         margin:auto;
 
     }
-
+    .content2_2{
+        margin:auto;
+    }
     .cap{
         text-decoration: none;
 
@@ -189,7 +191,7 @@
     <div class="lists">
 
     <div class="content2">
-        <div class="listArea">
+        <div class="content2_1">
             <table border="1" style="text-align:center;" >
 
                 <caption ><b><a href="<%=contextPath%>/free.co?currentPage=1" class="cap" style="color:grey;">Community[자유게시판]최신인기글</a></b></caption>
@@ -204,7 +206,12 @@
 	                </tr>
                 </thead>
                 <tbody>
-                
+                <% if(list1.isEmpty()){ %>
+                     <tr>
+                        <td colspan="5"> 존재하는 게시글이 없습니다. </td>
+                     </tr>
+                     
+                 <% } else { %>
                 	<% for(Comm c : list1){ %>
 	                <tr>
                         <td><%= c.getCommPostNo()%></td>
@@ -214,6 +221,7 @@
 						<td><%= c.getBoardView() %></td>
 	                </tr>
 	                <% } %>
+	                 <% } %>
                </tbody>
             </table>
 
@@ -266,75 +274,49 @@
              })
 
          </script>
-       </div>
 
 
 
-    <!-- <hr style="margin-top:20px; margin-bottom:30px;"> -->
-		<div class="content3" >
+    <div class="content3">                     
+        <% if(list3.isEmpty()){ %>
+            <h1>조회된 리스트가 없습니다</h1>
+            <br><br><br><br><br>
+        <% } else{ %>
+        
+            <% for(Ht h : list3){ %>
+                <div class="thumbnail" align="center">
+                    <input type="hidden" value="<%= h.getHtPostNo() %>">
+                    <img src="<%= h.getTitleImg() %>" width="200" height="150">
+                    <p>
+                        <%= h.getHtPostTitle() %>
+                        <i class="far fa-eye"></i><%= h.getHtViewCount() %> | <i class="far fa-kiss-wink-heart"></i> <%= h.getHtLikeCount() %>
 
-        <div class="content3_1">
-
-            <div class="outer">
-                    <div class="listArea">                     
-                        <% if(list3.isEmpty()){ %>
-                            <h1>조회된 리스트가 없습니다</h1>
-                            <br><br><br><br><br>
-                        <% } else{ %>
-                        
-                            <% for(Ht h : list3){ %>
-                                <div class="thumbnail" align="center">
-                                    <input type="hidden" value="<%= h.getHtPostNo() %>">
-                                    <img src="<%= h.getTitleImg() %>" width="200" height="150">
-                                    <p>
-                                        <%= h.getHtPostTitle() %>
-                                        <i class="far fa-eye"></i><%= h.getHtViewCount() %> | <i class="far fa-kiss-wink-heart"></i> <%= h.getHtLikeCount() %>
-
-                                    </p>
-                                   
-                                </div>
-                            <% } %>
-                        <% } %>
-
-                        <script>
-                            $(function() {
-                                 $(".thumbnail").click(function() {
-                                        location.href= '<%=contextPath%>/detail.ht?hno=' + $(this).children().eq(0).val();
-                                     })
-                                })
-                        </script>
-
-                    </div>
-
+                    </p>
+                
                 </div>
-          </div>
+            <% } %>
+        <% } %>
+
+        <script>
+            $(function() {
+                $(".thumbnail").click(function() {
+                        location.href= '<%=contextPath%>/detail.ht?hno=' + $(this).children().eq(0).val();
+                    })
+                })
+        </script>
+
     </div>
- 
- 
- 
- 
-    	
-	</div>	
-    	
-    	
-	</div>
-	
-	
+
+</div>
+
+   
+</div>
+       
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-
+  
     
 
     <!-- footer -->

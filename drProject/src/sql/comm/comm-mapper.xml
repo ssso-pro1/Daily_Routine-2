@@ -901,32 +901,32 @@
 	
 	
 	
-	<entry key="mainList">
+	<entry key="selectCommList">
 	<![CDATA[  
-		SELECT *
+	SELECT *
 	      FROM (
 	            SELECT 
 	                    ROWNUM RNUM
 	                    , A.*
 	                   
 	             FROM (
-	                     SELECT 
-	                            COMM_POST_NO
-	                          , USER_ID
-	                          , POST_TITLE
-	                          , C.ENROLL_DATE 
-	                          , BOARD_VIEW
-	                       FROM TB_COMMUNITY C
-	                       JOIN TB_USER U ON (C.USER_NO = U.USER_NO)
-	                      WHERE COMM_NO = 2	                      
-	                        AND STATUS = 'N'
-	                      ORDER 
-	                         BY ENROLL_DATE DESC, 
-	                            BOARD_VIEW DESC
-	                      )A  
+                        SELECT
+                               COMM_POST_NO
+                             , POST_TITLE
+                             , USER_ID
+                             , C.ENROLL_DATE
+                             , BOARD_VIEW
+                        FROM TB_COMMUNITY C
+                        JOIN TB_USER USING(USER_NO)
+                        WHERE  COMM_NO = 2  
+                          AND STATUS = 'N'
+                          ORDER BY C.ENROLL_DATE DESC, 
+                                   BOARD_VIEW DESC
+                                       )A  
 	               )
 	            WHERE RNUM <= 5
-	        ]]>
+	               ]]>
+	            
 				
 	</entry>
 	

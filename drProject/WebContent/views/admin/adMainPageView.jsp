@@ -3,7 +3,6 @@
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
-	// 관리자 페이지 url ..? 
 	String contextPath = request.getContextPath();
 %>   
 
@@ -115,28 +114,31 @@
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 
     <div class="wrap">
-
         <div id="nav">
-            
+            <span align="left">Admin Center</span>
+
+             <span class="loginNavi">
                 <!-- 로그인 전 -->
-                
-                   <!-- <i class="fas fa-user-circle"></i> -->
-                   
-                   <!-- 로그인 && 로그인한 아이디가 관리자유무가 n 이 아님 : admin01 -->
-                        <span align="left">Admin Center</span>
+                   <i class="fas fa-user-circle"></i>
+                    
+                   <!-- 로그인  후 -->
+                    <% if(loginUser != null && loginUser.getAdminCheck().equals("Y")){ %>
 
-                        <div id="welcome">
-                            <a id="welcome" href="<%=contextPath%>/loginForm.aus" >Welcome님</a>
-                            <small><a href="<%=contextPath%>/logout.us">로그아웃</a></small> 
-                        </div>
+                        <b><%=loginUser.getUserName() %>님</b> 환영합니다. 
+                       <small><a href="<%=contextPath%>/adLogout.aus">로그아웃</a></small>
+                       <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a> 
+               
+                  <%} else {%>
+                    <div>
+                    <!-- 로그인 전 -->
+                        <a id="welcome" >Welcome</a>
+                        <small><a href="<%=contextPath%>/loginForm.aus">로그인</a></small>
+                        <a href="<%=contextPath%>/mainPage.ad"><i class="fas fa-home"></i></a>
+                    </div>
+                  <% } %>
 
-                     <span>
-                           <a id="userWel" href="<%=contextPath%>/loginForm.aus"></a> 
-                         
-                         <!-- <i class="fas fa-bars"></i> -->
-                        
-                        
-                  
+                   <!-- 사용자 메인페이지로 돌아감 -->
+                    
             </span>
         </div>
 

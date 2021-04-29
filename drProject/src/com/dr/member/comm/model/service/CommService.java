@@ -581,11 +581,16 @@ public class CommService {
 			
 	}	
 	
+	
+	
+	
+	
 	//mainPage Comm list
-	public ArrayList<Comm> mainList(){
+	
+	public ArrayList<Comm> selectCommList(){
 		Connection conn = getConnection();
 		
-		ArrayList<Comm> list1 = new CommDao().mainList(conn);
+		ArrayList<Comm> list1 = new CommDao().selectCommList(conn);
 		
 		close(conn);
 		

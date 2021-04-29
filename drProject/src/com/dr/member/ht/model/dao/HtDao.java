@@ -656,20 +656,20 @@ public class HtDao {
 	
 	
 	//mainPage Ht List
-	public ArrayList<Ht> mainList(Connection conn){
+	public ArrayList<Ht> selectCommList(Connection conn){
 		
-		ArrayList<Ht> list = new ArrayList<>();
+		ArrayList<Ht> list3 = new ArrayList<>();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("mainList");
+		String sql = prop.getProperty("selectCommList");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				list.add(new Ht(rset.getInt("ht_post_no"),
+				list3.add(new Ht(rset.getInt("ht_post_no"),
 								rset.getString("ht_post_title"),
 								rset.getInt("ht_board_view"),
 								rset.getInt("ht_like_count"),
@@ -682,7 +682,7 @@ public class HtDao {
 			close(rset);
 			close(pstmt);
 		} 
-		return list;
+		return list3;
 		
 		
 		

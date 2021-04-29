@@ -247,13 +247,13 @@ public class HtService {
 	
 	
 	//mainPage Ht list
-	public ArrayList<Ht> mainList(){
+	public ArrayList<Ht> selectHtList(){
 		Connection conn = getConnection();
 		
-		ArrayList<Ht> list = new HtDao().mainList(conn);
+		ArrayList<Ht> list3 = new HtDao().selectCommList(conn);
 		
 		close(conn);
-		return list;
+		return list3;
 	}
 
 	

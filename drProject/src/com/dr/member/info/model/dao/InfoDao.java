@@ -572,41 +572,44 @@ public class InfoDao {
 	
 	
 	
-	
-	
-	
-	
-	
 	// mainPage 최신인기글 list
-	public ArrayList<Info> mainList(Connection conn) {
-		// select문 => 여러행 
-		ArrayList<Info> list2 = new ArrayList<>(); 
-		PreparedStatement pstmt = null; 
-		ResultSet rset = null; 
-		
-		String sql = prop.getProperty("mainList"); 
-		
-		try {
-			pstmt = conn.prepareStatement(sql);
-			rset = pstmt.executeQuery();
-			
-			while(rset.next()) { 
-	            list2.add(new Info(rset.getInt("int_post_no"),
-	            				  rset.getString("user_id"),
-	                              rset.getString("post_title"),
-	                              rset.getDate("enroll_date"),
-	                              rset.getInt("board_view"))); 
-	         }
-			
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			close(rset);
-			close(pstmt);
-		}
-		return list2;
-		
-	}
+	   public ArrayList<Info> selectInfoList(Connection conn) {
+	      // select문 => 여러행 
+	      ArrayList<Info> list2 = new ArrayList<>(); 
+	      
+	      PreparedStatement pstmt = null; 
+	      ResultSet rset = null; 
+	      
+	      String sql = prop.getProperty("selectInfoList"); 
+	      
+	      try {
+	         pstmt = conn.prepareStatement(sql);
+	         rset = pstmt.executeQuery();
+	         
+	         while(rset.next()) { 
+	               list2.add(new Info(rset.getInt("int_post_no"),
+	                           rset.getString("post_title"),
+	                             rset.getString("user_id"),
+	                                 rset.getDate("enroll_date"),
+	                                 rset.getInt("board_view"))); 
+	            }
+	         
+	      } catch (SQLException e) {
+	         e.printStackTrace();
+	      } finally {
+	         close(rset);
+	         close(pstmt);
+	      }
+	      return list2;
+	      
+	   }
+	
+	
+	
+	
+	
+	
+	
 		
 	
 	

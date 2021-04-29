@@ -175,7 +175,7 @@
 	
 	
 	<!-- mainpage list -->
-	<entry key="mainList">
+	<entry key="selectCommList">
 	<![CDATA[  
 		SELECT *
 			      FROM (

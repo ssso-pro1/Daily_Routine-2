@@ -1563,25 +1563,27 @@ public class CommDao {
 			
 	}
 	
+	
+	
+	
 	//mainPage comm list
-	public ArrayList<Comm> mainList(Connection conn){
-		//select문
+	public ArrayList<Comm> selectCommList(Connection conn){
+		//select문 
 		ArrayList<Comm> list1 = new ArrayList<>();
 		
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String sql = prop.getProperty("mainList");
+		String sql = prop.getProperty("selectCommList");
 		
 		try {
 			pstmt=conn.prepareStatement(sql);
-			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) { 
 	            list1.add(new Comm(rset.getInt("comm_post_no"),
-	                          rset.getString("user_id"),
-	                             rset.getString("post_title"),
+	            				 rset.getString("post_title"),
+	            				 rset.getString("user_id"),
 	                             rset.getDate("enroll_date"),
 	                             rset.getInt("board_view"))); 
 	         }

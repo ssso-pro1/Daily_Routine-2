@@ -253,4 +253,83 @@ private Properties prop = new Properties();
 	}
 
 
+	public int deleteHT(Connection conn, int htNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		String sql = prop.getProperty("deleteHT");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, htNo);
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		} return result;
+	}
+
+
+	public int updateHT(Connection conn, adHT t) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		
+		// 첨부파일이 변경되었을경우
+		if(t.getFileName() !=null ) {
+		
+			String sql = prop.getProperty("updateHTAll");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, t.getCategoryName());
+				pstmt.setString(2, t.getHtPostTitle());
+				pstmt.setString(3, t.getHtPostContent());
+				pstmt.setString(4, t.getStatus());
+				pstmt.setString(5, t.getFileName());
+				pstmt.setString(6, t.getFileUpdate());
+				pstmt.setString(7, t.getFilePath());
+				pstmt.setInt(8, t.getHtPostNo());
+				
+				result = pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			} return result;
+		
+		} else { // 첨부파일이 변경안되었을경우
+			
+			String sql = prop.getProperty("updateHT");
+			
+			try {
+				pstmt = conn.prepareStatement(sql);
+				pstmt.setString(1, t.getCategoryName());
+				pstmt.setString(2, t.getHtPostTitle());
+				pstmt.setString(3, t.getHtPostContent());
+				pstmt.setString(4, t.getStatus());
+				
+				pstmt.setInt(5, t.getHtPostNo());
+				
+				result = pstmt.executeUpdate();
+				
+				
+			} catch (SQLException e) {
+				e.printStackTrace();
+			} finally {
+				close(pstmt);
+			} return result;
+			
+			
+			
+			
+			
+		}
+		
+	}
+
 }

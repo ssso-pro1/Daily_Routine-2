@@ -228,7 +228,7 @@
                                 <tr>
                                     <th>문의유형</th>
                                     <td width=300px>
-                                        <select name="fCategory"  style="width: 100%;">
+                                        <select name="fCategory" id="fCategory" style="width: 100%;">
                                             <option value="0">선택해주세요</option>
                                             <option value="top">TOP10</option>
                                             <option value="userInfo">회원정보</option>

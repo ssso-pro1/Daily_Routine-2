@@ -1,7 +1,6 @@
 package com.dr.admin.ht.controller;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,18 +9,21 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.dr.admin.ht.model.service.adHTService;
 import com.dr.admin.ht.model.vo.adHT;
+import com.dr.admin.info.model.service.adInfoService;
+import com.dr.admin.info.model.vo.adInfo;
+import com.dr.admin.info.model.vo.adInfoFile;
 
 /**
- * Servlet implementation class adHTDetailServlet
+ * Servlet implementation class adHTUpdateServlet
  */
-@WebServlet("/htDetail.aht")
-public class adHTDetailServlet extends HttpServlet {
+@WebServlet("/htUpdateForm.aht")
+public class adHTUpdateFormServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adHTDetailServlet() {
+    public adHTUpdateFormServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -41,12 +43,8 @@ public class adHTDetailServlet extends HttpServlet {
 			
 			adHT t = new adHTService().selectHT(htNo); // 현재글
 			
-			
 			request.setAttribute("t", t);
-			
-			
-			
-			request.getRequestDispatcher("views/admin/ht/adHTDetailView.jsp").forward(request, response);
+			request.getRequestDispatcher("views/admin/ht/adHTUpdateForm.jsp").forward(request, response);
 			
 			
 		} else {
@@ -56,13 +54,6 @@ public class adHTDetailServlet extends HttpServlet {
 			
 		}
 	}
-
-		
-		
-		
-		
-	
-
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */

@@ -1,9 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
+    pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User, com.dr.admin.ht.model.vo.adHT"%>
 <%
 	User loginUser = (User)session.getAttribute("loginUser");
 	
 	String contextPath = request.getContextPath();
+	
+	adHT t = (adHT)request.getAttribute("t");
 %>  
 <!DOCTYPE html>
 <html>
@@ -197,10 +199,11 @@
         
         
                 <div id="content3">
-                    <form action="<%= request.getContextPath()%>/htInsert.aht" class="enrollForm" method="post" enctype="multipart/form-data">
+                    <form action="<%= request.getContextPath()%>/htUpdate.aht" class="updateForm" method="post" enctype="multipart/form-data">
                         <div id="htEnroll">
 							
 							<input type="hidden" name="userNo" value="<%=loginUser.getUserNo()%>">
+							<input type="hidden" name="hno" value="<%= t.getHtPostNo() %>">
                             <table align="center">
                                 <thead>
                                     <tr>
@@ -218,13 +221,13 @@
                                 <tbody>
                                     <tr>
                                         <th>제목</th>
-                                        <td><input type="text" name="title" style="width: 100%;" id="title" required></td>
+                                        <td><input type="text" name="title" style="width: 100%;" id="title" value="<%= t.getHtPostTitle() %>" required></td>
                                         
                                     </tr>
                             
                                     <tr>
                                         <th>썸네일 선택</th>
-                                        <td><input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);" required></td>
+                                        <td><input type="file" name="reUpfile" id="reUpfile" onchange="loadImg(this, 1);"></td>
                                     </tr>
                                 
                                     
@@ -232,7 +235,7 @@
                                         <th>썸네일이미지(첨부파일)</th>
                                         <td>
 
-                                            <img id="titleImg" width="250" height="250">
+                                            <img src="<%= contextPath %>/<%= t.getTitleImg() %>" id="titleImg" width="250" height="250">
 
                                         </td>
                                     </tr>
@@ -240,7 +243,7 @@
                                         
                                         <th>게시글내용</th>
                                         <td>
-                                            <textarea name="content" id="summernote" cols="10" rows="" style="resize: none;" required></textarea>
+                                            <textarea name="content" id="summernote" cols="10" rows="" style="resize: none;" required><%= t.getHtPostContent() %></textarea>
                                         </td>     
                                     </tr>
                                     <tr>
@@ -288,7 +291,7 @@
                             <br>
                                         
                             <div align="center"> 
-                                <button type="submit" onclick="return validate();">등록</button>
+                                <button type="submit" onclick="return validate();">수정</button>
                                 <button onclick="return back();"><a href="<%=contextPath %>/htList.aht?currentPage=1">취소</button>
                             </div>
                                     
@@ -302,6 +305,40 @@
  </div> 
 
         <script>
+	        $(function(){
+	    		
+	    		// option요소들에 순차적으로 접근하면서 그때의 text값을 해당 이 게시글의 카테고리명과 비교
+	    		// 일치할 경우 그 때의 option요소에 selected 속성 부여
+	    		$(".updateForm option").each(function(){
+	    			if($(this).val() == "<%= t.getCategoryName() %>"){
+	    				$(this).attr("selected", true);
+	    			}
+	    		})
+	    		
+	    	})
+		
+        
+        
+        
+	        $(function(){
+				var status = "<%= t.getStatus()%>";
+				
+				
+				// 체크박스인 input요소들에 순차적으로 접근하면서
+				// 해당 그 input요소의 value값이 포함되어있을 경우 => 해당 input요소에 checked속성 부여
+				$("input[type=radio]").each(function(){
+					if(status.search($(this).val()) != -1){
+						$(this).attr("checked", true);
+					} 
+				})
+				
+				
+			})
+        
+        
+        
+        
+        
                                 
             // 게시글 작성 취소 
             function back(){
@@ -349,12 +386,12 @@
                     return false;
                 }	
                 
-                var result = confirm("글을 등록하시겠습니까?");
+                var result = confirm("글을 수정하시겠습니까?");
                 if(result){
                     
                     
                 } else {
-                    alert("게시글 등록이 취소되었습니다");
+                    alert("게시글 수정이 취소되었습니다");
                     return false;
                 }
                 

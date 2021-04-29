@@ -100,5 +100,39 @@ public class adHTService {
 			return t;
 		}
 
+		// 게시글 삭제
+		public int deleteHT(int htNo) {
+			Connection conn = getConnection();
+			
+			int result = new adHTDao().deleteHT(conn, htNo);
+			
+			if(result > 0) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+			
+			close(conn);
+			return result;
+		}
+
+		// 게시글 업데이트
+		public int updateHT(adHT t) {
+			Connection conn = getConnection();
+			
+			int result = new adHTDao().updateHT(conn, t);
+			
+			
+			if(result > 0) {
+				commit(conn);
+			}else {
+				rollback(conn);
+			}
+			
+			close(conn);
+			
+			return result;
+		}
+
 
 }

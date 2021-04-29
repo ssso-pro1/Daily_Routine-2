@@ -3,7 +3,6 @@
     
 <%@ page import = "java.util.ArrayList, com.dr.admin.ht.model.vo.adHT, com.dr.common.model.vo.PageInfo" %>
 <%
-
    PageInfo pi = (PageInfo)request.getAttribute("pi");
    ArrayList<adHT> list = (ArrayList<adHT>)request.getAttribute("list");
    
@@ -77,7 +76,6 @@
             font-weight:bold;
             font-size:20px;
         }
-
         #content_1 *{
             color:gray;
             margin: 10px 3px;
@@ -100,14 +98,6 @@
             padding:10px;
         }
         
-
-
-
-
-
-
-
-
         /*  */
         #content_2{
             background:rgb(33, 33, 34);
@@ -117,7 +107,6 @@
             background:rgb(33, 33, 34);
             margin:auto;
         }
-
         .listArea{
             width:760px;
             margin:auto;
@@ -130,7 +119,6 @@
             
             cursor:pointer;
         }
-
         .thumbnail{
             /* border:1px solid white; */
             width:220px;
@@ -142,23 +130,19 @@
             color:rgb(250, 214, 9);
             /* color:gray; */
         }
-
     #cNavi>a{
         text-decoration: none;
         color:white;
        
-
     }
     #cNavi>a:hover{
         cursor:pointer;
         color:rgb(250, 214, 9);
         /* color:gray; */
     }
-
     #content2_2>#button{
         text-decoration: none;
     }
-
     </style>
 </head>
 <body>
@@ -226,6 +210,24 @@
             </div>
 
             <div id="line"></div>
+            
+     
+     <!-- 알러트 전달했을때 뜨게하기/ 메뉴바에 포함되어있으면 지워버리기! -->
+			<script>
+			
+			var msg = "<%=session.getAttribute("alertMsg")%>";
+		    if(msg != "null"){
+		        alert(msg);
+		        <% session.removeAttribute("alertMsg"); %>
+		    }
+			
+			
+			</script>            
+            
+            
+            
+            
+            
 
      <!-- content -->
      <div id="content_2">
@@ -251,7 +253,7 @@
         <div id="button" align="right" style="width:750px">
             <br><br>
             <!-- <button>글작성</button> -->
-            <a href="<%=contextPath%>/enrollForm.aht" class="btn btn-warning" style="text-decoration: none; color:white">글작성</a>
+            <a href="<%=contextPath%>/htEnrollForm.aht" class="btn btn-warning" style="text-decoration: none; color:white">글작성</a>
         </div>
 		<% } %>
         
@@ -321,7 +323,7 @@
         <script>
 			$(function() {
        	     	 $(".thumbnail").click(function() {
-                  	 location.href= '<%=contextPath%>/detail.aht?hno=' + $(this).children().eq(0).val();
+                  	 location.href= '<%=contextPath%>/htDetail.aht?hno=' + $(this).children().eq(0).val();
       	     	   })
    	    	 })
 		</script>

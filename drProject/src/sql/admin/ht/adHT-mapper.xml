@@ -137,64 +137,72 @@
 	</entry>
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	<!-- 삭제 -->
-	<entry key="deleteInfo">
+	<entry key="deleteHT">
 	
-	DELETE FROM TB_INFO_N_TIP
-	WHERE INT_POST_NO = ?
+	DELETE FROM TB_HOMETRAINING
+	WHERE HT_POST_NO = ?
 	
 	
 	</entry>
 	
-	
-	
-	
-	
-	
-	<entry key="selectAttachment">
-		SELECT
-		        INT_POST_NO
-		      , FILE_NO
-		      , FILE_NAME
-		   	  , FILE_UPDATE
-		      , FILE_PATH
-		   FROM TB_INT_FILE
-		  WHERE INT_POST_NO = ?
-		
-	</entry>
-	
-	<entry key="updateInfo">
+	<!-- 업데이트 -->
+	<!-- 첨부파일까지 업뎃 -->
+	<entry key="updateHTAll">
 	   	UPDATE
-				TB_INFO_N_TIP
-		    SET POST_TITLE = ?
-		      , POST_CONTENT = ?
-		      , CATEGORY_NAME =?
+				TB_HOMETRAINING
+		    SET CATEGORY_NAME =?
+		      , HT_POST_TITLE = ?
+		      , HT_POST_CONTENT = ?
 		      , STATUS = ?
-		      , UPDATE_DATE = SYSDATE
-		  WHERE INT_POST_NO = ?     
+		      , HT_UPDATE_DATE = SYSDATE
+		      , FILE_NAME = ?
+		      , FILE_UPDATE = ?
+		      , FILE_PATH = ?
+		  WHERE HT_POST_NO = ?     
 			
 	</entry>
+	
+	<!-- 게시글 내용만 업데이트 (첨부파일x)-->
+	<entry key="updateHT">
+	   	UPDATE
+				TB_HOMETRAINING
+		    SET CATEGORY_NAME =?
+		      , HT_POST_TITLE = ?
+		      , HT_POST_CONTENT = ?
+		      , STATUS = ?
+		      , HT_UPDATE_DATE = SYSDATE
+		      
+		  WHERE HT_POST_NO = ?     
+			
+	</entry>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	<entry key="updateAttachment">

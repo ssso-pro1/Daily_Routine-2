@@ -20,7 +20,6 @@
 
     <style>
       
-
         .outer{
             background: rgb(33, 33, 34);;
             color: white;
@@ -28,9 +27,7 @@
             height:800px;
             margin:auto;
             margin-top:50px;
-
         }
-
         #content_2_2 td, #content_2_2 th{
             border: 1px solid gray;
             text-align:center;
@@ -43,7 +40,19 @@
 	
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 
-    
+	<!-- 알러트 전달했을때 뜨게하기/ 메뉴바에 포함되어있으면 지워버리기! -->
+			<script>
+			
+			var msg = "<%=session.getAttribute("alertMsg")%>";
+		    if(msg != "null"){
+		        alert(msg);
+		        <% session.removeAttribute("alertMsg"); %>
+		    }
+			
+			
+			</script>
+	
+	
 
     <div class="outer">
         <table id="content_2_2" align="center">
@@ -110,18 +119,36 @@
             
             <tr>
                 <td colspan="4">
-                    <button>수정</button>
-                    <button>삭제</button>
-                    <button>목록으로</button>
+                    <button><a href="<%= contextPath%>/htUpdateForm.aht?hno=<%=t.getHtPostNo() %>">수정</a></button>
+                    <button onclick ="return check();"><a href="<%= contextPath%>/htDelete.aht?hno=<%=t.getHtPostNo() %>">삭제</a></button>
+                    <button><a href="<%= contextPath%>/htList.aht?currentPage=1">목록으로</a></button>
                 </td>
                 
             </tr>
         </table>
 
     </div>
+	
+	<script>
+	
+	function check(){
+		
+		var result = confirm("이 글을 완전히 삭제 하시겠습니까?");
+    	if(result){
+    		
+    		
+    	} else {
+    		alert("삭제가 취소되었습니다");
+    		return false;
+    	}
+	}
+	
+	
+	
+	
+	</script>
 
-
-        </div>
+      
 
 
 </body>

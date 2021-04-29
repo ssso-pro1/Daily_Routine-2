@@ -7,17 +7,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.dr.admin.ht.model.service.adHTService;
+
 /**
- * Servlet implementation class adHTenrollFormServlet
+ * Servlet implementation class adHTDeleteServlet
  */
-@WebServlet("/htEnrollForm.aht")
-public class adHTEnrollFormServlet extends HttpServlet {
+@WebServlet("/htDelete.aht")
+public class adHTDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public adHTEnrollFormServlet() {
+    public adHTDeleteServlet() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -27,7 +29,23 @@ public class adHTEnrollFormServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		request.getRequestDispatcher("views/admin/ht/adHTEnrollForm.jsp").forward(request, response);
+		int htNo = Integer.parseInt(request.getParameter("hno"));
+		
+		int result = new adHTService().deleteHT(htNo);
+		
+		
+		if(result > 0) { //  성공 
+			
+			request.getSession().setAttribute("alertMsg", "게시글 삭제 성공했습니다");
+			response.sendRedirect(request.getContextPath()+ "/htList.aht?currentPage=1");
+			
+		} else { // 실패
+			
+			request.setAttribute("errorMsg", "게시글 등록실패!");
+			request.getRequestDispatcher("views/common/errorPage/jsp").forward(request, response);
+			
+		}
+		
 		
 		
 		

@@ -306,7 +306,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td height="200"> 
+                                <td height="200" style="resize:none"> 
                                     <p style="height:50px;"><%=i.getPostContent()%></p>
                                 </td>
                             </tr>

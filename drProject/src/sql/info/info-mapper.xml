@@ -159,16 +159,18 @@
 		             , A.*
 		          FROM (
 			             SELECT
-			                    INT_POST_NO
+			                    I.INT_POST_NO
 			                  , POST_CONTENT
 			                  , POST_TITLE
 			                  , ENROLL_DATE
 			                  , BOARD_VIEW 
 			                  , LIKE_COUNT
-			               FROM TB_INFO_N_TIP  
+			                  , FILE_PATH || FILE_UPDATE "TITLEIMG"
+			               FROM TB_INFO_N_TIP I
+			               JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)  
 			              WHERE POST_TITLE LIKE '%'||?||'%'
 			                AND CATEGORY_NAME = '1' 
-			                AND STATUS = 'Y' 
+			                AND I.STATUS = 'Y' 
 			              ORDER
 			                 BY ENROLL_DATE DESC
 			            ) A
@@ -176,27 +178,29 @@
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
 	
-	<entry key="searchWorkoutContent">
-		SELECT *
+	<entry key="searchWorkoutContent">	 
+		 SELECT *
 		  FROM (
 		        SELECT
 		               ROWNUM RNUM
 		             , A.*
 		          FROM (
-		                 SELECT
-		                        INT_POST_NO
-		                      , POST_CONTENT
-		                      , POST_TITLE
-		                      , ENROLL_DATE
-		                      , BOARD_VIEW
-		                      , LIKE_COUNT
-		                   FROM TB_INFO_N_TIP 		                  
-		                  WHERE POST_CONTENT LIKE '%'||?||'%'
-		                    AND CATEGORY_NAME = '1' 
-		                    AND STATUS = 'Y'
-		                  ORDER
-		                     BY ENROLL_DATE DESC
-		                ) A
+			             SELECT
+			                    I.INT_POST_NO
+			                  , POST_CONTENT
+			                  , POST_TITLE
+			                  , ENROLL_DATE
+			                  , BOARD_VIEW 
+			                  , LIKE_COUNT
+			                  , FILE_PATH || FILE_UPDATE "TITLEIMG"
+			               FROM TB_INFO_N_TIP I
+			               JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)  
+			              WHERE POST_CONTENT LIKE '%'||?||'%'
+			                AND CATEGORY_NAME = '1' 
+			                AND I.STATUS = 'Y' 
+			              ORDER
+			                 BY ENROLL_DATE DESC
+			            ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
@@ -230,19 +234,21 @@
 		             , A.*
 		          FROM (
 			             SELECT
-			                    INT_POST_NO
+			                    I.INT_POST_NO
 			                  , POST_CONTENT
 			                  , POST_TITLE
 			                  , ENROLL_DATE
 			                  , BOARD_VIEW 
 			                  , LIKE_COUNT
-			               FROM TB_INFO_N_TIP  
+			                  , FILE_PATH || FILE_UPDATE "TITLEIMG"
+			               FROM TB_INFO_N_TIP I
+			               JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)  
 			              WHERE POST_TITLE LIKE '%'||?||'%'
 			                AND CATEGORY_NAME = '2' 
-			                AND STATUS = 'Y' 
+			                AND I.STATUS = 'Y' 
 			              ORDER
 			                 BY ENROLL_DATE DESC
-			              ) A
+			            ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>
@@ -254,20 +260,22 @@
 		               ROWNUM RNUM
 		             , A.*
 		          FROM (
-		                 SELECT
-		                        INT_POST_NO
-		                      , POST_CONTENT
-		                      , POST_TITLE
-		                      , ENROLL_DATE
-		                      , BOARD_VIEW
-		                      , LIKE_COUNT
-		                   FROM TB_INFO_N_TIP 		                  
-		                  WHERE POST_CONTENT LIKE '%'||?||'%'
-		                    AND CATEGORY_NAME = '2' 
-		                    AND STATUS = 'Y'
-		                  ORDER
-		                     BY ENROLL_DATE DESC
-		                ) A
+			             SELECT
+			                    I.INT_POST_NO
+			                  , POST_CONTENT
+			                  , POST_TITLE
+			                  , ENROLL_DATE
+			                  , BOARD_VIEW 
+			                  , LIKE_COUNT
+			                  , FILE_PATH || FILE_UPDATE "TITLEIMG"
+			               FROM TB_INFO_N_TIP I
+			               JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)  
+			              WHERE POST_CONTENT LIKE '%'||?||'%'
+			                AND CATEGORY_NAME = '2' 
+			                AND I.STATUS = 'Y' 
+			              ORDER
+			                 BY ENROLL_DATE DESC
+			            ) A
 		       )
 		 WHERE RNUM BETWEEN ? AND ?
 	</entry>

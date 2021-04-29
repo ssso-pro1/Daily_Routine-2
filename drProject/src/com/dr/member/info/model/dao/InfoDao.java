@@ -406,7 +406,8 @@ public class InfoDao {
 							          rset.getString("post_title"),
 							          rset.getDate("enroll_date"),
 							          rset.getInt("board_view"),
-							          rset.getInt("like_count")));
+							          rset.getInt("like_count"),
+							          rset.getString("titleimg")));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -434,7 +435,8 @@ public class InfoDao {
 							          rset.getString("post_title"),
 							          rset.getDate("enroll_date"),
 							          rset.getInt("board_view"),
-							          rset.getInt("like_count")));
+							          rset.getInt("like_count"),
+							          rset.getString("titleimg")));
 					}
 			} catch (SQLException e) {
 				e.printStackTrace();
@@ -525,7 +527,8 @@ public class InfoDao {
 							          rset.getString("post_title"),
 							          rset.getDate("enroll_date"),
 							          rset.getInt("board_view"),
-							          rset.getInt("like_count")));
+							          rset.getInt("like_count"),
+							          rset.getString("titleimg")));
 					}
 				} catch (SQLException e) {
 					e.printStackTrace();
@@ -553,7 +556,8 @@ public class InfoDao {
 							          rset.getString("post_title"),
 							          rset.getDate("enroll_date"),
 							          rset.getInt("board_view"),
-							          rset.getInt("like_count")));
+							          rset.getInt("like_count"),
+							          rset.getString("titleimg")));
 					}
 			} catch (SQLException e) {
 				e.printStackTrace();

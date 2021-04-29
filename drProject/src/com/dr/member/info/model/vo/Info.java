@@ -65,6 +65,19 @@ public class Info {
 		this.boardView = boardView;
 	}
 
+	
+	public Info(int intPostNo, String postContent, String postTitle, Date enrollDate, int boardView, int likeCount,
+			String titleImg) {
+		super();
+		this.intPostNo = intPostNo;
+		this.postContent = postContent;
+		this.postTitle = postTitle;
+		this.enrollDate = enrollDate;
+		this.boardView = boardView;
+		this.likeCount = likeCount;
+		this.titleImg = titleImg;
+	}
+
 	public int getIntPostNo() {
 		return intPostNo;
 	}

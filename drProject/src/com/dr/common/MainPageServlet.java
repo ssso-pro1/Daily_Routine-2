@@ -15,11 +15,13 @@ import com.dr.member.ht.model.service.HtService;
 import com.dr.member.ht.model.vo.Ht;
 import com.dr.member.info.model.service.InfoService;
 import com.dr.member.info.model.vo.Info;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 /**
  * Servlet implementation class MainPageServlet
  */
-@WebServlet("/mainPage.us")
+@WebServlet("/index.us") //mainPage.us에서 변경
 public class MainPageServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -53,8 +55,16 @@ public class MainPageServlet extends HttpServlet {
 		//request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
 		
 		*/
-	
-	
+		
+		
+		ArrayList<Comm> list1 = new CommService().selectMaCommList();
+		
+		response.setContentType("application/json; charset=UTF-8");
+		Gson gson = new GsonBuilder().setDateFormat("yyyy년 MM월 dd일").create();
+		gson.toJson(list1, response.getWriter());
+		
+		request.getRequestDispatcher("index.jsp").forward(request, response);
+
 	}
 
 	/**

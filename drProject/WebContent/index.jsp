@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8" import="com.dr.member.user.model.vo.User"%>
-<%@ page import="java.util.ArrayList, com.dr.member.comm.model.vo.Comm, com.dr.member.info.model.vo.Info, com.dr.member.ht.model.vo.Ht"%>
+<%@ page import="java.util.ArrayList, com.dr.member.comm.model.vo.Comm"%>
 <%
 	ArrayList<Comm> list1 = (ArrayList<Comm>)request.getAttribute("list1"); 
-    ArrayList<Info> list2 = (ArrayList<Info>)request.getAttribute("list2"); 
-    ArrayList<Ht> list3 = (ArrayList<Ht>)request.getAttribute("list3"); 
+    //ArrayList<Info> list2 = (ArrayList<Info>)request.getAttribute("list2"); 
+    //ArrayList<Ht> list3 = (ArrayList<Ht>)request.getAttribute("list3"); 
 %>
 
 
@@ -229,92 +229,67 @@
 
     	</div>
     	
+    	<script>
+    	$(function(){
+    		selectMaCommList();
+    		
+    	})
+    	
+    	
+        function selectMaCommList(){
+           
+           $.ajax({
+              url: "<%=contextPath%>/index.us",
+                data:{value:value},
+                success: function(list1){ //응답데이터 매개변수에 담김(Arraylist)
+                
+                   console.log(list1);
+                   
+                
+                   var result = "";
+                   
+                       for(var i in list1) {
+                          result += "<tr>"
+                                 +    "<td>"  + list1[i].commPostNo + "</td>"
+                                 +    "<td>"  + list1[i].postTitle + "</td>"
+                                 +    "<td>"  + list1[i].userNo + "</td>"
+                                 +    "<td>"  + list1[i].enrollDate + "</td>"
+                                 +    "<td>"  + list1[i].boardView + "</td>"
+                                 + "</tr>";        
+                       }
+                      
+                       $(".content2_1 tbody").html(result); 
+                      
+                    },error:function(){
+                        console.log(" 실패"); 
+                    }
+                 });
+             
+           }
+             
+    	
+    	</script>
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
+    	
     	
 
     <div class="line"></div>
 
-       <div class="content2_2">
-           <table border="1" style="text-align:center;">
-               <caption><b><a href="<%=contextPath%>/menu.in?currentPage=1" class="cap" style="color:grey;">Info&Tip [식단] 최신글</a></></b></caption>
-               
-               <thead>
-                  <tr>
-                      <!-- <th width="10px" height="20px">글번호</th>  -->
-                      <th>글번호</th>
-                      <th width="250px">제목</th>
-                      <th width="60px">작성자</th>
-                      <th width="60px">등록 날짜</th>
-                      <th width="30px">조회수</th>
-                  </tr>
-               </thead>
-               <tbody>
-                  <% if(list2.isEmpty()){ %>
-                     <tr>
-                        <td colspan="5"> 존재하는 게시글이 없습니다. </td>
-                     </tr>
-                     
-                 <% } else { %>
-                 
-                    <% for(Info i : list2) { %>
-                  <tr>
-                     <td><%= i.getIntPostNo() %></td>
-                     <td width="200px"><%= i.getPostTitle() %></td>
-                     <td width="60px"><%= i.getUserNo() %></td>
-                     <td width="40px"><%= i.getEnrollDate() %></td>
-                     <td width="20px"><%= i.getBoardView() %></td>
-                  </tr>                      
-                       <% } %>
-                 <% } %>
-              </tbody>
-           </table>
-
-           <script>
-                $(function() {
-                 $(".listArea>tbody>tr").click(function() {
-                     location.href= '<%=contextPath%>/menu.in?ino=' + $(this).children().eq(0).val();
-                 })
-             })
-
-         </script>
-
-
-
-    <div class="content3">                     
-        <% if(list3.isEmpty()){ %>
-            <h1>조회된 리스트가 없습니다</h1>
-            <br><br><br><br><br>
-        <% } else{ %>
-        
-            <% for(Ht h : list3){ %>
-                <div class="thumbnail" align="center">
-                    <input type="hidden" value="<%= h.getHtPostNo() %>">
-                    <img src="<%= h.getTitleImg() %>" width="200" height="150">
-                    <p>
-                        <%= h.getHtPostTitle() %>
-                        <i class="far fa-eye"></i><%= h.getHtViewCount() %> | <i class="far fa-kiss-wink-heart"></i> <%= h.getHtLikeCount() %>
-
-                    </p>
-                
-                </div>
-            <% } %>
-        <% } %>
-
-        <script>
-            $(function() {
-                $(".thumbnail").click(function() {
-                        location.href= '<%=contextPath%>/detail.ht?hno=' + $(this).children().eq(0).val();
-                    })
-                })
-        </script>
-
-    </div>
-
-</div>
-
-   
-</div>
-       
-
+     
 
 
 

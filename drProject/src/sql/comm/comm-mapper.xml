@@ -912,7 +912,7 @@
 	             FROM (
                         SELECT
                                COMM_POST_NO
-                                , USER_ID
+                             , USER_ID
                              , POST_TITLE
                              , C.ENROLL_DATE
                              , BOARD_VIEW
@@ -922,7 +922,7 @@
                           AND STATUS = 'N'
                           ORDER BY C.ENROLL_DATE DESC, 
                                    BOARD_VIEW DESC
-                                       )A  
+                        )A  
 	               )
 	            WHERE RNUM <= 5
 	               ]]>

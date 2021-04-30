@@ -229,6 +229,48 @@
 
     	</div>
     	
+    	<script>
+    	$(function(){
+    		selectMaCommList();
+    		
+    	})
+    	
+    	
+        function selectMaCommList(){
+           
+           $.ajax({
+              url: "<%=contextPath%>",
+                data:{value:value},
+                success: function(list1){ //응답데이터 매개변수에 담김(Arraylist)
+                
+                   console.log(list1);
+                   
+                
+                   var result = "";
+                   
+                       for(var i in list1) {
+                          result += "<tr>"
+                                 +    "<td>"  + list1[i].commPostNo + "</td>"
+                                 +    "<td>"  + list1[i].postTitle + "</td>"
+                                 +    "<td>"  + list1[i].userNo + "</td>"
+                                 +    "<td>"  + list1[i].enrollDate + "</td>"
+                                 +    "<td>"  + list1[i].boardView + "</td>"
+                                 + "</tr>";        
+                       }
+                      
+                       $(".content2_1 tbody").html(result); 
+                      
+                    },error:function(){
+                        console.log(" 실패"); 
+                    }
+                 });
+             
+           }
+             
+    	
+    	</script>
+    	
+    	
     	
     	
     	
@@ -253,7 +295,6 @@
                
                <thead>
                   <tr>
-                      <!-- <th width="10px" height="20px">글번호</th>  -->
                       <th>글번호</th>
                       <th width="250px">제목</th>
                       <th width="60px">작성자</th>

@@ -61,16 +61,14 @@
 					<% if(loginUser != null){ %>
 					<div class="mark">
 						<% if(check == true){ %>
-						북마크 <i id="bookmark" class="far fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
-						
-						<% } else{ %>
 						북마크 <i id="bookmark" class="fas fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
-						
+						<% } else{ %>
+						북마크 <i id="bookmark" class="far fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
 						<% } %>
 						<% if(check2 == true){ %>
-						좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
-						<% }else{ %>
 						좋아요 <i id="like" class="fas fa-heart" onclick="like();"></i>
+						<% }else{ %>
+						좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
 						<% } %>
 					</div>
 					

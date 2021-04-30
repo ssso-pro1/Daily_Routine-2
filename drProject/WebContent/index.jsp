@@ -16,6 +16,149 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <style>
+/* 슬라이드 css! */
+    * {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    #slider-wrap {
+        width: 100%;
+        height: 400px;
+        position: relative;
+        overflow: hidden;
+    }
+
+    #slider-wrap ul#slider {
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    #slider-wrap ul#slider li {
+        float: left;
+        position: relative;
+        width: 600px;
+        height: 400px;
+    }
+
+    #slider-wrap ul#slider li>div {
+        position: absolute;
+        top: 20px;
+        left: 35px;
+    }
+
+    #slider-wrap ul#slider li>div h3 {
+        font-size: 36px;
+        text-transform: uppercase;
+    }
+
+    #slider-wrap ul#slider li>div span {
+        font-size: 21px;
+    }
+
+    #slider-wrap ul#slider li img {
+        display: block;
+        width: 100%;
+        height: 100%;
+    }
+
+/*btns*/
+    .slider-btns {
+        position: absolute;
+        width: 50px;
+        height: 60px;
+        top: 50%;
+        margin-top: -25px;
+        line-height: 57px;
+        text-align: center;
+        cursor: pointer;
+        background: rgba(0, 0, 0, 0.1);
+        z-index: 100;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -khtml-user-select: none;
+        -ms-user-select: none;
+        -webkit-transition: all 0.1s ease;
+        -o-transition: all 0.1s ease;
+        transition: all 0.1s ease;
+    }
+
+    .slider-btns:hover {
+        background: rgba(0, 0, 0, 0.3);
+    }
+
+    #next {
+        right: -50px;
+        border-radius: 7px 0px 0px 7px;
+        color: #eee;
+    }
+
+    #previous {
+        left: -50px;
+        border-radius: 0px 7px 7px 7px;
+        color: #eee;
+    }
+
+    #slider-wrap.active #next {
+        right: 0px;
+    }
+
+    #slider-wrap.active #previous {
+        left: 0px;
+    }
+
+/*bar*/
+    #slider-pagination-wrap {
+        min-width: 20px;
+        margin-top: 350px;
+        margin-left: auto;
+        margin-right: auto;
+        height: 15px;
+        position: relative;
+        text-align: center;
+    }
+
+    #slider-pagination-wrap ul {
+        width: 100%;
+    }
+
+    #slider-pagination-wrap ul li {
+        margin: 0 4px;
+        display: inline-block;
+        width: 5px;
+        height: 5px;
+        border-radius: 50%;
+        background: #fff;
+        opacity: 0.5;
+        position: relative;
+        top: 0;
+    }
+
+    #slider-pagination-wrap ul li.active {
+        width: 12px;
+        height: 12px;
+        top: 3px;
+        opacity: 1;
+        -webkit-box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
+        box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
+    }
+
+/*ANIMATION*/
+    #slider-wrap ul,
+    #slider-pagination-wrap ul li {
+        -webkit-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
+        -o-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
+        transition: all 0.3s cubic-bezier(1, .01, .32, 1);
+    }
+        
+    #sline{
+        border:1px solid rgb(228, 205, 0);
+    }
+
+
     @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
     .f{
         font-family: 'Do Hyeon', sans-serif;
@@ -28,7 +171,6 @@
     .wrap>{width:100%;}
     
 
-    
 
 
 /* menubar */
@@ -250,151 +392,13 @@
     } */
 
    
+    .content6{
+        display:flex;
+        flex-direction: column-reverse;
+    }
 
 
 
-
-/* 슬라이드 css! */
-* {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-}
-
-#slider-wrap {
-    width: 100%;
-    height: 400px;
-    position: relative;
-    overflow: hidden;
-}
-
-#slider-wrap ul#slider {
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-}
-
-#slider-wrap ul#slider li {
-    float: left;
-    position: relative;
-    width: 600px;
-    height: 400px;
-}
-
-#slider-wrap ul#slider li>div {
-    position: absolute;
-    top: 20px;
-    left: 35px;
-}
-
-#slider-wrap ul#slider li>div h3 {
-    font-size: 36px;
-    text-transform: uppercase;
-}
-
-#slider-wrap ul#slider li>div span {
-    font-size: 21px;
-}
-
-#slider-wrap ul#slider li img {
-    display: block;
-    width: 100%;
-    height: 100%;
-}
-
-/*btns*/
-.slider-btns {
-    position: absolute;
-    width: 50px;
-    height: 60px;
-    top: 50%;
-    margin-top: -25px;
-    line-height: 57px;
-    text-align: center;
-    cursor: pointer;
-    background: rgba(0, 0, 0, 0.1);
-    z-index: 100;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
-    -webkit-transition: all 0.1s ease;
-    -o-transition: all 0.1s ease;
-    transition: all 0.1s ease;
-}
-
-.slider-btns:hover {
-    background: rgba(0, 0, 0, 0.3);
-}
-
-#next {
-    right: -50px;
-    border-radius: 7px 0px 0px 7px;
-    color: #eee;
-}
-
-#previous {
-    left: -50px;
-    border-radius: 0px 7px 7px 7px;
-    color: #eee;
-}
-
-#slider-wrap.active #next {
-    right: 0px;
-}
-
-#slider-wrap.active #previous {
-    left: 0px;
-}
-
-/*bar*/
-#slider-pagination-wrap {
-    min-width: 20px;
-    margin-top: 350px;
-    margin-left: auto;
-    margin-right: auto;
-    height: 15px;
-    position: relative;
-    text-align: center;
-}
-
-#slider-pagination-wrap ul {
-    width: 100%;
-}
-
-#slider-pagination-wrap ul li {
-    margin: 0 4px;
-    display: inline-block;
-    width: 5px;
-    height: 5px;
-    border-radius: 50%;
-    background: #fff;
-    opacity: 0.5;
-    position: relative;
-    top: 0;
-}
-
-#slider-pagination-wrap ul li.active {
-    width: 12px;
-    height: 12px;
-    top: 3px;
-    opacity: 1;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
-    box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
-}
-
-/*ANIMATION*/
-#slider-wrap ul,
-#slider-pagination-wrap ul li {
-    -webkit-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
-    -o-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
-    transition: all 0.3s cubic-bezier(1, .01, .32, 1);
-}
-    
-#sline{
-    border:1px solid rgb(228, 205, 0);
-}
 
 
 
@@ -415,42 +419,46 @@
         <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
         
+
+
+
         
+        <!-- slide: ht페이지 연결 -->
         <div id="slider-wrap">
             <ul id="slider">
                 <li>
                     <div>
                         <h3 style="color:rgb(228, 205, 0);">고강도 운동 같이해요!</h3>
                     </div>
-                    <img src="resources/images/main/0-0.jpg" alt="">
+                    <a href="allList.ht"><img src="resources/images/main/0-0.jpg" alt=""></a>
                 </li>
         
                 <li>
                     <div>
                         <h3 style="color:rgb(228, 205, 0);">가벼운 스트레칭은 하고나면 상쾌할거예요!</h3>
                     </div>
-                    <img src="resources/images/main/000.jpg" alt="">
+                    <a href="strechingList.ht"><img src="resources/images/main/000.jpg" alt=""></a>
                 </li>
         
                 <li>
                     <div>
                         <h3 style="color:rgb(228, 205, 0);">하체운동 같이해요!</h3>
                     </div>
-                    <img src="resources/images/main/00.jpg" alt="">
+                    <a href="lowerList.ht"><img src="resources/images/main/00.jpg" alt=""></a>
                 </li>
         
                 <li>
                     <div>
                         <h3 style="color:rgb(228, 205, 0);">상쾌한 전신운동을 함께 해봐요!</h3>
                     </div>
-                    <img src="resources/images/main/slide1.jpg" alt="">
+                    <a href="bodyList.ht"><img src="resources/images/main/slide1.jpg" alt=""></a>
                 </li>
         
                 <li>
                     <div>
                         <h3 style="color:rgb(228, 205, 0);">짧지만 효과적인 운동이 하고 싶다면 함께 해요~!</h3>
                     </div>
-                    <img src="resources/images/main/slide2.jpg" alt="">
+                    <a href="allList.ht"><img src="resources/images/main/slide2.jpg" alt=""></a>
                 </li>
             </ul>
         
@@ -490,21 +498,21 @@
         
 
 
-    <!-- content3 : 커뮤페이지 연결, 클릭유도 -->
+    <!-- content3 : 커뮤페이지 연결 -->
         <div class="ccontent3">
             <div class="ccontent3_1">
-                <img src="resources/images/main/3.jpg" alt="" width="300px">
+                <a href="commMain.co"><img src="resources/images/main/3.jpg" alt="" width="300px" height="300px" ></a>
                 <p></p>
             </div>
             <div class="ccontent3_2">
-                <img src="resources/images/main/555.jpg" alt="" width="300px">
+                <a href="free.co"><img src="resources/images/main/555.jpg" alt="" width="300px" height="300px;"></a>
                 <p>dfsdfsdfsdfsdfsdf</p>
             </div>
         </div>
         <br><br><br>
 
 
-    <!-- content4 : 색 넣기 (간단 문구) -->
+    <!-- content4 :배경색 넣기 (간단 문구) -->
          <!-- content2 : 간단 글 -->
          <div class="ccontent2">
             <div class="ccontent2_1"> 
@@ -515,18 +523,19 @@
 
         <br><br><br><br><br><br><br><br>
 
-    	
-    	<!-- <img src="resources/images/main/0-0.jpg" alt="" width="50px" height="50px">
+    	<div class="content6">
+            <div>
+    	        <img src="resources/images/main/11.jpg" alt="" width="150px" height="150px">
                 <p></p>
             </div>
             <div class="ccontent5_3">
-                <img src="resources/images/main/000.jpg" alt="">
+                <img src="resources/images/main/66.jpg"  width="150px" height="150px"alt="">
                 <p></p>
             </div>
             <div class="ccontent5_4">
-                <img src="resources/images/main/00.jpg" alt="">
-                <p></p> -->
-    	
+                <img src="resources/images/main/111.jpg" width="150px" height="150px">
+                <p></p>
+        </div>
     	
     	
     	

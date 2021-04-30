@@ -2,7 +2,8 @@
     pageEncoding="UTF-8" import="com.dr.member.ht.model.vo.Ht"%>
 <%
 	Ht h = (Ht)request.getAttribute("h");
-
+	boolean check = (boolean)session.getAttribute("check");
+	boolean check2 = (boolean)session.getAttribute("check2");
 %>
 <!DOCTYPE html>
 <html>
@@ -59,8 +60,16 @@
 					<!-- 로그인 안되있는 유저는 안보이도록 할 것 / 스크립트까지 감싸야함 => 500에러 -->
 					<% if(loginUser != null){ %>
 					<div class="mark">
+						<% if(check == true){ %>
+						북마크 <i id="bookmark" class="fas fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
+						<% } else{ %>
 						북마크 <i id="bookmark" class="far fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
+						<% } %>
+						<% if(check2 == true){ %>
+						좋아요 <i id="like" class="fas fa-heart" onclick="like();"></i>
+						<% }else{ %>
 						좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
+						<% } %>
 					</div>
 					
 					
@@ -109,7 +118,7 @@
 								},success:function(check){
 									// console.log(check); -> true, false 출력 확인
 									console.log(check);
-									if(check == true){ // check 되어있는거 취소
+									if(check == "true"){ // check 되어있는거 취소
 										$("#like").removeClass("fas fa-heart").addClass("far fa-heart"); 
 										//  $("#like").attr("far fa-heart");
 										// document.getElementById('like').className = 'far fa-heart';

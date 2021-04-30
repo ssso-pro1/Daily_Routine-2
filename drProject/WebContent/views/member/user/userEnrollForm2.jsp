@@ -104,7 +104,7 @@
             
             <table>
                 <tr>
-                    <th >아이디</th>
+                    <th >* 아이디</th>
                     <th><input type="text" name="userId" id="userId" minlength="5" maxlength="30" placeholder="아이디를 입력하세요">
                     </th>
                     <th><button type="button" class="btn-outline-warning" onclick="idCheck();" style="background:white;">중복확인</button></th>
@@ -114,14 +114,14 @@
                 </tr>
                 
                 <tr>
-                    <th>비밀번호</th>
+                    <th>* 비밀번호</th>
                     <th><input type="password" name="userPwd" id="userPwd" minlength="8" maxlength="15" placeholder="비밀번호" ></th>
                 </tr>
                 <tr>
                     <td colspan="3" id="msg2">8~15자 영문 대소문자, 숫자, 특수문자를 사용하세요.</td>
                 </tr>
                 <tr>
-                    <th>비밀번호 재확인</th>
+                    <th>* 비밀번호 재확인</th>
                     <th><input type="password" name="userPwd2" id="userPwd2" minlength="8" maxlength="15" placeholder="비밀번호 재확인" ></th> 
                     <td></td>
                 </tr>
@@ -129,7 +129,7 @@
                     <td colspan="3" id="msg4"></td>
                 </tr>
                 <tr>
-                    <th>이름</th>
+                    <th>* 이름</th>
                     <th><input type="text" name="userName" id="userName" maxlength="5" placeholder="이름" ></th>
                     <td></td>
                 </tr>
@@ -173,7 +173,7 @@
                     <td></td>
                 </tr>
                 <tr>
-                    <th>휴대전화</th>
+                    <th>* 휴대전화</th>
                     <th><input type="tel" name="phone" id="tel" placeholder="(-포함해서 입력)" required></th>
                     <th><button type="button" class="btn-outline-warning" style="background:white" onclick="send()">인증번호</button></th>
                 </tr>

@@ -119,6 +119,55 @@
         .menu2:hover{
             color:rgb(250, 214, 9);
         }
+
+
+         /* footer */
+        .footerOuter{
+            width:1100px;
+            margin:auto;
+            margin-left:130px;
+            align-items: center;
+            bottom:100;
+            position:absolute;
+
+        }
+        .footerOuter>.footer1_1, .footer2{
+            width:1100px;
+            
+        }
+
+        .footer1_1{
+            height:30px;
+            right:500px;
+            width:1150px;
+            background-color:rgb(250, 214, 9);
+            padding-top:10px;
+        }
+        .footer1_2>i{
+        left:250px;
+        }
+
+        .footer2{
+            height:80%;
+            padding-left:25px;
+            font-size:11px;
+        }
+
+        .footer1_1>a{
+            text-decoration: none;
+            color:black;
+            font-weight:bold;
+            
+            padding:30px;
+            text-align:center;
+        }
+        .footer1_2{
+            margin-top:-30px;
+            padding: 0px 30px;
+        }
+        .footer1_2>i{
+            padding: 10px 5px;
+        } 
     </style>
 </head>
 <body>
@@ -158,14 +207,14 @@
                             <td colspan="2"><small>회원정보에 등록한 휴대전화 번호와 입력한 휴대전화 번호가 같아야, 인증번호를 받을 수 있습니다.</small></td>
                         </tr>
                         <tr>
-                            <th align="left">이름</th>
-                            <td ><input id="name1" type="text" placeholder="이름을 입력하세요" required></td>
+                            <th align="center">이름</th>
+                            <td ><input id="name1" type="text" placeholder="이름을 입력하세요" required ></td>
                             <td></td>
                         </tr>
 
                         <tr>
-                            <th align="left">휴대전화</th>
-                            <td><input id="tel" type="tel" placeholder="휴대전화번호를 입력하세요(-포함)" required></td>
+                            <th align="center">휴대전화</th>
+                            <td><input id="tel" type="tel" placeholder="번호를 입력하세요(-포함)" required></td>
                             <td><input type="button" id="btn1" value="인증번호 받기" onclick="send()"></td>
                         </tr>
 
@@ -190,13 +239,13 @@
                             </tr>
 
                             <tr>
-                                <th align="left">이름</th>
+                                <th align="center">이름</th>
                                 <td><input id="name2 type="text" placeholder="이름을 입력하세요" required></td>
                                 <td></td>
                             </tr>
 
                             <tr>
-                                <th align="left">이메일</th>
+                                <th align="center">이메일</th>
                                 <td><input id="email" type="email" placeholder="이메일주소를 입력하세요" required></td>
                                 <td><input type="button" id="btn2" value="인증번호 받기" onclick="send()"></td>
                             </tr>
@@ -220,7 +269,37 @@
 
         <br><br><br><br><br><br><br><br><br>
 
+              <!-- footer -->
+        <!--
+        <div class="footerOuter ff">
+        
 
+            <div class="footer1">
+                <div class="footer1_1">
+                    <a href="">이용약관</a> | 
+                    <a href="">개인정보보호정책</a>
+                </div>
+
+                <div class="footer1_2" align="right">
+                    <i class="fab fa-instagram-square" fa="lg" ></i>
+                    <i class="fab fa-youtube"></i>
+                    <i class="fab fa-facebook"></i> 
+                    <i class="fas fa-arrow-up" fa="lg"></i>
+                </div>
+            </div>
+        
+            
+            <div class="footer2">
+                <p>02) 0909 - 0909 (평일 10:00 ~ 18:00) <br><br>
+                    Daily Routine : DR <br>
+                    주소 : 서울시 강남구 코딩로 31길, 서울 코딩별관 4층 <br>
+                    고객센터 및 제휴문의 : daily@routine.co.kr           
+                    <br>
+                    CopyRight 2000-2021 Daily Routine All Right Reserved
+                </p>
+            </div>
+        </div>
+        -->
 
 
         
@@ -448,6 +527,11 @@
 
             
         </script>
+        
+       
+
+
+
         </div>
 
     </div>

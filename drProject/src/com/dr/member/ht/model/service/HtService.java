@@ -144,9 +144,9 @@ public class HtService {
 
 	public boolean likeCheck(int htPostNo, int userNo) {
 		Connection conn = getConnection();
-		boolean check = new HtDao().likeCheck(conn, htPostNo, userNo);
+		boolean check2 = new HtDao().likeCheck(conn, htPostNo, userNo);
 		close(conn);
-		return check;
+		return check2;
 		
 	}
 

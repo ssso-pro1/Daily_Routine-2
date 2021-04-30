@@ -7,6 +7,8 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
 import com.dr.member.ht.model.service.HtService;
 import com.google.gson.Gson;
 
@@ -33,22 +35,31 @@ public class HtLikeServlet extends HttpServlet {
 		int htPostNo = Integer.parseInt(request.getParameter("postNo")); // 글번호
 		int userNo = Integer.parseInt(request.getParameter("userNo")); // 유저번호
 //		int postType = 1; // 게시글 타입은 ht => 1 로 고정 => sql문에서 1로 고정하기
+		HttpSession session = request.getSession();
 		
-		boolean check = new HtService().likeCheck(htPostNo, userNo);
 		
-		if(check == true) { // 좋아요 누른 상태 -> 게시글 테이블 좋아요 하나 빼기
+		boolean check2 = new HtService().likeCheck(htPostNo, userNo);
+		session.setAttribute("check2", check2);
+		System.out.println(check2);
+		
+		if(check2 == true) { // 좋아요 누른 상태 -> 게시글 테이블 좋아요 하나 빼기
 			int result = new HtService().deleteLike(htPostNo, userNo);
 			int result2 = new HtService().subLikeCount(htPostNo); // 게시물 전체 좋아요 수 -1
 			
-			new Gson().toJson(check, response.getWriter());
+			new Gson().toJson(check2, response.getWriter());
+			
+			
+			
 			
 		}else { // 안누른 상태 -> 게시글 테이블 좋아요 하나 추가
 			int result = new HtService().insertLike(htPostNo, userNo);
 			int result2 = new HtService().sumLikeCount(htPostNo); // 게시물 전체 좋아요 수 +1
 			
-			new Gson().toJson(check, response.getWriter());
+			new Gson().toJson(check2, response.getWriter());
+
 			
 		}
+		
 		
 		
 		

@@ -6,6 +6,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.dr.member.ht.model.service.HtService;
 import com.google.gson.Gson;
@@ -45,6 +46,10 @@ public class HtBookmarkServlet extends HttpServlet {
 			
 			new Gson().toJson(check, response.getWriter());
 		}
+		
+		HttpSession session = request.getSession();
+		session.setAttribute("check", check);
+
 	}
 
 	/**

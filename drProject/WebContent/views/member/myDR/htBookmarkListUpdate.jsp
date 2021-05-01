@@ -17,6 +17,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	.wrap{
+			font-family: 'Do Hyeon', sans-serif;
+	}
 	.outer{
 		width:1000px;
 		height:800px;
@@ -62,7 +65,7 @@
 	}
 
 </style>
-<link rel="stylesheet" href="../../../resources/css/drView.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drView.css">
 </head>
 <body>
     <%@ include file="../../common/menubar.jsp" %>
@@ -71,13 +74,13 @@
             <div id="content_1">
                 <h1>마이페이지</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/myPage.md" >회원수정</a></div>
+                    <div><a href="<%=contextPath%>/myPage.md">회원수정</a></div>
                     <br>
-                    <div><a href="<%= contextPath %>/bookmark.md?currentPage=1" >내 글 보관함</a></div>
+                    <div><a href="<%=contextPath%>/myPostList.md?currentPage=1">내 글 보관함</a></div>
                     <br>
-                    <div><a href="<%= contextPath %>/htBookmark.md?currentPage=1" style="color:rgb(250, 214, 9);">북마크 보관함</a></div>
+                    <div><a href="<%= contextPath %>/htBookmark.md?currentPage=1"  style="color:rgb(250, 214, 9);">북마크 보관함</a></div>
                     <br>
-                    <div><a href="">다이어리</a></div>
+                    <div><a href="<%= contextPath %>/diary.md">다이어리</a></div>
                 </div>
             </div>
 

@@ -5,6 +5,7 @@
 	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Comm> list = (ArrayList<Comm>)request.getAttribute("list");
 	int postListCount = ((Integer)session.getAttribute("postListCount")).intValue();
+	int replyListCount = ((Integer)request.getAttribute("replyListCount")).intValue();
 	
 	int currentPage = pi.getCurrentPage();
 	int startPage = pi.getStartPage();
@@ -18,6 +19,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	.wrap{
+			font-family: 'Do Hyeon', sans-serif;
+	}
 	.outer{
 		width:1000px;
 		height:800px;
@@ -31,7 +35,7 @@
     }
 	.outer3{
         width: 620px;
-        height: 465px;
+        height: 480px;
         margin: auto;
 		margin-left: 50px;
     }
@@ -44,7 +48,7 @@
 		width: 650px;
         display: inline-block;
 		margin:auto;
-		margin-left: 50px;
+		margin-left: -15px;
     }
 
 	#btn1{
@@ -53,8 +57,46 @@
 	#btn2{
 		margin-left: 50px;
 	}
+		.footer1_1{
+		border:1px solid blue;
+        height:30px;
+        right:500px;
+        width:1150px;
+        background-color:rgb(250, 214, 9);
+
+    }
+    
+    .footer1_2{
+    	margin-right:250px;
+    }
+
+    .footer2{
+        height:80%;
+        padding-left:25px;
+        font-size:11px;
+    }
+
+    .footer1_1>a{
+        text-decoration: none;
+        color:black;
+        font-weight:bold;
+        
+        padding:30px;
+        text-align:center;
+    }
+    .footer1_2{
+        margin-top:-30px;
+        padding: 0px 30px;
+    }
+    .footer1_2>i{
+        padding: 10px 5px;
+    }
+    .footerOuter{
+    	border:1px solid blue;
+    }
+
 </style>
-<link rel="stylesheet" href="../../../resources/css/drView.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drView.css">
 </head>
 <body>
     <%@ include file="../../common/menubar.jsp" %>
@@ -63,13 +105,13 @@
             <div id="content_1">
                 <h1>마이페이지</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/myPage.md" >회원수정</a></div>
+                    <div><a href="<%=contextPath%>/myPage.md">회원수정</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/myPostList.md?currentPage=1" style="color:rgb(250, 214, 9);">내 글 보관함</a></div>
                     <br>
-                    <div><a href="" >북마크 보관함</a></div>
+                    <div><a href="<%= contextPath %>/htBookmark.md?currentPage=1" >북마크 보관함</a></div>
                     <br>
-                    <div><a href="">다이어리</a></div>
+                    <div><a href="<%= contextPath %>/diary.md">다이어리</a></div>
                 </div>
             </div>
 
@@ -83,19 +125,19 @@
 						<button id="btn1" disabled>내 글 보관함</button>
 						<fieldset class="outer2">
 							<div class="postCount">
-								<p><h2><%= postListCount  %></h2></p>
+								<p><h2>내가 쓴 글</h2></p>
 								<div>
-									<h3>23</h3>
+									<h3><%= postListCount  %></h3>
 								</div>
 							</div>
 							<div id="line2"></div>
 							<div class="replyCount">
 								<p><h2>내가 쓴 댓글</h2></p>
 								<div>
-									<h3>23</h3>
+									<h3><%= replyListCount %></h3>
 								</div>
 							</div>
-
+						<br>
 						</fieldset>
 						<br><br><br>
 						<button id="btn2" onclick="location.href='<%=contextPath%>/myPostList.md?currentPage=1'">내가 쓴 글</button>
@@ -122,9 +164,11 @@
 								<!-- 디테일 뷰 가는 스크립트 -->
 								<script>
 									$(function() {
-									     $(".thumbnail").click(function() {
+									     $(".postList").click(function() {
 									     	var category = $(this).children().eq(1).val()
-									    	 
+									    	
+									     	console.log($(this).children().eq(0).val())
+									     	
 									     	if(category == 1){
 									    		 location.href='<%=contextPath%>/freeDetail.co?cno=' + $(this).children().eq(0).val();
 									    	 }else if(category == 2){
@@ -162,6 +206,35 @@
 	            </div>
 	        </div>
 	    </div>
+	    	<!-- footer -->
+		    <div class="footerOuter">
+		    
+		
+		            <div class="footer1">
+		                <div class="footer1_1">
+		                    <a href="">이용약관</a> | 
+		                    <a href="">개인정보보호정책</a>
+		                </div>
+		
+		                <div class="footer1_2" align="right">
+		                    <i class="fab fa-instagram-square" fa="lg" ></i>
+		                    <i class="fab fa-youtube"></i>
+		                    <i class="fab fa-facebook"></i> 
+		                    <i class="fas fa-arrow-up" fa="lg"></i>
+		                </div>
+		            </div>
+		          
+		            
+		            <div class="footer2">
+		                <p>02) 0909 - 0909 (평일 10:00 ~ 18:00) <br><br>
+		                    Daily Routine : DR <br>
+		                    주소 : 서울시 강남구 코딩로 31길, 서울 코딩별관 4층 <br>
+		                    고객센터 및 제휴문의 : daily@routine.co.kr           
+		                    <br>
+		                    CopyRight 2000-2021 Daily Routine All Right Reserved
+		                </p>
+		            </div>
+		    </div>
 	</div>
 </body>
 </html>

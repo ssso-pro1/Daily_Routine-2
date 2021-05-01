@@ -39,8 +39,8 @@ public class HtLikeServlet extends HttpServlet {
 		
 		
 		boolean check2 = new HtService().likeCheck(htPostNo, userNo);
-		session.setAttribute("check2", check2);
-		System.out.println(check2);
+//		session.setAttribute("check2", check2);
+//		System.out.println(check2);
 		
 		if(check2 == true) { // 좋아요 누른 상태 -> 게시글 테이블 좋아요 하나 빼기
 			int result = new HtService().deleteLike(htPostNo, userNo);

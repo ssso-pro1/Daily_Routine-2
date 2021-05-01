@@ -123,8 +123,8 @@
 			                  , CATEGORY_NAME
                               , POST_TITLE
 			                  , LIKE_COUNT
-			                  , I.UPDATE_DATE "UPDATE_DATE"
-			                  , FILE_PATH || FILE_UPDATE "TITLEIMG"
+			                  , I.UPDATE_DATE "FILE_UPDATE"
+			                  , FILE_PATH || FILE_NAME "TITLEIMG"
 			               FROM TB_INFO_N_TIP I 
 			               JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
                            JOIN TB_BOOKMARK B ON(I.INT_POST_NO = B.BK_POST_NO)

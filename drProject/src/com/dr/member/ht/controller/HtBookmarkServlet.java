@@ -47,8 +47,8 @@ public class HtBookmarkServlet extends HttpServlet {
 			new Gson().toJson(check, response.getWriter());
 		}
 		
-		HttpSession session = request.getSession();
-		session.setAttribute("check", check);
+//		HttpSession session = request.getSession();
+//		session.setAttribute("check", check);
 
 	}
 

@@ -2,8 +2,11 @@
     pageEncoding="UTF-8" import="com.dr.member.ht.model.vo.Ht"%>
 <%
 	Ht h = (Ht)request.getAttribute("h");
-	boolean check = (boolean)session.getAttribute("check");
-	boolean check2 = (boolean)session.getAttribute("check2");
+	// boolean check = (boolean)session.getAttribute("check");
+	// boolean check2 = (boolean)session.getAttribute("check2");
+	
+
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -27,18 +30,18 @@
 		<div id="content">
 			<div id="content_1">
                 <h1>Home<br>Training</h1><br>
-                <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/workoutTip.co" >전체</a></div>
+               <div class="leftMenu">
+                    <div><a href="<%=contextPath%>/allList.ht?currentPage=1"">전체</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/free.co" style="color:rgb(250, 214, 9);">코어 운동</a></div>
+                    <div><a href="<%=contextPath%>/bodyList.ht?currentPage=1">전신 운동</a></div>
                     <br>
-					<div><a href="<%=contextPath%>/free.co">전신 운동</a></div>
+					<div><a href="<%=contextPath%>/absList.ht?currentPage=1">복부 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">상체 운동</a></div>
+                    <div><a href="<%=contextPath%>/upperList.ht?currentPage=1">상체 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">하체 운동</a></div>
+                    <div><a href="<%=contextPath%>/lowerList.ht?currentPage=1">하체 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/question.co">스트레칭</a></div>
+                    <div><a href="<%=contextPath%>/strechingList.ht?currentPage=1">스트레칭</a></div>
                 </div>
             </div>
 
@@ -58,19 +61,22 @@
 					<iframe src="<%= h.getVideoLink() %>?autoplay=1"width="500px" height="300px"></iframe>
 					<br>
 					<!-- 로그인 안되있는 유저는 안보이도록 할 것 / 스크립트까지 감싸야함 => 500에러 -->
-					<% if(loginUser != null){ %>
-					<div class="mark">
-						<% if(check == true){ %>
-						북마크 <i id="bookmark" class="fas fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
-						<% } else{ %>
-						북마크 <i id="bookmark" class="far fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
-						<% } %>
-						<% if(check2 == true){ %>
-						좋아요 <i id="like" class="fas fa-heart" onclick="like();"></i>
-						<% }else{ %>
-						좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
-						<% } %>
-					</div>
+					<% if(loginUser != null){ 
+						boolean check = (boolean)request.getAttribute("check");
+					    boolean check2 = (boolean)request.getAttribute("check2");
+					%>
+						<div class="mark">
+							<% if(check == true){ %>
+							북마크 <i id="bookmark" class="fas fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
+							<% } else{ %>
+							북마크 <i id="bookmark" class="far fa-bookmark" onclick="bookmark();"></i> &nbsp;&nbsp;
+							<% } %>
+							<% if(check2 == true){ %>
+							좋아요 <i id="like" class="fas fa-heart" onclick="like();"></i>
+							<% }else{ %>
+							좋아요 <i id="like" class="far fa-heart" onclick="like();"></i>
+							<% } %>
+						</div>
 					
 					
 

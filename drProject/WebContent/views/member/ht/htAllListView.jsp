@@ -60,7 +60,8 @@
 
 					<div class="tipcategory" style="margin-left:10px">
 						<select id="category" name="category">
-							<option value="upload" selected>업로드순</option>
+							<option value="x">조회방법 선택</option>
+							<option value="upload">업로드순</option>
 							<option value="like">좋아요순</option>
 							<option value="view">조회수순</option>
 						</select>
@@ -72,71 +73,67 @@
 							//$(".listArea").load("allListAreaz.ht?currentPage=1");
 							
 							$("select[name=category]").change(function(){
-							var value = ($(this).val());
+								var value = ($(this).val());
 							
-								$.ajax({
-									type:"post",
-									url: "allListArea.ht?currentPage=1",
-									data:{
-										value:value
-									},success:function(map){
-										//$(".listArea").load("allListArea.ht?currentPage=1");
-										//console.log(map);
-										console.log(map.pi);
-										console.log(map.list);
-	
-										var thumbnails = "";
-										var paging1 = "";
-										var paging2 = "";
-										var paging3 = "";
-										var paging4 = "";
-									//	if(map.isEmpty()){
-									//		result1 += "<h1>조회된 리스트가 없습니다</h1>"
-									//	}else{
-											for(var i in map.list){
-												thumbnails += "<div class='thumbnail' align='center'>"
-														   +  "<input type='hidden' value='" + map.list[i].htPostNo + "'>"
-														   +  "<img src='" + map.list[i].titleImg + "' width='230' height='150'>"
-														   +  "<p>" 
-													       +  map.list[i].htPostTitle + "<br>"
-														   +  "조회수 : " + map.list[i].htViewCount + " 좋아요 : " + map.list[i].htLikeCount + "<br>"
-														   +  map.list[i].htUpdateDate
-														   +  "</p>"
-														   +  "</div>";
-											}
-											
-											if(map.pi.currentPage != 1){
-												paging1 += "<button onclick='location.href='allListArea.ht?currentPage=" + (map.pi.currentPage-1) + "';><</button>";
-											}
-											
-											for(var p = map.pi.startPage; p <= map.pi.endPage; p++){
-												if(map.pi.currentPage == p){
-													paging2 += "<button disabled>" + p + "</button>";
-												}else{
-													paging3 += "<button onclick=location.href='allListArea.ht?currentPage=" + p + "';>" + p + +"</button>";
+									$.ajax({
+										type:"post",
+										url: "allListArea.ht?currentPage=1",
+										data:{
+											value:value
+										},success:function(map){
+											//$(".listArea").load("allListArea.ht?currentPage=1");
+											//console.log(map);
+											console.log(map.pi);
+											console.log(map.list);
+		
+											var thumbnails = "";
+											var paging1 = "";
+											var paging2 = "";
+											var paging3 = "";
+											var paging4 = "";
+										//	if(map.isEmpty()){
+										//		result1 += "<h1>조회된 리스트가 없습니다</h1>"
+										//	}else{
+												for(var i in map.list){
+													thumbnails += "<div class='thumbnail' align='center'>"
+															   +  "<input type='hidden' value='" + map.list[i].htPostNo + "'>"
+															   +  "<img src='" + map.list[i].titleImg + "' width='230' height='150'>"
+															   +  "<p>" 
+														       +  map.list[i].htPostTitle + "<br>"
+															   +  "조회수 : " + map.list[i].htViewCount + " 좋아요 : " + map.list[i].htLikeCount + "<br>"
+															   +  map.list[i].htUpdateDate
+															   +  "</p>"
+															   +  "</div>";
 												}
-											}
-											
-											if(map.pi.currentPage != map.pi.maxPage){
-												paging3 += "<button onclick=location.href='allListArea.ht?currentPage=" + (map.pi.currentPage+1) + "';>></button>";
-											}
-											
-											console.log(paging1); // null
-											console.log(paging2); // null<button~~
-											console.log(paging3); // bull <button~~~~~~~~~
-											console.log(paging4); // null
-											console.log(map.pi.startPage);
-											$(".listArea").html(thumbnails);
-											$(".pagingArea").html(paging1);
-											$(".pagingArea").html(paging2);
-											$(".pagingArea").html(paging3);
-											$(".pagingArea").html(paging4);
-											
-								//	}
-								},error:function(){
-									cosole.log("실패");
-								}
-							})
+												
+												if(map.pi.currentPage != 1){
+													paging1 += "<button onclick='location.href=allListArea.ht?currentPage=" + (map.pi.currentPage-1) + "';> < </button>";
+												}
+												
+												for(var p = map.pi.startPage; p <= map.pi.endPage; p++){
+													if(map.pi.currentPage == p){
+														paging2 += "<button disabled>" + p + "</button>";
+													}else{
+														paging3 += "<button onclick='location.href=allListArea.ht?currentPage=" + p + "';>" + p + "</button>";
+													}
+												}
+												
+												if(map.pi.currentPage != map.pi.maxPage){
+													paging4 += "<button onclick='location.href=allListArea.ht?currentPage=" + (map.pi.currentPage+1) + "';> > </button>";
+												}
+												
+												console.log(paging1); // null
+												console.log(paging2); // null<button~~
+												console.log(paging3); // bull <button~~~~~~~~~
+												console.log(paging4); // null
+												$(".listArea").html(thumbnails);
+												$(".pagingArea").html(paging1+paging2+paging3+paging4);
+												
+									//	}
+									},error:function(){
+										cosole.log("실패");
+									}
+								})
 							})
 						//})
 					

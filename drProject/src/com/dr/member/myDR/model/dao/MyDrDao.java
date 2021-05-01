@@ -324,7 +324,7 @@ public class MyDrDao {
 								  rset.getString("CATEGORY_NAME"),
 							 	  rset.getString("POST_TITLE"),
 							 	  rset.getInt("LIKE_COUNT"),
-							 	  rset.getDate("UPDATE_DATE"),
+							 	  rset.getDate("FILE_UPDATE"),
 							 	  rset.getString("TITLEIMG")
 							 	  );
 				

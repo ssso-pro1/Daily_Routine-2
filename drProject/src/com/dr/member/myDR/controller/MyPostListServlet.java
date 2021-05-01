@@ -52,6 +52,9 @@ public class MyPostListServlet extends HttpServlet {
 		User loginUser = (User)session.getAttribute("loginUser");
 		int userNo = loginUser.getUserNo(); // session에서 loginUser통해서 userNo가져오기
 		
+		int replyListCount = new MyDrService().selectMyReplyListCount(userNo);
+		
+		
 		
 		// listCount : 총 게시글 갯수 조회해서 담기
 		postListCount = new MyDrService().selectMyPostListCount(userNo);
@@ -84,6 +87,7 @@ public class MyPostListServlet extends HttpServlet {
 		ArrayList<Comm> list = new MyDrService().selectMyPostList(pi, userNo);
 		
 		session.setAttribute("postListCount", postListCount);
+		request.setAttribute("replyListCount", replyListCount);
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);
 		request.getRequestDispatcher("views/member/myDR/myPostList.jsp").forward(request, response);

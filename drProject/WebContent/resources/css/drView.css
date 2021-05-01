@@ -3,9 +3,10 @@
 	}
 	.wrap{
         width:1000px;
-        height:800px;
+        height:1000px;
         margin:auto;
         margin-top:15px;
+        font-family: 'Do Hyeon', sans-serif;
 	}
 	.wrap>div{
         width:100%;

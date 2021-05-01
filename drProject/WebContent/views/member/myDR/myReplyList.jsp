@@ -19,6 +19,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	.wrap{
+		border:1px solid blue;
+		font-family: 'Do Hyeon', sans-serif;
+	}
 	.outer{
 		width:1000px;
 		height:800px;
@@ -32,7 +36,7 @@
     }
 	.outer3{
         width: 620px;
-        height: 465px;
+        height: 480px;
         margin: auto;
 		margin-left: 50px;
     }
@@ -42,10 +46,12 @@
         height: 100%;
     }
     .pagingArea{
+    	border:1px solid blue;
 		width: 650px;
         display: inline-block;
 		margin:auto;
-		margin-left: 50px;
+		margin-left: -15px;
+
     }
 
 	#btn1{
@@ -54,7 +60,45 @@
 	#btn3{
 		margin-left: 50px;
 	}
+	.footer1_1{
+		border:1px solid blue;
+        height:30px;
+        right:500px;
+        width:1150px;
+        background-color:rgb(250, 214, 9);
+
+    }
+    
+    .footer1_2{
+    	margin-right:250px;
+    }
+
+    .footer2{
+        height:80%;
+        padding-left:25px;
+        font-size:11px;
+    }
+
+    .footer1_1>a{
+        text-decoration: none;
+        color:black;
+        font-weight:bold;
+        
+        padding:30px;
+        text-align:center;
+    }
+    .footer1_2{
+        margin-top:-30px;
+        padding: 0px 30px;
+    }
+    .footer1_2>i{
+        padding: 10px 5px;
+    }
+    .footerOuter{
+    	border:1px solid blue;
+    }
 </style>
+<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drView.css"> -->
 <link rel="stylesheet" href="../../../resources/css/drView.css">
 </head>
 <body>
@@ -64,13 +108,13 @@
             <div id="content_1">
                 <h1>마이페이지</h1><br>
                 <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/myPage.md" >회원수정</a></div>
+                    <div><a href="<%=contextPath%>/myPage.md">회원수정</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/myPostList.md?currentPage=1" style="color:rgb(250, 214, 9);">내 글 보관함</a></div>
                     <br>
-                    <div><a href="" >북마크 보관함</a></div>
+                    <div><a href="<%= contextPath %>/htBookmark.md?currentPage=1" >북마크 보관함</a></div>
                     <br>
-                    <div><a href="">다이어리</a></div>
+                    <div><a href="<%= contextPath %>/diary.md">다이어리</a></div>
                 </div>
             </div>
 
@@ -115,7 +159,7 @@
 											<p align="left">
 												<b><%= r.getReplyContent() %></b><br>
 												<%= r.getUpdateDate() %><br>
-												<%= r.getPostTitle() %>						
+												<%= r.getPostTitle() %>		
 												<hr>
 											</p>
 										</div>
@@ -124,8 +168,9 @@
 								<!-- 디테일 뷰 가는 스크립트 -->
 								<script>
 									$(function() {
-									     $(".thumbnail").click(function() {
-									     	var category = $(this).children().eq(1).val()
+									     $(".postList").click(function() {
+									     	var category = $(this).children().eq(2).val()
+									     	console.log(category);
 									    	 
 									     	if(category == 1){
 									    		 location.href='<%=contextPath%>/tipDetail.co?cno=' + $(this).children().eq(0).val();
@@ -138,7 +183,7 @@
 									      })
 									 })
 								</script>
-								
+							</div>
 								<br><br>
 								<!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
 								<!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
@@ -159,13 +204,43 @@
 										<button onclick="location.href='<%= contextPath %>/replyList.md?currentPage=<%= currentPage + 1 %>';">></button>
 									<% } %>
 								</div>
-							</div>
+							
 								
 						</div>
 					</div>
-
+				
                 </div>
+
             </div>
+	        <!-- footer -->
+		    <div class="footerOuter">
+		    
+		
+		            <div class="footer1">
+		                <div class="footer1_1">
+		                    <a href="">이용약관</a> | 
+		                    <a href="">개인정보보호정책</a>
+		                </div>
+		
+		                <div class="footer1_2" align="right">
+		                    <i class="fab fa-instagram-square" fa="lg" ></i>
+		                    <i class="fab fa-youtube"></i>
+		                    <i class="fab fa-facebook"></i> 
+		                    <i class="fas fa-arrow-up" fa="lg"></i>
+		                </div>
+		            </div>
+		          
+		            
+		            <div class="footer2">
+		                <p>02) 0909 - 0909 (평일 10:00 ~ 18:00) <br><br>
+		                    Daily Routine : DR <br>
+		                    주소 : 서울시 강남구 코딩로 31길, 서울 코딩별관 4층 <br>
+		                    고객센터 및 제휴문의 : daily@routine.co.kr           
+		                    <br>
+		                    CopyRight 2000-2021 Daily Routine All Right Reserved
+		                </p>
+		            </div>
+		    </div>
         </div>
 
 </body>

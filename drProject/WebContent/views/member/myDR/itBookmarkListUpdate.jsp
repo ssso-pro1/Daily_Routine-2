@@ -17,6 +17,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	.wrap{
+			font-family: 'Do Hyeon', sans-serif;
+	}
 	.outer{
 		width:1000px;
 		height:800px;
@@ -60,24 +63,69 @@
 	.btn1{
 		margin-left: 10px;
 	}
+    .footerOuter{
+        width:1100px;
+        margin:auto;
+        align-items: center;
+        bottom:100;
+        margin-left:-60px;
+        position:absolute;
 
+    }
+    .footerOuter>.footer1_1, .footer2{
+        width:1100px;
+        font-family: 'Do Hyeon', sans-serif;
+    }
+
+
+    .footer1_1{
+        height:30px;
+        right:500px;
+        width:1150px;
+        background-color:rgb(250, 214, 9);
+
+    }
+    .footer1_2{
+    	margin-right:250px;
+    }
+
+    .footer2{
+        height:80%;
+        padding-left:25px;
+        font-size:11px;
+    }
+
+    .footer1_1>a{
+        text-decoration: none;
+        color:black;
+        font-weight:bold;
+        
+        padding:30px;
+        text-align:center;
+    }
+    .footer1_2{
+        margin-top:-30px;
+        padding: 0px 30px;
+    }
+    .footer1_2>i{
+        padding: 10px 5px;
+    }
 </style>
-<link rel="stylesheet" href="../../../resources/css/drView.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drView.css">
 </head>
 <body>
     <%@ include file="../../common/menubar.jsp" %>
 	<div class="wrap">
         <div id="content">
             <div id="content_1">
-                <h1>마이페이지</h1><br>
-                  <div class="leftMenu">
+                <div class="leftMenu">
                     <div><a href="<%=contextPath%>/myPage.md" >회원수정</a></div>
                     <br>
-                    <div><a href="<%= contextPath %>/bookmark.md?currentPage=1" >내 글 보관함</a></div>
+                    <div><a href="<%=contextPath%>/myPostList.md?currentPage=1">내 글 보관함</a></div>
                     <br>
                     <div><a href="<%= contextPath %>/htBookmark.md?currentPage=1" style="color:rgb(250, 214, 9);">북마크 보관함</a></div>
                     <br>
-                    <div><a href="">다이어리</a></div>
+                    <div><a href="<%= contextPath %>/diary.md">다이어리</a></div>
                 </div>
             </div>
 

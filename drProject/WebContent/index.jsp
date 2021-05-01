@@ -16,159 +16,18 @@
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <style>
-/* 슬라이드 css! */
-    * {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
-
-    #slider-wrap {
-        width: 100%;
-        height: 400px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    #slider-wrap ul#slider {
-        height: 100%;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
-    #slider-wrap ul#slider li {
-        float: left;
-        position: relative;
-        width: 600px;
-        height: 400px;
-    }
-
-    #slider-wrap ul#slider li>div {
-        position: absolute;
-        top: 20px;
-        left: 35px;
-    }
-
-    #slider-wrap ul#slider li>div h3 {
-        font-size: 36px;
-        text-transform: uppercase;
-    }
-
-    #slider-wrap ul#slider li>div span {
-        font-size: 21px;
-    }
-
-    #slider-wrap ul#slider li img {
-        display: block;
-        width: 100%;
-        height: 100%;
-    }
-
-/*btns*/
-    .slider-btns {
-        position: absolute;
-        width: 50px;
-        height: 60px;
-        top: 50%;
-        margin-top: -25px;
-        line-height: 57px;
-        text-align: center;
-        cursor: pointer;
-        background: rgba(0, 0, 0, 0.1);
-        z-index: 100;
-        -webkit-user-select: none;
-        -moz-user-select: none;
-        -khtml-user-select: none;
-        -ms-user-select: none;
-        -webkit-transition: all 0.1s ease;
-        -o-transition: all 0.1s ease;
-        transition: all 0.1s ease;
-    }
-
-    .slider-btns:hover {
-        background: rgba(0, 0, 0, 0.3);
-    }
-
-    #next {
-        right: -50px;
-        border-radius: 7px 0px 0px 7px;
-        color: #eee;
-    }
-
-    #previous {
-        left: -50px;
-        border-radius: 0px 7px 7px 7px;
-        color: #eee;
-    }
-
-    #slider-wrap.active #next {
-        right: 0px;
-    }
-
-    #slider-wrap.active #previous {
-        left: 0px;
-    }
-
-/*bar*/
-    #slider-pagination-wrap {
-        min-width: 20px;
-        margin-top: 350px;
-        margin-left: auto;
-        margin-right: auto;
-        height: 15px;
-        position: relative;
-        text-align: center;
-    }
-
-    #slider-pagination-wrap ul {
-        width: 100%;
-    }
-
-    #slider-pagination-wrap ul li {
-        margin: 0 4px;
-        display: inline-block;
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: #fff;
-        opacity: 0.5;
-        position: relative;
-        top: 0;
-    }
-
-    #slider-pagination-wrap ul li.active {
-        width: 12px;
-        height: 12px;
-        top: 3px;
-        opacity: 1;
-        -webkit-box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
-        box-shadow: rgba(0, 0, 0, 0.1) 1px 1px 0px;
-    }
-
-/*ANIMATION*/
-    #slider-wrap ul,
-    #slider-pagination-wrap ul li {
-        -webkit-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
-        -o-transition: all 0.3s cubic-bezier(1, .01, .32, 1);
-        transition: all 0.3s cubic-bezier(1, .01, .32, 1);
-    }
-        
-    #sline{
-        border:1px solid rgb(228, 205, 0);
-    }
 
 
     @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
     .f{
         font-family: 'Do Hyeon', sans-serif;
         }
-    .wrap{
+    .cWrap{
         width:1100px;
         height:1600px;
         margin:auto;
     }
-    .wrap>{width:100%;}
+    .cWrap>{width:100%;}
     
 
 
@@ -294,113 +153,7 @@
    
 
 
-    /* content */
-    .ccontent{height:}
-    .ccontent>div{float:left; height:80%;}
-    .ccontent2{height:15%; margin:-200px;}
-    .ccontent3{
-        height:30%; 
-        background-color:rgb(234, 240, 241); 
-        width:100%; 
-    }
-    .ccontent4{height:20%; }
-    .ccontent5{height:20%}
-    .footerOuter{height:15%;}
-
-    .ccontent2, .ccontent4{ /*서로 건강한 팁~*/
-        display: flex; 
-        justify-content: center; 
-
-    }
-    .ccontent2_1{padding-bottom: 10px;}
-    .ccontent3>div{
-        margin-right:20px; 
-        display:flex;
-        align-items: center;
-
-    }
-
-    .ccontent, .ccontent4{display: flex; align-items: center; }
-    .ccontent3>div, .ccontent3>div>img{float:left; height:100%;}
-    .ccontent5>div, .ccontent5>div>img{float:left; height:100%;}
-    .ccontent
-    .ccontent3{
-        width:50%;
-        display:flex;
-        justify-content: space-between;}
-        .content3>div *{
-        width:100%;
-        float:left;
-    }
-    /* .ccontent3_2{width:50%} */
-    /* .content3>{
-        height:30%;
-
-    } */
-    
-    .ccontent3_1>img{
-        height:50%;
-        margin:left;
-        position:relative;
-    }
-    .ccontent3_2{
-        position:relative;
-    }
-
-    .ccontent4_1>h3{
-        /* margin:auto; */
-        display:inline-block;
-        top:50px;
-        padding:50px;
-
-    }
-    .ccontent4_1>div{border:1px solid skyblue;}
-    .ccontent div{float:left;}
-    .ccontent5_2{
-        display:flex; 
-        justify-content:space-between;
-        width:20%;
-        height:30%;
-    }
-    /* .content3 img{
-        
-        display:block;
-        margin-left:auto;
-        margin-right:auto;
-        width:200px;
-
-        position:absolute;
-        right:0px;
-    }
-
-    .content3_1, .content3_2>img{
-        width:200px;
-        height:200px;
-        position:absolute;
-        margin:auto;
-        left:0;
-        right:0;
-        
-    }
-    .content3_1>img{
-        margin-left:;
-
-    }
-    .content3_2>img{
-        position:absolute;
-        right:0px;
-    } */
-
-   
-    .content6{
-        display:flex;
-        flex-direction: column-reverse;
-    }
-
-
-
-
-
+  
 
 
 </style>
@@ -412,15 +165,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
 
 
-    <div class="wrap">
+    <div class="cWrap">
 
     
         <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
         <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
         <link href='https://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
-        
+        <link rel="stylesheet" type="text/css" href="resources/css/indexSlide.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/indexContent.css">
+        <link rel="stylesheet" type="text/css" href="resources/css/indexPageUp.css">
 
 
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+    <div id="aWrap">
+    <a id="back-to-top"></a> </div>
 
         
         <!-- slide: ht페이지 연결 -->
@@ -473,6 +232,8 @@
             
         <br><br><br><br><br>
 
+
+
         <div class="ccontent4">
             
             <div class="content4_1" style="margin-top:-200px">
@@ -500,13 +261,41 @@
 
     <!-- content3 : 커뮤페이지 연결 -->
         <div class="ccontent3">
-            <div class="ccontent3_1">
-                <a href="commMain.co"><img src="resources/images/main/3.jpg" alt="" width="300px" height="300px" ></a>
-                <p></p>
+            <div class="ccontent3_1" style="margin-left:100px;">
+                <a href="question.co"><img src="resources/images/main/3.jpg" alt="" width="300px" height="300px" ></a>
+                <p style="display:inline-flex"></p>
             </div>
             <div class="ccontent3_2">
                 <a href="free.co"><img src="resources/images/main/555.jpg" alt="" width="300px" height="300px;"></a>
-                <p>dfsdfsdfsdfsdfsdf</p>
+               
+                <div style="margin-left:30px">
+                    <h3>혼자서 하는 홈트가 외롭다면? </h3><br>
+                    <div class="linee"></div> <br>
+                    
+                    <div>
+                        
+                        자유게시판에서 다양한 얘기를 나눌 수 있고 <br>
+                        질문게시판에서는 궁금증을 해소할 수 있어요
+                        
+                    </div>
+                    <br>
+                    <div class="linee" style="border:1px dotted grey;"></div> <br>
+                    <div>
+                        로그인을 하면 나만의 운동 팁 게시판에서<br>
+                        식단공유와 운동 팁에 대한 정보를 얻을 수 있어요<br>
+                    </div>
+                    <br><br>
+                    <div>
+                        <a href="loginForm.us" class="cBtn">로그인 <i class="fas fa-user"></i></a>
+                        <a href="freeEnroll.co" class="cBtn">글쓰러가기 <i class="fas fa-pencil-alt"></i></a>
+
+                    </div>
+                    
+                </div>
+                
+            </div>
+            <div class="ccontent3_3">
+                <div style="background-color: grey;" width="40px;" height="100px"></div>
             </div>
         </div>
         <br><br><br>
@@ -523,44 +312,34 @@
 
         <br><br><br><br><br><br><br><br>
 
-    	<div class="content6">
-            <div>
+    	<div class="ccontent4">
+            <div class="ccontent4_1">
     	        <img src="resources/images/main/11.jpg" alt="" width="150px" height="150px">
                 <p></p>
             </div>
-            <div class="ccontent5_3">
+            <div class="ccontent4_2">
+                <img src="resources/images/main/1111.jpg" width="150px" height="150px">
+                <p></p>
+            </div>
+            <div class="ccontent4_3">
+                <img src="resources/images/main/6.jpg" width="150px" height="150px">
+                <p></p>
+            </div>
+            <div class="ccontent4_4">
                 <img src="resources/images/main/66.jpg"  width="150px" height="150px"alt="">
                 <p></p>
             </div>
-            <div class="ccontent5_4">
+            <div class="ccontent4_5">
                 <img src="resources/images/main/111.jpg" width="150px" height="150px">
                 <p></p>
+            </div>
         </div>
     	
+        <br><br><br><br>
+        <br><br><br><br>
     	
     	
     	
-    	
-
-
-
-
-
-
-    
-    
-
-
-    
-
-
-
-
-
-
-
-    
-
     <!-- footer -->
      
      <div class="footerOuter">
@@ -575,7 +354,6 @@
                 <i class="fab fa-instagram-square" fa="lg" ></i>
                 <i class="fab fa-youtube"></i>
                 <i class="fab fa-facebook"></i> 
-                <i class="fas fa-arrow-up" fa="lg"></i>
             </div>
         </div>
         
@@ -598,86 +376,105 @@
  
 </div>
 
+<!-- slide -->
 <script>
- //slide-wrap
-var slideWrapper = document.getElementById('slider-wrap');
-//current slideIndexition
-var slideIndex = 0;
-//items
-var slides = document.querySelectorAll('#slider-wrap ul li');
-//number of slides
-var totalSlides = slides.length;
-//get the slide width
-var sliderWidth = slideWrapper.clientWidth;
-//set width of items
-slides.forEach(function (element) {
-    element.style.width = sliderWidth + 'px';
-})
-//set width to be 'x' times the number of slides
-var slider = document.querySelector('#slider-wrap ul#slider');
-slider.style.width = sliderWidth * totalSlides + 'px';
+    //slide-wrap
+    var slideWrapper = document.getElementById('slider-wrap');
+    //current slideIndexition
+    var slideIndex = 0;
+    //items
+    var slides = document.querySelectorAll('#slider-wrap ul li');
+    //number of slides
+    var totalSlides = slides.length;
+    //get the slide width
+    var sliderWidth = slideWrapper.clientWidth;
+    //set width of items
+    slides.forEach(function (element) {
+        element.style.width = sliderWidth + 'px';
+    })
+    //set width to be 'x' times the number of slides
+    var slider = document.querySelector('#slider-wrap ul#slider');
+    slider.style.width = sliderWidth * totalSlides + 'px';
 
-// next, prev
-var nextBtn = document.getElementById('next');
-var prevBtn = document.getElementById('previous');
-nextBtn.addEventListener('click', function () {
-    plusSlides(1);
-});
-prevBtn.addEventListener('click', function () {
-    plusSlides(-1);
-});
-
-// hover
-slideWrapper.addEventListener('mouseover', function () {
-    this.classList.add('active');
-    clearInterval(autoSlider);
-});
-slideWrapper.addEventListener('mouseleave', function () {
-    this.classList.remove('active');
-    autoSlider = setInterval(function () {
+    // next, prev
+    var nextBtn = document.getElementById('next');
+    var prevBtn = document.getElementById('previous');
+    nextBtn.addEventListener('click', function () {
         plusSlides(1);
-    }, 3000);
-});
+    });
+    prevBtn.addEventListener('click', function () {
+        plusSlides(-1);
+    });
+
+    // hover
+    slideWrapper.addEventListener('mouseover', function () {
+        this.classList.add('active');
+        clearInterval(autoSlider);
+    });
+    slideWrapper.addEventListener('mouseleave', function () {
+        this.classList.remove('active');
+        autoSlider = setInterval(function () {
+            plusSlides(1);
+        }, 3000);
+    });
 
 
-function plusSlides(n) {
-    showSlides(slideIndex += n);
-}
-
-function currentSlides(n) {
-    showSlides(slideIndex = n);
-}
-
-function showSlides(n) {
-    slideIndex = n;
-    if (slideIndex == -1) {
-        slideIndex = totalSlides - 1;
-    } else if (slideIndex === totalSlides) {
-        slideIndex = 0;
+    function plusSlides(n) {
+        showSlides(slideIndex += n);
     }
 
-    slider.style.left = -(sliderWidth * slideIndex) + 'px';
+    function currentSlides(n) {
+        showSlides(slideIndex = n);
+    }
+
+    function showSlides(n) {
+        slideIndex = n;
+        if (slideIndex == -1) {
+            slideIndex = totalSlides - 1;
+        } else if (slideIndex === totalSlides) {
+            slideIndex = 0;
+        }
+
+        slider.style.left = -(sliderWidth * slideIndex) + 'px';
+        pagination();
+    }
+
+    //pagination
+    slides.forEach(function () {
+        var li = document.createElement('li');
+        document.querySelector('#slider-pagination-wrap ul').appendChild(li);
+    })
+
+    function pagination() {
+        var dots = document.querySelectorAll('#slider-pagination-wrap ul li');
+        dots.forEach(function (element) {
+            element.classList.remove('active');
+        });
+        dots[slideIndex].classList.add('active');
+    }
+
     pagination();
-}
-
-//pagination
-slides.forEach(function () {
-    var li = document.createElement('li');
-    document.querySelector('#slider-pagination-wrap ul').appendChild(li);
-})
-
-function pagination() {
-    var dots = document.querySelectorAll('#slider-pagination-wrap ul li');
-    dots.forEach(function (element) {
-        element.classList.remove('active');
-    });
-    dots[slideIndex].classList.add('active');
-}
-
-pagination();
-var autoSlider = setInterval(function () {
-    plusSlides(1);
-}, 3000);
+    var autoSlider = setInterval(function () {
+        plusSlides(1);
+    }, 3000);
 </script>
+<script>
+    // pageUpBtn
+    $(function(){
+  $('#back-to-top').on('click',function(e){
+      e.preventDefault();
+      $('html,body').animate({scrollTop:0},600);
+  });
+  
+  $(window).scroll(function() {
+    if ($(document).scrollTop() > 100) {
+      $('#back-to-top').addClass('show');
+    } else {
+      $('#back-to-top').removeClass('show');
+    }
+  });
+});
+</script>
+
 </body>
 </html>

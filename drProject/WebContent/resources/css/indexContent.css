@@ -58,7 +58,11 @@
       padding:50px;
 
   }
-  .ccontent4_1>div{border:1px solid skyblue;}
+
+  .ccontent4>div>img{
+      margin:0px 5px;
+  }
+
   .ccontent div{float:left;}
   .ccontent5_2{
       display:flex; 

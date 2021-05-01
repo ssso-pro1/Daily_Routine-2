@@ -9,15 +9,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>findID_1</title>
     <link rel="stylesheet" href="../../../resources/css/fontcommon.css">
+    <link rel="stylesheet" type="text/css" href="resources/css/footerbar.css">
 
-      <!-- jQuery library -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   
-      <!-- Popper JS -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   
-      <!-- Latest compiled JavaScript -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
     <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
 
@@ -125,7 +129,6 @@
         .footerOuter{
             width:1100px;
             margin:auto;
-            margin-left:130px;
             align-items: center;
             bottom:100;
             position:absolute;
@@ -135,11 +138,13 @@
             width:1100px;
             
         }
-
+        .footer1, .footer2{
+            text-align: left;
+        }
         .footer1_1{
             height:30px;
             right:500px;
-            width:1150px;
+            width:1100px;
             background-color:rgb(250, 214, 9);
             padding-top:10px;
         }
@@ -175,7 +180,7 @@
      <%@ include file="../../common/menubar.jsp" %> 
     
     <!-- navi -->
-    <div class="menuWrap" align="center">
+    <div class="menuWrap" align="center" style="margin-top:30px;">
         <div class="menu1"> <a href="<%=contextPath%>/findID1.us" style="color:rgb(250, 214, 9);"><i class="fas fa-user"> 아이디 찾기</i></a> </div>
         <div class="menu2"> <a href="<%=contextPath%>/findPwd1.us" style="color:gray; "><i class="fas fa-key">비밀번호 찾기</i></a></div>
     </div>
@@ -186,6 +191,7 @@
 
 
     <div class="outer">
+        
         <div id="content_1">
             <h3>아이디 찾기</h3>
             <!-- <hr style="width:300px;"> -->
@@ -215,13 +221,13 @@
                         <tr>
                             <th align="center">휴대전화</th>
                             <td><input id="tel" type="tel" placeholder="번호를 입력하세요(-포함)" required></td>
-                            <td><input type="button" id="btn1" value="인증번호 받기" onclick="send()"></td>
+                            <td><input type="button" id="btn1" value="인증번호 받기" class="btn btn-outline-secondary" onclick="send()"></td>
                         </tr>
 
                         <tr>
                             <td></td>
                             <td><input type="text" id="num1" placeholder="인증번호 6자리 숫자 입력" required></td>
-                            <td><input type="button" id="btn11" value="인증하기" onclick="enter()"></td>
+                            <td><input type="button" id="btn11" value="인증하기" class="btn btn-outline-secondary" onclick="enter()"></td>
 
                         </tr>
                     </table>
@@ -247,13 +253,13 @@
                             <tr>
                                 <th align="center">이메일</th>
                                 <td><input id="email" type="email" placeholder="이메일주소를 입력하세요" required></td>
-                                <td><input type="button" id="btn2" value="인증번호 받기" onclick="send()"></td>
+                                <td><input type="button" id="btn2" value="인증번호 받기" class="btn btn-outline-secondary" onclick="send()"></td>
                             </tr>
 
                             <tr>
                                 <th></th>
                                 <td><input type="text" id="num2" placeholder="인증번호 6자리 숫자 입력" required></td>
-                                <td><input type="button" id="btn22" value="인증하기" onclick="enter()"></td>
+                                <td><input type="button" id="btn22" value="인증하기" class="btn btn-outline-secondary" onclick="enter()"></td>
 
                             </tr>
                     </table>
@@ -267,10 +273,10 @@
             <input type="button" id="next" class="btn btn-warning" value="다음" onclick="return validate();">
         </div>
 
-        <br><br><br><br><br><br><br><br><br>
+        <br><br><br><br><br>
 
               <!-- footer -->
-        <!--
+        
         <div class="footerOuter ff">
         
 
@@ -299,7 +305,7 @@
                 </p>
             </div>
         </div>
-        -->
+        
 
 
         

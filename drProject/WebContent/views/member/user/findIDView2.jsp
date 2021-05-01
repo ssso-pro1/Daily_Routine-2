@@ -7,13 +7,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>findID_1</title>
+     <!-- Latest compiled and minified CSS -->
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-
-
-    <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
-
-      <!-- jQuery library -->
+     <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   
       <!-- Popper JS -->
@@ -22,7 +19,6 @@
       <!-- Latest compiled JavaScript -->
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
-    <link rel="stylesheet" type="text/css" href="../../../resources/css/findIdPwdNavi.css">
 
 <!-- 제일 위의 부트스트랩 넣으면 크기나 여백이 다 바뀜. 근데 버튼하려면 저거 써야함.. 질문 -->
 
@@ -89,26 +85,26 @@
       
 
         #content_2>table{
-            /* margin:auto;  */
             margin-top:50px;
             margin-bottom:50px;
             margin:0 auto;
         }
 
             
-        /*  include의 css가 적용돼서 이게 안먹힘.. 질문 */
         .menu2:hover{
             color:rgb(250, 214, 9);
         }
 
-            /* footer */
-        .footerOuter{
+        
+          /* footer */
+          .footerOuter{
             width:1100px;
             margin:auto;
-            margin-left:130px;
-            align-items: center;
+            /* margin-left:130px; */
+            align-items: left;
             bottom:100;
             position:absolute;
+            align
 
         }
         .footerOuter>.footer1_1, .footer2{
@@ -119,7 +115,7 @@
         .footer1_1{
             height:30px;
             right:500px;
-            width:1150px;
+            width:1100px;
             background-color:rgb(250, 214, 9);
             padding-top:10px;
         }
@@ -157,7 +153,7 @@
     
     
     <!-- navi -->
-    <div class="menuWrap" align="center">
+    <div class="menuWrap" align="center" style="margin-top:30px;">
         <div class="menu1"> <a href="<%=contextPath%>/findID1.us" style="color:rgb(250, 214, 9);"><i class="fas fa-user"> 아이디 찾기</i></a> </div>
         <div class="menu2"> <a href="<%=contextPath%>/findPwd1.us" style="color:gray; "><i class="fas fa-key">비밀번호 찾기</i></a></div>
     </div>
@@ -199,15 +195,15 @@
         </div>
         <br>
         <div id="btns" align="center"> 
-            <button type="submit" onclick="login();">로그인하기</button>
-            <button type="" onclick="findPwd();">비밀번호 찾기</button>
+            <button type="submit" onclick="login();" class="btn btn-warning">로그인하기</button>
+            <button type="" onclick="findPwd();" class="btn btn-secondary">비밀번호 찾기</button>
         </div>
         
+        <br><br><br><br><br><br>
 
 
 
-
-              <!-- footer -->
+        <!-- footer -->
         <div class="footerOuter ff">
         
 
@@ -235,7 +231,7 @@
                     CopyRight 2000-2021 Daily Routine All Right Reserved
                 </p>
             </div>
-        </div>
+    </div>
 
 
 

@@ -11,12 +11,16 @@
 <!DOCTYPE html>
 <html>
 <head>
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+<link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
+<link href='https://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
+<link rel="stylesheet" type="text/css" href="resources/css/indexSlide.css">
+<link rel="stylesheet" type="text/css" href="resources/css/indexContent.css">
+<link rel="stylesheet" type="text/css" href="resources/css/indexPageUp.css">
 <meta charset="UTF-8">
-<title>Insert title here</title>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-
+<title>Daily Routine</title>
 <style>
-
 
     @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
     .f{
@@ -28,7 +32,6 @@
         margin:auto;
     }
     .cWrap>{width:100%;}
-    
 
 
 
@@ -67,30 +70,12 @@
         color:darkorchid
 	}
     
-    /* #content1{
-        margin:auto;
-        display:flex;
-        justify-content: center;
-        width:100%;
-        height:20%;
-    } */
-    
     .line{
         border: 1px solid gray;
         height:250px;
         margin: 0 40px;
     }
     
-    
-
-    /* .content3 *{
-        text-decoration:none;
-        color:black;
-        font-weight:bold;
-        margin:20px;
-        padding: 0px 20px;
-    } */
-
     #todayV{
         margin:auto;
         display:flex;
@@ -146,13 +131,6 @@
   
 
 
-    #content1>img{
-        margin:auto;
-        display:table-cell;
-    }
-   
-
-
   
 
 
@@ -161,22 +139,13 @@
 <body>
 <div class="f">
     <%@ include file = "../views/common/menubar.jsp"%>
-    <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-
+   
 
     <div class="cWrap">
 
-    
-        <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
-        <link href='https://fonts.googleapis.com/css?family=Anton' rel='stylesheet' type='text/css'>
-        <link href='https://fonts.googleapis.com/css?family=Neucha' rel='stylesheet' type='text/css'>
-        <link rel="stylesheet" type="text/css" href="resources/css/indexSlide.css">
-        <link rel="stylesheet" type="text/css" href="resources/css/indexContent.css">
-        <link rel="stylesheet" type="text/css" href="resources/css/indexPageUp.css">
+      
 
 
-        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
     <div id="aWrap">
     <a id="back-to-top"></a> </div>
@@ -274,8 +243,8 @@
                     
                     <div>
                         
-                        자유게시판에서 다양한 얘기를 나눌 수 있고 <br>
-                        질문게시판에서는 궁금증을 해소할 수 있어요
+                        자유게시판에서 다양한 얘기를 나누고 <br>
+                        질문게시판에서 궁금증을 해소해보세요~
                         
                     </div>
                     <br>
@@ -304,16 +273,16 @@
     <!-- content4 :배경색 넣기 (간단 문구) -->
          <!-- content2 : 간단 글 -->
          <div class="ccontent2">
-            <div class="ccontent2_1"> 
-                <h3>커뮤니티에서 건강해지는 팁을 공유해보아요~! <i class="far fa-kiss-wink-heart"></i></h3> 
+            <div class="ccontent2_1" > 
+                <h3 >커뮤니티에서 건강해지는 팁을 공유해보아요~! <i class="far fa-kiss-wink-heart"></i></h3> 
                 
             </div>
         </div>
 
         <br><br><br><br><br><br><br><br>
 
-    	<div class="ccontent4">
-            <div class="ccontent4_1">
+    	<div class="ccontent4" style="background-color:rgb(250, 250, 250);" >
+            <div class="ccontent4_1" >
     	        <img src="resources/images/main/11.jpg" alt="" width="150px" height="150px">
                 <p></p>
             </div>
@@ -375,6 +344,9 @@
 </div>
  
 </div>
+<script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <!-- slide -->
 <script>
@@ -458,22 +430,25 @@
         plusSlides(1);
     }, 3000);
 </script>
+
+
+
+<!--pageUpBtn-->
 <script>
-    // pageUpBtn
     $(function(){
-  $('#back-to-top').on('click',function(e){
-      e.preventDefault();
-      $('html,body').animate({scrollTop:0},600);
-  });
-  
-  $(window).scroll(function() {
-    if ($(document).scrollTop() > 100) {
-      $('#back-to-top').addClass('show');
-    } else {
-      $('#back-to-top').removeClass('show');
-    }
-  });
-});
+        $('#back-to-top').on('click',function(e){
+            e.preventDefault();
+            $('html,body').animate({scrollTop:0},600);
+        });
+        
+        $(window).scroll(function() {
+            if ($(document).scrollTop() > 100) {
+            $('#back-to-top').addClass('show');
+            } else {
+            $('#back-to-top').removeClass('show');
+            }
+        });
+    });
 </script>
 
 </body>

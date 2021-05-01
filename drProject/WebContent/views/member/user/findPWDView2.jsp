@@ -10,7 +10,7 @@
     <title>findID_1</title>
     
      <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
       <!-- jQuery library -->
       <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
@@ -115,6 +115,60 @@
         .f{
             font-family: 'Do Hyeon', sans-serif;
         }
+
+        /* footer */
+        .footerOuter{
+            width:1100px;
+            margin:auto;
+            align-items: center;
+            bottom:100;
+            position:absolute;
+            margin-top:100px;
+
+        }
+        .footerOuter>.footer1_1, .footer2{
+            width:1100px;
+            
+        }
+        .footer1, .footer2{
+            text-align: left;
+        }
+        .footer1_1{
+            height:30px;
+            right:500px;
+            width:1100px;
+            background-color:rgb(250, 214, 9);
+            padding-top:10px;
+        }
+        .footer1_2>i{
+        left:250px;
+        }
+
+        .footer2{
+            height:80%;
+            padding-left:25px;
+            font-size:11px;
+        }
+
+        .footer1_1>a{
+            text-decoration: none;
+            color:black;
+            font-weight:bold;
+            
+            padding:30px;
+            text-align:center;
+        }
+        .footer1_2{
+            margin-top:-30px;
+            padding: 0px 30px;
+        }
+        .footer1_2>i{
+            padding: 10px 5px;
+        } 
+
+        #next{
+
+        }
     </style>
 </head>
 <body>
@@ -122,7 +176,7 @@
      <%@ include file="../../common/menubar.jsp" %> 
     
     <!-- navi -->
-    <div class="menuWrap" align="center">
+    <div class="menuWrap" align="center" style="margin-top:30px;">
         <div class="menu1"> <a href="<%=contextPath%>/findID1.us" style="color:gray"><i class="fas fa-user"> 아이디 찾기</i></a> </div>
         <div class="menu2"> <a href="<%=contextPath%>/findPwd1.us" style="color:rgb(250, 214, 9); "><i class="fas fa-key">비밀번호 찾기</i></a></div>
     </div>
@@ -142,7 +196,7 @@
 
         
         <div id="content_2" >
-            <form action="<%= request.getContextPath()%>/findID2.us" class="way1" method="post" id="test">
+            <form action="<%= request.getContextPath()%>/loginForm.us" class="way1" method="post" id="test">
                 <div class="way">휴대전화로 인증</div>
 
                 <div class="content">
@@ -160,13 +214,13 @@
                         <tr>
                             <th align="left">휴대전화</th>
                             <td><input id="tel" type="tel" placeholder="휴대전화번호를 입력하세요(-포함)" required></td>
-                            <td><input type="button" id="btn1" value="인증번호 받기" onclick="send()"></td>
+                            <td><input type="button" id="btn1" value="인증번호 받기" class="btn btn-outline-secondary" onclick="send()"></td>
                         </tr>
 
                         <tr>
                             <td></td>
                             <td><input type="text" id="num1" placeholder="인증번호 6자리 숫자 입력" required></td>
-                            <td><input type="button" id="btn11" value="인증하기" onclick="enter1()"></td>
+                            <td><input type="button" id="btn11" value="인증하기" class="btn btn-outline-secondary" onclick="enter()"></td>
 
                         </tr>
                     </table>
@@ -192,13 +246,13 @@
                             <tr>
                                 <th align="left">이메일</th>
                                 <td><input id="email" type="email" placeholder="이메일주소를 입력하세요" required></td>
-                                <td><input type="button" id="btn2" value="인증번호 받기" onclick="send()"></td>
+                                <td><input type="button" id="btn2" value="인증번호 받기" class="btn btn-outline-secondary" onclick="send()"></td>
                             </tr>
 
                             <tr>
                                 <th></th>
                                 <td><input type="text" id="num2" placeholder="인증번호 6자리 숫자 입력" required></td>
-                                <td><input type="button" id="btn22" value="인증하기" onclick="enter2()"></td>
+                                <td><input type="button" id="btn22" value="인증하기" class="btn btn-outline-secondary" onclick="enter()"></td>
 
                             </tr>
                     </table>
@@ -209,12 +263,40 @@
 
         <br>
         <div align="center">
-            <input type="button" id="next" class="btn btn-warning" value="다음" onclick="return validate();">
+            <button onclick="return validate();" class="btn btn-warning" id="next"> 로그인</button> 
         </div>
 
-        <br><br><br><br><br><br><br><br><br>
 
 
+              <!-- footer -->
+        <div class="footerOuter ff">
+        
+
+            <div class="footer1">
+                <div class="footer1_1">
+                    <a href="">이용약관</a> | 
+                    <a href="">개인정보보호정책</a>
+                </div>
+
+                <div class="footer1_2" align="right">
+                    <i class="fab fa-instagram-square" fa="lg" ></i>
+                    <i class="fab fa-youtube"></i>
+                    <i class="fab fa-facebook"></i> 
+                    <i class="fas fa-arrow-up" fa="lg"></i>
+                </div>
+            </div>
+        
+            
+            <div class="footer2">
+                <p>02) 0909 - 0909 (평일 10:00 ~ 18:00) <br><br>
+                    Daily Routine : DR <br>
+                    주소 : 서울시 강남구 코딩로 31길, 서울 코딩별관 4층 <br>
+                    고객센터 및 제휴문의 : daily@routine.co.kr           
+                    <br>
+                    CopyRight 2000-2021 Daily Routine All Right Reserved
+                </p>
+            </div>
+    </div>
 
 
 
@@ -230,6 +312,20 @@
 
         
         <script>
+            function enter(){
+                
+                if($("#idNum").val() == ""){
+                    alert("인증번호를 입력하세요.")
+                    idNum.value = "";
+                    idNum.focus();
+
+                    return false;
+                }else{
+                    alert("확인되었습니다.");
+            }
+                
+                
+            }/*
             function enter1(){
                     
                     if($("#idNum").val() == ""){
@@ -258,7 +354,7 @@
             }
                 
                 
-            }
+            }*/
     
             </script>
     

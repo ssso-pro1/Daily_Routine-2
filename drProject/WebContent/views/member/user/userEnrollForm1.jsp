@@ -9,7 +9,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3.회원가입_1.회원약관동의</title>
-    <link rel="stylesheet" href="../../../resources/css/fontcommon.css" type="text/css">
 
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -72,50 +71,59 @@
         }
 
 
-        /* footer */
-        .footerOuter{
-        width:1000px;
-        margin:auto;
-        align-items: center;
+          /* footer */
+          .footerOuter{
+            width:1100px;
+            margin:auto;
+            margin-left:50px;
+            align-items: left;
+            bottom:100;
+            position:absolute;
+        }
+        .footerOuter>.footer1_1, .footer2{
+            width:1100px;
+            
+        }
 
-    }
-    .footerOuter>.footer1_1, .footer2{
-        width:1000px;
-    }
+        .footer1_1{
+            height:30px;
+            right:500px;
+            width:1100px;
+            background-color:rgb(250, 214, 9);
+            padding-top:10px;
+        }
+        .footer1_2>i{
+        left:250px;
+        }
 
-    .footer1_1{
-        height:30px;
-        background-color:rgb(250, 214, 9);
-       padding-top:10px;
+        .footer2{
+            height:80%;
+            padding-left:25px;
+            font-size:11px;
+        }
 
-    }
+        .footer1_1>a{
+            text-decoration: none;
+            color:black;
+            font-weight:bold;
+            
+            padding:30px;
+            text-align:center;
+        }
+        .footer1_2{
+            margin-top:-30px;
+            padding: 0px 30px;
+        }
+        .footer1_2>i{
+            padding: 10px 5px;
+            margin-top:-5px;
+        } 
 
-    .footer2{
-        height:80%;
-        padding-left:25px;
-        font-size:11px;
-    }
-
-    .footer1_1>a{
-        text-decoration: none;
-        color:black;
-        font-weight:bold;
-        
-        padding:30px;
-        text-align:center;
-    }
-    .footer1_2{
-        margin-top:-30px;
-        padding: 0px 30px;
-    }
-    .footer1_2>i{
-        padding: 10px 5px;
-    }
         
     </style>
 </head>
 <body>
-    <div class="f">
+<div class="f">
     <%@ include file="../../common/menubar.jsp" %>
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
     
@@ -235,18 +243,17 @@
         </form>
     </div>
     
-
-    </div>
-
-
+    <br><br><br><br>
+   
 
 
-      <!-- footer -->
-      <div class="footerOuter">
+
+
+    <!-- footer -->
+    <div class="footerOuter ff">
     
-        
 
-        <div class="footer1" >
+        <div class="footer1">
             <div class="footer1_1">
                 <a href="">이용약관</a> | 
                 <a href="">개인정보보호정책</a>
@@ -259,12 +266,7 @@
                 <i class="fas fa-arrow-up" fa="lg"></i>
             </div>
         </div>
-            <!-- <div class="footer1_2" align="right">
-                <i class="fab fa-instagram-square" fa="lg" ></i>
-                <i class="fab fa-youtube"></i>
-                <i class="fab fa-facebook"></i> 
-                <i class="fas fa-arrow-up" fa="lg"></i>
-            </div> -->
+      
         
         <div class="footer2">
             <p>02) 0909 - 0909 (평일 10:00 ~ 18:00) <br><br>
@@ -275,8 +277,8 @@
                 CopyRight 2000-2021 Daily Routine All Right Reserved
             </p>
         </div>
+    </div>
 </div>
-
     
     <script>
     //필수항목 미체크 시 알림창

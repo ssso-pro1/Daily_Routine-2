@@ -8,19 +8,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>01. 아이디입력</title>
-    <link rel="stylesheet" href="../../../resources/css/fontcommon.css" >
 
     <!-- Latest compiled and minified CSS -->
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 
-      <!-- jQuery library -->
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <!-- jQuery library -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
   
-      <!-- Popper JS -->
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <!-- Popper JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
   
-      <!-- Latest compiled JavaScript -->
-      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <!-- Latest compiled JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     
     <!-- <link rel="stylesheet" type="text/css" href="../../../resources/css/findIdPwdNavi.css"> -->
 
@@ -111,25 +110,28 @@
         }
       
 
+        
          /* footer */
-        .footerOuter{
+         .footerOuter{
             width:1100px;
             margin:auto;
-            margin-left:130px;
             align-items: center;
             bottom:100;
             position:absolute;
+            margin-top:100px;
 
         }
         .footerOuter>.footer1_1, .footer2{
             width:1100px;
             
         }
-
+        .footer1, .footer2{
+            text-align: left;
+        }
         .footer1_1{
             height:30px;
             right:500px;
-            width:1150px;
+            width:1100px;
             background-color:rgb(250, 214, 9);
             padding-top:10px;
         }
@@ -167,7 +169,7 @@
     
      
     <!-- navi -->
-    <div class="menuWrap" align="center">
+    <div class="menuWrap" align="center" style="margin-top:30px;">
         <div class="menu1"> <a href="<%=contextPath%>/findID1.us" style="color:gray"><i class="fas fa-user"> 아이디 찾기</i></a> </div>
         <div class="menu2"> <a href="<%=contextPath%>/findPwd1.us" style="color:rgb(250, 214, 9); "><i class="fas fa-key">비밀번호 찾기</i></a></div>
     </div>
@@ -199,13 +201,8 @@
                     <th align="left">아이디</th>
                     <td><input type="text" name="userPwd" id="userId" placeholder="아이디를 입력하세요" required></td>
                 </tr>
-                <tr>
-                    <th colspan="2"><input type="submit" value="다음" id="next" onclick="validate();"></th>
-                </tr>
-                
             </table>
-            
-
+            <input type="submit" value="다음" id="next" class="btn btn-warning " onclick="validate();">
         </form>
         
     </div> 

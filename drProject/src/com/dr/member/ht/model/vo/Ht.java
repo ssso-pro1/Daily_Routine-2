@@ -56,7 +56,7 @@ public class Ht {
 	}
 
 	public Ht(int htPostNo, int userNo, String htPostContent, String htPostTitle, String htCategory, Date htEnrollDate,
-			Date htUpdateDate, String videoLink) {
+			Date htUpdateDate) {
 		super();
 		this.htPostNo = htPostNo;
 		this.userNo = userNo;
@@ -65,7 +65,6 @@ public class Ht {
 		this.htCategory = htCategory;
 		this.htEnrollDate = htEnrollDate;
 		this.htUpdateDate = htUpdateDate;
-		this.videoLink = videoLink;
 	}
 
 

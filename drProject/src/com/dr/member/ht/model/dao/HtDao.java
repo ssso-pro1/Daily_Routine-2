@@ -369,8 +369,7 @@ public class HtDao {
 						   rset.getString("ht_post_title"),
 						   rset.getString("category_name"),
 						   rset.getDate("ht_enroll_date"),
-						   rset.getDate("ht_update_date"),
-						   rset.getString("video_link")
+						   rset.getDate("ht_update_date")
 						  );
 						
 			}

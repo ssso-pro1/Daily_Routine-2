@@ -24,7 +24,7 @@
     	margin:auto;
         margin-left: 50px;
     }
-    table
+    #calendar
     {
         border:1px solid #BDBDBD;
         text-align:center;
@@ -291,9 +291,7 @@
             </div>
          </div>
          <!-- footer -->
-	    <div class="footerOuter">
-	    
-	
+	    <div class="footerOuter">	
 	            <div class="footer1">
 	                <div class="footer1_1">
 	                    <a href="">이용약관</a> | 

@@ -24,9 +24,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+     <!-- 폰트 -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+	
     <title>관리자</title>
 
     <style>
+    
+    	.ff{font-family: 'Do Hyeon', sans-serif;}
         body{
             background-color: rgb(33, 33, 34);
         }
@@ -178,12 +185,11 @@
         <div id="content">
 
              <!--왼쪽 공통메뉴-->
-             <div id="content_1">
+             <div id="content_1" class="ff">
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
-                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
@@ -225,7 +231,7 @@
             <div id="content_2">
 
                 <!-- 상단 타이틀 -->
-                <div id="content2_1">
+                <div id="content2_1" class="ff">
                     <h2>고객센터 > 1:1 문의 관리</h2>
                 </div>
 

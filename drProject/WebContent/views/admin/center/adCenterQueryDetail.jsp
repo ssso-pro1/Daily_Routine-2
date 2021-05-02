@@ -16,9 +16,15 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+     <!-- 폰트 -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+	
     <title>관리자</title>
 
     <style>
+    	.ff{font-family: 'Do Hyeon', sans-serif;}
         body{
             background-color: rgb(33, 33, 34);
         }
@@ -137,14 +143,23 @@
             text-decoration: none; color: white;}
         
         .queryArea th{
-            background: rgb(221, 220, 213);
+            text-align: center;
+            border: 1px solid rgb(116, 114, 109);
+            color: white;
+        }
+
+        .queryArea td{
+            border: 1px solid rgb(116, 114, 109);
+            color: white;
+        }
+
+
+        .queryReplyArea th{
+            background: rgba(110, 107, 104, 0.425);
             text-align: center;
             border: 1px solid rgb(116, 114, 109);
         }
-
-        .queryReplyArea th{
-            background: rgb(109, 105, 102);
-            text-align: center;
+        .queryReplyArea td{
             border: 1px solid rgb(116, 114, 109);
         }
 
@@ -181,12 +196,11 @@
         <div id="content">
 
               <!--왼쪽 공통메뉴-->
-             <div id="content_1">
+             <div id="content_1" class="ff">
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
-                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
@@ -215,7 +229,7 @@
             <div id="content_2">
 
                 <!-- 상단 타이틀 -->
-                <div id="content2_1">
+                <div id="content2_1" class="ff">
                     <h2>고객센터 > 1:1 문의 관리</h2>
                 </div>
 
@@ -250,9 +264,9 @@
                 <div class="queryDetailArea" align="center">
                      <table  style="border-collapse: collapse; width: 100%;" class="queryArea">
                          <tr>
-                             <th style="width: 90px; color: black;">회원 ID</th>
+                             <th style="width: 90px;">회원 ID</th>
                              <td><%=q.getUserId() %></td>
-                             <th style="width: 90px; color: black;">문의 상태</th>
+                             <th style="width: 90px;">문의 상태</th>
                              <td>
                              	<%if(q.getQueryStatus().equals("Y")) { %>
                             	 <label style="font-weight: bold;">정상</label>
@@ -263,17 +277,17 @@
                          </tr>
                          
                          <tr>
-                             <th style="width: 90px; color: black;">문의유형</th>
+                             <th style="width: 90px; ;">문의유형</th>
                              <td><%=q.getQueryCategory() %></td>
-                             <th style="width: 90px; color: black;">문의작성일</th>
+                             <th style="width: 90px;">문의작성일</th>
                              <td><%=q.getQueryCreateDate() %></td>
                          </tr>
                          <tr>
-                             <th style="width: 90px; color: black;">문의제목</th>
+                             <th style="width: 90px;;">문의제목</th>
                              <td colspan="3"><%=q.getQueryTitle() %></td>
                          </tr>
                          <tr>
-                             <th style="width: 90px; color: black;">문의내용</th>
+                             <th style="width: 90px;">문의내용</th>
                              <td colspan="3">
                                  <textarea name="" id="" cols="120" rows="10" readonly><%=q.getQueryContent() %></textarea>
                              </td>
@@ -294,13 +308,13 @@
                         <% if(q.getReplyStatus().equals("Y")) { %>
                         
 	                       <tr>
-	                            <th style="width: 90px; color: black;">처리상태</th>
-	                            <td style="color: blue; font-weight: bold;">답변완료</td>
-	                            <th style="width: 90px; color: black;">답변등록일</th>
+	                            <th style="width: 90px;">처리상태</th>
+	                            <td style="color: rgb(129, 46, 236); font-weight: bold;">답변완료</td>
+	                            <th style="width: 90px;">답변등록일</th>
 	                            <td><%= q.getReplyDate() %></td>
 	                        </tr>
 	                        <tr>
-	                            <th style="width: 90px; color: black;">답변내용</th>
+	                            <th style="width: 90px; ">답변내용</th>
 	                            <td colspan="3">
 	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="120" rows="10"><%= q.getReplyContent() %></textarea>
 	                            	
@@ -320,13 +334,13 @@
                        	<!-- 답변 처리중일때 -->
                         <% } else if (q.getReplyStatus().equals("N")){ %>
 	                        <tr>
-	                            <th style="width: 90px; color: black;">처리상태</th>
+	                            <th style="width: 90px;">처리상태</th>
 	                            <td style="color: red; font-weight: bold;">답변대기</td>
-	                            <th style="width: 90px; color: black;">답변등록일</th>
+	                            <th style="width: 90px; ">답변등록일</th>
 	                            <td>답변대기</td>
 	                        </tr>
 	                        <tr>
-	                            <th style="width: 90px; color: black;">답변내용</th>
+	                            <th style="width: 90px; ;">답변내용</th>
 	                            <td colspan="3">
 	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="120" rows="10"></textarea>
 	                            	
@@ -346,7 +360,7 @@
 	                   <!-- 회원이 삭제한 게시글일때 -->
 	                   <% } else { %>
 	                   		<tr>
-	                            <th style="width: 90px; color: black;">처리상태</th>
+	                            <th style="width: 90px;">처리상태</th>
 	                            <td>
 	                            <%if(q.getReplyContent() != null){ %>
 	                           	<label>답변완료</label>
@@ -354,7 +368,7 @@
 	                            <label>답변대기</label>
 	                            <% } %>
 	                            </td>
-	                            <th style="width: 90px; color: black;">답변등록일</th>
+	                            <th style="width: 90px;">답변등록일</th>
 	                            <td>
 	                            <%if(q.getReplyDate()==null) {%>
 	                            	답변대기
@@ -364,7 +378,7 @@
 	                            </td>
 	                        </tr>
 	                        <tr>
-	                            <th style="width: 90px; color: black;">답변내용</th>
+	                            <th style="width: 90px;">답변내용</th>
 	                            <td colspan="3">
 	                                <textarea name="queryReplyContent" id="queryReplyContent" cols="120" rows="10" readonly><%if(q.getReplyContent()==null) {%><% } else { %><%=q.getReplyContent() %><% } %>
 	                                </textarea>
@@ -441,7 +455,7 @@
                                     	
                                     	
                                     	if(!regExp.test(queryReplyContent.value)){
-                                    		alert("제목을 입력해주세요");
+                                    		alert("내용을 입력해주세요");
                                     	
                                     		queryReplyContent.value="";
                                     		queryReplyContent.focus();

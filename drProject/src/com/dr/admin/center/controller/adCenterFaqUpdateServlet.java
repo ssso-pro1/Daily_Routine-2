@@ -54,7 +54,7 @@ public class adCenterFaqUpdateServlet extends HttpServlet {
 		if (result > 0) { // 수정성공
 			
 			
-			request.getSession().setAttribute("alertMsg", "FAQ 수정에 성공했습니다");
+			//request.getSession().setAttribute("alertMsg", "FAQ 수정에 성공했습니다");
 			response.sendRedirect(request.getContextPath()+"/ctFaqDetail.ad?fno=" + faqNo); // 자기가 수정한글 보여지게 
 			
 			

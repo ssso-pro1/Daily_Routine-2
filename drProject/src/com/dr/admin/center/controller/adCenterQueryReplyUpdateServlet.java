@@ -40,7 +40,7 @@ public class adCenterQueryReplyUpdateServlet extends HttpServlet {
 		
 		if(result > 0) { // 업데이트성공
 			
-			request.getSession().setAttribute("alertMsg", "글 등록에 성공했습니다");
+			//request.getSession().setAttribute("alertMsg", "글 등록에 성공했습니다");
 			response.sendRedirect(request.getContextPath()+"/ctQueryDetail.ad?qno="+queryNo); // 보던 문의글로 돌아감
 			
 		} else { // 실패

@@ -36,7 +36,7 @@ public class adHTDeleteServlet extends HttpServlet {
 		
 		if(result > 0) { //  성공 
 			
-			request.getSession().setAttribute("alertMsg", "게시글 삭제 성공했습니다");
+			//request.getSession().setAttribute("alertMsg", "게시글 삭제 성공했습니다");
 			response.sendRedirect(request.getContextPath()+ "/htList.aht?currentPage=1");
 			
 		} else { // 실패

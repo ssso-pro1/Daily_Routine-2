@@ -23,9 +23,16 @@
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	
+	<!-- 폰트 -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+	
+	
 	<title>관리자</title>
 
     <style>
+    
+    	.ff{font-family: 'Do Hyeon', sans-serif;}
         body{ background-color: rgb(33, 33, 34);}
 
         div{
@@ -159,12 +166,11 @@
         <div id="content">
 
               <!--왼쪽 공통메뉴-->
-             <div id="content_1">
+             <div id="content_1" class="ff">
                 
-                <div class="content_1_1">
+                <div class="content_1_1" >
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
-                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
@@ -193,7 +199,7 @@
             <div id="content_2">
 
                 <!-- 상단 타이틀 -->
-                <div id="content2_1">
+                <div id="content2_1" class="ff">
                     <h2>고객센터 > 공지사항 관리</h2>
                 </div>
 
@@ -258,7 +264,7 @@
                                         <input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
                                         
                                         <button class="btn btn-warning btn-sm" type="submit" onclick="return validate();">등록</button>
-                                        <button class="btn btn-secondary btn-sm" onclick="return back();"><a href="<%=contextPath %>/ctNotice.ad?currentPage=1">취소</a></button>
+                                        <button class="btn btn-secondary btn-sm"><a href="<%=contextPath %>/ctNotice.ad?currentPage=1">취소</a></button>
                                         </label>
                                     </td>
                                 </tr>
@@ -285,16 +291,7 @@
                   			    })
                   			
                   				//취소버튼 눌렀을 때
-                  			    function back(){
-                        				var result = confirm("게시글 작성을 취소하시겠습니까?");
-                                    	if(result){
-                                    		
-                                    		return true;
-                                    	} else {
-                                    		
-                                    		return false;
-                                    	}
-                        			}
+                  			    
                         
                         
                         

@@ -28,9 +28,15 @@
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	
+	<!-- 폰트 -->
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
+	
 	<title>관리자</title>
 
     <style>
+    
+    	.ff{font-family: 'Do Hyeon', sans-serif;}
         body{ background-color: rgb(33, 33, 34);}
 
         div{
@@ -162,12 +168,12 @@
         <div id="content">
 
               <!--왼쪽 공통메뉴-->
-             <div id="content_1">
+             <div id="content_1" class="ff">
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
-                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
+                   
                     <br>
                 </div>
 
@@ -196,7 +202,7 @@
             <div id="content_2">
 
                 <!-- 상단 타이틀 -->
-                <div id="content2_1">
+                <div id="content2_1" class="ff">
                     <h2>게시물관리 > info&tip 관리</h2>
                 </div>
 

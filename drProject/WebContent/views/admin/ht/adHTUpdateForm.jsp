@@ -21,12 +21,16 @@
   <link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
   <script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 
+  <!-- 폰트 -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap" rel="stylesheet">
 
 <title>ht게시글 등록</title>
 
 <title>관리자</title>
 
   <style>
+   .ff{font-family: 'Do Hyeon', sans-serif;}
     body{ background-color: rgb(33, 33, 34);}
     
     div{
@@ -157,7 +161,7 @@
         <div id="content">
 
                <!--왼쪽 공통메뉴-->
-             <div id="content_1">
+             <div id="content_1" class="ff">
                 
                 <div class="content_1_1">
                     <h2>회원관리</h2>
@@ -167,7 +171,7 @@
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
-                    <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
+                    <div><a style="color:white;" href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
                     <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
                     <br>
                 </div>
@@ -190,7 +194,7 @@
             <div id="content_2">
 
                 <!-- 상단 타이틀 -->
-                <div id="content_2_1">
+                <div id="content_2_1" class="ff">
                     <h2>HomeTraining </h2>
                 </div>
 

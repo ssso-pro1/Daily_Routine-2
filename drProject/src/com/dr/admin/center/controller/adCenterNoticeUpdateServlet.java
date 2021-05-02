@@ -99,7 +99,7 @@ public class adCenterNoticeUpdateServlet extends HttpServlet {
 			// case3 : 새로운 첨부파일 o, 기존의 첨부파일 x 	=> updateBoard(b, refBoardNo담긴at)	=> Board Update, Attachement Insert
 			
 			if(result > 0) { // 성공 => /detail.no?bno=해당글번호 url재요청 => 해당게시글상세조회페이지
-				request.getSession().setAttribute("alertMsg", "게시글 수정 성공");
+				//request.getSession().setAttribute("alertMsg", "게시글 수정 성공");
 				response.sendRedirect(request.getContextPath() + "/ctNoticeDetail.ad?nno=" + noticeNo);
 				
 			}else { // 실패 => 에러문구 담아서 에러페이지 포워딩

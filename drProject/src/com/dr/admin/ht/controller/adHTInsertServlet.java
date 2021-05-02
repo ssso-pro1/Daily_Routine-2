@@ -95,7 +95,7 @@ public class adHTInsertServlet extends HttpServlet {
 			} else { // 실패
 				
 				request.setAttribute("errorMsg", "게시글 등록실패!");
-				request.getRequestDispatcher("views/common/errorPage/jsp").forward(request, response);
+				request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
 				
 			}
 			

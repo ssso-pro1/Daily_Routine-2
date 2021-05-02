@@ -14,7 +14,7 @@ import com.dr.admin.info.model.dao.adInfoDao;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.common.model.vo.PageInfo;
 
-public class AdHTService {
+public class adHTService {
 	
 	
 		//전체게시글 카운트

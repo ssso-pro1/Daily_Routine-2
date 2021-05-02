@@ -24,7 +24,7 @@
     .thumbnail{
     	cursor:pointer;
     }
-            .footerOuter{
+   .footerOuter{
         width:1100px;
         margin:auto;
         align-items: center;

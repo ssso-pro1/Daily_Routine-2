@@ -9,7 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.dr.admin.ht.model.service.AdHTService;
+import com.dr.admin.ht.model.service.adHTService;
 import com.dr.admin.ht.model.vo.adHT;
 import com.dr.common.model.vo.PageInfo;
 
@@ -48,7 +48,7 @@ public class adHTListSelectServlet extends HttpServlet {
 		request.setCharacterEncoding("utf-8");
 		String ctg = request.getParameter("ctg");
 		
-		listCount = new AdHTService().selectListCount(ctg); // 각자카테고리에 들어있는 리스트 수
+		listCount = new adHTService().selectListCount(ctg); // 각자카테고리에 들어있는 리스트 수
 						
 				
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
@@ -67,7 +67,7 @@ public class adHTListSelectServlet extends HttpServlet {
 		
 		
 		// 2. 현재 요청한 페이지(currentPage)에 보여질 게시글 리스트 조회해오기
-		ArrayList<adHT> list = new AdHTService().selectList(pi, ctg);
+		ArrayList<adHT> list = new adHTService().selectList(pi, ctg);
 						
 		request.setAttribute("pi", pi);
 		request.setAttribute("list", list);

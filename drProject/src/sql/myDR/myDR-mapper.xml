@@ -90,7 +90,7 @@
                        , CATEGORY_NAME
                        , HT_UPDATE_DATE
                        , HT_LIKE_COUNT
-			           , FILE_PATH || FILE_NAME "TITLEIMG"
+			           , FILE_PATH || FILE_UPDATE "TITLEIMG"
                      FROM TB_HOMETRAINING H
                      JOIN TB_BOOKMARK B ON(H.HT_POST_NO = B.BK_POST_NO)
                      WHERE STATUS = 'N'
@@ -123,7 +123,7 @@
                               , POST_TITLE
 			                  , LIKE_COUNT
 			                  , I.UPDATE_DATE "FILE_UPDATE"
-			                  , FILE_PATH || FILE_NAME "TITLEIMG"
+			                  , FILE_PATH || FILE_UPDATE "TITLEIMG"
 			               FROM TB_INFO_N_TIP I 
 			               JOIN TB_INT_FILE F ON (I.INT_POST_NO = F.INT_POST_NO)
                            JOIN TB_BOOKMARK B ON(I.INT_POST_NO = B.BK_POST_NO)

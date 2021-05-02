@@ -22,6 +22,7 @@
 	.wrap{
 	font-family: 'Do Hyeon', sans-serif;
 	}
+	#content, .footerOuter{margin-top:18px}
     .outer{
         margin-left: -100px;
     }
@@ -94,6 +95,7 @@
     .footer1_2>i{
         padding: 10px 5px;
     }
+
 </style>
 </head>
 <body>

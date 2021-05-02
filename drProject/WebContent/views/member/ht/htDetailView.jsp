@@ -14,7 +14,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/htView.css">
-<link rel="stylesheet" href="../../../resources/css/htView.css">
+<!-- <link rel="stylesheet" href="../../../resources/css/htView.css"> -->
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 <style>
 	.wrap{
@@ -107,18 +107,33 @@
 			<div id="content_1">
                 <h1>Home<br>Training</h1><br>
                <div class="leftMenu">
-                    <div><a href="<%=contextPath%>/allList.ht?currentPage=1"">전체</a></div>
+                    <div><a class="all" href="<%=contextPath%>/allList.ht?currentPage=1"">전체</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/bodyList.ht?currentPage=1">전신 운동</a></div>
+                    <div><a class="body" href="<%=contextPath%>/bodyList.ht?currentPage=1">전신 운동</a></div>
                     <br>
-					<div><a href="<%=contextPath%>/absList.ht?currentPage=1">복부 운동</a></div>
+					<div><a class="abs"href="<%=contextPath%>/absList.ht?currentPage=1">복부 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/upperList.ht?currentPage=1">상체 운동</a></div>
+                    <div><a class="upper" href="<%=contextPath%>/upperList.ht?currentPage=1">상체 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/lowerList.ht?currentPage=1">하체 운동</a></div>
+                    <div><a class="lower" href="<%=contextPath%>/lowerList.ht?currentPage=1">하체 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/strechingList.ht?currentPage=1">스트레칭</a></div>
+                    <div><a class="streching" href="<%=contextPath%>/strechingList.ht?currentPage=1">스트레칭</a></div>
                 </div>
+                <script>
+                	$(function(){
+        
+                    	var category = "<%= h.getHtCategory() %>";
+                    	
+                    	switch(category){
+                    	case "전신운동" : $(".body").css("color", "rgb(250, 214, 9)");return;
+                    	case "복부운동" : $(".abs").css("color", "rgb(250, 214, 9)");return;
+                    	case "상체운동" : $(".upper").css("color", "rgb(250, 214, 9)");return;
+                    	case "하체운동" : $(".lower").css("color", "rgb(250, 214, 9)");return;
+                    	case "스트레칭" : $(".streching").css("color", "rgb(250, 214, 9)");return;
+                    	}
+                	})
+                	
+                </script>
             </div>
 
             <div id="line"></div>

@@ -2,8 +2,13 @@
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.ArrayList, com.dr.member.ht.model.vo.Ht, com.dr.common.model.vo.PageInfo" %>
 <%
-
+	PageInfo pi = (PageInfo)request.getAttribute("pi");
 	ArrayList<Ht> list = (ArrayList<Ht>)request.getAttribute("list");
+	
+	int currentPage = pi.getCurrentPage();
+	int startPage = pi.getStartPage();
+	int endPage = pi.getEndPage();
+	int maxPage = pi.getMaxPage();
 
 %>
 <!DOCTYPE html>
@@ -91,7 +96,7 @@
                     <br>
 					<div><a href="<%=contextPath%>/absList.ht?currentPage=1">복부 운동</a></div>
                     <br>
-                    <div><a href="<%=contextPath%>/upperList.ht?currentPage=1"  style="color:rgb(250, 214, 9);">상체 운동</a></div>
+                    <div><a href="<%=contextPath%>/upperList.ht?currentPage=1" style="color:rgb(250, 214, 9);">상체 운동</a></div>
                     <br>
                     <div><a href="<%=contextPath%>/lowerList.ht?currentPage=1">하체 운동</a></div>
                     <br>
@@ -110,63 +115,69 @@
                     <hr>
                     <p>홈트레이닝 상체 운동 조회입니다.</p>
                 </div>
-                <br>
+                <br><br>
 				<div id="content_2_2">
-
-					<div class="tipcategory" style="margin-left:10px">
-						<select name="category">
-							<option value="upload">업로드순</option>
-							<option value="like">좋아요순</option>
-							<option value="view">조회수순</option>
-						</select>
-					</div>
-					
-					<script>
-						// 기본 상태 = 업로드순
-						$(function(){
-							$(".listArea").load("upperListArea.ht?currentPage=1");
-						})
-					
-						
-						$("select[name=category]").change(function(){
-							var value = ($(this).val());
-							
-							$.ajax({
-								type:"post",
-								url: "upperListArea.ht?currentPage=1",
-								dataType : "html",
-								data:{
-									value:value
-								},success:function(){
-									$(".listArea").load("upperListArea.ht?currentPage=1");
-									console.log(value);
-								},error:function(){
-									cosole.log("실패");
-								}
-							})
-						})
-						
-						
-					</script>
-					
 					
 					<div align="center" class="searchArea">
-						<form action="<%= contextPath %>/searchList.ht" method="post">
+						<form action="<%= contextPath %>/searchList.ht?currentPage=1" method="post">
 							<!-- 제목검색? -->
 							<input type="text" name="searchTitle">
 							<button type="submit">검색</button> 
 						</form>
 					</div>
-
 					
 					<br><br>
 					<!-- 여기에 listArea페이징이랑, 조회한거랑 디테일뷰 스크립트가 들어옴 -->
-					<div class="listArea"></div>
+					<% if(list.isEmpty()){ %>
+						<h1>조회된 리스트가 없습니다</h1>
+						<br><br><br><br><br><br><br><br><br><br><br><br>
+					<% } else{ %>
+						<% for(Ht h : list){ %>
+							<div class="thumbnail" align="center">
+								<input type="hidden" value="<%= h.getHtPostNo() %>">
+								<img src="<%= h.getTitleImg() %>" width="230" height="150">
+								<p>
+									<%= h.getHtPostTitle() %><br>
+									조회수 : <%= h.getHtViewCount() %> 좋아요 : <%= h.getHtLikeCount() %> <br>
+									<%= h.getHtUpdateDate() %>
+								</p>
+							</div>
+						<% } %>
+					<% } %>
+					<!-- 디테일 뷰 가는 스크립트 -->
+						<script>
+							$(function() {
+				       	     	 $(".thumbnail").click(function() {
+				                  	 location.href= '<%=contextPath%>/detail.ht?hno=' + $(this).children().eq(0).val();
+				      	     	   })
+				   	    	 })
+						</script>
+				
+					<br><br>
+					<!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
+					<!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
+					<div align="center" class="pagingArea">
+						<% if(currentPage != 1){ %>
+							<button onclick="location.href='<%= contextPath %>/strechingList.ht?currentPage=<%= currentPage-1 %>';"><</button>
+						<% } %>
+											
+						<% for(int p=startPage; p<=endPage; p++){ %>
+							<% if(currentPage == p) { %>
+								<button disabled><%= p %></button>
+							<% }else{ %>
+								<button onclick="location.href='<%= contextPath %>/strechingList.ht?currentPage=<%= p %>';"><%= p %></button>
+							<% } %>
+						<% } %>
+											
+						<% if(currentPage != maxPage){ %>
+							<button onclick="location.href='<%= contextPath %>/strechingList.ht?currentPage=<%= currentPage + 1 %>';">></button>
+						<% } %>
+					</div>
 					<br>
 				</div>
 			</div>
 		</div>
-				<!-- footer -->
+						<!-- footer -->
 	    <div class="footerOuter">	
 	            <div class="footer1">
 	                <div class="footer1_1">

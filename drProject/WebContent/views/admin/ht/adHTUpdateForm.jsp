@@ -162,7 +162,6 @@
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
-                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 

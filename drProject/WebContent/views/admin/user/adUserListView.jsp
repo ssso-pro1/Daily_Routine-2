@@ -108,26 +108,48 @@
     .listOuter{
         margin-left:20px;
         height:600px;
-        margin-left:20px;
+        margin-left:50px;
         padding-left:20px;
+        margin-bottom:30px;
     }
     
     .listArea{
         /* border:1px solid gray; */
         text-align:center;
-        margin-left:70px;
+        margin-left:90px;
     }
-    .listArea>thead, tbody{
+    .listArea>thead{
+        color:black;
+        margin-left:60px;
+    }
+    .listArea> tbody{
         color:white;
         margin-left:20px;
     }
     .listArea>tbody>tr:hover{
-        background:gray;
-        color:rgb(250, 214, 9);
+        background:rgb(104, 104, 104);
+        color:rgb(218, 218, 218);
         cursor:pointer;
     }
     .listArea>thead>tr{
-        background:rgb(250, 214, 9);
+        background:rgb(247, 209, 86);
+    }
+    #line{
+        border: 1px solid gray;
+    }
+    #line{width:1%;}
+
+    #line{
+        border:1px solid gray;
+        width:0.1px;
+        height:150px;
+    }
+
+    #line{ border: 5px solid black; width: 0.1px; height: 50px; }
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+    /* @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap'); */
+    .f{
+        font-family: 'Do Hyeon', sans-serif;
     }
 </style>
 </head>
@@ -143,6 +165,8 @@
         
     }
 </script>
+<div class="f">
+
 <div class="wrap">
 
     <div id="nav">
@@ -180,7 +204,6 @@
             <div class="content_1_1">
                 <h2  style="color:white;">회원관리</h2>
                 <div><a href="<%=contextPath%>/userListView.aus?currentPage=1"  style="color:white;">전체 회원 조회 </a></div>
-                <div><a href="">회원 탈퇴처리</a></div>
                 <br>
             </div>
 
@@ -214,6 +237,7 @@
             </div>
 
             <hr style="border:1px solid gray">
+
             <div>
                 <p style="color:white;">전체 회원 조회 리스트입니다.</p>
             </div>
@@ -269,33 +293,29 @@
 
 <br>
 
-<!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
-<!-- 1을 누르면 "<"이 안보이고 마지막 숫자버튼을 누르면 ">"이 안보이도록 조건 처리해야 함-->
-<!-- 페이징 처리 -->	
-                    <!-- 클릭했을때 바탕색이 노란색으로 변경되는 버튼 -->
-                    <div align="center" class="pagingArea">
-                    
-                        <% if(currentPage != 1) { %>
-                            <button onclick="location.href='<%= contextPath %>/userListView.aus?currentPage=<%=currentPage-1%>';"><</button>
-                        <% } %>
-                        
-                        <% for(int p=startPage; p<=endPage; p++) { %>
-                            
-                            <% if(currentPage == p) { %>
-                                <button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
-                            <% }else { %>
-                                <button onclick="location.href='<%= contextPath %>/userListView.aus?currentPage=<%= p %>';"><%= p %></button>
-                            <% } %>
-                            
-                        <% } %>
-                        
-                        <% if(currentPage != maxPage) { %>
-                            <button onclick="location.href='<%= contextPath %>/userListView.aus?currentPage=<%=currentPage+1%>';">></button>
-                        <% } %>
-                    
-                    </div>
-                    
-                    <br><br>
+        <div align="center" class="pagingArea">
+        
+            <% if(currentPage != 1) { %>
+                <button onclick="location.href='<%= contextPath %>/userListView.aus?currentPage=<%=currentPage-1%>';"><</button>
+            <% } %>
+            
+            <% for(int p=startPage; p<=endPage; p++) { %>
+                
+                <% if(currentPage == p) { %>
+                    <button disabled style="background:rgb(250, 214, 9); color:white; border:rgb(250, 214, 9)";><%= p %></button>
+                <% }else { %>
+                    <button onclick="location.href='<%= contextPath %>/userListView.aus?currentPage=<%= p %>';"><%= p %></button>
+                <% } %>
+                
+            <% } %>
+            
+            <% if(currentPage != maxPage) { %>
+                <button onclick="location.href='<%= contextPath %>/userListView.aus?currentPage=<%=currentPage+1%>';">></button>
+            <% } %>
+        
+        </div>
+        
+        <br><br>
 
 </body>
 </html>

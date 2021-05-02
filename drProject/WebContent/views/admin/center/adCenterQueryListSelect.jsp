@@ -181,7 +181,6 @@
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
-                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
@@ -281,13 +280,13 @@
                          </thead>
                          <tbody>
                          
-                         	<% if(list.isEmpty()) { %>
-                         	<tr>
-            					<td colspan="7">존재하는 문의글이 없습니다.</td>
-            				</tr>
-            				<% } else { %>
-                         		<% for(adCenterQuery q:list) { %>
-                         	
+                            <% if(list.isEmpty()) { %>
+                            <tr>
+                                <td colspan="7">존재하는 문의글이 없습니다.</td>
+                            </tr>
+                            <% } else { %>
+                                <% for(adCenterQuery q:list) { %>
+                                
                          	<tr>
                                 <th>
                                 	 <input type="checkbox" name="qno" id="qno" value="<%=q.getQueryNo() %>">
@@ -370,6 +369,13 @@
          			//클릭x
              		<% } else { %>
              		
+<<<<<<< Updated upstream
+=======
+             			<% if(list.isEmpty()) { %>
+                            
+	             		<% } else { %>
+             			
+>>>>>>> Stashed changes
 	             		$(function(){
 							$(".listArea>tbody>tr>td").click(function(){
 								location.href = '<%=contextPath%>/ctQueryDetail.ad?qno=' + $(this).siblings().eq(1).text();			

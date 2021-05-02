@@ -19,16 +19,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>관리자</title>
 
     <style>
+        body{
+            background-color: rgb(33, 33, 34);
+        }
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:1200px;
+            width:1500px;
+            height: 1300px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -69,7 +76,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -83,6 +90,7 @@
         }
 
 
+		#content a:hover{color:white;} 
         #content_1 *{
             color:gray;
             margin: 10px 3px;
@@ -130,6 +138,12 @@
             height:30px;
         }
         
+        a{text-decoration: none; color: white;}
+
+        th{text-align: center;
+            border: 1px solid rgba(126, 126, 119, 0.76);}
+
+        td{border: 1px solid rgba(126, 126, 119, 0.76);}
         
         
 
@@ -168,13 +182,14 @@
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
                     <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
+                    <div><a style="color:white;" href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
                     <br>
                 </div>
 
@@ -222,19 +237,19 @@
 
             <!--info-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">info&tip 관리 > 글 상세보기</p>
+                <p style="font-size: 20px; color: white; font-weight: 1000;">Info&Tip 상세보기</p>
             </div>
 
 
             <!--info 디테일뷰-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 1000px;">
+            <div id="content_2_4" style="width: 1200px; margin-left: 20px;">
                 <br>
                 <div id="infoDetail">
                     <form action="">
-                        <table border="1" align="center">
+                        <table style="color: white;">
                             <tbody>
                                 <tr>
-                                    <th>아이디</th>
+                                    <th width="140px">아이디</th>
                                     <td colspan="3"><%= i.getUserId() %></td>
                                 </tr>
                                 <tr>
@@ -243,8 +258,8 @@
                                 </tr>
                                 <tr>
                                     <th>등록일</th>
-                                    <td style="width: 150px"><%= i.getEnrollDate() %></td>
-                                    <th>마지막수정일</th>
+                                    <td ><%= i.getEnrollDate() %></td>
+                                    <th width="140px">마지막수정일</th>
                                     <% if(i.getUpdateDate()==null) { %>
                                     	<td style="width: 150px"></td>
                                     <% } else { %>
@@ -254,34 +269,6 @@
                                     
                                 </tr>
                                 <tr>
-                                    <th>내용</th>
-                                    <td colspan="3">
-	                                    <div style="width: 700px; height: 500px;"><%= i.getPostContent() %></div>
-                                    </td>
-
-                                </tr>
-                               
-                                
-                                <tr>
-                                    <th>썸네일</th>
-                                   
-                                    <td colspan="3" align="center"> 
-                                    <%if (fi !=null)   { %>
-                                    	<img src="<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>" width="200" height="200">
-                                    	
-                                    
-                                    <% } else { %>
-                                    
-                                    	썸네일이 없습니다
-                                    <% } %>
-                                    
-                                    </td>
-                                    
-                                    
-                                </tr>
-
-                            
-                            	<tr>
                             		<th>카테고리</th>
                             		<td colspan="3">
                             			<input type="radio" id="workout" name="category" value="1" checked><label for="workout">운동정보</label>
@@ -297,14 +284,42 @@
                                         <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
                                     </td>
                                 </tr>
+                                <tr>
+                                    <th>썸네일</th>
+                                   
+                                    <td colspan="3" align="center"> 
+                                    <%if (fi !=null)   { %>
+                                    	<img src="<%= contextPath %>/<%= fi.getFilePath() + fi.getFileUpdate() %>" width="200" height="150">
+                                    	
+                                    
+                                    <% } else { %>
+                                    
+                                    	썸네일이 없습니다
+                                    <% } %>
+                                    
+                                    </td>
+                                    
+                                    
+                                </tr>
+                                <tr>
+                                    <th>내용</th>
+                                    <td colspan="3">
+	                                    <div style="width: 800px; height: auto;"><%= i.getPostContent() %></div>
+                                    </td>
+
+                                </tr>
+                                
+
+                            
+                            	
                             </tbody>
                             <tfoot>
                                <tr>
                                    <td colspan="4">
                                     <label style="float: right;">
-                                            <button><a href="<%= contextPath%>/infoUpadteForm.ad?ino=<%= i.getIntPostNo() %>">수정</a></button>
-                                            <button onclick ="return check();"><a href="<%= contextPath%>/infoDelete.ad?ino=<%= i.getIntPostNo() %>">삭제</a></button>
-                                            <button><a href="<%= contextPath %>/info.ad?currentPage=1">목록으로</a></button>
+                                            <button class="btn btn-warning btn-sm"><a href="<%= contextPath%>/infoUpadteForm.ad?ino=<%= i.getIntPostNo() %>">수정</a></button>
+                                            <button class="btn btn-secondary btn-sm" onclick ="return check();"><a href="<%= contextPath%>/infoDelete.ad?ino=<%= i.getIntPostNo() %>">삭제</a></button>
+                                            <button class="btn btn-secondary btn-sm"><a href="<%= contextPath %>/info.ad?currentPage=1">목록으로</a></button>
                                         </label>
                                     </td>
                                 </tr>

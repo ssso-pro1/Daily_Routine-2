@@ -23,15 +23,17 @@
 	<link href="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.css" rel="stylesheet">
 	<script src="http://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.8/summernote.js"></script>
 	
-	<title>공지사항</title>
+	<title>관리자</title>
 
     <style>
+        body{ background-color: rgb(33, 33, 34);}
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:800px;
+            width:1500px;
+            height:1300px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -72,7 +74,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -96,6 +98,7 @@
             margin-top:20px;
             margin-left:10px;
         }
+        #content a:hover{color:white;}
 
         #content_1 a{
             font-size:12px;
@@ -113,14 +116,15 @@
         }
 
    
-        #title{
-            margin-left:25px;
-        }
+        th{text-align: center; color: white;
+           border: 1px solid rgba(126, 126, 119, 0.76);}
+        
+        td{border: 1px solid rgba(126, 126, 119, 0.76);}   
+
+        a{text-decoration: none; color: black;}
+        
         
 
-        
-        
-        
 
 
     </style>
@@ -157,13 +161,14 @@
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
                     <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
+                    <div><a style="color:white;" href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
                     <br>
                 </div>
 
@@ -197,13 +202,13 @@
 
             <!--info-->
             <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 600;">info&tip 관리 > 새 글 등록</p>
+                <p style="font-size: 20px; color: white; font-weight: 600;">새 글 등록</p>
                 <div class="underLine"></div>
             </div>
 
 
             <!--info 글쓰기폼-->
-            <div id="content_2_4" style="background: white; width: 800px; height: 6000px;">
+            <div id="content_2_4" style="width: 800px; height: 600px;">
 
                 
                   
@@ -213,11 +218,11 @@
                 
                 	<div id="infoEnroll">
                     
-                        <table border="1" align="center" >
+                        <table border="1" style="margin-left: 20px;">
                             <tbody>
                                 <tr>
                                     <th>제목</th>
-                                    <td><input type="text" name="infoTitle" id="title" style="width: 80%;" required></td>
+                                    <td><input type="text" name="infoTitle" id="title" style="width: 100%;" required></td>
                                 </tr>
                                 
                                 <!--  
@@ -234,14 +239,14 @@
 				                    </td>
                                 </tr>
                                 <tr>
-                                    <th>썸네일 선택</th>
+                                    <th>썸네일</th>
                                     <td colspan="3">
-                                        <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);" required>
+                                        <input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);" required style="color:white;">
                                         
                                     </td>
                                 </tr>
                                 <tr>
-                                    <th>썸네일</th>
+                                    <th>미리보기</th>
                                     <td colspan="3" align="center">
                                         <!--대표이미지 미리보기할 img-->
                                         <img id="titleImg" width="250" height="170">
@@ -251,26 +256,26 @@
                             </tbody>
                             <tfoot>
                             	<tr>
-                            		<th>카테고리 선택</th>
-                            		<td>
+                            		<th>카테고리</th>
+                            		<td style="color:white;">
                             			<input type="radio" id="workout" name="category" value="1" checked><label for="workout">운동정보</label>
-                                        <input type="radio" id="meal" name="category" value="2"><label for="meal">식단정보</label>
+                                        <input type="radio" id="meal" name="category" value="2" style="margin-left: 10px;"><label for="meal">식단정보</label>
                             		
                             		</td>
                             
                             	</tr>
                                 <tr>
-                                    <th>게시여부 선택</th>
-                                    <th>
+                                    <th width="200px">게시여부</th>
+                                    <td style="color:white;">
                                         <input type="radio" id="statusY" name="status" value="Y" checked><label for="statusY" >게시</label>
-                                        <input type="radio" id="statusN" name="status" value="N"><label for="statusN">보류</label>
+                                        <input type="radio" id="statusN" name="status" value="N" style="margin-left: 10px;"><label for="statusN">보류</label>
                                         
                                         <label style="float: right;">
                                         
                                         <input type="hidden" name="userNo" value="<%= loginUser.getUserNo() %>">
                                         
-                                        <button type="submit" onclick="return validate();">등록</button>
-                                        <button onclick="return back();"><a href="<%=contextPath %>/info.ad?currentPage=1">취소</button>
+                                        <button class="btn btn-warning btn-sm" type="submit" onclick="return validate();">등록</button>
+                                        <button class="btn btn-secondary btn-sm" onclick="return back();"><a href="<%=contextPath %>/info.ad?currentPage=1">취소</button>
                                         </label>
                                     </td>
                                 </tr>

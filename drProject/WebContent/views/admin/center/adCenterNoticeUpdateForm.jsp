@@ -95,6 +95,8 @@
             font-weight:bold;
             font-size:20px;
         }
+        
+        #content a:hover{color:white;}
 
 
         #content_1 *{
@@ -167,6 +169,7 @@
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
@@ -179,7 +182,7 @@
 
                 <div class="content_1_3">
                     <h2>고객센터</h2>
-                    <div><a href="<%=contextPath%>/ctNotice.ad?currentPage=1">공지사항</a></div> 
+                    <div><a style="color:white;" href="<%=contextPath%>/ctNotice.ad?currentPage=1">공지사항</a></div> 
                     <div><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">FAQ</a></div> 
                     <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div>
                     <br>

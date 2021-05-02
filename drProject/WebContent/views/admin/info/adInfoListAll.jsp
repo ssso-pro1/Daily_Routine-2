@@ -23,16 +23,23 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <title>관리자 메인 페이지- 좌측 메뉴바</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <title>관리자</title>
 
     <style>
+        body{
+            background-color: rgb(33, 33, 34);
+        }
+
         div{
             box-sizing:border-box;
         }
         .wrap{
-            width:1000px;
-            height:800px;
+            width:1500px;
+            height: 1200px;
             margin:auto;
             margin-top:15px;
             background-color: rgb(33, 33, 34);
@@ -73,7 +80,7 @@
         #content_2_3{height:35%;} */
 
         #nav{
-            width:100%;
+            width:1500px;
             height:40px;
             background-color: gray;
             padding:5px;
@@ -97,6 +104,8 @@
             margin-top:20px;
             margin-left:10px;
         }
+        
+        #content a:hover{color:white;}
 
         #content_1 a{
             font-size:12px;
@@ -124,17 +133,18 @@
             margin: auto;
         }
         .listArea>tbody>tr:hover{
-            background:rgb(219, 217, 217);
+            background:rgba(219, 217, 217, 0.295);
             cursor:pointer;
+            opacity: 0.7;
         }
         .listArea>thead>tr{
             background:rgb(247, 209, 86);
         }
         .listArea>tr,th,td{
-            height:30px;
+            height:50px;
         }
         
-        
+        a{text-decoration: none; color: white;}
         
 
 
@@ -172,13 +182,14 @@
                 <div class="content_1_1">
                     <h2>회원관리</h2>
                     <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
+                    <div><a href="<%=contextPath%>/deleteForm.aus">회원 탈퇴처리</a></div>
                     <br>
                 </div>
 
                 <div class="content_1_2">
                     <h2>게시물관리</h2>
                     <div><a href="<%=contextPath%>/htList.aht?currentPage=1">HomeTraining</a></div> 
-                    <div><a href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
+                    <div><a style="color:white;" href="<%=contextPath%>/info.ad?currentPage=1">Info&Tip</a></div>
                     <br>
                 </div>
 
@@ -227,39 +238,45 @@
 
 
             <!--Info&Tip 관리-->
-            <div id="content_2_3">    
-                <p style="font-size: 20px; color: white; font-weight: 1000;">Info&Tip</p>
-            </div>
+            
 
 
             <!--Info&Tip게시판-->
-            <div id="content_2_4" style="background: white;">
-                <div class="replyStatusArea">
-                    <table>
-                        <tr>
-                            <th><a href="<%= contextPath%>/info.ad?currentPage=1">전체보기 </a>|</th>
-                            <th><a href="<%= contextPath%>/infoSelect.ad?currentPage=1&ctg=1">운동정보</a> |</th>
-                            <th><a href="<%= contextPath%>/infoSelect.ad?currentPage=1&ctg=2">식단정보</a> |</th>
-                            
-                        </tr>
-                    </table>
+            <div id="content_2_4" style="width: 850px; margin: auto; margin-top: 30px;">
+                <div class="categoryArea" style="font-weight: 1000;" >
+                    <nav class="navbar navbar-expand-sm bg-dark navbar-dark justify-content-center" style="width: 900px;">
+                        <ul class="navbar-nav">
+                          <li class="nav-item">
+                            <a class="nav-link" href="<%= contextPath%>/info.ad?currentPage=1">전체보기</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<%= contextPath%>/infoSelect.ad?currentPage=1&ctg=1">운동정보</a>
+                          </li>
+                          <li class="nav-item">
+                            <a class="nav-link" href="<%= contextPath%>/infoSelect.ad?currentPage=1&ctg=2">식단정보</a>
+                          </li>
+                          
+                          <li>
+                         &nbsp; &nbsp; &nbsp;
+                          </li>
+                        </ul>
 
                 </div>
-                
-                
-                <div class="queryListArea" style="background: white; width: 800px; height: 500px;">
+
+
+                <div class="queryListArea" style="color: white; width: 900px; height: 600px;">
                 <form action="<%= contextPath %>/infoDelete.ad" method="post" > <!-- 삭제하기서블릿으로 -->
                     <br><br>
                     <table align="center" class="listArea" border="1">
                          <thead>
                              <tr>
-                                 <th width="30">선택</th>
-                                 <th width="40" style="color:black">글번호</th>
-                                 <th width="40" style="color:black">게시물</th>
-                                 <th width="200" style="color:black">제목</th>
-                                 <th width="50">글쓴이</th>
-                                 <th width="60">게시상태</th>
-                                 <th width="60">등록일</th>
+                                <th width="40" style="color:black">선택</th>
+                                <th width="40" style="color:black">글번호</th>
+                                <th width="50" style="color:black">게시물</th>
+                                <th width="200" style="color:black">제목</th>
+                                <th width="50" style="color:black">글쓴이</th>
+                                <th width="50" style="color:black">게시상태</th>
+                                <th width="60" style="color:black">등록일</th>
                              </tr>
                          </thead>
                          <tbody>
@@ -297,7 +314,32 @@
                             	
                          </tbody>
                     </table>
+                    
+
+                    <div align="left" class="buttonArea">
+
+                        <% if(list.isEmpty()) { %>
+                        
+                        <button class="btn btn-secondary btn-sm" type="button"><a href="<%= contextPath %>/infoEnroll.ad">새 글 등록</a></button>
+                                
+                        <% } else { %>
+                         <br>
+                             <button class="btn btn-secondary btn-sm" type="button"><a href="<%= contextPath %>/infoEnroll.ad">새 글 등록</a></button>
+                             <button class="btn btn-dark btn-sm" type="submit"  onclick="return check();">선택 삭제</button> 
+                                <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
+                                <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
+                        <% } %>
+                     </div>
+                   </form>  
+                   </div> 
              
+
+
+
+
+
+
+
              		<script>
              		<% if(list.isEmpty()) { %>
          			//클릭x
@@ -315,21 +357,7 @@
                     <br><br>
                    
                   
-                  	<div align="center">
-                       <% if(list.isEmpty()) { %>
-                       
-                       <button><a href="<%= contextPath %>/infoEnroll.ad">새 글 등록</a></button>
-                   			
-	                   <% } else { %>
-	                    <br>
-	                    	<button><a href="<%= contextPath %>/infoEnroll.ad">새 글 등록</a></button>
-	                        <button type="submit"  onclick="return check();">선택 삭제</button> 
-                       	    <!-- 폼으로해서 골라서 삭제페이지로 넘기기 -->
-                       	    <!-- 리스트가 존재해야만 선택삭제버튼 나오도록 --> 
-	                   <% } %>
-                    </div>
-                  </form>  
-                  </div>    
+                  	   
                 
                     
                      <div align="center" class="pagingArea">
@@ -338,21 +366,21 @@
 						<p></p>
 						<% } else { %>
 							<% if(currentPage != 1) { %>
-				            	<button onclick="location.href='<%=contextPath%>/info.ad?currentPage=<%=currentPage-1%>';">이전</button>
+				            	<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%=contextPath%>/info.ad?currentPage=<%=currentPage-1%>';">이전</button>
 							<% } %>
 							
 							<% for(int p=startPage; p<=endPage; p++) { %>
 								
 								<% if(currentPage == p){ %>
-				            		<button disabled><%= p %></button>
+				            		<button disabled class="btn btn-warning btn-sm"><%= p %></button>
 				            	<% }else{ %>
-				            		<button onclick="location.href='<%=contextPath%>/info.ad?currentPage=<%= p %>';"><%= p %></button>
+				            		<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%=contextPath%>/info.ad?currentPage=<%= p %>';"><%= p %></button>
 				            	<% } %>
 				            	
 							<% } %>
 							
 							<% if(currentPage != maxPage){ %>
-				            	<button onclick="location.href='<%=contextPath%>/info.ad?currentPage=<%=currentPage+1%>';">다음</button>
+				            	<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%=contextPath%>/info.ad?currentPage=<%=currentPage+1%>';">다음</button>
 							<% } %>
 						 <% } %>	
 						

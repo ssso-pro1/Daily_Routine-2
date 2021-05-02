@@ -233,7 +233,7 @@
                             
                                     <tr>
                                         <th>썸네일 선택</th>
-                                        <td><input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);" style="color:white;" required></td>
+                                        <td style="color:white;"><input type="file" name="upfile" id="upfile" onchange="loadImg(this, 1);" style="color:white;" required></td>
                                     </tr>
                                 
                                     

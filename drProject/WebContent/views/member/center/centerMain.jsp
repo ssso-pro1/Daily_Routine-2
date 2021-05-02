@@ -104,7 +104,7 @@
         cursor: pointer;
     }
 
-    .helpImg:hover{color: indigo; cursor: pointer; opacity: 0.9;}
+    .helpImg:hover{color: rgb(145, 35, 223); cursor: pointer; opacity: 0.9;}
 
 
     .noticeList{
@@ -115,7 +115,7 @@
         border: 1px solid;
         border-radius: 5px;
         cursor: pointer;
-        font-size: 15px;
+        font-size: 16px;
         }
 
     .noticeContent{
@@ -141,7 +141,25 @@
 
     .ff{font-family: 'Do Hyeon', sans-serif;}
     
-    #noticeTitle:hover{color: indigo; cursor: pointer;}
+    #noticeTitle:hover{color: rgb(145, 35, 223); cursor: pointer;}
+
+    button{
+        color:black;
+        text-decoration:none;
+        font-size:15px;
+        font-weight:bolder;
+        border:rgb(250, 214, 9);
+        cursor: pointer;
+    }
+    button:hover{
+    	color:rgb(250, 214, 9);
+    }
+    button a:hover{
+    	color:rgb(250, 214, 9);
+    }
+
+
+
     
      /* footer */
     .footerOuter{
@@ -250,7 +268,7 @@
                 <div class="searchArea" align="center">
                     <form action="<%=contextPath %>/searchFaq.ct?currentPage=1" method="post">
                         <input type="text" name="searchFaq" id="serchFaq" placeholder="궁금한내용을 입력해주세요" style="margin-top: 13px; width: 300px;">
-                        <button type="submit">검색</button>
+                        <button class="ff" type="submit">검색</button>
                     </form>
                 </div>
             </div>
@@ -258,40 +276,44 @@
 
             <!--무엇을 도와드릴까요-->
             <div id="content_2_4">
-                <p><h2 class="ff" style="font-weight: 700; font-size: 25px;">무엇을 도와드릴까요? <button><a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">전체보기</a></button></h2></p>
+                <p><h2 class="ff" style="font-weight: 700; font-size: 25px;">무엇을 도와드릴까요? <button><a class="ff" href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">전체보기</a></button></h2></p>
                 
                 <div class="helpArea">
-                    <div class="helpImg" align="center">
-                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top"><img src="https://t3.ftcdn.net/jpg/04/28/16/86/240_F_428168682_Hbozsl5o8rjLlgOZfSw23ddknim4ZdGg.jpg" width="120" height="118"></a>
-                        <p class="ff" style="font-weight: 700; font-size: 18px;">
-                           	 질문 TOP10
+                     <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=top">
+	                     <div class="helpImg" align="center">
+	                       <img src="https://t3.ftcdn.net/jpg/04/28/16/86/240_F_428168682_Hbozsl5o8rjLlgOZfSw23ddknim4ZdGg.jpg" width="120" height="118">
+	                       <p class="ff" style="font-weight: 700; font-size: 18px;"> 질문 TOP10</p>
+	                     </div>
+                     </a>
+                     
+                     <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=userInfo">
+                     	<div class="helpImg" align="center">
+                        <img src="https://t3.ftcdn.net/jpg/02/73/37/20/240_F_273372018_avUsN7C4K9RDVPDQuCkeyAbyOvS58apZ.jpg" width="120" height="120">
+                        <p class="ff" style="font-weight: 700; font-size: 18px;"> 회원정보</p>
+                    	</div>
+                    </a>
+                    
+                    <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=content">
+                    	<div class="helpImg" align="center">
+                        <img src="https://t3.ftcdn.net/jpg/03/00/17/00/240_F_300170007_EeUnk2vDMLQJDQh0sStL46tH0rTUy1j3.jpg" width="120" height="120">
+                        <p class="ff" style="font-weight: 700; font-size: 18px;">게시글/댓글</p>
+                    	</div>
+                    </a>
+                    	
+                    <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=report">
+                    	<div class="helpImg" align="center">
+                        <img src="https://t3.ftcdn.net/jpg/00/91/70/80/240_F_91708092_BJJtouZ0WymGgV1x3matkZsHibuyUOTV.jpg" width="120" height="120">
+                        <p class="ff" style="font-weight: 700; font-size: 18px;"> 신고</p>
+                    	</div>
+                    </a>	
+                    
+                    <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=etc">	
+                    	<div class="helpImg" align="center">
+                        <img src="https://t4.ftcdn.net/jpg/03/08/43/19/240_F_308431972_g5fuiXwgOZpDCMFQougq13hgSaQVHVro.jpg" width="120" height="120">
+                        <p class="ff" style="font-weight: 700; font-size: 18px;"> 기타
                         </p>
-                        
-                    </div>
-                    <div class="helpImg" align="center">
-                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=userInfo"><img src="https://t3.ftcdn.net/jpg/02/73/37/20/240_F_273372018_avUsN7C4K9RDVPDQuCkeyAbyOvS58apZ.jpg" width="120" height="120"></a>
-                        <p class="ff" style="font-weight: 700; font-size: 18px;">
-                           	 회원정보
-                        </p>
-                    </div>
-                    <div class="helpImg" align="center">
-                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=content"><img src="https://t3.ftcdn.net/jpg/03/00/17/00/240_F_300170007_EeUnk2vDMLQJDQh0sStL46tH0rTUy1j3.jpg" width="120" height="120"></a>
-                        <p class="ff" style="font-weight: 700; font-size: 18px;">
-                            	게시글/댓글
-                        </p>
-                    </div>
-                    <div class="helpImg" align="center">
-                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=report"><img src="https://t3.ftcdn.net/jpg/00/91/70/80/240_F_91708092_BJJtouZ0WymGgV1x3matkZsHibuyUOTV.jpg" width="120" height="120"></a>
-                        <p class="ff" style="font-weight: 700; font-size: 18px;">
-                          	  신고
-                        </p>
-                    </div>
-                    <div class="helpImg" align="center">
-                        <a href="<%=contextPath%>/faqList.ct?currentPage=1&ctg=etc"><img src="https://t4.ftcdn.net/jpg/03/08/43/19/240_F_308431972_g5fuiXwgOZpDCMFQougq13hgSaQVHVro.jpg" width="120" height="120"></a>
-                        <p class="ff" style="font-weight: 700; font-size: 18px;">
-                           	 기타
-                        </p>
-                    </div>
+                   		</div>
+                   	</a>	
                 </div>    
                 
 
@@ -299,7 +321,7 @@
 
             <!--공지사항 3개만 보여주기-->
             <div id="content_2_5" class="ff"> 
-                <p><h2 style="font-weight: 700; font-size: 25px;">공지사항 <button><a href="<%=contextPath%>/notice.ct?currentPage=1">전체보기</a></button></h2></p>
+                <p><h2 style="font-weight: 700; font-size: 25px;">공지사항 <button><a class="ff" href="<%=contextPath%>/notice.ct?currentPage=1">전체보기</a></button></h2></p>
 
                 <div class="noticeArea">
                 
@@ -312,7 +334,7 @@
 		                    <div class="noticeList">
 		                    <a href="<%= contextPath%>/noticeDetail.ct?nno=<%=list.get(i).getNoticeNo() %>">
 
-                                <label style="font-weight: 100; font-size: 18px; margin-left: 10px;" id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>
+                                <label style="font-weight: 600; font-size: 18px; margin-left: 10px;" id="noticeTitle"><%= list.get(i).getNoticeTitle() %></label>
                                 <label style="font-weight: 100; font-size: 15px; float: right; margin-right: 10px;" id="noticeDate"><%=list.get(i).getCreateDate() %></label>
                                     
 		                        

@@ -235,13 +235,13 @@
                             
                                     <tr>
                                         <th>썸네일 선택</th>
-                                        <td><input type="file" name="reUpfile" id="reUpfile" onchange="loadImg(this, 1);"></td>
+                                        <td style="color:white;" ><input type="file" name="reUpfile" id="reUpfile" onchange="loadImg(this, 1);" align="center"></td>
                                     </tr>
                                 
                                     
                                     <tr> 
                                         <th>썸네일이미지(첨부파일)</th>
-                                        <td>
+                                        <td  align="center">
 
                                             <img src="<%= contextPath %>/<%= t.getTitleImg() %>" id="titleImg" width="250" height="250">
 

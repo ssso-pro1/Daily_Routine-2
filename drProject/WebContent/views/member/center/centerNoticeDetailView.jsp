@@ -19,7 +19,7 @@
     }
     .wrap{
         width: 1000px;
-        height: 800px;
+        height: 1000px;
         margin: auto;
         margin-top:15px;
     }
@@ -242,7 +242,7 @@
             <!-- 게시글 세부 영역 -->
             <div id="content_2_3">
                 <div class="detailArea" >
-                    <table border="1" height="600px;" width="800px">
+                    <table border="1" height="800;" width="800px">
                         <tr align="center" height="40px;" class="ff">
                             <th width="70%"><%= n.getNoticeTitle() %></th>
                             <th width="15%"><%=n.getCreateDate() %></th>
@@ -266,10 +266,10 @@
                         <tr class="ff">
                             <td colspan="4">
                                 <% if(n.getNextTitle()==null) { %>
-                                <button disabled class="ff">
+                                <button disabled class="ff" style="color: gray;">
                                 	다음글
                                 </button>
-                                <label>다음글이 없습니다</label>
+                                <label style="color: gray;">다음글이 없습니다</label>
                                 
                                 <% } else { %>
                                 <button class="ff">
@@ -286,10 +286,10 @@
                         <tr class="ff">
                             <td colspan="4">
                                 <% if(n.getPreTitle()==null) { %>
-                                <button disabled class="ff">
+                                <button disabled class="ff" style="color: gray;">
                                 	이전글
                                 </button>
-                                <label>이전글이 없습니다</label>
+                                <label style="color: gray;"> 이전글이 없습니다</label>
                                 
                                 <% } else { %>
                                 <button class="ff"> 

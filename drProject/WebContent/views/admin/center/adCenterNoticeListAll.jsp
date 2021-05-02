@@ -410,7 +410,7 @@
                     	function check(){
 	                 		
                     		if($("input:checkbox[id='nno']").is(":checked") == true) {
-	                 				var result = confirm("선택한 FAQ 글을 완전히 삭제 하시겠습니까?");
+	                 				var result = confirm("선택한 글을 완전히 삭제 하시겠습니까?");
 		                 			if(result){
 		                            		
 		                            		

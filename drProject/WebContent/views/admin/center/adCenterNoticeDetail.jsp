@@ -249,7 +249,7 @@
                 <div id="noticeDetail">
                     
                         
-                        <table border="1">
+                        <table border="1" style="color: white;">
                             <tbody>
                                 <tr>
                                     <th width="120">작성자</th>
@@ -300,8 +300,8 @@
                                 </tr>
                                 <tr>
                                     <th>내용</th>
-                                    <td colspan="3">
-                                        <div style="height: 600px; width: 850px;"><%= n.getNoticeContent() %></div></td>
+                                    <td colspan="3" style="color: white;">
+                                        <div style="height: auto; width: 850px;"><%= n.getNoticeContent() %></div></td>
                                 </tr>
                                 
 

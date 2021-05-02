@@ -110,7 +110,6 @@
         height:600px;
         margin-left:50px;
         padding-left:20px;
-        margin-bottom:30px;
     }
     
     .listArea{
@@ -139,17 +138,22 @@
     }
     #line{width:1%;}
 
-    #line{
+    #linel{
+        border:1px solid gray;
+        width:0.1px;
+        height:1000px;
+    }
+
+    #linel{ border: 1px solid gray; width: 0.1px; height: 1000px; }
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+    .f{
+        font-family: 'Do Hyeon', sans-serif;
+    }
+
+    #lineH{
         border:1px solid gray;
         width:0.1px;
         height:150px;
-    }
-
-    #line{ border: 5px solid black; width: 0.1px; height: 50px; }
-    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
-    /* @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&family=Nanum+Gothic:wght@700&display=swap'); */
-    .f{
-        font-family: 'Do Hyeon', sans-serif;
     }
 </style>
 </head>
@@ -157,18 +161,10 @@
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 <script src="https://ajax.googleeapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
-<script>
-    var msg = "null";
 
-    if(msg != "null"){
-        alert(msg);
-        
-    }
-</script>
-<div class="f">
 
 <div class="wrap">
-
+<div class="f">
     <div id="nav">
         <span align="left"><a href="<%=contextPath%>/mainPage.ad" id="ac">Admin Center</a></span>
 
@@ -193,6 +189,8 @@
                 <!-- 사용자 메인페이지로 돌아감 -->
                 
         </span>
+        
+
     </div>
 
 
@@ -219,14 +217,15 @@
                 <div><a href="<%=contextPath%>/ctNotice.ad?currentPage=1">공지사항</a></div> 
                 <div><a href="<%=contextPath%>/ctFaqList.ad?currentPage=1&ctg=top">FAQ</a></div> 
                 <div><a href="<%=contextPath%>/ctQuery.ad?currentPage=1">1:1문의</a></div> 
+                
                 <br>
+
             </div>
 
         </div>
 
-        <div id="line"></div>
-
-
+        <div id="lineH" style="border: 1px solid gray;" width="0.1px;" height="150px;"></div>
+        
 
         <!-- content -->
         <div id="content_2">
@@ -242,7 +241,8 @@
                 <p style="color:white;">전체 회원 조회 리스트입니다.</p>
             </div>
         </div>
-        </div>
+    </div>
+</div>
     
         <br><br>
         <div class="listOuter">
@@ -289,9 +289,7 @@
 
             
         </div>
-    <br>
-
-<br>
+ 
 
         <div align="center" class="pagingArea">
         
@@ -316,6 +314,7 @@
         </div>
         
         <br><br>
+    </div>
 
 </body>
 </html>

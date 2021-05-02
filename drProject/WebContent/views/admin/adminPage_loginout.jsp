@@ -102,13 +102,17 @@
             font-size:10px;
             padding:10px;
         }
-        
+    @import url('https://fonts.googleapis.com/css2?family=Do+Hyeon&display=swap');
+    .f{
+        font-family: 'Do Hyeon', sans-serif;
+    }
 
     </style>
 </head>
 <body>
 	
     <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
+    <div class="f">
 
     <div class="wrap">
 
@@ -150,7 +154,6 @@
                <div class="content_1_1">
                    <h2>회원관리</h2>
                    <div><a href="<%=contextPath%>/userListView.aus?currentPage=1">전체 회원 조회 </a></div>
-                   <div><a href="">회원 탈퇴처리</a></div>
                    <br>
                </div>
 

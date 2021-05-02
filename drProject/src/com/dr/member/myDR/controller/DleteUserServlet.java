@@ -37,20 +37,20 @@ public class DleteUserServlet extends HttpServlet {
 //		System.out.println(userId);
 		
 		int result = new UserService().deleteUser(userId, userPwd);
-		
+		HttpSession session = request.getSession();
 //		System.out.println(result);
 		if(result > 0) { // 탈퇴성공 => 세션에 담겨있는 loginUser 지워주기
 			
-			HttpSession session = request.getSession();
+			
 			session.removeAttribute("loginUser");
 			session.setAttribute("alertMsg", "탈퇴되었습니다. 그동안 이용해주셔서 감사합니다.");
 			
-			request.getRequestDispatcher("views/common/mainPage.jsp").forward(request, response);
+			request.getRequestDispatcher("index.jsp").forward(request, response);
 			
 		}else { // 탈퇴실패 => 에러페이지 
 			
-			request.setAttribute("errorMsg", "회원 탈퇴 실패");
-			request.getRequestDispatcher("views/common/errorPage.jsp").forward(request, response);
+			session.setAttribute("alertMsg", "회원 탈퇴 실패. 비밀번호를 다시 입력해주세요.");
+			request.getRequestDispatcher("views/member/myDR/deleteUser.jsp").forward(request, response);
 			
 		}
 		

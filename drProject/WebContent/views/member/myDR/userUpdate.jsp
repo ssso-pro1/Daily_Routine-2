@@ -149,10 +149,9 @@
                                         	<td><button type="button" data-toggle="modal" data-target="#pwdUpdateModal "id="updateBtn">비밀번호 변경</button></td>
                                         </tr>
                                         <tr>
-                                            <th>생년월일</th>
+                                            <th> 생년월일</th>
                                             <td>
-                                            <!-- 나눠서 하려면 어떻게해야하지 substring is not function거린다 -->
-                                               <%= birth %>
+                                                <%= birth %>
                                             </td>
                                         </tr>
                                         <tr>
@@ -328,7 +327,7 @@
 	        	        var updatePwd = $("input[name=updatePwd]");
 	        	        
 	        	        
-	        	        if(!regExp.test(updatePwd.value)){
+	        	        if(!regExp.text(updatePwd.value)){
 	        	            alert("유효한 비번 입력하세요.");
 	        	    
 	        	            updatePwd.value = ""; //기존값 초기화시키고, 포커스 가게

@@ -303,7 +303,7 @@
             <% if(list.isEmpty()) { %>
        
                 
-                
+                	<br><br>
                     <div> 조회된 리스트가 없습니다. </div>
                
                 

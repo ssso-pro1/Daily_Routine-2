@@ -304,7 +304,7 @@
             <% if(list.isEmpty()) { %>
        
                 
-                
+                	<br><br>
                     <div> 조회된 리스트가 없습니다. </div>
                
                 
@@ -376,27 +376,28 @@
     <div align="center" class="pagingArea">
     
          <!-- 관리자 메뉴바에서 hometraining 클릭시 : AdHTListServlet 에서 views/admin/ht/adHTListView.jsp 로이동 / 이 페이지에서 페이징 눌렀을 떄 : -->
-         <% if(currentPage != 1) { %>   
-			<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%=currentPage-1%>&ctg=<%=list.get(0).getCategoryName() %>';"><</button>
-		 	
-		 <% } %>
-		 
-		
-		 <% for(int p=startPage; p<=endPage; p++) { %>
+         <% if(!list.isEmpty()) { %>
+	         <% if(currentPage != 1) { %>   
+				<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%=currentPage-1%>&ctg=<%=list.get(0).getCategoryName() %>';"><</button>
+			 	
+			 <% } %>
+			 
 			
-			<% if(currentPage == p){ %>
-				<button disabled class="btn btn-warning btn-sm"><%= p %></button> <!-- 현재보고있는 페이지는 다시 클릭불가 / bo?currentPage = 현재누른페이지-->
-			<% }else{ %>
-				<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= p %>&ctg=<%=list.get(0).getCategoryName() %>';"><%= p %></button>
+			 <% for(int p=startPage; p<=endPage; p++) { %>
+				
+				<% if(currentPage == p){ %>
+					<button disabled class="btn btn-warning btn-sm"><%= p %></button> <!-- 현재보고있는 페이지는 다시 클릭불가 / bo?currentPage = 현재누른페이지-->
+				<% }else{ %>
+					<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= p %>&ctg=<%=list.get(0).getCategoryName() %>';"><%= p %></button>
+				<% } %>
+	            
 			<% } %>
-            
-		<% } %>
-		
-		<% if(currentPage != maxPage) { %>
-			<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= currentPage+1 %>&ctg=<%=list.get(0).getCategoryName() %>';">></button>
 			
-		<% } %>
-	        
+			<% if(currentPage != maxPage) { %>
+				<button class="btn btn-outline-secondary btn-sm" onclick="location.href='<%= contextPath %>/htListSelect.aht?currentPage=<%= currentPage+1 %>&ctg=<%=list.get(0).getCategoryName() %>';">></button>
+				
+			<% } %>
+	    <% } %>    
 	       
     </div>
 

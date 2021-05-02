@@ -98,9 +98,10 @@
 </style>
 </head>
 <body>
-    <%@ include file="../../common/menubar.jsp" %>
+    
 
 	<div class="wrap">
+	<%@ include file="../../common/menubar.jsp" %>
         <div id="content">
             <div id="content_1">
                 <h1>마이페이지</h1><br>

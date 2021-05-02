@@ -8,20 +8,20 @@ import static com.dr.common.JDBCTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import com.dr.admin.ht.model.dao.adHTDao;
+import com.dr.admin.ht.model.dao.AdHTDao;
 import com.dr.admin.ht.model.vo.adHT;
 import com.dr.admin.info.model.dao.adInfoDao;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.common.model.vo.PageInfo;
 
-public class adHTService {
+public class AdHTService {
 	
 	
 		//전체게시글 카운트
 		public int selectListCountAll() {
 			Connection conn = getConnection();
 			
-			int listCount = new adHTDao().selectListCountAll(conn);
+			int listCount = new AdHTDao().selectListCountAll(conn);
 			
 			close(conn);
 			return listCount;
@@ -30,7 +30,7 @@ public class adHTService {
 		// 전체게시글 리스트
 		public ArrayList<adHT> selectListAll(PageInfo pi) {
 			Connection conn = getConnection();
-			ArrayList <adHT> list = new adHTDao().selectListAll(conn, pi);
+			ArrayList <adHT> list = new AdHTDao().selectListAll(conn, pi);
 			close(conn);
 			return list;
 			
@@ -41,7 +41,7 @@ public class adHTService {
 		public int insertHT(adHT t) {
 			Connection conn = getConnection();
 			
-			int result = new adHTDao().insertHT(conn, t);
+			int result = new AdHTDao().insertHT(conn, t);
 			
 			
 			if(result > 0) {
@@ -59,7 +59,7 @@ public class adHTService {
 		public int selectListCount(String ctg) {
 			Connection conn = getConnection();
 			
-			int listCount = new adHTDao().selectListCount(conn, ctg);
+			int listCount = new AdHTDao().selectListCount(conn, ctg);
 			
 			close(conn);
 			return listCount;
@@ -68,7 +68,7 @@ public class adHTService {
 		// 카테고리 리스트
 		public ArrayList<adHT> selectList(PageInfo pi, String ctg) {
 			Connection conn = getConnection();
-			ArrayList <adHT> list = new adHTDao().selectList(conn, pi, ctg);
+			ArrayList <adHT> list = new AdHTDao().selectList(conn, pi, ctg);
 			close(conn);
 			return list;
 			
@@ -79,7 +79,7 @@ public class adHTService {
 		public int HTIncreaseCount(int htNo) {
 			Connection conn = getConnection();
 			
-			int result = new adHTDao().HTIncreaseCount(conn, htNo);
+			int result = new AdHTDao().HTIncreaseCount(conn, htNo);
 			
 			if(result > 0) {
 				commit(conn);
@@ -95,7 +95,7 @@ public class adHTService {
 		public adHT selectHT(int htNo) {
 			Connection conn = getConnection();
 			
-			adHT t = new adHTDao().selectHT(conn, htNo);
+			adHT t = new AdHTDao().selectHT(conn, htNo);
 			close(conn);
 			return t;
 		}
@@ -104,7 +104,7 @@ public class adHTService {
 		public int deleteHT(int htNo) {
 			Connection conn = getConnection();
 			
-			int result = new adHTDao().deleteHT(conn, htNo);
+			int result = new AdHTDao().deleteHT(conn, htNo);
 			
 			if(result > 0) {
 				commit(conn);
@@ -120,7 +120,7 @@ public class adHTService {
 		public int updateHT(adHT t) {
 			Connection conn = getConnection();
 			
-			int result = new adHTDao().updateHT(conn, t);
+			int result = new AdHTDao().updateHT(conn, t);
 			
 			
 			if(result > 0) {

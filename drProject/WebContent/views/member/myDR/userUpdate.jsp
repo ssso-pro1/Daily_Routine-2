@@ -97,8 +97,11 @@
 </style>
 </head>
 <body>
-    <%@ include file="../../common/menubar.jsp" %>
-    <%
+   
+
+    <div class="wrap">
+     <%@ include file="../../common/menubar.jsp" %>
+     <%
     	String userId = loginUser.getUserId(); // 필수
     	String userName = loginUser.getUserName(); // 필수
     	String birth = (loginUser.getBirth() == null) ? "" : loginUser.getBirth();
@@ -106,19 +109,6 @@
     	String phone = (loginUser.getPhone() == null) ? "" : loginUser.getPhone();
 		String gender = (loginUser.getGender() == null) ? "" : (loginUser.getGender() == "F") ? "여성" : "남성";
     %>
-    <script>
-	    $(function(){
-	    	var birth = <%= birth %>;
-	    	var year = birth.substring(0,3);
-	    	var month = birth.substring(4,5);
-	    	var day = brith.substring(6,7);
-	    	console.log(year);
-	    	console.log(month);
-	    	console.log(day);
-	    })
-    	
-    </script>
-    <div class="wrap">
         <div id="content">
             <div id="content_1">
                 <h2>마이페이지</h2><br>

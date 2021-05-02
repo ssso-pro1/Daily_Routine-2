@@ -15,13 +15,13 @@ import com.dr.admin.ht.model.vo.adHT;
 import com.dr.admin.info.model.vo.adInfo;
 import com.dr.common.model.vo.PageInfo;
 
-public class adHTDao {
+public class AdHTDao {
 	
 private Properties prop = new Properties();
 	
-	public adHTDao() {
+	public AdHTDao() {
 		
-		String fileName = adHTDao.class.getResource("/sql/admin/ht/adHT-mapper.xml").getPath();
+		String fileName = AdHTDao.class.getResource("/sql/admin/ht/adHT-mapper.xml").getPath();
 		
 		try {
 			prop.loadFromXML(new FileInputStream(fileName));

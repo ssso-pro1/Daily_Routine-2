@@ -108,8 +108,9 @@
 <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drView.css">
 </head>
 <body>
-    <%@ include file="../../common/menubar.jsp" %>
+   
 	<div class="wrap">
+	 <%@ include file="../../common/menubar.jsp" %>
         <div id="content">
             <div id="content_1">
                 <h1>마이페이지</h1><br>

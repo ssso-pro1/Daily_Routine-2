@@ -74,8 +74,9 @@
 </style>
 </head>
 <body>
+   
+    <div class="wrap"> 
     <%@ include file="../../common/menubar.jsp" %>
-    <div class="wrap">
 		<div id="content">
 			<div id="content_1">
                 <h1>Home<br>Training</h1><br>

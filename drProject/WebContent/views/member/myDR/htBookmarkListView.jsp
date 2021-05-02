@@ -122,8 +122,6 @@
                     <div><a href="<%=contextPath%>/myPostList.md?currentPage=1">내 글 보관함</a></div>
                     <br>
                     <div><a href="<%= contextPath %>/htBookmark.md?currentPage=1" style="color:rgb(250, 214, 9);">북마크 보관함</a></div>
-                    <br>
-                    <div><a href="<%= contextPath %>/diary.md">다이어리</a></div>
                 </div>
             </div>
 

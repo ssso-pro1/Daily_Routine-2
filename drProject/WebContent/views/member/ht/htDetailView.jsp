@@ -17,6 +17,9 @@
 <link rel="stylesheet" href="../../../resources/css/htView.css">
 <script src="https://kit.fontawesome.com/6478f529f2.js" crossorigin="anonymous"></script>
 <style>
+	.wrap{
+		font-family: 'Do Hyeon', sans-serif;
+	}
 	.mark{
         width: 500px;
         text-align: right;

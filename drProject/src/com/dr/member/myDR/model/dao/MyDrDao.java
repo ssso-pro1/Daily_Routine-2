@@ -263,7 +263,7 @@ public class MyDrDao {
 				list.add(h);
 					
 			}
-			
+			System.out.println(list);
 
 		} catch (SQLException e) {
 			e.printStackTrace();

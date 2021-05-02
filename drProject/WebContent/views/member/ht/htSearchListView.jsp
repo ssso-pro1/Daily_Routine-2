@@ -13,6 +13,9 @@
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/htView.css">
 <style>
+	.wrap{
+		font-family: 'Do Hyeon', sans-serif;
+	}
 	.listArea{
 		display: inline-block;
 	}

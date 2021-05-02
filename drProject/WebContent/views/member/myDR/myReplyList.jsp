@@ -20,7 +20,6 @@
 <title>Insert title here</title>
 <style>
 	.wrap{
-		border:1px solid blue;
 		font-family: 'Do Hyeon', sans-serif;
 	}
 	.outer{
@@ -46,7 +45,6 @@
         height: 100%;
     }
     .pagingArea{
-    	border:1px solid blue;
 		width: 650px;
         display: inline-block;
 		margin:auto;
@@ -60,8 +58,20 @@
 	#btn3{
 		margin-left: 50px;
 	}
+	.footerOuter{
+        width:1100px;
+        margin:auto;
+        align-items: center;
+        bottom:100;
+        margin-left:-60px;
+        position:absolute;
+
+    }
+    .footerOuter>.footer1_1, .footer2{
+        width:1100px;
+        font-family: 'Do Hyeon', sans-serif;
+    }
 	.footer1_1{
-		border:1px solid blue;
         height:30px;
         right:500px;
         width:1150px;
@@ -94,12 +104,8 @@
     .footer1_2>i{
         padding: 10px 5px;
     }
-    .footerOuter{
-    	border:1px solid blue;
-    }
 </style>
-<!-- <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drView.css"> -->
-<link rel="stylesheet" href="../../../resources/css/drView.css">
+<link rel="stylesheet" href="${pageContext.request.contextPath}/resources/css/drView.css">
 </head>
 <body>
     <%@ include file="../../common/menubar.jsp" %>
@@ -113,8 +119,6 @@
                     <div><a href="<%=contextPath%>/myPostList.md?currentPage=1" style="color:rgb(250, 214, 9);">내 글 보관함</a></div>
                     <br>
                     <div><a href="<%= contextPath %>/htBookmark.md?currentPage=1" >북마크 보관함</a></div>
-                    <br>
-                    <div><a href="<%= contextPath %>/diary.md">다이어리</a></div>
                 </div>
             </div>
 

@@ -10,11 +10,16 @@
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/css/htView.css">
 <!-- <link rel="stylesheet" href="../../../resources/css/reListView.css">  -->
 <style>
+	.wrap{
+		font-family: 'Do Hyeon', sans-serif;
+	}
 	.listArea{
 		display: inline-block;
 	}
 	.pagingArea{
+		margin:auto;
         width: 100%;
+        margin-left:250px;
     }	
     .thumbnail{
     	cursor:pointer;

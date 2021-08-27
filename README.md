@@ -19,7 +19,7 @@
 
 ## DB 설계
 
-<img src="https://user-images.githubusercontent.com/77923941/131146605-bf064f3b-6f92-47e9-b80d-e4aae285303d.jpg" width="60%" height="50%" alt="DB"></img>
+<img src="https://user-images.githubusercontent.com/77923941/131146605-bf064f3b-6f92-47e9-b80d-e4aae285303d.jpg" width="60%" height="40%" alt="DB"></img>
 
 
 
